@@ -36,6 +36,7 @@ class AuthViewModel : ViewModel() {
                 if (session != null) {
                     val uid = session.user?.id ?: ""
                     _authState.value = AuthState(
+
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
@@ -136,7 +137,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signUpWith(Email) {
                     this.email = email
-                    this.password = password
+                    this.password = password  // review: validation
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 val userId = session?.user?.id
@@ -212,6 +213,7 @@ class AuthViewModel : ViewModel() {
                     supabase.from("profiles").insert(mapOf(
                         "id" to userId,
                         "username" to username,
+
                         "display_name" to username,
                         "avatar_url" to "",
                         "bio" to "",
