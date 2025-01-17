@@ -59,6 +59,7 @@ class AuthViewModel : ViewModel() {
         } catch (_: Exception) {}
     }
 
+
     fun sendOtp(email: String) {
         viewModelScope.launch {
             try {
@@ -141,6 +142,7 @@ class AuthViewModel : ViewModel() {
                 val userId = session?.user?.id
                 if (userId != null) {
                     try {
+
                         supabase.from("profiles").insert(mapOf(
                             "id" to userId,
                             "username" to username,
@@ -159,6 +161,7 @@ class AuthViewModel : ViewModel() {
                     loadProfile(userId)
                 } else {
                     _authState.value = _authState.value.copy(
+
                         isLoading = false,
                         successMessage = "Account created. Please check your email to verify."
                     )
