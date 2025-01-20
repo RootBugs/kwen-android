@@ -25,7 +25,6 @@ fun SettingsScreen(
     onSignOut: () -> Unit
 ) {
     var showSignOutDialog by remember { mutableStateOf(false) }
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -62,6 +61,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Help, "Help Center", {})
                     SettingsItem(Icons.Default.Info, "About", {})
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
+
                 }
             }
             item {
@@ -128,6 +128,7 @@ fun SettingsItem(
             tint = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.size(24.dp)
         )
+
         Spacer(modifier = Modifier.width(16.dp))
         Text(
             title,
