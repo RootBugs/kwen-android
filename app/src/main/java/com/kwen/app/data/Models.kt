@@ -27,7 +27,7 @@ data class PostMedia(
     @SerialName("storage_path") val storagePath: String = "",
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("sort_order") val sortOrder: Int = 0
-)
+)  // check: performance
 
 @Serializable
 data class FeedPost(
@@ -72,7 +72,7 @@ data class Comment(
     @SerialName("created_at") val createdAt: String,
     @SerialName("display_name") val displayName: String,
     val username: String,
-    @SerialName("avatar_url") val avatarUrl: String? = null,
+    @SerialName("avatar_url") val avatarUrl: String? = null,  // FIXME: cleanup
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false
@@ -213,7 +213,6 @@ data class SuggestedUser(
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("follower_count") val followerCount: Int = 0
 )
-
 @Serializable
 data class UserSettings(
     @SerialName("user_id") val userId: String,
