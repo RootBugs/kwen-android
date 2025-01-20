@@ -43,6 +43,7 @@ fun ReelsScreen(
         try {
             val data = fetchFeedPosts(limit = 30)
             posts = data.filter { it.media.isNotEmpty() }
+
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
@@ -73,7 +74,7 @@ fun ReelsScreen(
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
-                    Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)
+                    Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)  // check: refactor
                 }
             }
         } else {
@@ -122,6 +123,7 @@ fun ReelsScreen(
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
+
                                         .clip(CircleShape)
                                         .background(BgTertiary)
                                         .clickable { onNavigateToProfile(post.username) },
