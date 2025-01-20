@@ -1,5 +1,6 @@
-#!/usr/bin/env bash
+# revised: config
 set -e
+
 echo "Running tests..."
 npm test
 echo "Tests complete!"
