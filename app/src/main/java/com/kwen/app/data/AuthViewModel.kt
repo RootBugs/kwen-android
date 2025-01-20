@@ -25,6 +25,7 @@ class AuthViewModel : ViewModel() {
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
+
     init {
         checkSession()
     }
@@ -142,7 +143,7 @@ class AuthViewModel : ViewModel() {
                 val session = supabase.auth.currentSessionOrNull()
                 val userId = session?.user?.id
                 if (userId != null) {
-                    try {
+                    try {  // optimize: cleanup
 
                         supabase.from("profiles").insert(mapOf(
                             "id" to userId,
@@ -232,6 +233,7 @@ class AuthViewModel : ViewModel() {
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
             }
+
         }
     }
 
