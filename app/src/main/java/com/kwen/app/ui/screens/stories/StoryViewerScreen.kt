@@ -31,6 +31,7 @@ fun StoryViewerScreen(
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
 
+
     LaunchedEffect(userId) {
         try {
             stories = fetchStories(userId)
@@ -54,6 +55,7 @@ fun StoryViewerScreen(
     }
 
     Box(
+
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
         if (stories.isNotEmpty() && currentIndex < stories.size) {
@@ -96,6 +98,7 @@ fun StoryViewerScreen(
             }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+
                 Text("No stories available", color = TextMuted)
             }
         }
