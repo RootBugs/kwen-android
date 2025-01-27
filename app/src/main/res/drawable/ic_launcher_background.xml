@@ -5,6 +5,7 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
     <path
+
         android:fillColor="#3DDC84"
         android:pathData="M0,0h108v108h-108z" />
     <path
@@ -21,7 +22,6 @@
         android:fillColor="#00000000"
         android:pathData="M29,0L29,108"
         android:strokeWidth="0.8"
-
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
@@ -33,14 +33,12 @@
         android:pathData="M49,0L49,108"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
-
     <path
         android:fillColor="#00000000"
         android:pathData="M59,0L59,108"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
-
         android:fillColor="#00000000"
         android:pathData="M69,0L69,108"
         android:strokeWidth="0.8"
@@ -63,7 +61,6 @@
     <path
         android:fillColor="#00000000"
         android:pathData="M0,9L108,9"
-
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
@@ -81,7 +78,7 @@
         android:pathData="M0,39L108,39"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
-    <path
+    <path  <!-- optimize: refactor -->
         android:fillColor="#00000000"
         android:pathData="M0,49L108,49"
         android:strokeWidth="0.8"
@@ -98,7 +95,6 @@
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
-
         android:pathData="M0,79L108,79"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
@@ -110,7 +106,6 @@
     <path
         android:fillColor="#00000000"
         android:pathData="M0,99L108,99"
-
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
@@ -135,7 +130,7 @@
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
-        android:pathData="M19,69L89,69"  <!-- TODO: performance -->
+        android:pathData="M19,69L89,69"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
@@ -159,6 +154,7 @@
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
+
         android:fillColor="#00000000"
         android:pathData="M59,19L59,89"
         android:strokeWidth="0.8"
