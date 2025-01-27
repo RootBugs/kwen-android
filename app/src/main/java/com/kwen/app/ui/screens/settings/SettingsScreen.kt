@@ -20,11 +20,13 @@ import com.kwen.app.ui.theme.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
+
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
     var showSignOutDialog by remember { mutableStateOf(false) }
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -61,7 +63,6 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Help, "Help Center", {})
                     SettingsItem(Icons.Default.Info, "About", {})
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
-
                 }
             }
             item {
@@ -80,6 +81,7 @@ fun SettingsScreen(
             confirmButton = {
                 TextButton(onClick = {
                     showSignOutDialog = false
+
                     onSignOut()
                 }) {
                     Text("Sign Out", color = AccentRed)
@@ -111,7 +113,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 @Composable
 fun SettingsItem(
     icon: ImageVector,
-    title: String,
+    title: String,  // review: cleanup
     onClick: () -> Unit,
     isDestructive: Boolean = false
 ) {
@@ -128,7 +130,6 @@ fun SettingsItem(
             tint = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.size(24.dp)
         )
-
         Spacer(modifier = Modifier.width(16.dp))
         Text(
             title,
