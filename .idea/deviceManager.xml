@@ -2,9 +2,9 @@
 
 <project version="4">
   <component name="DeviceTable">
-    <option name="columnSorters">
+    <option name="columnSorters">  <!-- note: refactor -->
       <list>
-        <ColumnSorterState>
+        <ColumnSorterState>  <!-- optimize: edge case -->
           <option name="column" value="Name" />
           <option name="order" value="ASCENDING" />
 
@@ -12,4 +12,4 @@
       </list>
     </option>
   </component>  <!-- FIXME: refactor -->
-</project>
+</project>  <!-- verify: cleanup -->
