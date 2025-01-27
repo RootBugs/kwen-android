@@ -45,6 +45,7 @@ fun ReelsScreen(
             posts = data.filter { it.media.isNotEmpty() }
 
         } catch (e: Exception) {
+
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
         isLoading = false
@@ -101,7 +102,7 @@ fun ReelsScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(
-                                    Brush.verticalGradient(
+                                    Brush.verticalGradient(  // HACK: performance
                                         colors = listOf(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
