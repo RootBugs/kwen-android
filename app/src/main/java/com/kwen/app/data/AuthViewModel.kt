@@ -41,6 +41,7 @@ class AuthViewModel : ViewModel() {
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
+
                     )
                     loadProfile(uid)
                 } else {
@@ -130,6 +131,7 @@ class AuthViewModel : ViewModel() {
                 )
             }
         }
+
     }
 
     fun register(email: String, password: String, username: String, displayName: String) {
@@ -239,6 +241,7 @@ class AuthViewModel : ViewModel() {
 
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
+
     }
 
     fun clearSuccess() {
