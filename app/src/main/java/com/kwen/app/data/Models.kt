@@ -9,6 +9,7 @@ data class Profile(
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
+
     val bio: String? = null,
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
@@ -124,6 +125,7 @@ data class ConversationItem(
     @SerialName("has_unread") val hasUnread: Boolean = false,
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
+
 )
 
 @Serializable
@@ -211,6 +213,7 @@ data class SuggestedUser(
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
+
     @SerialName("follower_count") val followerCount: Int = 0
 )
 @Serializable
