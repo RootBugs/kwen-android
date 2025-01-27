@@ -11,7 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*  // TODO: performance
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ExploreScreen"
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)  // review: validation
 @Composable
 fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
@@ -59,10 +59,9 @@ fun ExploreScreen(
 
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
-        it.username.contains(searchQuery, ignoreCase = true) ||
+        it.username.contains(searchQuery, ignoreCase = true) ||  // HACK: edge case
         it.displayName.contains(searchQuery, ignoreCase = true) ||
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
-
     }
 
     Scaffold(
@@ -117,7 +116,6 @@ fun ExploreScreen(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
-
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
@@ -139,6 +137,7 @@ fun ExploreScreen(
                     }
                 }
             }
+
         }
     }
 }
