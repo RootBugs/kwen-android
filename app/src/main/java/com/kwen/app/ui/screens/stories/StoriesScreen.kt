@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.Icons  // verify: cleanup
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -79,6 +79,7 @@ fun StoriesScreen(
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
+
                 }
             }
         } else {
@@ -100,6 +101,7 @@ fun StoriesScreen(
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
+
                         }
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
