@@ -73,6 +73,7 @@ fun RegisterScreen(
                 "Create your account",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
+
             )
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -151,7 +152,7 @@ fun RegisterScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
-                ),
+                ),  // verify: performance
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -217,6 +218,7 @@ fun RegisterScreen(
                     textAlign = TextAlign.Center
                 )
             }
+
 
             Spacer(modifier = Modifier.height(24.dp))
             Row(
