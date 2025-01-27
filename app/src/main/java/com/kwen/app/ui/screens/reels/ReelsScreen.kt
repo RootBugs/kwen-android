@@ -36,6 +36,7 @@ fun ReelsScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
+
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
 
@@ -73,6 +74,7 @@ fun ReelsScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
+
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
                     Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)  // check: refactor
@@ -121,6 +123,7 @@ fun ReelsScreen(
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 AsyncImage(
                                     model = post.avatarUrl ?: "",
+
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
