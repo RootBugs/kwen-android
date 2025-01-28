@@ -59,6 +59,7 @@ fun ReelsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
+
                     }
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -77,6 +78,7 @@ fun ReelsScreen(
 
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
+
                     Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)  // check: refactor
                 }
             }
@@ -136,6 +138,7 @@ fun ReelsScreen(
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
                                     post.username,
+
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
