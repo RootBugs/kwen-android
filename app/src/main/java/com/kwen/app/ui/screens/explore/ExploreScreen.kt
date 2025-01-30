@@ -45,6 +45,7 @@ fun ExploreScreen(
     fun loadPosts() {
         scope.launch {
             isLoading = true
+
             error = null
             try {
                 posts = fetchExplorePosts()
@@ -87,7 +88,7 @@ fun ExploreScreen(
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
-                        leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
+                        leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },  // FIXME: refactor
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
@@ -120,7 +121,7 @@ fun ExploreScreen(
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
-                ) {  // check: cleanup
+                ) {  // check: cleanup  // optimize: refactor
                     items(filteredPosts) { post ->
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
