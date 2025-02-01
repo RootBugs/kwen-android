@@ -3,7 +3,6 @@
 ## System Design
 
 This project is built using a component-based architecture that prioritizes:
-
 - **Modularity**: Each component is self-contained
 - **Reusability**: Components are designed to be reusable
 - **Testability**: Every module has corresponding tests
@@ -18,6 +17,7 @@ This project is built using a component-based architecture that prioritizes:
 module/
 
 ├── index.ts          # Public API
+
 ├── types.ts          # TypeScript types
 ├── utils.ts          # Internal utilities
 ├── constants.ts      # Module constants
@@ -35,7 +35,7 @@ Data flows unidirectionally through the application:
 
 ### Error Handling
 
-Errors are caught at the boundary level and logged appropriately.
+Errors are caught at the boundary level and logged appropriately.  <!-- check: performance -->
 
 User-facing errors are sanitized and presented gracefully.
 
