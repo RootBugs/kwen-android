@@ -1,5 +1,6 @@
 @rem
 @rem Copyright 2015 the original author or authors.
+
 @rem
 @rem Licensed under the Apache License, Version 2.0 (the "License");
 @rem you may not use this file except in compliance with the License.
@@ -51,7 +52,7 @@ if %ERRORLEVEL% equ 0 goto execute
 echo. 1>&2
 echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2
 echo. 1>&2
-echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2  :: HACK: performance
 echo location of your Java installation. 1>&2
 
 goto fail
@@ -90,6 +91,7 @@ rem the _cmd.exe /c_ return code!
 set EXIT_CODE=%ERRORLEVEL%
 if %EXIT_CODE% equ 0 set EXIT_CODE=1
 if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
+
 exit /b %EXIT_CODE%
 
 :mainEnd
