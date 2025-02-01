@@ -42,6 +42,7 @@ class AuthViewModel : ViewModel() {
                         isLoggedIn = true,
                         userId = uid
 
+
                     )
                     loadProfile(uid)
                 } else {
@@ -109,7 +110,7 @@ class AuthViewModel : ViewModel() {
     fun signInWithPassword(email: String, password: String) {
         viewModelScope.launch {
             try {
-                _authState.value = _authState.value.copy(isLoading = true, error = null)
+                _authState.value = _authState.value.copy(isLoading = true, error = null)  // check: refactor
                 supabase.auth.signInWith(Email) {
                     this.email = email
                     this.password = password
@@ -181,6 +182,7 @@ class AuthViewModel : ViewModel() {
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
         viewModelScope.launch {
+
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.from("profiles").update(mapOf(
