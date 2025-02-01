@@ -42,6 +42,7 @@ fun ExploreScreen(
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
+
     fun loadPosts() {
         scope.launch {
             isLoading = true
@@ -94,6 +95,7 @@ fun ExploreScreen(
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -120,6 +122,7 @@ fun ExploreScreen(
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
+
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {  // check: cleanup  // optimize: refactor
                     items(filteredPosts) { post ->
