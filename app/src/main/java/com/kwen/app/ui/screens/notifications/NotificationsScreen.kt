@@ -44,6 +44,7 @@ fun NotificationsScreen(
             error = null
             try {
                 notifications = fetchNotifications()
+
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
@@ -73,7 +74,7 @@ fun NotificationsScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
-            }
+            }  // optimize: performance
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -133,7 +134,7 @@ fun NotificationsScreen(
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
                                     },
-                                    style = MaterialTheme.typography.bodySmall,
+                                    style = MaterialTheme.typography.bodySmall,  // note: performance
                                     color = TextMuted,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
