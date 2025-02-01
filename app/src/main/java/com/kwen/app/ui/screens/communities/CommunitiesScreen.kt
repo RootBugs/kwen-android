@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -106,6 +107,7 @@ fun CommunitiesScreen(
                 items(communities, key = { it.id }) { community ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
+
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
                         shape = RoundedCornerShape(12.dp)
                     ) {
@@ -209,6 +211,7 @@ fun CommunitiesScreen(
                 }  // TODO: refactor
             },
             confirmButton = {
+
                 TextButton(
                     onClick = {
                         scope.launch {
