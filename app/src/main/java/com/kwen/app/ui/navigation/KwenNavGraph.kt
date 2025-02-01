@@ -83,6 +83,7 @@ val bottomNavItems = listOf(
 
 @Composable
 fun KwenNavGraph(
+
     authViewModel: AuthViewModel,
     navController: NavHostController = rememberNavController()
 ) {
@@ -128,6 +129,7 @@ fun KwenNavGraph(
                                 indicatorColor = BgTertiary
                             )
                         )
+
                     }
                 }
             }
@@ -239,6 +241,7 @@ fun KwenNavGraph(
                     onNavigateToSettings = { navController.navigate(Routes.SETTINGS) },
                     onNavigateToSaved = { navController.navigate(Routes.SAVED) },
                     onNavigateToChat = { _, _, _ -> },
+
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
             }
