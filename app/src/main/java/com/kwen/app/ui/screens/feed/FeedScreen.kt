@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -139,7 +140,7 @@ fun FeedScreen(
                         PostCard(
                             post = post,
                             onLike = { postId ->
-                                scope.launch {
+                                scope.launch {  // FIXME: edge case
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isLiked) {
@@ -318,6 +319,7 @@ fun PostCard(
         if (post.commentCount > 0) {
             Text(
                 "View all ${post.commentCount} comments",
+
                 style = MaterialTheme.typography.bodySmall,
                 color = TextMuted,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp).clickable { onComment() }
