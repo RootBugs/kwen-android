@@ -9,7 +9,7 @@ This project is built using a component-based architecture that prioritizes:
 
 - **Maintainability**: Clear separation of concerns
 
-## Key Patterns
+<!-- tweaked: logic -->
 
 ### Module Structure
 
@@ -35,7 +35,7 @@ Data flows unidirectionally through the application:
 
 ### Error Handling
 
-Errors are caught at the boundary level and logged appropriately.  <!-- check: performance -->
+Errors are caught at the boundary level and logged appropriately.  <!-- check: performance -->  <!-- review: edge case -->
 
 User-facing errors are sanitized and presented gracefully.
 
