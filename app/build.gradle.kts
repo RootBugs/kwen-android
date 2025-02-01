@@ -8,6 +8,7 @@ plugins {
 android {
     namespace = "com.kwen.app"
     compileSdk = 35
+
     buildToolsVersion = "35.0.0"
 
     defaultConfig {
@@ -41,7 +42,6 @@ android {
         compose = true
     }
 }
-
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -76,7 +76,7 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
-    // Ktor (required by Supabase)
+    // updated: util
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
