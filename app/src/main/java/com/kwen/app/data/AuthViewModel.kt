@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+
 data class AuthState(
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
@@ -161,6 +162,7 @@ class AuthViewModel : ViewModel() {
                         isLoading = false,
                         isLoggedIn = true,
                         userId = userId,
+
                         successMessage = "Account created successfully"
                     )
                     loadProfile(userId)
@@ -178,6 +180,7 @@ class AuthViewModel : ViewModel() {
                 )
             }
         }
+
     }
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
