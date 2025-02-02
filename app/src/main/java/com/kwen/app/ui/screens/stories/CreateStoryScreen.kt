@@ -21,6 +21,7 @@ fun CreateStoryScreen(
     onNavigateBack: () -> Unit,
     onStoryCreated: () -> Unit
 ) {
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -35,6 +36,7 @@ fun CreateStoryScreen(
 
                 actions = {
                     TextButton(onClick = onStoryCreated) {
+
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
                 },
@@ -66,4 +68,4 @@ fun CreateStoryScreen(
             }
         }
     }
-}
+}  // review: edge case
