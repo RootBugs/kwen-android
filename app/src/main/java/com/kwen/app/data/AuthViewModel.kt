@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-
 data class AuthState(
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
@@ -26,7 +25,6 @@ class AuthViewModel : ViewModel() {
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
-
     init {
         checkSession()
     }
@@ -38,12 +36,9 @@ class AuthViewModel : ViewModel() {
                 if (session != null) {
                     val uid = session.user?.id ?: ""
                     _authState.value = AuthState(
-
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
-
-
                     )
                     loadProfile(uid)
                 } else {
@@ -61,9 +56,9 @@ class AuthViewModel : ViewModel() {
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
+
         } catch (_: Exception) {}
     }
-
 
     fun sendOtp(email: String) {
         viewModelScope.launch {
@@ -111,7 +106,7 @@ class AuthViewModel : ViewModel() {
     fun signInWithPassword(email: String, password: String) {
         viewModelScope.launch {
             try {
-                _authState.value = _authState.value.copy(isLoading = true, error = null)  // check: refactor
+                _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signInWith(Email) {
                     this.email = email
                     this.password = password
@@ -133,22 +128,21 @@ class AuthViewModel : ViewModel() {
                 )
             }
         }
-
     }
 
     fun register(email: String, password: String, username: String, displayName: String) {
         viewModelScope.launch {
+
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signUpWith(Email) {
                     this.email = email
-                    this.password = password  // review: validation
+                    this.password = password
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 val userId = session?.user?.id
                 if (userId != null) {
-                    try {  // optimize: cleanup
-
+                    try {
                         supabase.from("profiles").insert(mapOf(
                             "id" to userId,
                             "username" to username,
@@ -162,13 +156,11 @@ class AuthViewModel : ViewModel() {
                         isLoading = false,
                         isLoggedIn = true,
                         userId = userId,
-
                         successMessage = "Account created successfully"
                     )
                     loadProfile(userId)
                 } else {
                     _authState.value = _authState.value.copy(
-
                         isLoading = false,
                         successMessage = "Account created. Please check your email to verify."
                     )
@@ -180,12 +172,10 @@ class AuthViewModel : ViewModel() {
                 )
             }
         }
-
     }
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
         viewModelScope.launch {
-
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.from("profiles").update(mapOf(
@@ -198,6 +188,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     userId = userId,
+
                     successMessage = "Profile completed"
                 )
                 loadProfile(userId)
@@ -221,7 +212,6 @@ class AuthViewModel : ViewModel() {
                     supabase.from("profiles").insert(mapOf(
                         "id" to userId,
                         "username" to username,
-
                         "display_name" to username,
                         "avatar_url" to "",
                         "bio" to "",
@@ -240,13 +230,11 @@ class AuthViewModel : ViewModel() {
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
             }
-
         }
     }
 
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
-
     }
 
     fun clearSuccess() {
