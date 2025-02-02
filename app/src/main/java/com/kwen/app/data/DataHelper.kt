@@ -139,6 +139,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                     .decodeList<PostMedia>()
             } else emptyList()
         } catch (e: Exception) { Log.w(TAG, "Failed to fetch explore media: ${e.message}"); emptyList() }
+
         val mediaMap = media.groupBy { it.postId }
 
         rawPosts.map { post ->
@@ -268,6 +269,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         }
 
         if (myParticipants.isEmpty()) return emptyList()
+
 
         val convIds = myParticipants.map { it.conversationId }
 
@@ -441,6 +443,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 content = post.content,
                 location = post.location,
                 createdAt = post.createdAt,
+
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
