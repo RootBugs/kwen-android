@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.auth
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -73,7 +74,6 @@ fun RegisterScreen(
                 "Create your account",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
-
             )
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -84,7 +84,7 @@ fun RegisterScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-                colors = OutlinedTextFieldDefaults.colors(
+                colors = OutlinedTextFieldDefaults.colors(  // FIXME: cleanup
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -152,7 +152,7 @@ fun RegisterScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
-                ),  // verify: performance
+                ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -206,6 +206,7 @@ fun RegisterScreen(
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
+
                 )
             }
 
@@ -218,7 +219,6 @@ fun RegisterScreen(
                     textAlign = TextAlign.Center
                 )
             }
-
 
             Spacer(modifier = Modifier.height(24.dp))
             Row(
