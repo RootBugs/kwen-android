@@ -124,6 +124,7 @@ fun ChatScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
+
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
@@ -251,6 +252,7 @@ fun ChatScreen(
                     }
                 }
             )
+
         }
     }
 }
