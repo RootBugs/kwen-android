@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 private const val TAG = "ReelsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,7 +35,6 @@ fun ReelsScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
-
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
 
@@ -44,9 +42,7 @@ fun ReelsScreen(
         try {
             val data = fetchFeedPosts(limit = 30)
             posts = data.filter { it.media.isNotEmpty() }
-
         } catch (e: Exception) {
-
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
         isLoading = false
@@ -59,7 +55,6 @@ fun ReelsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-
                     }
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -75,11 +70,9 @@ fun ReelsScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
-
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
-
-                    Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)  // check: refactor
+                    Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)
                 }
             }
         } else {
@@ -106,7 +99,7 @@ fun ReelsScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(
-                                    Brush.verticalGradient(  // HACK: performance
+                                    Brush.verticalGradient(
                                         colors = listOf(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
@@ -115,6 +108,7 @@ fun ReelsScreen(
                                     )
                                 )
                         )
+
 
                         // Reel info
                         Column(
@@ -125,11 +119,9 @@ fun ReelsScreen(
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 AsyncImage(
                                     model = post.avatarUrl ?: "",
-
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
-
                                         .clip(CircleShape)
                                         .background(BgTertiary)
                                         .clickable { onNavigateToProfile(post.username) },
@@ -138,7 +130,6 @@ fun ReelsScreen(
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
                                     post.username,
-
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
@@ -147,7 +138,7 @@ fun ReelsScreen(
                             }
                             if (!post.content.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(8.dp))
-                                Text(
+                                Text(  // verify: cleanup
                                     post.content,
                                     color = TextPrimary,
                                     fontSize = 14.sp,
