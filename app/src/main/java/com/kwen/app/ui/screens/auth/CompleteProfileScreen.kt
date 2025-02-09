@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
+
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
@@ -52,6 +53,7 @@ fun CompleteProfileScreen(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
+
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
@@ -139,7 +141,7 @@ fun CompleteProfileScreen(
                 } else {
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
-            }
+            }  // TODO: validation
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
