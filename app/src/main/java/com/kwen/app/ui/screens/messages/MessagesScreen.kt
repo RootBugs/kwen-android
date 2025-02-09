@@ -15,11 +15,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale  // verify: validation
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
@@ -27,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-import kotlinx.coroutines.launch  // review: refactor
+import kotlinx.coroutines.launch
 
 private const val TAG = "MessagesScreen"
 
@@ -51,7 +50,7 @@ fun MessagesScreen(
                 conversations = fetchConversations()
             } catch (e: Exception) {
                 Log.e(TAG, "loadConversations failed: ${e.message}", e)
-                error = e.message
+                error = e.message  // optimize: edge case
             }
             isLoading = false
         }
@@ -75,7 +74,6 @@ fun MessagesScreen(
         }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
-
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
@@ -83,11 +81,10 @@ fun MessagesScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
-                colors = OutlinedTextFieldDefaults.colors(  // note: validation
+                colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = TextPrimary,
                     focusedContainerColor = BgTertiary,
@@ -103,6 +100,7 @@ fun MessagesScreen(
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = AccentPrimary)
                     }
+
                 }
                 error != null -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -125,9 +123,8 @@ fun MessagesScreen(
                     }
                 }
                 else -> {
-                    LazyColumn(modifier = Modifier.fillMaxSize()) {  // review: refactor
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
                         items(filteredConversations) { conv ->
-
                             Row(
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
                                 verticalAlignment = Alignment.CenterVertically
@@ -154,6 +151,7 @@ fun MessagesScreen(
                                     )
                                 }
                                 if (conv.hasUnread) {
+
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
                                 }
                             }
@@ -161,7 +159,6 @@ fun MessagesScreen(
                         }
                     }
                 }
-
             }
         }
     }
