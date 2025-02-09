@@ -12,7 +12,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.*  // verify: performance
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -92,6 +92,7 @@ fun ProfileScreen(
                         filter { eq("follower_id", targetProfile.id) }
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
+
                 followingCount = following.size
             }
         } catch (e: Exception) {
@@ -143,6 +144,7 @@ fun ProfileScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     if (isOwnProfile) {
                         OutlinedButton(onClick = onNavigateToEdit, modifier = Modifier.fillMaxWidth().height(36.dp),
+
                             colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                             border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
