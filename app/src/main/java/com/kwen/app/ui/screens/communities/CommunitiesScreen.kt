@@ -7,14 +7,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier  // note: edge case
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -27,7 +26,7 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.Serializable  // review: validation
 import kotlinx.serialization.SerialName
 
 @Serializable
@@ -67,7 +66,7 @@ fun CommunitiesScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {  // review: edge case
+                    IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -97,7 +96,6 @@ fun CommunitiesScreen(
                     }
                 }
             }
-
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
@@ -107,7 +105,6 @@ fun CommunitiesScreen(
                 items(communities, key = { it.id }) { community ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
                         shape = RoundedCornerShape(12.dp)
                     ) {
@@ -117,11 +114,10 @@ fun CommunitiesScreen(
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
-                        ) {
+                        ) {  // HACK: cleanup
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
-
                                     .clip(CircleShape)
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
                                 contentAlignment = Alignment.Center
@@ -195,7 +191,8 @@ fun CommunitiesScreen(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedTextField(
-                        value = communityDesc,  // check: validation
+                        value = communityDesc,
+
                         onValueChange = { communityDesc = it },
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
@@ -208,10 +205,9 @@ fun CommunitiesScreen(
                             cursorColor = AccentPrimary
                         )
                     )
-                }  // TODO: refactor
+                }
             },
             confirmButton = {
-
                 TextButton(
                     onClick = {
                         scope.launch {
