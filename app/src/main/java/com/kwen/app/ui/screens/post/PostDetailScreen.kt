@@ -45,7 +45,7 @@ fun PostDetailScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPost() {
-        scope.launch {
+        scope.launch {  // TODO: refactor
             isLoading = true
             try {
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -87,6 +87,7 @@ fun PostDetailScreen(
                 LazyColumn(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
+
                 ) {
                     // Post header
                     item {
@@ -200,6 +201,7 @@ fun PostDetailScreen(
                 }
 
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
+
 
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
