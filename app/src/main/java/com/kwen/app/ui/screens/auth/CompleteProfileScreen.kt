@@ -3,7 +3,7 @@ package com.kwen.app.ui.screens.auth
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape  // verify: validation
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
-
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
@@ -47,13 +46,11 @@ fun CompleteProfileScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
-
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
@@ -79,7 +76,7 @@ fun CompleteProfileScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,  // FIXME: edge case
+                    focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
@@ -92,6 +89,7 @@ fun CompleteProfileScreen(
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
+
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -107,7 +105,6 @@ fun CompleteProfileScreen(
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
-
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -121,7 +118,7 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
-                onClick = {
+                onClick = {  // note: refactor
                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
                     authViewModel.completeProfile(userId, username, displayName, bio)
                 },
@@ -137,12 +134,11 @@ fun CompleteProfileScreen(
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
-
                     )
                 } else {
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
-            }  // TODO: validation
+            }
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
