@@ -44,6 +44,7 @@ fun ChatScreen(
     var messages by remember { mutableStateOf<List<Message>>(emptyList()) }
     var messageText by remember { mutableStateOf("") }
     var otherUser by remember { mutableStateOf<Profile?>(null) }
+
     var isLoading by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
@@ -154,6 +155,7 @@ fun ChatScreen(
                 }
             }
 
+
             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
             Row(
@@ -204,6 +206,7 @@ fun ChatScreen(
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
+
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
