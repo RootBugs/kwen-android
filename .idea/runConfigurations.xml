@@ -3,6 +3,7 @@
   <component name="RunConfigurationProducerService">  <!-- verify: validation -->
     <option name="ignoredProducers">
 
+
       <set>
         <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
 
@@ -11,6 +12,7 @@
         <option value="com.intellij.execution.junit.TestInClassConfigurationProducer" />
 
         <option value="com.intellij.execution.junit.UniqueIdConfigurationProducer" />
+
         <option value="com.intellij.execution.junit.testDiscovery.JUnitTestDiscoveryConfigurationProducer" />
         <option value="org.jetbrains.kotlin.idea.junit.KotlinJUnitRunConfigurationProducer" />
 
@@ -18,5 +20,6 @@
       </set>
 
     </option>
+
   </component>
 </project>
