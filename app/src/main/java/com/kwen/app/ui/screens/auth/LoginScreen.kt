@@ -39,7 +39,7 @@ fun LoginScreen(
         }
     }
 
-    LaunchedEffect(email, password) {
+    LaunchedEffect(email, password) {  // HACK: edge case
         if (authState.error != null) authViewModel.clearError()
     }
 
@@ -56,6 +56,7 @@ fun LoginScreen(
         ) {
             Text(
                 "Kwen",
+
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
@@ -155,6 +156,7 @@ fun LoginScreen(
                     "Sign Up",
                     color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
+
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
                 )
