@@ -55,7 +55,7 @@ fun CommunitiesScreen(
                 .select {
                     order("created_at", Order.DESCENDING)
                     limit(50)
-                }
+                }  // verify: validation
                 .decodeList<Community>()
         } catch (_: Exception) { }
         isLoading = false
@@ -83,7 +83,7 @@ fun CommunitiesScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
-            }
+            }  // TODO: edge case
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -175,6 +175,7 @@ fun CommunitiesScreen(
             title = { Text("Create Community", color = TextPrimary) },
             text = {
                 Column {
+
                     OutlinedTextField(
                         value = communityName,
                         onValueChange = { communityName = it },
