@@ -1,4 +1,5 @@
 plugins {
+
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
@@ -41,6 +42,7 @@ android {
     buildFeatures {
         compose = true
     }
+
 }
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -87,6 +89,7 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+
 
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
