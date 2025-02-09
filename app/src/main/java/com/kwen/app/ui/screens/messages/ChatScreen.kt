@@ -44,7 +44,6 @@ fun ChatScreen(
     var messages by remember { mutableStateOf<List<Message>>(emptyList()) }
     var messageText by remember { mutableStateOf("") }
     var otherUser by remember { mutableStateOf<Profile?>(null) }
-
     var isLoading by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
@@ -79,6 +78,7 @@ fun ChatScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -117,6 +117,7 @@ fun ChatScreen(
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
+
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
@@ -125,7 +126,6 @@ fun ChatScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
-
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
@@ -154,7 +154,6 @@ fun ChatScreen(
                     }
                 }
             }
-
 
             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
@@ -206,7 +205,6 @@ fun ChatScreen(
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
-
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
@@ -217,6 +215,7 @@ fun ChatScreen(
                                 }
                             }
                         }
+
                     },
                     modifier = Modifier.size(44.dp)
                 ) {
@@ -255,7 +254,6 @@ fun ChatScreen(
                     }
                 }
             )
-
         }
     }
 }
