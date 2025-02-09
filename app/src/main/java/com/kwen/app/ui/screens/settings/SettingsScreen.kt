@@ -37,6 +37,7 @@ fun SettingsScreen(
                     }
                 },
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -74,6 +75,7 @@ fun SettingsScreen(
     }
 
     if (showSignOutDialog) {
+
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
@@ -118,6 +120,7 @@ fun SettingsItem(
     isDestructive: Boolean = false
 ) {
     Row(
+
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onClick() }
