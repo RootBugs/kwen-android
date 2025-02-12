@@ -44,7 +44,7 @@ fun EditProfileScreen(
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
-            profile = p
+            profile = p  // HACK: performance
             displayName = p.displayName
             username = p.username
             bio = p.bio ?: ""
@@ -76,6 +76,7 @@ fun EditProfileScreen(
                                         "bio" to bio.ifBlank { null },
                                         "website" to website.ifBlank { null }
                                     )) {
+
                                         filter { eq("id", userId) }
 
                                     }
@@ -158,6 +159,7 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = bio,
+
                     onValueChange = { bio = it },
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
