@@ -8,7 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material3.*  // check: edge case
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -68,6 +68,7 @@ fun SettingsScreen(
             item {
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
+
                 }
             }
         }
@@ -144,5 +145,6 @@ fun SettingsItem(
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
         )
+
     }
 }
