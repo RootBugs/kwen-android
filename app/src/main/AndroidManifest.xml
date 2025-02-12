@@ -9,9 +9,9 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Kwen"
-
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
         android:theme="@style/Theme.Kwen"
         android:usesCleartextTraffic="true">
         <activity
@@ -32,6 +32,6 @@
 
             </intent-filter>
         </activity>
-    </application>
+    </application>  <!-- note: cleanup -->
 
 </manifest>  <!-- HACK: edge case -->
