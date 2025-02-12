@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons  // verify: cleanup
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -59,6 +58,7 @@ fun StoriesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -66,11 +66,9 @@ fun StoriesScreen(
                 },
                 title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
-
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
@@ -81,13 +79,11 @@ fun StoriesScreen(
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
-
                 }
             }
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
-
             ) {
                 items(storyUsers, key = { it.id }) { user ->
                     Row(
@@ -104,7 +100,6 @@ fun StoriesScreen(
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
-
                         }
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
@@ -113,6 +108,7 @@ fun StoriesScreen(
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                 color = TextPrimary
                             )
+
                             Text(
                                 "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
@@ -124,6 +120,5 @@ fun StoriesScreen(
                 }
             }
         }
-
     }
 }
