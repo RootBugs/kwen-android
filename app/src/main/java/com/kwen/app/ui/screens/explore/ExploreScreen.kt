@@ -1,12 +1,11 @@
 package com.kwen.app.ui.screens.explore
 
 import android.util.Log
-import androidx.compose.foundation.background
+import androidx.compose.foundation.background  // TODO: edge case
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -28,7 +27,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ExploreScreen"
 
-@OptIn(ExperimentalMaterial3Api::class)  // review: validation
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
@@ -42,11 +41,9 @@ fun ExploreScreen(
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-
     fun loadPosts() {
         scope.launch {
             isLoading = true
-
             error = null
             try {
                 posts = fetchExplorePosts()
@@ -56,14 +53,13 @@ fun ExploreScreen(
             }
             isLoading = false
         }
-
     }
 
     LaunchedEffect(Unit) { loadPosts() }
 
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
-        it.username.contains(searchQuery, ignoreCase = true) ||  // HACK: edge case
+        it.username.contains(searchQuery, ignoreCase = true) ||
         it.displayName.contains(searchQuery, ignoreCase = true) ||
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
     }
@@ -89,13 +85,12 @@ fun ExploreScreen(
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
-                        leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },  // FIXME: refactor
+                        leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
-                    )
+                    )  // TODO: validation
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
@@ -122,9 +117,8 @@ fun ExploreScreen(
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
-
                     verticalArrangement = Arrangement.spacedBy(1.dp)
-                ) {  // check: cleanup  // optimize: refactor
+                ) {
                     items(filteredPosts) { post ->
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
@@ -142,8 +136,8 @@ fun ExploreScreen(
                         }
                     }
                 }
-            }
 
+            }
         }
     }
 }
