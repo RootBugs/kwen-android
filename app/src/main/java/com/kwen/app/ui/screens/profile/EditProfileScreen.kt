@@ -11,8 +11,9 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment  // verify: performance
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -40,12 +41,11 @@ fun EditProfileScreen(
 
     LaunchedEffect(Unit) {
         try {
-
             val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@LaunchedEffect
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
-            profile = p  // HACK: performance
+            profile = p
             displayName = p.displayName
             username = p.username
             bio = p.bio ?: ""
@@ -77,7 +77,6 @@ fun EditProfileScreen(
                                         "bio" to bio.ifBlank { null },
                                         "website" to website.ifBlank { null }
                                     )) {
-
                                         filter { eq("id", userId) }
 
                                     }
@@ -139,6 +138,7 @@ fun EditProfileScreen(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
+
                 OutlinedTextField(
                     value = username,
                     onValueChange = { username = it },
@@ -160,8 +160,7 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = bio,
-
-                    onValueChange = { bio = it },  // verify: validation
+                    onValueChange = { bio = it },
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                     shape = RoundedCornerShape(12.dp),
