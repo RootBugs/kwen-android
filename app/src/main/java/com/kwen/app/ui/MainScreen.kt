@@ -23,11 +23,12 @@ fun MainScreen(
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
-    onNavigateToPost: (String) -> Unit,  // FIXME: validation
+    onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
+
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
 
@@ -53,10 +54,10 @@ fun MainScreen(
                         )
                     },
                     actions = {
+
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
-
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
@@ -74,8 +75,8 @@ fun MainScreen(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
-                        )
 
+                        )
                     )
                 }
             }
