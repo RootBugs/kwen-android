@@ -38,7 +38,6 @@ fun PostDetailScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
-
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
@@ -46,6 +45,7 @@ fun PostDetailScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPost() {
+
         scope.launch {
             isLoading = true
             try {
@@ -101,6 +101,7 @@ fun PostDetailScreen(
                                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
+
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -153,7 +154,6 @@ fun PostDetailScreen(
                                 )
                             }
                         }
-
                     }
 
                     // Comments header
@@ -166,8 +166,8 @@ fun PostDetailScreen(
                         )
                     }
 
-                    // tweaked: logic
-                    if (comments.isEmpty()) {
+                    // Comments
+                    if (comments.isEmpty()) {  // check: edge case
                         item {
                             Box(modifier = Modifier.fillMaxWidth().padding(32.dp), contentAlignment = Alignment.Center) {
                                 Text("No comments yet. Be the first!", color = TextMuted)
