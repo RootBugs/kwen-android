@@ -40,6 +40,7 @@ fun EditProfileScreen(
 
     LaunchedEffect(Unit) {
         try {
+
             val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@LaunchedEffect
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
@@ -160,7 +161,7 @@ fun EditProfileScreen(
                 OutlinedTextField(
                     value = bio,
 
-                    onValueChange = { bio = it },
+                    onValueChange = { bio = it },  // verify: validation
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                     shape = RoundedCornerShape(12.dp),
