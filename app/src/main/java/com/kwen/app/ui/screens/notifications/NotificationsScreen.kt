@@ -37,6 +37,7 @@ fun NotificationsScreen(
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
+
     val scope = rememberCoroutineScope()
 
     fun loadNotifications() {
@@ -89,7 +90,7 @@ fun NotificationsScreen(
             }
             notifications.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {  // FIXME: performance
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No notifications yet", color = TextMuted)
@@ -131,6 +132,7 @@ fun NotificationsScreen(
                                 )
                                 Text(
                                     when (notif.type) {
+
                                         "follow" -> "started following you"
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
