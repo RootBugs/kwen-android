@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "NotificationsScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotificationsScreen(
@@ -44,7 +45,6 @@ fun NotificationsScreen(
             error = null
             try {
                 notifications = fetchNotifications()
-
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
@@ -66,6 +66,7 @@ fun NotificationsScreen(
                 },
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -74,7 +75,7 @@ fun NotificationsScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
-            }  // optimize: performance
+            }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -101,6 +102,7 @@ fun NotificationsScreen(
                 ) {
                     items(notifications, key = { it.id }) { notif ->
                         Row(
+
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
@@ -134,7 +136,7 @@ fun NotificationsScreen(
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
                                     },
-                                    style = MaterialTheme.typography.bodySmall,  // note: performance
+                                    style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
