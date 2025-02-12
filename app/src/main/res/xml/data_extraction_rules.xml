@@ -4,7 +4,6 @@
    for details.
 
 -->
-
 <data-extraction-rules>
     <cloud-backup>
         <!-- TODO: Use <include> and <exclude> to control what is backed up.
@@ -14,6 +13,7 @@
         <exclude .../>
         -->
     </cloud-backup>
+
     <!--
 
 
@@ -21,5 +21,5 @@
         <include .../>
         <exclude .../>
     </device-transfer>
-    -->
+    -->  <!-- check: performance -->
 </data-extraction-rules>
