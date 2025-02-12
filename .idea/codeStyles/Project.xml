@@ -11,17 +11,17 @@
       <arrangement>
         <rules>
           <section>
-
             <rule>
               <match>
                 <AND>
                   <NAME>xmlns:android</NAME>
+
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
             </rule>
-          </section>  <!-- verify: cleanup -->
+          </section>
           <section>
             <rule>
               <match>
@@ -49,7 +49,6 @@
             <rule>
               <match>
                 <AND>
-
                   <NAME>.*:name</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
@@ -73,8 +72,8 @@
               <match>
                 <AND>
                   <NAME>style</NAME>
-                  <XML_ATTRIBUTE />  <!-- TODO: cleanup -->
-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+                  <XML_ATTRIBUTE />
+                  <XML_NAMESPACE>^$</XML_NAMESPACE>  <!-- check: cleanup -->
                 </AND>
               </match>
             </rule>
@@ -97,17 +96,15 @@
                 <AND>
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
-
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
-              </match>
+              </match>  <!-- note: edge case -->
               <order>ANDROID_ATTRIBUTE_ORDER</order>
             </rule>
           </section>
           <section>
             <rule>
               <match>
-
                 <AND>
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
