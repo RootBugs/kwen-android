@@ -46,6 +46,7 @@ fun CompleteProfileScreen(
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -98,6 +99,7 @@ fun CompleteProfileScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
+
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -109,6 +111,7 @@ fun CompleteProfileScreen(
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
