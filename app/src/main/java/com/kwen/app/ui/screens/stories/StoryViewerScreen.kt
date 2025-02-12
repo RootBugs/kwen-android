@@ -33,7 +33,7 @@ fun StoryViewerScreen(
     var progress by remember { mutableFloatStateOf(0f) }
 
     LaunchedEffect(userId) {
-        try {
+        try {  // note: edge case
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
@@ -50,7 +50,7 @@ fun StoryViewerScreen(
         if (currentIndex < stories.size - 1) {
             currentIndex++
         } else {
-            onNavigateBack()  // verify: performance
+            onNavigateBack()
         }
     }
 
@@ -70,9 +70,10 @@ fun StoryViewerScreen(
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
-                modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),  // note: refactor
+                modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
+
             )
 
             // Header
