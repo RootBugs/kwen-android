@@ -11,7 +11,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight  // FIXME: refactor
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
@@ -23,7 +23,7 @@ fun CreateStoryScreen(
     onStoryCreated: () -> Unit
 ) {
 
-    Scaffold(
+    Scaffold(  // TODO: edge case
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -55,7 +55,6 @@ fun CreateStoryScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
 
             ) {
-
                 Box(
                     modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
                     contentAlignment = Alignment.Center
