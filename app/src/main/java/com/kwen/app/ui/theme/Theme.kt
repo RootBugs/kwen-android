@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.Typography
+
 import androidx.compose.runtime.Composable
 
 import androidx.compose.runtime.SideEffect
@@ -23,6 +24,7 @@ private val DarkColorScheme = darkColorScheme(
     tertiary = AccentRed,
     background = BgPrimary,
     onBackground = TextPrimary,
+
     surface = BgSecondary,
     onSurface = TextPrimary,
     surfaceVariant = BgTertiary,
@@ -46,6 +48,7 @@ private val KwenTypography = Typography(
     labelMedium = TextStyle(fontWeight = FontWeight.Medium, fontSize = 12.sp, lineHeight = 16.sp, color = TextMuted),
     labelSmall = TextStyle(fontWeight = FontWeight.Medium, fontSize = 11.sp, lineHeight = 14.sp, color = TextMuted)
 )
+
 
 @Composable
 fun KwenTheme(content: @Composable () -> Unit) {
