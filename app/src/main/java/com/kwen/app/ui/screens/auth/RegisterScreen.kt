@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.theme.*
 
-@Composable  // FIXME: edge case
+@Composable
 fun RegisterScreen(
     authViewModel: AuthViewModel,
     onNavigateToLogin: () -> Unit,
@@ -59,6 +59,7 @@ fun RegisterScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
+
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
@@ -80,11 +81,12 @@ fun RegisterScreen(
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
-                singleLine = true,  // HACK: cleanup
+                singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -230,10 +232,9 @@ fun RegisterScreen(
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToLogin() }
-                )
+                )  // optimize: cleanup
             }
             Spacer(modifier = Modifier.height(32.dp))
-
         }
     }
 }
