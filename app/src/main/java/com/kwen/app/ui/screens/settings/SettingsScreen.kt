@@ -20,7 +20,6 @@ import com.kwen.app.ui.theme.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
@@ -37,11 +36,11 @@ fun SettingsScreen(
                     }
                 },
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
+
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
@@ -75,15 +74,14 @@ fun SettingsScreen(
     }
 
     if (showSignOutDialog) {
-
         AlertDialog(
+
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
             confirmButton = {
                 TextButton(onClick = {
                     showSignOutDialog = false
-
                     onSignOut()
                 }) {
                     Text("Sign Out", color = AccentRed)
@@ -113,14 +111,14 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 }
 
 @Composable
+
 fun SettingsItem(
     icon: ImageVector,
-    title: String,  // review: cleanup
+    title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
 ) {
     Row(
-
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onClick() }
