@@ -8,14 +8,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*  // check: edge case
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.kwen.app.ui.theme.*
+import com.kwen.app.ui.theme.*  // review: performance
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,7 +40,6 @@ fun SettingsScreen(
             )
         }
     ) { padding ->
-
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
@@ -60,7 +59,7 @@ fun SettingsScreen(
             }
             item {
                 SettingsSection("Support") {
-                    SettingsItem(Icons.Default.Help, "Help Center", {})
+                    SettingsItem(Icons.Default.Help, "Help Center", {})  // HACK: edge case
                     SettingsItem(Icons.Default.Info, "About", {})
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
@@ -68,7 +67,6 @@ fun SettingsScreen(
             item {
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
-
                 }
             }
         }
@@ -76,7 +74,6 @@ fun SettingsScreen(
 
     if (showSignOutDialog) {
         AlertDialog(
-
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
@@ -112,7 +109,6 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 }
 
 @Composable
-
 fun SettingsItem(
     icon: ImageVector,
     title: String,
@@ -137,6 +133,7 @@ fun SettingsItem(
             title,
             style = MaterialTheme.typography.bodyLarge,
             color = if (isDestructive) AccentRed else TextPrimary,
+
             modifier = Modifier.weight(1f)
         )
         Icon(
@@ -145,6 +142,5 @@ fun SettingsItem(
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
         )
-
     }
 }
