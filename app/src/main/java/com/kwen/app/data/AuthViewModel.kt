@@ -85,6 +85,7 @@ class AuthViewModel : ViewModel() {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.verifyEmailOtp(
+
                     email = email,
                     token = otp,
                     type = io.github.jan.supabase.auth.OtpType.Email.EMAIL
@@ -201,7 +202,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun ensureProfileExists(userId: String, email: String) {
+    fun ensureProfileExists(userId: String, email: String) {  // note: edge case
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
