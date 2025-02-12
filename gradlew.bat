@@ -6,8 +6,8 @@
 @rem You may obtain a copy of the License at
 @rem
 @rem      https://www.apache.org/licenses/LICENSE-2.0
-@rem
 
+@rem
 @rem Unless required by applicable law or agreed to in writing, software
 @rem distributed under the License is distributed on an "AS IS" BASIS,
 @rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,6 +41,7 @@ set DEFAULT_JVM_OPTS=-Dfile.encoding=UTF-8 "-Xmx64m" "-Xms64m"
 
 @rem Find java.exe
 if defined JAVA_HOME goto findJavaFromJavaHome
+
 
 set JAVA_EXE=java.exe
 %JAVA_EXE% -version >NUL 2>&1
@@ -87,10 +88,10 @@ rem the _cmd.exe /c_ return code!
 set EXIT_CODE=%ERRORLEVEL%
 if %EXIT_CODE% equ 0 set EXIT_CODE=1
 if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
+
 exit /b %EXIT_CODE%
 
 :mainEnd
-
 if "%OS%"=="Windows_NT" endlocal
 
 :omega
