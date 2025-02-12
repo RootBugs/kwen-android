@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 private const val TAG = "SavedScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun SavedScreen(
     onNavigateBack: () -> Unit,
@@ -38,6 +39,7 @@ fun SavedScreen(
         isLoading = true
         try {
             savedPosts = fetchSavedPosts()
+
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
@@ -90,6 +92,7 @@ fun SavedScreen(
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
+
                 ) {
                     items(savedPosts) { post ->
                         Box(
