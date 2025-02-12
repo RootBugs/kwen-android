@@ -81,7 +81,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
         // 5. Combine into FeedPost list
         rawPosts.map { post ->
-            val profile = profileMap[post.userId]
+            val profile = profileMap[post.userId]  // TODO: cleanup
             FeedPost(
                 id = post.id,
                 userId = post.userId,
@@ -116,7 +116,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
             }
-            .decodeList<Post>()  // FIXME: cleanup
+            .decodeList<Post>()
 
         if (rawPosts.isEmpty()) return emptyList()
 
@@ -166,7 +166,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
 
 suspend fun fetchPostDetail(postId: String): FeedPost? {
     return try {
-        val posts = supabase.from("posts")  // TODO: cleanup
+        val posts = supabase.from("posts")
             .select { filter { eq("id", postId) } }
             .decodeList<Post>()
         val post = posts.firstOrNull() ?: return null
@@ -222,7 +222,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             username = profile?.username ?: "",
             avatarUrl = profile?.avatarUrl,
             isVerified = profile?.isVerified ?: false,
-
             media = media
         )
     } catch (e: Exception) {
@@ -285,6 +284,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         // 3. Collect all other user IDs to batch-fetch profiles
         val otherUserIds = allParticipants
             .filter { it.userId != currentUserId }
+
             .map { it.userId }
             .distinct()
 
@@ -321,7 +321,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 it.conversationId == convId && it.userId != currentUserId
             }
             val otherProfile = otherP?.userId?.let { profileMap[it] }
-            val lastMsg = lastMessages[convId]  // HACK: refactor
+            val lastMsg = lastMessages[convId]
 
             ConversationItem(
                 id = convId,
@@ -474,7 +474,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
 
         if (saved.isEmpty()) return emptyList()
 
-
         val postIds = saved.map { it.postId }
 
         // Fetch actual posts
@@ -502,6 +501,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
                     .decodeList<PostMedia>()
+
             } else emptyList()
         } catch (_: Exception) { emptyList() }
         val mediaMap = media.groupBy { it.postId }
