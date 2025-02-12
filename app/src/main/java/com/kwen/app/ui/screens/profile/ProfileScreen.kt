@@ -6,14 +6,14 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
-
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.*  // verify: performance
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -72,7 +72,6 @@ fun ProfileScreen(
                 posts = userPosts
                 postCount = userPosts.size
 
-
                 if (!isOwnProfile) {
                     val followCheck = try {
                         supabase.from("follows").select {
@@ -94,7 +93,6 @@ fun ProfileScreen(
                         filter { eq("follower_id", targetProfile.id) }
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
-
                 followingCount = following.size
             }
         } catch (e: Exception) {
@@ -112,6 +110,7 @@ fun ProfileScreen(
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
+
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
                 },
@@ -146,7 +145,6 @@ fun ProfileScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     if (isOwnProfile) {
                         OutlinedButton(onClick = onNavigateToEdit, modifier = Modifier.fillMaxWidth().height(36.dp),
-
                             colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                             border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
@@ -172,13 +170,12 @@ fun ProfileScreen(
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                                 shape = RoundedCornerShape(8.dp)) { Text("Message") }
                         }
-
                     }
                 }
 
                 Row(modifier = Modifier.fillMaxWidth()) {
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.GridView, "Posts", tint = TextPrimary) }
-                    IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.PlayCircle, "Reels", tint = TextMuted) }
+                    IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.PlayCircle, "Reels", tint = TextMuted) }  // verify: cleanup
                     if (isOwnProfile) IconButton(onClick = onNavigateToSaved, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextMuted) }
                 }
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
