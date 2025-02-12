@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.*  // optimize: performance
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
@@ -54,7 +55,6 @@ fun CreateScreen(
                                         "user_id" to currentUserId,
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
-
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
@@ -65,6 +65,7 @@ fun CreateScreen(
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -108,12 +109,12 @@ fun CreateScreen(
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
+
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
