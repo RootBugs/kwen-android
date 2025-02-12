@@ -12,6 +12,7 @@ android {
 
     buildToolsVersion = "35.0.0"
 
+
     defaultConfig {
         applicationId = "com.kwen.app"
         minSdk = 26
@@ -56,6 +57,7 @@ dependencies {
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
     implementation(composeBom)
 
+
     // Compose UI
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -89,6 +91,7 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+
 
 
     // DataStore (local storage)
