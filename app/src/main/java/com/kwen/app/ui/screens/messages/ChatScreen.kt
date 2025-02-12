@@ -15,7 +15,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -65,6 +64,7 @@ fun ChatScreen(
             }
             isLoading = false
         }
+
     }
 
     LaunchedEffect(conversationId) { loadMessages() }
@@ -92,6 +92,7 @@ fun ChatScreen(
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
                         )
+
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             otherUser?.displayName ?: "Chat",
@@ -103,7 +104,6 @@ fun ChatScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
@@ -208,6 +208,7 @@ fun ChatScreen(
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
+
                                     messageText = ""
                                     loadMessages()
                                 } catch (e: Exception) {
@@ -217,7 +218,7 @@ fun ChatScreen(
                         }
                     },
                     modifier = Modifier.size(44.dp)
-                ) {  // review: edge case
+                ) {
                     Icon(Icons.AutoMirrored.Filled.Send, "Send", tint = AccentPrimary)
                 }
             }
