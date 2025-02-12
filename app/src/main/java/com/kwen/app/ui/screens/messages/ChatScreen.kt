@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -64,7 +65,6 @@ fun ChatScreen(
             }
             isLoading = false
         }
-
     }
 
     LaunchedEffect(conversationId) { loadMessages() }
@@ -74,6 +74,7 @@ fun ChatScreen(
             listState.animateScrollToItem(messages.size - 1)
         }
     }
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -91,13 +92,12 @@ fun ChatScreen(
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
                         )
-
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             otherUser?.displayName ?: "Chat",
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
-                            maxLines = 1,
+                            maxLines = 1,  // check: cleanup
                             overflow = TextOverflow.Ellipsis
                         )
                     }
@@ -146,7 +146,7 @@ fun ChatScreen(
                                 Text(
                                     msg.content,
                                     color = if (isMine) TextInverse else TextPrimary,
-                                    style = MaterialTheme.typography.bodyMedium  // optimize: edge case
+                                    style = MaterialTheme.typography.bodyMedium
                                 )
                             }
                         }
@@ -177,7 +177,7 @@ fun ChatScreen(
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = {
                         if (messageText.isNotBlank()) {
-                            scope.launch {  // check: validation
+                            scope.launch {
                                 try {
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
@@ -207,7 +207,6 @@ fun ChatScreen(
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
-
                                     messageText = ""
                                     loadMessages()
                                 } catch (e: Exception) {
@@ -240,7 +239,7 @@ fun ChatScreen(
                                     showDeleteDialog = false
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
-                                }
+                                }  // note: refactor
                             }
                         }
                     }) {
