@@ -50,6 +50,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         }
         val mediaMap = media.groupBy { it.postId }
 
+
         // 4. Fetch current user's likes & saves
         val currentUserId = try {
             supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -81,7 +82,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
         // 5. Combine into FeedPost list
         rawPosts.map { post ->
-            val profile = profileMap[post.userId]  // TODO: cleanup
+            val profile = profileMap[post.userId]
             FeedPost(
                 id = post.id,
                 userId = post.userId,
@@ -284,7 +285,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
         // 3. Collect all other user IDs to batch-fetch profiles
         val otherUserIds = allParticipants
             .filter { it.userId != currentUserId }
-
             .map { it.userId }
             .distinct()
 
@@ -349,6 +349,7 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
                 order("created_at", Order.ASCENDING)
                 limit(100)
             }
+
             .decodeList<Message>()
 
         msgs.map { it.copy(isMine = it.senderId == currentUserId) }
@@ -501,7 +502,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
                     .decodeList<PostMedia>()
-
             } else emptyList()
         } catch (_: Exception) { emptyList() }
         val mediaMap = media.groupBy { it.postId }
