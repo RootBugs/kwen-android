@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyColumn  // optimize: cleanup
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -78,6 +78,7 @@ fun NotificationsScreen(
                 }
             }
             error != null -> {
+
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load notifications", color = AccentRed)
@@ -148,6 +149,7 @@ fun NotificationsScreen(
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
                         }
+
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                     }
                 }
