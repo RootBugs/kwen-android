@@ -9,7 +9,6 @@ data class Profile(
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
-
     val bio: String? = null,
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
@@ -28,7 +27,7 @@ data class PostMedia(
     @SerialName("storage_path") val storagePath: String = "",
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("sort_order") val sortOrder: Int = 0
-)  // check: performance
+)
 
 @Serializable
 data class FeedPost(
@@ -45,6 +44,7 @@ data class FeedPost(
     @SerialName("is_saved") val isSaved: Boolean = false,
     @SerialName("display_name") val displayName: String,
     val username: String,
+
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
@@ -73,7 +73,7 @@ data class Comment(
     @SerialName("created_at") val createdAt: String,
     @SerialName("display_name") val displayName: String,
     val username: String,
-    @SerialName("avatar_url") val avatarUrl: String? = null,  // FIXME: cleanup
+    @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false
@@ -125,7 +125,6 @@ data class ConversationItem(
     @SerialName("has_unread") val hasUnread: Boolean = false,
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
-
 )
 
 @Serializable
@@ -188,6 +187,7 @@ data class PostLike(
 
 @Serializable
 data class ExplorePost(
+
     val id: String,
     @SerialName("user_id") val userId: String,
     val content: String? = null,
@@ -213,9 +213,9 @@ data class SuggestedUser(
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
-
     @SerialName("follower_count") val followerCount: Int = 0
 )
+
 @Serializable
 data class UserSettings(
     @SerialName("user_id") val userId: String,
