@@ -38,6 +38,7 @@ fun PostDetailScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
+
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
@@ -45,7 +46,7 @@ fun PostDetailScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPost() {
-        scope.launch {  // TODO: refactor
+        scope.launch {
             isLoading = true
             try {
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -87,7 +88,6 @@ fun PostDetailScreen(
                 LazyColumn(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
-
                 ) {
                     // Post header
                     item {
@@ -153,6 +153,7 @@ fun PostDetailScreen(
                                 )
                             }
                         }
+
                     }
 
                     // Comments header
@@ -165,7 +166,7 @@ fun PostDetailScreen(
                         )
                     }
 
-                    // Comments
+                    // tweaked: logic
                     if (comments.isEmpty()) {
                         item {
                             Box(modifier = Modifier.fillMaxWidth().padding(32.dp), contentAlignment = Alignment.Center) {
@@ -201,7 +202,6 @@ fun PostDetailScreen(
                 }
 
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
-
 
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
