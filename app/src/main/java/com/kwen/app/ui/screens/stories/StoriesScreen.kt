@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -65,6 +66,7 @@ fun StoriesScreen(
                 },
                 title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -85,6 +87,7 @@ fun StoriesScreen(
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
+
             ) {
                 items(storyUsers, key = { it.id }) { user ->
                     Row(
