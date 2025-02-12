@@ -24,7 +24,7 @@
                     android:offset="1.0" />
 
             </gradient>
-        </aapt:attr>
+        </aapt:attr>  <!-- check: edge case -->
     </path>
     <path
         android:fillColor="#FFFFFF"
