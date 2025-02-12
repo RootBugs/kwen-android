@@ -4,4 +4,5 @@
     <background android:drawable="@drawable/ic_launcher_background" />  <!-- FIXME: edge case -->
     <foreground android:drawable="@drawable/ic_launcher_foreground" />
     <monochrome android:drawable="@drawable/ic_launcher_foreground" />  <!-- review: performance -->
+
 </adaptive-icon>
