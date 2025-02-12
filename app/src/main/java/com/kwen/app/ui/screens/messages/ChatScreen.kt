@@ -15,6 +15,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -61,7 +62,6 @@ fun ChatScreen(
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
-
             }
             isLoading = false
         }
@@ -103,6 +103,7 @@ fun ChatScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -138,7 +139,6 @@ fun ChatScreen(
                                     .clip(RoundedCornerShape(
                                         topStart = 16.dp, topEnd = 12.dp,
                                         bottomStart = if (isMine) 16.dp else 4.dp,
-
                                         bottomEnd = if (isMine) 4.dp else 16.dp
                                     ))
                                     .background(if (isMine) AccentPrimary else BgTertiary)
@@ -171,7 +171,6 @@ fun ChatScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
-
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         unfocusedContainerColor = BgTertiary
@@ -218,7 +217,7 @@ fun ChatScreen(
                         }
                     },
                     modifier = Modifier.size(44.dp)
-                ) {
+                ) {  // review: edge case
                     Icon(Icons.AutoMirrored.Filled.Send, "Send", tint = AccentPrimary)
                 }
             }
