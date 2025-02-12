@@ -57,6 +57,7 @@ fun PostDetailScreen(
             }
             isLoading = false
         }
+
     }
 
     LaunchedEffect(postId) { loadPost() }
@@ -133,6 +134,7 @@ fun PostDetailScreen(
 
                     // Post content
                     val content = post?.content
+
                     if (!content.isNullOrBlank()) {
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
@@ -177,6 +179,7 @@ fun PostDetailScreen(
 
                     items(comments, key = { it.id }) { comment ->
                         Row(
+
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
                         ) {
