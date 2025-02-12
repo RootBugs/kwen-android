@@ -64,7 +64,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             } catch (e: Exception) {
                 Log.w(TAG, "Failed to fetch likes: ${e.message}")
                 emptySet()
-            }  // review: validation
+            }
         } else emptySet()
 
         val savedPostIds = if (currentUserId.isNotEmpty()) {
@@ -116,7 +116,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
             }
-            .decodeList<Post>()
+            .decodeList<Post>()  // FIXME: cleanup
 
         if (rawPosts.isEmpty()) return emptyList()
 
@@ -139,7 +139,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                     .decodeList<PostMedia>()
             } else emptyList()
         } catch (e: Exception) { Log.w(TAG, "Failed to fetch explore media: ${e.message}"); emptyList() }
-
         val mediaMap = media.groupBy { it.postId }
 
         rawPosts.map { post ->
@@ -223,6 +222,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             username = profile?.username ?: "",
             avatarUrl = profile?.avatarUrl,
             isVerified = profile?.isVerified ?: false,
+
             media = media
         )
     } catch (e: Exception) {
@@ -269,7 +269,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
         }
 
         if (myParticipants.isEmpty()) return emptyList()
-
 
         val convIds = myParticipants.map { it.conversationId }
 
@@ -386,7 +385,6 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
 // ─────────────────────────── Profile ───────────────────────────
 
 suspend fun fetchProfileByUsername(username: String): Profile? {
-
     return try {
         val profiles = supabase.from("profiles")
             .select { filter { eq("username", username) } }
@@ -444,7 +442,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 content = post.content,
                 location = post.location,
                 createdAt = post.createdAt,
-
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
@@ -477,6 +474,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
 
         if (saved.isEmpty()) return emptyList()
 
+
         val postIds = saved.map { it.postId }
 
         // Fetch actual posts
@@ -498,7 +496,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
             } else emptyList()
         } catch (_: Exception) { emptyList() }
         val profileMap = profiles.associateBy { it.id }
-
 
         val media = try {
             if (postIds.isNotEmpty()) {
