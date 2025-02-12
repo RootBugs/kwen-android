@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 data class AuthState(
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
+
     val currentUser: Profile? = null,
     val userId: String? = null,
     val error: String? = null,
@@ -56,7 +57,6 @@ class AuthViewModel : ViewModel() {
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
-
         } catch (_: Exception) {}
     }
 
@@ -85,7 +85,6 @@ class AuthViewModel : ViewModel() {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.verifyEmailOtp(
-
                     email = email,
                     token = otp,
                     type = io.github.jan.supabase.auth.OtpType.Email.EMAIL
@@ -133,7 +132,6 @@ class AuthViewModel : ViewModel() {
 
     fun register(email: String, password: String, username: String, displayName: String) {
         viewModelScope.launch {
-
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signUpWith(Email) {
@@ -161,6 +159,7 @@ class AuthViewModel : ViewModel() {
                     )
                     loadProfile(userId)
                 } else {
+
                     _authState.value = _authState.value.copy(
                         isLoading = false,
                         successMessage = "Account created. Please check your email to verify."
@@ -189,7 +188,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     userId = userId,
-
                     successMessage = "Profile completed"
                 )
                 loadProfile(userId)
@@ -202,7 +200,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun ensureProfileExists(userId: String, email: String) {  // note: edge case
+    fun ensureProfileExists(userId: String, email: String) {
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
@@ -233,6 +231,7 @@ class AuthViewModel : ViewModel() {
             }
         }
     }
+
 
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
