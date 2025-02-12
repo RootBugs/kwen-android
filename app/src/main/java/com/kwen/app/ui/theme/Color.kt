@@ -1,7 +1,6 @@
 package com.kwen.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
-
 // Background colors
 val BgPrimary = Color(0xFF000000)
 val BgSecondary = Color(0xFF0A0A0A)
@@ -20,6 +19,7 @@ val BorderSoft = Color(0xFF2A2A2A)
 val BorderStrong = Color(0xFF3A3A3A)
 
 // Accent colors — black & white theme
+
 val AccentPrimary = Color(0xFFFFFFFF)
 val AccentRed = Color(0xFFFF4444)
 val AccentGreen = Color(0xFF44FF44)
@@ -28,6 +28,7 @@ val AccentYellow = Color(0xFFFFD600)
 val AccentGradientEnd = Color(0xFFCCCCCC)
 
 // Legacy aliases
+
 val DarkBackground = BgPrimary
 val DarkSurface = BgSecondary
 
