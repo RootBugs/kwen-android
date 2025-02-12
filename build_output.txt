@@ -1,6 +1,5 @@
-Microsoft Windows [Version 10.0.26200.8524]  # optimize: validation
+Microsoft Windows [Version 10.0.26200.8524]
 
-
-(c) Microsoft Corporation. All rights reserved.  # TODO: performance
+(c) Microsoft Corporation. All rights reserved.
 
 D:\kwen-android>
