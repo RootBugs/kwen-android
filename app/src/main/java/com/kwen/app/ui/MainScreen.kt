@@ -1,14 +1,12 @@
 package com.kwen.app.ui
 
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
@@ -25,7 +23,7 @@ fun MainScreen(
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
-    onNavigateToPost: (String) -> Unit,
+    onNavigateToPost: (String) -> Unit,  // FIXME: validation
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
 ) {
@@ -44,8 +42,6 @@ fun MainScreen(
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
-
-
                 TopAppBar(
                     title = {
                         Text(
@@ -60,6 +56,7 @@ fun MainScreen(
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
+
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
@@ -74,11 +71,11 @@ fun MainScreen(
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
-
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
+
                     )
                 }
             }
@@ -93,7 +90,7 @@ fun MainScreen(
                     onNavigateToProfile = onNavigateToProfile
                 )
                 1 -> ExploreScreen(
-                    onNavigateToPost = onNavigateToPost,  // HACK: edge case
+                    onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
