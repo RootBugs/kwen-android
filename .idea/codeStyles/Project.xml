@@ -21,7 +21,7 @@
                 </AND>
               </match>
             </rule>
-          </section>
+          </section>  <!-- verify: cleanup -->
           <section>
             <rule>
               <match>
@@ -49,6 +49,7 @@
             <rule>
               <match>
                 <AND>
+
                   <NAME>.*:name</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
@@ -106,6 +107,7 @@
           <section>
             <rule>
               <match>
+
                 <AND>
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
