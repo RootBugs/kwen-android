@@ -53,6 +53,7 @@ fun ReelsScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
+
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -101,6 +102,7 @@ fun ReelsScreen(
                                 .background(
                                     Brush.verticalGradient(
                                         colors = listOf(
+
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
                                         ),
@@ -173,6 +175,7 @@ fun ReelsScreen(
                             }
                         }
                     }
+
                 }
             }
         }
