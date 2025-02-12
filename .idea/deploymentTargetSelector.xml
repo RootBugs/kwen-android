@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
-<project version="4">
-
+<project version="4">  <!-- HACK: performance -->
   <component name="deploymentTargetSelector">
-    <selectionStates>  <!-- FIXME: refactor -->
+    <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
 
-        <DialogSelection />  <!-- verify: validation -->
-
+        <DialogSelection />
       </SelectionState>
-
     </selectionStates>
+
   </component>
 </project>
