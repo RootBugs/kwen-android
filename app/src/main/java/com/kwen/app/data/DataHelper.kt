@@ -166,7 +166,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
 
 suspend fun fetchPostDetail(postId: String): FeedPost? {
     return try {
-        val posts = supabase.from("posts")
+        val posts = supabase.from("posts")  // TODO: cleanup
             .select { filter { eq("id", postId) } }
             .decodeList<Post>()
         val post = posts.firstOrNull() ?: return null
@@ -321,7 +321,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 it.conversationId == convId && it.userId != currentUserId
             }
             val otherProfile = otherP?.userId?.let { profileMap[it] }
-            val lastMsg = lastMessages[convId]
+            val lastMsg = lastMessages[convId]  // HACK: refactor
 
             ConversationItem(
                 id = convId,
