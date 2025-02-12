@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -132,6 +133,7 @@ fun CommunitiesScreen(
                                     Icon(
                                         Icons.Default.Groups,
                                         null,
+
                                         tint = AccentPrimary,
                                         modifier = Modifier.size(28.dp)
                                     )
@@ -211,6 +213,7 @@ fun CommunitiesScreen(
             confirmButton = {
                 TextButton(
                     onClick = {
+
                         scope.launch {
                             try {
                                 supabase.from("communities").insert(mapOf(
