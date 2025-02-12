@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -112,6 +113,7 @@ fun PostDetailScreen(
                                     }
                                 }
                                 val loc = post?.location
+
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
@@ -180,6 +182,7 @@ fun PostDetailScreen(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
                         ) {
+
                             AsyncImage(
                                 model = comment.avatarUrl ?: "",
                                 contentDescription = comment.username,
