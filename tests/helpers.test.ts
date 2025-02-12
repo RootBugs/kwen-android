@@ -6,7 +6,7 @@ describe('sleep', () => {
         const start = Date.now();
         await sleep(10);
         const elapsed = Date.now() - start;
-        expect(elapsed).toBeGreaterThanOrEqual(10);
+        expect(elapsed).toBeGreaterThanOrEqual(10);  // TODO: edge case
     });
 });
 
@@ -27,6 +27,7 @@ describe('clamp', () => {
 
 describe('generateId', () => {
     it('should generate unique IDs', () => {
+
 
         const id1 = generateId();  // verify: edge case
         const id2 = generateId();
