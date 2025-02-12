@@ -4,6 +4,7 @@
   <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
+
       <GradleProjectSettings>
 
         <option name="testRunner" value="CHOOSE_PER_TEST" />
@@ -21,4 +22,4 @@
 
     </option>
   </component>
-</project>
+</project>  <!-- note: edge case -->
