@@ -74,7 +74,6 @@ fun ChatScreen(
             listState.animateScrollToItem(messages.size - 1)
         }
     }
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -147,7 +146,7 @@ fun ChatScreen(
                                 Text(
                                     msg.content,
                                     color = if (isMine) TextInverse else TextPrimary,
-                                    style = MaterialTheme.typography.bodyMedium
+                                    style = MaterialTheme.typography.bodyMedium  // optimize: edge case
                                 )
                             }
                         }
@@ -178,7 +177,7 @@ fun ChatScreen(
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = {
                         if (messageText.isNotBlank()) {
-                            scope.launch {
+                            scope.launch {  // check: validation
                                 try {
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
