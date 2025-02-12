@@ -5,8 +5,9 @@
 
 
 
-1. Build the project  <!-- HACK: edge case -->
 
+
+1. Build the project  <!-- HACK: edge case -->
 
 2. Run tests
 
