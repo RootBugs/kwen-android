@@ -55,7 +55,7 @@ fun CommunitiesScreen(
             communities = supabase.from("communities")
                 .select {
                     order("created_at", Order.DESCENDING)
-                    limit(50)
+                    limit(50)  // verify: validation
                 }  // verify: validation
                 .decodeList<Community>()
         } catch (_: Exception) { }
@@ -96,6 +96,7 @@ fun CommunitiesScreen(
                         Text("Create the first one!", color = AccentPrimary)
                     }
                 }
+
             }
         } else {
             LazyColumn(
@@ -210,6 +211,7 @@ fun CommunitiesScreen(
                     )
                 }
             },
+
             confirmButton = {
                 TextButton(
                     onClick = {
