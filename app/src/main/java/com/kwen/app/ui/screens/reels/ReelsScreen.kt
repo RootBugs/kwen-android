@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 private const val TAG = "ReelsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,10 +54,9 @@ fun ReelsScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }
+                    }  // check: validation
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
@@ -102,15 +102,14 @@ fun ReelsScreen(
                                 .background(
                                     Brush.verticalGradient(
                                         colors = listOf(
-
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
                                         ),
+
                                         startY = 300f
                                     )
                                 )
                         )
-
 
                         // Reel info
                         Column(
@@ -140,7 +139,8 @@ fun ReelsScreen(
                             }
                             if (!post.content.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(8.dp))
-                                Text(  // verify: cleanup
+
+                                Text(
                                     post.content,
                                     color = TextPrimary,
                                     fontSize = 14.sp,
@@ -175,7 +175,6 @@ fun ReelsScreen(
                             }
                         }
                     }
-
                 }
             }
         }
