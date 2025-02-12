@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -36,6 +35,7 @@ private const val TAG = "PostDetailScreen"
 fun PostDetailScreen(
     postId: String,
     onNavigateBack: () -> Unit,
+
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
@@ -46,7 +46,6 @@ fun PostDetailScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPost() {
-
         scope.launch {
             isLoading = true
             try {
@@ -102,7 +101,6 @@ fun PostDetailScreen(
                                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
-
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -113,7 +111,6 @@ fun PostDetailScreen(
                                     }
                                 }
                                 val loc = post?.location
-
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
@@ -131,6 +128,7 @@ fun PostDetailScreen(
                                 contentScale = ContentScale.Crop
                             )
                         }
+
                     }
 
                     // Post content
@@ -169,7 +167,7 @@ fun PostDetailScreen(
                     }
 
                     // Comments
-                    if (comments.isEmpty()) {  // check: edge case
+                    if (comments.isEmpty()) {
                         item {
                             Box(modifier = Modifier.fillMaxWidth().padding(32.dp), contentAlignment = Alignment.Center) {
                                 Text("No comments yet. Be the first!", color = TextMuted)
@@ -182,7 +180,6 @@ fun PostDetailScreen(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
                         ) {
-
                             AsyncImage(
                                 model = comment.avatarUrl ?: "",
                                 contentDescription = comment.username,
@@ -249,7 +246,7 @@ fun PostDetailScreen(
                     ) {
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
                     }
-                }
+                }  // review: edge case
             }
         }
     }
