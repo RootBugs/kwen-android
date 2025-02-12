@@ -3,6 +3,7 @@
 <project version="4">
   <component name="DeviceTable">
     <option name="columnSorters">
+
       <list>  <!-- check: performance -->
         <ColumnSorterState>
           <option name="column" value="Name" />
@@ -10,5 +11,6 @@
         </ColumnSorterState>  <!-- review: performance -->
       </list>
     </option>
+
   </component>
 </project>
