@@ -61,6 +61,7 @@ fun ChatScreen(
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
+
             }
             isLoading = false
         }
@@ -78,7 +79,6 @@ fun ChatScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -117,7 +117,6 @@ fun ChatScreen(
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
-
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
@@ -139,6 +138,7 @@ fun ChatScreen(
                                     .clip(RoundedCornerShape(
                                         topStart = 16.dp, topEnd = 12.dp,
                                         bottomStart = if (isMine) 16.dp else 4.dp,
+
                                         bottomEnd = if (isMine) 4.dp else 16.dp
                                     ))
                                     .background(if (isMine) AccentPrimary else BgTertiary)
@@ -171,6 +171,7 @@ fun ChatScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
+
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         unfocusedContainerColor = BgTertiary
@@ -215,7 +216,6 @@ fun ChatScreen(
                                 }
                             }
                         }
-
                     },
                     modifier = Modifier.size(44.dp)
                 ) {
