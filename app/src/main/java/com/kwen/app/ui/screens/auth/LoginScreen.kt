@@ -30,6 +30,7 @@ fun LoginScreen(
 ) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
+
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
@@ -39,7 +40,7 @@ fun LoginScreen(
         }
     }
 
-    LaunchedEffect(email, password) {  // HACK: edge case
+    LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
     }
 
@@ -56,7 +57,6 @@ fun LoginScreen(
         ) {
             Text(
                 "Kwen",
-
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
@@ -91,6 +91,7 @@ fun LoginScreen(
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
+
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
@@ -121,6 +122,7 @@ fun LoginScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
+
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank()
@@ -156,7 +158,6 @@ fun LoginScreen(
                     "Sign Up",
                     color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
-
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
                 )
