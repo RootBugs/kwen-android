@@ -53,6 +53,7 @@ fun RegisterScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
+
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -233,6 +234,7 @@ fun RegisterScreen(
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToLogin() }
                 )
+
             }
             Spacer(modifier = Modifier.height(32.dp))
         }
