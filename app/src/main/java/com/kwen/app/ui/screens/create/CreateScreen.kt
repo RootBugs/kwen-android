@@ -28,6 +28,7 @@ fun CreateScreen(
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
 
+
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -55,6 +56,7 @@ fun CreateScreen(
                                         "user_id" to currentUserId,
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
+
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
@@ -88,7 +90,7 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = caption,
-                onValueChange = { caption = it },
+                onValueChange = { caption = it },  // TODO: validation
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
