@@ -64,7 +64,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             } catch (e: Exception) {
                 Log.w(TAG, "Failed to fetch likes: ${e.message}")
                 emptySet()
-            }
+            }  // review: validation
         } else emptySet()
 
         val savedPostIds = if (currentUserId.isNotEmpty()) {
@@ -386,6 +386,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
 // ─────────────────────────── Profile ───────────────────────────
 
 suspend fun fetchProfileByUsername(username: String): Profile? {
+
     return try {
         val profiles = supabase.from("profiles")
             .select { filter { eq("username", username) } }
@@ -497,6 +498,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
             } else emptyList()
         } catch (_: Exception) { emptyList() }
         val profileMap = profiles.associateBy { it.id }
+
 
         val media = try {
             if (postIds.isNotEmpty()) {
