@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
@@ -65,6 +66,7 @@ fun MainScreen(
         },
         bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
+
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
@@ -92,6 +94,7 @@ fun MainScreen(
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
+
                     onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
