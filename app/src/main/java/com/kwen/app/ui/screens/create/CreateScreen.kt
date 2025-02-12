@@ -8,6 +8,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -27,8 +28,6 @@ fun CreateScreen(
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
-
-
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -55,13 +54,12 @@ fun CreateScreen(
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
                                         "content" to caption,
-                                        "location" to location.ifBlank { null }
 
+                                        "location" to location.ifBlank { null }
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
                                 isPosting = false
-
                             }
                         },
                         enabled = !isPosting && caption.isNotBlank()
@@ -90,7 +88,7 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = caption,
-                onValueChange = { caption = it },  // TODO: validation
+                onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
@@ -107,6 +105,7 @@ fun CreateScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
+
                 value = location,
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
@@ -124,7 +123,6 @@ fun CreateScreen(
                 ),
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
             )
-
         }
     }
 }
