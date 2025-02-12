@@ -36,7 +36,7 @@ fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
-    var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
+    var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }  // FIXME: performance
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
@@ -92,6 +92,7 @@ fun MessagesScreen(
                 ),
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+
                 keyboardActions = KeyboardActions(onSearch = { })
             )
 
@@ -132,6 +133,7 @@ fun MessagesScreen(
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
+
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
                                     contentScale = ContentScale.Crop
                                 )
