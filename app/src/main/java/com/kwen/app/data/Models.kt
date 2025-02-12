@@ -48,6 +48,7 @@ data class FeedPost(
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
+
 )
 
 @Serializable
@@ -101,7 +102,7 @@ data class StoryUser(
     val stories: List<Story> = emptyList()
 )
 
-@Serializable
+@Serializable  // review: performance
 data class Conversation(
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
@@ -155,6 +156,7 @@ data class ReplyTo(
 data class Notification(
     val id: String,
     @SerialName("user_id") val userId: String = "",
+
     val type: String,
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
