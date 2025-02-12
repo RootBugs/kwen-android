@@ -57,6 +57,7 @@ data class Post(
     val content: String? = null,
     val location: String? = null,
     @SerialName("created_at") val createdAt: String = "",
+
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
@@ -118,6 +119,7 @@ data class ConversationParticipant(
 
 @Serializable
 data class ConversationItem(
+
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
@@ -157,7 +159,7 @@ data class Notification(
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
     @SerialName("actor_username") val actorUsername: String = "",
-    @SerialName("actor_avatar_url") val actorAvatarUrl: String? = null,
+    @SerialName("actor_avatar_url") val actorAvatarUrl: String? = null,  // HACK: validation
     @SerialName("post_id") val postId: String? = null,
     @SerialName("is_read") val isRead: Boolean = false,
     @SerialName("created_at") val createdAt: String
