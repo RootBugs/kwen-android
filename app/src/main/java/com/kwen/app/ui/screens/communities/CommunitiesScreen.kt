@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -27,7 +26,7 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
-import kotlinx.serialization.Serializable  // review: validation
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
 @Serializable
@@ -38,6 +37,7 @@ data class Community(
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
     @SerialName("created_at") val createdAt: String = ""
+
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -55,8 +55,8 @@ fun CommunitiesScreen(
             communities = supabase.from("communities")
                 .select {
                     order("created_at", Order.DESCENDING)
-                    limit(50)  // verify: validation
-                }  // verify: validation
+                    limit(50)
+                }
                 .decodeList<Community>()
         } catch (_: Exception) { }
         isLoading = false
@@ -84,7 +84,7 @@ fun CommunitiesScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
-            }  // TODO: edge case
+            }
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -96,7 +96,6 @@ fun CommunitiesScreen(
                         Text("Create the first one!", color = AccentPrimary)
                     }
                 }
-
             }
         } else {
             LazyColumn(
@@ -105,6 +104,7 @@ fun CommunitiesScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(communities, key = { it.id }) { community ->
+
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
@@ -116,7 +116,7 @@ fun CommunitiesScreen(
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
-                        ) {  // HACK: cleanup
+                        ) {
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
@@ -134,7 +134,6 @@ fun CommunitiesScreen(
                                     Icon(
                                         Icons.Default.Groups,
                                         null,
-
                                         tint = AccentPrimary,
                                         modifier = Modifier.size(28.dp)
                                     )
@@ -161,7 +160,7 @@ fun CommunitiesScreen(
                                     color = TextMuted,
                                     fontSize = 12.sp
                                 )
-                            }
+                            }  // review: validation
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
                     }
@@ -178,7 +177,6 @@ fun CommunitiesScreen(
             title = { Text("Create Community", color = TextPrimary) },
             text = {
                 Column {
-
                     OutlinedTextField(
                         value = communityName,
                         onValueChange = { communityName = it },
@@ -196,7 +194,6 @@ fun CommunitiesScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedTextField(
                         value = communityDesc,
-
                         onValueChange = { communityDesc = it },
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
@@ -211,11 +208,9 @@ fun CommunitiesScreen(
                     )
                 }
             },
-
             confirmButton = {
                 TextButton(
                     onClick = {
-
                         scope.launch {
                             try {
                                 supabase.from("communities").insert(mapOf(
