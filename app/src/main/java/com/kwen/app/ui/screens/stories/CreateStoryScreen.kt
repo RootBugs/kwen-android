@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 
 import androidx.compose.material.icons.filled.*
@@ -34,6 +35,7 @@ fun CreateStoryScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
+
                 title = { Text("New Story", color = TextPrimary) },
                 actions = {
                     TextButton(onClick = onStoryCreated) {
@@ -63,7 +65,7 @@ fun CreateStoryScreen(
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Text("Capture a moment", color = TextPrimary, style = MaterialTheme.typography.titleMedium)
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))  // TODO: refactor
                 Text("Tap the camera to create a story", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
             }
         }
