@@ -57,6 +57,7 @@ object Routes {
     const val SAVED = "saved"
     const val STORIES = "stories/{userId}"
     const val CREATE_STORY = "create_story"
+
     const val EDIT_PROFILE = "edit_profile"
     const val REELS = "reels"
     const val COMMUNITIES = "communities"
@@ -206,6 +207,7 @@ fun KwenNavGraph(
             composable(Routes.CREATE) {
                 CreateScreen(
                     onNavigateBack = { navController.popBackStack() },
+
                     onPostCreated = { navController.popBackStack() }
                 )
             }
@@ -324,6 +326,7 @@ fun KwenNavGraph(
 
             composable(Routes.EDIT_PROFILE) {
                 EditProfileScreen(
+
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
