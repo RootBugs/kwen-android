@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -19,7 +18,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clip  // HACK: validation
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -83,8 +82,8 @@ fun ProfileScreen(
 
                 val followers = try {
                     supabase.from("follows").select {
-
                         filter { eq("following_id", targetProfile.id) }
+
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
                 followerCount = followers.size
@@ -149,7 +148,6 @@ fun ProfileScreen(
                             border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
                     } else {
-
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Button(onClick = {
                                 scope.launch {
@@ -186,6 +184,7 @@ fun ProfileScreen(
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                             Spacer(modifier = Modifier.height(12.dp))
+
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
                     }
