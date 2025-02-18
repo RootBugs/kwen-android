@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -29,7 +28,6 @@ private const val TAG = "StoriesScreen"
 @Composable
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
-
     onNavigateToStoryViewer: (String) -> Unit
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
@@ -38,6 +36,7 @@ fun StoriesScreen(
     LaunchedEffect(Unit) {
         try {
             val stories = fetchStories()
+
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
                 StoryUser(
                     id = userId,
@@ -59,7 +58,6 @@ fun StoriesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -77,9 +75,9 @@ fun StoriesScreen(
         } else if (storyUsers.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
-
                     Text("No stories yet", color = TextMuted)
                 }
             }
@@ -91,7 +89,6 @@ fun StoriesScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-
                             .clickable { onNavigateToStoryViewer(user.id) }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
@@ -111,7 +108,6 @@ fun StoriesScreen(
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                 color = TextPrimary
                             )
-
                             Text(
                                 "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
@@ -121,6 +117,7 @@ fun StoriesScreen(
                     }
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
+
             }
         }
     }
