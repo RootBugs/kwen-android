@@ -37,13 +37,13 @@ data class Community(
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
     @SerialName("created_at") val createdAt: String = ""
-
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
+
 ) {
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -104,7 +104,6 @@ fun CommunitiesScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(communities, key = { it.id }) { community ->
-
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
@@ -121,6 +120,7 @@ fun CommunitiesScreen(
                                 modifier = Modifier
                                     .size(56.dp)
                                     .clip(CircleShape)
+
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
                                 contentAlignment = Alignment.Center
                             ) {                                    if (community.coverUrl != null) {
@@ -160,7 +160,7 @@ fun CommunitiesScreen(
                                     color = TextMuted,
                                     fontSize = 12.sp
                                 )
-                            }  // review: validation
+                            }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
                     }
@@ -173,7 +173,7 @@ fun CommunitiesScreen(
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
         AlertDialog(
-            onDismissRequest = { showCreateDialog = false },
+            onDismissRequest = { showCreateDialog = false },  // HACK: performance
             title = { Text("Create Community", color = TextPrimary) },
             text = {
                 Column {
