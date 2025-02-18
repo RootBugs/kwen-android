@@ -28,6 +28,7 @@ fun CreateStoryScreen(
 
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -47,6 +48,7 @@ fun CreateStoryScreen(
         }
 
     ) { padding ->
+
 
         Box(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
