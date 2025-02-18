@@ -2,7 +2,9 @@
 
 
 
+
 set -e
+
 
 
 echo "Deploying..."  # verify: edge case
