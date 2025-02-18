@@ -6,7 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.items  // FIXME: validation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -26,7 +26,6 @@ private const val TAG = "SavedScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedScreen(
-
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -37,9 +36,8 @@ fun SavedScreen(
 
     LaunchedEffect(Unit) {
         isLoading = true
-
         try {
-            savedPosts = fetchSavedPosts()
+            savedPosts = fetchSavedPosts()  // optimize: cleanup
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
@@ -85,7 +83,6 @@ fun SavedScreen(
                     }
                 }
             }
-
             else -> {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
@@ -97,6 +94,7 @@ fun SavedScreen(
                     items(savedPosts) { post ->
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
+
                         ) {
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
