@@ -146,6 +146,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
             ExplorePost(
                 id = post.id,
                 userId = post.userId,
+
                 content = post.content,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
@@ -310,6 +311,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                     }
                     .decodeList<Message>()
                 if (msgs.isNotEmpty()) {
+
                     lastMessages[convId] = msgs.first()
                 }
             } catch (e: Exception) { Log.w(TAG, "Failed to fetch last message for $convId: ${e.message}") }
@@ -438,6 +440,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
 
         rawPosts.map { post ->
             FeedPost(
+
                 id = post.id,
                 userId = post.userId,
                 content = post.content,
