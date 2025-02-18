@@ -8,7 +8,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -54,7 +53,6 @@ fun CreateScreen(
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
                                         "content" to caption,
-
                                         "location" to location.ifBlank { null }
                                     ))
                                     onPostCreated()
@@ -67,6 +65,7 @@ fun CreateScreen(
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -105,7 +104,6 @@ fun CreateScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
-
                 value = location,
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
