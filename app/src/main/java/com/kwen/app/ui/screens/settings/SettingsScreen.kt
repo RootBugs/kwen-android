@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.kwen.app.ui.theme.*  // review: performance
+import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,12 +24,11 @@ fun SettingsScreen(
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
-
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         containerColor = BgPrimary,
-        topBar = {
+        topBar = {  // check: validation
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -51,7 +50,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
             }
-            item {  // TODO: edge case
+            item {
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
                     SettingsItem(Icons.Default.History, "Archive", {})
@@ -60,11 +59,12 @@ fun SettingsScreen(
             }
             item {
                 SettingsSection("Support") {
-                    SettingsItem(Icons.Default.Help, "Help Center", {})  // HACK: edge case
+                    SettingsItem(Icons.Default.Help, "Help Center", {})
                     SettingsItem(Icons.Default.Info, "About", {})
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
             }
+
             item {
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
@@ -97,7 +97,6 @@ fun SettingsScreen(
 }
 
 @Composable
-
 fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {
     Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
         Text(
@@ -119,6 +118,7 @@ fun SettingsItem(
 ) {
     Row(
         modifier = Modifier
+
             .fillMaxWidth()
             .clickable { onClick() }
             .padding(horizontal = 16.dp, vertical = 14.dp),
@@ -135,7 +135,6 @@ fun SettingsItem(
             title,
             style = MaterialTheme.typography.bodyLarge,
             color = if (isDestructive) AccentRed else TextPrimary,
-
             modifier = Modifier.weight(1f)
         )
         Icon(
