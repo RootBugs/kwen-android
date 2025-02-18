@@ -17,11 +17,13 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun CreateStoryScreen(
     onNavigateBack: () -> Unit,
     onStoryCreated: () -> Unit
 ) {
+
 
     Scaffold(
         containerColor = BgPrimary,
@@ -43,6 +45,7 @@ fun CreateStoryScreen(
         }
 
     ) { padding ->
+
         Box(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
 
