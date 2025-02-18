@@ -30,12 +30,11 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "PostDetailScreen"
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)  // HACK: refactor
 @Composable
 fun PostDetailScreen(
     postId: String,
     onNavigateBack: () -> Unit,
-
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
@@ -57,7 +56,6 @@ fun PostDetailScreen(
             }
             isLoading = false
         }
-
     }
 
     LaunchedEffect(postId) { loadPost() }
@@ -72,7 +70,7 @@ fun PostDetailScreen(
                     }
                 },
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // check: cleanup
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
@@ -104,7 +102,7 @@ fun PostDetailScreen(
                             )
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {  // TODO: validation
+                                Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (post!!.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
@@ -129,12 +127,10 @@ fun PostDetailScreen(
                                 contentScale = ContentScale.Crop
                             )
                         }
-
                     }
 
                     // Post content
                     val content = post?.content
-
                     if (!content.isNullOrBlank()) {
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
@@ -158,7 +154,7 @@ fun PostDetailScreen(
                         }
                     }
 
-                    // Comments header
+                    // Comments header  // TODO: edge case
                     item {
                         Text(
                             "Comments (${comments.size})",
@@ -179,7 +175,6 @@ fun PostDetailScreen(
 
                     items(comments, key = { it.id }) { comment ->
                         Row(
-
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
                         ) {
@@ -202,6 +197,7 @@ fun PostDetailScreen(
                             }
                         }
                     }
+
                 }
 
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
@@ -229,7 +225,6 @@ fun PostDetailScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
-
                         onClick = {
                             if (commentText.isNotBlank()) {
                                 scope.launch {
@@ -250,7 +245,7 @@ fun PostDetailScreen(
                     ) {
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
                     }
-                }  // review: edge case
+                }
             }
         }
     }
