@@ -10,11 +10,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -55,6 +53,7 @@ fun EditProfileScreen(
         isLoading = false
     }
 
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -70,7 +69,7 @@ fun EditProfileScreen(
                         onClick = {
                             scope.launch {
                                 isSaving = true
-                                try {
+                                try {  // check: validation
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
@@ -79,7 +78,6 @@ fun EditProfileScreen(
                                         "website" to website.ifBlank { null }
                                     )) {
                                         filter { eq("id", userId) }
-
                                     }
                                     onNavigateBack()
                                 } catch (_: Exception) { }
@@ -115,7 +113,6 @@ fun EditProfileScreen(
                     contentScale = ContentScale.Crop
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-
                 TextButton(onClick = { }) {
                     Text("Change Photo", color = AccentPrimary)
                 }
@@ -139,7 +136,6 @@ fun EditProfileScreen(
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-
 
                 OutlinedTextField(
                     value = username,
@@ -180,6 +176,7 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = website,
+
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
                     singleLine = true,
@@ -197,6 +194,5 @@ fun EditProfileScreen(
                 )
             }
         }
-
     }
 }
