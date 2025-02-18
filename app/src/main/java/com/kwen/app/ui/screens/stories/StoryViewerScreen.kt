@@ -34,6 +34,7 @@ fun StoryViewerScreen(
     var progress by remember { mutableFloatStateOf(0f) }
 
     LaunchedEffect(userId) {
+
         try {
             stories = fetchStories(userId)
         } catch (e: Exception) {
@@ -47,6 +48,7 @@ fun StoryViewerScreen(
         progress = 0f
         for (i in 0..100) {
             progress = i / 100f
+
             delay(50)
         }
         if (currentIndex < stories.size - 1) {
@@ -94,6 +96,7 @@ fun StoryViewerScreen(
                         model = user.avatarUrl ?: "",
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
+
                         contentScale = ContentScale.Crop
                     )
                     Spacer(modifier = Modifier.width(8.dp))
