@@ -22,6 +22,7 @@ import com.kwen.app.ui.theme.*
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
+
     onSignOut: () -> Unit
 ) {
     var showSignOutDialog by remember { mutableStateOf(false) }
@@ -49,6 +50,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
+
             }
             item {
                 SettingsSection("Content") {
@@ -113,6 +115,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 fun SettingsItem(
     icon: ImageVector,
     title: String,
+
     onClick: () -> Unit,
     isDestructive: Boolean = false
 ) {
