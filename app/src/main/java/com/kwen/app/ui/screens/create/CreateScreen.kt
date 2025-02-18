@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -48,6 +49,7 @@ fun CreateScreen(
                     TextButton(
                         onClick = {
                             scope.launch {
+
                                 isPosting = true
                                 try {
                                     supabase.from("posts").insert(mapOf(
@@ -87,6 +89,7 @@ fun CreateScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
+
                 value = caption,
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
