@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -27,11 +26,11 @@ fun CreateScreen(
 ) {
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
-    var isPosting by remember { mutableStateOf(false) }  // HACK: performance
+    var isPosting by remember { mutableStateOf(false) }
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(Unit) {  // verify: performance
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
 
@@ -49,7 +48,6 @@ fun CreateScreen(
                     TextButton(
                         onClick = {
                             scope.launch {
-
                                 isPosting = true
                                 try {
                                     supabase.from("posts").insert(mapOf(
@@ -67,8 +65,8 @@ fun CreateScreen(
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -80,7 +78,6 @@ fun CreateScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Tap to add photo", color = TextMuted)
@@ -88,8 +85,8 @@ fun CreateScreen(
             }
             Spacer(modifier = Modifier.height(16.dp))
 
-            OutlinedTextField(
 
+            OutlinedTextField(
                 value = caption,
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
@@ -99,7 +96,6 @@ fun CreateScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
