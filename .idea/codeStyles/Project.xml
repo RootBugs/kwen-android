@@ -23,6 +23,7 @@
           </section>
           <section>
             <rule>
+
               <match>
                 <AND>
                   <NAME>xmlns:.*</NAME>
@@ -58,6 +59,7 @@
           <section>
 
             <rule>
+
               <match>
                 <AND>
                   <NAME>name</NAME>
