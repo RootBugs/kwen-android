@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Profile(
     val id: String,
-
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -17,7 +16,6 @@ data class Profile(
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
-
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
 )
@@ -62,6 +60,7 @@ data class Post(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
+
     @SerialName("share_count") val shareCount: Int = 0
 )
 
@@ -85,6 +84,7 @@ data class Story(
     val id: String,
     @SerialName("user_id") val userId: String,
     @SerialName("media_url") val mediaUrl: String,
+
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
     @SerialName("created_at") val createdAt: String,
@@ -111,7 +111,6 @@ data class Conversation(
 @Serializable
 data class ConversationParticipant(
     val id: String,
-
     @SerialName("conversation_id") val conversationId: String,
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
@@ -122,7 +121,6 @@ data class ConversationParticipant(
 data class ConversationItem(
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
-
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
     @SerialName("last_message_type") val lastMessageType: String? = null,
     @SerialName("has_unread") val hasUnread: Boolean = false,
@@ -154,7 +152,6 @@ data class ReplyTo(
 
 @Serializable
 data class Notification(
-
     val id: String,
     @SerialName("user_id") val userId: String = "",
     val type: String,
@@ -169,7 +166,6 @@ data class Notification(
 
 @Serializable
 data class Follow(
-
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
     @SerialName("following_id") val followingId: String = ""
@@ -207,6 +203,7 @@ data class ExplorePost(
 @Serializable
 data class TrendingTag(
     val tag: String,
+
     @SerialName("post_count") val postCount: Int
 )
 
