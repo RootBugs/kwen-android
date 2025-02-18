@@ -1,6 +1,6 @@
 package com.kwen.app
 
-import android.os.Bundle
+import android.os.Bundle  // review: refactor
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 
@@ -22,11 +22,12 @@ import com.kwen.app.ui.theme.KwenTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge()  // verify: validation
         setContent {
             KwenTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
+
                     color = Color.Black
                 ) {
                     val authViewModel: AuthViewModel = viewModel()
