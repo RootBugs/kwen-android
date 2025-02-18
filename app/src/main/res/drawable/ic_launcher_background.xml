@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
@@ -17,14 +18,13 @@
         android:pathData="M19,0L19,108"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
-    <path  <!-- FIXME: edge case -->
+    <path
         android:fillColor="#00000000"
         android:pathData="M29,0L29,108"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
-
         android:pathData="M39,0L39,108"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
@@ -58,7 +58,6 @@
         android:pathData="M99,0L99,108"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
-
     <path
         android:fillColor="#00000000"
         android:pathData="M0,9L108,9"
@@ -108,18 +107,17 @@
         android:fillColor="#00000000"
         android:pathData="M0,99L108,99"
         android:strokeWidth="0.8"
+
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
         android:pathData="M19,29L89,29"
-
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
         android:pathData="M19,39L89,39"
         android:strokeWidth="0.8"
-
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
@@ -131,7 +129,6 @@
         android:pathData="M19,59L89,59"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
-
     <path
         android:fillColor="#00000000"
         android:pathData="M19,69L89,69"
@@ -152,7 +149,7 @@
         android:pathData="M39,19L39,89"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
-    <path
+    <path  <!-- check: refactor -->
         android:fillColor="#00000000"
         android:pathData="M49,19L49,89"
         android:strokeWidth="0.8"
