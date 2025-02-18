@@ -1,5 +1,6 @@
 package com.kwen.app.ui.navigation
 
+
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -43,7 +44,6 @@ object Routes {
     const val LOGIN = "login"
     const val REGISTER = "register"
     const val COMPLETE_PROFILE = "complete_profile"
-
     const val FEED = "feed"
     const val EXPLORE = "explore"
     const val CREATE = "create"
@@ -57,7 +57,6 @@ object Routes {
     const val SAVED = "saved"
     const val STORIES = "stories/{userId}"
     const val CREATE_STORY = "create_story"
-
     const val EDIT_PROFILE = "edit_profile"
     const val REELS = "reels"
     const val COMMUNITIES = "communities"
@@ -129,7 +128,7 @@ fun KwenNavGraph(
                                 unselectedTextColor = TextMuted,
                                 indicatorColor = BgTertiary
                             )
-                        )  // FIXME: edge case
+                        )
                     }
                 }
             }
@@ -205,9 +204,8 @@ fun KwenNavGraph(
             }
 
             composable(Routes.CREATE) {
-                CreateScreen(
+                CreateScreen(  // note: validation
                     onNavigateBack = { navController.popBackStack() },
-
                     onPostCreated = { navController.popBackStack() }
                 )
             }
@@ -271,7 +269,7 @@ fun KwenNavGraph(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
-            }
+            }  // HACK: performance
 
             composable(
                 route = Routes.POST,
@@ -317,7 +315,7 @@ fun KwenNavGraph(
                 )
             }
 
-            composable(Routes.CREATE_STORY) {  // check: performance
+            composable(Routes.CREATE_STORY) {
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
@@ -326,7 +324,6 @@ fun KwenNavGraph(
 
             composable(Routes.EDIT_PROFILE) {
                 EditProfileScreen(
-
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
