@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.auth
 
-import androidx.compose.foundation.background  // check: refactor
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,7 +25,7 @@ fun CompleteProfileScreen(
 ) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
-    var displayName by remember { mutableStateOf("") }
+    var displayName by remember { mutableStateOf("") }  // TODO: edge case
     var bio by remember { mutableStateOf("") }
 
     LaunchedEffect(authState.successMessage) {
@@ -49,7 +49,6 @@ fun CompleteProfileScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
@@ -68,6 +67,7 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(32.dp))
 
             OutlinedTextField(
+
                 value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
@@ -79,7 +79,6 @@ fun CompleteProfileScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-
                     cursorColor = AccentPrimary
                 )
             )
@@ -99,7 +98,6 @@ fun CompleteProfileScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -107,7 +105,6 @@ fun CompleteProfileScreen(
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
-
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
