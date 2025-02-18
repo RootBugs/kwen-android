@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Profile(
     val id: String,
+
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -110,6 +111,7 @@ data class Conversation(
 @Serializable
 data class ConversationParticipant(
     val id: String,
+
     @SerialName("conversation_id") val conversationId: String,
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
@@ -167,6 +169,7 @@ data class Notification(
 
 @Serializable
 data class Follow(
+
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
     @SerialName("following_id") val followingId: String = ""
