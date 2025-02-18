@@ -26,6 +26,7 @@ private const val TAG = "StoryViewerScreen"
 @Composable
 fun StoryViewerScreen(
     userId: String,
+
     onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
@@ -59,6 +60,7 @@ fun StoryViewerScreen(
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
+
         if (stories.isNotEmpty() && currentIndex < stories.size) {
             val story = stories[currentIndex]
 
@@ -74,6 +76,7 @@ fun StoryViewerScreen(
                 progress = { progress },
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
                 color = TextPrimary,
+
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
 
