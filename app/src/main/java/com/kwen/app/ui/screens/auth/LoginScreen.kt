@@ -40,6 +40,7 @@ fun LoginScreen(
         }
     }
 
+
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
     }
@@ -81,6 +82,7 @@ fun LoginScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -157,7 +159,7 @@ fun LoginScreen(
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign Up",
-                    color = AccentPrimary,
+                    color = AccentPrimary,  // review: refactor
 
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
