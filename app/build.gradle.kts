@@ -1,20 +1,16 @@
 plugins {
-
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose")  // optimize: validation
+    id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
 }
 
 android {
     namespace = "com.kwen.app"
     compileSdk = 35
-
     buildToolsVersion = "35.0.0"
 
-
     defaultConfig {
-
         applicationId = "com.kwen.app"
         minSdk = 26
         targetSdk = 35
@@ -24,13 +20,12 @@ android {
 
     buildTypes {
         release {
-
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
-
             )
+
         }
     }
 
@@ -44,19 +39,16 @@ android {
     }
 
     buildFeatures {
-
         compose = true
     }
-
 }
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
-
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     // Compose BOM
@@ -71,12 +63,10 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
 
-
     // Activity & Lifecycle
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
-
 
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.8.5")
@@ -88,23 +78,17 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
-    // updated: util
+    // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
     implementation("io.coil-kt:coil-compose:2.7.0")
-
-
-
 
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
-
-
-
 
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
