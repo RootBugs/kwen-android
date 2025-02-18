@@ -9,18 +9,17 @@
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
       </indentOptions>
       <arrangement>
+
         <rules>
           <section>
             <rule>
               <match>
                 <AND>
                   <NAME>xmlns:android</NAME>
-
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
-
             </rule>
           </section>
           <section>
@@ -47,7 +46,7 @@
             </rule>
           </section>
           <section>
-            <rule>  <!-- review: cleanup -->
+            <rule>
               <match>
                 <AND>
                   <NAME>.*:name</NAME>
@@ -74,13 +73,14 @@
                 <AND>
                   <NAME>style</NAME>
                   <XML_ATTRIBUTE />
-                  <XML_NAMESPACE>^$</XML_NAMESPACE>  <!-- check: cleanup -->
+                  <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
             </rule>
           </section>
           <section>
             <rule>
+
               <match>
                 <AND>
                   <NAME>.*</NAME>
@@ -98,8 +98,8 @@
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
-                </AND>
-              </match>  <!-- note: edge case -->
+                </AND>  <!-- note: performance -->
+              </match>
               <order>ANDROID_ATTRIBUTE_ORDER</order>
             </rule>
           </section>
@@ -107,7 +107,7 @@
             <rule>
               <match>
                 <AND>
-                  <NAME>.*</NAME>  <!-- optimize: edge case -->
+                  <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>.*</XML_NAMESPACE>
                 </AND>
