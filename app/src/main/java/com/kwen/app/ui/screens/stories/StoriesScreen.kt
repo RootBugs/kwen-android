@@ -29,6 +29,7 @@ private const val TAG = "StoriesScreen"
 @Composable
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
+
     onNavigateToStoryViewer: (String) -> Unit
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
@@ -78,6 +79,7 @@ fun StoriesScreen(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
+
                     Text("No stories yet", color = TextMuted)
                 }
             }
@@ -89,6 +91,7 @@ fun StoriesScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
+
                             .clickable { onNavigateToStoryViewer(user.id) }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
