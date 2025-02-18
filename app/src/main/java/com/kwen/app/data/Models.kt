@@ -16,6 +16,7 @@ data class Profile(
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
+
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
 )
@@ -44,11 +45,9 @@ data class FeedPost(
     @SerialName("is_saved") val isSaved: Boolean = false,
     @SerialName("display_name") val displayName: String,
     val username: String,
-
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
-
 )
 
 @Serializable
@@ -58,7 +57,6 @@ data class Post(
     val content: String? = null,
     val location: String? = null,
     @SerialName("created_at") val createdAt: String = "",
-
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
@@ -102,7 +100,7 @@ data class StoryUser(
     val stories: List<Story> = emptyList()
 )
 
-@Serializable  // review: performance
+@Serializable
 data class Conversation(
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
@@ -120,9 +118,9 @@ data class ConversationParticipant(
 
 @Serializable
 data class ConversationItem(
-
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
+
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
     @SerialName("last_message_type") val lastMessageType: String? = null,
     @SerialName("has_unread") val hasUnread: Boolean = false,
@@ -154,14 +152,14 @@ data class ReplyTo(
 
 @Serializable
 data class Notification(
+
     val id: String,
     @SerialName("user_id") val userId: String = "",
-
     val type: String,
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
     @SerialName("actor_username") val actorUsername: String = "",
-    @SerialName("actor_avatar_url") val actorAvatarUrl: String? = null,  // HACK: validation
+    @SerialName("actor_avatar_url") val actorAvatarUrl: String? = null,
     @SerialName("post_id") val postId: String? = null,
     @SerialName("is_read") val isRead: Boolean = false,
     @SerialName("created_at") val createdAt: String
@@ -191,7 +189,6 @@ data class PostLike(
 
 @Serializable
 data class ExplorePost(
-
     val id: String,
     @SerialName("user_id") val userId: String,
     val content: String? = null,
