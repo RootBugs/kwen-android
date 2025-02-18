@@ -26,7 +26,7 @@ fun CreateScreen(
 ) {
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
-    var isPosting by remember { mutableStateOf(false) }
+    var isPosting by remember { mutableStateOf(false) }  // HACK: performance
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -78,6 +78,7 @@ fun CreateScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Tap to add photo", color = TextMuted)
@@ -95,6 +96,7 @@ fun CreateScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
+
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
