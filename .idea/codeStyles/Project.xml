@@ -40,6 +40,7 @@
               <match>
                 <AND>
                   <NAME>.*:id</NAME>
+
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
 
@@ -49,6 +50,7 @@
           </section>
           <section>
             <rule>
+
               <match>
                 <AND>
                   <NAME>.*:name</NAME>
@@ -99,6 +101,7 @@
             <rule>
               <match>
                 <AND>
+
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
