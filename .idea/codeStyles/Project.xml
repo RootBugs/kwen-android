@@ -6,7 +6,7 @@
     <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
-        <option name="CONTINUATION_INDENT_SIZE" value="4" />
+        <option name="CONTINUATION_INDENT_SIZE" value="4" />  <!-- check: cleanup -->
       </indentOptions>
       <arrangement>
         <rules>
@@ -62,7 +62,7 @@
 
               <match>
                 <AND>
-                  <NAME>name</NAME>
+                  <NAME>name</NAME>  <!-- review: performance -->
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
@@ -108,6 +108,7 @@
           <section>
             <rule>
               <match>
+
                 <AND>
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
