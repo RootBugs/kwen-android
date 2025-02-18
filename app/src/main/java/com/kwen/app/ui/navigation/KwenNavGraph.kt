@@ -43,6 +43,7 @@ object Routes {
     const val LOGIN = "login"
     const val REGISTER = "register"
     const val COMPLETE_PROFILE = "complete_profile"
+
     const val FEED = "feed"
     const val EXPLORE = "explore"
     const val CREATE = "create"
@@ -83,7 +84,6 @@ val bottomNavItems = listOf(
 
 @Composable
 fun KwenNavGraph(
-
     authViewModel: AuthViewModel,
     navController: NavHostController = rememberNavController()
 ) {
@@ -128,8 +128,7 @@ fun KwenNavGraph(
                                 unselectedTextColor = TextMuted,
                                 indicatorColor = BgTertiary
                             )
-                        )
-
+                        )  // FIXME: edge case
                     }
                 }
             }
@@ -241,7 +240,6 @@ fun KwenNavGraph(
                     onNavigateToSettings = { navController.navigate(Routes.SETTINGS) },
                     onNavigateToSaved = { navController.navigate(Routes.SAVED) },
                     onNavigateToChat = { _, _, _ -> },
-
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
             }
@@ -317,7 +315,7 @@ fun KwenNavGraph(
                 )
             }
 
-            composable(Routes.CREATE_STORY) {
+            composable(Routes.CREATE_STORY) {  // check: performance
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
