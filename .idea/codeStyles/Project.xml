@@ -20,6 +20,7 @@
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
+
             </rule>
           </section>
           <section>
@@ -46,7 +47,7 @@
             </rule>
           </section>
           <section>
-            <rule>
+            <rule>  <!-- review: cleanup -->
               <match>
                 <AND>
                   <NAME>.*:name</NAME>
@@ -106,7 +107,7 @@
             <rule>
               <match>
                 <AND>
-                  <NAME>.*</NAME>
+                  <NAME>.*</NAME>  <!-- optimize: edge case -->
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>.*</XML_NAMESPACE>
                 </AND>
