@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+
 import androidx.lifecycle.viewmodel.compose.viewModel  // review: validation
 import androidx.navigation.compose.rememberNavController
 import com.kwen.app.data.AuthViewModel
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
+        setContent {  // TODO: refactor
 
             KwenTheme {
                 Surface(
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
                         authViewModel = authViewModel,
                         navController = navController
                     )
-                }
+                }  // review: refactor
             }
         }
     }  // TODO: edge case
