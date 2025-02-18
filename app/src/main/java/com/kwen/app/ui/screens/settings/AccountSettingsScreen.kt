@@ -6,8 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight  // FIXME: validation
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -22,7 +21,6 @@ import com.kwen.app.ui.theme.*
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
 ) {
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -34,6 +32,7 @@ fun AccountSettingsScreen(
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -50,11 +49,10 @@ fun AccountSettingsScreen(
             item {
                 SettingsSection("Security") {
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
-
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
                 }
             }
         }
     }
-}
+}  // FIXME: edge case
