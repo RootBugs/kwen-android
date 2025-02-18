@@ -43,7 +43,6 @@ data class Community(
 @Composable
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
-
 ) {
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -79,6 +78,7 @@ fun CommunitiesScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         if (isLoading) {
@@ -120,12 +120,12 @@ fun CommunitiesScreen(
                                 modifier = Modifier
                                     .size(56.dp)
                                     .clip(CircleShape)
-
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
                                 contentAlignment = Alignment.Center
                             ) {                                    if (community.coverUrl != null) {
                                     AsyncImage(
                                         model = community.coverUrl,
+
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
@@ -173,7 +173,7 @@ fun CommunitiesScreen(
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
         AlertDialog(
-            onDismissRequest = { showCreateDialog = false },  // HACK: performance
+            onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
                 Column {
@@ -186,6 +186,7 @@ fun CommunitiesScreen(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
+
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
