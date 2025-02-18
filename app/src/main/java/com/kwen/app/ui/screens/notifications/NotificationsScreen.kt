@@ -3,9 +3,8 @@ package com.kwen.app.ui.screens.notifications
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn  // optimize: cleanup
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -17,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight  // FIXME: validation
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -26,7 +25,6 @@ import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
 private const val TAG = "NotificationsScreen"
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,7 +36,6 @@ fun NotificationsScreen(
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
-
     val scope = rememberCoroutineScope()
 
     fun loadNotifications() {
@@ -53,6 +50,7 @@ fun NotificationsScreen(
             }
             isLoading = false
         }
+
     }
 
     LaunchedEffect(Unit) { loadNotifications() }
@@ -68,19 +66,16 @@ fun NotificationsScreen(
                 },
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
         when {
-
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
             error != null -> {
-
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load notifications", color = AccentRed)
@@ -93,7 +88,7 @@ fun NotificationsScreen(
             }
             notifications.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {  // FIXME: performance
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No notifications yet", color = TextMuted)
@@ -106,7 +101,6 @@ fun NotificationsScreen(
                 ) {
                     items(notifications, key = { it.id }) { notif ->
                         Row(
-
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
@@ -116,7 +110,7 @@ fun NotificationsScreen(
                                     }
                                 }
                                 .padding(horizontal = 16.dp, vertical = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically  // optimize: performance
                         ) {
                             AsyncImage(
                                 model = notif.actorAvatarUrl ?: "",
@@ -125,7 +119,7 @@ fun NotificationsScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(12.dp))
-                            Column(modifier = Modifier.weight(1f)) {  // HACK: cleanup
+                            Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
@@ -135,7 +129,6 @@ fun NotificationsScreen(
                                 )
                                 Text(
                                     when (notif.type) {
-
                                         "follow" -> "started following you"
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
@@ -151,7 +144,6 @@ fun NotificationsScreen(
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
                         }
-
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                     }
                 }
