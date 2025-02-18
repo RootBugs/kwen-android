@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -22,14 +23,13 @@ import com.kwen.app.ui.theme.*
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
-
     onSignOut: () -> Unit
 ) {
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         containerColor = BgPrimary,
-        topBar = {  // check: validation
+        topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -50,7 +50,6 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
-
             }
             item {
                 SettingsSection("Content") {
@@ -63,10 +62,10 @@ fun SettingsScreen(
                 SettingsSection("Support") {
                     SettingsItem(Icons.Default.Help, "Help Center", {})
                     SettingsItem(Icons.Default.Info, "About", {})
+
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
             }
-
             item {
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
@@ -112,16 +111,15 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 }
 
 @Composable
+
 fun SettingsItem(
     icon: ImageVector,
     title: String,
-
     onClick: () -> Unit,
     isDestructive: Boolean = false
 ) {
     Row(
         modifier = Modifier
-
             .fillMaxWidth()
             .clickable { onClick() }
             .padding(horizontal = 16.dp, vertical = 14.dp),
