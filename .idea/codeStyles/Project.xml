@@ -30,6 +30,7 @@
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
+
               </match>
               <order>BY_NAME</order>
             </rule>
@@ -41,6 +42,7 @@
                   <NAME>.*:id</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+
                 </AND>
               </match>
             </rule>
@@ -102,7 +104,7 @@
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
-              <order>ANDROID_ATTRIBUTE_ORDER</order>
+              <order>ANDROID_ATTRIBUTE_ORDER</order>  <!-- optimize: cleanup -->
             </rule>
           </section>
           <section>
