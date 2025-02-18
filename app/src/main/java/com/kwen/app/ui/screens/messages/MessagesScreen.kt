@@ -45,6 +45,7 @@ fun MessagesScreen(
 
     fun loadConversations() {
         scope.launch {
+
             isLoading = true
             error = null
             try {
@@ -97,6 +98,7 @@ fun MessagesScreen(
             )
 
             when {
+
                 isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = AccentPrimary)
@@ -113,6 +115,7 @@ fun MessagesScreen(
                         }
                     }
                 }
+
                 filteredConversations.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
