@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.notifications
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn  // optimize: cleanup
 import androidx.compose.foundation.lazy.items
@@ -72,6 +73,7 @@ fun NotificationsScreen(
         }
     ) { padding ->
         when {
+
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
@@ -123,7 +125,7 @@ fun NotificationsScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(12.dp))
-                            Column(modifier = Modifier.weight(1f)) {
+                            Column(modifier = Modifier.weight(1f)) {  // HACK: cleanup
                                 Text(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
