@@ -11,8 +11,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-
 import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -33,7 +33,7 @@ fun StoryViewerScreen(
     var progress by remember { mutableFloatStateOf(0f) }
 
     LaunchedEffect(userId) {
-        try {  // note: edge case
+        try {
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
@@ -50,6 +50,7 @@ fun StoryViewerScreen(
         if (currentIndex < stories.size - 1) {
             currentIndex++
         } else {
+
             onNavigateBack()
         }
     }
@@ -73,7 +74,6 @@ fun StoryViewerScreen(
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
-
             )
 
             // Header
@@ -93,6 +93,7 @@ fun StoryViewerScreen(
                         contentScale = ContentScale.Crop
                     )
                     Spacer(modifier = Modifier.width(8.dp))
+
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
             }
