@@ -50,6 +50,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         }
         val mediaMap = media.groupBy { it.postId }
 
+
         // 4. Fetch current user's likes & saves
         val currentUserId = try {
             supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -146,7 +147,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
             ExplorePost(
                 id = post.id,
                 userId = post.userId,
-
                 content = post.content,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
@@ -160,7 +160,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     } catch (e: Exception) {
         Log.e(TAG, "fetchExplorePosts failed: ${e.message}", e)
         emptyList()
-
     }
 }
 
@@ -215,12 +214,12 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             location = post.location,
             createdAt = post.createdAt,
             likeCount = post.likeCount,
-
             commentCount = post.commentCount,
             saveCount = post.saveCount,
             shareCount = post.shareCount,
             isLiked = isLiked,
             isSaved = isSaved,
+
             displayName = profile?.displayName ?: "",
             username = profile?.username ?: "",
             avatarUrl = profile?.avatarUrl,
@@ -311,7 +310,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
                     }
                     .decodeList<Message>()
                 if (msgs.isNotEmpty()) {
-
                     lastMessages[convId] = msgs.first()
                 }
             } catch (e: Exception) { Log.w(TAG, "Failed to fetch last message for $convId: ${e.message}") }
@@ -440,7 +438,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
 
         rawPosts.map { post ->
             FeedPost(
-
                 id = post.id,
                 userId = post.userId,
                 content = post.content,
@@ -455,6 +452,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
+
             )
         }
     } catch (e: Exception) {
@@ -516,7 +514,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 userId = post.userId,
                 content = post.content,
                 location = post.location,
-                createdAt = post.createdAt,  // TODO: edge case
+                createdAt = post.createdAt,
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
