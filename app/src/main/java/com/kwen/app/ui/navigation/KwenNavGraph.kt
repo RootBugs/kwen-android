@@ -1,6 +1,5 @@
 package com.kwen.app.ui.navigation
 
-
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -54,6 +53,7 @@ object Routes {
     const val NOTIFICATIONS = "notifications"
     const val POST = "post/{postId}"
     const val SETTINGS = "settings"
+
     const val SAVED = "saved"
     const val STORIES = "stories/{userId}"
     const val CREATE_STORY = "create_story"
@@ -204,8 +204,9 @@ fun KwenNavGraph(
             }
 
             composable(Routes.CREATE) {
-                CreateScreen(  // note: validation
+                CreateScreen(
                     onNavigateBack = { navController.popBackStack() },
+
                     onPostCreated = { navController.popBackStack() }
                 )
             }
@@ -228,6 +229,7 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
+
 
             composable(Routes.OWN_PROFILE) {
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -269,7 +271,7 @@ fun KwenNavGraph(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
-            }  // HACK: performance
+            }
 
             composable(
                 route = Routes.POST,
