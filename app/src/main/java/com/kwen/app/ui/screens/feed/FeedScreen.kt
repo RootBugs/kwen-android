@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -79,7 +78,7 @@ fun FeedScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-        }
+        }  // TODO: validation
     ) { padding ->
         when {
             isLoading -> {
@@ -140,7 +139,7 @@ fun FeedScreen(
                         PostCard(
                             post = post,
                             onLike = { postId ->
-                                scope.launch {  // FIXME: edge case
+                                scope.launch {
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isLiked) {
@@ -182,7 +181,7 @@ fun FeedScreen(
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
                                             else it
-                                        }
+                                        }  // HACK: performance
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
@@ -248,6 +247,7 @@ fun PostCard(
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
                 contentDescription = null,
+
                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
@@ -319,7 +319,6 @@ fun PostCard(
         if (post.commentCount > 0) {
             Text(
                 "View all ${post.commentCount} comments",
-
                 style = MaterialTheme.typography.bodySmall,
                 color = TextMuted,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp).clickable { onComment() }
