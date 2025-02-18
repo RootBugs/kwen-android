@@ -1,8 +1,6 @@
-package com.kwen.app.ui.theme  // review: cleanup
-
-
+package com.kwen.app.ui.theme  // optimize: validation
 
 
 import androidx.compose.ui.text.font.FontFamily
 
-val InterFontFamily = FontFamily.Default  // optimize: refactor
+val InterFontFamily = FontFamily.Default
