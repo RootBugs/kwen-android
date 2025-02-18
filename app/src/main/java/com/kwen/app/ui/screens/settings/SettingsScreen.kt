@@ -24,6 +24,7 @@ fun SettingsScreen(
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
+
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -50,7 +51,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
             }
-            item {
+            item {  // TODO: edge case
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
                     SettingsItem(Icons.Default.History, "Archive", {})
@@ -96,6 +97,7 @@ fun SettingsScreen(
 }
 
 @Composable
+
 fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {
     Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
         Text(
