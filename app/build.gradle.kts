@@ -14,6 +14,7 @@ android {
 
 
     defaultConfig {
+
         applicationId = "com.kwen.app"
         minSdk = 26
         targetSdk = 35
@@ -42,6 +43,7 @@ android {
     }
 
     buildFeatures {
+
         compose = true
     }
 
@@ -97,6 +99,7 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+
 
 
 
