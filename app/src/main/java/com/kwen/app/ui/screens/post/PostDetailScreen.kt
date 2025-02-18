@@ -28,9 +28,10 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
+
 private const val TAG = "PostDetailScreen"
 
-@OptIn(ExperimentalMaterial3Api::class)  // HACK: refactor
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PostDetailScreen(
     postId: String,
@@ -126,6 +127,7 @@ fun PostDetailScreen(
                                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
+
                         }
                     }
 
@@ -154,7 +156,7 @@ fun PostDetailScreen(
                         }
                     }
 
-                    // Comments header  // TODO: edge case
+                    // Comments header
                     item {
                         Text(
                             "Comments (${comments.size})",
@@ -197,7 +199,6 @@ fun PostDetailScreen(
                             }
                         }
                     }
-
                 }
 
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
