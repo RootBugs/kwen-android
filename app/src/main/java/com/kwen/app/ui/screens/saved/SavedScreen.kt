@@ -26,17 +26,18 @@ private const val TAG = "SavedScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedScreen(
+
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
-
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
         isLoading = true
+
         try {
             savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
@@ -84,6 +85,7 @@ fun SavedScreen(
                     }
                 }
             }
+
             else -> {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
@@ -104,7 +106,6 @@ fun SavedScreen(
                             )
                         }
                     }
-
                 }
             }
         }
