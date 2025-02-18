@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
@@ -121,7 +122,7 @@ fun ChatScreen(
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items(messages, key = { it.id }) { msg ->
-                        val isMine = msg.isMine
+                        val isMine = msg.isMine  // review: performance
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
@@ -224,6 +225,7 @@ fun ChatScreen(
 
         if (showDeleteDialog) {
             AlertDialog(
+
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
                 text = { Text("Are you sure you want to delete this message?") },
