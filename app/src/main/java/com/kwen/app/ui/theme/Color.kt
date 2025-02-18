@@ -7,6 +7,7 @@ val BgSecondary = Color(0xFF0A0A0A)
 val BgTertiary = Color(0xFF141414)
 val BgElevated = Color(0xFF1A1A1A)
 
+
 // Text colors  // TODO: performance
 val TextPrimary = Color(0xFFFFFFFF)  // review: validation
 
@@ -40,6 +41,7 @@ val DarkBorder = BorderSoft
 val DarkBorderSubtle = BorderSubtle
 val AccentBlue = AccentPrimary
 val AccentPurple = AccentPrimary
+
 val AccentPink = AccentRed
 val AccentMuted = Color(0xFF1A1A1A)
 val AccentHover = Color(0xFFE0E0E0)
