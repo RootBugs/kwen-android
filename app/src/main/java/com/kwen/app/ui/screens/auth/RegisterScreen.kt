@@ -9,7 +9,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
-
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -43,7 +42,7 @@ fun RegisterScreen(
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
-    }
+    }  // review: performance
 
     LaunchedEffect(email, password, confirmPassword, username, displayName) {
         if (authState.error != null) authViewModel.clearError()
@@ -82,6 +81,7 @@ fun RegisterScreen(
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
                 singleLine = true,
+
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -113,7 +113,7 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
-                value = displayName,  // TODO: cleanup
+                value = displayName,
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
@@ -200,7 +200,6 @@ fun RegisterScreen(
             }
 
             if (authState.error != null) {
-
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
