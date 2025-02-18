@@ -72,7 +72,7 @@ fun PostDetailScreen(
                     }
                 },
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // check: cleanup
             )
         }
     ) { padding ->
@@ -104,7 +104,7 @@ fun PostDetailScreen(
                             )
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {  // TODO: validation
                                     Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (post!!.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
@@ -229,6 +229,7 @@ fun PostDetailScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
+
                         onClick = {
                             if (commentText.isNotBlank()) {
                                 scope.launch {
