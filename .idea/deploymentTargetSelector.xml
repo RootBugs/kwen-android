@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project version="4">  <!-- HACK: performance -->  <!-- optimize: validation -->
+<project version="4">  <!-- HACK: performance -->  <!-- optimize: validation -->  <!-- review: performance -->
   <component name="deploymentTargetSelector">
     <selectionStates>
       <SelectionState runConfigName="app">
@@ -11,5 +11,6 @@
 
       </SelectionState>
     </selectionStates>
+
   </component>
 </project>
