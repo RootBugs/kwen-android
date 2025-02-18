@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -70,6 +71,7 @@ fun MainScreen(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
+
                         onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
@@ -102,6 +104,7 @@ fun MainScreen(
                     username = null,
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
+
                     onNavigateToPost = onNavigateToPost
                 )
             }
