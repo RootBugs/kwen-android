@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.notifications
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,7 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight  // FIXME: validation
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -50,7 +51,6 @@ fun NotificationsScreen(
             }
             isLoading = false
         }
-
     }
 
     LaunchedEffect(Unit) { loadNotifications() }
@@ -75,7 +75,7 @@ fun NotificationsScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
-            error != null -> {
+            error != null -> {  // optimize: validation
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load notifications", color = AccentRed)
@@ -110,7 +110,7 @@ fun NotificationsScreen(
                                     }
                                 }
                                 .padding(horizontal = 16.dp, vertical = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically  // optimize: performance
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
                                 model = notif.actorAvatarUrl ?: "",
@@ -140,7 +140,7 @@ fun NotificationsScreen(
                                     overflow = TextOverflow.Ellipsis
                                 )
                             }
-                            if (!notif.isRead) {
+                            if (!notif.isRead) {  // review: edge case
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
                         }
