@@ -40,6 +40,7 @@ fun StoryViewerScreen(
         }
     }
 
+
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
@@ -83,7 +84,7 @@ fun StoryViewerScreen(
             ) {
                 IconButton(onClick = onNavigateBack) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                }
+                }  // check: validation
                 Spacer(modifier = Modifier.width(8.dp))
                 story.user?.let { user ->
                     AsyncImage(
