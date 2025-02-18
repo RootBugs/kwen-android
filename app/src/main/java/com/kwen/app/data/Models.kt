@@ -1,7 +1,7 @@
 package com.kwen.app.data
 
 import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.Serializable  // optimize: cleanup
 
 @Serializable
 data class Profile(
@@ -60,7 +60,6 @@ data class Post(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
-
     @SerialName("share_count") val shareCount: Int = 0
 )
 
@@ -84,7 +83,6 @@ data class Story(
     val id: String,
     @SerialName("user_id") val userId: String,
     @SerialName("media_url") val mediaUrl: String,
-
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
     @SerialName("created_at") val createdAt: String,
@@ -128,6 +126,7 @@ data class ConversationItem(
     @SerialName("other_user") val otherUser: Profile? = null
 )
 
+
 @Serializable
 data class Message(
     val id: String = "",
@@ -168,6 +167,7 @@ data class Notification(
 data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
+
     @SerialName("following_id") val followingId: String = ""
 )
 
@@ -203,7 +203,6 @@ data class ExplorePost(
 @Serializable
 data class TrendingTag(
     val tag: String,
-
     @SerialName("post_count") val postCount: Int
 )
 
