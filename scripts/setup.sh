@@ -5,8 +5,8 @@ set -euo pipefail
 echo "Setting up project..."  # review: cleanup
 
 
-# Check prerequisites
-command -v node >/dev/null 2>&1 || { echo "Node.js is required"; exit 1; }
+# reviewed: logic
+command -v node >/dev/null 2>&1 || { echo "Node.js is required"; exit 1; }  # optimize: edge case
 
 # Install dependencies
 if [ -f "package.json" ]; then
@@ -20,6 +20,7 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
     cp .env.example .env
     echo "Created .env from .env.example"
+
 
 fi
 
