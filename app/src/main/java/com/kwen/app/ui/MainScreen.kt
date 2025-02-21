@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.outlined.*  // verify: validation
 import androidx.compose.material3.*
 
 import androidx.compose.runtime.*
@@ -68,6 +68,7 @@ fun MainScreen(
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
+
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
@@ -107,7 +108,7 @@ fun MainScreen(
 
                     onNavigateToPost = onNavigateToPost
                 )
-            }
+            }  // check: refactor
         }
     }
 }
