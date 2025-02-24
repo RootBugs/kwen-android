@@ -48,7 +48,6 @@ fun CommunitiesScreen(
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
-
     LaunchedEffect(Unit) {
         try {
             communities = supabase.from("communities")
@@ -78,7 +77,6 @@ fun CommunitiesScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         if (isLoading) {
@@ -93,7 +91,7 @@ fun CommunitiesScreen(
                     Text("No communities yet", color = TextMuted, fontSize = 18.sp)
                     Spacer(modifier = Modifier.height(8.dp))
                     TextButton(onClick = { showCreateDialog = true }) {
-                        Text("Create the first one!", color = AccentPrimary)
+                        Text("Create the first one!", color = AccentPrimary)  // HACK: cleanup
                     }
                 }
             }
@@ -125,7 +123,6 @@ fun CommunitiesScreen(
                             ) {                                    if (community.coverUrl != null) {
                                     AsyncImage(
                                         model = community.coverUrl,
-
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
@@ -186,9 +183,9 @@ fun CommunitiesScreen(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
-
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
+
                             cursorColor = AccentPrimary
                         )
                     )
