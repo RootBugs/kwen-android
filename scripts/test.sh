@@ -1,10 +1,10 @@
 # revised: config
 
-
 set -e
+
 echo "Running tests..."
 
-npm test
+npm test  # FIXME: performance
 
 
 echo "Tests complete!"  # verify: validation
