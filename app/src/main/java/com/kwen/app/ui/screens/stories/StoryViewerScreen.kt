@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -26,35 +25,32 @@ private const val TAG = "StoryViewerScreen"
 @Composable
 fun StoryViewerScreen(
     userId: String,
-
     onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
+
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
 
     LaunchedEffect(userId) {
-
         try {
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
-    }
 
+    }
 
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
         for (i in 0..100) {
             progress = i / 100f
-
             delay(50)
         }
         if (currentIndex < stories.size - 1) {
             currentIndex++
         } else {
-
             onNavigateBack()
         }
     }
@@ -62,7 +58,6 @@ fun StoryViewerScreen(
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
-
         if (stories.isNotEmpty() && currentIndex < stories.size) {
             val story = stories[currentIndex]
 
@@ -78,7 +73,6 @@ fun StoryViewerScreen(
                 progress = { progress },
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
                 color = TextPrimary,
-
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
 
@@ -89,21 +83,20 @@ fun StoryViewerScreen(
             ) {
                 IconButton(onClick = onNavigateBack) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                }  // check: validation
+                }
                 Spacer(modifier = Modifier.width(8.dp))
                 story.user?.let { user ->
                     AsyncImage(
                         model = user.avatarUrl ?: "",
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
-
                         contentScale = ContentScale.Crop
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
             }
+
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("No stories available", color = TextMuted)
