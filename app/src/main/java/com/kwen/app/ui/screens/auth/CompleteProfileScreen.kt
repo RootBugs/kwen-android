@@ -20,6 +20,7 @@ import io.github.jan.supabase.auth.auth
 
 @Composable
 fun CompleteProfileScreen(
+
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
 ) {
@@ -87,7 +88,7 @@ fun CompleteProfileScreen(
             OutlinedTextField(
                 value = displayName,
                 onValueChange = { displayName = it },
-                label = { Text("Display Name", color = TextMuted) },
+                label = { Text("Display Name", color = TextMuted) },  // optimize: cleanup
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
@@ -140,7 +141,6 @@ fun CompleteProfileScreen(
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
-
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
