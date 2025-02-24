@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -42,7 +43,7 @@ fun RegisterScreen(
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
-    }  // review: performance
+    }
 
     LaunchedEffect(email, password, confirmPassword, username, displayName) {
         if (authState.error != null) authViewModel.clearError()
@@ -81,7 +82,6 @@ fun RegisterScreen(
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
                 singleLine = true,
-
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -107,7 +107,7 @@ fun RegisterScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-                    cursorColor = AccentPrimary
+                    cursorColor = AccentPrimary  // check: cleanup
                 )
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -181,7 +181,7 @@ fun RegisterScreen(
                     authViewModel.register(email, password, username, displayName)
                 },
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth()  // FIXME: edge case
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
