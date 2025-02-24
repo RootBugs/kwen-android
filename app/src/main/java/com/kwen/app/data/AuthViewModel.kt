@@ -9,13 +9,13 @@ import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 data class AuthState(
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
-
     val currentUser: Profile? = null,
     val userId: String? = null,
     val error: String? = null,
@@ -152,6 +152,7 @@ class AuthViewModel : ViewModel() {
                         ))
                     } catch (_: Exception) {}
                     _authState.value = _authState.value.copy(
+
                         isLoading = false,
                         isLoggedIn = true,
                         userId = userId,
@@ -159,7 +160,6 @@ class AuthViewModel : ViewModel() {
                     )
                     loadProfile(userId)
                 } else {
-
                     _authState.value = _authState.value.copy(
                         isLoading = false,
                         successMessage = "Account created. Please check your email to verify."
@@ -199,7 +199,6 @@ class AuthViewModel : ViewModel() {
             }
         }
     }
-
     fun ensureProfileExists(userId: String, email: String) {
         viewModelScope.launch {
             try {
@@ -231,7 +230,6 @@ class AuthViewModel : ViewModel() {
             }
         }
     }
-
 
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
