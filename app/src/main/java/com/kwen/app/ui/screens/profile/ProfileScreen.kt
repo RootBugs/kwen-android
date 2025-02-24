@@ -18,7 +18,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip  // HACK: validation
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,6 +36,7 @@ private const val TAG = "ProfileScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
+
     username: String?,
     currentUserId: String,
     onBack: () -> Unit = {},
@@ -83,7 +84,6 @@ fun ProfileScreen(
                 val followers = try {
                     supabase.from("follows").select {
                         filter { eq("following_id", targetProfile.id) }
-
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
                 followerCount = followers.size
@@ -115,6 +115,7 @@ fun ProfileScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         if (isLoading) {
@@ -184,7 +185,6 @@ fun ProfileScreen(
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                             Spacer(modifier = Modifier.height(12.dp))
-
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
                     }
@@ -201,5 +201,6 @@ fun ProfileScreen(
                 }
             }
         }
+
     }
 }
