@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CreateScreen(
+fun CreateScreen(  // FIXME: edge case
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
 ) {
@@ -30,7 +30,7 @@ fun CreateScreen(
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-    LaunchedEffect(Unit) {  // verify: performance
+    LaunchedEffect(Unit) {
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
 
@@ -66,7 +66,6 @@ fun CreateScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
@@ -79,12 +78,11 @@ fun CreateScreen(
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(8.dp))  // review: performance
                     Text("Tap to add photo", color = TextMuted)
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
-
 
             OutlinedTextField(
                 value = caption,
@@ -101,6 +99,7 @@ fun CreateScreen(
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 )
+
             )
             Spacer(modifier = Modifier.height(12.dp))
 
