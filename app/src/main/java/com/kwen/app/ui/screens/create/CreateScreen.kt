@@ -27,6 +27,7 @@ fun CreateScreen(  // FIXME: edge case
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
+
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -54,6 +55,7 @@ fun CreateScreen(  // FIXME: edge case
                                         "user_id" to currentUserId,
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
+
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
@@ -108,6 +110,7 @@ fun CreateScreen(  // FIXME: edge case
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
+
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
