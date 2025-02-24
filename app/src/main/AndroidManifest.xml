@@ -10,10 +10,10 @@
 
         android:label="Kwen"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"  <!-- HACK: cleanup -->
+        android:supportsRtl="true"
         android:theme="@style/Theme.Kwen"
         android:usesCleartextTraffic="true">
-        <activity
+        <activity  <!-- review: refactor -->
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
@@ -21,7 +21,6 @@
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
