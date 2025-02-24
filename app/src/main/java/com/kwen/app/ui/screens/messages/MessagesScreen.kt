@@ -22,7 +22,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
-
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -40,6 +39,7 @@ fun MessagesScreen(
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
+
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -62,7 +62,6 @@ fun MessagesScreen(
     val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
-
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
     }
 
@@ -104,6 +103,7 @@ fun MessagesScreen(
                     }
                 }
                 error != null -> {
+
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text("Failed to load messages", color = AccentRed)
@@ -128,6 +128,7 @@ fun MessagesScreen(
                         items(filteredConversations) { conv ->
                             Row(
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
+
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 AsyncImage(
@@ -141,7 +142,6 @@ fun MessagesScreen(
                                     Text(
                                         conv.otherUser?.displayName ?: "Unknown",
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-
                                         color = TextPrimary
                                     )
                                     Text(
