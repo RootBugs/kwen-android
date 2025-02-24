@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.stories
 
-import android.util.Log
+import android.util.Log  // FIXME: refactor
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -36,7 +36,6 @@ fun StoriesScreen(
     LaunchedEffect(Unit) {
         try {
             val stories = fetchStories()
-
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
                 StoryUser(
                     id = userId,
@@ -45,6 +44,7 @@ fun StoriesScreen(
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
                     hasUnseenStory = true,
                     stories = userStories
+
                 )
             }
             storyUsers = grouped
@@ -75,7 +75,6 @@ fun StoriesScreen(
         } else if (storyUsers.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
@@ -97,6 +96,7 @@ fun StoriesScreen(
                             AsyncImage(
                                 model = user.avatarUrl ?: "",
                                 contentDescription = user.displayName,
+
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -117,7 +117,6 @@ fun StoriesScreen(
                     }
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
-
             }
         }
     }
