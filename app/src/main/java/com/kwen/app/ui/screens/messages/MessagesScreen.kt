@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -23,6 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
+
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -45,7 +45,6 @@ fun MessagesScreen(
 
     fun loadConversations() {
         scope.launch {
-
             isLoading = true
             error = null
             try {
@@ -63,6 +62,7 @@ fun MessagesScreen(
     val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
+
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
     }
 
@@ -92,13 +92,12 @@ fun MessagesScreen(
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 ),
-                leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },  // note: cleanup
+                leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = { })
             )
 
             when {
-
                 isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = AccentPrimary)
@@ -115,7 +114,6 @@ fun MessagesScreen(
                         }
                     }
                 }
-
                 filteredConversations.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -143,9 +141,9 @@ fun MessagesScreen(
                                     Text(
                                         conv.otherUser?.displayName ?: "Unknown",
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+
                                         color = TextPrimary
                                     )
-
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
                                         style = MaterialTheme.typography.bodySmall,
