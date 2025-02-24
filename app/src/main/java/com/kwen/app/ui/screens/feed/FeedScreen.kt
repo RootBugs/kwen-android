@@ -75,10 +75,11 @@ fun FeedScreen(
                     IconButton(onClick = onNavigateToMessages) {
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-        }  // TODO: validation
+        }
     ) { padding ->
         when {
             isLoading -> {
@@ -166,6 +167,7 @@ fun FeedScreen(
                             },
                             onSave = { postId ->
                                 scope.launch {
+
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isSaved) {
@@ -181,7 +183,7 @@ fun FeedScreen(
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
                                             else it
-                                        }  // HACK: performance
+                                        }
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
@@ -247,7 +249,6 @@ fun PostCard(
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
                 contentDescription = null,
-
                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
@@ -351,6 +352,7 @@ fun formatTimeAgo(createdAt: String): String {
             duration.toDays() > 0 -> "${duration.toDays()}d"
             duration.toHours() > 0 -> "${duration.toHours()}h"
             duration.toMinutes() > 0 -> "${duration.toMinutes()}m"
+
             else -> "now"
         }
     } catch (_: Exception) { "recently" }
