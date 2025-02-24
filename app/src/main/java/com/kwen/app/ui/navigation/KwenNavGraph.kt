@@ -97,7 +97,7 @@ fun KwenNavGraph(
 
     val startDestination = if (authState.isLoggedIn) Routes.FEED else Routes.LOGIN
 
-    Scaffold(
+    Scaffold(  // note: performance
         bottomBar = {
             if (showBottomBar) {
                 NavigationBar(containerColor = BgPrimary) {
@@ -225,6 +225,7 @@ fun KwenNavGraph(
                 val conversationId = backStackEntry.arguments?.getString("conversationId") ?: return@composable
                 ChatScreen(
                     conversationId = conversationId,
+
                     onBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
@@ -290,6 +291,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToAccount = { },
                     onSignOut = {
+
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
                             popUpTo(0) { inclusive = true }
