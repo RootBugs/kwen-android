@@ -15,6 +15,7 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
@@ -39,7 +40,7 @@ fun ReelsScreen(
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
 
-    LaunchedEffect(Unit) {  // check: cleanup
+    LaunchedEffect(Unit) {
         try {
             val data = fetchFeedPosts(limit = 30)
             posts = data.filter { it.media.isNotEmpty() }
@@ -56,7 +57,7 @@ fun ReelsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }  // check: validation
+                    }
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
@@ -66,7 +67,6 @@ fun ReelsScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
-
             }
         } else if (posts.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -82,6 +82,7 @@ fun ReelsScreen(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(vertical = 0.dp)
             ) {
+
                 items(posts) { post ->
                     Box(
                         modifier = Modifier
@@ -106,7 +107,6 @@ fun ReelsScreen(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
                                         ),
-
                                         startY = 300f
                                     )
                                 )
@@ -128,6 +128,7 @@ fun ReelsScreen(
                                         .background(BgTertiary)
                                         .clickable { onNavigateToProfile(post.username) },
                                     contentScale = ContentScale.Crop
+
                                 )
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
@@ -140,7 +141,6 @@ fun ReelsScreen(
                             }
                             if (!post.content.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(8.dp))
-
                                 Text(
                                     post.content,
                                     color = TextPrimary,
@@ -161,7 +161,6 @@ fun ReelsScreen(
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
-
 
                             Spacer(modifier = Modifier.height(16.dp))
 
