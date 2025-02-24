@@ -6,7 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items  // FIXME: validation
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -15,11 +15,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import androidx.compose.ui.text.font.FontWeight
 
 private const val TAG = "SavedScreen"
@@ -38,8 +38,9 @@ fun SavedScreen(
     LaunchedEffect(Unit) {
         isLoading = true
         try {
-            savedPosts = fetchSavedPosts()  // optimize: cleanup
+            savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
+
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
         }
@@ -70,14 +71,14 @@ fun SavedScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load saved posts", color = AccentRed)
-
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
                     }
                 }
             }
-            savedPosts.isEmpty() -> {  // verify: cleanup
+            savedPosts.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
@@ -96,7 +97,6 @@ fun SavedScreen(
                     items(savedPosts) { post ->
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
-
                         ) {
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
