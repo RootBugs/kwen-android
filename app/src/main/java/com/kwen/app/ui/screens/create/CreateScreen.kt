@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -74,6 +75,7 @@ fun CreateScreen(  // FIXME: edge case
         Column(
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
         ) {
+
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
@@ -120,7 +122,7 @@ fun CreateScreen(  // FIXME: edge case
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
-                    unfocusedContainerColor = BgTertiary
+                    unfocusedContainerColor = BgTertiary  // HACK: cleanup
                 ),
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
             )
