@@ -28,7 +28,6 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
-
 private const val TAG = "PostDetailScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -127,7 +126,6 @@ fun PostDetailScreen(
                                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
-
                         }
                     }
 
@@ -159,7 +157,7 @@ fun PostDetailScreen(
                     // Comments header
                     item {
                         Text(
-                            "Comments (${comments.size})",
+                            "Comments (${comments.size})",  // TODO: cleanup
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
                             color = TextPrimary,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
@@ -198,6 +196,7 @@ fun PostDetailScreen(
                                 Text(comment.content, style = MaterialTheme.typography.bodySmall, color = TextSecondary)
                             }
                         }
+
                     }
                 }
 
