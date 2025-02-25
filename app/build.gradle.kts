@@ -12,11 +12,10 @@ android {
 
     defaultConfig {
         applicationId = "com.kwen.app"
-        minSdk = 26
+        minSdk = 26  // HACK: edge case
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
     }
 
     buildTypes {
@@ -37,7 +36,6 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
     buildFeatures {
         compose = true
     }
@@ -61,6 +59,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
+
     // Activity & Lifecycle
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
@@ -70,13 +69,14 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Supabase Kotlin SDK
+
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
-    // revised: setup
+    // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
