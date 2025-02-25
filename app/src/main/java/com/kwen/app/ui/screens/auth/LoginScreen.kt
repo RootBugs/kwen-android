@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
@@ -25,14 +26,12 @@ import com.kwen.app.ui.theme.*
 @Composable
 fun LoginScreen(
     authViewModel: AuthViewModel,
-
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
@@ -64,6 +63,7 @@ fun LoginScreen(
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
@@ -78,7 +78,6 @@ fun LoginScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -100,7 +99,6 @@ fun LoginScreen(
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-
                             "Toggle password",
                             tint = TextMuted
                         )
@@ -130,9 +128,10 @@ fun LoginScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
-                        modifier = Modifier.size(24.dp),  // HACK: refactor
+                        modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
+
                     )
                 } else {
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
@@ -159,7 +158,7 @@ fun LoginScreen(
                     "Sign Up",
                     color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
-                    style = MaterialTheme.typography.bodyMedium,  // HACK: validation
+                    style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
                 )
             }
