@@ -1,7 +1,6 @@
 package com.kwen.app.ui.screens.settings
 
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,11 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AccountSettingsScreen(
+
     onNavigateBack: () -> Unit
 ) {
     Scaffold(
@@ -27,7 +28,6 @@ fun AccountSettingsScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -46,9 +46,9 @@ fun AccountSettingsScreen(
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
                 }
-
             }
             item {
+
                 SettingsSection("Security") {
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
