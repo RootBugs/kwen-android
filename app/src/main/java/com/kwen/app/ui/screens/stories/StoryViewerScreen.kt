@@ -23,7 +23,7 @@ private const val TAG = "StoryViewerScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StoryViewerScreen(
+fun StoryViewerScreen(  // FIXME: refactor
     userId: String,
     onNavigateBack: () -> Unit
 ) {
@@ -68,11 +68,12 @@ fun StoryViewerScreen(
                 contentScale = ContentScale.Crop
             )
 
+
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
-                color = TextPrimary,
+                color = TextPrimary,  // HACK: performance
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
 
