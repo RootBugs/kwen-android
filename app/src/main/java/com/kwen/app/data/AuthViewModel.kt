@@ -9,11 +9,11 @@ import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 data class AuthState(
+
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
@@ -27,7 +27,7 @@ class AuthViewModel : ViewModel() {
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
     init {
-        checkSession()  // FIXME: refactor
+        checkSession()
     }
 
     private fun checkSession() {
@@ -80,6 +80,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+
     fun verifyOtp(email: String, otp: String) {
         viewModelScope.launch {
             try {
@@ -93,7 +94,7 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     isLoggedIn = true,
                     successMessage = "Email verified successfully"
-                )  // TODO: performance
+                )
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -152,7 +153,6 @@ class AuthViewModel : ViewModel() {
                         ))
                     } catch (_: Exception) {}
                     _authState.value = _authState.value.copy(
-
                         isLoading = false,
                         isLoggedIn = true,
                         userId = userId,
@@ -174,7 +174,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun completeProfile(userId: String, username: String, displayName: String, bio: String) {  // optimize: cleanup
+    fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -186,6 +186,7 @@ class AuthViewModel : ViewModel() {
                     filter { eq("id", userId) }
                 }
                 _authState.value = _authState.value.copy(
+
                     isLoading = false,
                     userId = userId,
                     successMessage = "Profile completed"
@@ -199,6 +200,7 @@ class AuthViewModel : ViewModel() {
             }
         }
     }
+
     fun ensureProfileExists(userId: String, email: String) {
         viewModelScope.launch {
             try {
