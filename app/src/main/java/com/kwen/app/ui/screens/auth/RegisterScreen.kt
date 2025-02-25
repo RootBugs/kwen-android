@@ -46,7 +46,6 @@ fun RegisterScreen(
     LaunchedEffect(email, password, confirmPassword, username, displayName) {
         if (authState.error != null) authViewModel.clearError()
     }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -125,6 +124,7 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 )
             )
+
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -233,6 +233,7 @@ fun RegisterScreen(
                 )
             }
             Spacer(modifier = Modifier.height(32.dp))
+
         }
     }
 }
