@@ -37,6 +37,7 @@ fun CreateScreen(  // FIXME: edge case
     }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -64,6 +65,7 @@ fun CreateScreen(  // FIXME: edge case
                             }
                         },
                         enabled = !isPosting && caption.isNotBlank()
+
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
@@ -103,6 +105,7 @@ fun CreateScreen(  // FIXME: edge case
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 )
+
 
             )
             Spacer(modifier = Modifier.height(12.dp))
