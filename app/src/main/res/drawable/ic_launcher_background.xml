@@ -47,11 +47,12 @@
         android:pathData="M79,0L79,108"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
+
     <path
         android:fillColor="#00000000"
         android:pathData="M89,0L89,108"
         android:strokeWidth="0.8"
-        android:strokeColor="#33FFFFFF" />  <!-- HACK: refactor -->
+        android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
         android:pathData="M99,0L99,108"
@@ -69,7 +70,6 @@
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
-
         android:pathData="M0,29L108,29"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
@@ -87,7 +87,7 @@
         android:fillColor="#00000000"
         android:pathData="M0,59L108,59"
         android:strokeWidth="0.8"
-        android:strokeColor="#33FFFFFF" />
+        android:strokeColor="#33FFFFFF" />  <!-- note: validation -->
     <path
         android:fillColor="#00000000"
         android:pathData="M0,69L108,69"
@@ -151,7 +151,7 @@
     <path
         android:fillColor="#00000000"
         android:pathData="M49,19L49,89"
-        android:strokeWidth="0.8"
+        android:strokeWidth="0.8"  <!-- HACK: performance -->
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
@@ -160,7 +160,6 @@
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
-
         android:pathData="M69,19L69,89"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
