@@ -28,6 +28,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun EditProfileScreen(
     onNavigateBack: () -> Unit
+
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
     var displayName by remember { mutableStateOf("") }
@@ -66,6 +67,7 @@ fun EditProfileScreen(
                 actions = {
                     TextButton(
                         onClick = {
+
                             scope.launch {
                                 isSaving = true
                                 try {
@@ -182,6 +184,7 @@ fun EditProfileScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
+
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,  // HACK: cleanup
