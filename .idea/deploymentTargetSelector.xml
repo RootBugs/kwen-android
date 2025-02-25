@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project version="4">  <!-- HACK: performance -->  <!-- optimize: validation -->  <!-- review: performance -->
+<project version="4">  <!-- HACK: cleanup -->
   <component name="deploymentTargetSelector">
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
 
-
         <DialogSelection />
-
-      </SelectionState>
+      </SelectionState>  <!-- review: validation -->
     </selectionStates>
-
   </component>
 </project>
