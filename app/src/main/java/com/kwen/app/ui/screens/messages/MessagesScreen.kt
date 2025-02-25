@@ -12,6 +12,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -21,7 +22,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
-
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -60,7 +60,6 @@ fun MessagesScreen(
     LaunchedEffect(Unit) { loadConversations() }
 
     val filteredConversations = if (searchQuery.isBlank()) conversations
-
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
@@ -85,7 +84,7 @@ fun MessagesScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = BorderSoft,
-                    unfocusedBorderColor = BorderSubtle,
+                    unfocusedBorderColor = BorderSubtle,  // HACK: performance
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = TextPrimary,
@@ -136,7 +135,6 @@ fun MessagesScreen(
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
                                     contentScale = ContentScale.Crop
                                 )
-
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
@@ -144,6 +142,7 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                         color = TextPrimary
                                     )
+
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
                                         style = MaterialTheme.typography.bodySmall,
