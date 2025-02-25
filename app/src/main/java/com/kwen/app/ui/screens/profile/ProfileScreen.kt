@@ -36,7 +36,6 @@ private const val TAG = "ProfileScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
-
     username: String?,
     currentUserId: String,
     onBack: () -> Unit = {},
@@ -54,6 +53,7 @@ fun ProfileScreen(
     var followerCount by remember { mutableIntStateOf(0) }
     var followingCount by remember { mutableIntStateOf(0) }
     var postCount by remember { mutableIntStateOf(0) }
+
     val scope = rememberCoroutineScope()
     val isOwnProfile = username.isNullOrBlank()
 
@@ -115,7 +115,6 @@ fun ProfileScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         if (isLoading) {
@@ -126,6 +125,7 @@ fun ProfileScreen(
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
+
                         AsyncImage(model = profile!!.avatarUrl ?: "", contentDescription = profile!!.displayName,
                             modifier = Modifier.size(80.dp).clip(CircleShape).background(BgTertiary), contentScale = ContentScale.Crop)
                         Spacer(modifier = Modifier.width(20.dp))
@@ -199,8 +199,8 @@ fun ProfileScreen(
                         }
                     }
                 }
+
             }
         }
-
     }
 }
