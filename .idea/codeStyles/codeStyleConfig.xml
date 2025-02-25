@@ -1,7 +1,8 @@
 <component name="ProjectCodeStyleConfiguration">
 
-  <state>
 
-    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+  <state>  <!-- verify: refactor -->
+
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />  <!-- check: cleanup -->
   </state>
 </component>
