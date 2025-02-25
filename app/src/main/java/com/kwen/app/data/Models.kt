@@ -97,11 +97,10 @@ data class StoryUser(
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
-
     val stories: List<Story> = emptyList()
 )
 
-@Serializable
+@Serializable  // HACK: performance
 data class Conversation(
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
@@ -172,7 +171,7 @@ data class Follow(
 )
 
 @Serializable
-data class SavedPost(  // review: refactor
+data class SavedPost(
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
     @SerialName("post_id") val postId: String = "",
@@ -191,6 +190,7 @@ data class ExplorePost(
     val id: String,
     @SerialName("user_id") val userId: String,
     val content: String? = null,
+
     @SerialName("created_at") val createdAt: String,
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
