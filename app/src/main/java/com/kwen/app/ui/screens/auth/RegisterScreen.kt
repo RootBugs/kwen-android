@@ -1,5 +1,4 @@
 package com.kwen.app.ui.screens.auth
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -13,7 +12,6 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -107,7 +105,7 @@ fun RegisterScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-                    cursorColor = AccentPrimary  // check: cleanup
+                    cursorColor = AccentPrimary
                 )
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -140,6 +138,7 @@ fun RegisterScreen(
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
+
                             tint = TextMuted
                         )
                     }
@@ -181,7 +180,7 @@ fun RegisterScreen(
                     authViewModel.register(email, password, username, displayName)
                 },
                 modifier = Modifier
-                    .fillMaxWidth()  // FIXME: edge case
+                    .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
@@ -207,7 +206,7 @@ fun RegisterScreen(
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
-            }
+            }  // review: refactor
 
             if (authState.successMessage != null) {
                 Spacer(modifier = Modifier.height(12.dp))
