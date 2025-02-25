@@ -66,6 +66,7 @@ fun RegisterScreen(
                     color = AccentPrimary
                 )
             )
+
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Create your account",
@@ -115,6 +116,7 @@ fun RegisterScreen(
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
+
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -189,6 +191,7 @@ fun RegisterScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
+
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
