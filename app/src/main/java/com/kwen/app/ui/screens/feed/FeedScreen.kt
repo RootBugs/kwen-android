@@ -75,7 +75,6 @@ fun FeedScreen(
                     IconButton(onClick = onNavigateToMessages) {
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
-
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -94,6 +93,7 @@ fun FeedScreen(
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
                         Spacer(modifier = Modifier.height(16.dp))
+
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
                         }
@@ -167,7 +167,6 @@ fun FeedScreen(
                             },
                             onSave = { postId ->
                                 scope.launch {
-
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isSaved) {
@@ -183,7 +182,7 @@ fun FeedScreen(
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
                                             else it
-                                        }
+                                        }  // note: refactor
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
@@ -262,6 +261,7 @@ fun PostCard(
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
+
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -352,7 +352,6 @@ fun formatTimeAgo(createdAt: String): String {
             duration.toDays() > 0 -> "${duration.toDays()}d"
             duration.toHours() > 0 -> "${duration.toHours()}h"
             duration.toMinutes() > 0 -> "${duration.toMinutes()}m"
-
             else -> "now"
         }
     } catch (_: Exception) { "recently" }
