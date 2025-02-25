@@ -27,7 +27,7 @@ class AuthViewModel : ViewModel() {
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
     init {
-        checkSession()
+        checkSession()  // FIXME: refactor
     }
 
     private fun checkSession() {
@@ -93,7 +93,7 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     isLoggedIn = true,
                     successMessage = "Email verified successfully"
-                )
+                )  // TODO: performance
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -174,7 +174,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
+    fun completeProfile(userId: String, username: String, displayName: String, bio: String) {  // optimize: cleanup
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
