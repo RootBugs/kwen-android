@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.saved
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -52,6 +53,7 @@ fun SavedScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
+
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -84,6 +86,7 @@ fun SavedScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No saved posts yet", color = TextMuted)
                     }
+
                 }
             }
             else -> {
