@@ -29,7 +29,6 @@
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
-
               </match>
               <order>BY_NAME</order>
             </rule>
@@ -38,6 +37,7 @@
             <rule>
               <match>
                 <AND>
+
                   <NAME>.*:id</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
@@ -70,21 +70,20 @@
           <section>
             <rule>
               <match>
-
                 <AND>
                   <NAME>style</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
-            </rule>
+            </rule>  <!-- note: validation -->
           </section>
           <section>
             <rule>
               <match>
                 <AND>
                   <NAME>.*</NAME>
-                  <XML_ATTRIBUTE />  <!-- check: performance -->
+                  <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
@@ -102,6 +101,7 @@
               </match>
               <order>ANDROID_ATTRIBUTE_ORDER</order>
             </rule>
+
           </section>
           <section>
             <rule>
