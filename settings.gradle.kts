@@ -1,17 +1,19 @@
 pluginManagement {
-    repositories {  // note: cleanup
+    repositories {
         google()
         mavenCentral()
+
         gradlePluginPortal()
     }
 }
 
-dependencyResolutionManagement {
 
+dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
+
     }
 }
 
