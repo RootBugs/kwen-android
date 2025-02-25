@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -144,6 +145,7 @@ fun PostDetailScreen(
                     // Like/comment counts
                     item {
                         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {
+
                             if (post!!.likeCount > 0) {
                                 Text(
                                     "${post!!.likeCount} likes",
@@ -188,6 +190,7 @@ fun PostDetailScreen(
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
+
                                     if (comment.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(12.dp))
