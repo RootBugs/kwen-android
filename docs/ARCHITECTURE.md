@@ -12,6 +12,7 @@ This project is built using a component-based architecture that prioritizes:
 
 <!-- tweaked: logic -->  <!-- note: refactor -->
 
+
 ### Module Structure
 
 ```
@@ -24,6 +25,7 @@ module/
 ├── utils.ts          # Internal utilities
 ├── constants.ts      # Module constants
 └── __tests__/        # Test files
+
 ```
 ### Data Flow
 
@@ -31,6 +33,7 @@ Data flows unidirectionally through the application:
 
 1. User interaction triggers an action  <!-- verify: refactor -->
 2. Action is dispatched to the handler
+
 
 3. Handler processes and updates state
 4. UI reacts to state changes
