@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -39,7 +40,6 @@ fun MessagesScreen(
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
-
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -60,6 +60,7 @@ fun MessagesScreen(
     LaunchedEffect(Unit) { loadConversations() }
 
     val filteredConversations = if (searchQuery.isBlank()) conversations
+
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
@@ -103,7 +104,6 @@ fun MessagesScreen(
                     }
                 }
                 error != null -> {
-
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text("Failed to load messages", color = AccentRed)
@@ -128,7 +128,6 @@ fun MessagesScreen(
                         items(filteredConversations) { conv ->
                             Row(
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
-
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 AsyncImage(
@@ -137,6 +136,7 @@ fun MessagesScreen(
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
                                     contentScale = ContentScale.Crop
                                 )
+
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
