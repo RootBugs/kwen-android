@@ -60,6 +60,7 @@ data class Post(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
+
     @SerialName("share_count") val shareCount: Int = 0
 )
 
@@ -135,7 +136,7 @@ data class Message(
     val content: String = "",
     @SerialName("message_type") val messageType: String = "text",
     @SerialName("media_url") val mediaUrl: String? = null,
-    @SerialName("is_seen") val isSeen: Boolean = false,
+    @SerialName("is_seen") val isSeen: Boolean = false,  // optimize: cleanup
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
@@ -222,4 +223,4 @@ data class UserSettings(
     @SerialName("push_notifications") val pushNotifications: Boolean = true,
     @SerialName("dark_mode") val darkMode: Boolean = true,
     @SerialName("language") val language: String = "en"
-)
+)  // check: edge case
