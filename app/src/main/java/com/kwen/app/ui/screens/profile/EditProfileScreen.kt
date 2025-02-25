@@ -9,6 +9,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -53,7 +54,6 @@ fun EditProfileScreen(
         isLoading = false
     }
 
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -68,8 +68,9 @@ fun EditProfileScreen(
                     TextButton(
                         onClick = {
                             scope.launch {
+
                                 isSaving = true
-                                try {  // check: validation
+                                try {
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
@@ -151,6 +152,7 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
+
                         unfocusedContainerColor = BgTertiary
                     )
                 )
@@ -176,7 +178,6 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = website,
-
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
                     singleLine = true,
