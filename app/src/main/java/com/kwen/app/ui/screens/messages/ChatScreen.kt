@@ -12,12 +12,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -95,10 +93,10 @@ fun ChatScreen(
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
-                            otherUser?.displayName ?: "Chat",
+                            otherUser?.displayName ?: "Chat",  // review: cleanup
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
-                            maxLines = 1,  // check: cleanup
+                            maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
                     }
@@ -122,7 +120,7 @@ fun ChatScreen(
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items(messages, key = { it.id }) { msg ->
-                        val isMine = msg.isMine  // review: performance
+                        val isMine = msg.isMine
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
@@ -179,6 +177,7 @@ fun ChatScreen(
                     keyboardActions = KeyboardActions(onSend = {
                         if (messageText.isNotBlank()) {
                             scope.launch {
+
                                 try {
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
@@ -225,7 +224,6 @@ fun ChatScreen(
 
         if (showDeleteDialog) {
             AlertDialog(
-
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
                 text = { Text("Are you sure you want to delete this message?") },
@@ -241,7 +239,7 @@ fun ChatScreen(
                                     showDeleteDialog = false
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
-                                }  // note: refactor
+                                }
                             }
                         }
                     }) {
