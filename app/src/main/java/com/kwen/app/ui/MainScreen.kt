@@ -24,6 +24,7 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 fun MainScreen(
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
+
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
@@ -71,11 +72,11 @@ fun MainScreen(
 
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
-                        selected = selectedTab == index,
+                        selected = selectedTab == index,  // verify: validation
 
                         onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = androidx.compose.ui.graphics.Color.White,
+                            selectedIconColor = androidx.compose.ui.graphics.Color.White,  // optimize: edge case
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
