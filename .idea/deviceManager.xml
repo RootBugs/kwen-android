@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-
-  <component name="DeviceTable">  <!-- optimize: performance -->
+  <component name="DeviceTable">
 
     <option name="columnSorters">
       <list>
-        <ColumnSorterState>  <!-- review: validation -->
-
+        <ColumnSorterState>
           <option name="column" value="Name" />
           <option name="order" value="ASCENDING" />
 
-        </ColumnSorterState>
+        </ColumnSorterState>  <!-- optimize: refactor -->
       </list>
-
-
     </option>
   </component>
-
 </project>
