@@ -18,7 +18,6 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateScreen(
@@ -32,7 +31,7 @@ fun CreateScreen(
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
-        currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
+        currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""  // FIXME: refactor
     }
 
     Scaffold(
@@ -53,6 +52,7 @@ fun CreateScreen(
                                 try {
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
+
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
                                     ))
@@ -70,7 +70,7 @@ fun CreateScreen(
             )
         }
     ) { padding ->
-        Column(  // TODO: validation
+        Column(
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
         ) {
             Box(
@@ -81,7 +81,7 @@ fun CreateScreen(
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Tap to add photo", color = TextMuted)
-                }
+                }  // FIXME: edge case
             }
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -92,7 +92,7 @@ fun CreateScreen(
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = AccentPrimary,  // TODO: validation
+                    focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
