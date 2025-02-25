@@ -48,6 +48,7 @@ fun LoginScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
+
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -106,6 +107,7 @@ fun LoginScreen(
                 },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -134,7 +136,7 @@ fun LoginScreen(
 
                     )
                 } else {
-                    Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+                    Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)  // verify: cleanup
                 }
             }
 
