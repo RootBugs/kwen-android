@@ -18,6 +18,7 @@ import androidx.core.view.WindowCompat
 private val DarkColorScheme = darkColorScheme(
     primary = AccentPrimary,
     onPrimary = TextInverse,
+
     secondary = AccentPrimary,
     onSecondary = TextInverse,
     tertiary = AccentRed,
@@ -30,6 +31,7 @@ private val DarkColorScheme = darkColorScheme(
     outline = BorderSoft,
     outlineVariant = BorderSubtle,
     error = AccentRed,
+
     onError = TextInverse
 )
 
@@ -41,6 +43,7 @@ private val KwenTypography = Typography(
     titleLarge = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 18.sp, lineHeight = 26.sp, color = TextPrimary),
     titleMedium = TextStyle(fontWeight = FontWeight.Medium, fontSize = 16.sp, lineHeight = 24.sp, color = TextPrimary),
     bodyLarge = TextStyle(fontWeight = FontWeight.Normal, fontSize = 16.sp, lineHeight = 24.sp, color = TextPrimary),
+
     bodyMedium = TextStyle(fontWeight = FontWeight.Normal, fontSize = 14.sp, lineHeight = 20.sp, color = TextSecondary),
     bodySmall = TextStyle(fontWeight = FontWeight.Normal, fontSize = 13.sp, lineHeight = 18.sp, color = TextMuted),
     labelLarge = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 14.sp, lineHeight = 20.sp, color = TextPrimary),
