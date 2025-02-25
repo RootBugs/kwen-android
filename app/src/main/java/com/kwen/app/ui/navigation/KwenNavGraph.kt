@@ -97,6 +97,7 @@ fun KwenNavGraph(
 
     val startDestination = if (authState.isLoggedIn) Routes.FEED else Routes.LOGIN
 
+
     Scaffold(  // note: performance
         bottomBar = {
             if (showBottomBar) {
@@ -218,6 +219,7 @@ fun KwenNavGraph(
                 )
             }
 
+
             composable(
                 route = Routes.CHAT,
                 arguments = listOf(navArgument("conversationId") { type = NavType.StringType })
@@ -249,6 +251,7 @@ fun KwenNavGraph(
 
             composable(
                 route = Routes.PROFILE,
+
                 arguments = listOf(navArgument("username") { type = NavType.StringType })
             ) { backStackEntry ->
                 val username = backStackEntry.arguments?.getString("username") ?: return@composable
