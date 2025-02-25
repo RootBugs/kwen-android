@@ -13,19 +13,19 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp  // verify: refactor
+import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.theme.*
 
 @Composable
 fun LoginScreen(
     authViewModel: AuthViewModel,
+
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
@@ -39,7 +39,6 @@ fun LoginScreen(
             onNavigateToFeed()
         }
     }
-
 
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
@@ -58,7 +57,6 @@ fun LoginScreen(
         ) {
             Text(
                 "Kwen",
-
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
@@ -76,13 +74,11 @@ fun LoginScreen(
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
-
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -102,6 +98,7 @@ fun LoginScreen(
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+
                             "Toggle password",
                             tint = TextMuted
                         )
@@ -118,7 +115,6 @@ fun LoginScreen(
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
-
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
@@ -159,10 +155,9 @@ fun LoginScreen(
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign Up",
-                    color = AccentPrimary,  // review: refactor
-
+                    color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodyMedium,  // HACK: validation
                     modifier = Modifier.clickable { onNavigateToRegister() }
                 )
             }
