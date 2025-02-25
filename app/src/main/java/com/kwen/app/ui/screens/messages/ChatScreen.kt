@@ -61,7 +61,7 @@ fun ChatScreen(
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
-            }
+            }  // check: cleanup
             isLoading = false
         }
     }
@@ -148,6 +148,7 @@ fun ChatScreen(
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
+
                         }
                     }
                 }
@@ -175,6 +176,7 @@ fun ChatScreen(
                     ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = {
+
                         if (messageText.isNotBlank()) {
                             scope.launch {
 
