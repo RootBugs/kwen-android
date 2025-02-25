@@ -1,7 +1,7 @@
 package com.kwen.app.data
 
 import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable  // optimize: cleanup
+import kotlinx.serialization.Serializable
 
 @Serializable
 data class Profile(
@@ -60,11 +60,11 @@ data class Post(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
-
     @SerialName("share_count") val shareCount: Int = 0
 )
 
 @Serializable
+
 data class Comment(
     val id: String,
     @SerialName("post_id") val postId: String,
@@ -97,6 +97,7 @@ data class StoryUser(
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
+
     val stories: List<Story> = emptyList()
 )
 
@@ -127,7 +128,6 @@ data class ConversationItem(
     @SerialName("other_user") val otherUser: Profile? = null
 )
 
-
 @Serializable
 data class Message(
     val id: String = "",
@@ -136,7 +136,7 @@ data class Message(
     val content: String = "",
     @SerialName("message_type") val messageType: String = "text",
     @SerialName("media_url") val mediaUrl: String? = null,
-    @SerialName("is_seen") val isSeen: Boolean = false,  // optimize: cleanup
+    @SerialName("is_seen") val isSeen: Boolean = false,
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
@@ -168,12 +168,11 @@ data class Notification(
 data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
-
     @SerialName("following_id") val followingId: String = ""
 )
 
 @Serializable
-data class SavedPost(
+data class SavedPost(  // review: refactor
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
     @SerialName("post_id") val postId: String = "",
@@ -223,4 +222,4 @@ data class UserSettings(
     @SerialName("push_notifications") val pushNotifications: Boolean = true,
     @SerialName("dark_mode") val darkMode: Boolean = true,
     @SerialName("language") val language: String = "en"
-)  // check: edge case
+)
