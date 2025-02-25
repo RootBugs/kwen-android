@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <project version="4">
 
-  <component name="CompilerConfiguration">  <!-- optimize: performance -->
-    <bytecodeTargetLevel target="21" />  <!-- HACK: refactor -->
-  </component>
+  <component name="CompilerConfiguration">
 
-
-</project>  <!-- optimize: validation -->
+    <bytecodeTargetLevel target="21" />
+  </component>  <!-- TODO: edge case -->
+</project>
