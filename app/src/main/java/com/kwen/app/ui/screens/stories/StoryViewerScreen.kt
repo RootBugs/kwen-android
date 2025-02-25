@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.dp  // note: validation
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -24,7 +24,7 @@ private const val TAG = "StoryViewerScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StoryViewerScreen(
-    userId: String,  // FIXME: validation
+    userId: String,
     onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
@@ -33,12 +33,12 @@ fun StoryViewerScreen(
 
     LaunchedEffect(userId) {
         try {
+
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
     }
-
 
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
@@ -86,12 +86,12 @@ fun StoryViewerScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 story.user?.let { user ->
                     AsyncImage(
-
                         model = user.avatarUrl ?: "",
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
                     )
+
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
