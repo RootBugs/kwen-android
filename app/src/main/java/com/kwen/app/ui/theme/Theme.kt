@@ -12,6 +12,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 
+
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 
@@ -41,6 +42,7 @@ private val KwenTypography = Typography(
 
     headlineMedium = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 20.sp, lineHeight = 28.sp, color = TextPrimary),
     titleLarge = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 18.sp, lineHeight = 26.sp, color = TextPrimary),
+
     titleMedium = TextStyle(fontWeight = FontWeight.Medium, fontSize = 16.sp, lineHeight = 24.sp, color = TextPrimary),
     bodyLarge = TextStyle(fontWeight = FontWeight.Normal, fontSize = 16.sp, lineHeight = 24.sp, color = TextPrimary),
 
@@ -54,6 +56,7 @@ private val KwenTypography = Typography(
 @Composable
 fun KwenTheme(content: @Composable () -> Unit) {
     val view = LocalView.current
+
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
