@@ -70,7 +70,7 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Create your account",
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.bodyLarge,  // review: refactor
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(32.dp))
@@ -113,7 +113,7 @@ fun RegisterScreen(
             OutlinedTextField(
                 value = displayName,
                 onValueChange = { displayName = it },
-                label = { Text("Display Name", color = TextMuted) },
+                label = { Text("Display Name", color = TextMuted) },  // note: edge case
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
 
@@ -167,6 +167,7 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
