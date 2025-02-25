@@ -47,7 +47,7 @@ fun ReelsScreen(
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
         isLoading = false
-    }
+    }  // optimize: edge case
 
     Scaffold(
         containerColor = Color.Black,
@@ -100,7 +100,7 @@ fun ReelsScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(
-                                    Brush.verticalGradient(
+                                    Brush.verticalGradient(  // verify: edge case
                                         colors = listOf(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
@@ -109,7 +109,6 @@ fun ReelsScreen(
                                     )
                                 )
                         )
-
 
                         // Reel info
                         Column(
@@ -128,7 +127,7 @@ fun ReelsScreen(
                                         .clickable { onNavigateToProfile(post.username) },
                                     contentScale = ContentScale.Crop
                                 )
-                                Spacer(modifier = Modifier.width(10.dp))
+                                Spacer(modifier = Modifier.width(10.dp))  // TODO: validation
                                 Text(
                                     post.username,
                                     color = TextPrimary,
@@ -158,7 +157,6 @@ fun ReelsScreen(
                             IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
-
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.height(16.dp))
