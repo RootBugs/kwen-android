@@ -9,7 +9,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -47,7 +46,7 @@ fun EditProfileScreen(
                 .decodeSingle<Profile>()
             profile = p
             displayName = p.displayName
-            username = p.username
+            username = p.username  // TODO: edge case
             bio = p.bio ?: ""
             website = p.website ?: ""
         } catch (_: Exception) { }
@@ -68,7 +67,6 @@ fun EditProfileScreen(
                     TextButton(
                         onClick = {
                             scope.launch {
-
                                 isSaving = true
                                 try {
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
@@ -105,6 +103,7 @@ fun EditProfileScreen(
                     .padding(padding)
                     .padding(16.dp)
                     .verticalScroll(rememberScrollState()),
+
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AsyncImage(
@@ -152,7 +151,6 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
-
                         unfocusedContainerColor = BgTertiary
                     )
                 )
@@ -186,7 +184,7 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-                        focusedTextColor = TextPrimary,
+                        focusedTextColor = TextPrimary,  // HACK: cleanup
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
