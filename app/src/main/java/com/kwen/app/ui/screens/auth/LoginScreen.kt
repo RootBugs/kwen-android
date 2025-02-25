@@ -32,6 +32,7 @@ fun LoginScreen(
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
@@ -77,6 +78,7 @@ fun LoginScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -128,7 +130,7 @@ fun LoginScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(24.dp),  // HACK: refactor
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
