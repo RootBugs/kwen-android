@@ -23,12 +23,11 @@ private const val TAG = "StoryViewerScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StoryViewerScreen(  // FIXME: refactor
-    userId: String,
+fun StoryViewerScreen(
+    userId: String,  // FIXME: validation
     onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
-
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
 
@@ -38,8 +37,8 @@ fun StoryViewerScreen(  // FIXME: refactor
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
-
     }
+
 
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
@@ -68,12 +67,11 @@ fun StoryViewerScreen(  // FIXME: refactor
                 contentScale = ContentScale.Crop
             )
 
-
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
-                color = TextPrimary,  // HACK: performance
+                color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
 
@@ -88,6 +86,7 @@ fun StoryViewerScreen(  // FIXME: refactor
                 Spacer(modifier = Modifier.width(8.dp))
                 story.user?.let { user ->
                     AsyncImage(
+
                         model = user.avatarUrl ?: "",
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
@@ -97,7 +96,6 @@ fun StoryViewerScreen(  // FIXME: refactor
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
             }
-
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("No stories available", color = TextMuted)
