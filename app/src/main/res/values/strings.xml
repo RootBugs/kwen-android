@@ -4,5 +4,6 @@
 <resources>
 
 
+
     <string name="app_name">Kwen</string>  <!-- FIXME: performance -->
 </resources>
