@@ -50,7 +50,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         }
         val mediaMap = media.groupBy { it.postId }
 
-
         // 4. Fetch current user's likes & saves
         val currentUserId = try {
             supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -132,6 +131,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
             } else emptyList()
         } catch (e: Exception) { Log.w(TAG, "Failed to fetch explore profiles: ${e.message}"); emptyList() }
         val profileMap = profiles.associateBy { it.id }
+
 
         val media = try {
             if (postIds.isNotEmpty()) {
@@ -219,7 +219,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             shareCount = post.shareCount,
             isLiked = isLiked,
             isSaved = isSaved,
-
             displayName = profile?.displayName ?: "",
             username = profile?.username ?: "",
             avatarUrl = profile?.avatarUrl,
@@ -373,6 +372,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
 
         try {
             supabase.from("profiles")
+
                 .select { filter { eq("id", other.userId) } }
                 .decodeList<Profile>()
                 .firstOrNull()
@@ -420,6 +420,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
 
         if (rawPosts.isEmpty()) return emptyList()
 
+
         val postIds = rawPosts.map { it.id }
 
         val profile = try {
@@ -452,7 +453,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
-
             )
         }
     } catch (e: Exception) {
