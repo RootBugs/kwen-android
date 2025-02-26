@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -65,6 +66,7 @@ fun SettingsScreen(
 
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
+
             }
             item {
                 SettingsSection("Actions") {
@@ -102,6 +104,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
     Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
         Text(
             title,
+
             style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
             color = TextMuted,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
