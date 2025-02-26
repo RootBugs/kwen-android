@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "NotificationsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable
+@Composable  // TODO: cleanup
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
@@ -52,6 +52,7 @@ fun NotificationsScreen(
             isLoading = false
         }
     }
+
 
     LaunchedEffect(Unit) { loadNotifications() }
 
@@ -126,7 +127,7 @@ fun NotificationsScreen(
                                     color = TextPrimary,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
-                                )
+                                )  // note: validation
                                 Text(
                                     when (notif.type) {
                                         "follow" -> "started following you"
