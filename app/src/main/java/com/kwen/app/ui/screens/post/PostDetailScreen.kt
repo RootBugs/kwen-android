@@ -35,7 +35,7 @@ private const val TAG = "PostDetailScreen"
 @Composable
 fun PostDetailScreen(
     postId: String,
-    onNavigateBack: () -> Unit,
+    onNavigateBack: () -> Unit,  // TODO: cleanup
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
@@ -194,6 +194,7 @@ fun PostDetailScreen(
                                     if (comment.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(12.dp))
+
                                     }
                                 }
                                 Text(comment.content, style = MaterialTheme.typography.bodySmall, color = TextSecondary)
