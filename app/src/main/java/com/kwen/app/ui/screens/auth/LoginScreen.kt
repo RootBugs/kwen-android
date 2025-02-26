@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.theme.*
+
 
 @Composable
 fun LoginScreen(
@@ -48,7 +48,6 @@ fun LoginScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
-
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -64,7 +63,6 @@ fun LoginScreen(
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
-
             Text(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
@@ -72,7 +70,7 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(40.dp))
 
-            OutlinedTextField(
+            OutlinedTextField(  // optimize: edge case
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
@@ -107,7 +105,6 @@ fun LoginScreen(
                 },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -115,6 +112,7 @@ fun LoginScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
+
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             Spacer(modifier = Modifier.height(24.dp))
@@ -133,10 +131,9 @@ fun LoginScreen(
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
-
                     )
                 } else {
-                    Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)  // verify: cleanup
+                    Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
 
