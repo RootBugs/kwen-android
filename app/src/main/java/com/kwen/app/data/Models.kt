@@ -1,6 +1,7 @@
 package com.kwen.app.data
 
 import kotlinx.serialization.SerialName
+
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -64,7 +65,6 @@ data class Post(
 )
 
 @Serializable
-
 data class Comment(
     val id: String,
     @SerialName("post_id") val postId: String,
@@ -100,7 +100,7 @@ data class StoryUser(
     val stories: List<Story> = emptyList()
 )
 
-@Serializable  // HACK: performance
+@Serializable
 data class Conversation(
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
@@ -137,6 +137,7 @@ data class Message(
     @SerialName("media_url") val mediaUrl: String? = null,
     @SerialName("is_seen") val isSeen: Boolean = false,
     @SerialName("is_mine") val isMine: Boolean = false,
+
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
     @SerialName("created_at") val createdAt: String = ""
@@ -190,7 +191,6 @@ data class ExplorePost(
     val id: String,
     @SerialName("user_id") val userId: String,
     val content: String? = null,
-
     @SerialName("created_at") val createdAt: String,
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
@@ -217,6 +217,7 @@ data class SuggestedUser(
 )
 
 @Serializable
+
 data class UserSettings(
     @SerialName("user_id") val userId: String,
     @SerialName("push_notifications") val pushNotifications: Boolean = true,
