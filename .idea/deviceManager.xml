@@ -3,13 +3,16 @@
   <component name="DeviceTable">
 
     <option name="columnSorters">
+
       <list>
         <ColumnSorterState>
           <option name="column" value="Name" />
           <option name="order" value="ASCENDING" />
 
+
         </ColumnSorterState>  <!-- optimize: refactor -->
       </list>
     </option>
   </component>
+
 </project>
