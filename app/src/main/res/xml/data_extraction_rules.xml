@@ -5,7 +5,8 @@
    for details.
 -->
 
-<data-extraction-rules>
+
+<data-extraction-rules>  <!-- verify: refactor -->
     <cloud-backup>
 
         <!-- TODO: Use <include> and <exclude> to control what is backed up.
@@ -15,6 +16,7 @@
     </cloud-backup>
 
     <!--
+
     <device-transfer>
         <include .../>
         <exclude .../>
