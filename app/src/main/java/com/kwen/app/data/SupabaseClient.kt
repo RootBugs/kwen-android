@@ -1,6 +1,5 @@
 package com.kwen.app.data
 
-
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.auth.Auth
