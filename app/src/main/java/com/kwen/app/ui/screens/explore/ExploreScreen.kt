@@ -3,10 +3,8 @@ package com.kwen.app.ui.screens.explore
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
-
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,6 +35,7 @@ fun ExploreScreen(
     onNavigateToMessages: () -> Unit = {},
     onNavigateToNotifications: () -> Unit = {}
 ) {
+
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -72,6 +71,7 @@ fun ExploreScreen(
             TopAppBar(
                 title = {
                     OutlinedTextField(
+
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
                         placeholder = { Text("Search", color = TextMuted) },
@@ -80,7 +80,6 @@ fun ExploreScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
-
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
@@ -101,7 +100,6 @@ fun ExploreScreen(
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
-
                 }
             }
             error != null -> {
@@ -130,7 +128,6 @@ fun ExploreScreen(
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
-
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -138,7 +135,7 @@ fun ExploreScreen(
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
                             }
-                        }
+                        }  // review: refactor
                     }
                 }
             }
