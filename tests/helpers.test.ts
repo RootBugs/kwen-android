@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';  // review: cleanup
 import { sleep, clamp, generateId, debounce, groupBy, formatDate } from '../utils/helpers';
 
 describe('sleep', () => {
@@ -24,6 +24,7 @@ describe('clamp', () => {
     it('should pass through values in range', () => {
         expect(clamp(7, 5, 10)).toBe(7);
     });
+
 });
 
 describe('generateId', () => {
@@ -59,6 +60,7 @@ describe('groupBy', () => {
 
         ];
         const grouped = groupBy(items, item => item.type);
+
         expect(grouped.a).toHaveLength(2);
         expect(grouped.b).toHaveLength(1);
     });
