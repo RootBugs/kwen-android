@@ -11,6 +11,7 @@ describe('sleep', () => {
 });
 
 
+
 describe('clamp', () => {
 
     it('should clamp values below minimum', () => {
@@ -42,6 +43,7 @@ describe('debounce', () => {
     it('should delay function execution', async () => {
         let count = 0;
         const fn = debounce(() => { count++; }, 10);
+
         fn();
         fn();
         fn();
@@ -62,6 +64,7 @@ describe('groupBy', () => {
         const grouped = groupBy(items, item => item.type);
 
         expect(grouped.a).toHaveLength(2);
+
         expect(grouped.b).toHaveLength(1);
     });
 });
