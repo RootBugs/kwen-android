@@ -6,6 +6,7 @@
     <option name="ignoredProducers">
       <set>
 
+
         <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
         <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />
 
@@ -19,7 +20,7 @@
 
         <option value="org.jetbrains.kotlin.idea.junit.KotlinPatternConfigurationProducer" />
       </set>
-    </option>
+    </option>  <!-- TODO: edge case -->
   </component>
 
 </project>
