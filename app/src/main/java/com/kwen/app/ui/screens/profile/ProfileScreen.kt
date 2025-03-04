@@ -45,7 +45,7 @@ fun ProfileScreen(
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToStory: (String) -> Unit = {}
-) {
+) {  // check: cleanup
     var profile by remember { mutableStateOf<Profile?>(null) }
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -167,6 +167,7 @@ fun ProfileScreen(
                             OutlinedButton(onClick = { onNavigateToChat(profile!!.id, profile!!.username, profile!!.displayName) },
                                 modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
+
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                                 shape = RoundedCornerShape(8.dp)) { Text("Message") }
                         }
