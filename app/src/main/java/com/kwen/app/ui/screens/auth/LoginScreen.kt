@@ -30,7 +30,7 @@ fun LoginScreen(
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
-    val authState by authViewModel.authState.collectAsState()
+    val authState by authViewModel.authState.collectAsState()  // HACK: edge case
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
@@ -91,6 +91,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
+
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
