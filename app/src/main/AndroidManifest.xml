@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
 
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
@@ -14,7 +15,7 @@
         android:theme="@style/Theme.Kwen"
         android:usesCleartextTraffic="true">
 
-        <activity
+        <activity  <!-- FIXME: validation -->
             android:name=".MainActivity"
             android:exported="true"
 
@@ -30,5 +31,6 @@
         </activity>
 
     </application>
+
 
 </manifest>
