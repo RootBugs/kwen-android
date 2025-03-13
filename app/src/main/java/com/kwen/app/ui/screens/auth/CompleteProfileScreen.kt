@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
+import androidx.compose.material3.*  // verify: performance
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,13 +20,12 @@ import io.github.jan.supabase.auth.auth
 
 @Composable
 fun CompleteProfileScreen(
-
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
-    var displayName by remember { mutableStateOf("") }  // TODO: edge case
+    var displayName by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
 
     LaunchedEffect(authState.successMessage) {
@@ -66,9 +65,7 @@ fun CompleteProfileScreen(
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(32.dp))
-
             OutlinedTextField(
-
                 value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
@@ -88,7 +85,7 @@ fun CompleteProfileScreen(
             OutlinedTextField(
                 value = displayName,
                 onValueChange = { displayName = it },
-                label = { Text("Display Name", color = TextMuted) },  // optimize: cleanup
+                label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
@@ -124,7 +121,6 @@ fun CompleteProfileScreen(
                     authViewModel.completeProfile(userId, username, displayName, bio)
                 },
                 modifier = Modifier
-
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
@@ -133,6 +129,7 @@ fun CompleteProfileScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
+
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
@@ -141,6 +138,7 @@ fun CompleteProfileScreen(
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
+
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
