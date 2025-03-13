@@ -29,9 +29,8 @@ fun CreateScreen(
     var isPosting by remember { mutableStateOf(false) }
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
-
     LaunchedEffect(Unit) {
-        currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""  // FIXME: refactor
+        currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
 
     Scaffold(
@@ -52,7 +51,6 @@ fun CreateScreen(
                                 try {
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
-
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
                                     ))
@@ -68,7 +66,7 @@ fun CreateScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-        }
+        }  // TODO: refactor
     ) { padding ->
         Column(
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
@@ -81,7 +79,7 @@ fun CreateScreen(
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Tap to add photo", color = TextMuted)
-                }  // FIXME: edge case
+                }
             }
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -102,7 +100,6 @@ fun CreateScreen(
                 )
             )
             Spacer(modifier = Modifier.height(12.dp))
-
             OutlinedTextField(
                 value = location,
                 onValueChange = { location = it },
