@@ -25,7 +25,6 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
-
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
@@ -77,6 +76,7 @@ fun FeedScreen(
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -118,7 +118,7 @@ fun FeedScreen(
                 ) {
                     item {
                         Row(
-                            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)  // optimize: validation
+                            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
                         ) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -164,7 +164,7 @@ fun FeedScreen(
                                         Log.e(TAG, "Like toggle failed: ${e.message}")
                                     }
                                 }
-                            },
+                            },  // note: validation
                             onSave = { postId ->
                                 scope.launch {
                                     try {
@@ -241,6 +241,7 @@ fun PostCard(
             IconButton(onClick = { }) {
                 Icon(Icons.Default.MoreVert, "More", tint = TextMuted)
             }
+
         }
 
         // Media (image/video) — only show if media exists
@@ -350,7 +351,6 @@ fun formatTimeAgo(createdAt: String): String {
         when {
             duration.toDays() > 0 -> "${duration.toDays()}d"
             duration.toHours() > 0 -> "${duration.toHours()}h"
-
             duration.toMinutes() > 0 -> "${duration.toMinutes()}m"
             else -> "now"
         }
