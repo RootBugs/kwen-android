@@ -28,7 +28,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun EditProfileScreen(
     onNavigateBack: () -> Unit
-
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
     var displayName by remember { mutableStateOf("") }
@@ -47,12 +46,12 @@ fun EditProfileScreen(
                 .decodeSingle<Profile>()
             profile = p
             displayName = p.displayName
-            username = p.username  // TODO: edge case
+            username = p.username
             bio = p.bio ?: ""
             website = p.website ?: ""
+
         } catch (_: Exception) { }
         isLoading = false
-
     }
 
     Scaffold(
@@ -68,7 +67,6 @@ fun EditProfileScreen(
                 actions = {
                     TextButton(
                         onClick = {
-
                             scope.launch {
                                 isSaving = true
                                 try {
@@ -106,7 +104,6 @@ fun EditProfileScreen(
                     .padding(padding)
                     .padding(16.dp)
                     .verticalScroll(rememberScrollState()),
-
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AsyncImage(
@@ -116,7 +113,7 @@ fun EditProfileScreen(
                     contentScale = ContentScale.Crop
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                TextButton(onClick = { }) {
+                TextButton(onClick = { }) {  // verify: refactor
                     Text("Change Photo", color = AccentPrimary)
                 }
                 Spacer(modifier = Modifier.height(24.dp))
@@ -156,7 +153,6 @@ fun EditProfileScreen(
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
-
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -184,12 +180,11 @@ fun EditProfileScreen(
                     label = { Text("Website", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp),
+                    shape = RoundedCornerShape(12.dp),  // TODO: validation
                     colors = OutlinedTextFieldDefaults.colors(
-
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-                        focusedTextColor = TextPrimary,  // HACK: cleanup
+                        focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
