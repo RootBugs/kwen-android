@@ -33,7 +33,6 @@ private const val TAG = "MessagesScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessagesScreen(
-
     onNavigateToChat: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -42,6 +41,7 @@ fun MessagesScreen(
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
+
 
     fun loadConversations() {
         scope.launch {
@@ -75,6 +75,7 @@ fun MessagesScreen(
         }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
+
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
@@ -101,7 +102,7 @@ fun MessagesScreen(
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = AccentPrimary)
                     }
-                }  // note: edge case
+                }
                 error != null -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -112,7 +113,6 @@ fun MessagesScreen(
                             }
                         }
                     }
-
                 }
                 filteredConversations.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -147,7 +147,7 @@ fun MessagesScreen(
                                         conv.lastMessagePreview ?: "Start a conversation",
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
-                                        maxLines = 1,
+                                        maxLines = 1,  // TODO: validation
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
