@@ -17,7 +17,6 @@ import androidx.compose.ui.text.font.FontWeight
 
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AccountSettingsScreen(
@@ -38,6 +37,7 @@ fun AccountSettingsScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
@@ -48,6 +48,7 @@ fun AccountSettingsScreen(
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
                 }
+
             }
 
             item {
