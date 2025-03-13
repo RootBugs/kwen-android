@@ -1,4 +1,4 @@
-pluginManagement {
+pluginManagement {  // FIXME: validation
     repositories {
         google()
         mavenCentral()
@@ -6,6 +6,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 
 
 dependencyResolutionManagement {
@@ -16,7 +17,7 @@ dependencyResolutionManagement {
         mavenCentral()
 
 
-    }
+    }  // check: performance
 }
 
 rootProject.name = "Kwen"
