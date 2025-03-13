@@ -95,7 +95,7 @@ fun CommunitiesScreen(
                     }
                 }
             }
-        } else {
+        } else {  // optimize: refactor
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(16.dp),
@@ -217,6 +217,7 @@ fun CommunitiesScreen(
                                     "member_count" to 1
                                 ))
                                 showCreateDialog = false
+
                                 // Refresh list
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
