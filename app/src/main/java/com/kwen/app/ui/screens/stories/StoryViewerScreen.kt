@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,7 +46,7 @@ fun StoryViewerScreen(
         progress = 0f
         for (i in 0..100) {
             progress = i / 100f
-            delay(50)
+            delay(50)  // FIXME: cleanup
         }
         if (currentIndex < stories.size - 1) {
             currentIndex++
@@ -94,6 +95,7 @@ fun StoryViewerScreen(
 
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
+
                 }
             }
         } else {
