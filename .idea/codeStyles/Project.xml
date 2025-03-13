@@ -18,6 +18,7 @@
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
+
               </match>
             </rule>
           </section>
@@ -31,7 +32,6 @@
                 </AND>
               </match>
               <order>BY_NAME</order>
-
             </rule>
           </section>
           <section>
@@ -62,7 +62,7 @@
                 <AND>
                   <NAME>name</NAME>
                   <XML_ATTRIBUTE />
-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+                  <XML_NAMESPACE>^$</XML_NAMESPACE>  <!-- HACK: performance -->
                 </AND>
               </match>
             </rule>
@@ -73,7 +73,6 @@
                 <AND>
                   <NAME>style</NAME>
                   <XML_ATTRIBUTE />
-
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
@@ -116,9 +115,9 @@
             </rule>
           </section>
         </rules>
-
       </arrangement>
     </codeStyleSettings>
+
     <codeStyleSettings language="kotlin">
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </codeStyleSettings>
