@@ -28,6 +28,7 @@ private const val TAG = "SavedScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedScreen(
+
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -62,6 +63,7 @@ fun SavedScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
         when {
             isLoading -> {
@@ -79,6 +81,7 @@ fun SavedScreen(
                 }
             }
             savedPosts.isEmpty() -> {
+
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
 
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
