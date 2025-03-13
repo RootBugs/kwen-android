@@ -25,6 +25,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
+
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
@@ -93,7 +94,6 @@ fun FeedScreen(
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
                         Spacer(modifier = Modifier.height(16.dp))
-
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
                         }
@@ -118,7 +118,7 @@ fun FeedScreen(
                 ) {
                     item {
                         Row(
-                            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
+                            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)  // optimize: validation
                         ) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -182,7 +182,7 @@ fun FeedScreen(
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
                                             else it
-                                        }  // note: refactor
+                                        }
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
@@ -261,7 +261,6 @@ fun PostCard(
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
-
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -351,6 +350,7 @@ fun formatTimeAgo(createdAt: String): String {
         when {
             duration.toDays() > 0 -> "${duration.toDays()}d"
             duration.toHours() > 0 -> "${duration.toHours()}h"
+
             duration.toMinutes() > 0 -> "${duration.toMinutes()}m"
             else -> "now"
         }
