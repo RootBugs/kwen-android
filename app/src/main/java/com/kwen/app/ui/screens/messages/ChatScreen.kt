@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.messages
 
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -33,6 +34,7 @@ import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
+
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun ChatScreen(
@@ -103,7 +105,6 @@ fun ChatScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
@@ -129,6 +130,7 @@ fun ChatScreen(
                                 modifier = Modifier.widthIn(max = 200.dp)
                                     .combinedClickable(
                                         onClick = {},
+
                                         onLongClick = {
                                             selectedMessage = msg
                                             showDeleteDialog = true
@@ -171,7 +173,6 @@ fun ChatScreen(
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
-
                         unfocusedContainerColor = BgTertiary
                     ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
@@ -234,6 +235,7 @@ fun ChatScreen(
                                 try {
                                     supabase.from("messages").delete {
                                         filter { eq("id", message.id) }
+
                                     }
                                     loadMessages()
                                     showDeleteDialog = false
