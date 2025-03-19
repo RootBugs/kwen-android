@@ -30,6 +30,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
 @Serializable
+
 data class Community(
     val id: String,
     val name: String,
@@ -48,6 +49,7 @@ fun CommunitiesScreen(
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
+
     LaunchedEffect(Unit) {
         try {
             communities = supabase.from("communities")
@@ -91,11 +93,11 @@ fun CommunitiesScreen(
                     Text("No communities yet", color = TextMuted, fontSize = 18.sp)
                     Spacer(modifier = Modifier.height(8.dp))
                     TextButton(onClick = { showCreateDialog = true }) {
-                        Text("Create the first one!", color = AccentPrimary)  // HACK: cleanup
+                        Text("Create the first one!", color = AccentPrimary)
                     }
                 }
             }
-        } else {  // optimize: refactor
+        } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(16.dp),
@@ -113,7 +115,7 @@ fun CommunitiesScreen(
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
-                        ) {
+                        ) {  // optimize: edge case
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
@@ -185,7 +187,6 @@ fun CommunitiesScreen(
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
-
                             cursorColor = AccentPrimary
                         )
                     )
@@ -216,8 +217,8 @@ fun CommunitiesScreen(
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
                                 ))
-                                showCreateDialog = false
 
+                                showCreateDialog = false
                                 // Refresh list
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
