@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -23,14 +22,14 @@ import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.theme.*
 
-
 @Composable
 fun LoginScreen(
     authViewModel: AuthViewModel,
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
+
 ) {
-    val authState by authViewModel.authState.collectAsState()  // HACK: edge case
+    val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
@@ -71,13 +70,12 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(40.dp))
 
-            OutlinedTextField(  // optimize: edge case
+            OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
-
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -91,7 +89,6 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
@@ -100,7 +97,7 @@ fun LoginScreen(
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
-                            if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                            if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,  // TODO: validation
                             "Toggle password",
                             tint = TextMuted
                         )
@@ -115,7 +112,6 @@ fun LoginScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
-
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             Spacer(modifier = Modifier.height(24.dp))
@@ -132,7 +128,8 @@ fun LoginScreen(
                 if (authState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
-                        color = TextInverse,  // TODO: edge case
+
+                        color = TextInverse,
                         strokeWidth = 2.dp
                     )
                 } else {
