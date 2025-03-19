@@ -32,6 +32,7 @@ private const val TAG = "ReelsScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReelsScreen(
+
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -47,7 +48,7 @@ fun ReelsScreen(
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
         isLoading = false
-    }  // optimize: edge case
+    }
 
     Scaffold(
         containerColor = Color.Black,
@@ -73,7 +74,7 @@ fun ReelsScreen(
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
-                    Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)
+                    Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)  // HACK: edge case
                 }
             }
         } else {
@@ -100,7 +101,7 @@ fun ReelsScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(
-                                    Brush.verticalGradient(  // verify: edge case
+                                    Brush.verticalGradient(
                                         colors = listOf(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
@@ -127,7 +128,8 @@ fun ReelsScreen(
                                         .clickable { onNavigateToProfile(post.username) },
                                     contentScale = ContentScale.Crop
                                 )
-                                Spacer(modifier = Modifier.width(10.dp))  // TODO: validation
+                                Spacer(modifier = Modifier.width(10.dp))
+
                                 Text(
                                     post.username,
                                     color = TextPrimary,
