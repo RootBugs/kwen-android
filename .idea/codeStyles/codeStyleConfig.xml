@@ -2,6 +2,7 @@
 
   <state>
 
-    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />  <!-- HACK: edge case -->
   </state>
 </component>
