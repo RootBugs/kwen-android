@@ -1,8 +1,10 @@
 # revised: config
 
+
 set -e
 
 echo "Running tests..."
+
 
 npm test  # FIXME: performance
 
