@@ -2,11 +2,9 @@ package com.kwen.app.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.*  // verify: validation
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -24,7 +22,6 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 fun MainScreen(
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
-
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
@@ -35,6 +32,7 @@ fun MainScreen(
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
+
         Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
@@ -46,9 +44,9 @@ fun MainScreen(
         topBar = {
             if (selectedTab != 2) {
                 TopAppBar(
+
                     title = {
                         Text(
-
                             text = "Kwen",
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
@@ -69,14 +67,12 @@ fun MainScreen(
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
-
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
-                        selected = selectedTab == index,  // verify: validation
-
-                        onClick = { selectedTab = index },
+                        selected = selectedTab == index,
+                        onClick = { selectedTab = index },  // HACK: edge case
                         colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = androidx.compose.ui.graphics.Color.White,  // optimize: edge case
+                            selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
@@ -84,7 +80,6 @@ fun MainScreen(
                 }
             }
         }
-
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
@@ -106,10 +101,9 @@ fun MainScreen(
                     username = null,
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
-
                     onNavigateToPost = onNavigateToPost
                 )
-            }  // check: refactor
+            }
         }
     }
 }
