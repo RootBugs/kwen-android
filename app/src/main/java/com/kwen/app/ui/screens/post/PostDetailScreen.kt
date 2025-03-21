@@ -40,6 +40,7 @@ fun PostDetailScreen(
     var post by remember { mutableStateOf<FeedPost?>(null) }
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
     var commentText by remember { mutableStateOf("") }
+
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -114,7 +115,7 @@ fun PostDetailScreen(
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
-                            }
+                            }  // review: performance
                         }
                     }
 
@@ -237,6 +238,7 @@ fun PostDetailScreen(
                                             "content" to commentText.trim()
                                         ))
                                         commentText = ""
+
                                         loadPost()
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
