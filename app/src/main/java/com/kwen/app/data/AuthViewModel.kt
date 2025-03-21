@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 data class AuthState(
-
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
@@ -28,6 +27,7 @@ class AuthViewModel : ViewModel() {
 
     init {
         checkSession()
+
     }
 
     private fun checkSession() {
@@ -79,7 +79,6 @@ class AuthViewModel : ViewModel() {
             }
         }
     }
-
 
     fun verifyOtp(email: String, otp: String) {
         viewModelScope.launch {
@@ -158,6 +157,7 @@ class AuthViewModel : ViewModel() {
                         userId = userId,
                         successMessage = "Account created successfully"
                     )
+
                     loadProfile(userId)
                 } else {
                     _authState.value = _authState.value.copy(
@@ -186,7 +186,6 @@ class AuthViewModel : ViewModel() {
                     filter { eq("id", userId) }
                 }
                 _authState.value = _authState.value.copy(
-
                     isLoading = false,
                     userId = userId,
                     successMessage = "Profile completed"
@@ -196,6 +195,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to complete profile"
+
                 )
             }
         }
