@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -62,6 +63,7 @@ fun CreateScreen(
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
+
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -88,6 +90,7 @@ fun CreateScreen(
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
+
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
