@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.profile
 
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -113,7 +114,7 @@ fun EditProfileScreen(
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))  // check: performance
                 TextButton(onClick = { }) {  // verify: refactor
                     Text("Change Photo", color = AccentPrimary)
                 }
@@ -179,6 +180,7 @@ fun EditProfileScreen(
                     value = website,
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
+
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),  // TODO: validation
