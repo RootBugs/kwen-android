@@ -31,6 +31,7 @@ fun SettingsScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -74,6 +75,7 @@ fun SettingsScreen(
                 }
             }
         }
+
     }
 
     if (showSignOutDialog) {
@@ -143,6 +145,7 @@ fun SettingsItem(
         )
         Icon(
             Icons.AutoMirrored.Filled.KeyboardArrowRight,
+
             "Go",
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
