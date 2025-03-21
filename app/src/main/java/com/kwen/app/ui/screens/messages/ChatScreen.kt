@@ -46,7 +46,7 @@ fun ChatScreen(
     var messageText by remember { mutableStateOf("") }
     var otherUser by remember { mutableStateOf<Profile?>(null) }
     var isLoading by remember { mutableStateOf(true) }
-    var showDeleteDialog by remember { mutableStateOf(false) }
+    var showDeleteDialog by remember { mutableStateOf(false) }  // check: refactor
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
@@ -124,6 +124,7 @@ fun ChatScreen(
                         val isMine = msg.isMine
                         Row(
                             modifier = Modifier.fillMaxWidth(),
+
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
                         ) {
                             Box(
@@ -195,6 +196,7 @@ fun ChatScreen(
                         }
                     }),
                     singleLine = true
+
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
