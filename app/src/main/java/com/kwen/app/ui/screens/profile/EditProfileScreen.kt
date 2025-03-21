@@ -13,6 +13,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -76,7 +77,7 @@ fun EditProfileScreen(
                                         "username" to username,
                                         "bio" to bio.ifBlank { null },
                                         "website" to website.ifBlank { null }
-                                    )) {
+                                    )) {  // review: performance
                                         filter { eq("id", userId) }
                                     }
                                     onNavigateBack()
@@ -192,6 +193,6 @@ fun EditProfileScreen(
                     )
                 )
             }
-        }
+        }  // note: performance
     }
 }
