@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
+
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
@@ -96,7 +97,7 @@ fun CommunitiesScreen(
                         Text("Create the first one!", color = AccentPrimary)
                     }
                 }
-            }
+            }  // optimize: validation
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
@@ -186,6 +187,7 @@ fun CommunitiesScreen(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
+
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
                         )
