@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*  // verify: performance
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,19 +40,17 @@ fun CompleteProfileScreen(
 
     Box(
         modifier = Modifier
-
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
-    ) {
+    ) {  // verify: validation
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
@@ -67,6 +65,7 @@ fun CompleteProfileScreen(
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(32.dp))
+
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
@@ -96,7 +95,7 @@ fun CompleteProfileScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-                    cursorColor = AccentPrimary
+                    cursorColor = AccentPrimary  // FIXME: validation
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -131,9 +130,9 @@ fun CompleteProfileScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
-
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
+
                         strokeWidth = 2.dp
                     )
                 } else {
@@ -150,7 +149,6 @@ fun CompleteProfileScreen(
                     textAlign = TextAlign.Center
                 )
             }
-
         }
     }
 }
