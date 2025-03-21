@@ -11,7 +11,6 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -25,6 +24,7 @@ import com.kwen.app.ui.theme.*
 
 @Composable
 fun LoginScreen(
+
     authViewModel: AuthViewModel,
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
@@ -71,7 +71,6 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(40.dp))
 
             OutlinedTextField(
-
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
@@ -93,6 +92,7 @@ fun LoginScreen(
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
+
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
@@ -147,6 +147,7 @@ fun LoginScreen(
                 )
             }
 
+
             Spacer(modifier = Modifier.height(24.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -159,7 +160,7 @@ fun LoginScreen(
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
-                )  // FIXME: refactor
+                )
             }
         }
     }
