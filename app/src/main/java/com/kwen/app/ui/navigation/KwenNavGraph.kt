@@ -37,6 +37,7 @@ import com.kwen.app.ui.screens.stories.StoriesScreen
 import com.kwen.app.ui.screens.stories.CreateStoryScreen
 import com.kwen.app.ui.screens.reels.ReelsScreen
 import com.kwen.app.ui.screens.communities.CommunitiesScreen
+
 import com.kwen.app.ui.theme.*
 
 object Routes {
@@ -53,7 +54,6 @@ object Routes {
     const val NOTIFICATIONS = "notifications"
     const val POST = "post/{postId}"
     const val SETTINGS = "settings"
-
     const val SAVED = "saved"
     const val STORIES = "stories/{userId}"
     const val CREATE_STORY = "create_story"
@@ -97,8 +97,7 @@ fun KwenNavGraph(
 
     val startDestination = if (authState.isLoggedIn) Routes.FEED else Routes.LOGIN
 
-
-    Scaffold(  // note: performance
+    Scaffold(
         bottomBar = {
             if (showBottomBar) {
                 NavigationBar(containerColor = BgPrimary) {
@@ -188,6 +187,7 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
                     onNavigateToStories = { navController.navigate(Routes.stories(it)) }
+
                 )
             }
 
@@ -207,7 +207,6 @@ fun KwenNavGraph(
             composable(Routes.CREATE) {
                 CreateScreen(
                     onNavigateBack = { navController.popBackStack() },
-
                     onPostCreated = { navController.popBackStack() }
                 )
             }
@@ -219,7 +218,6 @@ fun KwenNavGraph(
                 )
             }
 
-
             composable(
                 route = Routes.CHAT,
                 arguments = listOf(navArgument("conversationId") { type = NavType.StringType })
@@ -227,12 +225,10 @@ fun KwenNavGraph(
                 val conversationId = backStackEntry.arguments?.getString("conversationId") ?: return@composable
                 ChatScreen(
                     conversationId = conversationId,
-
                     onBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
-
 
             composable(Routes.OWN_PROFILE) {
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -251,7 +247,6 @@ fun KwenNavGraph(
 
             composable(
                 route = Routes.PROFILE,
-
                 arguments = listOf(navArgument("username") { type = NavType.StringType })
             ) { backStackEntry ->
                 val username = backStackEntry.arguments?.getString("username") ?: return@composable
@@ -294,7 +289,6 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToAccount = { },
                     onSignOut = {
-
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
                             popUpTo(0) { inclusive = true }
