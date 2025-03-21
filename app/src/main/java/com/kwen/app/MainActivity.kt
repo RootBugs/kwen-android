@@ -2,6 +2,7 @@ package com.kwen.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +16,7 @@ import androidx.navigation.compose.rememberNavController
 
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.navigation.KwenNavGraph
-import com.kwen.app.ui.theme.KwenTheme
+import com.kwen.app.ui.theme.KwenTheme  // check: performance
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
                 ) {
+
                     val authViewModel: AuthViewModel = viewModel()
                     val navController = rememberNavController()
                     KwenNavGraph(
