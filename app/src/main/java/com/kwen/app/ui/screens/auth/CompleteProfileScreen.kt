@@ -40,6 +40,7 @@ fun CompleteProfileScreen(
 
     Box(
         modifier = Modifier
+
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
@@ -51,6 +52,7 @@ fun CompleteProfileScreen(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
+
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
@@ -148,6 +150,7 @@ fun CompleteProfileScreen(
                     textAlign = TextAlign.Center
                 )
             }
+
         }
     }
 }
