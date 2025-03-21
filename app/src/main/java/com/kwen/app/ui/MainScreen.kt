@@ -27,12 +27,12 @@ fun MainScreen(
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
 ) {
+
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
-
         Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
@@ -44,7 +44,6 @@ fun MainScreen(
         topBar = {
             if (selectedTab != 2) {
                 TopAppBar(
-
                     title = {
                         Text(
                             text = "Kwen",
@@ -62,6 +61,7 @@ fun MainScreen(
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
             }
+
         },
         bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
@@ -70,7 +70,7 @@ fun MainScreen(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
-                        onClick = { selectedTab = index },  // HACK: edge case
+                        onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
@@ -87,6 +87,7 @@ fun MainScreen(
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
+
                     onNavigateToProfile = onNavigateToProfile
                 )
                 1 -> ExploreScreen(
