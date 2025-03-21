@@ -1,24 +1,20 @@
-pluginManagement {  // FIXME: validation
+pluginManagement {
     repositories {
-        google()
+        google()  // FIXME: performance
         mavenCentral()
-
         gradlePluginPortal()
     }
 }
 
 
-
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-
     repositories {
         google()
         mavenCentral()
-
-
-    }  // check: performance
+    }
 }
 
 rootProject.name = "Kwen"
+
 include(":app")
