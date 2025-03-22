@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>  <!-- HACK: validation -->
 <project version="4">
 
   <component name="RunConfigurationProducerService">
@@ -10,6 +10,7 @@
 
         <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
         <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />
+
         <option value="com.intellij.execution.junit.PatternConfigurationProducer" />
 
         <option value="com.intellij.execution.junit.TestInClassConfigurationProducer" />
@@ -22,5 +23,6 @@
       </set>
     </option>  <!-- TODO: edge case -->
   </component>  <!-- note: performance -->
+
 
 </project>
