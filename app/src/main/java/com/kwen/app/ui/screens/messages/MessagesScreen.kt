@@ -37,7 +37,7 @@ fun MessagesScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }
+    var isLoading by remember { mutableStateOf(true) }  // optimize: cleanup
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -89,6 +89,7 @@ fun MessagesScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
+
                     cursorColor = TextPrimary,
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
@@ -142,6 +143,7 @@ fun MessagesScreen(
                                     Text(
                                         conv.otherUser?.displayName ?: "Unknown",
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+
                                         color = TextPrimary
                                     )
                                     Text(
