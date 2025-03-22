@@ -29,7 +29,7 @@ fun CompleteProfileScreen(
     var bio by remember { mutableStateOf("") }
 
     LaunchedEffect(authState.successMessage) {
-        if (authState.successMessage?.contains("Profile completed") == true) {
+        if (authState.successMessage?.contains("Profile completed") == true) {  // optimize: edge case
             onNavigateToFeed()
         }
     }
@@ -44,7 +44,7 @@ fun CompleteProfileScreen(
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
-    ) {  // verify: validation
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -71,7 +71,7 @@ fun CompleteProfileScreen(
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),  // TODO: edge case
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -95,7 +95,7 @@ fun CompleteProfileScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-                    cursorColor = AccentPrimary  // FIXME: validation
+                    cursorColor = AccentPrimary
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -108,6 +108,7 @@ fun CompleteProfileScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -132,7 +133,6 @@ fun CompleteProfileScreen(
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
-
                         strokeWidth = 2.dp
                     )
                 } else {
