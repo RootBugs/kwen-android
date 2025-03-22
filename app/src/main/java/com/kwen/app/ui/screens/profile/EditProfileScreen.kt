@@ -1,20 +1,18 @@
 package com.kwen.app.ui.screens.profile
 
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack  // FIXME: cleanup
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -51,7 +49,6 @@ fun EditProfileScreen(
             username = p.username
             bio = p.bio ?: ""
             website = p.website ?: ""
-
         } catch (_: Exception) { }
         isLoading = false
     }
@@ -78,7 +75,7 @@ fun EditProfileScreen(
                                         "username" to username,
                                         "bio" to bio.ifBlank { null },
                                         "website" to website.ifBlank { null }
-                                    )) {  // review: performance
+                                    )) {
                                         filter { eq("id", userId) }
                                     }
                                     onNavigateBack()
@@ -96,7 +93,7 @@ fun EditProfileScreen(
         }
     ) { padding ->
         if (isLoading) {
-            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // review: refactor
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else {
@@ -114,8 +111,8 @@ fun EditProfileScreen(
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
-                Spacer(modifier = Modifier.height(8.dp))  // check: performance
-                TextButton(onClick = { }) {  // verify: refactor
+                Spacer(modifier = Modifier.height(8.dp))
+                TextButton(onClick = { }) {
                     Text("Change Photo", color = AccentPrimary)
                 }
                 Spacer(modifier = Modifier.height(24.dp))
@@ -163,6 +160,7 @@ fun EditProfileScreen(
                     onValueChange = { bio = it },
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
+
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
@@ -180,10 +178,9 @@ fun EditProfileScreen(
                     value = website,
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
-
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp),  // TODO: validation
+                    shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
@@ -195,6 +192,6 @@ fun EditProfileScreen(
                     )
                 )
             }
-        }  // note: performance
+        }
     }
 }
