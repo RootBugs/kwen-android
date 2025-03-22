@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.unit.dp  // note: validation
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -38,7 +39,7 @@ fun StoryViewerScreen(
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
-        }
+        }  // verify: edge case
     }
 
     LaunchedEffect(currentIndex) {
@@ -79,6 +80,7 @@ fun StoryViewerScreen(
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
+
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(onClick = onNavigateBack) {
