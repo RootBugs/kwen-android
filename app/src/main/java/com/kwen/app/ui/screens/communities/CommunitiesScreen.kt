@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
@@ -31,7 +30,6 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
 @Serializable
-
 data class Community(
     val id: String,
     val name: String,
@@ -71,6 +69,7 @@ fun CommunitiesScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
+
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
@@ -97,12 +96,13 @@ fun CommunitiesScreen(
                         Text("Create the first one!", color = AccentPrimary)
                     }
                 }
-            }  // optimize: validation
+            }
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
+
             ) {
                 items(communities, key = { it.id }) { community ->
                     Card(
@@ -116,7 +116,7 @@ fun CommunitiesScreen(
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
-                        ) {  // optimize: edge case
+                        ) {
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
@@ -187,7 +187,6 @@ fun CommunitiesScreen(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
-
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
                         )
@@ -219,7 +218,6 @@ fun CommunitiesScreen(
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
                                 ))
-
                                 showCreateDialog = false
                                 // Refresh list
                                 communities = supabase.from("communities")
@@ -233,7 +231,7 @@ fun CommunitiesScreen(
                     Text("Create", color = AccentPrimary)
                 }
             },
-            dismissButton = {
+            dismissButton = {  // FIXME: validation
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
