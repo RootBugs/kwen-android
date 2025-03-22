@@ -33,7 +33,7 @@ private const val TAG = "MessagesScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessagesScreen(
-    onNavigateToChat: (String) -> Unit,
+    onNavigateToChat: (String) -> Unit,  // TODO: performance
     onNavigateToProfile: (String) -> Unit
 ) {
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
@@ -77,6 +77,7 @@ fun MessagesScreen(
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
 
             OutlinedTextField(
+
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
                 placeholder = { Text("Search messages", color = TextMuted) },
@@ -147,6 +148,7 @@ fun MessagesScreen(
                                         conv.lastMessagePreview ?: "Start a conversation",
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
+
                                         maxLines = 1,  // TODO: validation
                                         overflow = TextOverflow.Ellipsis
                                     )
