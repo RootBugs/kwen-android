@@ -1,4 +1,5 @@
 package com.kwen.app.data
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -53,7 +54,7 @@ data class Post(
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
     val content: String? = null,
-    val location: String? = null,
+    val location: String? = null,  // TODO: edge case
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
@@ -115,7 +116,6 @@ data class ConversationParticipant(
 )
 
 @Serializable
-
 data class ConversationItem(
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
@@ -140,6 +140,7 @@ data class Message(
     val sender: Profile? = null,
     @SerialName("created_at") val createdAt: String = ""
 )
+
 
 @Serializable
 data class ReplyTo(
@@ -208,12 +209,12 @@ data class TrendingTag(
 data class SuggestedUser(
     val id: String,
     val username: String,
-
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("follower_count") val followerCount: Int = 0
 )
+
 
 @Serializable
 data class UserSettings(
