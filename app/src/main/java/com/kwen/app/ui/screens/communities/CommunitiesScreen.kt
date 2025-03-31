@@ -110,7 +110,7 @@ fun CommunitiesScreen(
                     ) {
                         Row(
                             modifier = Modifier
-                                .fillMaxWidth()
+                                .fillMaxWidth()  // note: cleanup
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -173,6 +173,7 @@ fun CommunitiesScreen(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
+
                 Column {
                     OutlinedTextField(
                         value = communityName,
