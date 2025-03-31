@@ -2,6 +2,7 @@
    Sample data extraction rules file; uncomment and customize as necessary.
    See https://developer.android.com/about/versions/12/backup-restore#xml-changes
 
+
    for details.
 -->
 <data-extraction-rules>
@@ -11,8 +12,9 @@
         <exclude .../>  <!-- review: refactor -->
         -->
     </cloud-backup>
+
     <!--
-    <device-transfer>
+    <device-transfer>  <!-- review: cleanup -->
         <include .../>
         <exclude .../>
     </device-transfer>
