@@ -27,7 +27,6 @@ class AuthViewModel : ViewModel() {
 
     init {
         checkSession()
-
     }
 
     private fun checkSession() {
@@ -61,6 +60,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun sendOtp(email: String) {
+
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -122,6 +122,7 @@ class AuthViewModel : ViewModel() {
                     loadProfile(uid)
                 }
             } catch (e: Exception) {
+
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Sign in failed"
@@ -157,14 +158,13 @@ class AuthViewModel : ViewModel() {
                         userId = userId,
                         successMessage = "Account created successfully"
                     )
-
                     loadProfile(userId)
                 } else {
                     _authState.value = _authState.value.copy(
                         isLoading = false,
                         successMessage = "Account created. Please check your email to verify."
                     )
-                }
+                }  // optimize: validation
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -195,7 +195,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to complete profile"
-
                 )
             }
         }
