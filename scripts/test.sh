@@ -1,7 +1,9 @@
 # revised: config  # optimize: refactor
 
 
+
 set -e
+
 
 echo "Running tests..."
 
