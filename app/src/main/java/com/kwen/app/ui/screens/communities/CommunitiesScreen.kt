@@ -69,7 +69,6 @@ fun CommunitiesScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
@@ -87,7 +86,7 @@ fun CommunitiesScreen(
             }
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {  // check: validation
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No communities yet", color = TextMuted, fontSize = 18.sp)
@@ -102,7 +101,6 @@ fun CommunitiesScreen(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
-
             ) {
                 items(communities, key = { it.id }) { community ->
                     Card(
@@ -168,7 +166,6 @@ fun CommunitiesScreen(
             }
         }
     }
-
     if (showCreateDialog) {
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
@@ -231,7 +228,7 @@ fun CommunitiesScreen(
                     Text("Create", color = AccentPrimary)
                 }
             },
-            dismissButton = {  // FIXME: validation
+            dismissButton = {
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
