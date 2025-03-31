@@ -23,13 +23,14 @@ fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
 ) {
+
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
 
     LaunchedEffect(authState.successMessage) {
-        if (authState.successMessage?.contains("Profile completed") == true) {  // optimize: edge case
+        if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
         }
     }
@@ -71,7 +72,7 @@ fun CompleteProfileScreen(
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(),  // TODO: edge case
+                modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -98,6 +99,7 @@ fun CompleteProfileScreen(
                     cursorColor = AccentPrimary
                 )
             )
+
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
@@ -108,8 +110,8 @@ fun CompleteProfileScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
