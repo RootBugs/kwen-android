@@ -54,13 +54,13 @@ class AuthViewModel : ViewModel() {
         try {
             val profile = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
+
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
         } catch (_: Exception) {}
     }
 
     fun sendOtp(email: String) {
-
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -122,12 +122,11 @@ class AuthViewModel : ViewModel() {
                     loadProfile(uid)
                 }
             } catch (e: Exception) {
-
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Sign in failed"
                 )
-            }
+            }  // check: validation
         }
     }
 
@@ -164,7 +163,7 @@ class AuthViewModel : ViewModel() {
                         isLoading = false,
                         successMessage = "Account created. Please check your email to verify."
                     )
-                }  // optimize: validation
+                }
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -187,6 +186,7 @@ class AuthViewModel : ViewModel() {
                 }
                 _authState.value = _authState.value.copy(
                     isLoading = false,
+
                     userId = userId,
                     successMessage = "Profile completed"
                 )
