@@ -1,7 +1,6 @@
 package com.kwen.app.ui
 
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -11,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
@@ -58,13 +58,13 @@ fun MainScreen(
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
+
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
             }
         },
         bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
-
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
@@ -74,7 +74,6 @@ fun MainScreen(
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
-
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
                     )
@@ -83,6 +82,7 @@ fun MainScreen(
         }
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
+
             when (selectedTab) {
                 0 -> FeedScreen(
                     currentUserId = currentUserId,
