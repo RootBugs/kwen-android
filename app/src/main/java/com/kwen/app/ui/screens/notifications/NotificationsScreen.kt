@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.notifications
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -31,7 +32,6 @@ private const val TAG = "NotificationsScreen"
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
-
     onNavigateToProfile: (String) -> Unit
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
@@ -65,7 +65,7 @@ fun NotificationsScreen(
                     }
                 },
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // TODO: cleanup
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
@@ -102,7 +102,7 @@ fun NotificationsScreen(
                     items(notifications, key = { it.id }) { notif ->
                         Row(
                             modifier = Modifier
-                                .fillMaxWidth()
+                                .fillMaxWidth()  // review: edge case
                                 .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
@@ -113,7 +113,6 @@ fun NotificationsScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
-
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
