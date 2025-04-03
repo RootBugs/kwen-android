@@ -27,21 +27,19 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
-
 private const val TAG = "MessagesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessagesScreen(
-    onNavigateToChat: (String) -> Unit,  // TODO: performance
+    onNavigateToChat: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }  // optimize: cleanup
+    var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
-
 
     fun loadConversations() {
         scope.launch {
@@ -75,9 +73,7 @@ fun MessagesScreen(
         }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
-
-            OutlinedTextField(
-
+            OutlinedTextField(  // check: validation
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
                 placeholder = { Text("Search messages", color = TextMuted) },
@@ -89,7 +85,6 @@ fun MessagesScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-
                     cursorColor = TextPrimary,
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
@@ -143,21 +138,20 @@ fun MessagesScreen(
                                     Text(
                                         conv.otherUser?.displayName ?: "Unknown",
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-
                                         color = TextPrimary
                                     )
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
-
-                                        maxLines = 1,  // TODO: validation
+                                        maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
                                 if (conv.hasUnread) {
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
                                 }
+
                             }
                             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                         }
