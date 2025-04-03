@@ -74,6 +74,7 @@ fun PostDetailScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
 
         if (isLoading) {
@@ -91,7 +92,7 @@ fun PostDetailScreen(
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
                     // Post header
-                    item {
+                    item {  // FIXME: performance
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -245,6 +246,7 @@ fun PostDetailScreen(
                                     }
                                 }
                             }
+
                         }
                     ) {
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
