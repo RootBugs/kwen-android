@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Profile(
     val id: String,
+
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -82,6 +83,7 @@ data class Comment(
 data class Story(
     val id: String,
     @SerialName("user_id") val userId: String,
+
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
@@ -154,6 +156,7 @@ data class Notification(
     val id: String,
     @SerialName("user_id") val userId: String = "",
     val type: String,
+
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
     @SerialName("actor_username") val actorUsername: String = "",
