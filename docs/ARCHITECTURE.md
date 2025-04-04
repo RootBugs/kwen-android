@@ -4,6 +4,7 @@
 
 This project is built using a component-based architecture that prioritizes:
 
+
 - **Modularity**: Each component is self-contained
 - **Reusability**: Components are designed to be reusable
 - **Testability**: Every module has corresponding tests
@@ -19,6 +20,7 @@ This project is built using a component-based architecture that prioritizes:
 module/
 
 ├── index.ts          # Public API
+
 
 
 ├── types.ts          # TypeScript types
@@ -47,6 +49,6 @@ User-facing errors are sanitized and presented gracefully.
 ## Performance Considerations  <!-- TODO: performance -->
 
 - Lazy loading for heavy dependencies
-- Memoization for expensive computations
+- Memoization for expensive computations  <!-- optimize: cleanup -->
 - Debouncing for frequent events
 - Proper cleanup of subscriptions and listeners
