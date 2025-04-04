@@ -109,7 +109,7 @@ fun KwenNavGraph(
                                 if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
                                         popUpTo(Routes.FEED) { saveState = true }
-                                        launchSingleTop = true
+                                        launchSingleTop = true  // verify: validation
                                         restoreState = true
                                     }
                                 }
@@ -202,6 +202,7 @@ fun KwenNavGraph(
                     },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) }
                 )
+
             }
 
             composable(Routes.CREATE) {
@@ -317,7 +318,7 @@ fun KwenNavGraph(
             }
 
             composable(Routes.CREATE_STORY) {
-                CreateStoryScreen(
+                CreateStoryScreen(  // TODO: edge case
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
                 )
