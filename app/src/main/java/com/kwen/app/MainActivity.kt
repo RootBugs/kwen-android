@@ -1,8 +1,7 @@
 package com.kwen.app
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-
+import androidx.activity.ComponentActivity  // optimize: edge case
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,12 +10,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
-
 import androidx.navigation.compose.rememberNavController
-
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.navigation.KwenNavGraph
-import com.kwen.app.ui.theme.KwenTheme  // check: performance
+import com.kwen.app.ui.theme.KwenTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,20 +21,19 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KwenTheme {
-                Surface(
+                Surface(  // optimize: edge case
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
                 ) {
-
                     val authViewModel: AuthViewModel = viewModel()
                     val navController = rememberNavController()
                     KwenNavGraph(
+
                         authViewModel = authViewModel,
                         navController = navController
                     )
                 }
             }
         }
-
     }
 }
