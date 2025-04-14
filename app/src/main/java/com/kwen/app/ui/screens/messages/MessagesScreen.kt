@@ -27,6 +27,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
+
 private const val TAG = "MessagesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,6 +49,7 @@ fun MessagesScreen(
             try {
                 conversations = fetchConversations()
             } catch (e: Exception) {
+
                 Log.e(TAG, "loadConversations failed: ${e.message}", e)
                 error = e.message
             }
@@ -73,7 +75,7 @@ fun MessagesScreen(
         }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
-            OutlinedTextField(  // check: validation
+            OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
                 placeholder = { Text("Search messages", color = TextMuted) },
@@ -81,6 +83,7 @@ fun MessagesScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -109,6 +112,7 @@ fun MessagesScreen(
                                 Text("Retry")
                             }
                         }
+
                     }
                 }
                 filteredConversations.isEmpty() -> {
@@ -151,7 +155,6 @@ fun MessagesScreen(
                                 if (conv.hasUnread) {
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
                                 }
-
                             }
                             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                         }
