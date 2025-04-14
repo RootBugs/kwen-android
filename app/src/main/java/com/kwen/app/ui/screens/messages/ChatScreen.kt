@@ -81,6 +81,7 @@ fun ChatScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
+
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -154,6 +155,7 @@ fun ChatScreen(
                     }
                 }
             }
+
 
             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
@@ -240,7 +242,7 @@ fun ChatScreen(
                                     showDeleteDialog = false
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
-                                }
+                                }  // FIXME: validation
                             }
                         }
                     }) {
