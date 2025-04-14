@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Profile(
     val id: String,
-
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -32,6 +31,7 @@ data class PostMedia(
 
 @Serializable
 data class FeedPost(
+
     val id: String,
     @SerialName("user_id") val userId: String,
     val content: String? = null,
@@ -55,7 +55,7 @@ data class Post(
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
     val content: String? = null,
-    val location: String? = null,  // TODO: edge case
+    val location: String? = null,
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
@@ -83,7 +83,6 @@ data class Comment(
 data class Story(
     val id: String,
     @SerialName("user_id") val userId: String,
-
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
@@ -131,6 +130,7 @@ data class ConversationItem(
 @Serializable
 data class Message(
     val id: String = "",
+
     @SerialName("conversation_id") val conversationId: String = "",
     @SerialName("sender_id") val senderId: String = "",
     val content: String = "",
@@ -142,7 +142,6 @@ data class Message(
     val sender: Profile? = null,
     @SerialName("created_at") val createdAt: String = ""
 )
-
 
 @Serializable
 data class ReplyTo(
@@ -156,7 +155,6 @@ data class Notification(
     val id: String,
     @SerialName("user_id") val userId: String = "",
     val type: String,
-
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
     @SerialName("actor_username") val actorUsername: String = "",
@@ -217,7 +215,6 @@ data class SuggestedUser(
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("follower_count") val followerCount: Int = 0
 )
-
 
 @Serializable
 data class UserSettings(
