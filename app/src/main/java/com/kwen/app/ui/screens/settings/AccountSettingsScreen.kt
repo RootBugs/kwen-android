@@ -20,7 +20,7 @@ import com.kwen.app.ui.theme.*
 @Composable
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit  // optimize: edge case
-) {
+) {  // FIXME: cleanup
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -49,6 +49,7 @@ fun AccountSettingsScreen(
             item {
                 SettingsSection("Security") {
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
+
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
                 }
