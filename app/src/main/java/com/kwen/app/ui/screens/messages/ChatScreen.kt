@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.messages
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -31,6 +30,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
+
 import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
@@ -46,7 +46,7 @@ fun ChatScreen(
     var messageText by remember { mutableStateOf("") }
     var otherUser by remember { mutableStateOf<Profile?>(null) }
     var isLoading by remember { mutableStateOf(true) }
-    var showDeleteDialog by remember { mutableStateOf(false) }  // check: refactor
+    var showDeleteDialog by remember { mutableStateOf(false) }
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
@@ -103,6 +103,7 @@ fun ChatScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -124,14 +125,12 @@ fun ChatScreen(
                         val isMine = msg.isMine
                         Row(
                             modifier = Modifier.fillMaxWidth(),
-
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
                                     .combinedClickable(
                                         onClick = {},
-
                                         onLongClick = {
                                             selectedMessage = msg
                                             showDeleteDialog = true
@@ -196,9 +195,8 @@ fun ChatScreen(
                         }
                     }),
                     singleLine = true
-
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(8.dp))  // review: validation
                 IconButton(
                     onClick = {
                         if (messageText.isNotBlank()) {
@@ -237,7 +235,6 @@ fun ChatScreen(
                                 try {
                                     supabase.from("messages").delete {
                                         filter { eq("id", message.id) }
-
                                     }
                                     loadMessages()
                                     showDeleteDialog = false
