@@ -23,7 +23,6 @@ fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
 ) {
-
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
@@ -46,7 +45,7 @@ fun CompleteProfileScreen(
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
-        Column(
+        Column(  // optimize: refactor
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
@@ -61,6 +60,7 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
+
                 "Tell us about yourself",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
@@ -99,7 +99,6 @@ fun CompleteProfileScreen(
                     cursorColor = AccentPrimary
                 )
             )
-
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
@@ -111,7 +110,6 @@ fun CompleteProfileScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -128,6 +126,7 @@ fun CompleteProfileScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
