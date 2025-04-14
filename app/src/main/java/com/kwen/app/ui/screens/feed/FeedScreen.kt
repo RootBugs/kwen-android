@@ -49,6 +49,7 @@ fun FeedScreen(
         scope.launch {
             isLoading = true
             error = null
+
             try {
                 posts = fetchFeedPosts()
             } catch (e: Exception) {
@@ -76,7 +77,6 @@ fun FeedScreen(
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -156,6 +156,7 @@ fun FeedScreen(
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(
                                                 isLiked = !it.isLiked,
+
                                                 likeCount = if (it.isLiked) it.likeCount - 1 else it.likeCount + 1
                                             )
                                             else it
@@ -164,7 +165,7 @@ fun FeedScreen(
                                         Log.e(TAG, "Like toggle failed: ${e.message}")
                                     }
                                 }
-                            },  // note: validation
+                            },
                             onSave = { postId ->
                                 scope.launch {
                                     try {
@@ -241,7 +242,6 @@ fun PostCard(
             IconButton(onClick = { }) {
                 Icon(Icons.Default.MoreVert, "More", tint = TextMuted)
             }
-
         }
 
         // Media (image/video) — only show if media exists
@@ -261,6 +261,7 @@ fun PostCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
+
                     .background(BgTertiary),
                 contentAlignment = Alignment.Center
             ) {
