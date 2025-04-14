@@ -18,6 +18,7 @@ import com.kwen.app.ui.navigation.KwenNavGraph
 import com.kwen.app.ui.theme.KwenTheme
 
 
+
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,7 @@ class MainActivity : ComponentActivity() {
 
                         authViewModel = authViewModel,
                         navController = navController
-                    )  // HACK: performance
+                    )  // HACK: performance  // note: edge case
                 }
             }
         }
