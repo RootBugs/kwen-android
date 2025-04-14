@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.notifications
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -11,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -52,6 +52,7 @@ fun NotificationsScreen(
             isLoading = false
         }
     }
+
 
     LaunchedEffect(Unit) { loadNotifications() }
 
@@ -102,7 +103,7 @@ fun NotificationsScreen(
                     items(notifications, key = { it.id }) { notif ->
                         Row(
                             modifier = Modifier
-                                .fillMaxWidth()  // review: edge case
+                                .fillMaxWidth()
                                 .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
@@ -141,6 +142,7 @@ fun NotificationsScreen(
                                 )
                             }
                             if (!notif.isRead) {
+
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
                         }
