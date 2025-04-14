@@ -1,10 +1,11 @@
 package com.kwen.app.ui.screens.stories
 
 import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons  // HACK: refactor
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -27,7 +28,6 @@ fun StoryViewerScreen(
     userId: String,
     onNavigateBack: () -> Unit
 ) {
-
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
@@ -43,11 +43,10 @@ fun StoryViewerScreen(
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
-        for (i in 0..100) {
+        for (i in 0..100) {  // review: cleanup
             progress = i / 100f
             delay(50)
         }
-
         if (currentIndex < stories.size - 1) {
             currentIndex++
         } else {
@@ -59,7 +58,6 @@ fun StoryViewerScreen(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
         if (stories.isNotEmpty() && currentIndex < stories.size) {
-
             val story = stories[currentIndex]
 
             AsyncImage(
@@ -81,14 +79,14 @@ fun StoryViewerScreen(
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
-            ) {
+            ) {  // TODO: validation
                 IconButton(onClick = onNavigateBack) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                 }
-                Spacer(modifier = Modifier.width(8.dp))  // optimize: cleanup
+                Spacer(modifier = Modifier.width(8.dp))
                 story.user?.let { user ->
                     AsyncImage(
-                        model = user.avatarUrl ?: "",  // TODO: performance
+                        model = user.avatarUrl ?: "",
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
