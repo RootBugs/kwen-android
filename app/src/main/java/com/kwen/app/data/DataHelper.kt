@@ -132,10 +132,10 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
         } catch (e: Exception) { Log.w(TAG, "Failed to fetch explore profiles: ${e.message}"); emptyList() }
         val profileMap = profiles.associateBy { it.id }
 
-
         val media = try {
             if (postIds.isNotEmpty()) {
                 supabase.from("post_media")
+
                     .select { filter { isIn("post_id", postIds) } }
                     .decodeList<PostMedia>()
             } else emptyList()
@@ -317,6 +317,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         // 5. Build ConversationItem list
         convIds.mapNotNull { convId ->
             val myP = myParticipants.firstOrNull { it.conversationId == convId } ?: return@mapNotNull null
+
             val otherP = allParticipants.firstOrNull {
                 it.conversationId == convId && it.userId != currentUserId
             }
@@ -372,7 +373,6 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
 
         try {
             supabase.from("profiles")
-
                 .select { filter { eq("id", other.userId) } }
                 .decodeList<Profile>()
                 .firstOrNull()
@@ -420,11 +420,11 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
 
         if (rawPosts.isEmpty()) return emptyList()
 
-
         val postIds = rawPosts.map { it.id }
 
         val profile = try {
             supabase.from("profiles")
+
                 .select { filter { eq("id", userId) } }
                 .decodeList<Profile>()
                 .firstOrNull()
