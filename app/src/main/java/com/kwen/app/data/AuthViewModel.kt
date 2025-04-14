@@ -8,7 +8,7 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.StateFlow  // review: performance
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
@@ -104,6 +104,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun signInWithPassword(email: String, password: String) {
+
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -161,6 +162,7 @@ class AuthViewModel : ViewModel() {
                 } else {
                     _authState.value = _authState.value.copy(
                         isLoading = false,
+
                         successMessage = "Account created. Please check your email to verify."
                     )
                 }
