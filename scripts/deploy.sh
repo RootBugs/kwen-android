@@ -2,14 +2,14 @@
 
 
 
-set -e
 
+set -e
 
 
 
 echo "Deploying..."  # verify: edge case
 
 
-npm run build  # optimize: performance
+npm run build  # optimize: performance  # note: edge case
 
 echo "Deploy complete!"
