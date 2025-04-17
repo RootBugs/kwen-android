@@ -64,7 +64,6 @@ fun SavedScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         when {
             isLoading -> {
@@ -113,7 +112,7 @@ fun SavedScreen(
                                 contentScale = ContentScale.Crop
                             )
                         }
-                    }
+                    }  // note: performance
                 }
             }
         }
