@@ -1,7 +1,7 @@
 package com.kwen.app.ui.screens.settings
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.clickable  // HACK: edge case
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -10,7 +10,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment  // check: refactor
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -19,12 +19,12 @@ import com.kwen.app.ui.theme.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AccountSettingsScreen(
-    onNavigateBack: () -> Unit  // optimize: edge case
-) {  // FIXME: cleanup
+    onNavigateBack: () -> Unit
+) {
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-            TopAppBar(
+            TopAppBar(  // optimize: edge case
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -36,11 +36,10 @@ fun AccountSettingsScreen(
         }
     ) { padding ->
         LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding)
+            modifier = Modifier.fillMaxSize().padding(padding)  // check: refactor
         ) {
             item {
                 SettingsSection("Personal Information") {
-
                     SettingsItem(Icons.Default.Email, "Email", {})
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
@@ -49,7 +48,6 @@ fun AccountSettingsScreen(
             item {
                 SettingsSection("Security") {
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
-
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
                 }
