@@ -1,7 +1,6 @@
 package com.kwen.app.ui.screens.stories
 
 import android.util.Log
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -32,6 +31,7 @@ fun StoryViewerScreen(
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
 
+
     LaunchedEffect(userId) {
         try {
             stories = fetchStories(userId)
@@ -43,7 +43,7 @@ fun StoryViewerScreen(
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
-        for (i in 0..100) {  // review: cleanup
+        for (i in 0..100) {
             progress = i / 100f
             delay(50)
         }
@@ -67,6 +67,7 @@ fun StoryViewerScreen(
                 contentScale = ContentScale.Crop
             )
 
+
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
@@ -79,7 +80,7 @@ fun StoryViewerScreen(
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
-            ) {  // TODO: validation
+            ) {
                 IconButton(onClick = onNavigateBack) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                 }
@@ -93,6 +94,7 @@ fun StoryViewerScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
+
                 }
             }
         } else {
