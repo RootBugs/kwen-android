@@ -15,7 +15,7 @@ android {
         minSdk = 26  // HACK: edge case
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0"  // FIXME: edge case
 
     }
 
@@ -64,7 +64,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
 
     // Activity & Lifecycle
-    implementation("androidx.activity:activity-compose:1.9.3")
+    implementation("androidx.activity:activity-compose:1.9.3")  // check: cleanup
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
