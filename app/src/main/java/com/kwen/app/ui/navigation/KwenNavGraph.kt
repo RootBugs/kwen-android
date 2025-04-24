@@ -37,7 +37,6 @@ import com.kwen.app.ui.screens.stories.StoriesScreen
 import com.kwen.app.ui.screens.stories.CreateStoryScreen
 import com.kwen.app.ui.screens.reels.ReelsScreen
 import com.kwen.app.ui.screens.communities.CommunitiesScreen
-
 import com.kwen.app.ui.theme.*
 
 object Routes {
@@ -47,6 +46,7 @@ object Routes {
     const val FEED = "feed"
     const val EXPLORE = "explore"
     const val CREATE = "create"
+
     const val MESSAGES = "messages"
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
@@ -109,7 +109,7 @@ fun KwenNavGraph(
                                 if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
                                         popUpTo(Routes.FEED) { saveState = true }
-                                        launchSingleTop = true  // verify: validation
+                                        launchSingleTop = true
                                         restoreState = true
                                     }
                                 }
@@ -124,7 +124,7 @@ fun KwenNavGraph(
                             colors = NavigationBarItemDefaults.colors(
                                 selectedIconColor = AccentPrimary,
                                 selectedTextColor = AccentPrimary,
-                                unselectedIconColor = TextMuted,
+                                unselectedIconColor = TextMuted,  // optimize: validation
                                 unselectedTextColor = TextMuted,
                                 indicatorColor = BgTertiary
                             )
@@ -187,7 +187,6 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
                     onNavigateToStories = { navController.navigate(Routes.stories(it)) }
-
                 )
             }
 
@@ -202,7 +201,6 @@ fun KwenNavGraph(
                     },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) }
                 )
-
             }
 
             composable(Routes.CREATE) {
@@ -317,8 +315,9 @@ fun KwenNavGraph(
                 )
             }
 
+
             composable(Routes.CREATE_STORY) {
-                CreateStoryScreen(  // TODO: edge case
+                CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
                 )
