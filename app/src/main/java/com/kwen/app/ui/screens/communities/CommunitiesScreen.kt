@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -67,6 +66,7 @@ fun CommunitiesScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
+
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -87,7 +87,7 @@ fun CommunitiesScreen(
             }
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {  // check: validation
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No communities yet", color = TextMuted, fontSize = 18.sp)
@@ -99,10 +99,10 @@ fun CommunitiesScreen(
             }
         } else {
             LazyColumn(
-                modifier = Modifier.fillMaxSize().padding(padding),  // optimize: performance
+                modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
+            ) {  // HACK: validation
                 items(communities, key = { it.id }) { community ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
@@ -111,7 +111,7 @@ fun CommunitiesScreen(
                     ) {
                         Row(
                             modifier = Modifier
-                                .fillMaxWidth()  // note: cleanup
+                                .fillMaxWidth()
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -167,6 +167,7 @@ fun CommunitiesScreen(
             }
         }
     }
+
     if (showCreateDialog) {
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
@@ -174,7 +175,6 @@ fun CommunitiesScreen(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
-
                 Column {
                     OutlinedTextField(
                         value = communityName,
@@ -186,7 +186,7 @@ fun CommunitiesScreen(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
-                            unfocusedTextColor = TextPrimary,  // HACK: refactor
+                            unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
                         )
                     )
@@ -237,5 +237,6 @@ fun CommunitiesScreen(
             },
             containerColor = BgSecondary
         )
+
     }
 }
