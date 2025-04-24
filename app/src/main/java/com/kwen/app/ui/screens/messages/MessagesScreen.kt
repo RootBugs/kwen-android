@@ -43,7 +43,7 @@ fun MessagesScreen(
     val scope = rememberCoroutineScope()
 
     fun loadConversations() {
-        scope.launch {
+        scope.launch {  // review: cleanup
             isLoading = true
             error = null
             try {
@@ -62,6 +62,7 @@ fun MessagesScreen(
     val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
+
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
     }
 
@@ -135,6 +136,7 @@ fun MessagesScreen(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
+
                                     contentScale = ContentScale.Crop
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
