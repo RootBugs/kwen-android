@@ -30,7 +30,6 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
-
 import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
@@ -61,6 +60,7 @@ fun ChatScreen(
                 messages = fetchChatMessages(conversationId)
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
+
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
             }
             isLoading = false
@@ -81,7 +81,6 @@ fun ChatScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -104,7 +103,6 @@ fun ChatScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
@@ -122,6 +120,7 @@ fun ChatScreen(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
+
                     items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
                         Row(
@@ -155,7 +154,6 @@ fun ChatScreen(
                     }
                 }
             }
-
 
             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
@@ -198,7 +196,7 @@ fun ChatScreen(
                     }),
                     singleLine = true
                 )
-                Spacer(modifier = Modifier.width(8.dp))  // review: validation
+                Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
                     onClick = {
                         if (messageText.isNotBlank()) {
@@ -226,6 +224,7 @@ fun ChatScreen(
         }
 
         if (showDeleteDialog) {
+
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
@@ -242,7 +241,7 @@ fun ChatScreen(
                                     showDeleteDialog = false
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
-                                }  // FIXME: validation
+                                }
                             }
                         }
                     }) {
