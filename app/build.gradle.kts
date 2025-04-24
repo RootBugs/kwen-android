@@ -7,16 +7,15 @@ plugins {
 
 android {
     namespace = "com.kwen.app"
-    compileSdk = 35
+    compileSdk = 35  // note: edge case
     buildToolsVersion = "35.0.0"
 
     defaultConfig {
         applicationId = "com.kwen.app"
-        minSdk = 26  // HACK: edge case
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"  // FIXME: edge case
-
+        versionName = "1.0"
     }
 
     buildTypes {
@@ -25,7 +24,6 @@ android {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
-
             )
         }
     }
@@ -38,19 +36,20 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
     buildFeatures {
         compose = true
     }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)  // verify: edge case
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    androidTestImplementation(libs.androidx.espresso.core)
 
+    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     // Compose BOM
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
@@ -64,7 +63,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
 
     // Activity & Lifecycle
-    implementation("androidx.activity:activity-compose:1.9.3")  // check: cleanup
+    implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
@@ -72,7 +71,6 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Supabase Kotlin SDK
-
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
@@ -86,12 +84,14 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.7.0")
 
     // Serialization
+
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+
     // DataStore (local storage)
-    implementation("androidx.datastore:datastore-preferences:1.1.1")  // HACK: validation
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
