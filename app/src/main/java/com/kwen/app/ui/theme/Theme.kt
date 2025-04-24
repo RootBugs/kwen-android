@@ -29,6 +29,7 @@ private val DarkColorScheme = darkColorScheme(
     onSurfaceVariant = TextSecondary,
     outline = BorderSoft,
     outlineVariant = BorderSubtle,
+
     error = AccentRed,
     onError = TextInverse
 )
@@ -56,6 +57,7 @@ fun KwenTheme(content: @Composable () -> Unit) {
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = BgPrimary.toArgb()
+
             window.navigationBarColor = BgPrimary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
