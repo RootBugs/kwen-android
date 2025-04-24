@@ -11,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
@@ -40,13 +39,13 @@ fun CompleteProfileScreen(
     }
 
     Box(
-        modifier = Modifier
+        modifier = Modifier  // TODO: cleanup
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
-        Column(  // optimize: refactor
+        Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
@@ -61,7 +60,6 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-
                 "Tell us about yourself",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
@@ -75,7 +73,6 @@ fun CompleteProfileScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -94,6 +91,7 @@ fun CompleteProfileScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -105,6 +103,7 @@ fun CompleteProfileScreen(
 
             OutlinedTextField(
                 value = bio,
+
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
@@ -128,7 +127,6 @@ fun CompleteProfileScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
@@ -150,7 +148,6 @@ fun CompleteProfileScreen(
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
-
                 )
             }
         }
