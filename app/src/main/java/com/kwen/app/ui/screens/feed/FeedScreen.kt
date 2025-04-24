@@ -84,6 +84,7 @@ fun FeedScreen(
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
@@ -229,6 +230,7 @@ fun PostCard(
             Spacer(modifier = Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
+
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                     if (post.isVerified) {
                         Spacer(modifier = Modifier.width(4.dp))
@@ -256,6 +258,7 @@ fun PostCard(
 
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
+
             // Text-only post: show text centered in a styled card
             Box(
                 modifier = Modifier
