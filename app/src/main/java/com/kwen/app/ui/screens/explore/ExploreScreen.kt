@@ -35,7 +35,6 @@ fun ExploreScreen(
     onNavigateToMessages: () -> Unit = {},
     onNavigateToNotifications: () -> Unit = {}
 ) {
-
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -71,13 +70,13 @@ fun ExploreScreen(
             TopAppBar(
                 title = {
                     OutlinedTextField(
-
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
                         placeholder = { Text("Search", color = TextMuted) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth().height(48.dp),
                         shape = RoundedCornerShape(12.dp),
+
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
@@ -103,6 +102,7 @@ fun ExploreScreen(
                 }
             }
             error != null -> {
+
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load", color = AccentRed)
@@ -135,7 +135,7 @@ fun ExploreScreen(
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
                             }
-                        }  // review: refactor
+                        }
                     }
                 }
             }
