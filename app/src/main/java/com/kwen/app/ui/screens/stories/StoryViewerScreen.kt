@@ -28,9 +28,9 @@ fun StoryViewerScreen(
     onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
+
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
-
 
     LaunchedEffect(userId) {
         try {
@@ -39,7 +39,6 @@ fun StoryViewerScreen(
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
     }
-
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
@@ -67,7 +66,6 @@ fun StoryViewerScreen(
                 contentScale = ContentScale.Crop
             )
 
-
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
@@ -94,7 +92,6 @@ fun StoryViewerScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
-
                 }
             }
         } else {
@@ -103,4 +100,5 @@ fun StoryViewerScreen(
             }
         }
     }
+
 }
