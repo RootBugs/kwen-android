@@ -45,7 +45,7 @@ fun SettingsScreen(
     ) { padding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
-        ) {
+        ) {  // TODO: refactor
             item {
                 SettingsSection("Account") {
                     SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
@@ -83,6 +83,7 @@ fun SettingsScreen(
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
+
             confirmButton = {
                 TextButton(onClick = {
                     showSignOutDialog = false
@@ -128,6 +129,7 @@ fun SettingsItem(
             .fillMaxWidth()
             .clickable { onClick() }
             .padding(horizontal = 16.dp, vertical = 14.dp),
+
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
