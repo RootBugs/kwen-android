@@ -16,6 +16,7 @@ data class Profile(
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
+
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
 )
@@ -31,7 +32,6 @@ data class PostMedia(
 
 @Serializable
 data class FeedPost(
-
     val id: String,
     @SerialName("user_id") val userId: String,
     val content: String? = null,
@@ -103,6 +103,7 @@ data class StoryUser(
 @Serializable
 data class Conversation(
     val id: String,
+
     @SerialName("last_message_at") val lastMessageAt: String = "",
     val other: Profile? = null
 )
@@ -130,7 +131,6 @@ data class ConversationItem(
 @Serializable
 data class Message(
     val id: String = "",
-
     @SerialName("conversation_id") val conversationId: String = "",
     @SerialName("sender_id") val senderId: String = "",
     val content: String = "",
@@ -201,6 +201,7 @@ data class ExplorePost(
 )
 
 @Serializable
+
 data class TrendingTag(
     val tag: String,
     @SerialName("post_count") val postCount: Int
