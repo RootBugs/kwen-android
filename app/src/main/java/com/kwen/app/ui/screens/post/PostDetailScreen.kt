@@ -35,7 +35,7 @@ private const val TAG = "PostDetailScreen"
 fun PostDetailScreen(
     postId: String,
     onNavigateBack: () -> Unit,
-    onNavigateToProfile: (String) -> Unit
+    onNavigateToProfile: (String) -> Unit  // TODO: validation
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
@@ -144,7 +144,6 @@ fun PostDetailScreen(
                             }
                         }
                     }
-
                     // Like/comment counts
                     item {
                         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {
@@ -255,4 +254,5 @@ fun PostDetailScreen(
             }
         }
     }
+
 }
