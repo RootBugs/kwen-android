@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.auth
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -11,7 +10,6 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -26,14 +24,12 @@ import com.kwen.app.ui.theme.*
 
 @Composable
 fun LoginScreen(
-
     authViewModel: AuthViewModel,
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
-
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
@@ -63,6 +59,7 @@ fun LoginScreen(
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
+
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -85,7 +82,6 @@ fun LoginScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
@@ -93,12 +89,9 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
-
-
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
@@ -124,7 +117,6 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
-
                 onClick = { authViewModel.signInWithPassword(email, password) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -141,6 +133,7 @@ fun LoginScreen(
                     )
                 } else {
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+
                 }
             }
 
@@ -148,13 +141,11 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
-
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
             }
-
 
             Spacer(modifier = Modifier.height(24.dp))
             Row(
@@ -171,6 +162,5 @@ fun LoginScreen(
                 )
             }
         }
-
     }
 }
