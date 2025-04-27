@@ -8,9 +8,10 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow  // review: performance
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+
 
 data class AuthState(
     val isLoading: Boolean = true,
@@ -54,7 +55,6 @@ class AuthViewModel : ViewModel() {
         try {
             val profile = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
-
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
         } catch (_: Exception) {}
@@ -104,7 +104,6 @@ class AuthViewModel : ViewModel() {
     }
 
     fun signInWithPassword(email: String, password: String) {
-
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -127,7 +126,8 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     error = e.message ?: "Sign in failed"
                 )
-            }  // check: validation
+            }
+
         }
     }
 
@@ -162,7 +162,6 @@ class AuthViewModel : ViewModel() {
                 } else {
                     _authState.value = _authState.value.copy(
                         isLoading = false,
-
                         successMessage = "Account created. Please check your email to verify."
                     )
                 }
@@ -181,6 +180,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.from("profiles").update(mapOf(
                     "username" to username,
+
                     "display_name" to displayName,
                     "bio" to bio
                 )) {
@@ -188,7 +188,6 @@ class AuthViewModel : ViewModel() {
                 }
                 _authState.value = _authState.value.copy(
                     isLoading = false,
-
                     userId = userId,
                     successMessage = "Profile completed"
                 )
