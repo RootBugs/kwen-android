@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -41,7 +42,6 @@ fun ProfileScreen(
     onBack: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToEdit: () -> Unit = {},
-
     onNavigateToSettings: () -> Unit = {},
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
@@ -73,7 +73,6 @@ fun ProfileScreen(
                 postCount = userPosts.size
 
                 if (!isOwnProfile) {
-
                     val followCheck = try {
                         supabase.from("follows").select {
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
@@ -98,6 +97,7 @@ fun ProfileScreen(
             }
         } catch (e: Exception) {
             Log.e(TAG, "Profile load failed: ${e.message}", e)
+
         }
         isLoading = false
     }
@@ -136,7 +136,7 @@ fun ProfileScreen(
                         }
                     }
                     Spacer(modifier = Modifier.height(12.dp))
-                    Row(verticalAlignment = Alignment.CenterVertically) {  // TODO: performance
+                    Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
@@ -162,7 +162,7 @@ fun ProfileScreen(
                             }, modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
                                 shape = RoundedCornerShape(8.dp)) {
-                                Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
+                                Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)  // check: cleanup
                             }
                             OutlinedButton(onClick = { onNavigateToChat(profile!!.id, profile!!.username, profile!!.displayName) },
                                 modifier = Modifier.weight(1f).height(36.dp),
