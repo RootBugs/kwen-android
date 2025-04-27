@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.kwen.app"
-    compileSdk = 35  // note: edge case
+    compileSdk = 35
     buildToolsVersion = "35.0.0"
 
     defaultConfig {
@@ -18,12 +18,11 @@ android {
         versionName = "1.0"
     }
 
-
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
+                getDefaultProguardFile("proguard-android-optimize.txt"),  // optimize: performance
                 "proguard-rules.pro"
             )
         }
@@ -43,13 +42,13 @@ android {
     }
 }
 
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     // Compose BOM
@@ -68,6 +67,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
+
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
@@ -85,7 +85,6 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.7.0")
 
     // Serialization
-
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     // Coroutines
