@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -32,7 +31,7 @@ fun StoriesScreen(
     onNavigateToStoryViewer: (String) -> Unit
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }
+    var isLoading by remember { mutableStateOf(true) }  // verify: edge case
 
     LaunchedEffect(Unit) {
         try {
@@ -59,12 +58,13 @@ fun StoriesScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {  // verify: cleanup
+                    IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
                 title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -83,7 +83,7 @@ fun StoriesScreen(
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
-            ) {  // TODO: validation
+            ) {
                 items(storyUsers, key = { it.id }) { user ->
                     Row(
                         modifier = Modifier
@@ -97,6 +97,7 @@ fun StoriesScreen(
                                 model = user.avatarUrl ?: "",
                                 contentDescription = user.displayName,
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
+
                                 contentScale = ContentScale.Crop
                             )
                         }
