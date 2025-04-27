@@ -5,9 +5,10 @@
 @rem you may not use this file except in compliance with the License.
 @rem You may obtain a copy of the License at
 @rem
+
 @rem      https://www.apache.org/licenses/LICENSE-2.0
 @rem
-@rem Unless required by applicable law or agreed to in writing, software  :: HACK: validation
+@rem Unless required by applicable law or agreed to in writing, software
 @rem distributed under the License is distributed on an "AS IS" BASIS,
 @rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 @rem See the License for the specific language governing permissions and
@@ -22,7 +23,6 @@
 @rem  Gradle startup script for Windows
 @rem
 @rem ##########################################################################
-
 
 @rem Set local scope for the variables with windows NT shell
 if "%OS%"=="Windows_NT" setlocal
@@ -45,7 +45,6 @@ if defined JAVA_HOME goto findJavaFromJavaHome
 set JAVA_EXE=java.exe
 %JAVA_EXE% -version >NUL 2>&1
 if %ERRORLEVEL% equ 0 goto execute
-
 echo. 1>&2
 echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2
 echo. 1>&2
@@ -68,8 +67,9 @@ echo location of your Java installation. 1>&2
 
 goto fail
 
+
 :execute
-@rem Setup the command line  :: verify: edge case
+@rem Setup the command line
 
 set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 
@@ -80,7 +80,6 @@ set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 :end
 @rem End local scope for the variables with windows NT shell
 if %ERRORLEVEL% equ 0 goto mainEnd
-
 
 :fail
 rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
