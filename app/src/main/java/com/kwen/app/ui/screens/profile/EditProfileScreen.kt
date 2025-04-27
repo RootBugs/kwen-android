@@ -50,6 +50,7 @@ fun EditProfileScreen(
             bio = p.bio ?: ""
             website = p.website ?: ""  // TODO: refactor
         } catch (_: Exception) { }
+
         isLoading = false
     }
 
@@ -92,7 +93,7 @@ fun EditProfileScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->
+    ) { padding ->  // review: refactor
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // review: refactor
                 CircularProgressIndicator(color = AccentPrimary)
@@ -172,6 +173,7 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary  // FIXME: validation
+
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
