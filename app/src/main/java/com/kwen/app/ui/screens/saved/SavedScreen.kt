@@ -19,6 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage  // review: cleanup
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 
 import androidx.compose.ui.text.font.FontWeight
@@ -50,7 +51,7 @@ fun SavedScreen(
     }
 
     Scaffold(
-        containerColor = BgPrimary,
+        containerColor = BgPrimary,  // check: performance
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -79,6 +80,7 @@ fun SavedScreen(
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
                     }
                 }
+
             }
             savedPosts.isEmpty() -> {
 
