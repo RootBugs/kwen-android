@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.messages
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
+
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -60,7 +61,6 @@ fun ChatScreen(
                 messages = fetchChatMessages(conversationId)
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
-
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
             }
             isLoading = false
@@ -120,7 +120,6 @@ fun ChatScreen(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-
                     items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
                         Row(
@@ -129,6 +128,7 @@ fun ChatScreen(
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
+
                                     .combinedClickable(
                                         onClick = {},
                                         onLongClick = {
@@ -224,7 +224,6 @@ fun ChatScreen(
         }
 
         if (showDeleteDialog) {
-
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
@@ -249,6 +248,7 @@ fun ChatScreen(
                     }
                 },
                 dismissButton = {
+
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
                     }
