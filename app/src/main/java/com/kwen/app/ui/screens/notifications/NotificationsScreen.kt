@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -24,6 +23,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
+
 
 private const val TAG = "NotificationsScreen"
 
@@ -52,7 +52,6 @@ fun NotificationsScreen(
             isLoading = false
         }
     }
-
 
     LaunchedEffect(Unit) { loadNotifications() }
 
@@ -98,6 +97,7 @@ fun NotificationsScreen(
             }
             else -> {
                 LazyColumn(
+
                     modifier = Modifier.fillMaxSize().padding(padding)
                 ) {
                     items(notifications, key = { it.id }) { notif ->
@@ -107,6 +107,7 @@ fun NotificationsScreen(
                                 .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
+
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
                                 }
@@ -142,7 +143,6 @@ fun NotificationsScreen(
                                 )
                             }
                             if (!notif.isRead) {
-
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
                         }
