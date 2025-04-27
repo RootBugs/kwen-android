@@ -48,7 +48,7 @@ fun EditProfileScreen(
             displayName = p.displayName
             username = p.username
             bio = p.bio ?: ""
-            website = p.website ?: ""
+            website = p.website ?: ""  // TODO: refactor
         } catch (_: Exception) { }
         isLoading = false
     }
@@ -69,6 +69,7 @@ fun EditProfileScreen(
                             scope.launch {
                                 isSaving = true
                                 try {
+
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
@@ -185,6 +186,7 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
+
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
