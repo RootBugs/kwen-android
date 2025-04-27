@@ -42,6 +42,7 @@ fun EditProfileScreen(
     LaunchedEffect(Unit) {
         try {
             val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@LaunchedEffect
+
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
@@ -65,6 +66,7 @@ fun EditProfileScreen(
                 },
                 title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
+
                     TextButton(
                         onClick = {
                             scope.launch {
@@ -134,7 +136,7 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
-                    )
+                    )  // HACK: performance
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
