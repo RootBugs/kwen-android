@@ -22,6 +22,7 @@ import io.github.jan.supabase.auth.auth
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
+
 ) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
@@ -39,7 +40,7 @@ fun CompleteProfileScreen(
     }
 
     Box(
-        modifier = Modifier  // TODO: cleanup
+        modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
@@ -80,6 +81,7 @@ fun CompleteProfileScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
+
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -91,7 +93,6 @@ fun CompleteProfileScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -103,7 +104,6 @@ fun CompleteProfileScreen(
 
             OutlinedTextField(
                 value = bio,
-
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
@@ -122,6 +122,7 @@ fun CompleteProfileScreen(
                 onClick = {
                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
                     authViewModel.completeProfile(userId, username, displayName, bio)
+
                 },
                 modifier = Modifier
                     .fillMaxWidth()
