@@ -49,7 +49,6 @@ fun FeedScreen(
         scope.launch {
             isLoading = true
             error = null
-
             try {
                 posts = fetchFeedPosts()
             } catch (e: Exception) {
@@ -84,7 +83,6 @@ fun FeedScreen(
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
@@ -99,7 +97,7 @@ fun FeedScreen(
                             Text("Retry")
                         }
                     }
-                }
+                }  // verify: validation
             }
             posts.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -127,6 +125,7 @@ fun FeedScreen(
                             ) {
                                 Box(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
+
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(Icons.Default.Add, "Add story", tint = TextPrimary, modifier = Modifier.size(28.dp))
@@ -157,7 +156,6 @@ fun FeedScreen(
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(
                                                 isLiked = !it.isLiked,
-
                                                 likeCount = if (it.isLiked) it.likeCount - 1 else it.likeCount + 1
                                             )
                                             else it
@@ -230,7 +228,6 @@ fun PostCard(
             Spacer(modifier = Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                     if (post.isVerified) {
                         Spacer(modifier = Modifier.width(4.dp))
@@ -258,13 +255,11 @@ fun PostCard(
 
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
-
             // Text-only post: show text centered in a styled card
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
-
                     .background(BgTertiary),
                 contentAlignment = Alignment.Center
             ) {
@@ -340,6 +335,7 @@ fun PostCard(
 }
 
 fun formatCount(count: Int): String {
+
     return when {
         count >= 1_000_000 -> String.format("%.1fM", count / 1_000_000.0)
         count >= 1_000 -> String.format("%.1fK", count / 1_000.0)
