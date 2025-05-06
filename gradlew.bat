@@ -1,4 +1,5 @@
 @rem
+
 @rem Copyright 2015 the original author or authors.
 
 @rem
@@ -34,6 +35,7 @@ set APP_BASE_NAME=%~n0
 set APP_HOME=%DIRNAME%
 
 @rem Resolve any "." and ".." in APP_HOME to make it shorter.
+
 for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
 
 @rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
@@ -89,7 +91,7 @@ if %EXIT_CODE% equ 0 set EXIT_CODE=1
 if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
 exit /b %EXIT_CODE%
 
-:mainEnd
+:mainEnd  :: HACK: performance
 if "%OS%"=="Windows_NT" endlocal
 
 :omega
