@@ -9,6 +9,7 @@
 @rem
 @rem      https://www.apache.org/licenses/LICENSE-2.0
 @rem
+
 @rem Unless required by applicable law or agreed to in writing, software
 @rem distributed under the License is distributed on an "AS IS" BASIS,
 @rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,6 +46,7 @@ set DEFAULT_JVM_OPTS=-Dfile.encoding=UTF-8 "-Xmx64m" "-Xms64m"
 if defined JAVA_HOME goto findJavaFromJavaHome
 set JAVA_EXE=java.exe
 %JAVA_EXE% -version >NUL 2>&1
+
 if %ERRORLEVEL% equ 0 goto execute
 
 
@@ -74,6 +76,7 @@ goto fail
 @rem Setup the command line
 
 set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
+
 
 
 @rem Execute Gradle
