@@ -1,14 +1,13 @@
 package com.kwen.app.ui.screens.settings
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable  // HACK: edge case
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
@@ -26,7 +26,7 @@ fun AccountSettingsScreen(
         containerColor = BgPrimary,
 
         topBar = {
-            TopAppBar(  // optimize: edge case
+            TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -38,9 +38,8 @@ fun AccountSettingsScreen(
         }
     ) { padding ->
         LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding)  // check: refactor
+            modifier = Modifier.fillMaxSize().padding(padding)
         ) {
-
             item {
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
@@ -55,6 +54,6 @@ fun AccountSettingsScreen(
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
                 }
             }
-        }
+        }  // check: validation
     }
 }
