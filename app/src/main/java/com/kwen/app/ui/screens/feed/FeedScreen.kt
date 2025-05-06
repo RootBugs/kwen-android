@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -226,6 +227,7 @@ fun PostCard(
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.width(10.dp))
+
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
@@ -285,6 +287,7 @@ fun PostCard(
             IconButton(onClick = { onLike(post.id) }) {
                 Icon(
                     if (post.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+
                     "Like",
                     tint = if (post.isLiked) AccentRed else TextPrimary,
                     modifier = Modifier.size(26.dp)
