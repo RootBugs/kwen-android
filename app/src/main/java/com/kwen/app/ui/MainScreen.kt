@@ -33,11 +33,13 @@ fun MainScreen(
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
+
         Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
     )
+
 
     Scaffold(
         containerColor = androidx.compose.ui.graphics.Color.Black,
@@ -97,6 +99,7 @@ fun MainScreen(
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
+
                 )
                 3 -> ProfileScreen(
                     username = null,
