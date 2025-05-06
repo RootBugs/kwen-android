@@ -15,6 +15,7 @@ This project is built using a component-based architecture that prioritizes:
 
 ### Module Structure
 
+
 ```
 
 module/
@@ -29,6 +30,7 @@ module/
 └── __tests__/        # Test files
 
 ```
+
 ### Data Flow
 Data flows unidirectionally through the application:
 
