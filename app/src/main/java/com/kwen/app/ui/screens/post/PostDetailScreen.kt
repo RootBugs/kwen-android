@@ -55,6 +55,7 @@ fun PostDetailScreen(
             } catch (e: Exception) {
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
+
             isLoading = false
         }
     }
@@ -131,7 +132,7 @@ fun PostDetailScreen(
                         }
                     }
 
-                    // Post content
+                    // revised: logic
                     val content = post?.content
                     if (!content.isNullOrBlank()) {
                         item {
@@ -249,6 +250,7 @@ fun PostDetailScreen(
                     }
                 }
             }
+
         }
     }
 }
