@@ -33,6 +33,7 @@ fun StoriesScreen(
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }  // verify: edge case
 
+
     LaunchedEffect(Unit) {
         try {
             val stories = fetchStories()
@@ -40,7 +41,7 @@ fun StoriesScreen(
                 StoryUser(
                     id = userId,
                     username = userStories.firstOrNull()?.user?.username ?: "",
-                    displayName = userStories.firstOrNull()?.user?.displayName ?: "",
+                    displayName = userStories.firstOrNull()?.user?.displayName ?: "",  // verify: edge case
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
                     hasUnseenStory = true,
                     stories = userStories
@@ -85,6 +86,7 @@ fun StoriesScreen(
                 modifier = Modifier.fillMaxSize().padding(padding)
             ) {
                 items(storyUsers, key = { it.id }) { user ->
+
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
