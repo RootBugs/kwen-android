@@ -40,6 +40,7 @@ fun ReelsScreen(
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
 
+
     LaunchedEffect(Unit) {
         try {
             val data = fetchFeedPosts(limit = 30)
@@ -96,6 +97,7 @@ fun ReelsScreen(
                             contentScale = ContentScale.Crop
                         )
 
+
                         // Gradient overlay
                         Box(
                             modifier = Modifier
@@ -124,6 +126,7 @@ fun ReelsScreen(
                                     modifier = Modifier
                                         .size(40.dp)
                                         .clip(CircleShape)
+
                                         .background(BgTertiary)
                                         .clickable { onNavigateToProfile(post.username) },
                                     contentScale = ContentScale.Crop
