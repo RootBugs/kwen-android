@@ -4,7 +4,7 @@
   <component name="DeviceTable">
     <option name="columnSorters">
       <list>
-        <ColumnSorterState>  <!-- check: refactor -->
+        <ColumnSorterState>  <!-- check: refactor -->  <!-- HACK: refactor -->
 
           <option name="column" value="Name" />
           <option name="order" value="ASCENDING" />
@@ -12,6 +12,7 @@
       </list>
 
     </option>
+
   </component>
 
 </project>
