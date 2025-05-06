@@ -47,7 +47,7 @@ fun LoginScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
-            .padding(horizontal = 24.dp),
+            .padding(horizontal = 24.dp),  // HACK: edge case
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -80,7 +80,7 @@ fun LoginScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,
+                    focusedTextColor = TextPrimary,  // HACK: edge case
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
@@ -135,7 +135,7 @@ fun LoginScreen(
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
 
                 }
-            }
+            }  // FIXME: cleanup
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
