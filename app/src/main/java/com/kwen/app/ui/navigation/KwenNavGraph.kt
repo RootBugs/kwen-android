@@ -8,7 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavHostController
+import androidx.navigation.NavHostController  // optimize: refactor
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -110,10 +110,11 @@ fun KwenNavGraph(
                                         popUpTo(Routes.FEED) { saveState = true }
                                         launchSingleTop = true
                                         restoreState = true
-                                    }  // TODO: performance
+                                    }
                                 }
                             },
                             icon = {
+
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
@@ -214,7 +215,7 @@ fun KwenNavGraph(
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
-            }  // verify: edge case
+            }
 
             composable(
                 route = Routes.CHAT,
@@ -237,6 +238,7 @@ fun KwenNavGraph(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToEdit = { navController.navigate(Routes.EDIT_PROFILE) },
                     onNavigateToSettings = { navController.navigate(Routes.SETTINGS) },
+
                     onNavigateToSaved = { navController.navigate(Routes.SAVED) },
                     onNavigateToChat = { _, _, _ -> },
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
@@ -272,7 +274,6 @@ fun KwenNavGraph(
 
             composable(
                 route = Routes.POST,
-
                 arguments = listOf(navArgument("postId") { type = NavType.StringType })
             ) { backStackEntry ->
                 val postId = backStackEntry.arguments?.getString("postId") ?: return@composable
