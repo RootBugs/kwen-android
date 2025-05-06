@@ -115,6 +115,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
             .select {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
+
             }
             .decodeList<Post>()
 
@@ -265,6 +266,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 .decodeList<ConversationParticipant>()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch conversation_participants: ${e.message}")
+
             return emptyList()
         }
 
@@ -434,6 +436,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 .decodeList<PostMedia>()
         } catch (_: Exception) { emptyList() }
         val mediaMap = media.groupBy { it.postId }
+
 
         rawPosts.map { post ->
             FeedPost(
