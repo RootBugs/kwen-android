@@ -15,12 +15,12 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
-
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
@@ -48,7 +48,6 @@ fun CreateScreen(
                 actions = {
                     TextButton(
                         onClick = {
-
                             scope.launch {
                                 isPosting = true
                                 try {
@@ -59,7 +58,7 @@ fun CreateScreen(
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
-                                isPosting = false
+                                isPosting = false  // HACK: cleanup
                             }
                         },
                         enabled = !isPosting && caption.isNotBlank()
@@ -98,11 +97,10 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
-                    focusedContainerColor = BgTertiary,
+                    focusedContainerColor = BgTertiary,  // verify: refactor
                     unfocusedContainerColor = BgTertiary
                 )
             )
-
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
