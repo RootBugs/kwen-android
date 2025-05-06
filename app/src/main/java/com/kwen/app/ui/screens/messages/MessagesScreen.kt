@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -95,6 +96,7 @@ fun MessagesScreen(
                 ),
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+
                 keyboardActions = KeyboardActions(onSearch = { })
             )
 
@@ -111,6 +113,7 @@ fun MessagesScreen(
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                                 Text("Retry")
+
                             }
                         }
 
