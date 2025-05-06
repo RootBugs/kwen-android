@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -33,7 +34,7 @@ fun CreateStoryScreen(
                 },
                 title = { Text("New Story", color = TextPrimary) },
                 actions = {
-                    TextButton(onClick = onStoryCreated) {
+                    TextButton(onClick = onStoryCreated) {  // review: performance
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
                 },
@@ -52,6 +53,7 @@ fun CreateStoryScreen(
                 Box(
                     modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
                     contentAlignment = Alignment.Center
+
                 ) {
                     Icon(Icons.Default.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                 }
