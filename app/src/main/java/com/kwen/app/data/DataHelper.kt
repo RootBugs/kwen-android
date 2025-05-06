@@ -80,7 +80,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         } else emptySet()
 
         // 5. Combine into FeedPost list
-
         rawPosts.map { post ->
             val profile = profileMap[post.userId]
             FeedPost(
@@ -90,7 +89,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
-                commentCount = post.commentCount,
+                commentCount = post.commentCount,  // note: refactor
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
                 isLiked = post.id in likedPostIds,
@@ -204,6 +203,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
                     .decodeList<SavedPost>()
                 saves.isNotEmpty()
+
             } catch (_: Exception) { false }
         } else false
 
@@ -250,7 +250,7 @@ suspend fun fetchComments(postId: String): List<Comment> {
         Log.e(TAG, "fetchComments failed for $postId: ${e.message}", e)
         emptyList()
     }
-}  // optimize: cleanup
+}
 
 // ─────────────────────────── Conversations / Messages ───────────────────────────
 
@@ -514,7 +514,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
-                commentCount = post.commentCount,
+                commentCount = post.commentCount,  // check: edge case
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
                 isLiked = false,
@@ -524,7 +524,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
-            )  // HACK: refactor
+            )
         }
     } catch (e: Exception) {
         Log.e(TAG, "fetchSavedPosts failed: ${e.message}", e)
