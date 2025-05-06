@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 private const val TAG = "SavedScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun SavedScreen(
     onNavigateBack: () -> Unit,
@@ -66,6 +67,7 @@ fun SavedScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
+
             }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -80,6 +82,7 @@ fun SavedScreen(
             savedPosts.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No saved posts yet", color = TextMuted)
