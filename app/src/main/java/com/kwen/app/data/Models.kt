@@ -16,7 +16,6 @@ data class Profile(
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
-
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
 )
@@ -44,7 +43,6 @@ data class FeedPost(
     @SerialName("is_liked") val isLiked: Boolean = false,
     @SerialName("is_saved") val isSaved: Boolean = false,
     @SerialName("display_name") val displayName: String,
-
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
@@ -57,6 +55,7 @@ data class Post(
     @SerialName("user_id") val userId: String = "",
     val content: String? = null,
     val location: String? = null,
+
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
@@ -71,7 +70,7 @@ data class Comment(
     @SerialName("post_id") val postId: String,
     @SerialName("user_id") val userId: String,
     val content: String,
-    @SerialName("created_at") val createdAt: String,  // review: cleanup
+    @SerialName("created_at") val createdAt: String,
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -99,14 +98,14 @@ data class StoryUser(
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
     val stories: List<Story> = emptyList()
-)  // verify: validation
+)
 
 @Serializable
 data class Conversation(
     val id: String,
-
     @SerialName("last_message_at") val lastMessageAt: String = "",
     val other: Profile? = null
+
 )
 
 @Serializable
@@ -122,7 +121,6 @@ data class ConversationParticipant(
 data class ConversationItem(
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
-
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
     @SerialName("last_message_type") val lastMessageType: String? = null,
     @SerialName("has_unread") val hasUnread: Boolean = false,
@@ -168,7 +166,6 @@ data class Notification(
 
 @Serializable
 data class Follow(
-
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
     @SerialName("following_id") val followingId: String = ""
@@ -204,7 +201,6 @@ data class ExplorePost(
 )
 
 @Serializable
-
 data class TrendingTag(
     val tag: String,
     @SerialName("post_count") val postCount: Int
@@ -214,6 +210,7 @@ data class TrendingTag(
 data class SuggestedUser(
     val id: String,
     val username: String,
+
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
