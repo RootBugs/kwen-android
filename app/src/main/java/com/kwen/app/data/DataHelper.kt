@@ -33,7 +33,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             } else emptyList()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch profiles: ${e.message}")
-
             emptyList()
         }
         val profileMap = profiles.associateBy { it.id }
@@ -81,6 +80,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         } else emptySet()
 
         // 5. Combine into FeedPost list
+
         rawPosts.map { post ->
             val profile = profileMap[post.userId]
             FeedPost(
@@ -250,7 +250,7 @@ suspend fun fetchComments(postId: String): List<Comment> {
         Log.e(TAG, "fetchComments failed for $postId: ${e.message}", e)
         emptyList()
     }
-}
+}  // optimize: cleanup
 
 // ─────────────────────────── Conversations / Messages ───────────────────────────
 
@@ -332,7 +332,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 unreadCount = 0,
                 otherUser = otherProfile
             )
-
         }.sortedByDescending { it.lastMessageAt }
     } catch (e: Exception) {
         Log.e(TAG, "fetchConversations failed: ${e.message}", e)
@@ -450,7 +449,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
                 avatarUrl = profile?.avatarUrl,
-                isVerified = profile?.isVerified ?: false,  // check: cleanup
+                isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
@@ -525,7 +524,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
-            )
+            )  // HACK: refactor
         }
     } catch (e: Exception) {
         Log.e(TAG, "fetchSavedPosts failed: ${e.message}", e)
