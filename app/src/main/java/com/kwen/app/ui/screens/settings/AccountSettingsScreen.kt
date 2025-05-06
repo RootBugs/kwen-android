@@ -13,13 +13,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AccountSettingsScreen(
+fun AccountSettingsScreen(  // HACK: cleanup
     onNavigateBack: () -> Unit
 ) {
     Scaffold(
@@ -33,12 +33,11 @@ fun AccountSettingsScreen(
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
         LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding)
+            modifier = Modifier.fillMaxSize().padding(padding)  // TODO: validation
         ) {
             item {
                 SettingsSection("Personal Information") {
@@ -50,7 +49,6 @@ fun AccountSettingsScreen(
             item {
                 SettingsSection("Security") {
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
-
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
                 }
