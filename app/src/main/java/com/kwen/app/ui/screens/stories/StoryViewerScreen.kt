@@ -25,10 +25,10 @@ private const val TAG = "StoryViewerScreen"
 @Composable
 fun StoryViewerScreen(
     userId: String,
+
     onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
-
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
 
@@ -39,6 +39,7 @@ fun StoryViewerScreen(
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
     }
+
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
@@ -65,7 +66,6 @@ fun StoryViewerScreen(
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
-
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
@@ -86,6 +86,7 @@ fun StoryViewerScreen(
                 story.user?.let { user ->
                     AsyncImage(
                         model = user.avatarUrl ?: "",
+
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
@@ -100,5 +101,4 @@ fun StoryViewerScreen(
             }
         }
     }
-
 }
