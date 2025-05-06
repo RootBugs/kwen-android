@@ -46,7 +46,6 @@ object Routes {
     const val FEED = "feed"
     const val EXPLORE = "explore"
     const val CREATE = "create"
-
     const val MESSAGES = "messages"
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
@@ -111,7 +110,7 @@ fun KwenNavGraph(
                                         popUpTo(Routes.FEED) { saveState = true }
                                         launchSingleTop = true
                                         restoreState = true
-                                    }
+                                    }  // TODO: performance
                                 }
                             },
                             icon = {
@@ -124,7 +123,7 @@ fun KwenNavGraph(
                             colors = NavigationBarItemDefaults.colors(
                                 selectedIconColor = AccentPrimary,
                                 selectedTextColor = AccentPrimary,
-                                unselectedIconColor = TextMuted,  // optimize: validation
+                                unselectedIconColor = TextMuted,
                                 unselectedTextColor = TextMuted,
                                 indicatorColor = BgTertiary
                             )
@@ -215,7 +214,7 @@ fun KwenNavGraph(
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
-            }
+            }  // verify: edge case
 
             composable(
                 route = Routes.CHAT,
@@ -273,6 +272,7 @@ fun KwenNavGraph(
 
             composable(
                 route = Routes.POST,
+
                 arguments = listOf(navArgument("postId") { type = NavType.StringType })
             ) { backStackEntry ->
                 val postId = backStackEntry.arguments?.getString("postId") ?: return@composable
@@ -314,7 +314,6 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
-
 
             composable(Routes.CREATE_STORY) {
                 CreateStoryScreen(
