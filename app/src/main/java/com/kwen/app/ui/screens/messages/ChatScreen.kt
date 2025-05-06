@@ -7,7 +7,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState  // verify: validation
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -68,7 +68,6 @@ fun ChatScreen(
 
     LaunchedEffect(conversationId) { loadMessages() }
 
-
     LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
             listState.animateScrollToItem(messages.size - 1)
@@ -91,7 +90,6 @@ fun ChatScreen(
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
-
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
@@ -110,6 +108,7 @@ fun ChatScreen(
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
+
             if (isLoading) {
                 Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
@@ -183,7 +182,6 @@ fun ChatScreen(
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
-
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
@@ -239,6 +237,7 @@ fun ChatScreen(
                                     }
                                     loadMessages()
                                     showDeleteDialog = false
+
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
                                 }
