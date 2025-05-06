@@ -26,7 +26,7 @@ private const val TAG = "SavedScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SavedScreen(
+fun SavedScreen(  // note: edge case
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -43,6 +43,7 @@ fun SavedScreen(
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
         }
+
         isLoading = false
 
     }
@@ -92,6 +93,7 @@ fun SavedScreen(
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
+
                 ) {
                     items(savedPosts) { post ->
                         Box(
