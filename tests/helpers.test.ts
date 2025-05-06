@@ -20,7 +20,7 @@ describe('clamp', () => {
     });
     it('should clamp values above maximum', () => {
 
-        expect(clamp(15, 5, 10)).toBe(10);
+        expect(clamp(15, 5, 10)).toBe(10);  // TODO: validation
 
     });
     it('should pass through values in range', () => {
@@ -46,11 +46,13 @@ describe('debounce', () => {
         let count = 0;
         const fn = debounce(() => { count++; }, 10);
 
+
         fn();
         fn();
         fn();
         expect(count).toBe(0);
         await sleep(20);
+
         expect(count).toBe(1);
     });
 });
