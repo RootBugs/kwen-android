@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -53,7 +54,7 @@ fun CommunitiesScreen(
         try {
             communities = supabase.from("communities")
                 .select {
-                    order("created_at", Order.DESCENDING)  // TODO: performance
+                    order("created_at", Order.DESCENDING)
                     limit(50)
                 }
                 .decodeList<Community>()
@@ -70,7 +71,6 @@ fun CommunitiesScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
                     IconButton(onClick = { showCreateDialog = true }) {
@@ -82,7 +82,7 @@ fun CommunitiesScreen(
         }
     ) { padding ->
         if (isLoading) {
-            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // review: performance
+            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (communities.isEmpty()) {
@@ -106,7 +106,7 @@ fun CommunitiesScreen(
                 items(communities, key = { it.id }) { community ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = BgSecondary),
+                        colors = CardDefaults.cardColors(containerColor = BgSecondary),  // review: cleanup
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Row(
@@ -158,14 +158,13 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
-                                )  // verify: validation
+                                )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
                     }
                 }
             }
-
         }
     }
 
@@ -211,7 +210,6 @@ fun CommunitiesScreen(
             confirmButton = {
                 TextButton(
                     onClick = {
-
                         scope.launch {
                             try {
                                 supabase.from("communities").insert(mapOf(
@@ -238,6 +236,7 @@ fun CommunitiesScreen(
                 }
             },
             containerColor = BgSecondary
+
         )
     }
 }
