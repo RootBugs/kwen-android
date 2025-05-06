@@ -31,6 +31,7 @@ fun LoginScreen(
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
@@ -47,7 +48,7 @@ fun LoginScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
-            .padding(horizontal = 24.dp),  // HACK: edge case
+            .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -59,7 +60,6 @@ fun LoginScreen(
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
-
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -69,7 +69,6 @@ fun LoginScreen(
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(40.dp))
-
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -80,7 +79,7 @@ fun LoginScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,  // HACK: edge case
+                    focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
@@ -133,9 +132,8 @@ fun LoginScreen(
                     )
                 } else {
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
-
                 }
-            }  // FIXME: cleanup
+            }
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
@@ -143,6 +141,7 @@ fun LoginScreen(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
+
                     textAlign = TextAlign.Center
                 )
             }
