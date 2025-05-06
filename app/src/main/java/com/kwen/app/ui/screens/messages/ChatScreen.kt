@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.messages
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
-
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -69,6 +68,7 @@ fun ChatScreen(
 
     LaunchedEffect(conversationId) { loadMessages() }
 
+
     LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
             listState.animateScrollToItem(messages.size - 1)
@@ -91,6 +91,7 @@ fun ChatScreen(
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
+
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
@@ -128,7 +129,6 @@ fun ChatScreen(
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
-
                                     .combinedClickable(
                                         onClick = {},
                                         onLongClick = {
@@ -183,6 +183,7 @@ fun ChatScreen(
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
+
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
@@ -248,7 +249,6 @@ fun ChatScreen(
                     }
                 },
                 dismissButton = {
-
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
                     }
