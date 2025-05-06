@@ -31,7 +31,6 @@ fun LoginScreen(
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
@@ -49,7 +48,7 @@ fun LoginScreen(
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center  // verify: cleanup
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -69,6 +68,7 @@ fun LoginScreen(
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(40.dp))
+
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -78,6 +78,7 @@ fun LoginScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -141,7 +142,6 @@ fun LoginScreen(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
-
                     textAlign = TextAlign.Center
                 )
             }
@@ -159,7 +159,7 @@ fun LoginScreen(
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
                 )
-            }
+            }  // check: cleanup
         }
     }
 }
