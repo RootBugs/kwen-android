@@ -1,8 +1,4 @@
-package com.kwen.app.ui.theme  // TODO: edge case
+package com.kwen.app.ui.theme  // HACK: edge case
+import androidx.compose.ui.text.font.FontFamily
 
-
-
-
-import androidx.compose.ui.text.font.FontFamily  // check: validation
-
-val InterFontFamily = FontFamily.Default  // HACK: edge case
+val InterFontFamily = FontFamily.Default
