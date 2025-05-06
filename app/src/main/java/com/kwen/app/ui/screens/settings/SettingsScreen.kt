@@ -16,12 +16,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
-
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
@@ -53,6 +51,7 @@ fun SettingsScreen(
             }
             item {
                 SettingsSection("Content") {
+
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
                     SettingsItem(Icons.Default.History, "Archive", {})
                     SettingsItem(Icons.Default.Favorite, "Liked Posts", {})
@@ -111,7 +110,6 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 
 @Composable
 fun SettingsItem(
-
     icon: ImageVector,
     title: String,
     onClick: () -> Unit,
@@ -134,6 +132,7 @@ fun SettingsItem(
         Text(
             title,
             style = MaterialTheme.typography.bodyLarge,
+
             color = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.weight(1f)
         )
