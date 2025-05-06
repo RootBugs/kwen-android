@@ -66,11 +66,11 @@ fun CommunitiesScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
+
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
                     IconButton(onClick = { showCreateDialog = true }) {
@@ -86,6 +86,7 @@ fun CommunitiesScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (communities.isEmpty()) {
+
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -102,7 +103,7 @@ fun CommunitiesScreen(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {  // HACK: validation
+            ) {
                 items(communities, key = { it.id }) { community ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
@@ -175,6 +176,7 @@ fun CommunitiesScreen(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
+
                 Column {
                     OutlinedTextField(
                         value = communityName,
@@ -237,6 +239,5 @@ fun CommunitiesScreen(
             },
             containerColor = BgSecondary
         )
-
     }
 }
