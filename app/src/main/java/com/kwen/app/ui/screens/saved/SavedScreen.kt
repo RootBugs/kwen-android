@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.saved
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -17,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import androidx.compose.ui.text.font.FontWeight
@@ -36,11 +36,11 @@ fun SavedScreen(
     var error by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
-
         isLoading = true
         try {
             savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
+
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
         }
@@ -91,8 +91,7 @@ fun SavedScreen(
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
-
-                    verticalArrangement = Arrangement.spacedBy(1.dp)
+                    verticalArrangement = Arrangement.spacedBy(1.dp)  // verify: refactor
                 ) {
                     items(savedPosts) { post ->
                         Box(
