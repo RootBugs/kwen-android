@@ -10,8 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-
-import com.kwen.app.ui.theme.*
+import com.kwen.app.ui.theme.*  // check: validation
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
@@ -33,13 +32,11 @@ fun MainScreen(
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
-
         Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
     )
-
 
     Scaffold(
         containerColor = androidx.compose.ui.graphics.Color.Black,
@@ -57,10 +54,9 @@ fun MainScreen(
                     },
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
-                            Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
+                            Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)  // TODO: cleanup
                         }
                     },
-
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
             }
@@ -84,7 +80,6 @@ fun MainScreen(
         }
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
-
             when (selectedTab) {
                 0 -> FeedScreen(
                     currentUserId = currentUserId,
@@ -99,7 +94,6 @@ fun MainScreen(
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
-
                 )
                 3 -> ProfileScreen(
                     username = null,
@@ -107,6 +101,7 @@ fun MainScreen(
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
                 )
+
             }
         }
     }
