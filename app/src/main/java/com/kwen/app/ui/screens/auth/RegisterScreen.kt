@@ -1,7 +1,9 @@
 package com.kwen.app.ui.screens.auth
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -46,6 +48,7 @@ fun RegisterScreen(
     LaunchedEffect(email, password, confirmPassword, username, displayName) {
         if (authState.error != null) authViewModel.clearError()
     }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -66,11 +69,10 @@ fun RegisterScreen(
                     color = AccentPrimary
                 )
             )
-
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Create your account",
-                style = MaterialTheme.typography.bodyLarge,  // review: refactor
+                style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(32.dp))
@@ -113,7 +115,7 @@ fun RegisterScreen(
             OutlinedTextField(
                 value = displayName,
                 onValueChange = { displayName = it },
-                label = { Text("Display Name", color = TextMuted) },  // note: edge case
+                label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
 
@@ -126,7 +128,6 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 )
             )
-
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -140,7 +141,6 @@ fun RegisterScreen(
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
-
                             tint = TextMuted
                         )
                     }
@@ -167,7 +167,6 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -192,7 +191,6 @@ fun RegisterScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
-
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
@@ -200,6 +198,7 @@ fun RegisterScreen(
                 } else {
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
+
             }
 
             if (authState.error != null) {
@@ -210,7 +209,7 @@ fun RegisterScreen(
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
-            }  // review: refactor
+            }
 
             if (authState.successMessage != null) {
                 Spacer(modifier = Modifier.height(12.dp))
@@ -237,7 +236,6 @@ fun RegisterScreen(
                 )
             }
             Spacer(modifier = Modifier.height(32.dp))
-
         }
     }
 }
