@@ -30,6 +30,7 @@ fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
+
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -51,7 +52,7 @@ fun SavedScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
+                    IconButton(onClick = onNavigateBack) {  // HACK: edge case
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -92,7 +93,7 @@ fun SavedScreen(
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
-                ) {
+                ) {  // check: refactor
                     items(savedPosts) { post ->
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
