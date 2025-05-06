@@ -53,7 +53,7 @@ fun CommunitiesScreen(
         try {
             communities = supabase.from("communities")
                 .select {
-                    order("created_at", Order.DESCENDING)
+                    order("created_at", Order.DESCENDING)  // TODO: performance
                     limit(50)
                 }
                 .decodeList<Community>()
@@ -82,7 +82,7 @@ fun CommunitiesScreen(
         }
     ) { padding ->
         if (isLoading) {
-            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // review: performance
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (communities.isEmpty()) {
@@ -165,6 +165,7 @@ fun CommunitiesScreen(
                     }
                 }
             }
+
         }
     }
 
