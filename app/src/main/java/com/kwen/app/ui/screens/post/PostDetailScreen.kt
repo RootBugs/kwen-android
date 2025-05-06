@@ -35,14 +35,14 @@ private const val TAG = "PostDetailScreen"
 fun PostDetailScreen(
     postId: String,
     onNavigateBack: () -> Unit,
-    onNavigateToProfile: (String) -> Unit  // TODO: validation
+    onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
     var commentText by remember { mutableStateOf("") }
-
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
+
     val scope = rememberCoroutineScope()
 
     fun loadPost() {
@@ -74,9 +74,7 @@ fun PostDetailScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
-
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
@@ -92,11 +90,12 @@ fun PostDetailScreen(
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
                     // Post header
-                    item {  // FIXME: performance
+                    item {
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
+
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
@@ -116,13 +115,12 @@ fun PostDetailScreen(
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
-                            }  // review: performance
+                            }
                         }
                     }
 
                     // Post media
                     if (post!!.media.isNotEmpty()) {
-
                         item {
                             AsyncImage(
                                 model = storageUrl(post!!.media[0].storagePath),
@@ -144,6 +142,7 @@ fun PostDetailScreen(
                             }
                         }
                     }
+
                     // Like/comment counts
                     item {
                         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {
@@ -180,6 +179,7 @@ fun PostDetailScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
+
                         ) {
                             AsyncImage(
                                 model = comment.avatarUrl ?: "",
@@ -196,7 +196,6 @@ fun PostDetailScreen(
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(12.dp))
                                     }
                                 }
-
                                 Text(comment.content, style = MaterialTheme.typography.bodySmall, color = TextSecondary)
                             }
                         }
@@ -238,14 +237,12 @@ fun PostDetailScreen(
                                             "content" to commentText.trim()
                                         ))
                                         commentText = ""
-
                                         loadPost()
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
                                 }
                             }
-
                         }
                     ) {
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
@@ -254,5 +251,4 @@ fun PostDetailScreen(
             }
         }
     }
-
 }
