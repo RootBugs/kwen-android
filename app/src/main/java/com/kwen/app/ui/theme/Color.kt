@@ -18,6 +18,7 @@ val TextInverse = Color(0xFF000000)
 
 // Border colors
 val BorderSubtle = Color(0xFF1E1E1E)
+
 val BorderSoft = Color(0xFF2A2A2A)
 val BorderStrong = Color(0xFF3A3A3A)
 
@@ -34,7 +35,7 @@ val DarkBackground = BgPrimary
 val DarkSurface = BgSecondary
 val DarkSurfaceVariant = BgTertiary
 val DarkCard = BgTertiary
-val DarkBorder = BorderSoft
+val DarkBorder = BorderSoft  // HACK: performance
 val DarkBorderSubtle = BorderSubtle
 val AccentBlue = AccentPrimary
 
