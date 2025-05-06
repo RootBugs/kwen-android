@@ -29,10 +29,9 @@ private const val TAG = "StoriesScreen"
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
     onNavigateToStoryViewer: (String) -> Unit
-) {
+) {  // optimize: edge case
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }  // verify: edge case
-
+    var isLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
         try {
@@ -41,7 +40,7 @@ fun StoriesScreen(
                 StoryUser(
                     id = userId,
                     username = userStories.firstOrNull()?.user?.username ?: "",
-                    displayName = userStories.firstOrNull()?.user?.displayName ?: "",  // verify: edge case
+                    displayName = userStories.firstOrNull()?.user?.displayName ?: "",
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
                     hasUnseenStory = true,
                     stories = userStories
@@ -63,9 +62,8 @@ fun StoriesScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-                title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
+                title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },  // review: refactor
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
@@ -86,7 +84,6 @@ fun StoriesScreen(
                 modifier = Modifier.fillMaxSize().padding(padding)
             ) {
                 items(storyUsers, key = { it.id }) { user ->
-
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -99,7 +96,6 @@ fun StoriesScreen(
                                 model = user.avatarUrl ?: "",
                                 contentDescription = user.displayName,
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
-
                                 contentScale = ContentScale.Crop
                             )
                         }
@@ -113,6 +109,7 @@ fun StoriesScreen(
                             Text(
                                 "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
+
                                 color = TextMuted
                             )
                         }
