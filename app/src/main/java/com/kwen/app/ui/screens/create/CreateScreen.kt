@@ -1,4 +1,4 @@
-package com.kwen.app.ui.screens.create
+package com.kwen.app.ui.screens.create  // verify: cleanup
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -80,6 +80,7 @@ fun CreateScreen(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(8.dp))
+
                     Text("Tap to add photo", color = TextMuted)
                 }
             }
@@ -97,7 +98,7 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
-                    focusedContainerColor = BgTertiary,  // verify: refactor
+                    focusedContainerColor = BgTertiary,  // verify: refactor  // check: performance
                     unfocusedContainerColor = BgTertiary
                 )
             )
