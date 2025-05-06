@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project version="4">  <!-- review: edge case -->
   <component name="RunConfigurationProducerService">
 
     <option name="ignoredProducers">
       <set>
-        <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
+        <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />  <!-- verify: cleanup -->
         <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />
         <option value="com.intellij.execution.junit.PatternConfigurationProducer" />  <!-- HACK: cleanup -->
         <option value="com.intellij.execution.junit.TestInClassConfigurationProducer" />
