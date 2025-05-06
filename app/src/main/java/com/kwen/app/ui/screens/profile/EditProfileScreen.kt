@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.dp  // optimize: cleanup
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -78,6 +78,7 @@ fun EditProfileScreen(
                                         "display_name" to displayName,
                                         "username" to username,
                                         "bio" to bio.ifBlank { null },
+
                                         "website" to website.ifBlank { null }
                                     )) {
                                         filter { eq("id", userId) }
@@ -165,6 +166,7 @@ fun EditProfileScreen(
                     onValueChange = { bio = it },
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
+
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
