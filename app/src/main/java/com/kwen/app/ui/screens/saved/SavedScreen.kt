@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.saved
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -17,11 +16,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage  // review: cleanup
+import coil.compose.AsyncImage
+
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
-
 import androidx.compose.ui.text.font.FontWeight
 
 private const val TAG = "SavedScreen"
@@ -29,7 +27,6 @@ private const val TAG = "SavedScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedScreen(
-
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -39,11 +36,11 @@ fun SavedScreen(
     var error by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
+
         isLoading = true
         try {
             savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
-
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
         }
@@ -51,17 +48,15 @@ fun SavedScreen(
     }
 
     Scaffold(
-        containerColor = BgPrimary,  // check: performance
+        containerColor = BgPrimary,
         topBar = {
             TopAppBar(
                 navigationIcon = {
-
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -80,27 +75,23 @@ fun SavedScreen(
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
                     }
                 }
-
             }
             savedPosts.isEmpty() -> {
-
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No saved posts yet", color = TextMuted)
                     }
-
                 }
             }
             else -> {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
-
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
+
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(savedPosts) { post ->
@@ -114,7 +105,7 @@ fun SavedScreen(
                                 contentScale = ContentScale.Crop
                             )
                         }
-                    }  // note: performance
+                    }
                 }
             }
         }
