@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
@@ -35,7 +36,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
+    kotlinOptions {  // verify: cleanup
         jvmTarget = "17"
     }
 
@@ -66,6 +67,7 @@ dependencies {
 
     // Activity & Lifecycle
     implementation("androidx.activity:activity-compose:1.9.3")
+
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
