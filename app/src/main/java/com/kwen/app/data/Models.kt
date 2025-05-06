@@ -71,7 +71,7 @@ data class Comment(
     @SerialName("post_id") val postId: String,
     @SerialName("user_id") val userId: String,
     val content: String,
-    @SerialName("created_at") val createdAt: String,
+    @SerialName("created_at") val createdAt: String,  // review: cleanup
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -122,6 +122,7 @@ data class ConversationParticipant(
 data class ConversationItem(
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
+
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
     @SerialName("last_message_type") val lastMessageType: String? = null,
     @SerialName("has_unread") val hasUnread: Boolean = false,
@@ -167,6 +168,7 @@ data class Notification(
 
 @Serializable
 data class Follow(
+
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
     @SerialName("following_id") val followingId: String = ""
