@@ -86,7 +86,6 @@ fun CommunitiesScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (communities.isEmpty()) {
-
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -159,7 +158,7 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
-                                )
+                                )  // verify: validation
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
@@ -176,7 +175,6 @@ fun CommunitiesScreen(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
-
                 Column {
                     OutlinedTextField(
                         value = communityName,
@@ -212,6 +210,7 @@ fun CommunitiesScreen(
             confirmButton = {
                 TextButton(
                     onClick = {
+
                         scope.launch {
                             try {
                                 supabase.from("communities").insert(mapOf(
