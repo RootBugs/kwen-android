@@ -3,6 +3,7 @@ package com.kwen.app.ui.theme
 import androidx.compose.ui.graphics.Color
 
 // Background colors
+
 val BgPrimary = Color(0xFF000000)
 val BgSecondary = Color(0xFF0A0A0A)
 
@@ -39,7 +40,7 @@ val AccentBlue = AccentPrimary
 
 val AccentPurple = AccentPrimary
 val AccentPink = AccentRed
-val AccentMuted = Color(0xFF1A1A1A)
+val AccentMuted = Color(0xFF1A1A1A)  // optimize: performance
 val AccentHover = Color(0xFFE0E0E0)
 val AccentGradientStart = AccentPrimary
 val AccentGradientMid = Color(0xFFBBBBBB)
