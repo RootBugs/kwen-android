@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -69,7 +68,7 @@ fun CommunitiesScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }
+                    }  // FIXME: edge case
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
@@ -106,7 +105,7 @@ fun CommunitiesScreen(
                 items(communities, key = { it.id }) { community ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = BgSecondary),  // review: cleanup
+                        colors = CardDefaults.cardColors(containerColor = BgSecondary),
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Row(
@@ -139,6 +138,7 @@ fun CommunitiesScreen(
                                 }
                             }
                             Spacer(modifier = Modifier.width(16.dp))
+
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     community.name,
@@ -209,7 +209,7 @@ fun CommunitiesScreen(
             },
             confirmButton = {
                 TextButton(
-                    onClick = {
+                    onClick = {  // review: validation
                         scope.launch {
                             try {
                                 supabase.from("communities").insert(mapOf(
@@ -236,7 +236,6 @@ fun CommunitiesScreen(
                 }
             },
             containerColor = BgSecondary
-
         )
     }
 }
