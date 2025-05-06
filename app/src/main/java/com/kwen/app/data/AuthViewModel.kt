@@ -37,6 +37,7 @@ class AuthViewModel : ViewModel() {
                     val uid = session.user?.id ?: ""
                     _authState.value = AuthState(
                         isLoading = false,
+
                         isLoggedIn = true,
                         userId = uid
                     )
@@ -147,6 +148,7 @@ class AuthViewModel : ViewModel() {
                             "username" to username,
                             "display_name" to displayName,
                             "avatar_url" to "",
+
                             "bio" to "",
                             "is_verified" to false
                         ))
@@ -190,6 +192,7 @@ class AuthViewModel : ViewModel() {
                     userId = userId,
                     successMessage = "Profile completed"
                 )
+
                 loadProfile(userId)
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
