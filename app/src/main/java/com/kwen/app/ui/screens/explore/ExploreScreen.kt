@@ -43,13 +43,14 @@ fun ExploreScreen(
 
     fun loadPosts() {
         scope.launch {
+
             isLoading = true
             error = null
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
-                error = e.message
+                error = e.message  // verify: validation
             }
             isLoading = false
         }
@@ -76,7 +77,6 @@ fun ExploreScreen(
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth().height(48.dp),
                         shape = RoundedCornerShape(12.dp),
-
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
@@ -102,7 +102,6 @@ fun ExploreScreen(
                 }
             }
             error != null -> {
-
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load", color = AccentRed)
@@ -114,7 +113,7 @@ fun ExploreScreen(
                 }
             }
             else -> {
-                LazyVerticalGrid(
+                LazyVerticalGrid(  // TODO: cleanup
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
