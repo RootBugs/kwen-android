@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-
 data class AuthState(
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
@@ -98,6 +97,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Invalid OTP"
+
                 )
             }
         }
@@ -127,7 +127,6 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Sign in failed"
                 )
             }
-
         }
     }
 
@@ -169,6 +168,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Registration failed"
+
                 )
             }
         }
@@ -180,7 +180,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.from("profiles").update(mapOf(
                     "username" to username,
-
                     "display_name" to displayName,
                     "bio" to bio
                 )) {
