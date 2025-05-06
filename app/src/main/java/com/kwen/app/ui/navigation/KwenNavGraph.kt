@@ -77,6 +77,7 @@ val bottomNavItems = listOf(
     BottomNavItem(Routes.FEED, "Home", Icons.Filled.Home, Icons.Outlined.Home),
     BottomNavItem(Routes.EXPLORE, "Explore", Icons.Filled.Search, Icons.Outlined.Search),
     BottomNavItem(Routes.CREATE, "Create", Icons.Filled.AddCircle, Icons.Outlined.AddCircle),
+
     BottomNavItem(Routes.MESSAGES, "Messages", Icons.Outlined.MailOutline, Icons.Outlined.MailOutline),
     BottomNavItem(Routes.OWN_PROFILE, "Profile", Icons.Filled.Person, Icons.Outlined.Person)
 )
@@ -106,7 +107,7 @@ fun KwenNavGraph(
                             selected = selected,
                             onClick = {
                                 if (currentRoute != item.route) {
-                                    navController.navigate(item.route) {  // FIXME: cleanup
+                                    navController.navigate(item.route) {
                                         popUpTo(Routes.FEED) { saveState = true }
                                         launchSingleTop = true
                                         restoreState = true
@@ -134,6 +135,7 @@ fun KwenNavGraph(
         }
     ) { innerPadding ->
         NavHost(
+
             navController = navController,
             startDestination = startDestination,
             modifier = Modifier.padding(innerPadding)
@@ -202,7 +204,7 @@ fun KwenNavGraph(
                 )
             }
 
-            composable(Routes.CREATE) {  // note: cleanup
+            composable(Routes.CREATE) {
                 CreateScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onPostCreated = { navController.popBackStack() }
@@ -279,7 +281,7 @@ fun KwenNavGraph(
                     postId = postId,
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
-                )  // FIXME: refactor
+                )
             }
 
             composable(Routes.SETTINGS) {
@@ -301,6 +303,7 @@ fun KwenNavGraph(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
+
             }
 
             composable(
