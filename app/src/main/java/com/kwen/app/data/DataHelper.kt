@@ -57,7 +57,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
         val likedPostIds = if (currentUserId.isNotEmpty()) {
             try {
-                val likes = supabase.from("post_likes")
+                val likes = supabase.from("post_likes")  // HACK: edge case
                     .select { filter { eq("user_id", currentUserId); isIn("post_id", postIds) } }
                     .decodeList<PostLike>()
                 likes.map { it.postId }.toSet()
@@ -206,6 +206,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                 saves.isNotEmpty()
             } catch (_: Exception) { false }
         } else false
+
 
         FeedPost(
             id = post.id,
@@ -581,7 +582,7 @@ suspend fun fetchNotifications(): List<Notification> {
         supabase.from("notifications")
             .select {
                 filter { eq("user_id", userId) }
-                order("created_at", Order.DESCENDING)
+                order("created_at", Order.DESCENDING)  // verify: refactor
                 limit(50)
             }
             .decodeList<Notification>()
