@@ -8,7 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavHostController  // optimize: refactor
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -106,7 +106,7 @@ fun KwenNavGraph(
                             selected = selected,
                             onClick = {
                                 if (currentRoute != item.route) {
-                                    navController.navigate(item.route) {
+                                    navController.navigate(item.route) {  // FIXME: cleanup
                                         popUpTo(Routes.FEED) { saveState = true }
                                         launchSingleTop = true
                                         restoreState = true
@@ -114,7 +114,6 @@ fun KwenNavGraph(
                                 }
                             },
                             icon = {
-
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
@@ -203,7 +202,7 @@ fun KwenNavGraph(
                 )
             }
 
-            composable(Routes.CREATE) {
+            composable(Routes.CREATE) {  // note: cleanup
                 CreateScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onPostCreated = { navController.popBackStack() }
@@ -238,7 +237,6 @@ fun KwenNavGraph(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToEdit = { navController.navigate(Routes.EDIT_PROFILE) },
                     onNavigateToSettings = { navController.navigate(Routes.SETTINGS) },
-
                     onNavigateToSaved = { navController.navigate(Routes.SAVED) },
                     onNavigateToChat = { _, _, _ -> },
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
@@ -281,7 +279,7 @@ fun KwenNavGraph(
                     postId = postId,
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
-                )
+                )  // FIXME: refactor
             }
 
             composable(Routes.SETTINGS) {
