@@ -44,7 +44,7 @@ data class Community(
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
 ) {
-    var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
+    var communities by remember { mutableStateOf<List<Community>>(emptyList()) }  // HACK: performance
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -68,7 +68,7 @@ fun CommunitiesScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }  // FIXME: edge case
+                    }
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
@@ -138,7 +138,6 @@ fun CommunitiesScreen(
                                 }
                             }
                             Spacer(modifier = Modifier.width(16.dp))
-
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     community.name,
@@ -151,6 +150,7 @@ fun CommunitiesScreen(
                                         it,
                                         color = TextMuted,
                                         fontSize = 13.sp,
+
                                         maxLines = 2
                                     )
                                 }
@@ -209,11 +209,12 @@ fun CommunitiesScreen(
             },
             confirmButton = {
                 TextButton(
-                    onClick = {  // review: validation
+                    onClick = {
                         scope.launch {
                             try {
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
+
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
                                 ))
