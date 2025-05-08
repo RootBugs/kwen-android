@@ -8,4 +8,5 @@ echo === CLEAN ===
 call gradlew.bat clean --no-daemon
 echo === BUILD ===
 call gradlew.bat assembleDebug --no-daemon --stacktrace
+
 echo === DONE: %ERRORLEVEL% ===
