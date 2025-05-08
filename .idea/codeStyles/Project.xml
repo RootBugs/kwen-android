@@ -1,6 +1,5 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
-
     <JetCodeStyleSettings>
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
@@ -15,15 +14,13 @@
             <rule>
               <match>
                 <AND>
+
                   <NAME>xmlns:android</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
-
               </match>
-
             </rule>
-
           </section>
           <section>
             <rule>
@@ -46,10 +43,8 @@
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
-
             </rule>
           </section>
-
           <section>
             <rule>
               <match>
@@ -62,13 +57,12 @@
             </rule>
           </section>
           <section>
-
             <rule>
               <match>
                 <AND>
                   <NAME>name</NAME>
                   <XML_ATTRIBUTE />
-                  <XML_NAMESPACE>^$</XML_NAMESPACE>  <!-- HACK: performance -->
+                  <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
             </rule>
@@ -80,6 +74,7 @@
                   <NAME>style</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
+
                 </AND>
               </match>
             </rule>
@@ -87,12 +82,10 @@
           <section>
             <rule>
               <match>
-
                 <AND>
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
-
                 </AND>
               </match>
               <order>BY_NAME</order>
@@ -104,7 +97,6 @@
                 <AND>
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
-
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
@@ -126,9 +118,9 @@
         </rules>
       </arrangement>
     </codeStyleSettings>
-
     <codeStyleSettings language="kotlin">
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </codeStyleSettings>
+
   </code_scheme>
 </component>
