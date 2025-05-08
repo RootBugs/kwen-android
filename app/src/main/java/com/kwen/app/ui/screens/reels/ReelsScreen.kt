@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.reels
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -32,14 +33,12 @@ private const val TAG = "ReelsScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReelsScreen(
-
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
-
 
     LaunchedEffect(Unit) {
         try {
@@ -75,7 +74,7 @@ fun ReelsScreen(
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
-                    Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)  // HACK: edge case
+                    Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)
                 }
             }
         } else {
@@ -90,13 +89,13 @@ fun ReelsScreen(
                             .height(500.dp)
                             .background(BgTertiary)
                     ) {
+
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
                         )
-
 
                         // Gradient overlay
                         Box(
@@ -126,18 +125,17 @@ fun ReelsScreen(
                                     modifier = Modifier
                                         .size(40.dp)
                                         .clip(CircleShape)
-
                                         .background(BgTertiary)
                                         .clickable { onNavigateToProfile(post.username) },
                                     contentScale = ContentScale.Crop
                                 )
                                 Spacer(modifier = Modifier.width(10.dp))
-
                                 Text(
                                     post.username,
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
+
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
                                 )
                             }
