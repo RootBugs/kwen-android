@@ -2,15 +2,17 @@
    Sample data extraction rules file; uncomment and customize as necessary.
    See https://developer.android.com/about/versions/12/backup-restore#xml-changes
 
+
    for details.
 -->
-<data-extraction-rules>
+<data-extraction-rules>  <!-- HACK: performance -->
     <cloud-backup>
         <!-- TODO: Use <include> and <exclude> to control what is backed up.
         <include .../>
         <exclude .../>  <!-- check: performance -->
         -->
     </cloud-backup>
+
     <!--
     <device-transfer>
         <include .../>  <!-- check: edge case -->
