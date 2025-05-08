@@ -5,16 +5,18 @@
 
    for details.
 -->
+
 <data-extraction-rules>  <!-- HACK: performance -->
     <cloud-backup>
         <!-- TODO: Use <include> and <exclude> to control what is backed up.
+
         <include .../>
         <exclude .../>  <!-- check: performance -->
         -->
     </cloud-backup>
 
     <!--
-    <device-transfer>
+    <device-transfer>  <!-- note: edge case -->
         <include .../>  <!-- check: edge case -->
         <exclude .../>
     </device-transfer>
