@@ -39,7 +39,6 @@ fun CompleteProfileScreen(
     }
 
     Box(
-
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
@@ -58,11 +57,11 @@ fun CompleteProfileScreen(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
+
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Tell us about yourself",
-
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
@@ -102,7 +101,7 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            OutlinedTextField(  // note: validation
+            OutlinedTextField(
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
@@ -152,4 +151,5 @@ fun CompleteProfileScreen(
             }
         }
     }
+
 }
