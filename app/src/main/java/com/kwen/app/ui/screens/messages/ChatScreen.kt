@@ -30,6 +30,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
+
 import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
@@ -120,6 +121,7 @@ fun ChatScreen(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
+
                     items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
                         Row(
@@ -250,6 +252,7 @@ fun ChatScreen(
                 dismissButton = {
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
+
                     }
                 }
             )
