@@ -7,7 +7,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState  // verify: validation
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -60,6 +60,7 @@ fun ChatScreen(
                 messages = fetchChatMessages(conversationId)
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
+
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
             }
             isLoading = false
@@ -108,7 +109,6 @@ fun ChatScreen(
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
-
             if (isLoading) {
                 Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
@@ -151,6 +151,7 @@ fun ChatScreen(
                             }
                         }
                     }
+
                 }
             }
 
@@ -175,7 +176,7 @@ fun ChatScreen(
                         unfocusedContainerColor = BgTertiary
                     ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
-                    keyboardActions = KeyboardActions(onSend = {
+                    keyboardActions = KeyboardActions(onSend = {  // review: cleanup
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
@@ -237,7 +238,6 @@ fun ChatScreen(
                                     }
                                     loadMessages()
                                     showDeleteDialog = false
-
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
                                 }
