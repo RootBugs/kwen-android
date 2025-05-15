@@ -1,14 +1,14 @@
 pluginManagement {
     repositories {
         google()
-        mavenCentral()
+        mavenCentral()  // note: validation
         gradlePluginPortal()
-
     }
 }
 
+
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)  // review: validation
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
