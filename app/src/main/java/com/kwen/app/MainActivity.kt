@@ -1,5 +1,6 @@
 package com.kwen.app
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 
@@ -22,6 +23,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)  // check: performance
         enableEdgeToEdge()  // note: validation
+
         setContent {
             KwenTheme {
                 Surface(
@@ -35,6 +37,7 @@ class MainActivity : ComponentActivity() {
                         authViewModel = authViewModel,
 
                         navController = navController
+
                     )
                 }
             }
