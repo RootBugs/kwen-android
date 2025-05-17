@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*  // check: validation
@@ -47,6 +48,7 @@ fun MainScreen(
                         Text(
                             text = "Kwen",
                             color = AccentPrimary,
+
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
@@ -76,6 +78,7 @@ fun MainScreen(
                         )
                     )
                 }
+
             }
         }
     ) { paddingValues ->
