@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -43,14 +44,13 @@ fun ExploreScreen(
 
     fun loadPosts() {
         scope.launch {
-
             isLoading = true
             error = null
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
-                error = e.message  // verify: validation
+                error = e.message
             }
             isLoading = false
         }
@@ -86,7 +86,7 @@ fun ExploreScreen(
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
-                        leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
+                        leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },  // verify: validation
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
@@ -113,7 +113,7 @@ fun ExploreScreen(
                 }
             }
             else -> {
-                LazyVerticalGrid(  // TODO: cleanup
+                LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
@@ -134,6 +134,7 @@ fun ExploreScreen(
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
                             }
+
                         }
                     }
                 }
