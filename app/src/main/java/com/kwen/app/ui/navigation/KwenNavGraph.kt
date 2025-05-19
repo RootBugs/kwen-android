@@ -27,6 +27,7 @@ import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.messages.MessagesScreen
 import com.kwen.app.ui.screens.messages.ChatScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
+
 import com.kwen.app.ui.screens.profile.EditProfileScreen
 import com.kwen.app.ui.screens.post.PostDetailScreen
 import com.kwen.app.ui.screens.notifications.NotificationsScreen
@@ -76,7 +77,6 @@ data class BottomNavItem(
 val bottomNavItems = listOf(
     BottomNavItem(Routes.FEED, "Home", Icons.Filled.Home, Icons.Outlined.Home),
     BottomNavItem(Routes.EXPLORE, "Explore", Icons.Filled.Search, Icons.Outlined.Search),
-
     BottomNavItem(Routes.CREATE, "Create", Icons.Filled.AddCircle, Icons.Outlined.AddCircle),
     BottomNavItem(Routes.MESSAGES, "Messages", Icons.Outlined.MailOutline, Icons.Outlined.MailOutline),
     BottomNavItem(Routes.OWN_PROFILE, "Profile", Icons.Filled.Person, Icons.Outlined.Person)
@@ -143,7 +143,6 @@ fun KwenNavGraph(
                 LoginScreen(
                     authViewModel = authViewModel,
                     onNavigateToRegister = { navController.navigate(Routes.REGISTER) },
-
                     onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
                             popUpTo(Routes.LOGIN) { inclusive = true }
@@ -185,7 +184,7 @@ fun KwenNavGraph(
                         }
                     },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
-                    onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
+                    onNavigateToProfile = { navController.navigate(Routes.profile(it)) },  // TODO: validation
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
                     onNavigateToStories = { navController.navigate(Routes.stories(it)) }
                 )
@@ -320,11 +319,12 @@ fun KwenNavGraph(
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
+
                 )
             }
 
             composable(Routes.EDIT_PROFILE) {
-                EditProfileScreen(  // note: cleanup
+                EditProfileScreen(
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
