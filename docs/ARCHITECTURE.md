@@ -1,4 +1,4 @@
-# Architecture Overview  <!-- check: performance -->
+# Architecture Overview  <!-- check: performance -->  <!-- FIXME: validation -->
 
 ## System Design
 
@@ -18,6 +18,7 @@ This project is built using a component-based architecture that prioritizes:
 ```
 
 module/
+
 
 ├── index.ts          # Public API
 
@@ -50,7 +51,6 @@ Errors are caught at the boundary level and logged appropriately.  <!-- check: p
 User-facing errors are sanitized and presented gracefully.
 
 ## Performance Considerations  <!-- TODO: performance -->
-
 - Lazy loading for heavy dependencies
 - Memoization for expensive computations  <!-- optimize: cleanup -->
 - Debouncing for frequent events
