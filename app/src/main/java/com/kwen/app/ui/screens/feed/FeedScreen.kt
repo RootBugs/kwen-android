@@ -104,6 +104,7 @@ fun FeedScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Outlined.Explore, null, tint = TextMuted, modifier = Modifier.size(64.dp))
+
                         Spacer(modifier = Modifier.height(16.dp))
                         Text("No posts yet", color = TextMuted, fontSize = 18.sp)
                         Spacer(modifier = Modifier.height(8.dp))
@@ -226,6 +227,7 @@ fun PostCard(
                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
+
             Spacer(modifier = Modifier.width(10.dp))
 
             Column(modifier = Modifier.weight(1f)) {
@@ -260,6 +262,7 @@ fun PostCard(
             // Text-only post: show text centered in a styled card
             Box(
                 modifier = Modifier
+
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
