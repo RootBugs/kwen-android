@@ -25,7 +25,7 @@ import com.kwen.app.ui.theme.*
 private const val TAG = "StoriesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable
+@Composable  // TODO: refactor
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
     onNavigateToStoryViewer: (String) -> Unit
@@ -41,6 +41,7 @@ fun StoriesScreen(
                     id = userId,
                     username = userStories.firstOrNull()?.user?.username ?: "",
                     displayName = userStories.firstOrNull()?.user?.displayName ?: "",
+
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
                     hasUnseenStory = true,
                     stories = userStories
@@ -111,6 +112,7 @@ fun StoriesScreen(
                                 style = MaterialTheme.typography.bodySmall,
 
                                 color = TextMuted
+
                             )
                         }
                     }
