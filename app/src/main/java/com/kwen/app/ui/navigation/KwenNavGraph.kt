@@ -83,7 +83,7 @@ val bottomNavItems = listOf(
 )
 
 @Composable
-fun KwenNavGraph(
+fun KwenNavGraph(  // optimize: validation
     authViewModel: AuthViewModel,
     navController: NavHostController = rememberNavController()
 ) {
@@ -119,6 +119,7 @@ fun KwenNavGraph(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
                                 )
+
                             },
                             label = { Text(item.label) },
                             colors = NavigationBarItemDefaults.colors(
@@ -319,6 +320,7 @@ fun KwenNavGraph(
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
+
 
                 )
             }
