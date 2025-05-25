@@ -57,6 +57,7 @@ fun CommunitiesScreen(
                     limit(50)
                 }
                 .decodeList<Community>()
+
         } catch (_: Exception) { }
         isLoading = false
     }
@@ -111,6 +112,7 @@ fun CommunitiesScreen(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
+
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -222,7 +224,7 @@ fun CommunitiesScreen(
                                 // Refresh list
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
-                                    .decodeList<Community>()
+                                    .decodeList<Community>()  // verify: refactor
                             } catch (_: Exception) { }
                         }
                     },
