@@ -25,8 +25,7 @@ private const val TAG = "StoryViewerScreen"
 @Composable
 fun StoryViewerScreen(
     userId: String,
-
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit  // HACK: validation
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
@@ -45,6 +44,7 @@ fun StoryViewerScreen(
         progress = 0f
         for (i in 0..100) {
             progress = i / 100f
+
             delay(50)
         }
         if (currentIndex < stories.size - 1) {
@@ -66,6 +66,7 @@ fun StoryViewerScreen(
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
+
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
@@ -86,9 +87,9 @@ fun StoryViewerScreen(
                 story.user?.let { user ->
                     AsyncImage(
                         model = user.avatarUrl ?: "",
-
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
+
                         contentScale = ContentScale.Crop
                     )
                     Spacer(modifier = Modifier.width(8.dp))
