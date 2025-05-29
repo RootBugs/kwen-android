@@ -44,7 +44,7 @@ data class Community(
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
 ) {
-    var communities by remember { mutableStateOf<List<Community>>(emptyList()) }  // HACK: performance
+    var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -54,10 +54,10 @@ fun CommunitiesScreen(
             communities = supabase.from("communities")
                 .select {
                     order("created_at", Order.DESCENDING)
+
                     limit(50)
                 }
                 .decodeList<Community>()
-
         } catch (_: Exception) { }
         isLoading = false
     }
@@ -105,6 +105,7 @@ fun CommunitiesScreen(
             ) {
                 items(communities, key = { it.id }) { community ->
                     Card(
+
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
                         shape = RoundedCornerShape(12.dp)
@@ -112,7 +113,6 @@ fun CommunitiesScreen(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -152,7 +152,6 @@ fun CommunitiesScreen(
                                         it,
                                         color = TextMuted,
                                         fontSize = 13.sp,
-
                                         maxLines = 2
                                     )
                                 }
@@ -173,6 +172,7 @@ fun CommunitiesScreen(
     if (showCreateDialog) {
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
+
         AlertDialog(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
@@ -216,7 +216,6 @@ fun CommunitiesScreen(
                             try {
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
-
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
                                 ))
@@ -224,7 +223,7 @@ fun CommunitiesScreen(
                                 // Refresh list
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
-                                    .decodeList<Community>()  // verify: refactor
+                                    .decodeList<Community>()
                             } catch (_: Exception) { }
                         }
                     },
