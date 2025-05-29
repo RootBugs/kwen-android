@@ -14,6 +14,7 @@ This guide will help you set up the development environment for this project.  <
 - Package manager (npm/yarn/pnpm)
 
 
+
 ### Initial Setup
 
 1. Fork and clone the repository
@@ -26,7 +27,7 @@ This guide will help you set up the development environment for this project.  <
 
 ### Code Style
 
-- Follow the existing code conventions
+- Follow the existing code conventions  <!-- review: performance -->
 
 
 
@@ -41,7 +42,6 @@ This guide will help you set up the development environment for this project.  <
 - Write unit tests for new functionality
 - Ensure existing tests pass before submitting
 - Run the full test suite: `npm test`
-
 
 
 
