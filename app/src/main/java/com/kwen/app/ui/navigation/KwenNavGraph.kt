@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
+
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -27,7 +28,6 @@ import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.messages.MessagesScreen
 import com.kwen.app.ui.screens.messages.ChatScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
-
 import com.kwen.app.ui.screens.profile.EditProfileScreen
 import com.kwen.app.ui.screens.post.PostDetailScreen
 import com.kwen.app.ui.screens.notifications.NotificationsScreen
@@ -53,7 +53,6 @@ object Routes {
     const val OWN_PROFILE = "own_profile"
     const val NOTIFICATIONS = "notifications"
     const val POST = "post/{postId}"
-
     const val SETTINGS = "settings"
     const val SAVED = "saved"
     const val STORIES = "stories/{userId}"
@@ -84,7 +83,7 @@ val bottomNavItems = listOf(
 )
 
 @Composable
-fun KwenNavGraph(  // optimize: validation
+fun KwenNavGraph(
     authViewModel: AuthViewModel,
     navController: NavHostController = rememberNavController()
 ) {
@@ -116,12 +115,10 @@ fun KwenNavGraph(  // optimize: validation
                                 }
                             },
                             icon = {
-
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
                                 )
-
                             },
                             label = { Text(item.label) },
                             colors = NavigationBarItemDefaults.colors(
@@ -186,8 +183,9 @@ fun KwenNavGraph(  // optimize: validation
                             popUpTo(Routes.FEED) { saveState = true }
                         }
                     },
+
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
-                    onNavigateToProfile = { navController.navigate(Routes.profile(it)) },  // TODO: validation
+                    onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
                     onNavigateToStories = { navController.navigate(Routes.stories(it)) }
                 )
@@ -259,6 +257,7 @@ fun KwenNavGraph(  // optimize: validation
                     onBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToEdit = { },
+
                     onNavigateToSettings = { },
                     onNavigateToSaved = { },
                     onNavigateToChat = { _, _, _ -> },
@@ -298,6 +297,7 @@ fun KwenNavGraph(  // optimize: validation
                     }
                 )
             }
+
             composable(Routes.SAVED) {
                 SavedScreen(
                     onNavigateBack = { navController.popBackStack() },
@@ -321,8 +321,6 @@ fun KwenNavGraph(  // optimize: validation
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
-
-
                 )
             }
 
