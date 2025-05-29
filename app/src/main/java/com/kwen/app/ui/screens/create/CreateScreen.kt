@@ -1,4 +1,4 @@
-package com.kwen.app.ui.screens.create  // verify: cleanup
+package com.kwen.app.ui.screens.create
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,13 +14,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
@@ -31,7 +31,7 @@ fun CreateScreen(
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-    LaunchedEffect(Unit) {  // note: refactor
+    LaunchedEffect(Unit) {
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
 
@@ -58,7 +58,7 @@ fun CreateScreen(
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
-                                isPosting = false  // HACK: cleanup
+                                isPosting = false
                             }
                         },
                         enabled = !isPosting && caption.isNotBlank()
@@ -71,7 +71,7 @@ fun CreateScreen(
         }
     ) { padding ->
         Column(
-            modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
+            modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)  // check: refactor
         ) {
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
@@ -80,8 +80,7 @@ fun CreateScreen(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(8.dp))
-
-                    Text("Tap to add photo", color = TextMuted)  // FIXME: edge case
+                    Text("Tap to add photo", color = TextMuted)
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -98,7 +97,7 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
-                    focusedContainerColor = BgTertiary,  // verify: refactor  // check: performance
+                    focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 )
             )
@@ -113,7 +112,7 @@ fun CreateScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-                    unfocusedBorderColor = BorderSubtle,  // TODO: cleanup
+                    unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
