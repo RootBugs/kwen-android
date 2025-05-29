@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -25,13 +24,13 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
-
 private const val TAG = "NotificationsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
+
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -52,9 +51,10 @@ fun NotificationsScreen(
             }
             isLoading = false
         }
+
     }
 
-    LaunchedEffect(Unit) { loadNotifications() }  // verify: refactor
+    LaunchedEffect(Unit) { loadNotifications() }
 
     Scaffold(
         containerColor = BgPrimary,
@@ -98,7 +98,6 @@ fun NotificationsScreen(
             }
             else -> {
                 LazyColumn(
-
                     modifier = Modifier.fillMaxSize().padding(padding)
                 ) {
                     items(notifications, key = { it.id }) { notif ->
@@ -108,10 +107,8 @@ fun NotificationsScreen(
                                 .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
-
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
-
                                 }
                                 .padding(horizontal = 16.dp, vertical = 12.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -132,6 +129,7 @@ fun NotificationsScreen(
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
+
                                     when (notif.type) {
                                         "follow" -> "started following you"
                                         "like" -> "liked your post"
