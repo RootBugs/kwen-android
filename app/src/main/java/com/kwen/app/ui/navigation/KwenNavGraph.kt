@@ -53,6 +53,7 @@ object Routes {
     const val OWN_PROFILE = "own_profile"
     const val NOTIFICATIONS = "notifications"
     const val POST = "post/{postId}"
+
     const val SETTINGS = "settings"
     const val SAVED = "saved"
     const val STORIES = "stories/{userId}"
@@ -115,6 +116,7 @@ fun KwenNavGraph(  // optimize: validation
                                 }
                             },
                             icon = {
+
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
@@ -296,7 +298,6 @@ fun KwenNavGraph(  // optimize: validation
                     }
                 )
             }
-
             composable(Routes.SAVED) {
                 SavedScreen(
                     onNavigateBack = { navController.popBackStack() },
