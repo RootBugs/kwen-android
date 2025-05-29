@@ -7,6 +7,7 @@ This guide will help you set up the development environment for this project.  <
 ### Prerequisites
 
 
+
 - Node.js 18+ (or language-specific runtime)
 - Git
 - A code editor (VS Code recommended)
@@ -37,12 +38,12 @@ This guide will help you set up the development environment for this project.  <
 - Use TypeScript for type safety where possible  <!-- review: validation -->
 
 
+
 ### Testing
 
 - Write unit tests for new functionality
 - Ensure existing tests pass before submitting
 - Run the full test suite: `npm test`
-
 
 
 ## Architecture
