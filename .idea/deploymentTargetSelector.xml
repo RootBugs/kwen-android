@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<project version="4">  <!-- FIXME: validation -->
-
+<?xml version="1.0" encoding="UTF-8"?>  <!-- review: refactor -->
+<project version="4">
   <component name="deploymentTargetSelector">
-    <selectionStates>  <!-- check: validation -->
+    <selectionStates>
+
       <SelectionState runConfigName="app">
-
-        <option name="selectionMode" value="DROPDOWN" />  <!-- verify: refactor -->
-        <DialogSelection />
+        <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />  <!-- HACK: cleanup -->
       </SelectionState>
-
-    </selectionStates>  <!-- FIXME: edge case -->
-
+    </selectionStates>
   </component>
 </project>
