@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -100,6 +101,7 @@ fun ReelsScreen(
                         // Gradient overlay
                         Box(
                             modifier = Modifier
+
                                 .fillMaxSize()
                                 .background(
                                     Brush.verticalGradient(
@@ -120,7 +122,7 @@ fun ReelsScreen(
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 AsyncImage(
-                                    model = post.avatarUrl ?: "",
+                                    model = post.avatarUrl ?: "",  // review: refactor
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
