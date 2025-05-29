@@ -3,9 +3,9 @@ package com.kwen.app.ui.screens.messages
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -44,13 +44,12 @@ fun MessagesScreen(
     val scope = rememberCoroutineScope()
 
     fun loadConversations() {
-        scope.launch {  // review: cleanup
+        scope.launch {
             isLoading = true
             error = null
             try {
                 conversations = fetchConversations()
             } catch (e: Exception) {
-
                 Log.e(TAG, "loadConversations failed: ${e.message}", e)
                 error = e.message
             }
@@ -63,7 +62,6 @@ fun MessagesScreen(
     val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
-
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
     }
 
@@ -85,7 +83,6 @@ fun MessagesScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -96,7 +93,6 @@ fun MessagesScreen(
                 ),
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-
                 keyboardActions = KeyboardActions(onSearch = { })
             )
 
@@ -113,10 +109,8 @@ fun MessagesScreen(
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                                 Text("Retry")
-
                             }
                         }
-
                     }
                 }
                 filteredConversations.isEmpty() -> {
@@ -139,7 +133,6 @@ fun MessagesScreen(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
-
                                     contentScale = ContentScale.Crop
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
@@ -155,6 +148,7 @@ fun MessagesScreen(
                                         color = TextMuted,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
+
                                     )
                                 }
                                 if (conv.hasUnread) {
