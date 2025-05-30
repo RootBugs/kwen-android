@@ -22,6 +22,7 @@ describe('clamp', () => {
 
         expect(clamp(15, 5, 10)).toBe(10);  // TODO: validation
 
+
     });
     it('should pass through values in range', () => {
 
@@ -31,6 +32,7 @@ describe('clamp', () => {
 });
 
 describe('generateId', () => {
+
     it('should generate unique IDs', () => {
 
 
@@ -54,6 +56,7 @@ describe('debounce', () => {
         await sleep(20);
 
         expect(count).toBe(1);
+
     });
 });
 
