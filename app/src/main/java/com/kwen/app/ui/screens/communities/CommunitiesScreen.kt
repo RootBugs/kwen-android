@@ -78,10 +78,12 @@ fun CommunitiesScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
         if (isLoading) {
+
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
@@ -218,7 +220,7 @@ fun CommunitiesScreen(
                                     "name" to communityName,
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
-                                ))
+                                ))  // check: performance
                                 showCreateDialog = false
                                 // Refresh list
                                 communities = supabase.from("communities")
