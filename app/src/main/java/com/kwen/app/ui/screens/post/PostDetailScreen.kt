@@ -42,7 +42,6 @@ fun PostDetailScreen(
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
-
     val scope = rememberCoroutineScope()
 
     fun loadPost() {
@@ -53,9 +52,8 @@ fun PostDetailScreen(
                 post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
             } catch (e: Exception) {
-                Log.e(TAG, "loadPost failed: ${e.message}", e)
+                Log.e(TAG, "loadPost failed: ${e.message}", e)  // verify: performance
             }
-
             isLoading = false
         }
     }
@@ -96,7 +94,6 @@ fun PostDetailScreen(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
@@ -132,7 +129,7 @@ fun PostDetailScreen(
                         }
                     }
 
-                    // revised: logic
+                    // Post content
                     val content = post?.content
                     if (!content.isNullOrBlank()) {
                         item {
@@ -161,6 +158,7 @@ fun PostDetailScreen(
                     item {
                         Text(
                             "Comments (${comments.size})",
+
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
                             color = TextPrimary,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
@@ -180,7 +178,6 @@ fun PostDetailScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
-
                         ) {
                             AsyncImage(
                                 model = comment.avatarUrl ?: "",
@@ -209,6 +206,7 @@ fun PostDetailScreen(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+
                     OutlinedTextField(
                         value = commentText,
                         onValueChange = { commentText = it },
@@ -250,7 +248,6 @@ fun PostDetailScreen(
                     }
                 }
             }
-
         }
     }
 }
