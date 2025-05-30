@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.create
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -65,6 +66,7 @@ fun CreateScreen(
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -106,6 +108,7 @@ fun CreateScreen(
             OutlinedTextField(
                 value = location,
                 onValueChange = { location = it },
+
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
