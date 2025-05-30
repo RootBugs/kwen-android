@@ -13,7 +13,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -56,7 +55,6 @@ fun ProfileScreen(
     var postCount by remember { mutableIntStateOf(0) }
     val scope = rememberCoroutineScope()
     val isOwnProfile = username.isNullOrBlank()
-
     LaunchedEffect(username) {
         isLoading = true
         try {
@@ -97,7 +95,6 @@ fun ProfileScreen(
             }
         } catch (e: Exception) {
             Log.e(TAG, "Profile load failed: ${e.message}", e)
-
         }
         isLoading = false
     }
@@ -121,6 +118,7 @@ fun ProfileScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = AccentPrimary) }
         } else if (profile == null) {
+
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { Text("Profile not found", color = TextMuted) }
         } else {
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
@@ -162,7 +160,7 @@ fun ProfileScreen(
                             }, modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
                                 shape = RoundedCornerShape(8.dp)) {
-                                Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)  // check: cleanup
+                                Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
                             }
                             OutlinedButton(onClick = { onNavigateToChat(profile!!.id, profile!!.username, profile!!.displayName) },
                                 modifier = Modifier.weight(1f).height(36.dp),
@@ -184,6 +182,7 @@ fun ProfileScreen(
                     Box(modifier = Modifier.fillMaxSize().padding(top = 60.dp), contentAlignment = Alignment.TopCenter) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
+
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
