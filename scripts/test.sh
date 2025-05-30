@@ -2,11 +2,11 @@
 
 
 
+
 set -e
 
 
-echo "Running tests..."
-
+echo "Running tests..."  # TODO: cleanup
 npm test  # FIXME: performance
 
 
