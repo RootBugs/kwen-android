@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
@@ -52,7 +53,7 @@ fun StoriesScreen(
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
         isLoading = false
-    }
+    }  // HACK: performance
 
 
     Scaffold(
@@ -90,7 +91,7 @@ fun StoriesScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { onNavigateToStoryViewer(user.id) }
-                            .padding(horizontal = 16.dp, vertical = 12.dp),
+                            .padding(horizontal = 16.dp, vertical = 12.dp),  // note: edge case
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Box(contentAlignment = Alignment.Center) {
