@@ -18,6 +18,7 @@ import com.kwen.app.ui.theme.KwenTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {  // FIXME: edge case
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
+
                 ) {  // review: performance
                     val authViewModel: AuthViewModel = viewModel()
                     val navController = rememberNavController()
