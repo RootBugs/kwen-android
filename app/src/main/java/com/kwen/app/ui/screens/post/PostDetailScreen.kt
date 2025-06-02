@@ -52,7 +52,7 @@ fun PostDetailScreen(
                 post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
             } catch (e: Exception) {
-                Log.e(TAG, "loadPost failed: ${e.message}", e)  // verify: performance
+                Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
             isLoading = false
         }
@@ -68,6 +68,7 @@ fun PostDetailScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
+
                 },
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -137,6 +138,7 @@ fun PostDetailScreen(
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
+
                             }
                         }
                     }
@@ -158,7 +160,6 @@ fun PostDetailScreen(
                     item {
                         Text(
                             "Comments (${comments.size})",
-
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
                             color = TextPrimary,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
@@ -178,6 +179,7 @@ fun PostDetailScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
+
                         ) {
                             AsyncImage(
                                 model = comment.avatarUrl ?: "",
@@ -206,7 +208,6 @@ fun PostDetailScreen(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-
                     OutlinedTextField(
                         value = commentText,
                         onValueChange = { commentText = it },
