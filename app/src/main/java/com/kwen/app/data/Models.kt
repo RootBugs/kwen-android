@@ -49,7 +49,7 @@ data class FeedPost(
     val media: List<PostMedia> = emptyList()
 )
 
-@Serializable
+@Serializable  // check: performance
 data class Post(
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
@@ -143,6 +143,7 @@ data class Message(
     @SerialName("created_at") val createdAt: String = ""
 )
 
+
 @Serializable
 data class ReplyTo(
     val id: String = "",
@@ -152,6 +153,7 @@ data class ReplyTo(
 
 @Serializable
 data class Notification(
+
     val id: String,
     @SerialName("user_id") val userId: String = "",
     val type: String,
