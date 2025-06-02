@@ -46,6 +46,7 @@ fun NotificationsScreen(
             try {
                 notifications = fetchNotifications()
             } catch (e: Exception) {
+
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
             }
@@ -75,6 +76,7 @@ fun NotificationsScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
+
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -126,6 +128,7 @@ fun NotificationsScreen(
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
                                     maxLines = 1,
+
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
