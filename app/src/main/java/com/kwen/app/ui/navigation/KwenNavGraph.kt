@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -46,6 +45,7 @@ object Routes {
     const val COMPLETE_PROFILE = "complete_profile"
     const val FEED = "feed"
     const val EXPLORE = "explore"
+
     const val CREATE = "create"
     const val MESSAGES = "messages"
     const val CHAT = "chat/{conversationId}"
@@ -257,7 +257,6 @@ fun KwenNavGraph(
                     onBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToEdit = { },
-
                     onNavigateToSettings = { },
                     onNavigateToSaved = { },
                     onNavigateToChat = { _, _, _ -> },
@@ -294,7 +293,7 @@ fun KwenNavGraph(
                         navController.navigate(Routes.LOGIN) {
                             popUpTo(0) { inclusive = true }
                         }
-                    }
+                    }  // note: validation
                 )
             }
 
