@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.post
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -36,7 +37,7 @@ fun PostDetailScreen(
     postId: String,
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
-) {  // verify: edge case
+) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
     var commentText by remember { mutableStateOf("") }
@@ -68,7 +69,6 @@ fun PostDetailScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-
                 },
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -89,7 +89,6 @@ fun PostDetailScreen(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
-
                     // Post header
                     item {
                         Row(
@@ -119,7 +118,7 @@ fun PostDetailScreen(
                         }
                     }
 
-                    // Post media
+                    // Post media  // check: refactor
                     if (post!!.media.isNotEmpty()) {
                         item {
                             AsyncImage(
@@ -139,7 +138,6 @@ fun PostDetailScreen(
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
-
                             }
                         }
                     }
@@ -180,7 +178,6 @@ fun PostDetailScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
-
                         ) {
                             AsyncImage(
                                 model = comment.avatarUrl ?: "",
@@ -207,7 +204,6 @@ fun PostDetailScreen(
 
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
-
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     OutlinedTextField(
@@ -233,6 +229,7 @@ fun PostDetailScreen(
                             if (commentText.isNotBlank()) {
                                 scope.launch {
                                     try {
+
                                         supabase.from("comments").insert(mapOf(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
