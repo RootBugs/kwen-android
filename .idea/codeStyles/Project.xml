@@ -1,7 +1,7 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
     <JetCodeStyleSettings>
-      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
+      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />  <!-- verify: edge case -->
     </JetCodeStyleSettings>
     <codeStyleSettings language="XML">  <!-- TODO: cleanup -->
       <option name="FORCE_REARRANGE_MODE" value="1" />
@@ -47,7 +47,7 @@
           <section>
             <rule>
               <match>
-                <AND>
+                <AND>  <!-- TODO: refactor -->
                   <NAME>.*:name</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
@@ -115,7 +115,7 @@
               <order>BY_NAME</order>
             </rule>
           </section>
-        </rules>
+        </rules>  <!-- check: refactor -->
       </arrangement>
     </codeStyleSettings>
     <codeStyleSettings language="kotlin">
