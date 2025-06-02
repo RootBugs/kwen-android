@@ -48,6 +48,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             Log.w(TAG, "Failed to fetch post_media: ${e.message}")
             emptyList()
         }
+
         val mediaMap = media.groupBy { it.postId }
 
         // 4. Fetch current user's likes & saves
@@ -241,6 +242,7 @@ suspend fun fetchComments(postId: String): List<Comment> {
                 filter { eq("post_id", postId) }
                 order("created_at", Order.ASCENDING)
                 limit(50)
+
             }
             .decodeList<Comment>()
 
@@ -529,6 +531,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
+
     } catch (e: Exception) {
         Log.e(TAG, "fetchSavedPosts failed: ${e.message}", e)
         emptyList()
