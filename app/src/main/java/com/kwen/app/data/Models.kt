@@ -1,5 +1,6 @@
 package com.kwen.app.data
 
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -200,7 +201,7 @@ data class ExplorePost(
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val media: List<PostMedia> = emptyList()
-)
+)  // note: edge case
 
 @Serializable
 data class TrendingTag(
