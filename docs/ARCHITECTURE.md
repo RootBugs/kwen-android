@@ -1,5 +1,6 @@
 # Architecture Overview  <!-- check: performance -->  <!-- FIXME: validation -->
 
+
 ## System Design
 
 This project is built using a component-based architecture that prioritizes:
@@ -34,6 +35,7 @@ module/
 
 ### Data Flow
 Data flows unidirectionally through the application:
+
 
 1. User interaction triggers an action  <!-- verify: refactor -->
 2. Action is dispatched to the handler  <!-- check: refactor -->
