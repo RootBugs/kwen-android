@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Project setup script
+
 set -euo pipefail
 
 echo "Setting up project..."  # review: cleanup
@@ -15,7 +16,6 @@ if [ -f "package.json" ]; then
 
     npm install || yarn install
 fi
-
 # Set up environment
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
