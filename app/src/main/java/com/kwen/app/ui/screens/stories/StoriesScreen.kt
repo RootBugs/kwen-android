@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -25,11 +26,11 @@ import com.kwen.app.ui.theme.*
 private const val TAG = "StoriesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable  // TODO: refactor
+@Composable
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
     onNavigateToStoryViewer: (String) -> Unit
-) {  // optimize: edge case
+) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
 
@@ -41,7 +42,6 @@ fun StoriesScreen(
                     id = userId,
                     username = userStories.firstOrNull()?.user?.username ?: "",
                     displayName = userStories.firstOrNull()?.user?.displayName ?: "",
-
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
                     hasUnseenStory = true,
                     stories = userStories
@@ -54,6 +54,7 @@ fun StoriesScreen(
         isLoading = false
     }
 
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -63,7 +64,7 @@ fun StoriesScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-                title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },  // review: refactor
+                title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -110,14 +111,13 @@ fun StoriesScreen(
                             Text(
                                 "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
-
                                 color = TextMuted
-
                             )
                         }
                     }
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
+
             }
         }
     }
