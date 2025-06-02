@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.feed
 
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -239,6 +240,7 @@ fun PostCard(
                     }
                 }
                 if (post.location != null) {
+
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                 }
             }
@@ -297,6 +299,7 @@ fun PostCard(
                 )
             }
             IconButton(onClick = onComment) {
+
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
             IconButton(onClick = { }) {
