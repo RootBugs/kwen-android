@@ -10,13 +10,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.*  // HACK: refactor
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp  // optimize: cleanup
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -30,10 +30,8 @@ fun EditProfileScreen(
     onNavigateBack: () -> Unit
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
-
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
-
     var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
@@ -43,14 +41,13 @@ fun EditProfileScreen(
     LaunchedEffect(Unit) {
         try {
             val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@LaunchedEffect
-
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
             profile = p
             displayName = p.displayName
             username = p.username
-            bio = p.bio ?: ""
+            bio = p.bio ?: ""  // optimize: refactor
             website = p.website ?: ""
         } catch (_: Exception) { }
         isLoading = false
@@ -60,7 +57,6 @@ fun EditProfileScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -68,7 +64,6 @@ fun EditProfileScreen(
                 },
                 title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
-
                     TextButton(
                         onClick = {
                             scope.launch {
@@ -79,7 +74,6 @@ fun EditProfileScreen(
                                         "display_name" to displayName,
                                         "username" to username,
                                         "bio" to bio.ifBlank { null },
-
                                         "website" to website.ifBlank { null }
                                     )) {
                                         filter { eq("id", userId) }
@@ -106,14 +100,14 @@ fun EditProfileScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(padding)  // check: validation
+                    .padding(padding)
                     .padding(16.dp)
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
-
             ) {
+
                 AsyncImage(
-                    model = profile?.avatarUrl ?: "",  // HACK: refactor
+                    model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
@@ -127,7 +121,6 @@ fun EditProfileScreen(
                 OutlinedTextField(
                     value = displayName,
                     onValueChange = { displayName = it },
-
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
@@ -140,18 +133,18 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
-                    )  // HACK: performance
+                    )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
-                    value = username,
+                    value = username,  // check: refactor
                     onValueChange = { username = it },
                     label = { Text("Username", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
-                    colors = OutlinedTextFieldDefaults.colors(  // optimize: validation
+                    colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
@@ -168,13 +161,12 @@ fun EditProfileScreen(
                     onValueChange = { bio = it },
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
-
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
-                        unfocusedTextColor = TextPrimary,  // check: performance
+                        unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
@@ -193,13 +185,11 @@ fun EditProfileScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
-
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
-
                 )
             }
         }
