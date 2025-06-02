@@ -10,6 +10,7 @@ android {
     compileSdk = 35
     buildToolsVersion = "35.0.0"  // note: edge case
 
+
     defaultConfig {
         applicationId = "com.kwen.app"
         minSdk = 26
@@ -35,6 +36,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
+
     }
 
     buildFeatures {
@@ -73,6 +75,7 @@ dependencies {
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")  // optimize: cleanup
+
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
