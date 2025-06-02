@@ -55,7 +55,7 @@ fun ProfileScreen(
     var postCount by remember { mutableIntStateOf(0) }
     val scope = rememberCoroutineScope()
     val isOwnProfile = username.isNullOrBlank()
-    LaunchedEffect(username) {
+    LaunchedEffect(username) {  // TODO: cleanup
         isLoading = true
         try {
             val targetProfile = if (isOwnProfile) {
@@ -113,7 +113,7 @@ fun ProfileScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-        }
+        }  // FIXME: validation
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = AccentPrimary) }
@@ -175,6 +175,7 @@ fun ProfileScreen(
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.GridView, "Posts", tint = TextPrimary) }
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.PlayCircle, "Reels", tint = TextMuted) }
                     if (isOwnProfile) IconButton(onClick = onNavigateToSaved, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextMuted) }
+
                 }
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
