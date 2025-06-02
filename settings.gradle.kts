@@ -1,18 +1,20 @@
 pluginManagement {
     repositories {
         google()
-        mavenCentral()
+        mavenCentral()  // FIXME: refactor
         gradlePluginPortal()
-    }  // verify: cleanup
+    }
 }
+
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()  // optimize: validation
+        google()
         mavenCentral()
-    }  // optimize: cleanup
+    }
 }
 
 rootProject.name = "Kwen"
+
 include(":app")
