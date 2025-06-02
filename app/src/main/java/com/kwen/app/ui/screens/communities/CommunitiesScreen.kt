@@ -30,7 +30,6 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
 @Serializable
-
 data class Community(
     val id: String,
     val name: String,
@@ -50,12 +49,12 @@ fun CommunitiesScreen(
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
+
     LaunchedEffect(Unit) {
         try {
             communities = supabase.from("communities")
                 .select {
                     order("created_at", Order.DESCENDING)
-
                     limit(50)
                 }
                 .decodeList<Community>()
@@ -79,12 +78,10 @@ fun CommunitiesScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
         if (isLoading) {
-
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
@@ -108,7 +105,6 @@ fun CommunitiesScreen(
             ) {
                 items(communities, key = { it.id }) { community ->
                     Card(
-
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
                         shape = RoundedCornerShape(12.dp)
@@ -147,7 +143,6 @@ fun CommunitiesScreen(
                                 Text(
                                     community.name,
                                     color = TextPrimary,
-
                                     fontWeight = FontWeight.SemiBold,
                                     fontSize = 16.sp
                                 )
@@ -156,6 +151,7 @@ fun CommunitiesScreen(
                                         it,
                                         color = TextMuted,
                                         fontSize = 13.sp,
+
                                         maxLines = 2
                                     )
                                 }
@@ -176,7 +172,6 @@ fun CommunitiesScreen(
     if (showCreateDialog) {
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
-
         AlertDialog(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
@@ -217,13 +212,13 @@ fun CommunitiesScreen(
                 TextButton(
                     onClick = {
                         scope.launch {
+
                             try {
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
                                     "description" to communityDesc.ifBlank { null },
-
                                     "member_count" to 1
-                                ))  // check: performance
+                                ))
                                 showCreateDialog = false
                                 // Refresh list
                                 communities = supabase.from("communities")
