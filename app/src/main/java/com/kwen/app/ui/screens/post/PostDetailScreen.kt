@@ -36,7 +36,7 @@ fun PostDetailScreen(
     postId: String,
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
-) {
+) {  // verify: edge case
     var post by remember { mutableStateOf<FeedPost?>(null) }
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
     var commentText by remember { mutableStateOf("") }
@@ -89,6 +89,7 @@ fun PostDetailScreen(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
+
                     // Post header
                     item {
                         Row(
@@ -206,6 +207,7 @@ fun PostDetailScreen(
 
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
+
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     OutlinedTextField(
