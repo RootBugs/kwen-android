@@ -19,12 +19,12 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.delay
 
+
 private const val TAG = "StoryViewerScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StoryViewerScreen(
-
     userId: String,
     onNavigateBack: () -> Unit
 ) {
@@ -36,7 +36,6 @@ fun StoryViewerScreen(
         try {
             stories = fetchStories(userId)
         } catch (e: Exception) {
-
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
     }
@@ -50,6 +49,7 @@ fun StoryViewerScreen(
         }
         if (currentIndex < stories.size - 1) {
             currentIndex++
+
         } else {
             onNavigateBack()
         }
@@ -75,7 +75,6 @@ fun StoryViewerScreen(
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
-
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
@@ -101,6 +100,5 @@ fun StoryViewerScreen(
                 Text("No stories available", color = TextMuted)
             }
         }
-
     }
 }
