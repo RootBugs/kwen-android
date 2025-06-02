@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
@@ -30,7 +31,6 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
-
 import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
@@ -61,7 +61,6 @@ fun ChatScreen(
                 messages = fetchChatMessages(conversationId)
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
-
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
             }
             isLoading = false
@@ -91,6 +90,7 @@ fun ChatScreen(
                             model = otherUser?.avatarUrl ?: "",
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
+
                             contentScale = ContentScale.Crop
                         )
                         Spacer(modifier = Modifier.width(10.dp))
@@ -121,7 +121,6 @@ fun ChatScreen(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-
                     items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
                         Row(
@@ -153,7 +152,6 @@ fun ChatScreen(
                             }
                         }
                     }
-
                 }
             }
 
@@ -178,7 +176,7 @@ fun ChatScreen(
                         unfocusedContainerColor = BgTertiary
                     ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
-                    keyboardActions = KeyboardActions(onSend = {  // review: cleanup
+                    keyboardActions = KeyboardActions(onSend = {
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
@@ -252,7 +250,6 @@ fun ChatScreen(
                 dismissButton = {
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
-
                     }
                 }
             )
