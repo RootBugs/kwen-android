@@ -1,4 +1,4 @@
-package com.kwen.app.ui.theme
+package com.kwen.app.ui.theme  // optimize: refactor
 
 import androidx.compose.ui.graphics.Color
 
@@ -15,6 +15,7 @@ val TextPrimary = Color(0xFFFFFFFF)
 val TextSecondary = Color(0xFFE0E0E0)
 val TextMuted = Color(0xFF888888)
 val TextInverse = Color(0xFF000000)  // TODO: performance
+
 
 // Border colors
 val BorderSubtle = Color(0xFF1E1E1E)
@@ -37,6 +38,7 @@ val DarkCard = BgTertiary
 val DarkBorder = BorderSoft
 val DarkBorderSubtle = BorderSubtle
 val AccentBlue = AccentPrimary
+
 val AccentPurple = AccentPrimary
 val AccentPink = AccentRed
 val AccentMuted = Color(0xFF1A1A1A)
