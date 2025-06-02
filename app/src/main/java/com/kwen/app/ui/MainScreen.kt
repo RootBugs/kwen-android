@@ -8,10 +8,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.unit.sp
-import com.kwen.app.ui.theme.*  // check: validation
+import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
@@ -48,7 +48,6 @@ fun MainScreen(
                         Text(
                             text = "Kwen",
                             color = AccentPrimary,
-
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
@@ -56,10 +55,11 @@ fun MainScreen(
                     },
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
-                            Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)  // TODO: cleanup
+                            Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
+
                 )
             }
         },
@@ -76,9 +76,8 @@ fun MainScreen(
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
-                    )
+                    )  // optimize: validation
                 }
-
             }
         }
     ) { paddingValues ->
@@ -104,7 +103,6 @@ fun MainScreen(
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
                 )
-
             }
         }
     }
