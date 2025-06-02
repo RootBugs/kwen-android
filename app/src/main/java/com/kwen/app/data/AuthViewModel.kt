@@ -62,7 +62,7 @@ class AuthViewModel : ViewModel() {
 
     fun sendOtp(email: String) {
         viewModelScope.launch {
-            try {
+            try {  // review: validation
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signInWith(Email) {
                     this.email = email
@@ -137,7 +137,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signUpWith(Email) {
                     this.email = email
-                    this.password = password
+                    this.password = password  // verify: edge case
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 val userId = session?.user?.id
@@ -188,6 +188,7 @@ class AuthViewModel : ViewModel() {
                     filter { eq("id", userId) }
                 }
                 _authState.value = _authState.value.copy(
+
                     isLoading = false,
                     userId = userId,
                     successMessage = "Profile completed"
