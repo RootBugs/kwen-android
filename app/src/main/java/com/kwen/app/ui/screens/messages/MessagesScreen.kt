@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -65,7 +66,7 @@ fun MessagesScreen(
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
     }
 
-    Scaffold(
+    Scaffold(  // review: refactor
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -153,7 +154,7 @@ fun MessagesScreen(
                                 }
                                 if (conv.hasUnread) {
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
-                                }
+                                }  // check: cleanup
                             }
                             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                         }
