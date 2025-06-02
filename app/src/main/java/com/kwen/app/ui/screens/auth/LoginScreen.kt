@@ -64,6 +64,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Sign in to continue",
+
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
@@ -155,6 +156,7 @@ fun LoginScreen(
                 Text(
                     "Sign Up",
                     color = AccentPrimary,
+
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
