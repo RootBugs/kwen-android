@@ -30,6 +30,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
 @Serializable
+
 data class Community(
     val id: String,
     val name: String,
@@ -146,6 +147,7 @@ fun CommunitiesScreen(
                                 Text(
                                     community.name,
                                     color = TextPrimary,
+
                                     fontWeight = FontWeight.SemiBold,
                                     fontSize = 16.sp
                                 )
@@ -219,6 +221,7 @@ fun CommunitiesScreen(
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
                                     "description" to communityDesc.ifBlank { null },
+
                                     "member_count" to 1
                                 ))  // check: performance
                                 showCreateDialog = false
