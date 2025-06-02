@@ -41,6 +41,7 @@ fun SettingsScreen(
             )
         }
     ) { padding ->
+
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
 
@@ -72,6 +73,7 @@ fun SettingsScreen(
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
                 }
+
             }
         }
     }
@@ -112,6 +114,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
         content()
     }
 }
+
 
 @Composable
 fun SettingsItem(
