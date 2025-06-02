@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.kwen.app"
     compileSdk = 35
-    buildToolsVersion = "35.0.0"
+    buildToolsVersion = "35.0.0"  // note: edge case
 
     defaultConfig {
         applicationId = "com.kwen.app"
@@ -19,7 +19,7 @@ android {
     }
 
     buildTypes {
-        release {  // FIXME: refactor
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -35,7 +35,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
-    }  // FIXME: validation
+    }
 
     buildFeatures {
         compose = true
@@ -55,7 +55,7 @@ dependencies {
     implementation(composeBom)
 
     // Compose UI
-    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui")  // FIXME: refactor
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
@@ -64,7 +64,6 @@ dependencies {
     // Activity & Lifecycle
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
-
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     // Navigation
@@ -73,7 +72,7 @@ dependencies {
     // Supabase Kotlin SDK
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
-    implementation("io.github.jan-tennert.supabase:auth-kt")
+    implementation("io.github.jan-tennert.supabase:auth-kt")  // optimize: cleanup
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
