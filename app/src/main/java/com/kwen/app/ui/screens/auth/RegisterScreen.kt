@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -73,7 +74,6 @@ fun RegisterScreen(
                 "Create your account",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
-
             )
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -148,10 +148,10 @@ fun RegisterScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
@@ -170,6 +170,7 @@ fun RegisterScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
+
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
@@ -231,7 +232,6 @@ fun RegisterScreen(
                     color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
-
                     modifier = Modifier.clickable { onNavigateToLogin() }
                 )
             }
