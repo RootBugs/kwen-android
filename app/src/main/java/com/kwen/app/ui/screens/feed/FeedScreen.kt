@@ -64,6 +64,7 @@ fun FeedScreen(
     LaunchedEffect(Unit) { loadPosts() }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -174,6 +175,7 @@ fun FeedScreen(
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isSaved) {
                                             supabase.from("saved_posts").delete {
+
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
                                             }
                                         } else {
@@ -304,6 +306,7 @@ fun PostCard(
             }
             IconButton(onClick = { }) {
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
+
             }
             Spacer(modifier = Modifier.weight(1f))
             IconButton(onClick = { onSave(post.id) }) {
