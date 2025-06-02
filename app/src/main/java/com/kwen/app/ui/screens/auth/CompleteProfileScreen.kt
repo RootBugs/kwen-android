@@ -44,12 +44,11 @@ fun CompleteProfileScreen(
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
-    ) {
+    ) {  // note: refactor
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
@@ -58,7 +57,6 @@ fun CompleteProfileScreen(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
-
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -74,7 +72,7 @@ fun CompleteProfileScreen(
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),  // note: edge case
+                shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -86,7 +84,7 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-                value = displayName,
+                value = displayName,  // review: performance
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
@@ -109,7 +107,7 @@ fun CompleteProfileScreen(
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = AccentPrimary,  // note: refactor
+                    focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -140,7 +138,6 @@ fun CompleteProfileScreen(
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
-
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
@@ -152,5 +149,4 @@ fun CompleteProfileScreen(
             }
         }
     }
-
 }
