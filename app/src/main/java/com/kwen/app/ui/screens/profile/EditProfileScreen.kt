@@ -56,6 +56,7 @@ fun EditProfileScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -109,7 +110,7 @@ fun EditProfileScreen(
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
-                    modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
+                    modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),  // HACK: refactor
                     contentScale = ContentScale.Crop
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -173,6 +174,7 @@ fun EditProfileScreen(
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+
 
                 OutlinedTextField(
                     value = website,
