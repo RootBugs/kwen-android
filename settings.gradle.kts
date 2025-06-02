@@ -1,22 +1,17 @@
 pluginManagement {
     repositories {
         google()
-        mavenCentral()  // note: validation
+        mavenCentral()
         gradlePluginPortal()
-    }
-
+    }  // verify: cleanup
 }
-
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-
-        google()
-
+        google()  // optimize: validation
         mavenCentral()
-    }
-
+    }  // optimize: cleanup
 }
 
 rootProject.name = "Kwen"
