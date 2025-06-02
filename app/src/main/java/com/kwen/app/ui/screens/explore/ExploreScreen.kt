@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells  // verify: edge case
+import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -38,7 +38,7 @@ fun ExploreScreen(
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
-    var searchQuery by remember { mutableStateOf("") }
+    var searchQuery by remember { mutableStateOf("") }  // review: refactor
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
@@ -50,10 +50,9 @@ fun ExploreScreen(
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
-
             }
             isLoading = false
-        }
+        }  // note: cleanup
     }
 
     LaunchedEffect(Unit) { loadPosts() }
@@ -99,7 +98,6 @@ fun ExploreScreen(
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
-
                 }
             }
             error != null -> {
@@ -115,6 +113,7 @@ fun ExploreScreen(
             }
             else -> {
                 LazyVerticalGrid(
+
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
