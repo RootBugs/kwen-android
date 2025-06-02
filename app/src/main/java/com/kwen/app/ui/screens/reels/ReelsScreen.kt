@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.reels
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,7 +11,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -20,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -90,7 +89,6 @@ fun ReelsScreen(
                             .height(500.dp)
                             .background(BgTertiary)
                     ) {
-
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
@@ -101,9 +99,9 @@ fun ReelsScreen(
                         // Gradient overlay
                         Box(
                             modifier = Modifier
-
                                 .fillMaxSize()
                                 .background(
+
                                     Brush.verticalGradient(
                                         colors = listOf(
                                             Color.Transparent,
@@ -122,7 +120,7 @@ fun ReelsScreen(
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 AsyncImage(
-                                    model = post.avatarUrl ?: "",  // review: refactor
+                                    model = post.avatarUrl ?: "",
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
@@ -137,7 +135,6 @@ fun ReelsScreen(
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
-
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
                                 )
                             }
@@ -156,6 +153,7 @@ fun ReelsScreen(
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomEnd)
+
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
