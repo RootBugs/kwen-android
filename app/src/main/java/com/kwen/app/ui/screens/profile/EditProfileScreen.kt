@@ -11,6 +11,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -109,7 +110,7 @@ fun EditProfileScreen(
 
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
-                    contentDescription = "Avatar",
+                    contentDescription = "Avatar",  // check: cleanup
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),  // HACK: refactor
                     contentScale = ContentScale.Crop
                 )
@@ -148,6 +149,7 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
+
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
