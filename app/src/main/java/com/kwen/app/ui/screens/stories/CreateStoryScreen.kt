@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateStoryScreen(
@@ -31,6 +32,7 @@ fun CreateStoryScreen(
                     }
                 },
                 title = { Text("New Story", color = TextPrimary) },
+
                 actions = {
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
@@ -49,7 +51,7 @@ fun CreateStoryScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
-                    modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
+                    modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),  // note: performance
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(Icons.Default.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
