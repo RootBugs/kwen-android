@@ -33,6 +33,7 @@ fun RegisterScreen(
 ) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
+
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
@@ -94,6 +95,7 @@ fun RegisterScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(12.dp))
+
 
             OutlinedTextField(
                 value = username,
@@ -234,6 +236,7 @@ fun RegisterScreen(
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToLogin() }
                 )
+
             }
             Spacer(modifier = Modifier.height(32.dp))
         }
