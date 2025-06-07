@@ -48,7 +48,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             Log.w(TAG, "Failed to fetch post_media: ${e.message}")
             emptyList()
         }
-
         val mediaMap = media.groupBy { it.postId }
 
         // 4. Fetch current user's likes & saves
@@ -90,7 +89,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
-                commentCount = post.commentCount,  // note: refactor
+                commentCount = post.commentCount,
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
                 isLiked = post.id in likedPostIds,
@@ -112,11 +111,11 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
 suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
+
         val rawPosts = supabase.from("posts")
             .select {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
-
             }
             .decodeList<Post>()
 
@@ -205,7 +204,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
                     .decodeList<SavedPost>()
                 saves.isNotEmpty()
-
             } catch (_: Exception) { false }
         } else false
 
@@ -242,7 +240,6 @@ suspend fun fetchComments(postId: String): List<Comment> {
                 filter { eq("post_id", postId) }
                 order("created_at", Order.ASCENDING)
                 limit(50)
-
             }
             .decodeList<Comment>()
 
@@ -268,7 +265,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 .decodeList<ConversationParticipant>()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch conversation_participants: ${e.message}")
-
             return emptyList()
         }
 
@@ -353,6 +349,7 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
                 order("created_at", Order.ASCENDING)
                 limit(100)
             }
+
             .decodeList<Message>()
 
         msgs.map { it.copy(isMine = it.senderId == currentUserId) }
@@ -439,7 +436,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
         } catch (_: Exception) { emptyList() }
         val mediaMap = media.groupBy { it.postId }
 
-
         rawPosts.map { post ->
             FeedPost(
                 id = post.id,
@@ -478,7 +474,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
             .decodeList<SavedPost>()
 
         if (saved.isEmpty()) return emptyList()
-
         val postIds = saved.map { it.postId }
 
         // Fetch actual posts
@@ -519,7 +514,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
-                commentCount = post.commentCount,  // check: edge case
+                commentCount = post.commentCount,
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
                 isLiked = false,
@@ -531,7 +526,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
-
     } catch (e: Exception) {
         Log.e(TAG, "fetchSavedPosts failed: ${e.message}", e)
         emptyList()
