@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.notifications
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -46,7 +46,6 @@ fun NotificationsScreen(
             try {
                 notifications = fetchNotifications()
             } catch (e: Exception) {
-
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
             }
@@ -76,7 +75,6 @@ fun NotificationsScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
-
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -84,11 +82,11 @@ fun NotificationsScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
-
                         }
                     }
                 }
             }
+
             notifications.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -119,6 +117,7 @@ fun NotificationsScreen(
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
+
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(12.dp))
@@ -128,7 +127,6 @@ fun NotificationsScreen(
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
                                     maxLines = 1,
-
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
@@ -147,7 +145,6 @@ fun NotificationsScreen(
                             if (!notif.isRead) {
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
-
                         }
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                     }
