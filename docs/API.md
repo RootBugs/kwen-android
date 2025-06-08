@@ -1,4 +1,4 @@
-# API Documentation
+# API Documentation  <!-- TODO: validation -->
 
 
 
@@ -8,10 +8,10 @@
 
 
 
+
 ### GET /api/status
 
 Returns the current status of the service.
-
 
 
 
