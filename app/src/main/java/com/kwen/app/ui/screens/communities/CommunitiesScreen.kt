@@ -69,6 +69,7 @@ fun CommunitiesScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
+
                     }
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -159,6 +160,7 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
+
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
@@ -233,6 +235,7 @@ fun CommunitiesScreen(
                 }
             },
             dismissButton = {
+
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
