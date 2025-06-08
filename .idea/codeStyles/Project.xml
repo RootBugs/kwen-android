@@ -1,9 +1,9 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
     <JetCodeStyleSettings>
-      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />  <!-- verify: edge case -->
+      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
-    <codeStyleSettings language="XML">  <!-- TODO: cleanup -->
+    <codeStyleSettings language="XML">  <!-- review: validation -->
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
@@ -47,7 +47,7 @@
           <section>
             <rule>
               <match>
-                <AND>  <!-- TODO: refactor -->
+                <AND>
                   <NAME>.*:name</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
@@ -58,6 +58,7 @@
           <section>
             <rule>
               <match>
+
                 <AND>
                   <NAME>name</NAME>
                   <XML_ATTRIBUTE />
@@ -79,14 +80,12 @@
           </section>
           <section>
             <rule>
-
               <match>
                 <AND>
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
-
               </match>
               <order>BY_NAME</order>
             </rule>
@@ -115,7 +114,7 @@
               <order>BY_NAME</order>
             </rule>
           </section>
-        </rules>  <!-- check: refactor -->
+        </rules>
       </arrangement>
     </codeStyleSettings>
     <codeStyleSettings language="kotlin">
