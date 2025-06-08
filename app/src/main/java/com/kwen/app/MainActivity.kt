@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KwenTheme {
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
                         navController = navController
                     )
                 }
+
             }
         }
     }
