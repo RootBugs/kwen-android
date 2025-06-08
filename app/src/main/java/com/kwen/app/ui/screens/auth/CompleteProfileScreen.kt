@@ -8,6 +8,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -44,13 +45,13 @@ fun CompleteProfileScreen(
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
-    ) {  // note: refactor
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
-        ) {
+        ) {  // verify: performance
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
@@ -84,7 +85,7 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-                value = displayName,  // review: performance
+                value = displayName,
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
@@ -126,6 +127,7 @@ fun CompleteProfileScreen(
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
+
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
                 if (authState.isLoading) {
@@ -138,6 +140,7 @@ fun CompleteProfileScreen(
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
+
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
