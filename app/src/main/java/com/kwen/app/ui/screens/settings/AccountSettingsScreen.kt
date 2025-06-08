@@ -18,11 +18,13 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AccountSettingsScreen(  // HACK: cleanup
     onNavigateBack: () -> Unit
 ) {
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -47,7 +49,7 @@ fun AccountSettingsScreen(  // HACK: cleanup
                     SettingsItem(Icons.Default.Email, "Email", {})
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
-                }
+                }  // review: refactor
             }
             item {
                 SettingsSection("Security") {
