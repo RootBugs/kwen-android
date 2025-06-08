@@ -59,6 +59,7 @@ fun EditProfileScreen(
         topBar = {
 
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -84,6 +85,7 @@ fun EditProfileScreen(
                                 } catch (_: Exception) { }
                                 isSaving = false
                             }
+
                         },
                         enabled = !isSaving
                     ) {
@@ -168,7 +170,7 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-                        focusedTextColor = TextPrimary,
+                        focusedTextColor = TextPrimary,  // review: performance
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
