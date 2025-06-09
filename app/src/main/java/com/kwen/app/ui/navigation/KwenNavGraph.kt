@@ -81,7 +81,6 @@ val bottomNavItems = listOf(
     BottomNavItem(Routes.MESSAGES, "Messages", Icons.Outlined.MailOutline, Icons.Outlined.MailOutline),
     BottomNavItem(Routes.OWN_PROFILE, "Profile", Icons.Filled.Person, Icons.Outlined.Person)
 )
-
 @Composable
 fun KwenNavGraph(
     authViewModel: AuthViewModel,
@@ -206,6 +205,7 @@ fun KwenNavGraph(
 
             composable(Routes.CREATE) {
                 CreateScreen(
+
                     onNavigateBack = { navController.popBackStack() },
                     onPostCreated = { navController.popBackStack() }
                 )
@@ -310,6 +310,7 @@ fun KwenNavGraph(
                 arguments = listOf(navArgument("userId") { type = NavType.StringType })
             ) { backStackEntry ->
                 val userId = backStackEntry.arguments?.getString("userId") ?: return@composable
+
                 StoryViewerScreen(
                     userId = userId,
                     onNavigateBack = { navController.popBackStack() }
