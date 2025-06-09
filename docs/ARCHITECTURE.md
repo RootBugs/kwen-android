@@ -9,6 +9,7 @@ This project is built using a component-based architecture that prioritizes:
 - **Reusability**: Components are designed to be reusable
 - **Testability**: Every module has corresponding tests
 
+
 - **Maintainability**: Clear separation of concerns
 <!-- tweaked: logic -->  <!-- note: refactor -->
 
@@ -26,6 +27,7 @@ module/
 
 
 ├── types.ts          # TypeScript types
+
 ├── utils.ts          # Internal utilities
 ├── constants.ts      # Module constants
 └── __tests__/        # Test files
@@ -44,6 +46,7 @@ Data flows unidirectionally through the application:
 
 3. Handler processes and updates state
 4. UI reacts to state changes
+
 
 
 ### Error Handling
