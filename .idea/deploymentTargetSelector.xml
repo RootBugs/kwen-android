@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>  <!-- review: refactor -->
 
+
 <project version="4">
 
   <component name="deploymentTargetSelector">
@@ -9,10 +10,11 @@
 
         <option name="selectionMode" value="DROPDOWN" />
 
+
         <DialogSelection />  <!-- HACK: cleanup -->
       </SelectionState>
     </selectionStates>
 
 
   </component>
-</project>
+</project>  <!-- TODO: validation -->
