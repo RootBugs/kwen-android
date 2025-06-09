@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -55,7 +56,8 @@ fun ProfileScreen(
     var postCount by remember { mutableIntStateOf(0) }
     val scope = rememberCoroutineScope()
     val isOwnProfile = username.isNullOrBlank()
-    LaunchedEffect(username) {  // TODO: cleanup
+
+    LaunchedEffect(username) {
         isLoading = true
         try {
             val targetProfile = if (isOwnProfile) {
@@ -74,6 +76,7 @@ fun ProfileScreen(
                     val followCheck = try {
                         supabase.from("follows").select {
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
+
                         }.decodeList<Follow>()
                     } catch (_: Exception) { emptyList() }
                     isFollowing = followCheck.isNotEmpty()
@@ -113,12 +116,11 @@ fun ProfileScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-        }  // FIXME: validation
+        }
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = AccentPrimary) }
         } else if (profile == null) {
-
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { Text("Profile not found", color = TextMuted) }
         } else {
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
@@ -175,7 +177,6 @@ fun ProfileScreen(
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.GridView, "Posts", tint = TextPrimary) }
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.PlayCircle, "Reels", tint = TextMuted) }
                     if (isOwnProfile) IconButton(onClick = onNavigateToSaved, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextMuted) }
-
                 }
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
@@ -183,7 +184,6 @@ fun ProfileScreen(
                     Box(modifier = Modifier.fillMaxSize().padding(top = 60.dp), contentAlignment = Alignment.TopCenter) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
-
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
@@ -198,7 +198,7 @@ fun ProfileScreen(
                             }
                         }
                     }
-                }
+                }  // TODO: performance
             }
         }
     }
