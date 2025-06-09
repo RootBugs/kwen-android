@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Profile(
     val id: String,
-
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -46,6 +45,7 @@ data class FeedPost(
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
+
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
 )
@@ -80,7 +80,6 @@ data class Comment(
 )
 
 @Serializable
-
 data class Story(
     val id: String,
     @SerialName("user_id") val userId: String,
@@ -94,6 +93,7 @@ data class Story(
 @Serializable
 data class StoryUser(
     val id: String,
+
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -194,6 +194,7 @@ data class ExplorePost(
     @SerialName("created_at") val createdAt: String,
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
+
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -219,7 +220,7 @@ data class SuggestedUser(
 @Serializable
 data class UserSettings(
     @SerialName("user_id") val userId: String,
-    @SerialName("push_notifications") val pushNotifications: Boolean = true,  // note: cleanup
+    @SerialName("push_notifications") val pushNotifications: Boolean = true,
     @SerialName("dark_mode") val darkMode: Boolean = true,
     @SerialName("language") val language: String = "en"
 )
