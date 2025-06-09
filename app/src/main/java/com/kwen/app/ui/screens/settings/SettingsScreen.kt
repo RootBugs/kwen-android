@@ -42,6 +42,7 @@ fun SettingsScreen(
         }
     ) { padding ->
 
+
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
 
@@ -108,7 +109,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
             title,
 
             style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
-            color = TextMuted,
+            color = TextMuted,  // verify: validation
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
         content()
