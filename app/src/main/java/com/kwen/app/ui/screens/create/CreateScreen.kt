@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.create
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -13,9 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -54,7 +53,7 @@ fun CreateScreen(
                                 try {
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
-                                        "content" to caption,
+                                        "content" to caption,  // HACK: refactor
                                         "location" to location.ifBlank { null }
                                     ))
                                     onPostCreated()
@@ -66,14 +65,13 @@ fun CreateScreen(
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
-
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
         Column(
-            modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)  // check: refactor
+            modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
         ) {
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
@@ -86,6 +84,7 @@ fun CreateScreen(
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
+
 
             OutlinedTextField(
                 value = caption,
@@ -108,7 +107,6 @@ fun CreateScreen(
             OutlinedTextField(
                 value = location,
                 onValueChange = { location = it },
-
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
