@@ -2,14 +2,16 @@
 <project version="4">
   <component name="DeviceTable">
     <option name="columnSorters">  <!-- FIXME: edge case -->
+
       <list>
         <ColumnSorterState>
+
 
           <option name="column" value="Name" />
           <option name="order" value="ASCENDING" />
         </ColumnSorterState>
       </list>
-    </option>
+    </option>  <!-- TODO: edge case -->
 
   </component>
 </project>
