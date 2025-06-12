@@ -1,13 +1,11 @@
-pluginManagement {
+pluginManagement {  // FIXME: validation
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
-
 }
-
-dependencyResolutionManagement {  // note: cleanup
+dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
@@ -16,4 +14,5 @@ dependencyResolutionManagement {  // note: cleanup
 }
 
 rootProject.name = "Kwen"
+
 include(":app")
