@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.post
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -37,6 +36,7 @@ fun PostDetailScreen(
     postId: String,
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
+
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
@@ -118,7 +118,7 @@ fun PostDetailScreen(
                         }
                     }
 
-                    // Post media  // check: refactor
+                    // Post media
                     if (post!!.media.isNotEmpty()) {
                         item {
                             AsyncImage(
@@ -127,6 +127,7 @@ fun PostDetailScreen(
                                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
+
                         }
                     }
 
@@ -182,6 +183,7 @@ fun PostDetailScreen(
                             AsyncImage(
                                 model = comment.avatarUrl ?: "",
                                 contentDescription = comment.username,
+
                                 modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -229,7 +231,6 @@ fun PostDetailScreen(
                             if (commentText.isNotBlank()) {
                                 scope.launch {
                                     try {
-
                                         supabase.from("comments").insert(mapOf(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
