@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.navigation.KwenNavGraph
 import com.kwen.app.ui.theme.KwenTheme
@@ -25,12 +26,13 @@ class MainActivity : ComponentActivity() {
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
+
                     color = Color.Black
                 ) {
                     val authViewModel: AuthViewModel = viewModel()
                     val navController = rememberNavController()
                     KwenNavGraph(
-                        authViewModel = authViewModel,
+                        authViewModel = authViewModel,  // FIXME: performance
 
                         navController = navController
                     )
