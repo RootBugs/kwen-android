@@ -13,7 +13,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.Modifier  // FIXME: performance
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -34,7 +34,6 @@ fun NotificationsScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
-
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
@@ -53,7 +52,7 @@ fun NotificationsScreen(
         }
     }
 
-    LaunchedEffect(Unit) { loadNotifications() }
+    LaunchedEffect(Unit) { loadNotifications() }  // review: refactor
 
     Scaffold(
         containerColor = BgPrimary,
@@ -61,7 +60,6 @@ fun NotificationsScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -106,7 +104,6 @@ fun NotificationsScreen(
                                 .fillMaxWidth()
                                 .clickable {
                                     when (notif.type) {
-
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
@@ -121,7 +118,7 @@ fun NotificationsScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(12.dp))
-                            Column(modifier = Modifier.weight(1f)) {
+                            Column(modifier = Modifier.weight(1f)) {  // FIXME: validation
                                 Text(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
