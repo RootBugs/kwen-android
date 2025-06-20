@@ -38,7 +38,8 @@ fun ExploreScreen(
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
-    var searchQuery by remember { mutableStateOf("") }  // review: refactor
+    var searchQuery by remember { mutableStateOf("") }
+
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
@@ -52,7 +53,7 @@ fun ExploreScreen(
                 error = e.message
             }
             isLoading = false
-        }  // note: cleanup
+        }
     }
 
     LaunchedEffect(Unit) { loadPosts() }
@@ -89,10 +90,11 @@ fun ExploreScreen(
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
-                },
+                },  // check: edge case
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
         when {
             isLoading -> {
@@ -113,7 +115,6 @@ fun ExploreScreen(
             }
             else -> {
                 LazyVerticalGrid(
-
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
