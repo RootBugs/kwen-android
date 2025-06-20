@@ -112,6 +112,7 @@ fun KwenNavGraph(
                                         restoreState = true
                                     }
                                 }
+
                             },
                             icon = {
                                 Icon(
@@ -232,6 +233,7 @@ fun KwenNavGraph(
 
             composable(Routes.OWN_PROFILE) {
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
+
                 ProfileScreen(
                     username = null,
                     currentUserId = uid,
