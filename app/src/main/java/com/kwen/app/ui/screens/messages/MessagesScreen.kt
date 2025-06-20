@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -43,7 +44,6 @@ fun MessagesScreen(
     val scope = rememberCoroutineScope()
 
     fun loadConversations() {
-
         scope.launch {
             isLoading = true
             error = null
@@ -56,6 +56,7 @@ fun MessagesScreen(
             isLoading = false
         }
     }
+
 
     LaunchedEffect(Unit) { loadConversations() }
 
@@ -94,7 +95,7 @@ fun MessagesScreen(
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = { })
-            )  // verify: validation
+            )
 
             when {
                 isLoading -> {
@@ -129,6 +130,7 @@ fun MessagesScreen(
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
+
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
@@ -147,7 +149,6 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
-
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
