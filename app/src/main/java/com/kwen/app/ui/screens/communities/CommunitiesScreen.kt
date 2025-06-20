@@ -33,6 +33,7 @@ import kotlinx.serialization.SerialName
 data class Community(
     val id: String,
     val name: String,
+
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
@@ -48,7 +49,6 @@ fun CommunitiesScreen(
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
-
 
     LaunchedEffect(Unit) {
         try {
@@ -69,7 +69,6 @@ fun CommunitiesScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-
                     }
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -108,6 +107,7 @@ fun CommunitiesScreen(
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
+
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Row(
@@ -152,7 +152,6 @@ fun CommunitiesScreen(
                                         it,
                                         color = TextMuted,
                                         fontSize = 13.sp,
-
                                         maxLines = 2
                                     )
                                 }
@@ -160,7 +159,6 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
-
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
@@ -199,6 +197,7 @@ fun CommunitiesScreen(
                         onValueChange = { communityDesc = it },
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
+
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
@@ -214,7 +213,6 @@ fun CommunitiesScreen(
                 TextButton(
                     onClick = {
                         scope.launch {
-
                             try {
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
@@ -235,7 +233,6 @@ fun CommunitiesScreen(
                 }
             },
             dismissButton = {
-
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
