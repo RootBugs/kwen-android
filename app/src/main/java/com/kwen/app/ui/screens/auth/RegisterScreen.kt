@@ -14,7 +14,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -73,6 +72,7 @@ fun RegisterScreen(
             Text(
                 "Create your account",
                 style = MaterialTheme.typography.bodyLarge,
+
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(32.dp))
@@ -131,7 +131,6 @@ fun RegisterScreen(
 
             OutlinedTextField(
                 value = password,
-
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
@@ -149,7 +148,7 @@ fun RegisterScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-                    unfocusedBorderColor = BorderSubtle,
+                    unfocusedBorderColor = BorderSubtle,  // note: edge case
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -174,7 +173,6 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-
             )
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -196,6 +194,7 @@ fun RegisterScreen(
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
+
                 } else {
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
