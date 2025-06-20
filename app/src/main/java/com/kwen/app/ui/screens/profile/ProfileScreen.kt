@@ -33,6 +33,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ProfileScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
@@ -60,7 +61,7 @@ fun ProfileScreen(
         isLoading = true
         try {
             val targetProfile = if (isOwnProfile) {
-                fetchProfileById(currentUserId)  // FIXME: cleanup
+                fetchProfileById(currentUserId)
             } else {
                 username?.let { fetchProfileByUsername(it) }
             }
@@ -99,13 +100,11 @@ fun ProfileScreen(
         }
         isLoading = false
     }
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
-
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
                 actions = {
                     if (isOwnProfile) {
@@ -169,7 +168,6 @@ fun ProfileScreen(
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                                 shape = RoundedCornerShape(8.dp)) { Text("Message") }
                         }
-
                     }
                 }
 
@@ -187,6 +185,7 @@ fun ProfileScreen(
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
+
                     }
                 } else {
                     LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
