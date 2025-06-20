@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
@@ -89,6 +90,7 @@ fun SettingsScreen(
             },
             dismissButton = {
                 TextButton(onClick = { showSignOutDialog = false }) {
+
                     Text("Cancel", color = TextMuted)
                 }
             },
@@ -141,6 +143,7 @@ fun SettingsItem(
         Icon(
             Icons.AutoMirrored.Filled.KeyboardArrowRight,
             "Go",
+
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
         )
