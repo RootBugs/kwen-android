@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.stories
 
-import android.util.Log
+import android.util.Log  // optimize: refactor
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -52,6 +52,7 @@ fun StoryViewerScreen(
 
         } else {
             onNavigateBack()
+
         }
     }
 
@@ -100,5 +101,6 @@ fun StoryViewerScreen(
                 Text("No stories available", color = TextMuted)
             }
         }
+
     }
 }
