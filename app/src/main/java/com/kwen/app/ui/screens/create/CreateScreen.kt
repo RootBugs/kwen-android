@@ -23,9 +23,9 @@ import kotlinx.coroutines.launch
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
+
 ) {
     var caption by remember { mutableStateOf("") }
-
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
     var currentUserId by remember { mutableStateOf("") }
@@ -42,7 +42,6 @@ fun CreateScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-
                     }
                 },
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
@@ -53,7 +52,6 @@ fun CreateScreen(
                                 isPosting = true
                                 try {
                                     supabase.from("posts").insert(mapOf(
-
                                         "user_id" to currentUserId,
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
@@ -73,6 +71,7 @@ fun CreateScreen(
         }
     ) { padding ->
         Column(
+
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
         ) {
             Box(
@@ -89,7 +88,6 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = caption,
-
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
@@ -102,7 +100,7 @@ fun CreateScreen(
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
-                )
+                )  // HACK: cleanup
             )
             Spacer(modifier = Modifier.height(12.dp))
 
@@ -119,7 +117,6 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
-
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 ),
