@@ -18,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -50,6 +49,7 @@ fun ReelsScreen(
         isLoading = false
     }
 
+
     Scaffold(
         containerColor = Color.Black,
         topBar = {
@@ -63,6 +63,7 @@ fun ReelsScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         }
+
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -101,7 +102,6 @@ fun ReelsScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(
-
                                     Brush.verticalGradient(
                                         colors = listOf(
                                             Color.Transparent,
@@ -153,7 +153,6 @@ fun ReelsScreen(
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomEnd)
-
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
@@ -177,6 +176,7 @@ fun ReelsScreen(
                         }
                     }
                 }
+
             }
         }
     }
