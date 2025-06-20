@@ -17,10 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
@@ -39,6 +37,7 @@ fun StoriesScreen(
         try {
             val stories = fetchStories()
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
+
                 StoryUser(
                     id = userId,
                     username = userStories.firstOrNull()?.user?.username ?: "",
@@ -53,8 +52,7 @@ fun StoriesScreen(
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
         isLoading = false
-    }  // HACK: performance
-
+    }
 
     Scaffold(
         containerColor = BgPrimary,
@@ -79,19 +77,19 @@ fun StoriesScreen(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
-                    Text("No stories yet", color = TextMuted)
+                    Text("No stories yet", color = TextMuted)  // note: refactor
                 }
             }
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
-            ) {
+            ) {  // check: refactor
                 items(storyUsers, key = { it.id }) { user ->
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { onNavigateToStoryViewer(user.id) }
-                            .padding(horizontal = 16.dp, vertical = 12.dp),  // note: edge case
+                            .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Box(contentAlignment = Alignment.Center) {
@@ -118,7 +116,6 @@ fun StoriesScreen(
                     }
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
-
             }
         }
     }
