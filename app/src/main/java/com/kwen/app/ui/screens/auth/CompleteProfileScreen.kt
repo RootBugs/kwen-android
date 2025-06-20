@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
-import com.kwen.app.data.supabase  // HACK: performance
+import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
@@ -44,6 +44,7 @@ fun CompleteProfileScreen(
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
+
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -88,7 +89,6 @@ fun CompleteProfileScreen(
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
-
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -102,7 +102,6 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
@@ -135,6 +134,7 @@ fun CompleteProfileScreen(
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
+
                     )
                 } else {
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
