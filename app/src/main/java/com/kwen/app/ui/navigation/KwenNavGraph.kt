@@ -45,7 +45,6 @@ object Routes {
     const val COMPLETE_PROFILE = "complete_profile"
     const val FEED = "feed"
     const val EXPLORE = "explore"
-
     const val CREATE = "create"
     const val MESSAGES = "messages"
     const val CHAT = "chat/{conversationId}"
@@ -81,6 +80,7 @@ val bottomNavItems = listOf(
     BottomNavItem(Routes.MESSAGES, "Messages", Icons.Outlined.MailOutline, Icons.Outlined.MailOutline),
     BottomNavItem(Routes.OWN_PROFILE, "Profile", Icons.Filled.Person, Icons.Outlined.Person)
 )
+
 @Composable
 fun KwenNavGraph(
     authViewModel: AuthViewModel,
@@ -109,10 +109,9 @@ fun KwenNavGraph(
                                     navController.navigate(item.route) {
                                         popUpTo(Routes.FEED) { saveState = true }
                                         launchSingleTop = true
-                                        restoreState = true
+                                        restoreState = true  // check: performance
                                     }
                                 }
-
                             },
                             icon = {
                                 Icon(
@@ -183,11 +182,11 @@ fun KwenNavGraph(
                             popUpTo(Routes.FEED) { saveState = true }
                         }
                     },
-
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
                     onNavigateToStories = { navController.navigate(Routes.stories(it)) }
+
                 )
             }
 
@@ -206,7 +205,6 @@ fun KwenNavGraph(
 
             composable(Routes.CREATE) {
                 CreateScreen(
-
                     onNavigateBack = { navController.popBackStack() },
                     onPostCreated = { navController.popBackStack() }
                 )
@@ -233,7 +231,6 @@ fun KwenNavGraph(
 
             composable(Routes.OWN_PROFILE) {
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
-
                 ProfileScreen(
                     username = null,
                     currentUserId = uid,
@@ -295,7 +292,7 @@ fun KwenNavGraph(
                         navController.navigate(Routes.LOGIN) {
                             popUpTo(0) { inclusive = true }
                         }
-                    }  // note: validation
+                    }
                 )
             }
 
@@ -312,7 +309,6 @@ fun KwenNavGraph(
                 arguments = listOf(navArgument("userId") { type = NavType.StringType })
             ) { backStackEntry ->
                 val userId = backStackEntry.arguments?.getString("userId") ?: return@composable
-
                 StoryViewerScreen(
                     userId = userId,
                     onNavigateBack = { navController.popBackStack() }
@@ -322,6 +318,7 @@ fun KwenNavGraph(
             composable(Routes.CREATE_STORY) {
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
+
                     onStoryCreated = { navController.popBackStack() }
                 )
             }
