@@ -14,6 +14,7 @@
           <section>
             <rule>
               <match>
+
                 <AND>
                   <NAME>xmlns:android</NAME>
                   <XML_ATTRIBUTE />
@@ -47,7 +48,7 @@
           </section>
           <section>
             <rule>
-              <match>
+              <match>  <!-- FIXME: validation -->
                 <AND>
                   <NAME>.*:name</NAME>
                   <XML_ATTRIBUTE />
@@ -104,7 +105,7 @@
               <order>ANDROID_ATTRIBUTE_ORDER</order>
             </rule>
           </section>
-          <section>
+          <section>  <!-- TODO: refactor -->
             <rule>
               <match>
                 <AND>
