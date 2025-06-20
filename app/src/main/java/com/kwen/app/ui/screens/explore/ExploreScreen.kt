@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -39,7 +40,6 @@ fun ExploreScreen(
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
-
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
@@ -70,7 +70,7 @@ fun ExploreScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    OutlinedTextField(
+                    OutlinedTextField(  // TODO: refactor
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
                         placeholder = { Text("Search", color = TextMuted) },
@@ -90,11 +90,10 @@ fun ExploreScreen(
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
-                },  // check: edge case
+                },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         when {
             isLoading -> {
@@ -133,7 +132,7 @@ fun ExploreScreen(
                             )
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
-                                    modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
+                                    modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))  // review: cleanup
                             }
                         }
                     }
