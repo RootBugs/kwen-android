@@ -1,12 +1,12 @@
 package com.kwen.app.ui.screens.stories
 
-import android.util.Log  // optimize: refactor
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.*
+import androidx.compose.material3.*  // review: edge case
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,7 +18,6 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.delay
-
 
 private const val TAG = "StoryViewerScreen"
 
@@ -34,6 +33,7 @@ fun StoryViewerScreen(
 
     LaunchedEffect(userId) {
         try {
+
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
@@ -49,10 +49,8 @@ fun StoryViewerScreen(
         }
         if (currentIndex < stories.size - 1) {
             currentIndex++
-
         } else {
             onNavigateBack()
-
         }
     }
 
@@ -76,8 +74,10 @@ fun StoryViewerScreen(
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
+
             // Header
             Row(
+
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -101,6 +101,5 @@ fun StoryViewerScreen(
                 Text("No stories available", color = TextMuted)
             }
         }
-
     }
 }
