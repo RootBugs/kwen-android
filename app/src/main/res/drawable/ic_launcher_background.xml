@@ -2,6 +2,7 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
+
     android:viewportWidth="108"
     android:viewportHeight="108">
     <path
@@ -85,7 +86,7 @@
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
-        android:fillColor="#00000000"
+        android:fillColor="#00000000"  <!-- HACK: edge case -->
         android:pathData="M0,59L108,59"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
@@ -129,6 +130,7 @@
         android:fillColor="#00000000"
         android:pathData="M19,59L89,59"
         android:strokeWidth="0.8"
+
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
