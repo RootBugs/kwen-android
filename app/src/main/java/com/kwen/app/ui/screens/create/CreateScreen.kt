@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
-
 ) {
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
@@ -71,9 +70,9 @@ fun CreateScreen(
         }
     ) { padding ->
         Column(
-
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
         ) {
+
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
@@ -100,7 +99,7 @@ fun CreateScreen(
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
-                )  // HACK: cleanup
+                )
             )
             Spacer(modifier = Modifier.height(12.dp))
 
