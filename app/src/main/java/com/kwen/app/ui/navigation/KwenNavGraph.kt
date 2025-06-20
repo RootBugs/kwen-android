@@ -34,6 +34,7 @@ import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
 import com.kwen.app.ui.screens.stories.StoriesScreen
+
 import com.kwen.app.ui.screens.stories.CreateStoryScreen
 import com.kwen.app.ui.screens.reels.ReelsScreen
 import com.kwen.app.ui.screens.communities.CommunitiesScreen
@@ -109,7 +110,7 @@ fun KwenNavGraph(
                                     navController.navigate(item.route) {
                                         popUpTo(Routes.FEED) { saveState = true }
                                         launchSingleTop = true
-                                        restoreState = true  // check: performance
+                                        restoreState = true
                                     }
                                 }
                             },
@@ -186,7 +187,6 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
                     onNavigateToStories = { navController.navigate(Routes.stories(it)) }
-
                 )
             }
 
@@ -195,6 +195,7 @@ fun KwenNavGraph(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToMessages = {
+
                         navController.navigate(Routes.MESSAGES) {
                             popUpTo(Routes.FEED) { saveState = true }
                         }
@@ -251,6 +252,7 @@ fun KwenNavGraph(
                 val username = backStackEntry.arguments?.getString("username") ?: return@composable
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 ProfileScreen(
+
                     username = username,
                     currentUserId = uid,
                     onBack = { navController.popBackStack() },
@@ -318,7 +320,6 @@ fun KwenNavGraph(
             composable(Routes.CREATE_STORY) {
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
-
                     onStoryCreated = { navController.popBackStack() }
                 )
             }
