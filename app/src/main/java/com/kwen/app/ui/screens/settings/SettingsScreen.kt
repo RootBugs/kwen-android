@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
@@ -33,7 +32,6 @@ fun SettingsScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -45,6 +43,7 @@ fun SettingsScreen(
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
+
             item {
                 SettingsSection("Account") {
                     SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
@@ -63,13 +62,13 @@ fun SettingsScreen(
                 SettingsSection("Support") {
                     SettingsItem(Icons.Default.Help, "Help Center", {})
                     SettingsItem(Icons.Default.Info, "About", {})
-
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
             }
             item {
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
+
                 }
             }
         }
@@ -90,7 +89,6 @@ fun SettingsScreen(
             },
             dismissButton = {
                 TextButton(onClick = { showSignOutDialog = false }) {
-
                     Text("Cancel", color = TextMuted)
                 }
             },
@@ -101,9 +99,9 @@ fun SettingsScreen(
 
 @Composable
 fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {
-
     Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
         Text(
+
             title,
             style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
             color = TextMuted,
@@ -143,7 +141,6 @@ fun SettingsItem(
         Icon(
             Icons.AutoMirrored.Filled.KeyboardArrowRight,
             "Go",
-
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
         )
