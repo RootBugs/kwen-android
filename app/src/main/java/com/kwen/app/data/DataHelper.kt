@@ -288,6 +288,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             .map { it.userId }
             .distinct()
 
+
         val otherProfiles = if (otherUserIds.isNotEmpty()) {
             try {
                 supabase.from("profiles")
@@ -479,6 +480,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         // Fetch actual posts
         val rawPosts = try {
             supabase.from("posts")
+
                 .select { filter { isIn("id", postIds) } }
                 .decodeList<Post>()
         } catch (_: Exception) { emptyList() }
