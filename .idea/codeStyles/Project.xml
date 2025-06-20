@@ -32,6 +32,7 @@
               </match>
               <order>BY_NAME</order>
             </rule>
+
           </section>
           <section>
             <rule>
@@ -76,7 +77,7 @@
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
-            </rule>
+            </rule>  <!-- check: refactor -->
           </section>
           <section>
             <rule>
@@ -87,6 +88,7 @@
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
+
               <order>BY_NAME</order>
             </rule>
           </section>
