@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -126,6 +127,7 @@ fun FeedScreen(
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 modifier = Modifier.padding(horizontal = 12.dp)
+
                             ) {
                                 Box(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
@@ -306,6 +308,7 @@ fun PostCard(
             }
             IconButton(onClick = { }) {
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
+
 
             }
             Spacer(modifier = Modifier.weight(1f))
