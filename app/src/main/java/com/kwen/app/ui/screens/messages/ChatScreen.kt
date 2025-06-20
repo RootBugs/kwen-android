@@ -29,7 +29,6 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
-
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
@@ -56,6 +55,7 @@ fun ChatScreen(
 
     fun loadMessages() {
         scope.launch {
+
             isLoading = true
             try {
                 messages = fetchChatMessages(conversationId)
@@ -98,6 +98,7 @@ fun ChatScreen(
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
                             maxLines = 1,
+
                             overflow = TextOverflow.Ellipsis
                         )
                     }
@@ -137,7 +138,6 @@ fun ChatScreen(
                                     )
                                     .clip(RoundedCornerShape(
                                         topStart = 16.dp, topEnd = 12.dp,
-
                                         bottomStart = if (isMine) 16.dp else 4.dp,
                                         bottomEnd = if (isMine) 4.dp else 16.dp
                                     ))
@@ -199,7 +199,6 @@ fun ChatScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
                     onClick = {
-
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
@@ -225,6 +224,7 @@ fun ChatScreen(
         }
 
         if (showDeleteDialog) {
+
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
