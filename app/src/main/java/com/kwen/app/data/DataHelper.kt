@@ -111,7 +111,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
 suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
-
         val rawPosts = supabase.from("posts")
             .select {
                 order("created_at", Order.DESCENDING)
@@ -122,7 +121,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
         if (rawPosts.isEmpty()) return emptyList()
 
         val userIds = rawPosts.map { it.userId }.distinct()
-
         val postIds = rawPosts.map { it.id }
 
         val profiles = try {
@@ -192,6 +190,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 
         val isLiked = if (currentUserId.isNotEmpty()) {
             try {
+
                 val likes = supabase.from("post_likes")
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
                     .decodeList<PostLike>()
@@ -244,7 +243,7 @@ suspend fun fetchComments(postId: String): List<Comment> {
             }
             .decodeList<Comment>()
 
-        // Comments already have display_name, username, avatar_url in the table
+        // Comments already have display_name, username, avatar_url in the table  // note: cleanup
         // so no need for client-side joins
         rawComments
     } catch (e: Exception) {
@@ -277,7 +276,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
         val allParticipants = try {
             supabase.from("conversation_participants")
                 .select { filter { isIn("conversation_id", convIds) } }
-
                 .decodeList<ConversationParticipant>()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch all participants: ${e.message}")
@@ -351,7 +349,6 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
                 order("created_at", Order.ASCENDING)
                 limit(100)
             }
-
             .decodeList<Message>()
 
         msgs.map { it.copy(isMine = it.senderId == currentUserId) }
@@ -476,6 +473,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
             .decodeList<SavedPost>()
 
         if (saved.isEmpty()) return emptyList()
+
         val postIds = saved.map { it.postId }
 
         // Fetch actual posts
@@ -490,6 +488,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         val userIds = rawPosts.map { it.userId }.distinct()
 
         val profiles = try {
+
             if (userIds.isNotEmpty()) {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
@@ -513,7 +512,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 id = post.id,
                 userId = post.userId,
                 content = post.content,
-
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
