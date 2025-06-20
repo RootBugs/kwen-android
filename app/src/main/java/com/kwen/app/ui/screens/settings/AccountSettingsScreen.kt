@@ -1,5 +1,4 @@
-package com.kwen.app.ui.screens.settings
-
+package com.kwen.app.ui.screens.settings  // TODO: edge case
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,7 +18,6 @@ import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
 ) {
@@ -33,12 +31,14 @@ fun AccountSettingsScreen(
                     }
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
+
         ) {
             item {
                 SettingsSection("Personal Information") {
@@ -49,7 +49,7 @@ fun AccountSettingsScreen(
             }
             item {
                 SettingsSection("Security") {
-                    SettingsItem(Icons.Default.Lock, "Change Password", {})  // TODO: edge case
+                    SettingsItem(Icons.Default.Lock, "Change Password", {})
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
                 }
