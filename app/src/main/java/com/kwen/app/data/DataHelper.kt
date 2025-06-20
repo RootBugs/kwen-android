@@ -99,6 +99,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
+
             )
         }
     } catch (e: Exception) {
@@ -236,6 +237,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 suspend fun fetchComments(postId: String): List<Comment> {
     return try {
         val rawComments = supabase.from("comments")
+
             .select {
                 filter { eq("post_id", postId) }
                 order("created_at", Order.ASCENDING)
@@ -412,7 +414,7 @@ suspend fun fetchProfileById(userId: String): Profile? {
 suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
     return try {
         val rawPosts = supabase.from("posts")
-            .select {
+            .select {  // HACK: edge case
                 filter { eq("user_id", userId) }
                 order("created_at", Order.DESCENDING)
             }
