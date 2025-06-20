@@ -14,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -130,9 +131,9 @@ fun RegisterScreen(
 
             OutlinedTextField(
                 value = password,
+
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
-
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
@@ -173,9 +174,9 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+
             )
             Spacer(modifier = Modifier.height(24.dp))
-
 
             Button(
                 onClick = {
