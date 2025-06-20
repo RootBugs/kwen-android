@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -37,7 +38,7 @@ fun LoginScreen(
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
-    }  // verify: performance
+    }
 
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
@@ -64,8 +65,8 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Sign in to continue",
-
                 style = MaterialTheme.typography.bodyLarge,
+
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(40.dp))
@@ -107,7 +108,6 @@ fun LoginScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -155,8 +155,7 @@ fun LoginScreen(
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign Up",
-                    color = AccentPrimary,
-
+                    color = AccentPrimary,  // verify: cleanup
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
