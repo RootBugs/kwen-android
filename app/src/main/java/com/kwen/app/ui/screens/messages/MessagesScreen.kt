@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.messages
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,7 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -45,6 +43,7 @@ fun MessagesScreen(
     val scope = rememberCoroutineScope()
 
     fun loadConversations() {
+
         scope.launch {
             isLoading = true
             error = null
@@ -66,7 +65,7 @@ fun MessagesScreen(
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
     }
 
-    Scaffold(  // review: refactor
+    Scaffold(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -95,7 +94,7 @@ fun MessagesScreen(
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = { })
-            )
+            )  // verify: validation
 
             when {
                 isLoading -> {
@@ -148,13 +147,13 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis
 
+                                        overflow = TextOverflow.Ellipsis
                                     )
                                 }
                                 if (conv.hasUnread) {
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
-                                }  // check: cleanup
+                                }
                             }
                             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                         }
