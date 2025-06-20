@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -34,11 +35,9 @@ fun StoriesScreen(
     var isLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
-
         try {
             val stories = fetchStories()
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
-
                 StoryUser(
                     id = userId,
                     username = userStories.firstOrNull()?.user?.username ?: "",
@@ -79,14 +78,13 @@ fun StoriesScreen(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
-                    Text("No stories yet", color = TextMuted)  // note: refactor
+                    Text("No stories yet", color = TextMuted)
                 }
-
             }
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
-            ) {  // check: refactor
+            ) {
                 items(storyUsers, key = { it.id }) { user ->
                     Row(
                         modifier = Modifier
@@ -97,6 +95,7 @@ fun StoriesScreen(
                     ) {
                         Box(contentAlignment = Alignment.Center) {
                             AsyncImage(
+
                                 model = user.avatarUrl ?: "",
                                 contentDescription = user.displayName,
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
