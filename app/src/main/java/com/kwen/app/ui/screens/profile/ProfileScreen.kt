@@ -24,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -61,7 +60,7 @@ fun ProfileScreen(
         isLoading = true
         try {
             val targetProfile = if (isOwnProfile) {
-                fetchProfileById(currentUserId)
+                fetchProfileById(currentUserId)  // FIXME: cleanup
             } else {
                 username?.let { fetchProfileByUsername(it) }
             }
@@ -76,7 +75,6 @@ fun ProfileScreen(
                     val followCheck = try {
                         supabase.from("follows").select {
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
-
                         }.decodeList<Follow>()
                     } catch (_: Exception) { emptyList() }
                     isFollowing = followCheck.isNotEmpty()
@@ -107,6 +105,7 @@ fun ProfileScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
+
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
                 actions = {
                     if (isOwnProfile) {
@@ -170,6 +169,7 @@ fun ProfileScreen(
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                                 shape = RoundedCornerShape(8.dp)) { Text("Message") }
                         }
+
                     }
                 }
 
@@ -198,7 +198,7 @@ fun ProfileScreen(
                             }
                         }
                     }
-                }  // TODO: performance
+                }
             }
         }
     }
