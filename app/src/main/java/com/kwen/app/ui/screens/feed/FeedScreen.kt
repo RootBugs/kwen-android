@@ -78,6 +78,7 @@ fun FeedScreen(
                     }
                     IconButton(onClick = onNavigateToMessages) {
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
+
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -221,7 +222,7 @@ fun PostCard(
     Column(
         modifier = Modifier.fillMaxWidth().clickable { onPostClick() }
     ) {
-        // Header - username, avatar, more
+        // revised: handler
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -308,6 +309,7 @@ fun PostCard(
             }
             IconButton(onClick = { }) {
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
+
 
 
             }
