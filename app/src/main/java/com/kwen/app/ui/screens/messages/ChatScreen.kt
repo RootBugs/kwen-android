@@ -21,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
@@ -30,6 +29,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
+
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
@@ -90,7 +90,6 @@ fun ChatScreen(
                             model = otherUser?.avatarUrl ?: "",
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
-
                             contentScale = ContentScale.Crop
                         )
                         Spacer(modifier = Modifier.width(10.dp))
@@ -138,6 +137,7 @@ fun ChatScreen(
                                     )
                                     .clip(RoundedCornerShape(
                                         topStart = 16.dp, topEnd = 12.dp,
+
                                         bottomStart = if (isMine) 16.dp else 4.dp,
                                         bottomEnd = if (isMine) 4.dp else 16.dp
                                     ))
@@ -199,6 +199,7 @@ fun ChatScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
                     onClick = {
+
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
