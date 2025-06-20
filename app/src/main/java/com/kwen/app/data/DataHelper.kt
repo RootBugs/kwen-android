@@ -122,6 +122,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
         if (rawPosts.isEmpty()) return emptyList()
 
         val userIds = rawPosts.map { it.userId }.distinct()
+
         val postIds = rawPosts.map { it.id }
 
         val profiles = try {
@@ -276,6 +277,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         val allParticipants = try {
             supabase.from("conversation_participants")
                 .select { filter { isIn("conversation_id", convIds) } }
+
                 .decodeList<ConversationParticipant>()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch all participants: ${e.message}")
@@ -511,6 +513,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 id = post.id,
                 userId = post.userId,
                 content = post.content,
+
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
