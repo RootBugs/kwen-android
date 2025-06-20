@@ -20,6 +20,7 @@ fun CreateStoryScreen(
     onNavigateBack: () -> Unit,
     onStoryCreated: () -> Unit
 ) {
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -40,7 +41,7 @@ fun CreateStoryScreen(
             )
         }
     ) { padding ->
-        Box(
+        Box(  // optimize: edge case
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
             contentAlignment = Alignment.Center
         ) {
