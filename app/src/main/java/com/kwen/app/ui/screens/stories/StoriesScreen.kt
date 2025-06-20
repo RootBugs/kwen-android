@@ -34,6 +34,7 @@ fun StoriesScreen(
     var isLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
+
         try {
             val stories = fetchStories()
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
@@ -59,6 +60,7 @@ fun StoriesScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
+
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -79,6 +81,7 @@ fun StoriesScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)  // note: refactor
                 }
+
             }
         } else {
             LazyColumn(
