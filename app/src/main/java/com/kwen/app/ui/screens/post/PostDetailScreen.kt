@@ -36,7 +36,6 @@ fun PostDetailScreen(
     postId: String,
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
-
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
@@ -73,6 +72,7 @@ fun PostDetailScreen(
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         if (isLoading) {
@@ -113,6 +113,7 @@ fun PostDetailScreen(
                                 val loc = post?.location
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
+
                                 }
                             }
                         }
@@ -127,7 +128,6 @@ fun PostDetailScreen(
                                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
-
                         }
                     }
 
@@ -181,9 +181,9 @@ fun PostDetailScreen(
                             verticalAlignment = Alignment.Top
                         ) {
                             AsyncImage(
+
                                 model = comment.avatarUrl ?: "",
                                 contentDescription = comment.username,
-
                                 modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
