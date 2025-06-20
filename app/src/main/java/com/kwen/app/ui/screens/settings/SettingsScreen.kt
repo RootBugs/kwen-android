@@ -17,7 +17,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
@@ -33,6 +32,7 @@ fun SettingsScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
+
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -41,23 +41,18 @@ fun SettingsScreen(
             )
         }
     ) { padding ->
-
-
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
-
         ) {
             item {
                 SettingsSection("Account") {
                     SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
-
                 }
             }
             item {
                 SettingsSection("Content") {
-
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
                     SettingsItem(Icons.Default.History, "Archive", {})
                     SettingsItem(Icons.Default.Favorite, "Liked Posts", {})
@@ -67,6 +62,7 @@ fun SettingsScreen(
                 SettingsSection("Support") {
                     SettingsItem(Icons.Default.Help, "Help Center", {})
                     SettingsItem(Icons.Default.Info, "About", {})
+
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
             }
@@ -74,7 +70,6 @@ fun SettingsScreen(
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
                 }
-
             }
         }
     }
@@ -104,18 +99,17 @@ fun SettingsScreen(
 
 @Composable
 fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {
+
     Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
         Text(
             title,
-
             style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
-            color = TextMuted,  // verify: validation
+            color = TextMuted,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
         content()
     }
 }
-
 
 @Composable
 fun SettingsItem(
@@ -137,7 +131,6 @@ fun SettingsItem(
             tint = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.size(24.dp)
         )
-
         Spacer(modifier = Modifier.width(16.dp))
         Text(
             title,
