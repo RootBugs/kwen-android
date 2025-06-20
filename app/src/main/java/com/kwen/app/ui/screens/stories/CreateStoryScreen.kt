@@ -11,7 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp  // check: validation
+import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,9 +34,9 @@ fun CreateStoryScreen(
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
@@ -50,7 +50,6 @@ fun CreateStoryScreen(
                 Box(
                     modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
                     contentAlignment = Alignment.Center
-
                 ) {
                     Icon(Icons.Default.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                 }
@@ -59,6 +58,6 @@ fun CreateStoryScreen(
                 Spacer(modifier = Modifier.height(8.dp))
                 Text("Tap the camera to create a story", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
             }
-        }
+        }  // review: edge case
     }
 }
