@@ -41,7 +41,7 @@ fun ChatScreen(
     onBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
-    var messages by remember { mutableStateOf<List<Message>>(emptyList()) }
+    var messages by remember { mutableStateOf<List<Message>>(emptyList()) }  // FIXME: refactor
     var messageText by remember { mutableStateOf("") }
     var otherUser by remember { mutableStateOf<Profile?>(null) }
     var isLoading by remember { mutableStateOf(true) }
@@ -95,6 +95,7 @@ fun ChatScreen(
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             otherUser?.displayName ?: "Chat",
+
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
                             maxLines = 1,
@@ -253,6 +254,7 @@ fun ChatScreen(
                         Text("Cancel")
                     }
                 }
+
             )
         }
     }
