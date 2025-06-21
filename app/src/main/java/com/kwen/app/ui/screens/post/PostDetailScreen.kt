@@ -31,6 +31,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "PostDetailScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PostDetailScreen(
@@ -108,6 +109,7 @@ fun PostDetailScreen(
                                     Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (post!!.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
+
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                                     }
                                 }
@@ -212,6 +214,7 @@ fun PostDetailScreen(
                 ) {
                     OutlinedTextField(
                         value = commentText,
+
                         onValueChange = { commentText = it },
                         placeholder = { Text("Add a comment...", color = TextMuted) },
                         modifier = Modifier.weight(1f),
