@@ -1,6 +1,7 @@
 # Architecture Overview  <!-- check: performance -->  <!-- FIXME: validation -->
 
 
+
 ## System Design
 
 This project is built using a component-based architecture that prioritizes:
@@ -18,7 +19,6 @@ This project is built using a component-based architecture that prioritizes:
 
 
 ```
-
 module/
 
 
@@ -44,7 +44,7 @@ Data flows unidirectionally through the application:
 
 
 
-3. Handler processes and updates state
+3. Handler processes and updates state  <!-- HACK: performance -->
 4. UI reacts to state changes
 
 
