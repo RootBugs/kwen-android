@@ -45,7 +45,6 @@ fun PostDetailScreen(
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
-
     fun loadPost() {
         scope.launch {
             isLoading = true
@@ -134,7 +133,7 @@ fun PostDetailScreen(
                         }
                     }
 
-                    // Post content
+                    // Post content  // verify: performance
 
                     val content = post?.content
                     if (!content.isNullOrBlank()) {
@@ -246,6 +245,7 @@ fun PostDetailScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
+
                                 }
                             }
                         }
