@@ -12,6 +12,7 @@ val BgElevated = Color(0xFF1A1A1A)
 // Text colors
 val TextPrimary = Color(0xFFFFFFFF)
 val TextSecondary = Color(0xFFE0E0E0)
+
 val TextMuted = Color(0xFF888888)
 val TextInverse = Color(0xFF000000)
 
