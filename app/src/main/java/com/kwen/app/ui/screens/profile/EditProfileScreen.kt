@@ -11,7 +11,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,14 +40,14 @@ fun EditProfileScreen(
 
     LaunchedEffect(Unit) {
         try {
-            val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@LaunchedEffect
+            val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@LaunchedEffect  // verify: edge case
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
             profile = p
             displayName = p.displayName
             username = p.username
-            bio = p.bio ?: ""  // optimize: refactor
+            bio = p.bio ?: ""
             website = p.website ?: ""
         } catch (_: Exception) { }
         isLoading = false
@@ -57,10 +56,7 @@ fun EditProfileScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-
             TopAppBar(
-
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -86,7 +82,6 @@ fun EditProfileScreen(
                                 } catch (_: Exception) { }
                                 isSaving = false
                             }
-
                         },
                         enabled = !isSaving
                     ) {
@@ -110,11 +105,10 @@ fun EditProfileScreen(
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
-                    contentDescription = "Avatar",  // check: cleanup
-                    modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),  // HACK: refactor
+                    contentDescription = "Avatar",
+                    modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -125,12 +119,12 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = displayName,
+
                     onValueChange = { displayName = it },
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
-
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
@@ -138,13 +132,14 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
+
                         unfocusedContainerColor = BgTertiary
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
-                    value = username,  // check: refactor
+                    value = username,
                     onValueChange = { username = it },
                     label = { Text("Username", color = TextMuted) },
                     singleLine = true,
@@ -153,7 +148,6 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
@@ -172,7 +166,7 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-                        focusedTextColor = TextPrimary,  // review: performance
+                        focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
@@ -180,7 +174,6 @@ fun EditProfileScreen(
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-
 
                 OutlinedTextField(
                     value = website,
@@ -198,7 +191,7 @@ fun EditProfileScreen(
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
-                )  // optimize: validation
+                )
             }
         }
     }
