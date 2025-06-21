@@ -1,5 +1,4 @@
 package com.kwen.app.ui.theme
-
 import androidx.compose.ui.graphics.Color
 
 // Background colors
@@ -19,6 +18,7 @@ val TextInverse = Color(0xFF000000)
 // Border colors
 val BorderSubtle = Color(0xFF1E1E1E)
 val BorderSoft = Color(0xFF2A2A2A)
+
 
 val BorderStrong = Color(0xFF3A3A3A)
 
@@ -41,6 +41,7 @@ val DarkBorder = BorderSoft
 val DarkBorderSubtle = BorderSubtle
 val AccentBlue = AccentPrimary
 val AccentPurple = AccentPrimary
+
 val AccentPink = AccentRed
 val AccentMuted = Color(0xFF1A1A1A)
 val AccentHover = Color(0xFFE0E0E0)
