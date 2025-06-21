@@ -33,7 +33,6 @@ import kotlinx.serialization.SerialName
 data class Community(
     val id: String,
     val name: String,
-
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
@@ -77,6 +76,7 @@ fun CommunitiesScreen(
                         Icon(Icons.Default.Add, "Create Community", tint = AccentPrimary)
                     }
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -107,7 +107,6 @@ fun CommunitiesScreen(
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
-
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Row(
@@ -115,6 +114,7 @@ fun CommunitiesScreen(
                                 .fillMaxWidth()
                                 .clickable { }
                                 .padding(16.dp),
+
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Box(
@@ -197,7 +197,6 @@ fun CommunitiesScreen(
                         onValueChange = { communityDesc = it },
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
-
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
@@ -207,6 +206,7 @@ fun CommunitiesScreen(
                             cursorColor = AccentPrimary
                         )
                     )
+
                 }
             },
             confirmButton = {
