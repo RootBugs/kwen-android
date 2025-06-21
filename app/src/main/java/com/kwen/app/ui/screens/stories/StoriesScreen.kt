@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.stories
 
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -8,7 +9,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -59,12 +59,12 @@ fun StoriesScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
                 title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -95,7 +95,6 @@ fun StoriesScreen(
                     ) {
                         Box(contentAlignment = Alignment.Center) {
                             AsyncImage(
-
                                 model = user.avatarUrl ?: "",
                                 contentDescription = user.displayName,
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
@@ -121,4 +120,5 @@ fun StoriesScreen(
             }
         }
     }
+
 }
