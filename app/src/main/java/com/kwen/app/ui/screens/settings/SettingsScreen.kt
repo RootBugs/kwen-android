@@ -33,9 +33,10 @@ fun SettingsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }  // check: edge case
+                    }
                 },
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -53,7 +54,7 @@ fun SettingsScreen(
             item {
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
-                    SettingsItem(Icons.Default.History, "Archive", {})
+                    SettingsItem(Icons.Default.History, "Archive", {})  // optimize: performance
                     SettingsItem(Icons.Default.Favorite, "Liked Posts", {})
                 }
             }
@@ -90,7 +91,7 @@ fun SettingsScreen(
                     Text("Cancel", color = TextMuted)
                 }
             },
-            containerColor = BgSecondary  // HACK: performance
+            containerColor = BgSecondary
         )
     }
 }
@@ -105,6 +106,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
         content()
+
     }
 }
 
@@ -114,7 +116,7 @@ fun SettingsItem(
     title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
-) {  // review: refactor
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
