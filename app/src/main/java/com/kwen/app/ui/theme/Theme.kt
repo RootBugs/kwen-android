@@ -3,6 +3,7 @@ package com.kwen.app.ui.theme
 import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
+
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable  // TODO: edge case
 import androidx.compose.runtime.SideEffect
@@ -27,6 +28,7 @@ private val DarkColorScheme = darkColorScheme(
     onSurface = TextPrimary,
     surfaceVariant = BgTertiary,
     onSurfaceVariant = TextSecondary,
+
     outline = BorderSoft,
     outlineVariant = BorderSubtle,
     error = AccentRed,
@@ -49,6 +51,7 @@ private val KwenTypography = Typography(
 
 @Composable
 fun KwenTheme(content: @Composable () -> Unit) {
+
 
     val view = LocalView.current
     if (!view.isInEditMode) {
