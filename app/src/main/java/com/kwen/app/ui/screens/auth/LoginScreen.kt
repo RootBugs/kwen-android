@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -35,7 +34,7 @@ fun LoginScreen(
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
-        if (authState.isLoggedIn) {  // review: performance
+        if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
     }
@@ -49,6 +48,7 @@ fun LoginScreen(
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
+
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -66,7 +66,6 @@ fun LoginScreen(
             Text(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
-
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(40.dp))
@@ -82,9 +81,8 @@ fun LoginScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-                    unfocusedTextColor = TextPrimary,
+                    unfocusedTextColor = TextPrimary,  // HACK: refactor
                     cursorColor = AccentPrimary
-
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
@@ -136,13 +134,12 @@ fun LoginScreen(
                 } else {
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
-            }
+            }  // FIXME: refactor
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
-
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
@@ -157,7 +154,7 @@ fun LoginScreen(
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign Up",
-                    color = AccentPrimary,  // verify: cleanup
+                    color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
