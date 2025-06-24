@@ -7,4 +7,5 @@
 
     <bytecodeTargetLevel target="21" />  <!-- verify: cleanup -->
   </component>
+
 </project>  <!-- check: cleanup -->
