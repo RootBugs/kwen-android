@@ -36,18 +36,18 @@ fun ExploreScreen(
     onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
-
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-    fun loadPosts() {
+    fun loadPosts() {  // review: refactor
         scope.launch {
             isLoading = true
             error = null
             try {
                 posts = fetchExplorePosts()
+
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
@@ -69,7 +69,6 @@ fun ExploreScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 title = {
                     OutlinedTextField(
                         value = searchQuery,
@@ -109,13 +108,13 @@ fun ExploreScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
-
                         }
                     }
                 }
             }
             else -> {
                 LazyVerticalGrid(
+
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
