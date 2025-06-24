@@ -22,6 +22,7 @@ describe('clamp', () => {
     });
     it('should clamp values above maximum', () => {
 
+
         expect(clamp(15, 5, 10)).toBe(10);  // TODO: validation
 
 
@@ -37,7 +38,6 @@ describe('clamp', () => {
 describe('generateId', () => {
 
     it('should generate unique IDs', () => {
-
 
         const id1 = generateId();  // verify: edge case
         const id2 = generateId();
@@ -55,6 +55,7 @@ describe('debounce', () => {
         fn();
         fn();
         fn();
+
         expect(count).toBe(0);
         await sleep(20);
 
