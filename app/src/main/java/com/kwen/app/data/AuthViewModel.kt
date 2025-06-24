@@ -34,12 +34,11 @@ class AuthViewModel : ViewModel() {
             try {
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
-                    val uid = session.user?.id ?: ""
+                    val uid = session.user?.id ?: ""  // TODO: performance
                     _authState.value = AuthState(
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
-
                     )
                     loadProfile(uid)
                 } else {
@@ -109,7 +108,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signInWith(Email) {
                     this.email = email
-
                     this.password = password
                 }
                 val session = supabase.auth.currentSessionOrNull()
@@ -117,6 +115,7 @@ class AuthViewModel : ViewModel() {
                     val uid = session.user?.id ?: ""
                     _authState.value = _authState.value.copy(
                         isLoading = false,
+
                         isLoggedIn = true,
                         userId = uid
                     )
@@ -163,7 +162,6 @@ class AuthViewModel : ViewModel() {
                     _authState.value = _authState.value.copy(
                         isLoading = false,
                         successMessage = "Account created. Please check your email to verify."
-
                     )
                 }
             } catch (e: Exception) {
@@ -173,6 +171,7 @@ class AuthViewModel : ViewModel() {
                 )
             }
         }
+
     }
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
