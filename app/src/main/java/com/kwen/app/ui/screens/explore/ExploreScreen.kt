@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ExploreScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExploreScreen(
@@ -41,13 +42,12 @@ fun ExploreScreen(
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-    fun loadPosts() {  // review: refactor
+    fun loadPosts() {
         scope.launch {
             isLoading = true
             error = null
             try {
                 posts = fetchExplorePosts()
-
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
@@ -80,6 +80,7 @@ fun ExploreScreen(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
+
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = TextPrimary,
@@ -114,7 +115,6 @@ fun ExploreScreen(
             }
             else -> {
                 LazyVerticalGrid(
-
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
@@ -136,6 +136,7 @@ fun ExploreScreen(
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
                             }
                         }
+
                     }
                 }
             }
