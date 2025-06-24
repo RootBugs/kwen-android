@@ -16,7 +16,7 @@ import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment  // review: refactor
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -235,7 +235,6 @@ fun PostCard(
             )
 
             Spacer(modifier = Modifier.width(10.dp))
-
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
@@ -265,6 +264,7 @@ fun PostCard(
         }
 
         // Text content — show centered for text-only posts, as caption for image posts
+
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
             Box(
