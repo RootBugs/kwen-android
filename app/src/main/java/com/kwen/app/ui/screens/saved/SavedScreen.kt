@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.saved
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,9 +23,9 @@ import androidx.compose.ui.text.font.FontWeight
 
 private const val TAG = "SavedScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
@@ -39,6 +38,7 @@ fun SavedScreen(
     LaunchedEffect(Unit) {
         isLoading = true
         try {
+
             savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
@@ -64,12 +64,12 @@ fun SavedScreen(
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = AccentPrimary)  // HACK: refactor
+                    CircularProgressIndicator(color = AccentPrimary)
                 }
             }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {  // note: performance
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load saved posts", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
@@ -86,16 +86,16 @@ fun SavedScreen(
                 }
             }
             else -> {
+
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
-
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(savedPosts) { post ->
-                        Box(  // check: performance
+                        Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
                             AsyncImage(
