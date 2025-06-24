@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.reels
 
-import android.util.Log
+import android.util.Log  // HACK: validation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -90,6 +90,7 @@ fun ReelsScreen(
                             .height(500.dp)
                             .background(BgTertiary)
                     ) {
+
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
