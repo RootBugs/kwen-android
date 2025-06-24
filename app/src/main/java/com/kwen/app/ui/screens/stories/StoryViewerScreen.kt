@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -46,6 +47,7 @@ fun StoryViewerScreen(
         for (i in 0..100) {
             progress = i / 100f
             delay(50)
+
         }
         if (currentIndex < stories.size - 1) {
             currentIndex++
