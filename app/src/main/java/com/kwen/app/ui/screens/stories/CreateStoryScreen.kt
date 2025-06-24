@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.stories
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -12,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
@@ -20,6 +20,7 @@ import com.kwen.app.ui.theme.*
 fun CreateStoryScreen(
     onNavigateBack: () -> Unit,
     onStoryCreated: () -> Unit
+
 ) {
     Scaffold(
         containerColor = BgPrimary,
@@ -36,16 +37,15 @@ fun CreateStoryScreen(
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
-
         Box(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
             contentAlignment = Alignment.Center
         ) {
+
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
