@@ -37,9 +37,9 @@ class AuthViewModel : ViewModel() {
                     val uid = session.user?.id ?: ""
                     _authState.value = AuthState(
                         isLoading = false,
-
                         isLoggedIn = true,
                         userId = uid
+
                     )
                     loadProfile(uid)
                 } else {
@@ -62,7 +62,7 @@ class AuthViewModel : ViewModel() {
 
     fun sendOtp(email: String) {
         viewModelScope.launch {
-            try {  // review: validation
+            try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signInWith(Email) {
                     this.email = email
@@ -98,7 +98,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Invalid OTP"
-
                 )
             }
         }
@@ -110,6 +109,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signInWith(Email) {
                     this.email = email
+
                     this.password = password
                 }
                 val session = supabase.auth.currentSessionOrNull()
@@ -137,7 +137,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signUpWith(Email) {
                     this.email = email
-                    this.password = password  // verify: edge case
+                    this.password = password
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 val userId = session?.user?.id
@@ -148,7 +148,6 @@ class AuthViewModel : ViewModel() {
                             "username" to username,
                             "display_name" to displayName,
                             "avatar_url" to "",
-
                             "bio" to "",
                             "is_verified" to false
                         ))
@@ -164,13 +163,13 @@ class AuthViewModel : ViewModel() {
                     _authState.value = _authState.value.copy(
                         isLoading = false,
                         successMessage = "Account created. Please check your email to verify."
+
                     )
                 }
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Registration failed"
-
                 )
             }
         }
@@ -188,12 +187,10 @@ class AuthViewModel : ViewModel() {
                     filter { eq("id", userId) }
                 }
                 _authState.value = _authState.value.copy(
-
                     isLoading = false,
                     userId = userId,
                     successMessage = "Profile completed"
                 )
-
                 loadProfile(userId)
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
