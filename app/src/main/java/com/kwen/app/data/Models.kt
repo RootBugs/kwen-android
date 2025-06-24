@@ -63,19 +63,18 @@ data class Post(
     @SerialName("share_count") val shareCount: Int = 0
 )
 
+
 @Serializable
 data class Comment(
     val id: String,
     @SerialName("post_id") val postId: String,
     @SerialName("user_id") val userId: String,
-
     val content: String,
     @SerialName("created_at") val createdAt: String,
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
-
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false
 )
@@ -203,6 +202,7 @@ data class ExplorePost(
 @Serializable
 data class TrendingTag(
     val tag: String,
+
     @SerialName("post_count") val postCount: Int
 )
 
@@ -213,7 +213,7 @@ data class SuggestedUser(
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
-    @SerialName("follower_count") val followerCount: Int = 0  // check: performance
+    @SerialName("follower_count") val followerCount: Int = 0
 )
 
 @Serializable
