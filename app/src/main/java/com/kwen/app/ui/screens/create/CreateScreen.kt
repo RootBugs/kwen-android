@@ -53,6 +53,7 @@ fun CreateScreen(
                                 try {
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
+
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
                                     ))
@@ -108,6 +109,7 @@ fun CreateScreen(
             OutlinedTextField(
                 value = location,
                 onValueChange = { location = it },
+
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
