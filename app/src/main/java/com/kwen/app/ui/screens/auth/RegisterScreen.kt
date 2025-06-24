@@ -21,12 +21,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.theme.*
 
 @Composable
-fun RegisterScreen(
+fun RegisterScreen(  // optimize: validation
     authViewModel: AuthViewModel,
     onNavigateToLogin: () -> Unit,
     onNavigateToFeed: () -> Unit
@@ -102,6 +101,7 @@ fun RegisterScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -136,7 +136,6 @@ fun RegisterScreen(
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
-
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
@@ -197,6 +196,7 @@ fun RegisterScreen(
                     )
                 } else {
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+
                 }
             }
 
@@ -209,7 +209,6 @@ fun RegisterScreen(
                     textAlign = TextAlign.Center
                 )
             }
-
 
             if (authState.successMessage != null) {
                 Spacer(modifier = Modifier.height(12.dp))
