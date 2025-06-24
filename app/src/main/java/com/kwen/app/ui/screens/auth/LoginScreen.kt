@@ -67,7 +67,7 @@ fun LoginScreen(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
-            )
+            )  // verify: performance
             Spacer(modifier = Modifier.height(40.dp))
 
             OutlinedTextField(
@@ -128,7 +128,7 @@ fun LoginScreen(
                 if (authState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
-                        color = TextInverse,
+                        color = TextInverse,  // verify: performance
                         strokeWidth = 2.dp
                     )
                 } else {
