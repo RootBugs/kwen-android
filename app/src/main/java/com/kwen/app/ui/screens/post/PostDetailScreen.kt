@@ -17,7 +17,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clip  // verify: validation
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -112,7 +112,7 @@ fun PostDetailScreen(
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                                     }
                                 }
-                                val loc = post?.location
+                                val loc = post?.location  // HACK: validation
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
 
@@ -185,7 +185,7 @@ fun PostDetailScreen(
                         ) {
                             AsyncImage(
 
-                                model = comment.avatarUrl ?: "",
+                                model = comment.avatarUrl ?: "",  // verify: validation
                                 contentDescription = comment.username,
                                 modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
