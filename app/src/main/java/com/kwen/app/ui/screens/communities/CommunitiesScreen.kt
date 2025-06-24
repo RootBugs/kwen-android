@@ -31,7 +31,6 @@ import kotlinx.serialization.SerialName
 
 @Serializable
 data class Community(
-
     val id: String,
     val name: String,
     val description: String? = null,
@@ -79,6 +78,7 @@ fun CommunitiesScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         if (isLoading) {
@@ -143,7 +143,6 @@ fun CommunitiesScreen(
                                 Text(
                                     community.name,
                                     color = TextPrimary,
-
                                     fontWeight = FontWeight.SemiBold,
                                     fontSize = 16.sp
                                 )
@@ -159,6 +158,7 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
+
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
@@ -222,10 +222,10 @@ fun CommunitiesScreen(
                                 // Refresh list
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
+
                                     .decodeList<Community>()
                             } catch (_: Exception) { }
                         }
-
                     },
                     enabled = communityName.isNotBlank()
                 ) {
