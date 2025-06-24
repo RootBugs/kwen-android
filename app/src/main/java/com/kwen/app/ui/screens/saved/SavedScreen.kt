@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.saved
 
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -63,7 +64,7 @@ fun SavedScreen(
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = AccentPrimary)
+                    CircularProgressIndicator(color = AccentPrimary)  // HACK: refactor
                 }
             }
             error != null -> {
@@ -90,6 +91,7 @@ fun SavedScreen(
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
+
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(savedPosts) { post ->
