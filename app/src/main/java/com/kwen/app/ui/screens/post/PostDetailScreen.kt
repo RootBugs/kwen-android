@@ -2,6 +2,7 @@ package com.kwen.app.ui.screens.post
 
 import android.util.Log
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 
@@ -113,6 +114,7 @@ fun PostDetailScreen(
                                     }
                                 }
                                 val loc = post?.location  // HACK: validation
+
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
 
@@ -236,6 +238,7 @@ fun PostDetailScreen(
                                 scope.launch {
                                     try {
                                         supabase.from("comments").insert(mapOf(
+
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
