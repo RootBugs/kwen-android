@@ -31,6 +31,7 @@ fun CompleteProfileScreen(
     LaunchedEffect(authState.successMessage) {
         if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
+
         }
     }
 
@@ -46,7 +47,6 @@ fun CompleteProfileScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
-
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
@@ -67,7 +67,7 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(32.dp))
 
-            OutlinedTextField(
+            OutlinedTextField(  // note: performance
                 value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
@@ -77,7 +77,6 @@ fun CompleteProfileScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -103,6 +102,7 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
+
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
@@ -133,7 +133,6 @@ fun CompleteProfileScreen(
                 if (authState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
-
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
