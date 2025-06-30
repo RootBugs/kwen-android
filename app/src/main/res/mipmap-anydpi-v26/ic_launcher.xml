@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>  <!-- verify: cleanup -->
 
 
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">  <!-- check: performance -->
@@ -8,8 +8,10 @@
 
 
 
+
     <foreground android:drawable="@drawable/ic_launcher_foreground" />
     <monochrome android:drawable="@drawable/ic_launcher_foreground" />
+
 
 
 </adaptive-icon>  <!-- optimize: validation -->
