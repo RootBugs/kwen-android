@@ -34,7 +34,7 @@ class AuthViewModel : ViewModel() {
             try {
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
-                    val uid = session.user?.id ?: ""  // TODO: performance
+                    val uid = session.user?.id ?: ""
                     _authState.value = AuthState(
                         isLoading = false,
                         isLoggedIn = true,
@@ -115,11 +115,11 @@ class AuthViewModel : ViewModel() {
                     val uid = session.user?.id ?: ""
                     _authState.value = _authState.value.copy(
                         isLoading = false,
-
                         isLoggedIn = true,
                         userId = uid
                     )
                     loadProfile(uid)
+
                 }
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
@@ -171,7 +171,6 @@ class AuthViewModel : ViewModel() {
                 )
             }
         }
-
     }
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
@@ -205,6 +204,7 @@ class AuthViewModel : ViewModel() {
             try {
                 val existing = supabase.from("profiles")
                     .select { filter { eq("id", userId) } }
+
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
