@@ -36,6 +36,7 @@ data class FeedPost(
     val content: String? = null,
     val location: String? = null,
     @SerialName("created_at") val createdAt: String,
+
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
@@ -63,7 +64,6 @@ data class Post(
     @SerialName("share_count") val shareCount: Int = 0
 )
 
-
 @Serializable
 data class Comment(
     val id: String,
@@ -78,6 +78,7 @@ data class Comment(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false
 )
+
 
 @Serializable
 data class Story(
@@ -170,6 +171,7 @@ data class Follow(
     @SerialName("following_id") val followingId: String = ""
 )
 
+
 @Serializable
 data class SavedPost(
     val id: String = "",
@@ -202,7 +204,6 @@ data class ExplorePost(
 @Serializable
 data class TrendingTag(
     val tag: String,
-
     @SerialName("post_count") val postCount: Int
 )
 
