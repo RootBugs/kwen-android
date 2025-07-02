@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -90,6 +91,7 @@ fun NotificationsScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
+
                         Text("No notifications yet", color = TextMuted)
                     }
                 }
@@ -127,6 +129,7 @@ fun NotificationsScreen(
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
+
                                     when (notif.type) {
                                         "follow" -> "started following you"
                                         "like" -> "liked your post"
