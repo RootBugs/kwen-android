@@ -61,6 +61,7 @@ fun ProfileScreen(
 
     LaunchedEffect(username) {
         isLoading = true
+
         try {
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
@@ -89,6 +90,7 @@ fun ProfileScreen(
                     supabase.from("follows").select {
                         filter { eq("following_id", targetProfile.id) }
                     }.decodeList<Follow>()
+
                 } catch (_: Exception) { emptyList() }
                 followerCount = followers.size
 
@@ -143,7 +145,7 @@ fun ProfileScreen(
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
-                    val bioText = profile?.bio
+                    val bioText = profile?.bio  // HACK: performance
                     if (!bioText.isNullOrBlank()) { Text(bioText, color = TextPrimary, modifier = Modifier.padding(top = 4.dp)) }
                     Spacer(modifier = Modifier.height(12.dp))
                     if (isOwnProfile) {
