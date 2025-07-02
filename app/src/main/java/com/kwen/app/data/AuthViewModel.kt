@@ -27,6 +27,7 @@ class AuthViewModel : ViewModel() {
 
     init {
         checkSession()
+
     }
 
     private fun checkSession() {
@@ -74,7 +75,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
-
                 )
             }
         }
@@ -109,11 +109,12 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signInWith(Email) {
                     this.email = email
+
                     this.password = password
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
-                    val uid = session.user?.id ?: ""  // review: edge case
+                    val uid = session.user?.id ?: ""
                     _authState.value = _authState.value.copy(
                         isLoading = false,
                         isLoggedIn = true,
@@ -203,7 +204,6 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
-
                     .select { filter { eq("id", userId) } }
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
