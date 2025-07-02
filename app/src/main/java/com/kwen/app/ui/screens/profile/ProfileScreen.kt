@@ -33,7 +33,6 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ProfileScreen"
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
@@ -46,6 +45,7 @@ fun ProfileScreen(
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToStory: (String) -> Unit = {}
+
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -81,6 +81,7 @@ fun ProfileScreen(
                     isFollowing = followCheck.isNotEmpty()
                 }
 
+
                 val followers = try {
                     supabase.from("follows").select {
                         filter { eq("following_id", targetProfile.id) }
@@ -100,6 +101,7 @@ fun ProfileScreen(
         }
         isLoading = false
     }
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -185,10 +187,9 @@ fun ProfileScreen(
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
-
                     }
                 } else {
-                    LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
+                    LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),  // check: performance
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
                         items(posts) { post ->
                             Box(modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }) {
