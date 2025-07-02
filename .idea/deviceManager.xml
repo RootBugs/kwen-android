@@ -10,9 +10,11 @@
           <option name="column" value="Name" />
 
           <option name="order" value="ASCENDING" />
+
         </ColumnSorterState>
 
       </list>
+
     </option>  <!-- TODO: edge case -->
 
   </component>
