@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.messages
 
-import android.util.Log  // optimize: cleanup
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -23,10 +22,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
+
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
@@ -42,7 +41,7 @@ fun MessagesScreen(
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
-    val scope = rememberCoroutineScope()  // FIXME: performance
+    val scope = rememberCoroutineScope()
 
     fun loadConversations() {
         scope.launch {
@@ -73,7 +72,6 @@ fun MessagesScreen(
                 title = { Text("Messages", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
@@ -93,19 +91,18 @@ fun MessagesScreen(
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 ),
-
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = { })
+
             )
 
-            when {  // FIXME: edge case
+            when {
                 isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = AccentPrimary)
                     }
                 }
-
                 error != null -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -119,19 +116,17 @@ fun MessagesScreen(
                 }
                 filteredConversations.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Default.Message, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                             Spacer(modifier = Modifier.height(12.dp))
+
                             Text("No messages yet", color = TextMuted)
                         }
                     }
                 }
                 else -> {
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
-
                         items(filteredConversations) { conv ->
-
                             Row(
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
                                 verticalAlignment = Alignment.CenterVertically
@@ -151,7 +146,6 @@ fun MessagesScreen(
                                     )
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
-
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
