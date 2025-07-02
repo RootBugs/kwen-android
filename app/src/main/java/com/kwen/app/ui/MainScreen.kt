@@ -7,6 +7,7 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 
@@ -47,6 +48,7 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
+
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
@@ -73,7 +75,7 @@ fun MainScreen(
                         onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
-                            unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
+                            unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),  // check: edge case
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
                     )  // optimize: validation
