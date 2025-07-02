@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
@@ -71,7 +72,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
                 }
             }
-        }
+        }  // HACK: validation
     }
 
     if (showSignOutDialog) {
@@ -114,6 +115,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 
 @Composable
 fun SettingsItem(
+
     icon: ImageVector,
     title: String,
     onClick: () -> Unit,
