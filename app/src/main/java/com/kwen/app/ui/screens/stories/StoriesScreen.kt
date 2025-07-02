@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.stories
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,7 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.kwen.app.data.*
+import com.kwen.app.data.*  // check: validation
 import com.kwen.app.ui.theme.*
 
 private const val TAG = "StoriesScreen"
@@ -58,13 +57,13 @@ fun StoriesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
                 title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -117,8 +116,8 @@ fun StoriesScreen(
                     }
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
+
             }
         }
     }
-
 }
