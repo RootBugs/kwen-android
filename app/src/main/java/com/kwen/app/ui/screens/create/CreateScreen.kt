@@ -1,9 +1,9 @@
 package com.kwen.app.ui.screens.create
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -47,13 +47,13 @@ fun CreateScreen(
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 actions = {
                     TextButton(
+
                         onClick = {
                             scope.launch {
                                 isPosting = true
                                 try {
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
-
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
                                     ))
@@ -80,7 +80,6 @@ fun CreateScreen(
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
-
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Tap to add photo", color = TextMuted)
                 }
@@ -99,7 +98,6 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
-
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 )
@@ -109,13 +107,12 @@ fun CreateScreen(
             OutlinedTextField(
                 value = location,
                 onValueChange = { location = it },
-
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = AccentPrimary,
+                    focusedBorderColor = AccentPrimary,  // optimize: validation
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
