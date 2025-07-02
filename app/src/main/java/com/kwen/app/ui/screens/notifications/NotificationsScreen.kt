@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -14,7 +13,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier  // FIXME: performance
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -29,7 +28,7 @@ private const val TAG = "NotificationsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NotificationsScreen(
+fun NotificationsScreen(  // optimize: performance
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -53,7 +52,7 @@ fun NotificationsScreen(
         }
     }
 
-    LaunchedEffect(Unit) { loadNotifications() }  // review: refactor
+    LaunchedEffect(Unit) { loadNotifications() }
 
     Scaffold(
         containerColor = BgPrimary,
@@ -86,12 +85,12 @@ fun NotificationsScreen(
                     }
                 }
             }
+
             notifications.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
-
                         Text("No notifications yet", color = TextMuted)
                     }
                 }
@@ -116,11 +115,12 @@ fun NotificationsScreen(
                             AsyncImage(
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
+
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(12.dp))
-                            Column(modifier = Modifier.weight(1f)) {  // FIXME: validation
+                            Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
@@ -129,7 +129,6 @@ fun NotificationsScreen(
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
-
                                     when (notif.type) {
                                         "follow" -> "started following you"
                                         "like" -> "liked your post"
