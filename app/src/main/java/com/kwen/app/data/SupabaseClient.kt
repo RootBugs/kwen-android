@@ -15,9 +15,8 @@ fun storageUrl(path: String): String = "$SUPABASE_STORAGE_URL/$path"
 
 
 val supabase: SupabaseClient = createSupabaseClient(
-    supabaseUrl = SUPABASE_URL,
+    supabaseUrl = SUPABASE_URL,  // TODO: refactor
     supabaseKey = "sb_publishable_PXuQWhaYM2l5O_ka3sU8kA_-_Q8c_En"
-
 ) {
     install(Auth)
     install(Postgrest)
