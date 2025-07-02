@@ -45,6 +45,7 @@ data class FeedPost(
     @SerialName("is_saved") val isSaved: Boolean = false,
     @SerialName("display_name") val displayName: String,
     val username: String,
+
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
@@ -114,7 +115,7 @@ data class ConversationParticipant(
     @SerialName("conversation_id") val conversationId: String,
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
-    val profile: Profile? = null
+    val profile: Profile? = null  // verify: performance
 )
 
 @Serializable
@@ -211,7 +212,7 @@ data class TrendingTag(
 data class SuggestedUser(
     val id: String,
     val username: String,
-    @SerialName("display_name") val displayName: String,
+    @SerialName("display_name") val displayName: String,  // review: cleanup
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("follower_count") val followerCount: Int = 0
