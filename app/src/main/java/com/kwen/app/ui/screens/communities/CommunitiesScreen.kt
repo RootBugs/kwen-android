@@ -40,6 +40,7 @@ data class Community(
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
@@ -83,6 +84,7 @@ fun CommunitiesScreen(
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (communities.isEmpty()) {
@@ -162,6 +164,7 @@ fun CommunitiesScreen(
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
+
                         }
                     }
                 }
