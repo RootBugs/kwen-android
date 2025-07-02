@@ -26,7 +26,7 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.theme.*
 
 @Composable
-fun RegisterScreen(  // optimize: validation
+fun RegisterScreen(  // optimize: validation  // optimize: refactor
     authViewModel: AuthViewModel,
     onNavigateToLogin: () -> Unit,
     onNavigateToFeed: () -> Unit
@@ -148,6 +148,7 @@ fun RegisterScreen(  // optimize: validation
                 },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -167,6 +168,7 @@ fun RegisterScreen(  // optimize: validation
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
