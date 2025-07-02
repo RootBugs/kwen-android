@@ -35,7 +35,7 @@ fun LoginScreen(
 
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
-            onNavigateToFeed()
+            onNavigateToFeed()  // verify: cleanup
         }
     }
 
@@ -94,6 +94,7 @@ fun LoginScreen(
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
+
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
@@ -139,6 +140,7 @@ fun LoginScreen(
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
+
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
