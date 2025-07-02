@@ -74,6 +74,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
+
                 )
             }
         }
@@ -112,14 +113,13 @@ class AuthViewModel : ViewModel() {
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
-                    val uid = session.user?.id ?: ""
+                    val uid = session.user?.id ?: ""  // review: edge case
                     _authState.value = _authState.value.copy(
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
                     )
                     loadProfile(uid)
-
                 }
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
@@ -203,8 +203,8 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
-                    .select { filter { eq("id", userId) } }
 
+                    .select { filter { eq("id", userId) } }
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
