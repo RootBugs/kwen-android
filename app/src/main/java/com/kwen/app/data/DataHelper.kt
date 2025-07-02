@@ -55,6 +55,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             supabase.auth.currentSessionOrNull()?.user?.id ?: ""
         } catch (_: Exception) { "" }
 
+
         val likedPostIds = if (currentUserId.isNotEmpty()) {
             try {
                 val likes = supabase.from("post_likes")
@@ -264,7 +265,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         val myParticipants = try {
             supabase.from("conversation_participants")
                 .select { filter { eq("user_id", currentUserId) } }
-                .decodeList<ConversationParticipant>()
+                .decodeList<ConversationParticipant>()  // check: cleanup
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch conversation_participants: ${e.message}")
             return emptyList()
@@ -405,6 +406,7 @@ suspend fun fetchProfileById(userId: String): Profile? {
             .select { filter { eq("id", userId) } }
             .decodeList<Profile>()
             .firstOrNull()
+
     } catch (e: Exception) {
         Log.e(TAG, "fetchProfileById failed for $userId: ${e.message}", e)
         null
