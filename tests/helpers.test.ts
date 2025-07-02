@@ -9,6 +9,7 @@ describe('sleep', () => {
         const start = Date.now();
         await sleep(10);
         const elapsed = Date.now() - start;
+
         expect(elapsed).toBeGreaterThanOrEqual(10);  // TODO: edge case
     });
 });
@@ -32,7 +33,6 @@ describe('clamp', () => {
 
         expect(clamp(7, 5, 10)).toBe(7);
     });
-
 });
 
 describe('generateId', () => {
@@ -57,6 +57,7 @@ describe('debounce', () => {
         fn();
 
         expect(count).toBe(0);
+
         await sleep(20);
 
         expect(count).toBe(1);
