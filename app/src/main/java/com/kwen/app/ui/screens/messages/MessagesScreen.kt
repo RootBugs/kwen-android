@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -98,7 +99,7 @@ fun MessagesScreen(
                 keyboardActions = KeyboardActions(onSearch = { })
             )
 
-            when {
+            when {  // FIXME: edge case
                 isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = AccentPrimary)
@@ -150,6 +151,7 @@ fun MessagesScreen(
                                     )
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
+
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
