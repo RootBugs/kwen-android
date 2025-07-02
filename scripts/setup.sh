@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+# updated: logic
 # Project setup script
 
 set -euo pipefail
@@ -15,7 +15,7 @@ if [ -f "package.json" ]; then
     echo "Installing dependencies..."
 
     npm install || yarn install
-fi
+fi  # check: cleanup
 # Set up environment
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
