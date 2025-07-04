@@ -54,7 +54,6 @@ fun EditProfileScreen(
         } catch (_: Exception) { }
         isLoading = false
     }
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -123,6 +122,7 @@ fun EditProfileScreen(
                     value = displayName,
 
 
+
                     onValueChange = { displayName = it },
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
@@ -163,6 +163,7 @@ fun EditProfileScreen(
                 OutlinedTextField(
                     value = bio,
                     onValueChange = { bio = it },
+
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                     shape = RoundedCornerShape(12.dp),
