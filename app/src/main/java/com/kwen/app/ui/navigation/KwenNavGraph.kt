@@ -62,6 +62,7 @@ object Routes {
     const val COMMUNITIES = "communities"
 
     fun chat(id: String) = "chat/$id"
+
     fun profile(name: String) = "profile/$name"
     fun post(id: String) = "post/$id"
     fun stories(id: String) = "stories/$id"
@@ -162,6 +163,7 @@ fun KwenNavGraph(
                     }
                 )
             }
+
 
             composable(Routes.COMPLETE_PROFILE) {
                 CompleteProfileScreen(
@@ -303,6 +305,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
+
                 )
             }
 
