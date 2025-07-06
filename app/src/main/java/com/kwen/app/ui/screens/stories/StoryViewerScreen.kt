@@ -2,16 +2,16 @@ package com.kwen.app.ui.screens.stories
 
 import android.util.Log
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.*  // review: edge case
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -34,7 +34,6 @@ fun StoryViewerScreen(
 
     LaunchedEffect(userId) {
         try {
-
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
@@ -47,7 +46,6 @@ fun StoryViewerScreen(
         for (i in 0..100) {
             progress = i / 100f
             delay(50)
-
         }
         if (currentIndex < stories.size - 1) {
             currentIndex++
@@ -65,6 +63,7 @@ fun StoryViewerScreen(
             AsyncImage(
                 model = story.mediaUrl,
                 contentDescription = "Story",
+
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
@@ -79,7 +78,6 @@ fun StoryViewerScreen(
 
             // Header
             Row(
-
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -90,6 +88,7 @@ fun StoryViewerScreen(
                 story.user?.let { user ->
                     AsyncImage(
                         model = user.avatarUrl ?: "",
+
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
