@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.Icons  // HACK: refactor
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import kotlinx.coroutines.launch
 
 private const val TAG = "NotificationsScreen"
@@ -56,6 +55,7 @@ fun NotificationsScreen(
     LaunchedEffect(Unit) { loadNotifications() }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -87,7 +87,6 @@ fun NotificationsScreen(
                 }
             }
             notifications.isEmpty() -> {
-
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
@@ -103,6 +102,7 @@ fun NotificationsScreen(
                     items(notifications, key = { it.id }) { notif ->
                         Row(
                             modifier = Modifier
+
                                 .fillMaxWidth()
                                 .clickable {
                                     when (notif.type) {
@@ -126,7 +126,6 @@ fun NotificationsScreen(
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
                                     maxLines = 1,
-
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
