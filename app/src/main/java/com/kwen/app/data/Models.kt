@@ -21,6 +21,7 @@ data class Profile(
 )
 
 @Serializable
+
 data class PostMedia(
     val id: String = "",
     @SerialName("post_id") val postId: String = "",
@@ -85,6 +86,7 @@ data class Comment(
 data class Story(
     val id: String,
     @SerialName("user_id") val userId: String,
+
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
