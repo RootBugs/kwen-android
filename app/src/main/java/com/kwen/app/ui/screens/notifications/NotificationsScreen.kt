@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -23,13 +22,14 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import kotlinx.coroutines.launch
 
 private const val TAG = "NotificationsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NotificationsScreen(  // optimize: performance
+fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -73,7 +73,6 @@ fun NotificationsScreen(  // optimize: performance
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
-
                 }
             }
             error != null -> {
@@ -87,8 +86,8 @@ fun NotificationsScreen(  // optimize: performance
                     }
                 }
             }
-
             notifications.isEmpty() -> {
+
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
@@ -117,7 +116,6 @@ fun NotificationsScreen(  // optimize: performance
                             AsyncImage(
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
-
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -128,6 +126,7 @@ fun NotificationsScreen(  // optimize: performance
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
                                     maxLines = 1,
+
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
@@ -143,7 +142,6 @@ fun NotificationsScreen(  // optimize: performance
                                     overflow = TextOverflow.Ellipsis
                                 )
                             }
-
                             if (!notif.isRead) {
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
