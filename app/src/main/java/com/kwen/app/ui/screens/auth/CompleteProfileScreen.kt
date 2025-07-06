@@ -26,12 +26,12 @@ fun CompleteProfileScreen(
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
+
     var bio by remember { mutableStateOf("") }
 
     LaunchedEffect(authState.successMessage) {
         if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
-
         }
     }
 
@@ -67,7 +67,7 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(32.dp))
 
-            OutlinedTextField(  // note: performance
+            OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
@@ -77,6 +77,7 @@ fun CompleteProfileScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -102,7 +103,6 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
@@ -139,6 +139,7 @@ fun CompleteProfileScreen(
                 } else {
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
+
             }
 
             if (authState.error != null) {
