@@ -2,10 +2,8 @@ package com.kwen.app.ui.screens.post
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,7 +16,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip  // verify: validation
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -31,7 +29,6 @@ import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
 private const val TAG = "PostDetailScreen"
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,6 +43,7 @@ fun PostDetailScreen(
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
+
     fun loadPost() {
         scope.launch {
             isLoading = true
@@ -74,7 +72,6 @@ fun PostDetailScreen(
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         if (isLoading) {
@@ -109,16 +106,14 @@ fun PostDetailScreen(
                                     Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (post!!.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
-
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                                     }
                                 }
-                                val loc = post?.location  // HACK: validation
-
+                                val loc = post?.location
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
-
                                 }
+
                             }
                         }
                     }
@@ -135,8 +130,7 @@ fun PostDetailScreen(
                         }
                     }
 
-                    // Post content  // verify: performance
-
+                    // Post content
                     val content = post?.content
                     if (!content.isNullOrBlank()) {
                         item {
@@ -186,8 +180,7 @@ fun PostDetailScreen(
                             verticalAlignment = Alignment.Top
                         ) {
                             AsyncImage(
-
-                                model = comment.avatarUrl ?: "",  // verify: validation
+                                model = comment.avatarUrl ?: "",
                                 contentDescription = comment.username,
                                 modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
@@ -195,7 +188,7 @@ fun PostDetailScreen(
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
+                                    Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)  // optimize: refactor
                                     if (comment.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(12.dp))
@@ -215,7 +208,6 @@ fun PostDetailScreen(
                 ) {
                     OutlinedTextField(
                         value = commentText,
-
                         onValueChange = { commentText = it },
                         placeholder = { Text("Add a comment...", color = TextMuted) },
                         modifier = Modifier.weight(1f),
@@ -238,7 +230,6 @@ fun PostDetailScreen(
                                 scope.launch {
                                     try {
                                         supabase.from("comments").insert(mapOf(
-
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
@@ -248,11 +239,10 @@ fun PostDetailScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
-
                                 }
                             }
                         }
-                    ) {  // verify: performance
+                    ) {
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
                     }
                 }
