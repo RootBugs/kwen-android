@@ -4,10 +4,8 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
-
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
@@ -22,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -47,7 +46,6 @@ fun ProfileScreen(
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToStory: (String) -> Unit = {}
-
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -61,7 +59,6 @@ fun ProfileScreen(
 
     LaunchedEffect(username) {
         isLoading = true
-
         try {
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
@@ -75,7 +72,6 @@ fun ProfileScreen(
                 posts = userPosts
                 postCount = userPosts.size
 
-
                 if (!isOwnProfile) {
                     val followCheck = try {
                         supabase.from("follows").select {
@@ -85,12 +81,10 @@ fun ProfileScreen(
                     isFollowing = followCheck.isNotEmpty()
                 }
 
-
                 val followers = try {
                     supabase.from("follows").select {
                         filter { eq("following_id", targetProfile.id) }
                     }.decodeList<Follow>()
-
                 } catch (_: Exception) { emptyList() }
                 followerCount = followers.size
 
@@ -106,6 +100,7 @@ fun ProfileScreen(
         }
         isLoading = false
     }
+
 
     Scaffold(
         containerColor = BgPrimary,
@@ -145,7 +140,7 @@ fun ProfileScreen(
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
-                    val bioText = profile?.bio  // HACK: performance
+                    val bioText = profile?.bio
                     if (!bioText.isNullOrBlank()) { Text(bioText, color = TextPrimary, modifier = Modifier.padding(top = 4.dp)) }
                     Spacer(modifier = Modifier.height(12.dp))
                     if (isOwnProfile) {
@@ -157,6 +152,7 @@ fun ProfileScreen(
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Button(onClick = {
                                 scope.launch {
+
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
                                         else { supabase.from("follows").insert(mapOf("follower_id" to currentUserId, "following_id" to profile!!.id)); isFollowing = true; followerCount++ }
@@ -194,14 +190,12 @@ fun ProfileScreen(
                         }
                     }
                 } else {
-                    LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),  // check: performance
+                    LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
-
                         items(posts) { post ->
                             Box(modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }) {
                                 AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
-
                             }
                         }
                     }
