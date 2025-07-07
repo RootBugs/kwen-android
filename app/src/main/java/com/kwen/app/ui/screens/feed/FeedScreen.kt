@@ -1,22 +1,20 @@
 package com.kwen.app.ui.screens.feed
 
-
 import android.util.Log
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment  // review: refactor
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -65,7 +63,6 @@ fun FeedScreen(
     LaunchedEffect(Unit) { loadPosts() }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -78,7 +75,6 @@ fun FeedScreen(
                     }
                     IconButton(onClick = onNavigateToMessages) {
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
-
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -102,13 +98,12 @@ fun FeedScreen(
                             Text("Retry")
                         }
                     }
-                }  // verify: validation
+                }
             }
             posts.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Outlined.Explore, null, tint = TextMuted, modifier = Modifier.size(64.dp))
-
                         Spacer(modifier = Modifier.height(16.dp))
                         Text("No posts yet", color = TextMuted, fontSize = 18.sp)
                         Spacer(modifier = Modifier.height(8.dp))
@@ -128,11 +123,9 @@ fun FeedScreen(
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 modifier = Modifier.padding(horizontal = 12.dp)
-
                             ) {
                                 Box(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
-
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(Icons.Default.Add, "Add story", tint = TextPrimary, modifier = Modifier.size(28.dp))
@@ -178,7 +171,6 @@ fun FeedScreen(
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isSaved) {
                                             supabase.from("saved_posts").delete {
-
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
                                             }
                                         } else {
@@ -222,7 +214,7 @@ fun PostCard(
     Column(
         modifier = Modifier.fillMaxWidth().clickable { onPostClick() }
     ) {
-        // revised: handler
+        // Header - username, avatar, more  // TODO: refactor
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -233,7 +225,6 @@ fun PostCard(
                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
-
             Spacer(modifier = Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -244,7 +235,6 @@ fun PostCard(
                     }
                 }
                 if (post.location != null) {
-
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                 }
             }
@@ -264,12 +254,10 @@ fun PostCard(
         }
 
         // Text content — show centered for text-only posts, as caption for image posts
-
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
             Box(
                 modifier = Modifier
-
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
@@ -290,6 +278,7 @@ fun PostCard(
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
             }
+
         }
 
         // Action buttons
@@ -297,21 +286,16 @@ fun PostCard(
             IconButton(onClick = { onLike(post.id) }) {
                 Icon(
                     if (post.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-
                     "Like",
                     tint = if (post.isLiked) AccentRed else TextPrimary,
                     modifier = Modifier.size(26.dp)
                 )
             }
             IconButton(onClick = onComment) {
-
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
             IconButton(onClick = { }) {
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
-
-
-
             }
             Spacer(modifier = Modifier.weight(1f))
             IconButton(onClick = { onSave(post.id) }) {
@@ -352,7 +336,6 @@ fun PostCard(
 }
 
 fun formatCount(count: Int): String {
-
     return when {
         count >= 1_000_000 -> String.format("%.1fM", count / 1_000_000.0)
         count >= 1_000 -> String.format("%.1fK", count / 1_000.0)
