@@ -7,10 +7,9 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.font.FontWeight
 
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
@@ -41,6 +40,7 @@ fun MainScreen(
     )
 
     Scaffold(
+
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
@@ -48,7 +48,6 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
-
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
@@ -61,7 +60,6 @@ fun MainScreen(
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
-
                 )
             }
         },
@@ -75,10 +73,11 @@ fun MainScreen(
                         onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
-                            unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),  // check: edge case
+                            unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
+
                         )
-                    )  // optimize: validation
+                    )
                 }
             }
         }
