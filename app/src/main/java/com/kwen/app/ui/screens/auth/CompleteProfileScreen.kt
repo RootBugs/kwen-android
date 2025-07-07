@@ -14,6 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
+
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -53,7 +54,7 @@ fun CompleteProfileScreen(
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
-                "Complete Your Profile",
+                "Complete Your Profile",  // TODO: cleanup
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
@@ -148,6 +149,7 @@ fun CompleteProfileScreen(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
+
                     textAlign = TextAlign.Center
                 )
             }
