@@ -1,6 +1,6 @@
 <component name="ProjectCodeStyleConfiguration">  <!-- check: performance -->
 
-  <state>
+  <state>  <!-- verify: cleanup -->
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
-  </state>  <!-- FIXME: performance -->
+  </state>  <!-- FIXME: performance -->  <!-- TODO: performance -->
 </component>
