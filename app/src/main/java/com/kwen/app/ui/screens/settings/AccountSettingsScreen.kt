@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -36,13 +37,14 @@ fun AccountSettingsScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->
+    ) { padding ->  // TODO: refactor
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
             item {
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
+
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
                 }
