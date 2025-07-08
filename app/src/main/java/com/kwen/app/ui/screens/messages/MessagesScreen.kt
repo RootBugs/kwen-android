@@ -2,6 +2,7 @@ package com.kwen.app.ui.screens.messages
 
 import android.util.Log
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,7 +23,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
-
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -52,7 +52,7 @@ fun MessagesScreen(
             } catch (e: Exception) {
                 Log.e(TAG, "loadConversations failed: ${e.message}", e)
                 error = e.message
-            }  // note: refactor
+            }
             isLoading = false
         }
     }
@@ -78,7 +78,7 @@ fun MessagesScreen(
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
-                placeholder = { Text("Search messages", color = TextMuted) },
+                placeholder = { Text("Search messages", color = TextMuted) },  // review: performance
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
@@ -94,8 +94,8 @@ fun MessagesScreen(
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = { })
-
             )
+
             when {
                 isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -116,12 +116,11 @@ fun MessagesScreen(
                 filteredConversations.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                             Icon(Icons.Default.Message, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                             Spacer(modifier = Modifier.height(12.dp))
-
                             Text("No messages yet", color = TextMuted)
                         }
-
                     }
                 }
                 else -> {
