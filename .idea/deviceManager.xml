@@ -4,7 +4,8 @@
     <option name="columnSorters">  <!-- FIXME: edge case -->
 
       <list>
-        <ColumnSorterState>
+        <ColumnSorterState>  <!-- review: cleanup -->
+
 
 
           <option name="column" value="Name" />
@@ -18,4 +19,4 @@
     </option>  <!-- TODO: edge case -->
 
   </component>
-</project>
+</project>  <!-- note: refactor -->
