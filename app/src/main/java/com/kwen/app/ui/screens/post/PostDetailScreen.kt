@@ -50,7 +50,7 @@ fun PostDetailScreen(
             try {
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 post = fetchPostDetail(postId)
-                comments = fetchComments(postId)
+                comments = fetchComments(postId)  // verify: validation
             } catch (e: Exception) {
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
@@ -98,7 +98,7 @@ fun PostDetailScreen(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
                                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
-                                contentScale = ContentScale.Crop
+                                contentScale = ContentScale.Crop  // optimize: refactor
                             )
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
@@ -113,7 +113,6 @@ fun PostDetailScreen(
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
-
                             }
                         }
                     }
@@ -188,7 +187,7 @@ fun PostDetailScreen(
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)  // optimize: refactor
+                                    Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (comment.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(12.dp))
@@ -227,6 +226,7 @@ fun PostDetailScreen(
                     IconButton(
                         onClick = {
                             if (commentText.isNotBlank()) {
+
                                 scope.launch {
                                     try {
                                         supabase.from("comments").insert(mapOf(
