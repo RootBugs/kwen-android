@@ -74,7 +74,6 @@ data class BottomNavItem(
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
 )
-
 val bottomNavItems = listOf(
     BottomNavItem(Routes.FEED, "Home", Icons.Filled.Home, Icons.Outlined.Home),
     BottomNavItem(Routes.EXPLORE, "Explore", Icons.Filled.Search, Icons.Outlined.Search),
@@ -217,6 +216,7 @@ fun KwenNavGraph(
                 MessagesScreen(
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
+
                 )
             }
 
@@ -243,6 +243,7 @@ fun KwenNavGraph(
                     onNavigateToSettings = { navController.navigate(Routes.SETTINGS) },
                     onNavigateToSaved = { navController.navigate(Routes.SAVED) },
                     onNavigateToChat = { _, _, _ -> },
+
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
             }
