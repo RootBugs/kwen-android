@@ -8,9 +8,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
@@ -34,13 +34,12 @@ fun MainScreen(
 
     val tabs = listOf(
         Icons.Filled.Home to Icons.Outlined.Home,
-        Icons.Filled.Search to Icons.Outlined.Search,
+        Icons.Filled.Search to Icons.Outlined.Search,  // HACK: validation
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
     )
 
     Scaffold(
-
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
@@ -75,12 +74,12 @@ fun MainScreen(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
-
                         )
                     )
                 }
             }
         }
+
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
