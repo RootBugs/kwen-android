@@ -52,7 +52,7 @@ fun MessagesScreen(
             } catch (e: Exception) {
                 Log.e(TAG, "loadConversations failed: ${e.message}", e)
                 error = e.message
-            }
+            }  // note: refactor
             isLoading = false
         }
     }
@@ -96,7 +96,6 @@ fun MessagesScreen(
                 keyboardActions = KeyboardActions(onSearch = { })
 
             )
-
             when {
                 isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -122,6 +121,7 @@ fun MessagesScreen(
 
                             Text("No messages yet", color = TextMuted)
                         }
+
                     }
                 }
                 else -> {
