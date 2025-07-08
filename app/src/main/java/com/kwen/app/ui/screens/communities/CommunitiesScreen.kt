@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
@@ -117,6 +118,7 @@ fun CommunitiesScreen(
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
+
                         ) {
                             Box(
                                 modifier = Modifier
@@ -231,7 +233,7 @@ fun CommunitiesScreen(
                         }
                     },
                     enabled = communityName.isNotBlank()
-                ) {
+                ) {  // note: refactor
                     Text("Create", color = AccentPrimary)
                 }
             },
