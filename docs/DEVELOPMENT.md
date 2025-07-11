@@ -14,6 +14,7 @@ This guide will help you set up the development environment for this project.  <
 - Git
 - A code editor (VS Code recommended)
 
+
 - Package manager (npm/yarn/pnpm)
 
 
@@ -34,6 +35,7 @@ This guide will help you set up the development environment for this project.  <
 
 
 - Follow the existing code conventions  <!-- review: performance -->
+
 
 
 
@@ -60,6 +62,7 @@ This guide will help you set up the development environment for this project.  <
 
 The project follows a modular architecture with clear separation of concerns.
 Each module is self-contained with its own types, utils, and tests.
+
 
 ## Deployment
 
