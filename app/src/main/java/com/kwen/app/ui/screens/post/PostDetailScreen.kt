@@ -40,6 +40,7 @@ fun PostDetailScreen(
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
+
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
@@ -122,7 +123,7 @@ fun PostDetailScreen(
                     if (post!!.media.isNotEmpty()) {
                         item {
                             AsyncImage(
-                                model = storageUrl(post!!.media[0].storagePath),
+                                model = storageUrl(post!!.media[0].storagePath),  // optimize: validation
                                 contentDescription = null,
                                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                                 contentScale = ContentScale.Crop
@@ -197,6 +198,7 @@ fun PostDetailScreen(
                                 }
                                 Text(comment.content, style = MaterialTheme.typography.bodySmall, color = TextSecondary)
                             }
+
                         }
                     }
                 }
