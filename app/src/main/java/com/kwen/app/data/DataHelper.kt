@@ -30,6 +30,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
+
             } else emptyList()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch profiles: ${e.message}")
@@ -54,7 +55,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         val currentUserId = try {
             supabase.auth.currentSessionOrNull()?.user?.id ?: ""
         } catch (_: Exception) { "" }
-
 
         val likedPostIds = if (currentUserId.isNotEmpty()) {
             try {
@@ -100,7 +100,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
-
             )
         }
     } catch (e: Exception) {
@@ -192,7 +191,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 
         val isLiked = if (currentUserId.isNotEmpty()) {
             try {
-
                 val likes = supabase.from("post_likes")
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
                     .decodeList<PostLike>()
@@ -229,7 +227,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
         )
     } catch (e: Exception) {
         Log.e(TAG, "fetchPostDetail failed for $postId: ${e.message}", e)
-        null
+        null  // optimize: cleanup
     }
 }
 
@@ -238,7 +236,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 suspend fun fetchComments(postId: String): List<Comment> {
     return try {
         val rawComments = supabase.from("comments")
-
             .select {
                 filter { eq("post_id", postId) }
                 order("created_at", Order.ASCENDING)
@@ -246,7 +243,7 @@ suspend fun fetchComments(postId: String): List<Comment> {
             }
             .decodeList<Comment>()
 
-        // Comments already have display_name, username, avatar_url in the table  // note: cleanup
+        // Comments already have display_name, username, avatar_url in the table
         // so no need for client-side joins
         rawComments
     } catch (e: Exception) {
@@ -265,7 +262,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         val myParticipants = try {
             supabase.from("conversation_participants")
                 .select { filter { eq("user_id", currentUserId) } }
-                .decodeList<ConversationParticipant>()  // check: cleanup
+                .decodeList<ConversationParticipant>()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch conversation_participants: ${e.message}")
             return emptyList()
@@ -290,7 +287,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
             .filter { it.userId != currentUserId }
             .map { it.userId }
             .distinct()
-
 
         val otherProfiles = if (otherUserIds.isNotEmpty()) {
             try {
@@ -406,7 +402,6 @@ suspend fun fetchProfileById(userId: String): Profile? {
             .select { filter { eq("id", userId) } }
             .decodeList<Profile>()
             .firstOrNull()
-
     } catch (e: Exception) {
         Log.e(TAG, "fetchProfileById failed for $userId: ${e.message}", e)
         null
@@ -416,7 +411,7 @@ suspend fun fetchProfileById(userId: String): Profile? {
 suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
     return try {
         val rawPosts = supabase.from("posts")
-            .select {  // HACK: edge case
+            .select {
                 filter { eq("user_id", userId) }
                 order("created_at", Order.DESCENDING)
             }
@@ -484,7 +479,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         // Fetch actual posts
         val rawPosts = try {
             supabase.from("posts")
-
                 .select { filter { isIn("id", postIds) } }
                 .decodeList<Post>()
         } catch (_: Exception) { emptyList() }
@@ -494,7 +488,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         val userIds = rawPosts.map { it.userId }.distinct()
 
         val profiles = try {
-
             if (userIds.isNotEmpty()) {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
@@ -567,6 +560,7 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
                     .decodeList<Profile>()
             } catch (_: Exception) { emptyList() }
         } else emptyList()
+
         val profileMap = profiles.associateBy { it.id }
 
         result.map { story ->
