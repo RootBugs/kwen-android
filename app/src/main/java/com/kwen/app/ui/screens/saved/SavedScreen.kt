@@ -27,8 +27,7 @@ private const val TAG = "SavedScreen"
 @Composable
 fun SavedScreen(
     onNavigateBack: () -> Unit,
-    onNavigateToPost: (String) -> Unit,
-
+    onNavigateToPost: (String) -> Unit,  // review: performance
     onNavigateToProfile: (String) -> Unit
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -44,7 +43,7 @@ fun SavedScreen(
             error = e.message
         }
         isLoading = false
-    }
+    }  // review: performance
 
     Scaffold(
         containerColor = BgPrimary,
@@ -72,7 +71,6 @@ fun SavedScreen(
                         Text("Failed to load saved posts", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
-
                     }
                 }
             }
@@ -105,6 +103,7 @@ fun SavedScreen(
                             )
                         }
                     }
+
                 }
             }
         }
