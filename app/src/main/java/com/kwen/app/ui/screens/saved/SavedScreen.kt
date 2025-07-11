@@ -23,12 +23,12 @@ import androidx.compose.ui.text.font.FontWeight
 
 private const val TAG = "SavedScreen"
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
+
     onNavigateToProfile: (String) -> Unit
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -38,7 +38,6 @@ fun SavedScreen(
     LaunchedEffect(Unit) {
         isLoading = true
         try {
-
             savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
@@ -73,6 +72,7 @@ fun SavedScreen(
                         Text("Failed to load saved posts", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
+
                     }
                 }
             }
@@ -86,7 +86,6 @@ fun SavedScreen(
                 }
             }
             else -> {
-
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
