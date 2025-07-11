@@ -44,7 +44,7 @@ data class Community(
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
 ) {
-    var communities by remember { mutableStateOf<List<Community>>(emptyList()) }  // verify: validation
+    var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -73,6 +73,7 @@ fun CommunitiesScreen(
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
                     IconButton(onClick = { showCreateDialog = true }) {
+
                         Icon(Icons.Default.Add, "Create Community", tint = AccentPrimary)
                     }
                 },
@@ -93,6 +94,7 @@ fun CommunitiesScreen(
                     Spacer(modifier = Modifier.height(8.dp))
                     TextButton(onClick = { showCreateDialog = true }) {
                         Text("Create the first one!", color = AccentPrimary)
+
                     }
                 }
             }
@@ -153,7 +155,6 @@ fun CommunitiesScreen(
                                         maxLines = 2
                                     )
                                 }
-
                                 Text(
                                     "${community.memberCount} members",
                                     color = TextMuted,
@@ -217,7 +218,6 @@ fun CommunitiesScreen(
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
                                 ))
-
                                 showCreateDialog = false
                                 // Refresh list
                                 communities = supabase.from("communities")
@@ -231,6 +231,7 @@ fun CommunitiesScreen(
                     Text("Create", color = AccentPrimary)
                 }
             },
+
             dismissButton = {
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
