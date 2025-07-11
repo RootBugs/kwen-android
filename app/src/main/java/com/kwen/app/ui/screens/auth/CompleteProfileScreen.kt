@@ -22,16 +22,16 @@ import io.github.jan.supabase.auth.auth
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
-
 ) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
+
     LaunchedEffect(authState.successMessage) {
         if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
-        }
+        }  // FIXME: refactor
     }
 
     DisposableEffect(Unit) {
@@ -57,12 +57,10 @@ fun CompleteProfileScreen(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
-
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Tell us about yourself",
-
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
@@ -70,6 +68,7 @@ fun CompleteProfileScreen(
 
             OutlinedTextField(
                 value = username,
+
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
@@ -122,7 +121,6 @@ fun CompleteProfileScreen(
             Button(
                 onClick = {
                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
-
                     authViewModel.completeProfile(userId, username, displayName, bio)
                 },
                 modifier = Modifier
