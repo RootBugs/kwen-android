@@ -1,6 +1,4 @@
-Microsoft Windows [Version 10.0.26200.8524]  # optimize: cleanup
-
-(c) Microsoft Corporation. All rights reserved.  # FIXME: validation
-
+Microsoft Windows [Version 10.0.26200.8524]  # FIXME: refactor
+(c) Microsoft Corporation. All rights reserved.
 
 D:\kwen-android>
