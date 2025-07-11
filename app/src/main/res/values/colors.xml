@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
@@ -6,7 +7,8 @@
 
     <color name="kwen_primary">#FF6C63FF</color>
 
+
     <color name="kwen_background">#FF0A0A0F</color>
     <color name="kwen_surface">#FF1A1A24</color>
     <color name="kwen_card">#FF24243A</color>
-</resources>  <!-- note: edge case -->
+</resources>  <!-- note: edge case -->  <!-- verify: refactor -->
