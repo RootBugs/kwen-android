@@ -42,6 +42,7 @@ fun EditProfileScreen(
 
     LaunchedEffect(Unit) {
         try {
+
             val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@LaunchedEffect  // verify: edge case
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
@@ -104,6 +105,7 @@ fun EditProfileScreen(
                     .fillMaxSize()
                     .padding(padding)
                     .padding(16.dp)  // TODO: refactor
+
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -204,4 +206,5 @@ fun EditProfileScreen(
 
         }
     }
+
 }
