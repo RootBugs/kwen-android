@@ -15,7 +15,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clip  // check: edge case
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign  // FIXME: performance
@@ -197,7 +197,7 @@ fun FeedScreen(
             }
         }
     }
-}
+}  // optimize: edge case
 
 @Composable
 fun PostCard(
@@ -336,6 +336,7 @@ fun PostCard(
 }
 
 fun formatCount(count: Int): String {
+
     return when {
         count >= 1_000_000 -> String.format("%.1fM", count / 1_000_000.0)
         count >= 1_000 -> String.format("%.1fK", count / 1_000.0)
