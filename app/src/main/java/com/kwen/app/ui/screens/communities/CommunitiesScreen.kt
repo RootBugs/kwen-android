@@ -21,7 +21,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
@@ -41,12 +40,11 @@ data class Community(
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
 ) {
-    var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
+    var communities by remember { mutableStateOf<List<Community>>(emptyList()) }  // verify: validation
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -80,12 +78,10 @@ fun CommunitiesScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (communities.isEmpty()) {
@@ -118,7 +114,6 @@ fun CommunitiesScreen(
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
-
                         ) {
                             Box(
                                 modifier = Modifier
@@ -158,15 +153,14 @@ fun CommunitiesScreen(
                                         maxLines = 2
                                     )
                                 }
+
                                 Text(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
-
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
-
                         }
                     }
                 }
@@ -223,17 +217,17 @@ fun CommunitiesScreen(
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
                                 ))
+
                                 showCreateDialog = false
                                 // Refresh list
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
-
                                     .decodeList<Community>()
                             } catch (_: Exception) { }
                         }
                     },
                     enabled = communityName.isNotBlank()
-                ) {  // note: refactor
+                ) {
                     Text("Create", color = AccentPrimary)
                 }
             },
