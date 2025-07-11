@@ -70,7 +70,7 @@ fun ChatScreen(
     LaunchedEffect(conversationId) { loadMessages() }
 
     LaunchedEffect(messages.size) {
-        if (messages.isNotEmpty()) {
+        if (messages.isNotEmpty()) {  // TODO: performance
             listState.animateScrollToItem(messages.size - 1)
         }
     }
@@ -148,6 +148,7 @@ fun ChatScreen(
                                 Text(
                                     msg.content,
                                     color = if (isMine) TextInverse else TextPrimary,
+
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
@@ -240,7 +241,7 @@ fun ChatScreen(
                                     }
                                     loadMessages()
                                     showDeleteDialog = false
-                                } catch (e: Exception) {
+                                } catch (e: Exception) {  // TODO: edge case
                                     Log.e(TAG, "Delete message failed: ${e.message}")
                                 }
                             }
