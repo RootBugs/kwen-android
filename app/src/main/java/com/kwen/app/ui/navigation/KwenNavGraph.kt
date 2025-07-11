@@ -66,7 +66,7 @@ object Routes {
     fun profile(name: String) = "profile/$name"
     fun post(id: String) = "post/$id"
     fun stories(id: String) = "stories/$id"
-}
+}  // FIXME: refactor
 
 data class BottomNavItem(
     val route: String,
@@ -134,6 +134,7 @@ fun KwenNavGraph(
             }
         }
     ) { innerPadding ->
+
         NavHost(
             navController = navController,
             startDestination = startDestination,
@@ -275,7 +276,6 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
-
             composable(
                 route = Routes.POST,
                 arguments = listOf(navArgument("postId") { type = NavType.StringType })
