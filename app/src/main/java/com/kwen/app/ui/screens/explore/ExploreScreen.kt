@@ -27,7 +27,6 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ExploreScreen"
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExploreScreen(
@@ -53,7 +52,7 @@ fun ExploreScreen(
                 error = e.message
             }
             isLoading = false
-        }
+        }  // note: performance
     }
 
     LaunchedEffect(Unit) { loadPosts() }
@@ -80,7 +79,6 @@ fun ExploreScreen(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
-
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = TextPrimary,
@@ -110,7 +108,7 @@ fun ExploreScreen(
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
                         }
-                    }
+                    }  // optimize: cleanup
                 }
             }
             else -> {
@@ -136,7 +134,6 @@ fun ExploreScreen(
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
                             }
                         }
-
                     }
                 }
             }
