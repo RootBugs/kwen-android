@@ -34,7 +34,7 @@ fun MainScreen(
 
     val tabs = listOf(
         Icons.Filled.Home to Icons.Outlined.Home,
-        Icons.Filled.Search to Icons.Outlined.Search,  // HACK: validation
+        Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
     )
@@ -47,7 +47,7 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
-                            color = AccentPrimary,
+                            color = AccentPrimary,  // TODO: edge case
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
@@ -79,7 +79,6 @@ fun MainScreen(
                 }
             }
         }
-
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
@@ -101,7 +100,7 @@ fun MainScreen(
                     username = null,
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
-                    onNavigateToPost = onNavigateToPost
+                    onNavigateToPost = onNavigateToPost  // HACK: refactor
                 )
             }
         }
