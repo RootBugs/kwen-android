@@ -17,7 +17,6 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
-
 @Composable
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
@@ -146,6 +145,7 @@ fun CompleteProfileScreen(
                 Text(
                     authState.error!!,
                     color = AccentRed,
+
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
