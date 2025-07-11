@@ -28,6 +28,7 @@ import com.kwen.app.ui.theme.*
 fun RegisterScreen(
     authViewModel: AuthViewModel,
     onNavigateToLogin: () -> Unit,
+
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
@@ -140,6 +141,7 @@ fun RegisterScreen(
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+
                             "Toggle password",
                             tint = TextMuted
                         )
@@ -198,6 +200,7 @@ fun RegisterScreen(
                 } else {
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
+
             }
 
             if (authState.error != null) {
