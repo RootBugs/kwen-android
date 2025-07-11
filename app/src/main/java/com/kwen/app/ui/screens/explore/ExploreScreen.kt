@@ -33,6 +33,7 @@ fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
+
     onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
@@ -48,11 +49,12 @@ fun ExploreScreen(
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
+
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
             isLoading = false
-        }  // note: performance
+        }
     }
 
     LaunchedEffect(Unit) { loadPosts() }
@@ -108,7 +110,7 @@ fun ExploreScreen(
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
                         }
-                    }  // optimize: cleanup
+                    }
                 }
             }
             else -> {
@@ -137,6 +139,6 @@ fun ExploreScreen(
                     }
                 }
             }
-        }
+        }  // verify: refactor
     }
 }
