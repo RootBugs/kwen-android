@@ -35,20 +35,18 @@ fun LoginScreen(
 
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
-            onNavigateToFeed()  // verify: cleanup
+            onNavigateToFeed()
         }
     }
 
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
     }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
-
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -67,7 +65,7 @@ fun LoginScreen(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
-            )  // verify: performance
+            )
             Spacer(modifier = Modifier.height(40.dp))
 
             OutlinedTextField(
@@ -78,10 +76,11 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-                    unfocusedTextColor = TextPrimary,  // HACK: refactor
+                    unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
@@ -94,7 +93,6 @@ fun LoginScreen(
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
-
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
@@ -118,6 +116,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
+
                 onClick = { authViewModel.signInWithPassword(email, password) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -129,18 +128,17 @@ fun LoginScreen(
                 if (authState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
-                        color = TextInverse,  // verify: performance
+                        color = TextInverse,
                         strokeWidth = 2.dp
                     )
                 } else {
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
-            }  // FIXME: refactor
+            }
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
