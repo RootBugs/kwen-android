@@ -110,7 +110,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
 // ─────────────────────────── Explore Posts ───────────────────────────
 
-suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
+suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {  // verify: edge case
     return try {
         val rawPosts = supabase.from("posts")
             .select {
@@ -358,6 +358,7 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
     }
 }
 
+
 suspend fun fetchChatOtherUser(conversationId: String): Profile? {
     return try {
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -458,6 +459,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
         emptyList()
     }
 }
+
 
 // ─────────────────────────── Saved Posts ───────────────────────────
 
