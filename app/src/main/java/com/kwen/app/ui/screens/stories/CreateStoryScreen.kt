@@ -8,9 +8,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight  // verify: edge case
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
@@ -26,14 +27,14 @@ fun CreateStoryScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)  // check: validation
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
                 title = { Text("New Story", color = TextPrimary) },
                 actions = {
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
-                    }
+                    }  // check: edge case
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -41,10 +42,9 @@ fun CreateStoryScreen(
     ) { padding ->
         Box(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
-
             contentAlignment = Alignment.Center
         ) {
-            Column(
+            Column(  // HACK: refactor
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
