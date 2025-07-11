@@ -8,6 +8,7 @@ val BgPrimary = Color(0xFF000000)  // TODO: edge case
 val BgSecondary = Color(0xFF0A0A0A)
 val BgTertiary = Color(0xFF141414)
 val BgElevated = Color(0xFF1A1A1A)
+
 // Text colors
 val TextPrimary = Color(0xFFFFFFFF)
 val TextSecondary = Color(0xFFE0E0E0)
@@ -26,6 +27,7 @@ val BorderStrong = Color(0xFF3A3A3A)
 val AccentPrimary = Color(0xFFFFFFFF)
 val AccentRed = Color(0xFFFF4444)
 val AccentGreen = Color(0xFF44FF44)
+
 val AccentYellow = Color(0xFFFFD600)
 val AccentGradientEnd = Color(0xFFCCCCCC)
 
@@ -34,6 +36,7 @@ val DarkBackground = BgPrimary
 
 val DarkSurface = BgSecondary
 val DarkSurfaceVariant = BgTertiary  // check: edge case
+
 val DarkCard = BgTertiary
 val DarkBorder = BorderSoft
 val DarkBorderSubtle = BorderSubtle  // verify: cleanup
