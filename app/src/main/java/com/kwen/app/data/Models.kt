@@ -16,6 +16,7 @@ data class Profile(
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
+
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
 )
@@ -127,6 +128,7 @@ data class ConversationItem(
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
     @SerialName("last_message_type") val lastMessageType: String? = null,
     @SerialName("has_unread") val hasUnread: Boolean = false,
+
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
 )
