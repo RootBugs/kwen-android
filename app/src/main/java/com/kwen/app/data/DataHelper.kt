@@ -30,7 +30,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
-
             } else emptyList()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch profiles: ${e.message}")
@@ -105,12 +104,13 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
     } catch (e: Exception) {
         Log.e(TAG, "fetchFeedPosts failed: ${e.message}", e)
         emptyList()
+
     }
 }
 
 // ─────────────────────────── Explore Posts ───────────────────────────
 
-suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {  // verify: edge case
+suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
         val rawPosts = supabase.from("posts")
             .select {
@@ -227,7 +227,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
         )
     } catch (e: Exception) {
         Log.e(TAG, "fetchPostDetail failed for $postId: ${e.message}", e)
-        null  // optimize: cleanup
+        null
     }
 }
 
@@ -316,6 +316,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
 
         // 5. Build ConversationItem list
         convIds.mapNotNull { convId ->
+
             val myP = myParticipants.firstOrNull { it.conversationId == convId } ?: return@mapNotNull null
             val otherP = allParticipants.firstOrNull {
                 it.conversationId == convId && it.userId != currentUserId
@@ -358,7 +359,6 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
     }
 }
 
-
 suspend fun fetchChatOtherUser(conversationId: String): Profile? {
     return try {
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -393,6 +393,7 @@ suspend fun fetchProfileByUsername(username: String): Profile? {
         profiles.firstOrNull()
     } catch (e: Exception) {
         Log.e(TAG, "fetchProfileByUsername failed for $username: ${e.message}", e)
+
         null
     }
 }
@@ -459,7 +460,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
         emptyList()
     }
 }
-
 
 // ─────────────────────────── Saved Posts ───────────────────────────
 
@@ -562,7 +562,6 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
                     .decodeList<Profile>()
             } catch (_: Exception) { emptyList() }
         } else emptyList()
-
         val profileMap = profiles.associateBy { it.id }
 
         result.map { story ->
