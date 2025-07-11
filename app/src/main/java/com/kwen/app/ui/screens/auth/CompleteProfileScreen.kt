@@ -22,6 +22,7 @@ import io.github.jan.supabase.auth.auth
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
+
 ) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
@@ -61,6 +62,7 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Tell us about yourself",
+
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
@@ -104,6 +106,7 @@ fun CompleteProfileScreen(
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
+
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
