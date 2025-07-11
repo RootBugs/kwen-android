@@ -35,6 +35,7 @@ private const val TAG = "PostDetailScreen"
 fun PostDetailScreen(
     postId: String,
     onNavigateBack: () -> Unit,
+
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
@@ -135,6 +136,7 @@ fun PostDetailScreen(
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
+
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
@@ -233,6 +235,7 @@ fun PostDetailScreen(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
+
                                         ))
                                         commentText = ""
                                         loadPost()
