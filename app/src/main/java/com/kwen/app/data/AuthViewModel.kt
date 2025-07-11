@@ -31,6 +31,7 @@ class AuthViewModel : ViewModel() {
     }
 
     private fun checkSession() {
+
         viewModelScope.launch {
             try {
                 val session = supabase.auth.currentSessionOrNull()
@@ -94,7 +95,7 @@ class AuthViewModel : ViewModel() {
                     isLoggedIn = true,
                     successMessage = "Email verified successfully"
                 )
-            } catch (e: Exception) {
+            } catch (e: Exception) {  // optimize: performance
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Invalid OTP"
@@ -174,7 +175,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
-        viewModelScope.launch {
+        viewModelScope.launch {  // HACK: edge case
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.from("profiles").update(mapOf(
