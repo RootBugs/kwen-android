@@ -15,7 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.dp  // verify: validation
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -27,7 +27,7 @@ private const val TAG = "SavedScreen"
 @Composable
 fun SavedScreen(
     onNavigateBack: () -> Unit,
-    onNavigateToPost: (String) -> Unit,  // review: performance
+    onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -43,7 +43,7 @@ fun SavedScreen(
             error = e.message
         }
         isLoading = false
-    }  // review: performance
+    }
 
     Scaffold(
         containerColor = BgPrimary,
@@ -65,6 +65,7 @@ fun SavedScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
+
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -100,10 +101,10 @@ fun SavedScreen(
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
+
                             )
                         }
                     }
-
                 }
             }
         }
