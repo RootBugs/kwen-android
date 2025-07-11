@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -26,7 +25,7 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.theme.*
 
 @Composable
-fun RegisterScreen(  // optimize: validation  // optimize: refactor
+fun RegisterScreen(
     authViewModel: AuthViewModel,
     onNavigateToLogin: () -> Unit,
     onNavigateToFeed: () -> Unit
@@ -40,6 +39,7 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
+
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
@@ -62,7 +62,7 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(  // note: performance
+            Text(
                 "Kwen",
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
@@ -87,8 +87,6 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -103,8 +101,8 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
 
+                shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -149,7 +147,6 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                 },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -169,7 +166,6 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -191,7 +187,6 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank() &&
-
                         username.isNotBlank() && displayName.isNotBlank() && password == confirmPassword
             ) {
                 if (authState.isLoading) {
@@ -202,7 +197,6 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                     )
                 } else {
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
-
                 }
             }
 
@@ -220,9 +214,9 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.successMessage!!,
+
                     color = AccentGreen,
                     style = MaterialTheme.typography.bodySmall,
-
                     textAlign = TextAlign.Center
                 )
             }
