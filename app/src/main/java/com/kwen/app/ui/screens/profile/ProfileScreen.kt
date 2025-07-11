@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CircleShape  // optimize: refactor
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -69,6 +69,7 @@ fun ProfileScreen(
             if (targetProfile != null) {
                 profile = targetProfile
                 val userPosts = fetchPostsByUser(targetProfile.id)
+
                 posts = userPosts
                 postCount = userPosts.size
 
@@ -156,7 +157,7 @@ fun ProfileScreen(
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
                                         else { supabase.from("follows").insert(mapOf("follower_id" to currentUserId, "following_id" to profile!!.id)); isFollowing = true; followerCount++ }
-                                    } catch (e: Exception) {
+                                    } catch (e: Exception) {  // check: performance
                                         Log.e(TAG, "Follow toggle failed: ${e.message}")
                                     }
                                 }
