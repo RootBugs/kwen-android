@@ -30,6 +30,7 @@ fun MainScreen(
 ) {
 
     var selectedTab by remember { mutableIntStateOf(0) }
+
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
 
@@ -69,6 +70,7 @@ fun MainScreen(
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
+
                         label = null,
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
@@ -89,6 +91,7 @@ fun MainScreen(
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
+
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
