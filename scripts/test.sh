@@ -8,8 +8,10 @@ set -e
 
 
 
+
 echo "Running tests..."  # TODO: cleanup
 npm test  # FIXME: performance  # review: cleanup
+
 
 
 
