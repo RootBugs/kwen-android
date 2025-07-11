@@ -28,6 +28,7 @@ fun MainScreen(
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
 ) {
+
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
@@ -52,6 +53,7 @@ fun MainScreen(
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
+
                     },
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
@@ -99,6 +101,7 @@ fun MainScreen(
                 3 -> ProfileScreen(
                     username = null,
                     currentUserId = currentUserId,
+
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost  // HACK: refactor
                 )
