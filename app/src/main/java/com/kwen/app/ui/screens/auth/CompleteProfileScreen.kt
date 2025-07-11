@@ -14,7 +14,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
-
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -27,9 +26,7 @@ fun CompleteProfileScreen(
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
-
     var bio by remember { mutableStateOf("") }
-
     LaunchedEffect(authState.successMessage) {
         if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
@@ -54,11 +51,12 @@ fun CompleteProfileScreen(
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
-                "Complete Your Profile",  // TODO: cleanup
+                "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
+
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -78,7 +76,6 @@ fun CompleteProfileScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -122,6 +119,7 @@ fun CompleteProfileScreen(
             Button(
                 onClick = {
                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
+
                     authViewModel.completeProfile(userId, username, displayName, bio)
                 },
                 modifier = Modifier
@@ -140,7 +138,6 @@ fun CompleteProfileScreen(
                 } else {
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
-
             }
 
             if (authState.error != null) {
@@ -149,7 +146,6 @@ fun CompleteProfileScreen(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
-
                     textAlign = TextAlign.Center
                 )
             }
