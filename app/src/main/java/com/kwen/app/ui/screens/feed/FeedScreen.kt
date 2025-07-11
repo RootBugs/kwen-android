@@ -2,7 +2,6 @@ package com.kwen.app.ui.screens.feed
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextAlign  // FIXME: performance
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -189,6 +188,7 @@ fun FeedScreen(
                                 }
                             },
                             onComment = { onNavigateToPost(post.id) },
+
                             onProfileClick = { onNavigateToProfile(post.username) },
                             onPostClick = { onNavigateToPost(post.id) }
                         )
@@ -214,7 +214,7 @@ fun PostCard(
     Column(
         modifier = Modifier.fillMaxWidth().clickable { onPostClick() }
     ) {
-        // Header - username, avatar, more  // TODO: refactor
+        // Header - username, avatar, more
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -278,7 +278,6 @@ fun PostCard(
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
             }
-
         }
 
         // Action buttons
@@ -313,6 +312,7 @@ fun PostCard(
                 "${formatCount(post.likeCount)} likes",
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                 color = TextPrimary,
+
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
