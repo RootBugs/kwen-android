@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.reels
 
-import android.util.Log  // HACK: validation
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -49,7 +50,6 @@ fun ReelsScreen(
         isLoading = false
     }
 
-
     Scaffold(
         containerColor = Color.Black,
         topBar = {
@@ -63,7 +63,6 @@ fun ReelsScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         }
-
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -90,7 +89,6 @@ fun ReelsScreen(
                             .height(500.dp)
                             .background(BgTertiary)
                     ) {
-
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
@@ -111,7 +109,7 @@ fun ReelsScreen(
                                         startY = 300f
                                     )
                                 )
-                        )
+                        )  // review: edge case
 
                         // Reel info
                         Column(
@@ -140,7 +138,7 @@ fun ReelsScreen(
                                 )
                             }
                             if (!post.content.isNullOrBlank()) {
-                                Spacer(modifier = Modifier.height(8.dp))
+                                Spacer(modifier = Modifier.height(8.dp))  // FIXME: refactor
                                 Text(
                                     post.content,
                                     color = TextPrimary,
@@ -177,7 +175,6 @@ fun ReelsScreen(
                         }
                     }
                 }
-
             }
         }
     }
