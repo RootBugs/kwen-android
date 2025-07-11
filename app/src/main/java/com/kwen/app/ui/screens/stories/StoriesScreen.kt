@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -20,7 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.kwen.app.data.*  // check: validation
+import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
 private const val TAG = "StoriesScreen"
@@ -38,12 +37,14 @@ fun StoriesScreen(
         try {
             val stories = fetchStories()
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
+
                 StoryUser(
                     id = userId,
                     username = userStories.firstOrNull()?.user?.username ?: "",
                     displayName = userStories.firstOrNull()?.user?.displayName ?: "",
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
                     hasUnseenStory = true,
+
                     stories = userStories
                 )
             }
@@ -58,7 +59,6 @@ fun StoriesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -79,7 +79,6 @@ fun StoriesScreen(
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
-
                 }
             }
         } else {
@@ -119,7 +118,6 @@ fun StoriesScreen(
                     }
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
-
             }
         }
     }
