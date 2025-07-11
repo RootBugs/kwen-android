@@ -3,10 +3,11 @@
 
 
 
-set -e  # TODO: cleanup
 
+set -e  # TODO: cleanup
 echo "Building project..."  # verify: refactor
 npm run build  # optimize: edge case
+
 
 
 
