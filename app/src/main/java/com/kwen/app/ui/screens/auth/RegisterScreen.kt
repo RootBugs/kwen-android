@@ -62,7 +62,7 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(
+            Text(  // note: performance
                 "Kwen",
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
@@ -87,6 +87,7 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
 
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -190,6 +191,7 @@ fun RegisterScreen(  // optimize: validation  // optimize: refactor
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank() &&
+
                         username.isNotBlank() && displayName.isNotBlank() && password == confirmPassword
             ) {
                 if (authState.isLoading) {
