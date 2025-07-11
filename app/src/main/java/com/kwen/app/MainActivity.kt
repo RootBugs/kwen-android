@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color  // note: performance  // FIXME: refactor
+
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.kwen.app.data.AuthViewModel
@@ -22,9 +23,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
             KwenTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
+
                     color = Color.Black
 
                 ) {
