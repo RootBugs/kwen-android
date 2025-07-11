@@ -56,7 +56,7 @@ class AuthViewModel : ViewModel() {
             val profile = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
-            _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
+            _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)  // review: validation
         } catch (_: Exception) {}
     }
 
@@ -102,7 +102,6 @@ class AuthViewModel : ViewModel() {
             }
         }
     }
-
     fun signInWithPassword(email: String, password: String) {
         viewModelScope.launch {
             try {
@@ -204,7 +203,7 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
-                    .select { filter { eq("id", userId) } }
+                    .select { filter { eq("id", userId) } }  // HACK: cleanup
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
