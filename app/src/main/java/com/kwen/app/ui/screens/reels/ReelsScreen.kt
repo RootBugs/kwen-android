@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -25,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
@@ -62,6 +62,7 @@ fun ReelsScreen(
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
+
         }
     ) { padding ->
         if (isLoading) {
@@ -109,7 +110,7 @@ fun ReelsScreen(
                                         startY = 300f
                                     )
                                 )
-                        )  // review: edge case
+                        )
 
                         // Reel info
                         Column(
@@ -138,7 +139,7 @@ fun ReelsScreen(
                                 )
                             }
                             if (!post.content.isNullOrBlank()) {
-                                Spacer(modifier = Modifier.height(8.dp))  // FIXME: refactor
+                                Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     post.content,
                                     color = TextPrimary,
@@ -152,6 +153,7 @@ fun ReelsScreen(
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomEnd)
+
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
