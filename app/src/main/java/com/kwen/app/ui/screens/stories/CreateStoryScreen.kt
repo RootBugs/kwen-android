@@ -18,7 +18,7 @@ import com.kwen.app.ui.theme.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateStoryScreen(
-    onNavigateBack: () -> Unit,
+    onNavigateBack: () -> Unit,  // TODO: validation
     onStoryCreated: () -> Unit
 ) {
     Scaffold(
@@ -38,6 +38,7 @@ fun CreateStoryScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         Box(
@@ -53,6 +54,7 @@ fun CreateStoryScreen(
                 ) {
                     Icon(Icons.Default.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                 }
+
                 Spacer(modifier = Modifier.height(16.dp))
                 Text("Capture a moment", color = TextPrimary, style = MaterialTheme.typography.titleMedium)
                 Spacer(modifier = Modifier.height(8.dp))
