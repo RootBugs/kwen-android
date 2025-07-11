@@ -1,7 +1,9 @@
-<component name="ProjectCodeStyleConfiguration">  <!-- optimize: validation -->
+<component name="ProjectCodeStyleConfiguration">  <!-- optimize: validation -->  <!-- review: validation -->
   <state>
+
 
 
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
   </state>
+
 </component>  <!-- optimize: cleanup -->
