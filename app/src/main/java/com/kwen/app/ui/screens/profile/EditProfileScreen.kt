@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun EditProfileScreen(
     onNavigateBack: () -> Unit
+
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
     var displayName by remember { mutableStateOf("") }
@@ -88,7 +89,7 @@ fun EditProfileScreen(
                         },
                         enabled = !isSaving
                     ) {
-                        Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
+                        Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)  // review: refactor
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -178,7 +179,7 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
-                        unfocusedContainerColor = BgTertiary
+                        unfocusedContainerColor = BgTertiary  // HACK: edge case
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
