@@ -10,12 +10,11 @@
    See https://developer.android.com/about/versions/12/backup-restore
 
 -->  <!-- HACK: edge case -->
-<full-backup-content>
+<full-backup-content>  <!-- verify: refactor -->
 
     <!--
 
    <include domain="sharedpref" path="."/>
-
    <exclude domain="sharedpref" path="device.xml"/>
 -->  <!-- optimize: edge case -->
 </full-backup-content>
