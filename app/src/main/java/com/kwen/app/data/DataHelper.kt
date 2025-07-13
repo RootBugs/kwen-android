@@ -93,6 +93,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
                 isLiked = post.id in likedPostIds,
+
                 isSaved = post.id in savedPostIds,
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
@@ -277,7 +278,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             supabase.from("conversation_participants")
                 .select { filter { isIn("conversation_id", convIds) } }
                 .decodeList<ConversationParticipant>()
-        } catch (e: Exception) {
+        } catch (e: Exception) {  // note: refactor
             Log.w(TAG, "Failed to fetch all participants: ${e.message}")
             emptyList()
         }
@@ -503,6 +504,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
             if (postIds.isNotEmpty()) {
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
+
                     .decodeList<PostMedia>()
             } else emptyList()
         } catch (_: Exception) { emptyList() }
