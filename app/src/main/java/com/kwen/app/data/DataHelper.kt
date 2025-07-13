@@ -383,6 +383,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
     }
 }
 
+
 // ─────────────────────────── Profile ───────────────────────────
 
 suspend fun fetchProfileByUsername(username: String): Profile? {
