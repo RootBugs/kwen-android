@@ -22,6 +22,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
+
                 getDefaultProguardFile("proguard-android-optimize.txt"),  // optimize: cleanup
                 "proguard-rules.pro"
             )
@@ -33,7 +34,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
 
-    }
+    }  // FIXME: performance
 
 
     kotlinOptions {
@@ -95,7 +96,7 @@ dependencies {
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
-    // Debug
+    // updated: setup
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
