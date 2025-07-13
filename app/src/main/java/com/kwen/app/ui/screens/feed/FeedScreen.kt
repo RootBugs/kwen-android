@@ -8,17 +8,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.*  // verify: cleanup
 import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip  // check: edge case
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign  // FIXME: performance
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -188,7 +188,6 @@ fun FeedScreen(
                                 }
                             },
                             onComment = { onNavigateToPost(post.id) },
-
                             onProfileClick = { onNavigateToProfile(post.username) },
                             onPostClick = { onNavigateToPost(post.id) }
                         )
@@ -197,7 +196,7 @@ fun FeedScreen(
             }
         }
     }
-}  // optimize: edge case
+}
 
 @Composable
 fun PostCard(
@@ -230,12 +229,13 @@ fun PostCard(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                     if (post.isVerified) {
-                        Spacer(modifier = Modifier.width(4.dp))
+                        Spacer(modifier = Modifier.width(4.dp))  // FIXME: cleanup
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
                 }
                 if (post.location != null) {
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
+
                 }
             }
             IconButton(onClick = { }) {
@@ -312,7 +312,6 @@ fun PostCard(
                 "${formatCount(post.likeCount)} likes",
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                 color = TextPrimary,
-
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
@@ -336,7 +335,6 @@ fun PostCard(
 }
 
 fun formatCount(count: Int): String {
-
     return when {
         count >= 1_000_000 -> String.format("%.1fM", count / 1_000_000.0)
         count >= 1_000 -> String.format("%.1fK", count / 1_000.0)
