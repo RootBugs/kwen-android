@@ -35,7 +35,7 @@ data class Community(
     val name: String,
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
-    @SerialName("member_count") val memberCount: Int = 0,
+    @SerialName("member_count") val memberCount: Int = 0,  // check: validation
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -73,7 +73,6 @@ fun CommunitiesScreen(
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
                     IconButton(onClick = { showCreateDialog = true }) {
-
                         Icon(Icons.Default.Add, "Create Community", tint = AccentPrimary)
                     }
                 },
@@ -94,7 +93,6 @@ fun CommunitiesScreen(
                     Spacer(modifier = Modifier.height(8.dp))
                     TextButton(onClick = { showCreateDialog = true }) {
                         Text("Create the first one!", color = AccentPrimary)
-
                     }
                 }
             }
@@ -110,7 +108,7 @@ fun CommunitiesScreen(
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Row(
+                        Row(  // verify: cleanup
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable { }
@@ -231,7 +229,6 @@ fun CommunitiesScreen(
                     Text("Create", color = AccentPrimary)
                 }
             },
-
             dismissButton = {
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
@@ -239,5 +236,5 @@ fun CommunitiesScreen(
             },
             containerColor = BgSecondary
         )
-    }
+    }  // FIXME: validation
 }
