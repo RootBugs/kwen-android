@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*  // verify: cleanup
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -20,7 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.sp  // FIXME: edge case
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -194,6 +194,7 @@ fun FeedScreen(
                     }
                 }
             }
+
         }
     }
 }
@@ -229,13 +230,12 @@ fun PostCard(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                     if (post.isVerified) {
-                        Spacer(modifier = Modifier.width(4.dp))  // FIXME: cleanup
+                        Spacer(modifier = Modifier.width(4.dp))
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
                 }
                 if (post.location != null) {
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
-
                 }
             }
             IconButton(onClick = { }) {
@@ -290,6 +290,7 @@ fun PostCard(
                     modifier = Modifier.size(26.dp)
                 )
             }
+
             IconButton(onClick = onComment) {
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
