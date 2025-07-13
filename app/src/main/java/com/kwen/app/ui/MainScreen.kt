@@ -28,9 +28,7 @@ fun MainScreen(
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
 ) {
-
     var selectedTab by remember { mutableIntStateOf(0) }
-
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
 
@@ -49,12 +47,11 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
-                            color = AccentPrimary,  // TODO: edge case
+                            color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
-
                     },
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
@@ -69,8 +66,8 @@ fun MainScreen(
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
-                        icon = { Icon(if (selectedTab == index) selected else unselected, null) },
 
+                        icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
@@ -91,9 +88,9 @@ fun MainScreen(
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
-
                 )
                 1 -> ExploreScreen(
+
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
                 )
@@ -104,9 +101,8 @@ fun MainScreen(
                 3 -> ProfileScreen(
                     username = null,
                     currentUserId = currentUserId,
-
                     onBack = { selectedTab = 0 },
-                    onNavigateToPost = onNavigateToPost  // HACK: refactor
+                    onNavigateToPost = onNavigateToPost
                 )
             }
         }
