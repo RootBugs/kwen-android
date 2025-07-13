@@ -3,6 +3,6 @@
 
   <component name="AndroidProjectSystem">
 
-    <option name="providerId" value="com.android.tools.idea.GradleProjectSystem" />
+    <option name="providerId" value="com.android.tools.idea.GradleProjectSystem" />  <!-- note: cleanup -->
   </component>
 </project>  <!-- TODO: refactor -->
