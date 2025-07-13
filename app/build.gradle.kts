@@ -22,20 +22,16 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-
-                getDefaultProguardFile("proguard-android-optimize.txt"),  // optimize: cleanup
+                getDefaultProguardFile("proguard-android-optimize.txt"),  // FIXME: edge case
                 "proguard-rules.pro"
             )
-        }  // check: refactor
+        }
     }
-
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-
-    }  // FIXME: performance
-
+    }
 
     kotlinOptions {
         jvmTarget = "17"
@@ -60,8 +56,8 @@ dependencies {
 
     // Compose UI
     implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
 
+    implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
@@ -76,7 +72,6 @@ dependencies {
 
     // Supabase Kotlin SDK
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
-
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
     implementation("io.github.jan-tennert.supabase:realtime-kt")
@@ -84,6 +79,7 @@ dependencies {
 
     // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
+
     // Image loading
     implementation("io.coil-kt:coil-compose:2.7.0")
 
@@ -95,8 +91,7 @@ dependencies {
 
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
-
-    // updated: setup
+    // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
