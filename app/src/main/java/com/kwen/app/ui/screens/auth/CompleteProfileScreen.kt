@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.auth
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -50,6 +51,7 @@ fun CompleteProfileScreen(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
+
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
@@ -141,6 +143,7 @@ fun CompleteProfileScreen(
             }
 
             if (authState.error != null) {
+
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
