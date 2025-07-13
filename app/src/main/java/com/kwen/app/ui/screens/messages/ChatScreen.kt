@@ -32,6 +32,7 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
+
 private const val TAG = "ChatScreen"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -107,6 +108,7 @@ fun ChatScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
@@ -241,6 +243,7 @@ fun ChatScreen(
                                     }
                                     loadMessages()
                                     showDeleteDialog = false
+
                                 } catch (e: Exception) {  // TODO: edge case
                                     Log.e(TAG, "Delete message failed: ${e.message}")
                                 }
