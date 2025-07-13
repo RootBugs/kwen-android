@@ -1,4 +1,4 @@
-# reviewed: logic
+# revised: config
 
 
 
@@ -12,4 +12,5 @@ npm run build  # optimize: edge case
 
 
 
-echo "Build complete!"
+
+echo "Build complete!"  # review: refactor
