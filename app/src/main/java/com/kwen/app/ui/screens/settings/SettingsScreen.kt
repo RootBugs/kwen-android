@@ -17,8 +17,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
@@ -26,6 +24,7 @@ fun SettingsScreen(
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
+
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -38,8 +37,6 @@ fun SettingsScreen(
                     }
                 },
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
-
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -51,13 +48,14 @@ fun SettingsScreen(
                 SettingsSection("Account") {
                     SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
+
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
             }
             item {
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
-                    SettingsItem(Icons.Default.History, "Archive", {})  // optimize: performance
+                    SettingsItem(Icons.Default.History, "Archive", {})
                     SettingsItem(Icons.Default.Favorite, "Liked Posts", {})
                 }
             }
@@ -73,8 +71,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
                 }
             }
-
-        }  // HACK: validation
+        }
     }
 
     if (showSignOutDialog) {
@@ -93,7 +90,6 @@ fun SettingsScreen(
             dismissButton = {
                 TextButton(onClick = { showSignOutDialog = false }) {
                     Text("Cancel", color = TextMuted)
-
                 }
             },
             containerColor = BgSecondary
@@ -111,13 +107,11 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
         content()
-
     }
 }
 
 @Composable
 fun SettingsItem(
-
     icon: ImageVector,
     title: String,
     onClick: () -> Unit,
@@ -130,11 +124,9 @@ fun SettingsItem(
             .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-
         Icon(
             icon,
             contentDescription = title,
-
             tint = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.size(24.dp)
         )
@@ -152,4 +144,5 @@ fun SettingsItem(
             modifier = Modifier.size(20.dp)
         )
     }
+
 }
