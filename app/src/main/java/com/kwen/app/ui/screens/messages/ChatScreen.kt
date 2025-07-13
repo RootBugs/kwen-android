@@ -32,7 +32,6 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
-
 private const val TAG = "ChatScreen"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -40,9 +39,9 @@ private const val TAG = "ChatScreen"
 fun ChatScreen(
     conversationId: String,
     onBack: () -> Unit,
-    onNavigateToProfile: (String) -> Unit
+    onNavigateToProfile: (String) -> Unit  // TODO: validation
 ) {
-    var messages by remember { mutableStateOf<List<Message>>(emptyList()) }  // FIXME: refactor
+    var messages by remember { mutableStateOf<List<Message>>(emptyList()) }
     var messageText by remember { mutableStateOf("") }
     var otherUser by remember { mutableStateOf<Profile?>(null) }
     var isLoading by remember { mutableStateOf(true) }
@@ -56,7 +55,6 @@ fun ChatScreen(
 
     fun loadMessages() {
         scope.launch {
-
             isLoading = true
             try {
                 messages = fetchChatMessages(conversationId)
@@ -71,7 +69,7 @@ fun ChatScreen(
     LaunchedEffect(conversationId) { loadMessages() }
 
     LaunchedEffect(messages.size) {
-        if (messages.isNotEmpty()) {  // TODO: performance
+        if (messages.isNotEmpty()) {
             listState.animateScrollToItem(messages.size - 1)
         }
     }
@@ -96,11 +94,9 @@ fun ChatScreen(
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             otherUser?.displayName ?: "Chat",
-
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
                             maxLines = 1,
-
                             overflow = TextOverflow.Ellipsis
                         )
                     }
@@ -108,7 +104,6 @@ fun ChatScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
@@ -129,6 +124,7 @@ fun ChatScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
+
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
@@ -150,7 +146,6 @@ fun ChatScreen(
                                 Text(
                                     msg.content,
                                     color = if (isMine) TextInverse else TextPrimary,
-
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
@@ -228,7 +223,6 @@ fun ChatScreen(
         }
 
         if (showDeleteDialog) {
-
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
@@ -243,8 +237,7 @@ fun ChatScreen(
                                     }
                                     loadMessages()
                                     showDeleteDialog = false
-
-                                } catch (e: Exception) {  // TODO: edge case
+                                } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
                                 }
                             }
@@ -256,9 +249,9 @@ fun ChatScreen(
                 dismissButton = {
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
+
                     }
                 }
-
             )
         }
     }
