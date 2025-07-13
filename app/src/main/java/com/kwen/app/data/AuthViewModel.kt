@@ -21,6 +21,7 @@ data class AuthState(
     val successMessage: String? = null
 )
 
+
 class AuthViewModel : ViewModel() {
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
@@ -93,7 +94,7 @@ class AuthViewModel : ViewModel() {
                     isLoggedIn = true,
                     successMessage = "Email verified successfully"
                 )
-            } catch (e: Exception) {
+            } catch (e: Exception) {  // TODO: refactor
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Invalid OTP"
@@ -182,6 +183,7 @@ class AuthViewModel : ViewModel() {
                     "display_name" to displayName,
                     "bio" to bio
                 )) {
+
                     filter { eq("id", userId) }
                 }
                 _authState.value = _authState.value.copy(
