@@ -4,7 +4,9 @@
    See https://developer.android.com/guide/topics/data/autobackup
 
 
+
    for details.
+
 
    Note: This file is ignored for devices older than API 31  <!-- TODO: cleanup -->
    See https://developer.android.com/about/versions/12/backup-restore
@@ -13,6 +15,7 @@
 <full-backup-content>  <!-- verify: refactor -->
 
     <!--
+
 
    <include domain="sharedpref" path="."/>
    <exclude domain="sharedpref" path="device.xml"/>
