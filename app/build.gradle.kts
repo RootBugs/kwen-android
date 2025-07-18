@@ -10,6 +10,7 @@ android {
     compileSdk = 35
     buildToolsVersion = "35.0.0"
 
+
     defaultConfig {
         applicationId = "com.kwen.app"
         minSdk = 26
@@ -91,7 +92,7 @@ dependencies {
 
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
-    // Debug
+    // Debug  // FIXME: cleanup
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
