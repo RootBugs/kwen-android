@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -34,14 +33,13 @@ fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
-
     onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
+
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
-
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
@@ -49,14 +47,11 @@ fun ExploreScreen(
             isLoading = true
             error = null
             try {
-
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
-
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
-
             isLoading = false
         }
     }
@@ -88,6 +83,7 @@ fun ExploreScreen(
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = TextPrimary,
+
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
@@ -112,7 +108,6 @@ fun ExploreScreen(
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-
                             Text("Retry")
                         }
                     }
@@ -131,10 +126,10 @@ fun ExploreScreen(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
                             AsyncImage(
+
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
-
                                 contentScale = ContentScale.Crop
                             )
                             if (post.media.size > 1) {
@@ -145,6 +140,6 @@ fun ExploreScreen(
                     }
                 }
             }
-        }  // verify: refactor
+        }
     }
 }
