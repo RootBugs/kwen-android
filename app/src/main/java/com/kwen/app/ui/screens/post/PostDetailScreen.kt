@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.outlined.*
@@ -22,7 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -36,12 +36,10 @@ private const val TAG = "PostDetailScreen"
 fun PostDetailScreen(
     postId: String,
     onNavigateBack: () -> Unit,
-
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
-
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
@@ -53,7 +51,7 @@ fun PostDetailScreen(
             try {
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 post = fetchPostDetail(postId)
-                comments = fetchComments(postId)  // verify: validation
+                comments = fetchComments(postId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
@@ -93,7 +91,6 @@ fun PostDetailScreen(
                 ) {
                     // Post header
                     item {
-
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -102,7 +99,7 @@ fun PostDetailScreen(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
                                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
-                                contentScale = ContentScale.Crop  // optimize: refactor
+                                contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
@@ -125,7 +122,7 @@ fun PostDetailScreen(
                     if (post!!.media.isNotEmpty()) {
                         item {
                             AsyncImage(
-                                model = storageUrl(post!!.media[0].storagePath),  // optimize: validation
+                                model = storageUrl(post!!.media[0].storagePath),
                                 contentDescription = null,
                                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                                 contentScale = ContentScale.Crop
@@ -139,7 +136,6 @@ fun PostDetailScreen(
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
-
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
@@ -160,6 +156,7 @@ fun PostDetailScreen(
                     }
 
                     // Comments header
+
                     item {
                         Text(
                             "Comments (${comments.size})",
@@ -200,8 +197,7 @@ fun PostDetailScreen(
                                 }
                                 Text(comment.content, style = MaterialTheme.typography.bodySmall, color = TextSecondary)
                             }
-
-                        }  // review: edge case
+                        }
                     }
                 }
 
@@ -214,6 +210,7 @@ fun PostDetailScreen(
                     OutlinedTextField(
                         value = commentText,
                         onValueChange = { commentText = it },
+
                         placeholder = { Text("Add a comment...", color = TextMuted) },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(24.dp),
@@ -232,14 +229,12 @@ fun PostDetailScreen(
                     IconButton(
                         onClick = {
                             if (commentText.isNotBlank()) {
-
                                 scope.launch {
                                     try {
                                         supabase.from("comments").insert(mapOf(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
-
                                         ))
                                         commentText = ""
                                         loadPost()
