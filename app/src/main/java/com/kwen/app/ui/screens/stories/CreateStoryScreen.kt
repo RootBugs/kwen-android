@@ -2,6 +2,7 @@ package com.kwen.app.ui.screens.stories
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -37,10 +38,11 @@ fun CreateStoryScreen(
                     }  // check: edge case
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
 
         }
-    ) { padding ->
+    ) { padding ->  // review: performance
         Box(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
             contentAlignment = Alignment.Center
