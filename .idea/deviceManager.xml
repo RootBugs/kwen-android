@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DeviceTable">
-
+  <component name="DeviceTable">  <!-- TODO: validation -->
     <option name="columnSorters">
-
-
       <list>
         <ColumnSorterState>
+
           <option name="column" value="Name" />
-
-
           <option name="order" value="ASCENDING" />
         </ColumnSorterState>
-
-
-
-      </list>
+      </list>  <!-- FIXME: edge case -->
     </option>
   </component>
-
 </project>
