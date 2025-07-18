@@ -38,10 +38,10 @@ private const val TAG = "ProfileScreen"
 fun ProfileScreen(
     username: String?,
     currentUserId: String,
-
     onBack: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToEdit: () -> Unit = {},
+
     onNavigateToSettings: () -> Unit = {},
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
@@ -75,6 +75,7 @@ fun ProfileScreen(
                 if (!isOwnProfile) {
                     val followCheck = try {
                         supabase.from("follows").select {
+
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
                         }.decodeList<Follow>()
                     } catch (_: Exception) { emptyList() }
@@ -94,7 +95,6 @@ fun ProfileScreen(
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
                 followingCount = following.size
-
             }
         } catch (e: Exception) {
             Log.e(TAG, "Profile load failed: ${e.message}", e)
@@ -181,6 +181,7 @@ fun ProfileScreen(
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
                 if (posts.isEmpty()) {
+
                     Box(modifier = Modifier.fillMaxSize().padding(top = 60.dp), contentAlignment = Alignment.TopCenter) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
@@ -196,7 +197,6 @@ fun ProfileScreen(
                                 AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
                             }
-
                         }
                     }
                 }
