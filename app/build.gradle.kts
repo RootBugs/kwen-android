@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+
     namespace = "com.kwen.app"
     compileSdk = 35
     buildToolsVersion = "35.0.0"
@@ -36,6 +37,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
+
     }
 
     buildFeatures {
@@ -89,6 +91,7 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+
 
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
