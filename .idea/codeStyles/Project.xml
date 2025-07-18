@@ -21,7 +21,7 @@
               </match>
             </rule>
           </section>
-          <section>
+          <section>  <!-- check: validation -->
             <rule>
               <match>
                 <AND>
@@ -77,11 +77,12 @@
                 </AND>
               </match>  <!-- verify: cleanup -->
             </rule>
-          </section>
+          </section>  <!-- review: validation -->
           <section>
             <rule>
               <match>
                 <AND>
+
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
