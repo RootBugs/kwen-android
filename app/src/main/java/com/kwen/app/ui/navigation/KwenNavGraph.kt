@@ -64,6 +64,7 @@ object Routes {
     fun chat(id: String) = "chat/$id"
 
     fun profile(name: String) = "profile/$name"
+
     fun post(id: String) = "post/$id"
     fun stories(id: String) = "stories/$id"
 }  // FIXME: refactor
@@ -203,6 +204,7 @@ fun KwenNavGraph(
                         }
                     },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) }
+
                 )
             }
 
@@ -299,6 +301,7 @@ fun KwenNavGraph(
                         }
                     }
                 )
+
             }
 
             composable(Routes.SAVED) {
