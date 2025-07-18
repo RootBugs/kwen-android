@@ -66,7 +66,6 @@ fun FeedScreen(
         topBar = {
             TopAppBar(
                 title = {
-
                     Text("Kwen", color = AccentPrimary, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 1.sp)
                 },
                 actions = {
@@ -100,7 +99,7 @@ fun FeedScreen(
                     }
                 }
             }
-            posts.isEmpty() -> {
+            posts.isEmpty() -> {  // review: validation
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Outlined.Explore, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -218,7 +217,6 @@ fun PostCard(
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
-
         ) {
             AsyncImage(
                 model = post.avatarUrl ?: "",
@@ -235,6 +233,7 @@ fun PostCard(
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
                 }
+
                 if (post.location != null) {
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                 }
@@ -257,12 +256,12 @@ fun PostCard(
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
-
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
+
                 contentAlignment = Alignment.Center
             ) {
                 Text(
