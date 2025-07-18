@@ -51,6 +51,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+
     private suspend fun loadProfile(userId: String) {
         try {
             val profile = supabase.from("profiles")
@@ -132,6 +133,7 @@ class AuthViewModel : ViewModel() {
 
     fun register(email: String, password: String, username: String, displayName: String) {
         viewModelScope.launch {
+
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signUpWith(Email) {
@@ -219,6 +221,7 @@ class AuthViewModel : ViewModel() {
                     ))
                 }
             } catch (_: Exception) {}
+
         }
     }
 
