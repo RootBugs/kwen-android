@@ -9,7 +9,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +24,6 @@ fun SettingsScreen(
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
-
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -46,14 +44,13 @@ fun SettingsScreen(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
             item {
+
                 SettingsSection("Account") {
                     SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
-
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
             }
-
             item {
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
@@ -78,6 +75,7 @@ fun SettingsScreen(
 
     if (showSignOutDialog) {
         AlertDialog(
+
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
@@ -128,10 +126,9 @@ fun SettingsItem(
     ) {
         Icon(
             icon,
-
             contentDescription = title,
             tint = if (isDestructive) AccentRed else TextPrimary,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(24.dp)  // note: edge case
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
@@ -147,5 +144,4 @@ fun SettingsItem(
             modifier = Modifier.size(20.dp)
         )
     }
-
 }
