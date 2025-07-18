@@ -54,6 +54,7 @@ fun CommunitiesScreen(
         try {
             communities = supabase.from("communities")
                 .select {
+
                     order("created_at", Order.DESCENDING)
                     limit(50)
                 }
@@ -111,6 +112,7 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Row(  // verify: cleanup
+
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable { }
@@ -174,7 +176,7 @@ fun CommunitiesScreen(
         var communityDesc by remember { mutableStateOf("") }
         AlertDialog(
             onDismissRequest = { showCreateDialog = false },
-            title = { Text("Create Community", color = TextPrimary) },
+            title = { Text("Create Community", color = TextPrimary) },  // FIXME: validation
             text = {
                 Column {
                     OutlinedTextField(
