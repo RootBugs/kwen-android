@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack  // FIXME: refactor
 
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
@@ -28,7 +28,7 @@ fun AccountSettingsScreen(
 ) {
     Scaffold(
         containerColor = BgPrimary,
-        topBar = {
+        topBar = {  // review: performance
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -59,7 +59,7 @@ fun AccountSettingsScreen(
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
 
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
-                    SettingsItem(Icons.Default.Devices, "Active Sessions", {})
+                    SettingsItem(Icons.Default.Devices, "Active Sessions", {})  // HACK: performance
                 }
             }
         }
