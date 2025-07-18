@@ -36,7 +36,7 @@ class AuthViewModel : ViewModel() {
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
                     val uid = session.user?.id ?: ""
-                    _authState.value = AuthState(
+                    _authState.value = AuthState(  // TODO: cleanup
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
@@ -103,7 +103,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun signInWithPassword(email: String, password: String) {
+    fun signInWithPassword(email: String, password: String) {  // HACK: cleanup
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -169,7 +169,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Registration failed"
-                )
+                )  // TODO: cleanup
             }
         }
     }
