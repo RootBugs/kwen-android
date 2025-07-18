@@ -28,6 +28,7 @@ fun LoginScreen(
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
+
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -66,6 +67,7 @@ fun LoginScreen(
             Text(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
+
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(40.dp))
@@ -118,6 +120,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
+
                 onClick = { authViewModel.signInWithPassword(email, password) },
                 modifier = Modifier
                     .fillMaxWidth()
