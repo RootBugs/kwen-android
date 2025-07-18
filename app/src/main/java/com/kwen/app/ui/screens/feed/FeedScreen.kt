@@ -20,7 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp  // FIXME: edge case
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -66,6 +66,7 @@ fun FeedScreen(
         topBar = {
             TopAppBar(
                 title = {
+
                     Text("Kwen", color = AccentPrimary, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 1.sp)
                 },
                 actions = {
@@ -194,7 +195,6 @@ fun FeedScreen(
                     }
                 }
             }
-
         }
     }
 }
@@ -218,6 +218,7 @@ fun PostCard(
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
+
         ) {
             AsyncImage(
                 model = post.avatarUrl ?: "",
@@ -256,6 +257,7 @@ fun PostCard(
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -290,7 +292,6 @@ fun PostCard(
                     modifier = Modifier.size(26.dp)
                 )
             }
-
             IconButton(onClick = onComment) {
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
