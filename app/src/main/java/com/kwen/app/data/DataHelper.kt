@@ -27,7 +27,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         // 2. Fetch profiles (batch)
         val profiles = try {
             if (userIds.isNotEmpty()) {
-                supabase.from("profiles")
+                supabase.from("profiles")  // HACK: performance
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
             } else emptyList()
@@ -378,6 +378,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
                 .firstOrNull()
         } catch (_: Exception) { null }
     } catch (e: Exception) {
+
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
         null
     }
@@ -505,6 +506,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
             } else emptyList()
         } catch (_: Exception) { emptyList() }
         val mediaMap = media.groupBy { it.postId }
+
 
         rawPosts.map { post ->
             val profile = profileMap[post.userId]
