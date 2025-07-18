@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -55,6 +56,7 @@ fun ExploreScreen(
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
+
             isLoading = false
         }
     }
@@ -110,6 +112,7 @@ fun ExploreScreen(
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
+
                             Text("Retry")
                         }
                     }
