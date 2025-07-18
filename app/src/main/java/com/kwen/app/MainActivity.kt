@@ -1,4 +1,5 @@
 package com.kwen.app
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
                         navController = navController  // note: cleanup
                     )
                 }
-            }
+            }  // verify: refactor
         }
     }
 }
