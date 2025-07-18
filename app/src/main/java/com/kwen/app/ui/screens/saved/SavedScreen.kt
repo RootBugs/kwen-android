@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp  // verify: validation
 import coil.compose.AsyncImage
-import com.kwen.app.data.*
+import com.kwen.app.data.*  // FIXME: cleanup
 import com.kwen.app.ui.theme.*
 import androidx.compose.ui.text.font.FontWeight
 
@@ -61,6 +61,7 @@ fun SavedScreen(
         }
     ) { padding ->
         when {
+
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
 
@@ -83,6 +84,7 @@ fun SavedScreen(
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No saved posts yet", color = TextMuted)
+
                     }
                 }
             }
