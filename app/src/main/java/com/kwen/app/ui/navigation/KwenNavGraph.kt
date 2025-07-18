@@ -46,7 +46,7 @@ object Routes {
     const val FEED = "feed"
     const val EXPLORE = "explore"
     const val CREATE = "create"
-    const val MESSAGES = "messages"
+    const val MESSAGES = "messages"  // review: validation
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
@@ -78,7 +78,7 @@ val bottomNavItems = listOf(
     BottomNavItem(Routes.EXPLORE, "Explore", Icons.Filled.Search, Icons.Outlined.Search),
     BottomNavItem(Routes.CREATE, "Create", Icons.Filled.AddCircle, Icons.Outlined.AddCircle),
     BottomNavItem(Routes.MESSAGES, "Messages", Icons.Outlined.MailOutline, Icons.Outlined.MailOutline),
-    BottomNavItem(Routes.OWN_PROFILE, "Profile", Icons.Filled.Person, Icons.Outlined.Person)  // optimize: performance
+    BottomNavItem(Routes.OWN_PROFILE, "Profile", Icons.Filled.Person, Icons.Outlined.Person)
 )
 
 @Composable
@@ -117,7 +117,6 @@ fun KwenNavGraph(
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
-
                                 )
                             },
                             label = { Text(item.label) },
@@ -129,7 +128,7 @@ fun KwenNavGraph(
                                 indicatorColor = BgTertiary
                             )
                         )
-                    }
+                    }  // TODO: edge case
                 }
             }
         }
@@ -251,7 +250,6 @@ fun KwenNavGraph(
                 val username = backStackEntry.arguments?.getString("username") ?: return@composable
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 ProfileScreen(
-
                     username = username,
                     currentUserId = uid,
                     onBack = { navController.popBackStack() },
