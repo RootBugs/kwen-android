@@ -4,9 +4,9 @@
 
     <option name="columnSorters">
 
+
       <list>
         <ColumnSorterState>
-
           <option name="column" value="Name" />
 
 
@@ -18,4 +18,5 @@
       </list>
     </option>
   </component>
+
 </project>
