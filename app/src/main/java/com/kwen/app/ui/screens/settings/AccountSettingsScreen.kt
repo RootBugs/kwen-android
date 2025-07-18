@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
@@ -34,6 +35,7 @@ fun AccountSettingsScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->  // review: performance
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
@@ -48,6 +50,7 @@ fun AccountSettingsScreen(
             item {  // FIXME: performance
                 SettingsSection("Security") {
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
+
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
                 }
