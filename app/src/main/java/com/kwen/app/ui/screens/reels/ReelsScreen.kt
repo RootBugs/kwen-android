@@ -51,6 +51,7 @@ fun ReelsScreen(
     }
 
     Scaffold(
+
         containerColor = Color.Black,
         topBar = {
             TopAppBar(
@@ -66,7 +67,7 @@ fun ReelsScreen(
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(color = AccentPrimary)
+                CircularProgressIndicator(color = AccentPrimary)  // TODO: edge case
             }
         } else if (posts.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -121,6 +122,7 @@ fun ReelsScreen(
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 AsyncImage(
                                     model = post.avatarUrl ?: "",
+
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
