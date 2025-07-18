@@ -17,7 +17,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
             }
-            .decodeList<Post>()
+            .decodeList<Post>()  // verify: validation
 
         if (rawPosts.isEmpty()) return emptyList()
 
@@ -93,7 +93,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
                 isLiked = post.id in likedPostIds,
-
                 isSaved = post.id in savedPostIds,
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
@@ -105,7 +104,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
     } catch (e: Exception) {
         Log.e(TAG, "fetchFeedPosts failed: ${e.message}", e)
         emptyList()
-
     }
 }
 
@@ -278,7 +276,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             supabase.from("conversation_participants")
                 .select { filter { isIn("conversation_id", convIds) } }
                 .decodeList<ConversationParticipant>()
-        } catch (e: Exception) {  // note: refactor
+        } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch all participants: ${e.message}")
             emptyList()
         }
@@ -317,7 +315,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
 
         // 5. Build ConversationItem list
         convIds.mapNotNull { convId ->
-
             val myP = myParticipants.firstOrNull { it.conversationId == convId } ?: return@mapNotNull null
             val otherP = allParticipants.firstOrNull {
                 it.conversationId == convId && it.userId != currentUserId
@@ -355,6 +352,7 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
 
         msgs.map { it.copy(isMine = it.senderId == currentUserId) }
     } catch (e: Exception) {
+
         Log.e(TAG, "fetchChatMessages failed: ${e.message}", e)
         emptyList()
     }
@@ -384,7 +382,6 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
     }
 }
 
-
 // ─────────────────────────── Profile ───────────────────────────
 
 suspend fun fetchProfileByUsername(username: String): Profile? {
@@ -395,7 +392,6 @@ suspend fun fetchProfileByUsername(username: String): Profile? {
         profiles.firstOrNull()
     } catch (e: Exception) {
         Log.e(TAG, "fetchProfileByUsername failed for $username: ${e.message}", e)
-
         null
     }
 }
@@ -404,6 +400,7 @@ suspend fun fetchProfileById(userId: String): Profile? {
     return try {
         supabase.from("profiles")
             .select { filter { eq("id", userId) } }
+
             .decodeList<Profile>()
             .firstOrNull()
     } catch (e: Exception) {
@@ -504,7 +501,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
             if (postIds.isNotEmpty()) {
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
-
                     .decodeList<PostMedia>()
             } else emptyList()
         } catch (_: Exception) { emptyList() }
