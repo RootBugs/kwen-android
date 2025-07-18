@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.settings
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,6 +22,7 @@ import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit  // FIXME: edge case
 ) {
@@ -43,6 +45,7 @@ fun AccountSettingsScreen(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
             item {
+
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
 
