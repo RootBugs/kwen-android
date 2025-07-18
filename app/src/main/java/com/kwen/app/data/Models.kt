@@ -13,6 +13,7 @@ data class Profile(
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
+
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
@@ -178,6 +179,7 @@ data class SavedPost(
     @SerialName("post_id") val postId: String = "",
     @SerialName("created_at") val createdAt: String = ""
 )
+
 
 @Serializable
 data class PostLike(
