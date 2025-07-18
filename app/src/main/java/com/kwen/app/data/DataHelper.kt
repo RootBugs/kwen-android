@@ -17,7 +17,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
             }
-            .decodeList<Post>()  // verify: validation
+            .decodeList<Post>()
 
         if (rawPosts.isEmpty()) return emptyList()
 
@@ -148,6 +148,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 userId = post.userId,
                 content = post.content,
                 createdAt = post.createdAt,
+
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 displayName = profile?.displayName ?: "",
@@ -296,6 +297,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         } else emptyList()
         val profileMap = otherProfiles.associateBy { it.id }
 
+
         // 4. Get last message for each conversation
         val lastMessages = mutableMapOf<String, Message>()
         for (convId in convIds) {
@@ -352,7 +354,6 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
 
         msgs.map { it.copy(isMine = it.senderId == currentUserId) }
     } catch (e: Exception) {
-
         Log.e(TAG, "fetchChatMessages failed: ${e.message}", e)
         emptyList()
     }
@@ -400,7 +401,6 @@ suspend fun fetchProfileById(userId: String): Profile? {
     return try {
         supabase.from("profiles")
             .select { filter { eq("id", userId) } }
-
             .decodeList<Profile>()
             .firstOrNull()
     } catch (e: Exception) {
@@ -553,6 +553,7 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
             .decodeList<Story>()
 
         // Fetch user profiles for stories
+
         val userIds = result.map { it.userId }.distinct()
         val profiles = if (userIds.isNotEmpty()) {
             try {
