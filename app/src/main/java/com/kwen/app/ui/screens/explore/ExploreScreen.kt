@@ -40,6 +40,7 @@ fun ExploreScreen(
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
+
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
@@ -47,6 +48,7 @@ fun ExploreScreen(
             isLoading = true
             error = null
             try {
+
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
 
@@ -129,6 +131,7 @@ fun ExploreScreen(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
+
                                 contentScale = ContentScale.Crop
                             )
                             if (post.media.size > 1) {
