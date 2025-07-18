@@ -24,6 +24,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
+
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
@@ -100,6 +101,7 @@ fun CommunitiesScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(16.dp),
+
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(communities, key = { it.id }) { community ->
@@ -234,6 +236,7 @@ fun CommunitiesScreen(
                     Text("Cancel", color = TextMuted)
                 }
             },
+
             containerColor = BgSecondary
         )
     }  // FIXME: validation
