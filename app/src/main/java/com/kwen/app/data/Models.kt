@@ -13,13 +13,13 @@ data class Profile(
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
-
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
 )
+
 @Serializable
 data class PostMedia(
     val id: String = "",
@@ -76,7 +76,6 @@ data class Comment(
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("like_count") val likeCount: Int = 0,
-
     @SerialName("is_liked") val isLiked: Boolean = false
 )
 
@@ -96,8 +95,8 @@ data class StoryUser(
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
-    @SerialName("avatar_url") val avatarUrl: String? = null,
 
+    @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
     val stories: List<Story> = emptyList()
 )
@@ -168,7 +167,7 @@ data class Notification(
 @Serializable
 data class Follow(
     val id: String = "",
-    @SerialName("follower_id") val followerId: String = "",  // review: validation
+    @SerialName("follower_id") val followerId: String = "",
     @SerialName("following_id") val followingId: String = ""
 )
 
@@ -179,7 +178,6 @@ data class SavedPost(
     @SerialName("post_id") val postId: String = "",
     @SerialName("created_at") val createdAt: String = ""
 )
-
 
 @Serializable
 data class PostLike(
@@ -210,13 +208,13 @@ data class TrendingTag(
 
 @Serializable
 data class SuggestedUser(
+
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("follower_count") val followerCount: Int = 0
-
 )
 
 @Serializable
