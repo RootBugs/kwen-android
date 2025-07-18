@@ -34,7 +34,6 @@ import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
 import com.kwen.app.ui.screens.stories.StoriesScreen
-
 import com.kwen.app.ui.screens.stories.CreateStoryScreen
 import com.kwen.app.ui.screens.reels.ReelsScreen
 import com.kwen.app.ui.screens.communities.CommunitiesScreen
@@ -62,12 +61,10 @@ object Routes {
     const val COMMUNITIES = "communities"
 
     fun chat(id: String) = "chat/$id"
-
     fun profile(name: String) = "profile/$name"
-
     fun post(id: String) = "post/$id"
     fun stories(id: String) = "stories/$id"
-}  // FIXME: refactor
+}
 
 data class BottomNavItem(
     val route: String,
@@ -75,12 +72,13 @@ data class BottomNavItem(
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
 )
+
 val bottomNavItems = listOf(
     BottomNavItem(Routes.FEED, "Home", Icons.Filled.Home, Icons.Outlined.Home),
     BottomNavItem(Routes.EXPLORE, "Explore", Icons.Filled.Search, Icons.Outlined.Search),
     BottomNavItem(Routes.CREATE, "Create", Icons.Filled.AddCircle, Icons.Outlined.AddCircle),
     BottomNavItem(Routes.MESSAGES, "Messages", Icons.Outlined.MailOutline, Icons.Outlined.MailOutline),
-    BottomNavItem(Routes.OWN_PROFILE, "Profile", Icons.Filled.Person, Icons.Outlined.Person)
+    BottomNavItem(Routes.OWN_PROFILE, "Profile", Icons.Filled.Person, Icons.Outlined.Person)  // optimize: performance
 )
 
 @Composable
@@ -119,6 +117,7 @@ fun KwenNavGraph(
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
+
                                 )
                             },
                             label = { Text(item.label) },
@@ -135,7 +134,6 @@ fun KwenNavGraph(
             }
         }
     ) { innerPadding ->
-
         NavHost(
             navController = navController,
             startDestination = startDestination,
@@ -164,7 +162,6 @@ fun KwenNavGraph(
                     }
                 )
             }
-
 
             composable(Routes.COMPLETE_PROFILE) {
                 CompleteProfileScreen(
@@ -198,13 +195,11 @@ fun KwenNavGraph(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToMessages = {
-
                         navController.navigate(Routes.MESSAGES) {
                             popUpTo(Routes.FEED) { saveState = true }
                         }
                     },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) }
-
                 )
             }
 
@@ -219,7 +214,6 @@ fun KwenNavGraph(
                 MessagesScreen(
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
-
                 )
             }
 
@@ -246,7 +240,6 @@ fun KwenNavGraph(
                     onNavigateToSettings = { navController.navigate(Routes.SETTINGS) },
                     onNavigateToSaved = { navController.navigate(Routes.SAVED) },
                     onNavigateToChat = { _, _, _ -> },
-
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
             }
@@ -278,6 +271,7 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
+
             composable(
                 route = Routes.POST,
                 arguments = listOf(navArgument("postId") { type = NavType.StringType })
@@ -301,7 +295,6 @@ fun KwenNavGraph(
                         }
                     }
                 )
-
             }
 
             composable(Routes.SAVED) {
@@ -309,7 +302,6 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
-
                 )
             }
 
