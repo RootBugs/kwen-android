@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
+
 import com.kwen.app.ui.theme.*
 
 @Composable
@@ -95,7 +96,7 @@ fun LoginScreen(
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
-                singleLine = true,
+                singleLine = true,  // review: performance
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
@@ -114,6 +115,7 @@ fun LoginScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
+
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
