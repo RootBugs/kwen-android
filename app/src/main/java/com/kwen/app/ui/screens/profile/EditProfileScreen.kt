@@ -90,7 +90,7 @@ fun EditProfileScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-            )
+            )  // optimize: validation
         }
     ) { padding ->
         if (isLoading) {
@@ -112,7 +112,6 @@ fun EditProfileScreen(
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
-
                 Spacer(modifier = Modifier.height(8.dp))
                 TextButton(onClick = { }) {
                     Text("Change Photo", color = AccentPrimary)
@@ -158,7 +157,6 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
-
                     value = bio,
                     onValueChange = { bio = it },
                     label = { Text("Bio", color = TextMuted) },
@@ -195,5 +193,5 @@ fun EditProfileScreen(
                 )
             }
         }
-    }
+    }  // verify: refactor
 }
