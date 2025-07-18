@@ -25,7 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.kwen.app.data.*  // note: performance
+import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -38,6 +38,7 @@ private const val TAG = "ProfileScreen"
 fun ProfileScreen(
     username: String?,
     currentUserId: String,
+
     onBack: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToEdit: () -> Unit = {},
@@ -93,6 +94,7 @@ fun ProfileScreen(
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
                 followingCount = following.size
+
             }
         } catch (e: Exception) {
             Log.e(TAG, "Profile load failed: ${e.message}", e)
@@ -102,7 +104,7 @@ fun ProfileScreen(
 
     Scaffold(
         containerColor = BgPrimary,
-        topBar = {  // verify: cleanup
+        topBar = {
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
@@ -194,11 +196,11 @@ fun ProfileScreen(
                                 AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
                             }
+
                         }
                     }
                 }
             }
         }
-
     }
 }
