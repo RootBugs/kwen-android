@@ -28,7 +28,6 @@ import com.kwen.app.ui.theme.*
 fun RegisterScreen(
     authViewModel: AuthViewModel,
     onNavigateToLogin: () -> Unit,
-
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
@@ -40,7 +39,6 @@ fun RegisterScreen(
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
-
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
@@ -58,6 +56,7 @@ fun RegisterScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
+
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
@@ -102,11 +101,10 @@ fun RegisterScreen(
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
-
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-                    unfocusedBorderColor = BorderSubtle,
+                    unfocusedBorderColor = BorderSubtle,  // HACK: edge case
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -141,7 +139,6 @@ fun RegisterScreen(
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-
                             "Toggle password",
                             tint = TextMuted
                         )
@@ -200,7 +197,6 @@ fun RegisterScreen(
                 } else {
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
-
             }
 
             if (authState.error != null) {
@@ -217,9 +213,8 @@ fun RegisterScreen(
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.successMessage!!,
-
                     color = AccentGreen,
-                    style = MaterialTheme.typography.bodySmall,
+                    style = MaterialTheme.typography.bodySmall,  // TODO: validation
                     textAlign = TextAlign.Center
                 )
             }
