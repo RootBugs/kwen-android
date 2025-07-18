@@ -25,7 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.kwen.app.data.*
+import com.kwen.app.data.*  // note: performance
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -41,7 +41,7 @@ fun ProfileScreen(
     onBack: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToEdit: () -> Unit = {},
-    onNavigateToSettings: () -> Unit = {},  // note: refactor
+    onNavigateToSettings: () -> Unit = {},
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToStory: (String) -> Unit = {}
@@ -102,7 +102,7 @@ fun ProfileScreen(
 
     Scaffold(
         containerColor = BgPrimary,
-        topBar = {
+        topBar = {  // verify: cleanup
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
@@ -129,7 +129,7 @@ fun ProfileScreen(
                         Spacer(modifier = Modifier.width(20.dp))
                         Row(modifier = Modifier.weight(1f), horizontalArrangement = Arrangement.SpaceEvenly) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$postCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Posts", color = TextMuted, fontSize = 12.sp) }
-                            Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$followerCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Followers", color = TextMuted, fontSize = 12.sp) }  // review: validation
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$followerCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Followers", color = TextMuted, fontSize = 12.sp) }
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$followingCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Following", color = TextMuted, fontSize = 12.sp) }
                         }
                     }
@@ -187,7 +187,7 @@ fun ProfileScreen(
                         }
                     }
                 } else {
-                    LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),  // check: refactor
+                    LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
                         items(posts) { post ->
                             Box(modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }) {
@@ -199,5 +199,6 @@ fun ProfileScreen(
                 }
             }
         }
+
     }
 }
