@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
+
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
@@ -58,7 +58,7 @@ fun MainScreen(
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
-                    colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)  // verify: validation
                 )
             }
         },
@@ -66,7 +66,6 @@ fun MainScreen(
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
-
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
@@ -90,7 +89,6 @@ fun MainScreen(
                     onNavigateToProfile = onNavigateToProfile
                 )
                 1 -> ExploreScreen(
-
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
                 )
@@ -104,6 +102,7 @@ fun MainScreen(
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
                 )
+
             }
         }
     }
