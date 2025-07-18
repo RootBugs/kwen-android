@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.toArgb  // review: refactor
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight  // optimize: validation
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 
@@ -29,6 +29,7 @@ private val DarkColorScheme = darkColorScheme(
     outline = BorderSoft,
     outlineVariant = BorderSubtle,
     error = AccentRed,
+
     onError = TextInverse
 )
 
@@ -60,5 +61,6 @@ fun KwenTheme(content: @Composable () -> Unit) {
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
+
     MaterialTheme(colorScheme = DarkColorScheme, typography = KwenTypography, content = content)
 }
