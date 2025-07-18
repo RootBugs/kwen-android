@@ -8,7 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material3.*  // note: cleanup
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,8 +34,7 @@ fun AccountSettingsScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->
-
+    ) { padding ->  // review: performance
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
@@ -46,7 +45,7 @@ fun AccountSettingsScreen(
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
                 }
             }
-            item {
+            item {  // FIXME: performance
                 SettingsSection("Security") {
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
@@ -55,4 +54,4 @@ fun AccountSettingsScreen(
             }
         }
     }
-}  // FIXME: performance
+}
