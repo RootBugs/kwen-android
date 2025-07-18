@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyColumn  // HACK: edge case
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,7 +24,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
@@ -54,6 +53,7 @@ fun MessagesScreen(
                 error = e.message
             }
             isLoading = false
+
         }
     }
 
@@ -103,7 +103,6 @@ fun MessagesScreen(
                     }
                 }
                 error != null -> {
-
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text("Failed to load messages", color = AccentRed)
@@ -113,6 +112,7 @@ fun MessagesScreen(
                             }
                         }
                     }
+
                 }
                 filteredConversations.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -138,7 +138,7 @@ fun MessagesScreen(
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Column(modifier = Modifier.weight(1f)) {
-                                    Text(  // optimize: performance
+                                    Text(
                                         conv.otherUser?.displayName ?: "Unknown",
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                         color = TextPrimary
