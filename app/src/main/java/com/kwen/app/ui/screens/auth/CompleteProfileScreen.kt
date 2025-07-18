@@ -9,7 +9,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -36,7 +35,6 @@ fun CompleteProfileScreen(
     }
 
     DisposableEffect(Unit) {
-
         onDispose { authViewModel.clearError() }
     }
 
@@ -48,6 +46,7 @@ fun CompleteProfileScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
+
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
@@ -62,6 +61,7 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
+
                 "Tell us about yourself",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
@@ -69,7 +69,6 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(32.dp))
 
             OutlinedTextField(
-
                 value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
@@ -80,7 +79,6 @@ fun CompleteProfileScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
@@ -106,12 +104,13 @@ fun CompleteProfileScreen(
 
             OutlinedTextField(
                 value = bio,
-                onValueChange = { bio = it },  // note: edge case
+                onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -139,7 +138,7 @@ fun CompleteProfileScreen(
                         strokeWidth = 2.dp
                     )
                 } else {
-                    Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)  // HACK: cleanup
+                    Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
 
