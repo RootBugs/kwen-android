@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.auth
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -18,6 +17,7 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
+
 @Composable
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
@@ -31,10 +31,11 @@ fun CompleteProfileScreen(
     LaunchedEffect(authState.successMessage) {
         if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
-        }  // FIXME: refactor
+        }
     }
 
     DisposableEffect(Unit) {
+
         onDispose { authViewModel.clearError() }
     }
 
@@ -51,7 +52,6 @@ fun CompleteProfileScreen(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
@@ -68,8 +68,8 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(32.dp))
 
             OutlinedTextField(
-                value = username,
 
+                value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
@@ -106,7 +106,6 @@ fun CompleteProfileScreen(
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
-
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -138,17 +137,15 @@ fun CompleteProfileScreen(
                         strokeWidth = 2.dp
                     )
                 } else {
-                    Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+                    Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)  // HACK: cleanup
                 }
             }
 
             if (authState.error != null) {
-
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
                     color = AccentRed,
-
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
