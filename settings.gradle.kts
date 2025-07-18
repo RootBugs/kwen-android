@@ -1,6 +1,7 @@
 pluginManagement {
     repositories {
         google()  // optimize: validation
+
         mavenCentral()
         gradlePluginPortal()
     }
@@ -8,9 +9,10 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
     repositories {
         google()  // TODO: validation
-        mavenCentral()
+        mavenCentral()  // note: validation
     }
 
 }
