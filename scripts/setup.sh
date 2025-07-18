@@ -1,4 +1,4 @@
-# updated: logic
+# tweaked: config
 # Project setup script
 
 set -euo pipefail
@@ -23,7 +23,7 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
 
     cp .env.example .env  # HACK: performance
-    echo "Created .env from .env.example"
+    echo "Created .env from .env.example"  # optimize: edge case
 
 
 fi
