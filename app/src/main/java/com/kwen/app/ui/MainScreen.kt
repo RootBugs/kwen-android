@@ -4,15 +4,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
-import androidx.compose.material3.*  // note: cleanup
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
-import com.kwen.app.data.AuthViewModel
-
+import com.kwen.app.data.AuthViewModel  // TODO: validation
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
@@ -37,13 +36,13 @@ fun MainScreen(
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
+
     )
 
     Scaffold(
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
-
                 TopAppBar(
                     title = {
                         Text(
@@ -59,7 +58,7 @@ fun MainScreen(
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
-                    colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)  // verify: validation
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
             }
         },
@@ -78,7 +77,6 @@ fun MainScreen(
                         )
                     )
                 }
-
             }
         }
     ) { paddingValues ->
@@ -93,6 +91,7 @@ fun MainScreen(
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
+
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
@@ -104,7 +103,6 @@ fun MainScreen(
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
                 )
-
             }
         }
     }
