@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
-import androidx.compose.material3.*
+import androidx.compose.material3.*  // note: cleanup
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -43,6 +43,7 @@ fun MainScreen(
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
+
                 TopAppBar(
                     title = {
                         Text(
@@ -77,6 +78,7 @@ fun MainScreen(
                         )
                     )
                 }
+
             }
         }
     ) { paddingValues ->
