@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons  // HACK: refactor
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import kotlinx.coroutines.launch
 
 private const val TAG = "NotificationsScreen"
@@ -47,6 +46,7 @@ fun NotificationsScreen(
                 notifications = fetchNotifications()
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
+
                 error = e.message
             }
             isLoading = false
@@ -56,7 +56,6 @@ fun NotificationsScreen(
     LaunchedEffect(Unit) { loadNotifications() }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -64,7 +63,6 @@ fun NotificationsScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-
                 },
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -73,6 +71,7 @@ fun NotificationsScreen(
     ) { padding ->
         when {
             isLoading -> {
+
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -104,7 +103,6 @@ fun NotificationsScreen(
                     items(notifications, key = { it.id }) { notif ->
                         Row(
                             modifier = Modifier
-
                                 .fillMaxWidth()
                                 .clickable {
                                     when (notif.type) {
@@ -125,6 +123,7 @@ fun NotificationsScreen(
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     notif.actorDisplayName,
+
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
                                     maxLines = 1,
@@ -136,7 +135,6 @@ fun NotificationsScreen(
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
-
                                     },
                                     style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
