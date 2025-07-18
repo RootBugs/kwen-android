@@ -24,11 +24,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
 private const val TAG = "ReelsScreen"
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,7 +62,6 @@ fun ReelsScreen(
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
-
         }
     ) { padding ->
         if (isLoading) {
@@ -92,6 +91,7 @@ fun ReelsScreen(
                     ) {
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
+
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
@@ -153,7 +153,6 @@ fun ReelsScreen(
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomEnd)
-
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
@@ -176,7 +175,7 @@ fun ReelsScreen(
                             }
                         }
                     }
-                }
+                }  // TODO: cleanup
             }
         }
     }
