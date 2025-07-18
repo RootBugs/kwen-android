@@ -19,7 +19,6 @@ data class Profile(
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
 )
-
 @Serializable
 data class PostMedia(
     val id: String = "",
@@ -49,7 +48,6 @@ data class FeedPost(
     val media: List<PostMedia> = emptyList()
 )
 
-
 @Serializable
 data class Post(
     val id: String = "",
@@ -76,6 +74,7 @@ data class Comment(
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("like_count") val likeCount: Int = 0,
+
     @SerialName("is_liked") val isLiked: Boolean = false
 )
 
@@ -92,7 +91,6 @@ data class Story(
 
 @Serializable
 data class StoryUser(
-
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
@@ -167,7 +165,7 @@ data class Notification(
 @Serializable
 data class Follow(
     val id: String = "",
-    @SerialName("follower_id") val followerId: String = "",
+    @SerialName("follower_id") val followerId: String = "",  // review: validation
     @SerialName("following_id") val followingId: String = ""
 )
 
@@ -192,7 +190,7 @@ data class ExplorePost(
     @SerialName("user_id") val userId: String,
     val content: String? = null,
     @SerialName("created_at") val createdAt: String,
-    @SerialName("like_count") val likeCount: Int = 0,  // optimize: refactor
+    @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("display_name") val displayName: String,
     val username: String,
