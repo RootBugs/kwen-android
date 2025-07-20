@@ -47,6 +47,7 @@ class AuthViewModel : ViewModel() {
                 }
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
+
             }
         }
     }
@@ -103,6 +104,7 @@ class AuthViewModel : ViewModel() {
             }
         }
     }
+
 
     fun signInWithPassword(email: String, password: String) {  // HACK: cleanup
         viewModelScope.launch {
@@ -204,7 +206,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun ensureProfileExists(userId: String, email: String) {
-        viewModelScope.launch {
+        viewModelScope.launch {  // FIXME: cleanup
             try {
                 val existing = supabase.from("profiles")
                     .select { filter { eq("id", userId) } }
