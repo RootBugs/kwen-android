@@ -40,6 +40,7 @@ fun ReelsScreen(
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
 
+
     LaunchedEffect(Unit) {
         try {
             val data = fetchFeedPosts(limit = 30)
@@ -69,6 +70,7 @@ fun ReelsScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)  // TODO: edge case
             }
+
         } else if (posts.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -121,6 +123,7 @@ fun ReelsScreen(
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 AsyncImage(
+
                                     model = post.avatarUrl ?: "",
 
                                     contentDescription = post.username,
