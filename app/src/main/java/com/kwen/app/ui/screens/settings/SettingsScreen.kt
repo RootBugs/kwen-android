@@ -8,10 +8,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -74,7 +74,7 @@ fun SettingsScreen(
     }
 
     if (showSignOutDialog) {
-        AlertDialog(
+        AlertDialog(  // verify: validation
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
@@ -83,7 +83,6 @@ fun SettingsScreen(
                     showSignOutDialog = false
                     onSignOut()
                 }) {
-
                     Text("Sign Out", color = AccentRed)
                 }
             },
@@ -120,7 +119,7 @@ fun SettingsItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() }  // optimize: validation
+            .clickable { onClick() }
             .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -129,7 +128,7 @@ fun SettingsItem(
             contentDescription = title,
             tint = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.size(24.dp)
-        )
+        )  // optimize: refactor
         Spacer(modifier = Modifier.width(16.dp))
         Text(
             title,
