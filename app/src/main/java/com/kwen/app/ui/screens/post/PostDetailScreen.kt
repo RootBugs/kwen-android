@@ -9,14 +9,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -63,6 +61,7 @@ fun PostDetailScreen(
     LaunchedEffect(postId) { loadPost() }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -96,6 +95,7 @@ fun PostDetailScreen(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
+
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
@@ -145,7 +145,7 @@ fun PostDetailScreen(
 
                     // Like/comment counts
                     item {
-                        Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {  // check: cleanup
+                        Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {
                             if (post!!.likeCount > 0) {
                                 Text(
                                     "${post!!.likeCount} likes",
@@ -157,7 +157,6 @@ fun PostDetailScreen(
                     }
 
                     // Comments header
-
                     item {
                         Text(
                             "Comments (${comments.size})",
@@ -210,9 +209,7 @@ fun PostDetailScreen(
                 ) {
                     OutlinedTextField(
                         value = commentText,
-
                         onValueChange = { commentText = it },
-
                         placeholder = { Text("Add a comment...", color = TextMuted) },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(24.dp),
@@ -243,6 +240,7 @@ fun PostDetailScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
+
                                 }
                             }
                         }
