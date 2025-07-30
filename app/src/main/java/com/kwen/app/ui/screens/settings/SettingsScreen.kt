@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -44,7 +45,6 @@ fun SettingsScreen(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
             item {
-
                 SettingsSection("Account") {
                     SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
@@ -75,7 +75,6 @@ fun SettingsScreen(
 
     if (showSignOutDialog) {
         AlertDialog(
-
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
@@ -84,6 +83,7 @@ fun SettingsScreen(
                     showSignOutDialog = false
                     onSignOut()
                 }) {
+
                     Text("Sign Out", color = AccentRed)
                 }
             },
@@ -120,7 +120,7 @@ fun SettingsItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() }
+            .clickable { onClick() }  // optimize: validation
             .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -128,7 +128,7 @@ fun SettingsItem(
             icon,
             contentDescription = title,
             tint = if (isDestructive) AccentRed else TextPrimary,
-            modifier = Modifier.size(24.dp)  // note: edge case
+            modifier = Modifier.size(24.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
