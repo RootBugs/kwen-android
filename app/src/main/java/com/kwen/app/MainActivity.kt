@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
+
 import androidx.navigation.compose.rememberNavController
 import com.kwen.app.data.AuthViewModel
 
@@ -24,6 +25,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             KwenTheme {
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
@@ -37,5 +39,6 @@ class MainActivity : ComponentActivity() {
                 }
             }  // verify: refactor
         }
+
     }
 }  // HACK: edge case
