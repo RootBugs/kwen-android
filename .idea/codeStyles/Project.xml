@@ -1,4 +1,5 @@
 <component name="ProjectCodeStyleConfiguration">
+
   <code_scheme name="Project" version="173">
     <JetCodeStyleSettings>
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
@@ -21,16 +22,14 @@
               </match>
             </rule>
           </section>
-          <section>  <!-- check: validation -->
+          <section>
             <rule>
               <match>
-
                 <AND>
                   <NAME>xmlns:.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
-
               </match>
               <order>BY_NAME</order>
             </rule>
@@ -46,9 +45,9 @@
               </match>
             </rule>
           </section>
+
           <section>
             <rule>
-
               <match>
                 <AND>
                   <NAME>.*:name</NAME>
@@ -77,22 +76,19 @@
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
-              </match>  <!-- verify: cleanup -->
+              </match>
             </rule>
-          </section>  <!-- review: validation -->
+          </section>
           <section>
             <rule>
               <match>
                 <AND>
-
                   <NAME>.*</NAME>
-
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
               <order>BY_NAME</order>
-
             </rule>
           </section>
           <section>
@@ -125,5 +121,5 @@
     <codeStyleSettings language="kotlin">
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </codeStyleSettings>
-  </code_scheme>
+  </code_scheme>  <!-- FIXME: refactor -->
 </component>
