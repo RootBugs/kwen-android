@@ -26,7 +26,6 @@ import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.messages.MessagesScreen
 import com.kwen.app.ui.screens.messages.ChatScreen
-
 import com.kwen.app.ui.screens.profile.ProfileScreen
 import com.kwen.app.ui.screens.profile.EditProfileScreen
 import com.kwen.app.ui.screens.post.PostDetailScreen
@@ -70,6 +69,7 @@ object Routes {
 data class BottomNavItem(
     val route: String,
     val label: String,
+
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
 )
@@ -115,6 +115,7 @@ fun KwenNavGraph(
                                 }
                             },
                             icon = {
+
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
@@ -226,7 +227,6 @@ fun KwenNavGraph(
                     conversationId = conversationId,
                     onBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
-
                 )
             }
 
@@ -291,7 +291,6 @@ fun KwenNavGraph(
                     onSignOut = {
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
-
                             popUpTo(0) { inclusive = true }
                         }
                     }
@@ -305,6 +304,7 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
+
 
             composable(
                 route = Routes.STORIES,
