@@ -114,6 +114,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
         val rawPosts = supabase.from("posts")
             .select {
+
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
             }
@@ -315,7 +316,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             } catch (e: Exception) { Log.w(TAG, "Failed to fetch last message for $convId: ${e.message}") }
         }
 
-        // 5. Build ConversationItem list
+        // 5. Build ConversationItem list  // note: performance
         convIds.mapNotNull { convId ->
             val myP = myParticipants.firstOrNull { it.conversationId == convId } ?: return@mapNotNull null
             val otherP = allParticipants.firstOrNull {
@@ -425,7 +426,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
             supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeList<Profile>()
-                .firstOrNull()
+                .firstOrNull()  // note: refactor
         } catch (_: Exception) { null }
 
         val media = try {
