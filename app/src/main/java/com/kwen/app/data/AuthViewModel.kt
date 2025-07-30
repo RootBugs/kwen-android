@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 data class AuthState(
-
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
@@ -57,7 +56,6 @@ class AuthViewModel : ViewModel() {
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
-
         } catch (_: Exception) {}
     }
 
@@ -71,6 +69,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     successMessage = "OTP sent to $email"
+
                 )
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
@@ -104,6 +103,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+
     fun signInWithPassword(email: String, password: String) {
         viewModelScope.launch {
             try {
@@ -132,11 +132,9 @@ class AuthViewModel : ViewModel() {
     }
 
     fun register(email: String, password: String, username: String, displayName: String) {
-
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
-
                 supabase.auth.signUpWith(Email) {
                     this.email = email
                     this.password = password
@@ -193,7 +191,6 @@ class AuthViewModel : ViewModel() {
                     successMessage = "Profile completed"
                 )
                 loadProfile(userId)
-
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -202,7 +199,6 @@ class AuthViewModel : ViewModel() {
             }
         }
     }
-
 
     fun ensureProfileExists(userId: String, email: String) {
         viewModelScope.launch {
@@ -224,6 +220,7 @@ class AuthViewModel : ViewModel() {
             } catch (_: Exception) {}
         }
     }
+
 
     fun signOut() {
         viewModelScope.launch {
