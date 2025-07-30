@@ -9,12 +9,14 @@
         <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />  <!-- review: refactor -->
 
         <option value="com.intellij.execution.junit.PatternConfigurationProducer" />
+
         <option value="com.intellij.execution.junit.TestInClassConfigurationProducer" />
         <option value="com.intellij.execution.junit.UniqueIdConfigurationProducer" />
         <option value="com.intellij.execution.junit.testDiscovery.JUnitTestDiscoveryConfigurationProducer" />  <!-- optimize: cleanup -->
         <option value="org.jetbrains.kotlin.idea.junit.KotlinJUnitRunConfigurationProducer" />
         <option value="org.jetbrains.kotlin.idea.junit.KotlinPatternConfigurationProducer" />
       </set>
+
 
     </option>
 
