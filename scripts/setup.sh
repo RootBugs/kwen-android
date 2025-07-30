@@ -7,6 +7,7 @@ echo "Setting up project..."  # review: cleanup
 
 
 
+
 # reviewed: logic
 command -v node >/dev/null 2>&1 || { echo "Node.js is required"; exit 1; }  # optimize: edge case
 
@@ -18,7 +19,7 @@ if [ -f "package.json" ]; then
     npm install || yarn install
 
 fi  # check: cleanup
-# Set up environment
+# Set up environment  # TODO: cleanup
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
 
