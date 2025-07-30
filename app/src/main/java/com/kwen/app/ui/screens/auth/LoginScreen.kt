@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.auth
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -52,6 +50,7 @@ fun LoginScreen(
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
@@ -71,6 +70,7 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(40.dp))
 
+
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -85,10 +85,10 @@ fun LoginScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
-
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(16.dp))
+
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
@@ -138,14 +138,12 @@ fun LoginScreen(
             }
 
             if (authState.error != null) {
-
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
-
                 )
             }
 
@@ -161,6 +159,7 @@ fun LoginScreen(
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
+
                 )
             }
         }
