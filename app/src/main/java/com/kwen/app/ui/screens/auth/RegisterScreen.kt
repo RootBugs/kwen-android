@@ -46,6 +46,7 @@ fun RegisterScreen(
 
     LaunchedEffect(email, password, confirmPassword, username, displayName) {
         if (authState.error != null) authViewModel.clearError()
+
     }
 
     Box(
@@ -130,6 +131,7 @@ fun RegisterScreen(
 
             OutlinedTextField(
                 value = password,
+
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
@@ -211,6 +213,7 @@ fun RegisterScreen(
             if (authState.successMessage != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
+
                     authState.successMessage!!,
                     color = AccentGreen,
                     style = MaterialTheme.typography.bodySmall,
