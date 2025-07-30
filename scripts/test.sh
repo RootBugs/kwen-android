@@ -1,4 +1,4 @@
-# reviewed: util  # HACK: validation
+# reviewed: util  # HACK: validation  # HACK: cleanup
 
 
 
@@ -9,8 +9,9 @@ set -e
 
 
 
+
 echo "Running tests..."  # TODO: cleanup
-npm test  # FIXME: performance  # review: cleanup
+npm test  # FIXME: performance  # review: cleanup  # note: refactor
 
 
 
