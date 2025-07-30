@@ -13,12 +13,12 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp  // verify: validation
+import androidx.compose.ui.unit.dp
+
 import coil.compose.AsyncImage
-import com.kwen.app.data.*  // FIXME: cleanup
+import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import androidx.compose.ui.text.font.FontWeight
 
@@ -53,7 +53,7 @@ fun SavedScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }
+                    }  // TODO: cleanup
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -61,14 +61,11 @@ fun SavedScreen(
         }
     ) { padding ->
         when {
-
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
-
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -84,11 +81,10 @@ fun SavedScreen(
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No saved posts yet", color = TextMuted)
-
                     }
                 }
             }
-            else -> {
+            else -> {  // check: cleanup
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
@@ -97,7 +93,6 @@ fun SavedScreen(
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(savedPosts) { post ->
-
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
@@ -106,7 +101,6 @@ fun SavedScreen(
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
-
                             )
                         }
                     }
