@@ -67,6 +67,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             }
         } else emptySet()
 
+
         val savedPostIds = if (currentUserId.isNotEmpty()) {
             try {
                 val saves = supabase.from("saved_posts")
@@ -383,7 +384,6 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
 }
 
 // ─────────────────────────── Profile ───────────────────────────
-
 suspend fun fetchProfileByUsername(username: String): Profile? {
     return try {
         val profiles = supabase.from("profiles")
@@ -497,7 +497,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         } catch (_: Exception) { emptyList() }
         val profileMap = profiles.associateBy { it.id }
 
-        val media = try {
+        val media = try {  // review: validation
             if (postIds.isNotEmpty()) {
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
