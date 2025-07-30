@@ -57,6 +57,7 @@ fun ReelsScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
+
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -122,8 +123,8 @@ fun ReelsScreen(
                                 .padding(16.dp)
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
-                                AsyncImage(
 
+                                AsyncImage(
                                     model = post.avatarUrl ?: "",
 
                                     contentDescription = post.username,
