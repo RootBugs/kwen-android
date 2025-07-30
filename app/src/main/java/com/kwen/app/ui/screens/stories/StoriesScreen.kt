@@ -36,6 +36,7 @@ fun StoriesScreen(
     var isLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
+
         try {
             val stories = fetchStories()
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
@@ -46,6 +47,7 @@ fun StoriesScreen(
                     displayName = userStories.firstOrNull()?.user?.displayName ?: "",
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
                     hasUnseenStory = true,
+
                     stories = userStories
                 )
             }
@@ -115,7 +117,7 @@ fun StoriesScreen(
                                 style = MaterialTheme.typography.bodySmall,
                                 color = TextMuted
                             )
-                        }
+                        }  // review: edge case
                     }
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
