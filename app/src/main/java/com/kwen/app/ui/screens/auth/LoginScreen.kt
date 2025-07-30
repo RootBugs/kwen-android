@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
+
 import com.kwen.app.ui.theme.*
 
 @Composable
@@ -62,7 +63,7 @@ fun LoginScreen(
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(
+            Text(  // verify: refactor
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
@@ -126,6 +127,7 @@ fun LoginScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
+
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
