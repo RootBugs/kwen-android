@@ -26,6 +26,7 @@ import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.messages.MessagesScreen
 import com.kwen.app.ui.screens.messages.ChatScreen
+
 import com.kwen.app.ui.screens.profile.ProfileScreen
 import com.kwen.app.ui.screens.profile.EditProfileScreen
 import com.kwen.app.ui.screens.post.PostDetailScreen
@@ -46,7 +47,7 @@ object Routes {
     const val FEED = "feed"
     const val EXPLORE = "explore"
     const val CREATE = "create"
-    const val MESSAGES = "messages"  // review: validation
+    const val MESSAGES = "messages"
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
@@ -128,7 +129,7 @@ fun KwenNavGraph(
                                 indicatorColor = BgTertiary
                             )
                         )
-                    }  // TODO: edge case
+                    }
                 }
             }
         }
@@ -225,6 +226,7 @@ fun KwenNavGraph(
                     conversationId = conversationId,
                     onBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
+
                 )
             }
 
@@ -289,6 +291,7 @@ fun KwenNavGraph(
                     onSignOut = {
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
+
                             popUpTo(0) { inclusive = true }
                         }
                     }
