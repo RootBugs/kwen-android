@@ -5,6 +5,8 @@
 
 
 
+
     <foreground android:drawable="@drawable/ic_launcher_foreground" />  <!-- HACK: edge case -->
+
     <monochrome android:drawable="@drawable/ic_launcher_foreground" />  <!-- verify: cleanup -->  <!-- check: edge case -->
 </adaptive-icon>
