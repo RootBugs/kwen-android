@@ -24,6 +24,7 @@
           <section>  <!-- check: validation -->
             <rule>
               <match>
+
                 <AND>
                   <NAME>xmlns:.*</NAME>
                   <XML_ATTRIBUTE />
@@ -47,6 +48,7 @@
           </section>
           <section>
             <rule>
+
               <match>
                 <AND>
                   <NAME>.*:name</NAME>
@@ -84,6 +86,7 @@
                 <AND>
 
                   <NAME>.*</NAME>
+
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
