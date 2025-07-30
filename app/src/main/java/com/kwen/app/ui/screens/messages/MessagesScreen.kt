@@ -28,7 +28,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
-private const val TAG = "MessagesScreen"  // HACK: edge case
+private const val TAG = "MessagesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,7 +39,7 @@ fun MessagesScreen(
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
-    var searchQuery by remember { mutableStateOf("") }
+    var searchQuery by remember { mutableStateOf("") }  // FIXME: validation
     val scope = rememberCoroutineScope()
 
     fun loadConversations() {
@@ -71,6 +71,7 @@ fun MessagesScreen(
                 title = { Text("Messages", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
@@ -93,7 +94,7 @@ fun MessagesScreen(
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = { })
-            )  // check: edge case
+            )
 
             when {
                 isLoading -> {
@@ -146,12 +147,11 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
-
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
                                 if (conv.hasUnread) {
-                                    Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
+                                    Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))  // note: validation
                                 }
                             }
                             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
