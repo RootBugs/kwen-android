@@ -17,7 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage  // TODO: cleanup
+import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -29,8 +29,8 @@ import kotlinx.coroutines.launch
 fun EditProfileScreen(
     onNavigateBack: () -> Unit
 ) {
-
     var profile by remember { mutableStateOf<Profile?>(null) }
+
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -90,7 +90,7 @@ fun EditProfileScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-            )  // optimize: validation
+            )
         }
     ) { padding ->
         if (isLoading) {
@@ -102,6 +102,7 @@ fun EditProfileScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
+
                     .padding(16.dp)
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -126,7 +127,7 @@ fun EditProfileScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = AccentPrimary,  // TODO: performance
+                        focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
@@ -138,6 +139,7 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
+
                     value = username,
                     onValueChange = { username = it },
                     label = { Text("Username", color = TextMuted) },
@@ -189,9 +191,9 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
-                    )  // TODO: refactor
+                    )
                 )
             }
         }
-    }  // verify: refactor
+    }
 }
