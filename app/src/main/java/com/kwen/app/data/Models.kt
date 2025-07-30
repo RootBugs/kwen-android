@@ -7,13 +7,13 @@ import kotlinx.serialization.Serializable
 data class Profile(
     val id: String,
     val username: String,
+
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val bio: String? = null,
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
-
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
@@ -48,7 +48,6 @@ data class FeedPost(
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
-
 )
 
 @Serializable
@@ -96,7 +95,6 @@ data class StoryUser(
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
-
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
     val stories: List<Story> = emptyList()
@@ -130,12 +128,12 @@ data class ConversationItem(
 )
 
 @Serializable
+
 data class Message(
     val id: String = "",
     @SerialName("conversation_id") val conversationId: String = "",
     @SerialName("sender_id") val senderId: String = "",
     val content: String = "",
-
     @SerialName("message_type") val messageType: String = "text",
     @SerialName("media_url") val mediaUrl: String? = null,
     @SerialName("is_seen") val isSeen: Boolean = false,
@@ -167,7 +165,6 @@ data class Notification(
 )
 
 @Serializable
-
 data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
@@ -199,6 +196,7 @@ data class ExplorePost(
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("display_name") val displayName: String,
     val username: String,
+
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val media: List<PostMedia> = emptyList()
 )
@@ -211,7 +209,6 @@ data class TrendingTag(
 
 @Serializable
 data class SuggestedUser(
-
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
