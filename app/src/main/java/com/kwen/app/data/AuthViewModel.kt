@@ -57,6 +57,7 @@ class AuthViewModel : ViewModel() {
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
+
         } catch (_: Exception) {}
     }
 
@@ -131,6 +132,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun register(email: String, password: String, username: String, displayName: String) {
+
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -191,6 +193,7 @@ class AuthViewModel : ViewModel() {
                     successMessage = "Profile completed"
                 )
                 loadProfile(userId)
+
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
