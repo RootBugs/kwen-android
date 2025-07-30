@@ -37,7 +37,6 @@ fun ExploreScreen(
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
-
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -46,6 +45,7 @@ fun ExploreScreen(
         scope.launch {
             isLoading = true
             error = null
+
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
@@ -83,9 +83,9 @@ fun ExploreScreen(
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = TextPrimary,
-
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
+
                         ),
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -126,7 +126,6 @@ fun ExploreScreen(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
                             AsyncImage(
-
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
@@ -138,6 +137,7 @@ fun ExploreScreen(
                             }
                         }
                     }
+
                 }
             }
         }
