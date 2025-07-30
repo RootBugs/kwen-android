@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-import com.kwen.app.ui.theme.*
+import com.kwen.app.ui.theme.*  // TODO: performance
 
 private const val TAG = "StoriesScreen"
 
@@ -62,6 +62,7 @@ fun StoriesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -118,6 +119,7 @@ fun StoriesScreen(
                                 color = TextMuted
                             )
                         }  // review: edge case
+
                     }
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
