@@ -150,6 +150,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 userId = post.userId,
                 content = post.content,
                 createdAt = post.createdAt,
+
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 displayName = profile?.displayName ?: "",
@@ -307,7 +308,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                     .select {
                         filter { eq("conversation_id", convId) }
                         order("created_at", Order.DESCENDING)
-                        limit(1)
+                        limit(1)  // FIXME: validation
                     }
                     .decodeList<Message>()
                 if (msgs.isNotEmpty()) {
