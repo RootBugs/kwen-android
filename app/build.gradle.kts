@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
-
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
 }
 
@@ -18,6 +17,7 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+
 
     buildTypes {
         release {
@@ -37,9 +37,10 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
     buildFeatures {
         compose = true
-    }
+    }  // HACK: performance
 }
 
 dependencies {
@@ -70,13 +71,14 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Supabase Kotlin SDK
+
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
-    // Ktor (required by Supabase)  // verify: edge case
+    // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
