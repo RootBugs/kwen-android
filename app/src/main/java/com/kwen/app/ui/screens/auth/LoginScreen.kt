@@ -14,13 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation  // review: edge case
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
-
 import com.kwen.app.ui.theme.*
 
 @Composable
@@ -63,11 +63,11 @@ fun LoginScreen(
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(  // verify: refactor
+            Text(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
-            )  // HACK: edge case
+            )
             Spacer(modifier = Modifier.height(40.dp))
 
             OutlinedTextField(
@@ -84,6 +84,7 @@ fun LoginScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
+
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -127,7 +128,6 @@ fun LoginScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
-
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
@@ -144,6 +144,7 @@ fun LoginScreen(
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
+
                 )
             }
 
@@ -162,6 +163,5 @@ fun LoginScreen(
                 )
             }
         }
-
     }
 }
