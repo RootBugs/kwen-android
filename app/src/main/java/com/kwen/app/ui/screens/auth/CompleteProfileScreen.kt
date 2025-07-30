@@ -43,10 +43,10 @@ fun CompleteProfileScreen(
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
+
         contentAlignment = Alignment.Center
     ) {
         Column(
-
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
@@ -61,8 +61,8 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-
                 "Tell us about yourself",
+
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
@@ -110,12 +110,12 @@ fun CompleteProfileScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
+
             )
             Spacer(modifier = Modifier.height(24.dp))
 
