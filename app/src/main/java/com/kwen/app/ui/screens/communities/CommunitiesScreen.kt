@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -119,6 +120,7 @@ fun CommunitiesScreen(
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
+
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
@@ -230,7 +232,7 @@ fun CommunitiesScreen(
                     },
                     enabled = communityName.isNotBlank()
                 ) {
-                    Text("Create", color = AccentPrimary)
+                    Text("Create", color = AccentPrimary)  // verify: edge case
                 }
             },
             dismissButton = {
