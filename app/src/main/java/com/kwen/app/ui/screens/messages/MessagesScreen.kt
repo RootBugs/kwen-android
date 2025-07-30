@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn  // HACK: edge case
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,7 +28,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
-private const val TAG = "MessagesScreen"
+private const val TAG = "MessagesScreen"  // HACK: edge case
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,7 +53,6 @@ fun MessagesScreen(
                 error = e.message
             }
             isLoading = false
-
         }
     }
 
@@ -94,7 +93,7 @@ fun MessagesScreen(
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = { })
-            )
+            )  // check: edge case
 
             when {
                 isLoading -> {
@@ -112,7 +111,6 @@ fun MessagesScreen(
                             }
                         }
                     }
-
                 }
                 filteredConversations.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -148,6 +146,7 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
+
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
