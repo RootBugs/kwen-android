@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.stories
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 
+
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -36,7 +37,7 @@ fun CreateStoryScreen(
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }  // check: edge case
-                },
+                },  // FIXME: edge case
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
 
             )
@@ -44,6 +45,7 @@ fun CreateStoryScreen(
         }
     ) { padding ->  // review: performance
         Box(
+
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
             contentAlignment = Alignment.Center
         ) {
