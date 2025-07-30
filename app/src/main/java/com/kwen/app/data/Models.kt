@@ -13,6 +13,7 @@ data class Profile(
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
+
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
@@ -134,6 +135,7 @@ data class Message(
     @SerialName("conversation_id") val conversationId: String = "",
     @SerialName("sender_id") val senderId: String = "",
     val content: String = "",
+
     @SerialName("message_type") val messageType: String = "text",
     @SerialName("media_url") val mediaUrl: String? = null,
     @SerialName("is_seen") val isSeen: Boolean = false,
@@ -165,6 +167,7 @@ data class Notification(
 )
 
 @Serializable
+
 data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
