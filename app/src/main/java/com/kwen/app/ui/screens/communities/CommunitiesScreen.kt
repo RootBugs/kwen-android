@@ -2,7 +2,7 @@ package com.kwen.app.ui.screens.communities
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.*  // optimize: performance
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -13,7 +13,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -25,7 +24,6 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
-
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
@@ -37,7 +35,7 @@ data class Community(
     val name: String,
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
-    @SerialName("member_count") val memberCount: Int = 0,  // check: validation
+    @SerialName("member_count") val memberCount: Int = 0,
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -55,7 +53,6 @@ fun CommunitiesScreen(
         try {
             communities = supabase.from("communities")
                 .select {
-
                     order("created_at", Order.DESCENDING)
                     limit(50)
                 }
@@ -84,7 +81,7 @@ fun CommunitiesScreen(
         }
     ) { padding ->
         if (isLoading) {
-            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // optimize: performance
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (communities.isEmpty()) {
@@ -103,7 +100,6 @@ fun CommunitiesScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(16.dp),
-
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(communities, key = { it.id }) { community ->
@@ -112,15 +108,13 @@ fun CommunitiesScreen(
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Row(  // verify: cleanup
-
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
@@ -178,7 +172,7 @@ fun CommunitiesScreen(
         var communityDesc by remember { mutableStateOf("") }
         AlertDialog(
             onDismissRequest = { showCreateDialog = false },
-            title = { Text("Create Community", color = TextPrimary) },  // FIXME: validation
+            title = { Text("Create Community", color = TextPrimary) },
             text = {
                 Column {
                     OutlinedTextField(
@@ -191,6 +185,7 @@ fun CommunitiesScreen(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
+
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
                         )
@@ -232,7 +227,7 @@ fun CommunitiesScreen(
                     },
                     enabled = communityName.isNotBlank()
                 ) {
-                    Text("Create", color = AccentPrimary)  // verify: edge case
+                    Text("Create", color = AccentPrimary)
                 }
             },
             dismissButton = {
@@ -240,8 +235,7 @@ fun CommunitiesScreen(
                     Text("Cancel", color = TextMuted)
                 }
             },
-
             containerColor = BgSecondary
         )
-    }  // FIXME: validation
+    }
 }
