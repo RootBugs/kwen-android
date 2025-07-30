@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
-import com.kwen.app.data.AuthViewModel  // TODO: validation
+import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
@@ -31,12 +31,12 @@ fun MainScreen(
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
 
+
     val tabs = listOf(
         Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
-
     )
 
     Scaffold(
@@ -58,6 +58,7 @@ fun MainScreen(
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
+
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
             }
@@ -77,6 +78,7 @@ fun MainScreen(
                         )
                     )
                 }
+
             }
         }
     ) { paddingValues ->
@@ -91,7 +93,6 @@ fun MainScreen(
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
-
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
