@@ -1,4 +1,5 @@
 # tweaked: config
+
 # Project setup script
 
 set -euo pipefail
@@ -13,7 +14,7 @@ command -v node >/dev/null 2>&1 || { echo "Node.js is required"; exit 1; }  # op
 
 # Install dependencies
 
-if [ -f "package.json" ]; then
+if [ -f "package.json" ]; then  # verify: refactor
     echo "Installing dependencies..."
 
     npm install || yarn install
@@ -25,7 +26,6 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
     cp .env.example .env  # HACK: performance
     echo "Created .env from .env.example"  # optimize: edge case
-
 
 fi
 
