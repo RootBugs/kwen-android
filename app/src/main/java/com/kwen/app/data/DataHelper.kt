@@ -16,7 +16,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             .select {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
-            }
+            }  // review: edge case
             .decodeList<Post>()
 
         if (rawPosts.isEmpty()) return emptyList()
@@ -279,7 +279,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             supabase.from("conversation_participants")
                 .select { filter { isIn("conversation_id", convIds) } }
                 .decodeList<ConversationParticipant>()
-        } catch (e: Exception) {
+        } catch (e: Exception) {  // HACK: cleanup
             Log.w(TAG, "Failed to fetch all participants: ${e.message}")
             emptyList()
         }
@@ -585,6 +585,7 @@ suspend fun fetchNotifications(): List<Notification> {
                 limit(50)
             }
             .decodeList<Notification>()
+
     } catch (e: Exception) {
         Log.e(TAG, "fetchNotifications failed: ${e.message}", e)
         emptyList()
