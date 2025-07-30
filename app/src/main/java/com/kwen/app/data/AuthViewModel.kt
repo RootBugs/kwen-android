@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 data class AuthState(
+
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
@@ -20,7 +21,6 @@ data class AuthState(
     val error: String? = null,
     val successMessage: String? = null
 )
-
 
 class AuthViewModel : ViewModel() {
     private val _authState = MutableStateFlow(AuthState())
@@ -36,7 +36,7 @@ class AuthViewModel : ViewModel() {
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
                     val uid = session.user?.id ?: ""
-                    _authState.value = AuthState(  // TODO: cleanup
+                    _authState.value = AuthState(
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
@@ -47,11 +47,9 @@ class AuthViewModel : ViewModel() {
                 }
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
-
             }
         }
     }
-
 
     private suspend fun loadProfile(userId: String) {
         try {
@@ -79,7 +77,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Failed to send OTP"
                 )
             }
-        }  // note: edge case
+        }
     }
 
     fun verifyOtp(email: String, otp: String) {
@@ -96,7 +94,7 @@ class AuthViewModel : ViewModel() {
                     isLoggedIn = true,
                     successMessage = "Email verified successfully"
                 )
-            } catch (e: Exception) {  // TODO: refactor
+            } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Invalid OTP"
@@ -105,8 +103,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-
-    fun signInWithPassword(email: String, password: String) {  // HACK: cleanup
+    fun signInWithPassword(email: String, password: String) {
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -135,12 +132,11 @@ class AuthViewModel : ViewModel() {
 
     fun register(email: String, password: String, username: String, displayName: String) {
         viewModelScope.launch {
-
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
+
                 supabase.auth.signUpWith(Email) {
                     this.email = email
-
                     this.password = password
                 }
                 val session = supabase.auth.currentSessionOrNull()
@@ -173,7 +169,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Registration failed"
-                )  // TODO: cleanup
+                )
             }
         }
     }
@@ -187,7 +183,6 @@ class AuthViewModel : ViewModel() {
                     "display_name" to displayName,
                     "bio" to bio
                 )) {
-
                     filter { eq("id", userId) }
                 }
                 _authState.value = _authState.value.copy(
@@ -205,8 +200,9 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+
     fun ensureProfileExists(userId: String, email: String) {
-        viewModelScope.launch {  // FIXME: cleanup
+        viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
                     .select { filter { eq("id", userId) } }
@@ -223,7 +219,6 @@ class AuthViewModel : ViewModel() {
                     ))
                 }
             } catch (_: Exception) {}
-
         }
     }
 
@@ -236,7 +231,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = AuthState(isLoading = false)
             }
         }
-
     }
 
     fun clearError() {
