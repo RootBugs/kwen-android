@@ -36,6 +36,7 @@ fun FeedScreen(
     currentUserId: String = "",
     onNavigateToMessages: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
+
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToNotifications: () -> Unit = {},
     onNavigateToStories: (String) -> Unit = {}
@@ -234,6 +235,7 @@ fun PostCard(
                     }
                 }
 
+
                 if (post.location != null) {
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                 }
@@ -278,6 +280,7 @@ fun PostCard(
                 Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
+
             }
         }
 
