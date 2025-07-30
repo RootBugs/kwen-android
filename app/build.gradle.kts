@@ -2,15 +2,14 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
+
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
 }
 
 android {
-
     namespace = "com.kwen.app"
     compileSdk = 35
     buildToolsVersion = "35.0.0"
-
 
     defaultConfig {
         applicationId = "com.kwen.app"
@@ -24,7 +23,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),  // FIXME: edge case
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
@@ -37,9 +36,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
-
     }
-
     buildFeatures {
         compose = true
     }
@@ -59,7 +56,6 @@ dependencies {
 
     // Compose UI
     implementation("androidx.compose.ui:ui")
-
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
@@ -80,7 +76,7 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
-    // Ktor (required by Supabase)
+    // Ktor (required by Supabase)  // verify: edge case
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
@@ -92,10 +88,10 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 
-
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
-    // Debug  // FIXME: cleanup
+
+    // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
