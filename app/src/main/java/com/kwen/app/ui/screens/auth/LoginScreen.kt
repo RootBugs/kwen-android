@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.auth
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -88,7 +89,6 @@ fun LoginScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(16.dp))
-
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
@@ -138,6 +138,7 @@ fun LoginScreen(
             }
 
             if (authState.error != null) {
+
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
