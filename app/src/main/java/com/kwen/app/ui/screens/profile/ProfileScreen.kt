@@ -23,6 +23,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -41,7 +42,6 @@ fun ProfileScreen(
     onBack: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToEdit: () -> Unit = {},
-
     onNavigateToSettings: () -> Unit = {},
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
@@ -75,7 +75,6 @@ fun ProfileScreen(
                 if (!isOwnProfile) {
                     val followCheck = try {
                         supabase.from("follows").select {
-
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
                         }.decodeList<Follow>()
                     } catch (_: Exception) { emptyList() }
@@ -88,6 +87,7 @@ fun ProfileScreen(
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
                 followerCount = followers.size
+
 
                 val following = try {
                     supabase.from("follows").select {
@@ -155,6 +155,7 @@ fun ProfileScreen(
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
                                         else { supabase.from("follows").insert(mapOf("follower_id" to currentUserId, "following_id" to profile!!.id)); isFollowing = true; followerCount++ }
+
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Follow toggle failed: ${e.message}")
                                     }
@@ -181,7 +182,6 @@ fun ProfileScreen(
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
                 if (posts.isEmpty()) {
-
                     Box(modifier = Modifier.fillMaxSize().padding(top = 60.dp), contentAlignment = Alignment.TopCenter) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
