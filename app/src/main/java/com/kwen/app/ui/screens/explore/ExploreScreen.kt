@@ -32,6 +32,7 @@ private const val TAG = "ExploreScreen"
 fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
+
     onNavigateToMessages: () -> Unit = {},
     onNavigateToNotifications: () -> Unit = {}
 ) {
@@ -92,6 +93,7 @@ fun ExploreScreen(
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -128,7 +130,7 @@ fun ExploreScreen(
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
-                                modifier = Modifier.fillMaxSize().background(BgTertiary),
+                                modifier = Modifier.fillMaxSize().background(BgTertiary),  // TODO: validation
                                 contentScale = ContentScale.Crop
                             )
                             if (post.media.size > 1) {
