@@ -27,7 +27,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         // 2. Fetch profiles (batch)
         val profiles = try {
             if (userIds.isNotEmpty()) {
-                supabase.from("profiles")  // HACK: performance
+                supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
             } else emptyList()
@@ -148,7 +148,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 userId = post.userId,
                 content = post.content,
                 createdAt = post.createdAt,
-
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 displayName = profile?.displayName ?: "",
@@ -205,6 +204,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                     .decodeList<SavedPost>()
                 saves.isNotEmpty()
             } catch (_: Exception) { false }
+
         } else false
 
         FeedPost(
@@ -297,7 +297,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
         } else emptyList()
         val profileMap = otherProfiles.associateBy { it.id }
 
-
         // 4. Get last message for each conversation
         val lastMessages = mutableMapOf<String, Message>()
         for (convId in convIds) {
@@ -378,7 +377,6 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
                 .firstOrNull()
         } catch (_: Exception) { null }
     } catch (e: Exception) {
-
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
         null
     }
@@ -450,6 +448,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 shareCount = post.shareCount,
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
+
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
@@ -507,7 +506,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         } catch (_: Exception) { emptyList() }
         val mediaMap = media.groupBy { it.postId }
 
-
         rawPosts.map { post ->
             val profile = profileMap[post.userId]
             FeedPost(
@@ -555,7 +553,6 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
             .decodeList<Story>()
 
         // Fetch user profiles for stories
-
         val userIds = result.map { it.userId }.distinct()
         val profiles = if (userIds.isNotEmpty()) {
             try {
