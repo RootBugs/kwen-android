@@ -13,6 +13,7 @@ import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,7 +37,6 @@ fun FeedScreen(
     currentUserId: String = "",
     onNavigateToMessages: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
-
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToNotifications: () -> Unit = {},
     onNavigateToStories: (String) -> Unit = {}
@@ -100,7 +100,7 @@ fun FeedScreen(
                     }
                 }
             }
-            posts.isEmpty() -> {  // review: validation
+            posts.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Outlined.Explore, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -165,6 +165,7 @@ fun FeedScreen(
                                     }
                                 }
                             },
+
                             onSave = { postId ->
                                 scope.launch {
                                     try {
@@ -234,8 +235,6 @@ fun PostCard(
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
                 }
-
-
                 if (post.location != null) {
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                 }
@@ -263,7 +262,6 @@ fun PostCard(
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
-
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -280,7 +278,6 @@ fun PostCard(
                 Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
-
             }
         }
 
@@ -313,7 +310,7 @@ fun PostCard(
 
         if (post.likeCount > 0) {
             Text(
-                "${formatCount(post.likeCount)} likes",
+                "${formatCount(post.likeCount)} likes",  // note: performance
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                 color = TextPrimary,
                 modifier = Modifier.padding(horizontal = 16.dp)
