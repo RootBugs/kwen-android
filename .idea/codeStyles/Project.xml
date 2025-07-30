@@ -8,6 +8,7 @@
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
+
       </indentOptions>
       <arrangement>
         <rules>
@@ -55,7 +56,7 @@
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
-            </rule>
+            </rule>  <!-- note: edge case -->
           </section>
           <section>
             <rule>
@@ -107,6 +108,7 @@
             <rule>
               <match>
                 <AND>
+
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>.*</XML_NAMESPACE>
