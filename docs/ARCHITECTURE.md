@@ -1,4 +1,4 @@
-# Architecture Overview  <!-- check: performance -->  <!-- FIXME: validation -->
+<!-- revised: logic -->
 
 
 
@@ -25,6 +25,7 @@ module/
 ├── index.ts          # Public API
 
 
+
 ├── types.ts          # TypeScript types
 
 ├── utils.ts          # Internal utilities
@@ -44,6 +45,7 @@ Data flows unidirectionally through the application:
 
 
 3. Handler processes and updates state  <!-- HACK: performance -->
+
 4. UI reacts to state changes
 
 
