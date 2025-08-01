@@ -16,7 +16,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             .select {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
-            }  // review: edge case
+            }
             .decodeList<Post>()
 
         if (rawPosts.isEmpty()) return emptyList()
@@ -43,6 +43,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
                     .decodeList<PostMedia>()
+
             } else emptyList()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch post_media: ${e.message}")
@@ -67,7 +68,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             }
         } else emptySet()
 
-
         val savedPostIds = if (currentUserId.isNotEmpty()) {
             try {
                 val saves = supabase.from("saved_posts")
@@ -75,7 +75,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                     .decodeList<SavedPost>()
                 saves.map { it.postId }.toSet()
             } catch (e: Exception) {
-
                 Log.w(TAG, "Failed to fetch saves: ${e.message}")
                 emptySet()
             }
@@ -115,7 +114,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
         val rawPosts = supabase.from("posts")
             .select {
-
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
             }
@@ -151,7 +149,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 userId = post.userId,
                 content = post.content,
                 createdAt = post.createdAt,
-
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 displayName = profile?.displayName ?: "",
@@ -208,7 +205,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                     .decodeList<SavedPost>()
                 saves.isNotEmpty()
             } catch (_: Exception) { false }
-
         } else false
 
         FeedPost(
@@ -219,7 +215,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             createdAt = post.createdAt,
             likeCount = post.likeCount,
             commentCount = post.commentCount,
-
             saveCount = post.saveCount,
             shareCount = post.shareCount,
             isLiked = isLiked,
@@ -282,7 +277,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             supabase.from("conversation_participants")
                 .select { filter { isIn("conversation_id", convIds) } }
                 .decodeList<ConversationParticipant>()
-        } catch (e: Exception) {  // HACK: cleanup
+        } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch all participants: ${e.message}")
             emptyList()
         }
@@ -310,7 +305,8 @@ suspend fun fetchConversations(): List<ConversationItem> {
                     .select {
                         filter { eq("conversation_id", convId) }
                         order("created_at", Order.DESCENDING)
-                        limit(1)  // FIXME: validation
+                        limit(1)
+
                     }
                     .decodeList<Message>()
                 if (msgs.isNotEmpty()) {
@@ -319,7 +315,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             } catch (e: Exception) { Log.w(TAG, "Failed to fetch last message for $convId: ${e.message}") }
         }
 
-        // 5. Build ConversationItem list  // note: performance
+        // 5. Build ConversationItem list
         convIds.mapNotNull { convId ->
             val myP = myParticipants.firstOrNull { it.conversationId == convId } ?: return@mapNotNull null
             val otherP = allParticipants.firstOrNull {
@@ -388,6 +384,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
 }
 
 // ─────────────────────────── Profile ───────────────────────────
+
 suspend fun fetchProfileByUsername(username: String): Profile? {
     return try {
         val profiles = supabase.from("profiles")
@@ -429,7 +426,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
             supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeList<Profile>()
-                .firstOrNull()  // note: refactor
+                .firstOrNull()
         } catch (_: Exception) { null }
 
         val media = try {
@@ -452,7 +449,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 shareCount = post.shareCount,
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
-
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
@@ -501,7 +497,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         } catch (_: Exception) { emptyList() }
         val profileMap = profiles.associateBy { it.id }
 
-        val media = try {  // review: validation
+        val media = try {
             if (postIds.isNotEmpty()) {
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
@@ -516,6 +512,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 id = post.id,
                 userId = post.userId,
                 content = post.content,
+
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
@@ -523,7 +520,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
                 isLiked = false,
-
                 isSaved = true,
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
@@ -589,7 +585,6 @@ suspend fun fetchNotifications(): List<Notification> {
                 limit(50)
             }
             .decodeList<Notification>()
-
     } catch (e: Exception) {
         Log.e(TAG, "fetchNotifications failed: ${e.message}", e)
         emptyList()
