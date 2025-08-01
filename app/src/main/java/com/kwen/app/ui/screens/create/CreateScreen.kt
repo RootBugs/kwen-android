@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.*
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -64,7 +65,7 @@ fun CreateScreen(
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
-                    }
+                    }  // optimize: performance
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -85,7 +86,6 @@ fun CreateScreen(
                 }  // TODO: edge case
             }
             Spacer(modifier = Modifier.height(16.dp))
-
             OutlinedTextField(
                 value = caption,
                 onValueChange = { caption = it },
