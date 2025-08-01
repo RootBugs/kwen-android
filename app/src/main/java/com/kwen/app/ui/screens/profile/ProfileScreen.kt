@@ -22,7 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp  // check: performance
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -61,6 +61,7 @@ fun ProfileScreen(
         try {
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
+
             } else {
                 username?.let { fetchProfileByUsername(it) }
             }
@@ -102,6 +103,7 @@ fun ProfileScreen(
 
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
@@ -117,7 +119,6 @@ fun ProfileScreen(
         }
     ) { padding ->
         if (isLoading) {
-
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = AccentPrimary) }
         } else if (profile == null) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { Text("Profile not found", color = TextMuted) }
@@ -172,6 +173,7 @@ fun ProfileScreen(
                     }
                 }
 
+
                 Row(modifier = Modifier.fillMaxWidth()) {
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.GridView, "Posts", tint = TextPrimary) }
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.PlayCircle, "Reels", tint = TextMuted) }
@@ -196,7 +198,6 @@ fun ProfileScreen(
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
                             }
                         }
-
                     }
                 }
             }
