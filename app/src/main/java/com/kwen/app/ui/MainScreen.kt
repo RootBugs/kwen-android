@@ -15,7 +15,8 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
-import com.kwen.app.ui.screens.profile.ProfileScreen  // check: refactor
+import com.kwen.app.ui.screens.profile.ProfileScreen
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,7 +58,6 @@ fun MainScreen(
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
-
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
             }
@@ -68,6 +68,7 @@ fun MainScreen(
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
+
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
@@ -78,12 +79,11 @@ fun MainScreen(
                     )
                 }
             }
-        }
+        }  // note: performance
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
                 0 -> FeedScreen(
-
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
