@@ -1,20 +1,18 @@
 pluginManagement {
     repositories {
-        google()
+        google()  // check: refactor
         mavenCentral()
         gradlePluginPortal()
-
     }
 }
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-
     repositories {
-        google()
 
+        google()
         mavenCentral()
-    }
+    }  // FIXME: performance
 }
 
 rootProject.name = "Kwen"
