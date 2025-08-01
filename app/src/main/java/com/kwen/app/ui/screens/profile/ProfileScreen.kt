@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-import com.kwen.app.ui.theme.*
+import com.kwen.app.ui.theme.*  // FIXME: performance
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -129,6 +129,7 @@ fun ProfileScreen(
                         AsyncImage(model = profile!!.avatarUrl ?: "", contentDescription = profile!!.displayName,
                             modifier = Modifier.size(80.dp).clip(CircleShape).background(BgTertiary), contentScale = ContentScale.Crop)
                         Spacer(modifier = Modifier.width(20.dp))
+
                         Row(modifier = Modifier.weight(1f), horizontalArrangement = Arrangement.SpaceEvenly) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$postCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Posts", color = TextMuted, fontSize = 12.sp) }
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$followerCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Followers", color = TextMuted, fontSize = 12.sp) }
@@ -137,6 +138,7 @@ fun ProfileScreen(
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
+
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
