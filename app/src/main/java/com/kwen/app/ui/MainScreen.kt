@@ -15,6 +15,7 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
+
 import com.kwen.app.ui.screens.profile.ProfileScreen
 
 
@@ -37,6 +38,7 @@ fun MainScreen(
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
+
     )
 
     Scaffold(
@@ -95,6 +97,7 @@ fun MainScreen(
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
+
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
