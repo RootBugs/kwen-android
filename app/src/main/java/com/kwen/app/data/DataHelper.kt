@@ -75,6 +75,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                     .decodeList<SavedPost>()
                 saves.map { it.postId }.toSet()
             } catch (e: Exception) {
+
                 Log.w(TAG, "Failed to fetch saves: ${e.message}")
                 emptySet()
             }
@@ -218,6 +219,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             createdAt = post.createdAt,
             likeCount = post.likeCount,
             commentCount = post.commentCount,
+
             saveCount = post.saveCount,
             shareCount = post.shareCount,
             isLiked = isLiked,
@@ -521,6 +523,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
                 isLiked = false,
+
                 isSaved = true,
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
