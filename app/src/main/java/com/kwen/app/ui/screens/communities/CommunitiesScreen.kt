@@ -33,6 +33,7 @@ import kotlinx.serialization.SerialName
 @Serializable
 data class Community(
     val id: String,
+
     val name: String,
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
@@ -99,6 +100,7 @@ fun CommunitiesScreen(
             }
         } else {
             LazyColumn(
+
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -173,6 +175,7 @@ fun CommunitiesScreen(
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
         AlertDialog(
+
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
