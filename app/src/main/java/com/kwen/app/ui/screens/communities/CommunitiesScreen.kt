@@ -1,7 +1,6 @@
 package com.kwen.app.ui.screens.communities
 
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,7 +32,6 @@ import kotlinx.serialization.SerialName
 @Serializable
 data class Community(
     val id: String,
-
     val name: String,
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
@@ -48,6 +46,7 @@ fun CommunitiesScreen(
 ) {
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
+
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
@@ -100,7 +99,6 @@ fun CommunitiesScreen(
             }
         } else {
             LazyColumn(
-
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -113,6 +111,7 @@ fun CommunitiesScreen(
                     ) {
                         Row(
                             modifier = Modifier
+
                                 .fillMaxWidth()
                                 .clickable { }
                                 .padding(16.dp),
@@ -127,7 +126,6 @@ fun CommunitiesScreen(
                             ) {                                    if (community.coverUrl != null) {
                                     AsyncImage(
                                         model = community.coverUrl,
-
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
@@ -162,7 +160,7 @@ fun CommunitiesScreen(
                                     color = TextMuted,
                                     fontSize = 12.sp
                                 )
-                            }  // verify: validation
+                            }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
                     }
@@ -175,7 +173,6 @@ fun CommunitiesScreen(
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
         AlertDialog(
-
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
@@ -209,6 +206,7 @@ fun CommunitiesScreen(
                             cursorColor = AccentPrimary
                         )
                     )
+
                 }
             },
             confirmButton = {
