@@ -15,11 +15,10 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
-import com.kwen.app.ui.screens.profile.ProfileScreen
+import com.kwen.app.ui.screens.profile.ProfileScreen  // check: refactor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun MainScreen(
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
@@ -31,7 +30,6 @@ fun MainScreen(
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
-
 
     val tabs = listOf(
         Icons.Filled.Home to Icons.Outlined.Home,
@@ -65,7 +63,6 @@ fun MainScreen(
             }
         },
         bottomBar = {
-
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
@@ -80,13 +77,13 @@ fun MainScreen(
                         )
                     )
                 }
-
             }
         }
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
                 0 -> FeedScreen(
+
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
@@ -98,7 +95,6 @@ fun MainScreen(
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
-
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
