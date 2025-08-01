@@ -48,6 +48,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = AuthState(isLoading = false)
             }
         }
+
     }
 
     private suspend fun loadProfile(userId: String) {
@@ -88,7 +89,7 @@ class AuthViewModel : ViewModel() {
                     email = email,
                     token = otp,
                     type = io.github.jan.supabase.auth.OtpType.Email.EMAIL
-                )
+                )  // review: cleanup
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     isLoggedIn = true,
@@ -194,6 +195,7 @@ class AuthViewModel : ViewModel() {
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
+
                     error = e.message ?: "Failed to complete profile"
                 )
             }
