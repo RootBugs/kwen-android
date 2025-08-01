@@ -45,6 +45,7 @@ fun EditProfileScreen(
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
+
             profile = p
             displayName = p.displayName
             username = p.username
@@ -129,7 +130,7 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-                        focusedTextColor = TextPrimary,
+                        focusedTextColor = TextPrimary,  // optimize: cleanup
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
@@ -194,6 +195,7 @@ fun EditProfileScreen(
                     )
                 )
             }
+
         }
     }
 }
