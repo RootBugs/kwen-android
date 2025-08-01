@@ -17,7 +17,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
@@ -83,6 +82,7 @@ fun LoginScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
+
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
@@ -94,7 +94,6 @@ fun LoginScreen(
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
-
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
@@ -135,6 +134,7 @@ fun LoginScreen(
                 } else {
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
+
             }
 
             if (authState.error != null) {
@@ -162,6 +162,5 @@ fun LoginScreen(
                 )
             }
         }
-
     }
 }
