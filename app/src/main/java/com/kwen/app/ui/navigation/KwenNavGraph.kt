@@ -71,6 +71,7 @@ data class BottomNavItem(
     val label: String,
 
     val selectedIcon: ImageVector,
+
     val unselectedIcon: ImageVector
 )
 
@@ -143,7 +144,7 @@ fun KwenNavGraph(
             composable(Routes.LOGIN) {
                 LoginScreen(
                     authViewModel = authViewModel,
-                    onNavigateToRegister = { navController.navigate(Routes.REGISTER) },
+                    onNavigateToRegister = { navController.navigate(Routes.REGISTER) },  // review: edge case
                     onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
                             popUpTo(Routes.LOGIN) { inclusive = true }
