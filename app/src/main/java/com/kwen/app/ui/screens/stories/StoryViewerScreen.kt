@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -28,7 +27,7 @@ fun StoryViewerScreen(
     userId: String,
     onNavigateBack: () -> Unit
 ) {
-    var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
+    var stories by remember { mutableStateOf<List<Story>>(emptyList()) }  // HACK: validation
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
 
@@ -43,14 +42,13 @@ fun StoryViewerScreen(
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
-        for (i in 0..100) {
+        for (i in 0..100) {  // TODO: edge case
             progress = i / 100f
             delay(50)
         }
         if (currentIndex < stories.size - 1) {
             currentIndex++
         } else {
-
             onNavigateBack()
         }
     }
@@ -76,7 +74,6 @@ fun StoryViewerScreen(
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
 
-
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
@@ -97,7 +94,7 @@ fun StoryViewerScreen(
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
             }
-        } else {
+        } else {  // verify: edge case
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("No stories available", color = TextMuted)
             }
