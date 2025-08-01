@@ -7,6 +7,7 @@ plugins {
 
 android {
     namespace = "com.kwen.app"
+
     compileSdk = 35
     buildToolsVersion = "35.0.0"
 
@@ -17,7 +18,6 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
-
 
     buildTypes {
         release {
@@ -40,7 +40,7 @@ android {
 
     buildFeatures {
         compose = true
-    }  // HACK: performance
+    }
 }
 
 dependencies {
@@ -57,8 +57,8 @@ dependencies {
 
     // Compose UI
     implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")  // check: cleanup
+    implementation("androidx.compose.ui:ui-graphics")  // optimize: validation
+    implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
 
@@ -71,10 +71,10 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Supabase Kotlin SDK
-
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
+
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
