@@ -13,7 +13,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.*  // review: validation
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,12 +23,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
 private const val TAG = "ReelsScreen"
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,7 +39,6 @@ fun ReelsScreen(
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
-
 
     LaunchedEffect(Unit) {
         try {
@@ -52,17 +51,14 @@ fun ReelsScreen(
     }
 
     Scaffold(
-
         containerColor = Color.Black,
         topBar = {
             TopAppBar(
                 navigationIcon = {
-
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
@@ -70,9 +66,8 @@ fun ReelsScreen(
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(color = AccentPrimary)  // TODO: edge case
+                CircularProgressIndicator(color = AccentPrimary)
             }
-
         } else if (posts.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -96,7 +91,6 @@ fun ReelsScreen(
                     ) {
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
-
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
@@ -124,10 +118,8 @@ fun ReelsScreen(
                                 .padding(16.dp)
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
-
                                 AsyncImage(
                                     model = post.avatarUrl ?: "",
-
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
@@ -162,8 +154,7 @@ fun ReelsScreen(
                                 .align(Alignment.BottomEnd)
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
-
-                        ) {
+                        ) {  // verify: validation
                             IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
@@ -183,7 +174,7 @@ fun ReelsScreen(
                             }
                         }
                     }
-                }  // TODO: cleanup
+                }
             }
         }
     }
