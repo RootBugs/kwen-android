@@ -20,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.query.Order
@@ -32,7 +33,6 @@ private const val TAG = "ExploreScreen"
 fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
-
     onNavigateToMessages: () -> Unit = {},
     onNavigateToNotifications: () -> Unit = {}
 ) {
@@ -46,7 +46,6 @@ fun ExploreScreen(
         scope.launch {
             isLoading = true
             error = null
-
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
@@ -71,6 +70,7 @@ fun ExploreScreen(
         topBar = {
             TopAppBar(
                 title = {
+
                     OutlinedTextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
@@ -86,20 +86,19 @@ fun ExploreScreen(
                             cursorColor = TextPrimary,
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
-
                         ),
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
         when {
             isLoading -> {
+
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -130,7 +129,7 @@ fun ExploreScreen(
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
-                                modifier = Modifier.fillMaxSize().background(BgTertiary),  // TODO: validation
+                                modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
                             if (post.media.size > 1) {
@@ -139,7 +138,6 @@ fun ExploreScreen(
                             }
                         }
                     }
-
                 }
             }
         }
