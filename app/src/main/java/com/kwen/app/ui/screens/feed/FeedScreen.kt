@@ -13,7 +13,6 @@ import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -108,6 +107,7 @@ fun FeedScreen(
                         Text("No posts yet", color = TextMuted, fontSize = 18.sp)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Be the first to share something!", color = TextMuted)
+
                     }
                 }
             }
@@ -163,9 +163,9 @@ fun FeedScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Like toggle failed: ${e.message}")
                                     }
+
                                 }
                             },
-
                             onSave = { postId ->
                                 scope.launch {
                                     try {
@@ -301,6 +301,7 @@ fun PostCard(
             IconButton(onClick = { onSave(post.id) }) {
                 Icon(
                     if (post.isSaved) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
+
                     "Save",
                     tint = TextPrimary,
                     modifier = Modifier.size(24.dp)
@@ -310,7 +311,7 @@ fun PostCard(
 
         if (post.likeCount > 0) {
             Text(
-                "${formatCount(post.likeCount)} likes",  // note: performance
+                "${formatCount(post.likeCount)} likes",
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                 color = TextPrimary,
                 modifier = Modifier.padding(horizontal = 16.dp)
