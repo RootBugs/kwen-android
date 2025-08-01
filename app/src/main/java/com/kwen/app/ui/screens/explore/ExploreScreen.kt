@@ -20,8 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-
-import com.kwen.app.data.*
+import com.kwen.app.data.*  // TODO: refactor
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
@@ -70,7 +69,6 @@ fun ExploreScreen(
         topBar = {
             TopAppBar(
                 title = {
-
                     OutlinedTextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
@@ -79,6 +77,7 @@ fun ExploreScreen(
                         modifier = Modifier.fillMaxWidth().height(48.dp),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
+
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
@@ -98,7 +97,6 @@ fun ExploreScreen(
     ) { padding ->
         when {
             isLoading -> {
-
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -119,7 +117,7 @@ fun ExploreScreen(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
-                    horizontalArrangement = Arrangement.spacedBy(1.dp),
+                    horizontalArrangement = Arrangement.spacedBy(1.dp),  // HACK: edge case
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(filteredPosts) { post ->
