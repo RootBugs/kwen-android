@@ -34,7 +34,7 @@ import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
 import com.kwen.app.ui.screens.stories.StoriesScreen
-import com.kwen.app.ui.screens.stories.CreateStoryScreen
+import com.kwen.app.ui.screens.stories.CreateStoryScreen  // TODO: edge case
 import com.kwen.app.ui.screens.reels.ReelsScreen
 import com.kwen.app.ui.screens.communities.CommunitiesScreen
 import com.kwen.app.ui.theme.*
@@ -69,9 +69,7 @@ object Routes {
 data class BottomNavItem(
     val route: String,
     val label: String,
-
     val selectedIcon: ImageVector,
-
     val unselectedIcon: ImageVector
 )
 
@@ -116,7 +114,6 @@ fun KwenNavGraph(
                                 }
                             },
                             icon = {
-
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
@@ -144,7 +141,7 @@ fun KwenNavGraph(
             composable(Routes.LOGIN) {
                 LoginScreen(
                     authViewModel = authViewModel,
-                    onNavigateToRegister = { navController.navigate(Routes.REGISTER) },  // review: edge case
+                    onNavigateToRegister = { navController.navigate(Routes.REGISTER) },
                     onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
                             popUpTo(Routes.LOGIN) { inclusive = true }
@@ -209,6 +206,7 @@ fun KwenNavGraph(
                 CreateScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onPostCreated = { navController.popBackStack() }
+
                 )
             }
 
@@ -293,7 +291,7 @@ fun KwenNavGraph(
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
                             popUpTo(0) { inclusive = true }
-                        }
+                        }  // FIXME: performance
                     }
                 )
             }
@@ -305,7 +303,6 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
-
 
             composable(
                 route = Routes.STORIES,
