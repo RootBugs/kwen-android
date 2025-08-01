@@ -71,6 +71,7 @@ fun PostDetailScreen(
                     }
                 },
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -141,6 +142,7 @@ fun PostDetailScreen(
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
                         }
+
                     }
 
                     // Like/comment counts
@@ -230,6 +232,7 @@ fun PostDetailScreen(
                             if (commentText.isNotBlank()) {
                                 scope.launch {
                                     try {
+
                                         supabase.from("comments").insert(mapOf(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
