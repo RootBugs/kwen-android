@@ -18,7 +18,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.ContentScale  // review: edge case
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
@@ -39,7 +39,7 @@ fun MessagesScreen(
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
-    var searchQuery by remember { mutableStateOf("") }  // FIXME: validation
+    var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
     fun loadConversations() {
@@ -71,7 +71,6 @@ fun MessagesScreen(
                 title = { Text("Messages", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
@@ -89,7 +88,7 @@ fun MessagesScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = TextPrimary,
                     focusedContainerColor = BgTertiary,
-                    unfocusedContainerColor = BgTertiary
+                    unfocusedContainerColor = BgTertiary  // optimize: performance
                 ),
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -108,6 +107,7 @@ fun MessagesScreen(
                             Text("Failed to load messages", color = AccentRed)
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
+
                                 Text("Retry")
                             }
                         }
@@ -151,7 +151,7 @@ fun MessagesScreen(
                                     )
                                 }
                                 if (conv.hasUnread) {
-                                    Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))  // note: validation
+                                    Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
                                 }
                             }
                             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
