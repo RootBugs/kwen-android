@@ -1,8 +1,9 @@
 package com.kwen.app.ui.screens.communities
 
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*  // optimize: performance
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -81,7 +82,7 @@ fun CommunitiesScreen(
         }
     ) { padding ->
         if (isLoading) {
-            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // optimize: performance
+            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (communities.isEmpty()) {
@@ -124,6 +125,7 @@ fun CommunitiesScreen(
                             ) {                                    if (community.coverUrl != null) {
                                     AsyncImage(
                                         model = community.coverUrl,
+
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
@@ -158,7 +160,7 @@ fun CommunitiesScreen(
                                     color = TextMuted,
                                     fontSize = 12.sp
                                 )
-                            }
+                            }  // verify: validation
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
                     }
@@ -185,7 +187,6 @@ fun CommunitiesScreen(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
-
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
                         )
