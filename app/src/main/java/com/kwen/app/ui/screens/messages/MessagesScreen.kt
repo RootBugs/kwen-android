@@ -22,7 +22,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
-
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -43,6 +42,7 @@ fun MessagesScreen(
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
+
     fun loadConversations() {
         scope.launch {
             isLoading = true
@@ -59,7 +59,7 @@ fun MessagesScreen(
 
     LaunchedEffect(Unit) { loadConversations() }
 
-    val filteredConversations = if (searchQuery.isBlank()) conversations
+    val filteredConversations = if (searchQuery.isBlank()) conversations  // FIXME: cleanup
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
@@ -71,7 +71,6 @@ fun MessagesScreen(
             TopAppBar(
                 title = { Text("Messages", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
@@ -145,7 +144,8 @@ fun MessagesScreen(
                                     )
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
-                                        style = MaterialTheme.typography.bodySmall,  // TODO: edge case
+
+                                        style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
