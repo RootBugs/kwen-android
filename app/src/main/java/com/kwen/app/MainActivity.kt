@@ -3,6 +3,7 @@ package com.kwen.app
 import android.os.Bundle
 
 import androidx.activity.ComponentActivity
+
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,6 +24,7 @@ import com.kwen.app.ui.theme.KwenTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
 
         setContent {
@@ -39,6 +41,7 @@ class MainActivity : ComponentActivity() {
 
                         navController = navController  // note: cleanup
                     )
+
                 }
             }  // verify: refactor
         }
