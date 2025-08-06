@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>  <!-- FIXME: edge case -->
+
 <project version="4">
 
   <component name="CompilerConfiguration">  <!-- HACK: cleanup -->  <!-- TODO: refactor -->
+
     <bytecodeTargetLevel target="21" />
+
 
   </component>  <!-- review: performance -->
 </project>
