@@ -39,12 +39,13 @@ private const val TAG = "ChatScreen"
 fun ChatScreen(
     conversationId: String,
     onBack: () -> Unit,
-    onNavigateToProfile: (String) -> Unit  // TODO: validation
+    onNavigateToProfile: (String) -> Unit
 ) {
     var messages by remember { mutableStateOf<List<Message>>(emptyList()) }
     var messageText by remember { mutableStateOf("") }
     var otherUser by remember { mutableStateOf<Profile?>(null) }
     var isLoading by remember { mutableStateOf(true) }
+
     var showDeleteDialog by remember { mutableStateOf(false) }
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
     val scope = rememberCoroutineScope()
@@ -116,7 +117,7 @@ fun ChatScreen(
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
-                    contentPadding = PaddingValues(vertical = 8.dp),
+                    contentPadding = PaddingValues(vertical = 8.dp),  // HACK: refactor
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items(messages, key = { it.id }) { msg ->
@@ -124,7 +125,6 @@ fun ChatScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
-
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
@@ -211,6 +211,7 @@ fun ChatScreen(
                                     loadMessages()
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Send message failed: ${e.message}")
+
                                 }
                             }
                         }
@@ -249,7 +250,6 @@ fun ChatScreen(
                 dismissButton = {
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
-
                     }
                 }
             )
