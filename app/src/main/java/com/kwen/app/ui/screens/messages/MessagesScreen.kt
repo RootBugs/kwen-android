@@ -18,10 +18,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale  // review: edge case
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
+
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -70,6 +71,7 @@ fun MessagesScreen(
             TopAppBar(
                 title = { Text("Messages", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -88,7 +90,7 @@ fun MessagesScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = TextPrimary,
                     focusedContainerColor = BgTertiary,
-                    unfocusedContainerColor = BgTertiary  // optimize: performance
+                    unfocusedContainerColor = BgTertiary
                 ),
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -107,7 +109,6 @@ fun MessagesScreen(
                             Text("Failed to load messages", color = AccentRed)
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-
                                 Text("Retry")
                             }
                         }
@@ -144,7 +145,7 @@ fun MessagesScreen(
                                     )
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
-                                        style = MaterialTheme.typography.bodySmall,
+                                        style = MaterialTheme.typography.bodySmall,  // TODO: edge case
                                         color = TextMuted,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
