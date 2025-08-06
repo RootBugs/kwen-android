@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -16,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -43,7 +43,7 @@ fun SavedScreen(
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
         }
-        isLoading = false
+        isLoading = false  // note: performance
     }
 
     Scaffold(
@@ -53,7 +53,7 @@ fun SavedScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }  // TODO: cleanup
+                    }
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -72,6 +72,7 @@ fun SavedScreen(
                         Text("Failed to load saved posts", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
+
                     }
                 }
             }
@@ -84,7 +85,7 @@ fun SavedScreen(
                     }
                 }
             }
-            else -> {  // check: cleanup
+            else -> {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
