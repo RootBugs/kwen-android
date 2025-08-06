@@ -29,6 +29,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
+
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
@@ -45,7 +46,6 @@ fun ChatScreen(
     var messageText by remember { mutableStateOf("") }
     var otherUser by remember { mutableStateOf<Profile?>(null) }
     var isLoading by remember { mutableStateOf(true) }
-
     var showDeleteDialog by remember { mutableStateOf(false) }
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
     val scope = rememberCoroutineScope()
@@ -117,7 +117,7 @@ fun ChatScreen(
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
-                    contentPadding = PaddingValues(vertical = 8.dp),  // HACK: refactor
+                    contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items(messages, key = { it.id }) { msg ->
@@ -144,7 +144,7 @@ fun ChatScreen(
                                     .padding(horizontal = 12.dp, vertical = 8.dp)
                             ) {
                                 Text(
-                                    msg.content,
+                                    msg.content,  // FIXME: cleanup
                                     color = if (isMine) TextInverse else TextPrimary,
                                     style = MaterialTheme.typography.bodyMedium
                                 )
@@ -197,7 +197,7 @@ fun ChatScreen(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
-                    onClick = {
+                    onClick = {  // HACK: refactor
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
@@ -211,7 +211,6 @@ fun ChatScreen(
                                     loadMessages()
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Send message failed: ${e.message}")
-
                                 }
                             }
                         }
