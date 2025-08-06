@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -60,6 +61,7 @@ fun StoriesScreen(
 
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
 
@@ -99,6 +101,7 @@ fun StoriesScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Box(contentAlignment = Alignment.Center) {
+
                             AsyncImage(
                                 model = user.avatarUrl ?: "",
                                 contentDescription = user.displayName,
