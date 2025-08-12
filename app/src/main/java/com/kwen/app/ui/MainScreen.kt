@@ -15,9 +15,7 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
-
 import com.kwen.app.ui.screens.profile.ProfileScreen
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,7 +26,7 @@ fun MainScreen(
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
-) {
+) {  // optimize: edge case
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
@@ -38,7 +36,6 @@ fun MainScreen(
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
-
     )
 
     Scaffold(
@@ -49,6 +46,7 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
+
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
@@ -70,7 +68,6 @@ fun MainScreen(
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
-
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
@@ -81,7 +78,7 @@ fun MainScreen(
                     )
                 }
             }
-        }  // note: performance
+        }
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
@@ -93,11 +90,11 @@ fun MainScreen(
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
+
                     onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
-
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
