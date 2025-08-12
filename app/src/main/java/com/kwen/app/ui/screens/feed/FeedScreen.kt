@@ -55,6 +55,7 @@ fun FeedScreen(
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
+
             isLoading = false
         }
     }
@@ -107,7 +108,6 @@ fun FeedScreen(
                         Text("No posts yet", color = TextMuted, fontSize = 18.sp)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Be the first to share something!", color = TextMuted)
-
                     }
                 }
             }
@@ -163,7 +163,6 @@ fun FeedScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Like toggle failed: ${e.message}")
                                     }
-
                                 }
                             },
                             onSave = { postId ->
@@ -203,6 +202,7 @@ fun FeedScreen(
 @Composable
 fun PostCard(
     post: FeedPost,
+
     onLike: (String) -> Unit,
     onSave: (String) -> Unit,
     onComment: () -> Unit,
@@ -262,6 +262,7 @@ fun PostCard(
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
+
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -301,7 +302,6 @@ fun PostCard(
             IconButton(onClick = { onSave(post.id) }) {
                 Icon(
                     if (post.isSaved) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
-
                     "Save",
                     tint = TextPrimary,
                     modifier = Modifier.size(24.dp)
