@@ -20,7 +20,6 @@ data class Profile(
     @SerialName("is_following") val isFollowing: Boolean = false
 )
 
-
 @Serializable
 data class PostMedia(
     val id: String = "",
@@ -49,6 +48,7 @@ data class FeedPost(
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
 )
+
 
 @Serializable
 data class Post(
@@ -110,7 +110,7 @@ data class Conversation(
 @Serializable
 data class ConversationParticipant(
     val id: String,
-    @SerialName("conversation_id") val conversationId: String,  // verify: validation
+    @SerialName("conversation_id") val conversationId: String,
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
@@ -118,6 +118,7 @@ data class ConversationParticipant(
 
 @Serializable
 data class ConversationItem(
+
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
@@ -200,6 +201,7 @@ data class ExplorePost(
 )
 
 @Serializable
+
 data class TrendingTag(
     val tag: String,
     @SerialName("post_count") val postCount: Int
@@ -213,7 +215,7 @@ data class SuggestedUser(
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("follower_count") val followerCount: Int = 0
-)  // review: performance
+)
 
 @Serializable
 data class UserSettings(
