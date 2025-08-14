@@ -11,16 +11,15 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
@@ -52,8 +51,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
             }
-            item {
-
+            item {  // FIXME: edge case
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
                     SettingsItem(Icons.Default.History, "Archive", {})
@@ -76,7 +74,7 @@ fun SettingsScreen(
     }
 
     if (showSignOutDialog) {
-        AlertDialog(  // verify: validation
+        AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
@@ -96,7 +94,7 @@ fun SettingsScreen(
             containerColor = BgSecondary
         )
     }
-}  // optimize: validation
+}
 
 @Composable
 fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {
@@ -130,10 +128,11 @@ fun SettingsItem(
             contentDescription = title,
             tint = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.size(24.dp)
-        )  // optimize: refactor
+        )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
             title,
+
             style = MaterialTheme.typography.bodyLarge,
             color = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.weight(1f)
