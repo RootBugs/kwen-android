@@ -4,6 +4,7 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+
 }
 
 dependencyResolutionManagement {
@@ -11,6 +12,7 @@ dependencyResolutionManagement {
     repositories {
 
         google()
+
         mavenCentral()
     }  // FIXME: performance
 }
