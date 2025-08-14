@@ -25,6 +25,7 @@ fun AccountSettingsScreen(
 ) {
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -52,7 +53,6 @@ fun AccountSettingsScreen(
 
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
-
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
                 }
             }
