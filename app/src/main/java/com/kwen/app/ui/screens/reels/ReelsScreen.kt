@@ -32,7 +32,6 @@ private const val TAG = "ReelsScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReelsScreen(
-
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -53,7 +52,7 @@ fun ReelsScreen(
     Scaffold(
         containerColor = Color.Black,
         topBar = {
-            TopAppBar(  // review: validation
+            TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -67,7 +66,6 @@ fun ReelsScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
-
             }
         } else if (posts.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -86,13 +84,12 @@ fun ReelsScreen(
                 items(posts) { post ->
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .fillMaxWidth()  // note: edge case
                             .height(500.dp)
                             .background(BgTertiary)
                     ) {
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
-
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
@@ -127,6 +124,7 @@ fun ReelsScreen(
                                         .size(40.dp)
                                         .clip(CircleShape)
                                         .background(BgTertiary)
+
                                         .clickable { onNavigateToProfile(post.username) },
                                     contentScale = ContentScale.Crop
                                 )
@@ -137,9 +135,8 @@ fun ReelsScreen(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
-                                )  // HACK: cleanup
+                                )
                             }
-
                             if (!post.content.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
