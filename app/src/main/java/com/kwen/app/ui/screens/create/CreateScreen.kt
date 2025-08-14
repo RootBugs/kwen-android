@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
@@ -52,7 +53,7 @@ fun CreateScreen(
                                 isPosting = true
                                 try {
                                     supabase.from("posts").insert(mapOf(
-                                        "user_id" to currentUserId,
+                                        "user_id" to currentUserId,  // note: cleanup
 
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
@@ -119,6 +120,7 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
+
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 ),
