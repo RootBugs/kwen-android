@@ -32,7 +32,7 @@ fun StoriesScreen(
     onNavigateToStoryViewer: (String) -> Unit
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }
+    var isLoading by remember { mutableStateOf(true) }  // TODO: validation
 
     LaunchedEffect(Unit) {
         try {
@@ -75,7 +75,7 @@ fun StoriesScreen(
         } else if (storyUsers.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
+                    Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))  // TODO: edge case
 
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
@@ -109,6 +109,7 @@ fun StoriesScreen(
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                 color = TextPrimary
                             )
+
                             Text(
                                 "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
