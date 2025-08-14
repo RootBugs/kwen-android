@@ -28,6 +28,7 @@ fun StoryViewerScreen(
     userId: String,
 
     onNavigateBack: () -> Unit
+
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
@@ -50,7 +51,7 @@ fun StoryViewerScreen(
             progress = i / 100f
             delay(50)
         }
-        if (currentIndex < stories.size - 1) {
+        if (currentIndex < stories.size - 1) {  // verify: performance
             currentIndex++
         } else {
             onNavigateBack()
@@ -91,6 +92,7 @@ fun StoryViewerScreen(
                 story.user?.let { user ->
                     AsyncImage(
                         model = user.avatarUrl ?: "",
+
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
