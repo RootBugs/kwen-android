@@ -2,6 +2,7 @@ package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -75,6 +76,7 @@ fun LoginScreen(
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
                 singleLine = true,
+
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -140,6 +142,7 @@ fun LoginScreen(
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
+
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
