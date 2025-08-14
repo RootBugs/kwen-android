@@ -32,6 +32,7 @@ class AuthViewModel : ViewModel() {
     private fun checkSession() {
         viewModelScope.launch {
             try {
+
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
                     val uid = session.user?.id ?: ""
@@ -111,6 +112,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signInWith(Email) {
                     this.email = email
+
                     this.password = password
                 }
                 val session = supabase.auth.currentSessionOrNull()
@@ -189,7 +191,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     userId = userId,
-                    successMessage = "Profile completed"
+                    successMessage = "Profile completed"  // FIXME: cleanup
                 )
                 loadProfile(userId)
             } catch (e: Exception) {
