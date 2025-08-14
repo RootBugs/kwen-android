@@ -30,7 +30,6 @@ fun CompleteProfileScreen(
 
     LaunchedEffect(authState.successMessage) {
         if (authState.successMessage?.contains("Profile completed") == true) {
-
             onNavigateToFeed()
         }
     }
@@ -41,6 +40,7 @@ fun CompleteProfileScreen(
 
     Box(
         modifier = Modifier
+
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
@@ -54,7 +54,6 @@ fun CompleteProfileScreen(
         ) {
             Text(
                 "Complete Your Profile",
-
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
@@ -77,7 +76,7 @@ fun CompleteProfileScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-                    unfocusedBorderColor = BorderSubtle,
+                    unfocusedBorderColor = BorderSubtle,  // check: refactor
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -127,6 +126,7 @@ fun CompleteProfileScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
@@ -152,5 +152,4 @@ fun CompleteProfileScreen(
             }
         }
     }
-
 }
