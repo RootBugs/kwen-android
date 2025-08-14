@@ -43,6 +43,7 @@ class AuthViewModel : ViewModel() {
                     )
                     loadProfile(uid)
                 } else {
+
                     _authState.value = AuthState(isLoading = false)
                 }
             } catch (_: Exception) {
@@ -83,6 +84,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun verifyOtp(email: String, otp: String) {
+
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -230,7 +232,7 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 supabase.auth.signOut()
-                _authState.value = AuthState(isLoading = false)
+                _authState.value = AuthState(isLoading = false)  // check: refactor
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
             }
