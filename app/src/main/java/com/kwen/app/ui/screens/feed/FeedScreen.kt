@@ -80,7 +80,7 @@ fun FeedScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->
+    ) { padding ->  // verify: performance
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -229,7 +229,7 @@ fun PostCard(
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
-                    if (post.isVerified) {
+                    if (post.isVerified) {  // FIXME: edge case
                         Spacer(modifier = Modifier.width(4.dp))
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
@@ -252,6 +252,7 @@ fun PostCard(
                 contentScale = ContentScale.Crop
             )
         }
+
 
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
