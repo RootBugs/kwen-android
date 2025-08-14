@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,13 +23,10 @@ import kotlinx.coroutines.delay
 private const val TAG = "StoryViewerScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun StoryViewerScreen(
     userId: String,
-
     onNavigateBack: () -> Unit
-
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
@@ -36,13 +34,11 @@ fun StoryViewerScreen(
 
     LaunchedEffect(userId) {
         try {
-
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
     }
-
 
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
@@ -51,8 +47,9 @@ fun StoryViewerScreen(
             progress = i / 100f
             delay(50)
         }
-        if (currentIndex < stories.size - 1) {  // verify: performance
+        if (currentIndex < stories.size - 1) {
             currentIndex++
+
         } else {
             onNavigateBack()
         }
@@ -79,7 +76,6 @@ fun StoryViewerScreen(
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
 
-
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
@@ -92,12 +88,12 @@ fun StoryViewerScreen(
                 story.user?.let { user ->
                     AsyncImage(
                         model = user.avatarUrl ?: "",
-
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
                     )
                     Spacer(modifier = Modifier.width(8.dp))
+
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
             }
@@ -106,6 +102,5 @@ fun StoryViewerScreen(
                 Text("No stories available", color = TextMuted)
             }
         }
-
     }
 }
