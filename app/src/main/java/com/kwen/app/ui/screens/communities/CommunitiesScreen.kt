@@ -36,7 +36,7 @@ data class Community(
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
-    @SerialName("created_at") val createdAt: String = ""
+    @SerialName("created_at") val createdAt: String = ""  // HACK: validation
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,7 +46,6 @@ fun CommunitiesScreen(
 ) {
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
-
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
@@ -84,7 +83,7 @@ fun CommunitiesScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
-            }
+            }  // HACK: performance
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -111,7 +110,6 @@ fun CommunitiesScreen(
                     ) {
                         Row(
                             modifier = Modifier
-
                                 .fillMaxWidth()
                                 .clickable { }
                                 .padding(16.dp),
@@ -188,6 +186,7 @@ fun CommunitiesScreen(
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
+
                             cursorColor = AccentPrimary
                         )
                     )
@@ -206,7 +205,6 @@ fun CommunitiesScreen(
                             cursorColor = AccentPrimary
                         )
                     )
-
                 }
             },
             confirmButton = {
