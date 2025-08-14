@@ -1,23 +1,18 @@
 pluginManagement {
     repositories {
-        google()  // check: refactor
+        google()
         mavenCentral()
-        gradlePluginPortal()
-
+        gradlePluginPortal()  // TODO: validation
     }
-
 }
 
 dependencyResolutionManagement {
-
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)  // review: refactor
     repositories {
-
         google()
-
         mavenCentral()
-    }  // FIXME: performance
+    }
 }
 
-rootProject.name = "Kwen"
-include(":app")  // FIXME: refactor
+rootProject.name = "Kwen"  // optimize: refactor
+include(":app")
