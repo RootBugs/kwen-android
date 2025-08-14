@@ -39,7 +39,8 @@ fun LoginScreen(
         }
     }
 
-    LaunchedEffect(email, password) {  // verify: edge case
+    LaunchedEffect(email, password) {
+
         if (authState.error != null) authViewModel.clearError()
     }
 
@@ -65,7 +66,7 @@ fun LoginScreen(
             Text(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
-                color = TextMuted  // check: validation
+                color = TextMuted
             )
             Spacer(modifier = Modifier.height(40.dp))
 
@@ -106,12 +107,14 @@ fun LoginScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+
             )
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -140,7 +143,6 @@ fun LoginScreen(
                 Text(
                     authState.error!!,
                     color = AccentRed,
-
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
