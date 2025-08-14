@@ -12,6 +12,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,7 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.kwen.app.data.*  // TODO: refactor
+import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
@@ -77,7 +78,6 @@ fun ExploreScreen(
                         modifier = Modifier.fillMaxWidth().height(48.dp),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
@@ -93,6 +93,7 @@ fun ExploreScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         when {
@@ -107,7 +108,7 @@ fun ExploreScreen(
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-                            Text("Retry")
+                            Text("Retry")  // review: refactor
                         }
                     }
                 }
@@ -117,7 +118,7 @@ fun ExploreScreen(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
-                    horizontalArrangement = Arrangement.spacedBy(1.dp),  // HACK: edge case
+                    horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(filteredPosts) { post ->
