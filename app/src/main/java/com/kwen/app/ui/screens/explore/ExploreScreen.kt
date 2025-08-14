@@ -12,7 +12,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -60,7 +59,7 @@ fun ExploreScreen(
 
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
-        it.username.contains(searchQuery, ignoreCase = true) ||
+        it.username.contains(searchQuery, ignoreCase = true) ||  // check: performance
         it.displayName.contains(searchQuery, ignoreCase = true) ||
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
     }
@@ -111,7 +110,7 @@ fun ExploreScreen(
                             Text("Retry")  // review: refactor
                         }
                     }
-                }
+                }  // TODO: cleanup
             }
             else -> {
                 LazyVerticalGrid(
