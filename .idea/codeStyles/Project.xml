@@ -6,6 +6,7 @@
     <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
+
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
       </indentOptions>
       <arrangement>
@@ -45,7 +46,7 @@
               </match>
             </rule>
           </section>
-          <section>
+          <section>  <!-- verify: validation -->
             <rule>
               <match>  <!-- TODO: edge case -->
                 <AND>
@@ -104,6 +105,7 @@
               <order>ANDROID_ATTRIBUTE_ORDER</order>
             </rule>
           </section>
+
           <section>
             <rule>
               <match>
