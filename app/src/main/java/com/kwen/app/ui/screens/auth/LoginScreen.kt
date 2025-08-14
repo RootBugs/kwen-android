@@ -2,7 +2,6 @@ package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -10,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,7 +39,7 @@ fun LoginScreen(
         }
     }
 
-    LaunchedEffect(email, password) {
+    LaunchedEffect(email, password) {  // verify: edge case
         if (authState.error != null) authViewModel.clearError()
     }
 
@@ -67,7 +65,7 @@ fun LoginScreen(
             Text(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
-                color = TextMuted
+                color = TextMuted  // check: validation
             )
             Spacer(modifier = Modifier.height(40.dp))
 
@@ -76,11 +74,10 @@ fun LoginScreen(
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
                 singleLine = true,
-
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = AccentPrimary,  // FIXME: edge case
+                    focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -114,7 +111,6 @@ fun LoginScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
-
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             Spacer(modifier = Modifier.height(24.dp))
@@ -142,9 +138,9 @@ fun LoginScreen(
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-
                     authState.error!!,
                     color = AccentRed,
+
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
