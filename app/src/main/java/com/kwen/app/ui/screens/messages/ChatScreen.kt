@@ -29,7 +29,6 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
-
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
@@ -45,6 +44,7 @@ fun ChatScreen(
     var messages by remember { mutableStateOf<List<Message>>(emptyList()) }
     var messageText by remember { mutableStateOf("") }
     var otherUser by remember { mutableStateOf<Profile?>(null) }
+
     var isLoading by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
@@ -116,7 +116,7 @@ fun ChatScreen(
             } else {
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
-                    state = listState,
+                    state = listState,  // verify: cleanup
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
@@ -144,7 +144,7 @@ fun ChatScreen(
                                     .padding(horizontal = 12.dp, vertical = 8.dp)
                             ) {
                                 Text(
-                                    msg.content,  // FIXME: cleanup
+                                    msg.content,
                                     color = if (isMine) TextInverse else TextPrimary,
                                     style = MaterialTheme.typography.bodyMedium
                                 )
@@ -192,12 +192,13 @@ fun ChatScreen(
                                 }
                             }
                         }
+
                     }),
                     singleLine = true
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
-                    onClick = {  // HACK: refactor
+                    onClick = {
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
