@@ -44,13 +44,14 @@ fun SettingsScreen(
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
-            item {
+            item {  // HACK: refactor
                 SettingsSection("Account") {
                     SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
             }
+
             item {  // FIXME: edge case
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
@@ -135,6 +136,7 @@ fun SettingsItem(
 
             style = MaterialTheme.typography.bodyLarge,
             color = if (isDestructive) AccentRed else TextPrimary,
+
             modifier = Modifier.weight(1f)
         )
         Icon(
