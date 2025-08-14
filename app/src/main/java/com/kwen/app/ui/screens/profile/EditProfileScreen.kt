@@ -51,6 +51,7 @@ fun EditProfileScreen(
             username = p.username
             bio = p.bio ?: ""
             website = p.website ?: ""
+
         } catch (_: Exception) { }
         isLoading = false
     }
@@ -92,6 +93,7 @@ fun EditProfileScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         if (isLoading) {
@@ -136,6 +138,7 @@ fun EditProfileScreen(
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
+
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
