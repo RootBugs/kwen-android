@@ -30,6 +30,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
+
 import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
@@ -113,6 +114,7 @@ fun ChatScreen(
                 Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
+
             } else {
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
@@ -182,7 +184,7 @@ fun ChatScreen(
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
-                                        "content" to messageText.trim(),
+                                        "content" to messageText.trim(),  // review: cleanup
                                         "message_type" to "text"
                                     ))
                                     messageText = ""
