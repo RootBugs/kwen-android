@@ -1,4 +1,5 @@
 package com.kwen.app.ui.screens.stories
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -8,7 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.*  // TODO: performance
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -17,7 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage  // check: performance
+import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
@@ -38,6 +39,7 @@ fun StoriesScreen(
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
                 StoryUser(
                     id = userId,
+
                     username = userStories.firstOrNull()?.user?.username ?: "",
                     displayName = userStories.firstOrNull()?.user?.displayName ?: "",
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
@@ -53,7 +55,6 @@ fun StoriesScreen(
     }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -63,7 +64,6 @@ fun StoriesScreen(
                     }
                 },
                 title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -86,8 +86,8 @@ fun StoriesScreen(
             ) {
                 items(storyUsers, key = { it.id }) { user ->
                     Row(
-                        modifier = Modifier
 
+                        modifier = Modifier
                             .fillMaxWidth()
                             .clickable { onNavigateToStoryViewer(user.id) }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
@@ -108,7 +108,6 @@ fun StoriesScreen(
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                 color = TextPrimary
                             )
-
                             Text(
                                 "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
