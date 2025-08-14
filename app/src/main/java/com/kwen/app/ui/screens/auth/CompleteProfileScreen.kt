@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -43,7 +44,6 @@ fun CompleteProfileScreen(
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
-
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -62,7 +62,6 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Tell us about yourself",
-
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
@@ -77,6 +76,7 @@ fun CompleteProfileScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -115,11 +115,11 @@ fun CompleteProfileScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-
             )
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
+
                 onClick = {
                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
                     authViewModel.completeProfile(userId, username, displayName, bio)
