@@ -12,6 +12,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -40,7 +41,6 @@ fun LoginScreen(
     }
 
     LaunchedEffect(email, password) {
-
         if (authState.error != null) authViewModel.clearError()
     }
 
@@ -100,6 +100,7 @@ fun LoginScreen(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
                             tint = TextMuted
+
                         )
                     }
                 },
@@ -107,14 +108,12 @@ fun LoginScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-
             )
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -155,6 +154,7 @@ fun LoginScreen(
             ) {
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
+
                     "Sign Up",
                     color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
