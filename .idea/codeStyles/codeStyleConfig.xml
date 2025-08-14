@@ -1,8 +1,6 @@
-<component name="ProjectCodeStyleConfiguration">  <!-- note: validation -->
-  <state>
-    <option name="USE_PER_PROJECT_SETTINGS" value="true" />  <!-- optimize: edge case -->
+<component name="ProjectCodeStyleConfiguration">
 
+  <state>  <!-- HACK: performance -->
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
   </state>
-
-
 </component>
