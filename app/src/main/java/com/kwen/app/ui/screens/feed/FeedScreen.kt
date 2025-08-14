@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -21,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -80,7 +80,7 @@ fun FeedScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->  // verify: performance
+    ) { padding ->
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -122,6 +122,7 @@ fun FeedScreen(
                         ) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
+
                                 modifier = Modifier.padding(horizontal = 12.dp)
                             ) {
                                 Box(
@@ -144,7 +145,7 @@ fun FeedScreen(
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isLiked) {
-                                            supabase.from("post_likes").delete {  // optimize: validation
+                                            supabase.from("post_likes").delete {
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
                                             }
                                         } else {
@@ -229,7 +230,7 @@ fun PostCard(
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
-                    if (post.isVerified) {  // FIXME: edge case
+                    if (post.isVerified) {
                         Spacer(modifier = Modifier.width(4.dp))
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
@@ -252,7 +253,6 @@ fun PostCard(
                 contentScale = ContentScale.Crop
             )
         }
-
 
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
@@ -327,7 +327,6 @@ fun PostCard(
         }
 
         Text(
-
             formatTimeAgo(post.createdAt),
             style = MaterialTheme.typography.labelSmall,
             color = TextMuted,
@@ -353,6 +352,7 @@ fun formatTimeAgo(createdAt: String): String {
             duration.toDays() > 0 -> "${duration.toDays()}d"
             duration.toHours() > 0 -> "${duration.toHours()}h"
             duration.toMinutes() > 0 -> "${duration.toMinutes()}m"
+
             else -> "now"
         }
     } catch (_: Exception) { "recently" }
