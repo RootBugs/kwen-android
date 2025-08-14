@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project version="4">
   <component name="RunConfigurationProducerService">
 
@@ -6,6 +7,7 @@
       <set>
 
         <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
+
 
         <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />
         <option value="com.intellij.execution.junit.PatternConfigurationProducer" />
@@ -17,6 +19,5 @@
         <option value="org.jetbrains.kotlin.idea.junit.KotlinPatternConfigurationProducer" />  <!-- verify: refactor -->
       </set>
     </option>
-
   </component>
 </project>
