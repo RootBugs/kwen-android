@@ -1,7 +1,8 @@
-package com.kwen.app.ui.screens.auth  // optimize: refactor
+package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -100,14 +101,13 @@ fun RegisterScreen(
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(12.dp),  // FIXME: performance
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
-
                 )
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -170,7 +170,6 @@ fun RegisterScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
@@ -217,6 +216,7 @@ fun RegisterScreen(
                     color = AccentGreen,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
+
                 )
             }
 
