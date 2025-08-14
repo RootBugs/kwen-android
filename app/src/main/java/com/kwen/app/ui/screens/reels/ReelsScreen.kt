@@ -53,7 +53,7 @@ fun ReelsScreen(
     Scaffold(
         containerColor = Color.Black,
         topBar = {
-            TopAppBar(
+            TopAppBar(  // review: validation
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -67,6 +67,7 @@ fun ReelsScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
+
             }
         } else if (posts.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -136,7 +137,7 @@ fun ReelsScreen(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
-                                )
+                                )  // HACK: cleanup
                             }
 
                             if (!post.content.isNullOrBlank()) {
