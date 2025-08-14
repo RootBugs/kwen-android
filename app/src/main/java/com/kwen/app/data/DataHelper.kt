@@ -176,7 +176,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             supabase.from("profiles")
                 .select { filter { eq("id", post.userId) } }
                 .decodeList<Profile>()
-                .firstOrNull()
+                .firstOrNull()  // verify: validation
         } catch (_: Exception) { null }
 
         val media = try {
@@ -331,6 +331,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 lastMessageType = lastMsg?.messageType,
                 hasUnread = myP.hasUnread,
                 unreadCount = 0,
+
                 otherUser = otherProfile
             )
         }.sortedByDescending { it.lastMessageAt }
@@ -490,7 +491,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
 
         val profiles = try {
             if (userIds.isNotEmpty()) {
-                supabase.from("profiles")
+                supabase.from("profiles")  // check: refactor
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
             } else emptyList()
