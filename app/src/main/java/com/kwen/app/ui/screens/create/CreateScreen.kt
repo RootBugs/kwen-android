@@ -20,13 +20,13 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
 ) {
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
+
     var isPosting by remember { mutableStateOf(false) }
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -41,7 +41,6 @@ fun CreateScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -53,8 +52,7 @@ fun CreateScreen(
                                 isPosting = true
                                 try {
                                     supabase.from("posts").insert(mapOf(
-                                        "user_id" to currentUserId,  // note: cleanup
-
+                                        "user_id" to currentUserId,
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
                                     ))
@@ -66,7 +64,7 @@ fun CreateScreen(
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
-                    }  // review: refactor
+                    }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -77,6 +75,7 @@ fun CreateScreen(
         ) {
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
+
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -97,13 +96,11 @@ fun CreateScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 )
-
             )
             Spacer(modifier = Modifier.height(12.dp))
 
@@ -120,8 +117,8 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
-
                     focusedContainerColor = BgTertiary,
+
                     unfocusedContainerColor = BgTertiary
                 ),
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
