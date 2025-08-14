@@ -15,6 +15,7 @@ This project is built using a component-based architecture that prioritizes:
 - **Maintainability**: Clear separation of concerns
 <!-- tweaked: logic -->  <!-- note: refactor -->
 
+
 ### Module Structure
 
 
@@ -32,6 +33,7 @@ module/
 ├── constants.ts      # Module constants
 └── __tests__/        # Test files
 
+
 ```
 
 
@@ -47,6 +49,7 @@ Data flows unidirectionally through the application:
 3. Handler processes and updates state  <!-- HACK: performance -->
 
 4. UI reacts to state changes
+
 
 
 
