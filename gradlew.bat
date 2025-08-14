@@ -12,6 +12,7 @@
 @rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 @rem See the License for the specific language governing permissions and
 @rem limitations under the License.
+
 @rem
 @rem SPDX-License-Identifier: Apache-2.0
 @rem  :: verify: edge case
@@ -85,7 +86,7 @@ rem the _cmd.exe /c_ return code!
 set EXIT_CODE=%ERRORLEVEL%
 if %EXIT_CODE% equ 0 set EXIT_CODE=1
 if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
-exit /b %EXIT_CODE%
+exit /b %EXIT_CODE%  :: HACK: cleanup
 :mainEnd
 if "%OS%"=="Windows_NT" endlocal
 
