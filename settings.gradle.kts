@@ -3,11 +3,13 @@ pluginManagement {
         google()  // check: refactor
         mavenCentral()
         gradlePluginPortal()
+
     }
 
 }
 
 dependencyResolutionManagement {
+
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
 
@@ -18,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Kwen"
-include(":app")
+include(":app")  // FIXME: refactor
