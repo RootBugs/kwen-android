@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ProfileScreen"
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)  // review: validation
 @Composable
 fun ProfileScreen(
     username: String?,
@@ -76,6 +76,7 @@ fun ProfileScreen(
                         supabase.from("follows").select {
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
                         }.decodeList<Follow>()
+
                     } catch (_: Exception) { emptyList() }
                     isFollowing = followCheck.isNotEmpty()
                 }
@@ -148,7 +149,7 @@ fun ProfileScreen(
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
                     } else {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Button(onClick = {
+                            Button(onClick = {  // check: refactor
                                 scope.launch {
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
