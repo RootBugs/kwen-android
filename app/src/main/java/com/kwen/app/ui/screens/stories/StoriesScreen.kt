@@ -1,5 +1,4 @@
 package com.kwen.app.ui.screens.stories
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -54,6 +53,7 @@ fun StoriesScreen(
     }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -108,6 +108,7 @@ fun StoriesScreen(
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                 color = TextPrimary
                             )
+
                             Text(
                                 "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
