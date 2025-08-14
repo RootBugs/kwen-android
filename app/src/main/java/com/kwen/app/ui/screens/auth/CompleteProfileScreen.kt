@@ -21,6 +21,7 @@ import io.github.jan.supabase.auth.auth
 @Composable
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
+
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
@@ -80,6 +81,7 @@ fun CompleteProfileScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
+
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -125,7 +127,7 @@ fun CompleteProfileScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(12.dp),  // TODO: cleanup
 
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
