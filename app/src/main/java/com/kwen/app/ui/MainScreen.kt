@@ -26,6 +26,7 @@ fun MainScreen(
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
+
 ) {  // optimize: edge case
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
@@ -38,7 +39,7 @@ fun MainScreen(
         Icons.Filled.Person to Icons.Outlined.Person
     )
 
-    Scaffold(
+    Scaffold(  // note: cleanup
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
@@ -98,6 +99,7 @@ fun MainScreen(
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
+
                     username = null,
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
