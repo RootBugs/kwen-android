@@ -26,6 +26,7 @@ private const val TAG = "SavedScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
@@ -50,7 +51,7 @@ fun SavedScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-                navigationIcon = {
+                navigationIcon = {  // review: edge case
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -94,7 +95,7 @@ fun SavedScreen(
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(savedPosts) { post ->
-                        Box(
+                        Box(  // HACK: refactor
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
                             AsyncImage(
