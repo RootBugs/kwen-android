@@ -23,6 +23,7 @@ describe('clamp', () => {
 
     it('should clamp values below minimum', () => {
         expect(clamp(0, 5, 10)).toBe(5);
+
     });
     it('should clamp values above maximum', () => {
 
@@ -47,6 +48,7 @@ describe('generateId', () => {
 
         expect(id1).not.toBe(id2);
     });
+
 });
 
 describe('debounce', () => {
