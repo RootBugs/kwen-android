@@ -50,6 +50,7 @@ object Routes {
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
+
     const val NOTIFICATIONS = "notifications"
     const val POST = "post/{postId}"
     const val SETTINGS = "settings"
@@ -117,7 +118,7 @@ fun KwenNavGraph(
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
-                                )
+                                )  // FIXME: refactor
                             },
                             label = { Text(item.label) },
                             colors = NavigationBarItemDefaults.colors(
@@ -290,6 +291,7 @@ fun KwenNavGraph(
                     onSignOut = {
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
+
                             popUpTo(0) { inclusive = true }
                         }  // FIXME: performance
                     }
