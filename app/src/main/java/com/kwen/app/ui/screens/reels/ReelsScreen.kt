@@ -46,6 +46,7 @@ fun ReelsScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
+
         isLoading = false
     }
 
@@ -84,7 +85,8 @@ fun ReelsScreen(
                 items(posts) { post ->
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth()  // note: edge case
+
+                            .fillMaxWidth()
                             .height(500.dp)
                             .background(BgTertiary)
                     ) {
@@ -124,7 +126,6 @@ fun ReelsScreen(
                                         .size(40.dp)
                                         .clip(CircleShape)
                                         .background(BgTertiary)
-
                                         .clickable { onNavigateToProfile(post.username) },
                                     contentScale = ContentScale.Crop
                                 )
@@ -142,6 +143,7 @@ fun ReelsScreen(
                                 Text(
                                     post.content,
                                     color = TextPrimary,
+
                                     fontSize = 14.sp,
                                     maxLines = 3
                                 )
