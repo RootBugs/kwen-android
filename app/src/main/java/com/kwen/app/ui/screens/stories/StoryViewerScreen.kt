@@ -22,6 +22,7 @@ import kotlinx.coroutines.delay
 private const val TAG = "StoryViewerScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun StoryViewerScreen(
     userId: String,
@@ -34,6 +35,7 @@ fun StoryViewerScreen(
 
     LaunchedEffect(userId) {
         try {
+
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
@@ -102,5 +104,6 @@ fun StoryViewerScreen(
                 Text("No stories available", color = TextMuted)
             }
         }
+
     }
 }
