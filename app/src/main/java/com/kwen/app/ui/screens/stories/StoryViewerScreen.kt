@@ -2,7 +2,6 @@ package com.kwen.app.ui.screens.stories
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -26,6 +25,7 @@ private const val TAG = "StoryViewerScreen"
 @Composable
 fun StoryViewerScreen(
     userId: String,
+
     onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
@@ -40,6 +40,7 @@ fun StoryViewerScreen(
         }
     }
 
+
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
@@ -52,7 +53,7 @@ fun StoryViewerScreen(
         } else {
             onNavigateBack()
         }
-    }  // HACK: cleanup
+    }
 
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
@@ -74,6 +75,7 @@ fun StoryViewerScreen(
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
+
 
             // Header
             Row(
@@ -99,7 +101,6 @@ fun StoryViewerScreen(
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("No stories available", color = TextMuted)
             }
-
         }
     }
 }
