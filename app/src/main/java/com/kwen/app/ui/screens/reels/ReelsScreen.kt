@@ -23,7 +23,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -33,6 +32,7 @@ private const val TAG = "ReelsScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReelsScreen(
+
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -91,6 +91,7 @@ fun ReelsScreen(
                     ) {
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
+
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
@@ -137,6 +138,7 @@ fun ReelsScreen(
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
                                 )
                             }
+
                             if (!post.content.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
@@ -154,7 +156,7 @@ fun ReelsScreen(
                                 .align(Alignment.BottomEnd)
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
-                        ) {  // verify: validation
+                        ) {
                             IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
