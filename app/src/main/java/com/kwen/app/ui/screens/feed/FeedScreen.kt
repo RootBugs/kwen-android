@@ -50,6 +50,7 @@ fun FeedScreen(
             isLoading = true
             error = null
             try {
+
                 posts = fetchFeedPosts()
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
@@ -255,6 +256,7 @@ fun PostCard(
         }
 
         // Text content — show centered for text-only posts, as caption for image posts
+
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
             Box(
