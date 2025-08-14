@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.messages
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -42,7 +43,6 @@ fun MessagesScreen(
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-
     fun loadConversations() {
         scope.launch {
             isLoading = true
@@ -59,7 +59,7 @@ fun MessagesScreen(
 
     LaunchedEffect(Unit) { loadConversations() }
 
-    val filteredConversations = if (searchQuery.isBlank()) conversations  // FIXME: cleanup
+    val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
@@ -72,6 +72,7 @@ fun MessagesScreen(
                 title = { Text("Messages", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
@@ -108,6 +109,7 @@ fun MessagesScreen(
                             Text("Failed to load messages", color = AccentRed)
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
+
                                 Text("Retry")
                             }
                         }
@@ -144,7 +146,6 @@ fun MessagesScreen(
                                     )
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
-
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
