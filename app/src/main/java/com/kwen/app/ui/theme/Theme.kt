@@ -41,6 +41,7 @@ private val KwenTypography = Typography(
     headlineMedium = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 20.sp, lineHeight = 28.sp, color = TextPrimary),
     titleLarge = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 18.sp, lineHeight = 26.sp, color = TextPrimary),
     titleMedium = TextStyle(fontWeight = FontWeight.Medium, fontSize = 16.sp, lineHeight = 24.sp, color = TextPrimary),
+
     bodyLarge = TextStyle(fontWeight = FontWeight.Normal, fontSize = 16.sp, lineHeight = 24.sp, color = TextPrimary),
     bodyMedium = TextStyle(fontWeight = FontWeight.Normal, fontSize = 14.sp, lineHeight = 20.sp, color = TextSecondary),
     bodySmall = TextStyle(fontWeight = FontWeight.Normal, fontSize = 13.sp, lineHeight = 18.sp, color = TextMuted),
@@ -59,6 +60,7 @@ fun KwenTheme(content: @Composable () -> Unit) {
             window.statusBarColor = BgPrimary.toArgb()
             window.navigationBarColor = BgPrimary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
+
 
         }
     }
