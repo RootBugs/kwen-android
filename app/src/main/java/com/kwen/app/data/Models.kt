@@ -7,7 +7,6 @@ import kotlinx.serialization.Serializable
 data class Profile(
     val id: String,
     val username: String,
-
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val bio: String? = null,
@@ -20,6 +19,7 @@ data class Profile(
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
 )
+
 
 @Serializable
 data class PostMedia(
@@ -110,7 +110,7 @@ data class Conversation(
 @Serializable
 data class ConversationParticipant(
     val id: String,
-    @SerialName("conversation_id") val conversationId: String,
+    @SerialName("conversation_id") val conversationId: String,  // verify: validation
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
@@ -128,7 +128,6 @@ data class ConversationItem(
 )
 
 @Serializable
-
 data class Message(
     val id: String = "",
     @SerialName("conversation_id") val conversationId: String = "",
@@ -196,7 +195,6 @@ data class ExplorePost(
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("display_name") val displayName: String,
     val username: String,
-
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val media: List<PostMedia> = emptyList()
 )
@@ -215,7 +213,7 @@ data class SuggestedUser(
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("follower_count") val followerCount: Int = 0
-)
+)  // review: performance
 
 @Serializable
 data class UserSettings(
