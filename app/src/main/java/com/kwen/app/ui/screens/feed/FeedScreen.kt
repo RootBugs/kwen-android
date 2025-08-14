@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -50,13 +51,11 @@ fun FeedScreen(
             isLoading = true
             error = null
             try {
-
                 posts = fetchFeedPosts()
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
-
             isLoading = false
         }
     }
@@ -145,7 +144,7 @@ fun FeedScreen(
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isLiked) {
-                                            supabase.from("post_likes").delete {
+                                            supabase.from("post_likes").delete {  // optimize: validation
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
                                             }
                                         } else {
@@ -203,7 +202,6 @@ fun FeedScreen(
 @Composable
 fun PostCard(
     post: FeedPost,
-
     onLike: (String) -> Unit,
     onSave: (String) -> Unit,
     onComment: () -> Unit,
@@ -256,7 +254,6 @@ fun PostCard(
         }
 
         // Text content — show centered for text-only posts, as caption for image posts
-
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
             Box(
@@ -264,7 +261,6 @@ fun PostCard(
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
-
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -330,6 +326,7 @@ fun PostCard(
         }
 
         Text(
+
             formatTimeAgo(post.createdAt),
             style = MaterialTheme.typography.labelSmall,
             color = TextMuted,
