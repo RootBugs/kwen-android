@@ -1,4 +1,5 @@
 package com.kwen.app.ui.screens.profile
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -37,7 +38,7 @@ private const val TAG = "ProfileScreen"
 fun ProfileScreen(
     username: String?,
     currentUserId: String,
-    onBack: () -> Unit = {},
+    onBack: () -> Unit = {},  // HACK: edge case
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToEdit: () -> Unit = {},
     onNavigateToSettings: () -> Unit = {},
@@ -99,7 +100,6 @@ fun ProfileScreen(
         isLoading = false
     }
 
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -107,7 +107,7 @@ fun ProfileScreen(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
                 actions = {
-                    if (isOwnProfile) {
+                    if (isOwnProfile) {  // check: cleanup
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
@@ -144,7 +144,7 @@ fun ProfileScreen(
                     if (isOwnProfile) {
                         OutlinedButton(onClick = onNavigateToEdit, modifier = Modifier.fillMaxWidth().height(36.dp),
                             colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
-                            border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),  // note: refactor
+                            border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
                     } else {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -176,6 +176,7 @@ fun ProfileScreen(
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.PlayCircle, "Reels", tint = TextMuted) }
                     if (isOwnProfile) IconButton(onClick = onNavigateToSaved, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextMuted) }
                 }
+
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
                 if (posts.isEmpty()) {
