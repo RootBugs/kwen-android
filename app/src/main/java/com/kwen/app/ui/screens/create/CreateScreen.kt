@@ -40,6 +40,7 @@ fun CreateScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
+
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -52,6 +53,7 @@ fun CreateScreen(
                                 try {
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
+
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
                                     ))
@@ -100,6 +102,7 @@ fun CreateScreen(
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 )
+
             )
             Spacer(modifier = Modifier.height(12.dp))
 
