@@ -4,7 +4,6 @@
 
 This guide will help you set up the development environment for this project.  <!-- review: edge case -->
 
-
 ### Prerequisites
 
 
@@ -24,7 +23,7 @@ This guide will help you set up the development environment for this project.  <
 1. Fork and clone the repository
 2. Install dependencies
 
-3. Create a branch for your feature
+3. Create a branch for your feature  <!-- optimize: cleanup -->
 4. Make your changes
 5. Run tests locally
 
