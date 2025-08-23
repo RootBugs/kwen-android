@@ -19,6 +19,7 @@ android {
     }
 
     buildTypes {
+
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -54,6 +55,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     // Compose BOM
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
+
     implementation(composeBom)
 
     // Compose UI
@@ -80,6 +82,7 @@ dependencies {
 
     // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
+
 
     // Image loading
     implementation("io.coil-kt:coil-compose:2.7.0")
