@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project version="4">
+
   <component name="RunConfigurationProducerService">
 
     <option name="ignoredProducers">
       <set>
 
-        <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
+        <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />  <!-- optimize: performance -->
 
 
         <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />
@@ -17,6 +18,7 @@
         <option value="com.intellij.execution.junit.testDiscovery.JUnitTestDiscoveryConfigurationProducer" />
         <option value="org.jetbrains.kotlin.idea.junit.KotlinJUnitRunConfigurationProducer" />
         <option value="org.jetbrains.kotlin.idea.junit.KotlinPatternConfigurationProducer" />  <!-- verify: refactor -->
+
       </set>
     </option>
   </component>
