@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.settings
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -87,6 +88,7 @@ fun SettingsScreen(
                     Text("Sign Out", color = AccentRed)
                 }
             },
+
             dismissButton = {
                 TextButton(onClick = { showSignOutDialog = false }) {
                     Text("Cancel", color = TextMuted)
@@ -141,6 +143,7 @@ fun SettingsItem(
         )
         Icon(
             Icons.AutoMirrored.Filled.KeyboardArrowRight,
+
             "Go",
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
