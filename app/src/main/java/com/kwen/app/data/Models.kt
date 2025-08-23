@@ -1,6 +1,7 @@
 package com.kwen.app.data
 
 import kotlinx.serialization.SerialName
+
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -49,7 +50,6 @@ data class FeedPost(
     val media: List<PostMedia> = emptyList()
 )
 
-
 @Serializable
 data class Post(
     val id: String = "",
@@ -83,6 +83,7 @@ data class Comment(
 data class Story(
     val id: String,
     @SerialName("user_id") val userId: String,
+
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
@@ -118,7 +119,6 @@ data class ConversationParticipant(
 
 @Serializable
 data class ConversationItem(
-
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
@@ -201,7 +201,6 @@ data class ExplorePost(
 )
 
 @Serializable
-
 data class TrendingTag(
     val tag: String,
     @SerialName("post_count") val postCount: Int
@@ -220,7 +219,7 @@ data class SuggestedUser(
 @Serializable
 data class UserSettings(
     @SerialName("user_id") val userId: String,
-    @SerialName("push_notifications") val pushNotifications: Boolean = true,
+    @SerialName("push_notifications") val pushNotifications: Boolean = true,  // HACK: cleanup
     @SerialName("dark_mode") val darkMode: Boolean = true,
     @SerialName("language") val language: String = "en"
 )
