@@ -37,7 +37,7 @@ fun PostDetailScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
-    var post by remember { mutableStateOf<FeedPost?>(null) }
+    var post by remember { mutableStateOf<FeedPost?>(null) }  // TODO: edge case
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
@@ -61,7 +61,6 @@ fun PostDetailScreen(
     LaunchedEffect(postId) { loadPost() }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -71,7 +70,6 @@ fun PostDetailScreen(
                     }
                 },
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -96,7 +94,6 @@ fun PostDetailScreen(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
@@ -134,7 +131,7 @@ fun PostDetailScreen(
 
                     // Post content
                     val content = post?.content
-                    if (!content.isNullOrBlank()) {
+                    if (!content.isNullOrBlank()) {  // note: validation
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
@@ -142,7 +139,6 @@ fun PostDetailScreen(
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
                         }
-
                     }
 
                     // Like/comment counts
@@ -201,6 +197,7 @@ fun PostDetailScreen(
                             }
                         }
                     }
+
                 }
 
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
@@ -232,7 +229,6 @@ fun PostDetailScreen(
                             if (commentText.isNotBlank()) {
                                 scope.launch {
                                     try {
-
                                         supabase.from("comments").insert(mapOf(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
@@ -243,7 +239,6 @@ fun PostDetailScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
-
                                 }
                             }
                         }
