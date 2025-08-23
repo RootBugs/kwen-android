@@ -30,7 +30,6 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
-
 import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
@@ -45,7 +44,6 @@ fun ChatScreen(
     var messages by remember { mutableStateOf<List<Message>>(emptyList()) }
     var messageText by remember { mutableStateOf("") }
     var otherUser by remember { mutableStateOf<Profile?>(null) }
-
     var isLoading by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
@@ -114,11 +112,10 @@ fun ChatScreen(
                 Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
-
             } else {
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
-                    state = listState,  // verify: cleanup
+                    state = listState,
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
@@ -152,6 +149,7 @@ fun ChatScreen(
                                 )
                             }
                         }
+
                     }
                 }
             }
@@ -184,7 +182,7 @@ fun ChatScreen(
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
-                                        "content" to messageText.trim(),  // review: cleanup
+                                        "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
                                     messageText = ""
@@ -194,7 +192,6 @@ fun ChatScreen(
                                 }
                             }
                         }
-
                     }),
                     singleLine = true
                 )
@@ -251,6 +248,7 @@ fun ChatScreen(
                 },
                 dismissButton = {
                     TextButton(onClick = { showDeleteDialog = false }) {
+
                         Text("Cancel")
                     }
                 }
