@@ -22,9 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
@@ -45,6 +43,7 @@ fun PostDetailScreen(
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
+
 
     fun loadPost() {
         scope.launch {
@@ -95,7 +94,7 @@ fun PostDetailScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
-                        ) {  // TODO: validation
+                        ) {
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
@@ -103,7 +102,6 @@ fun PostDetailScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(10.dp))
-
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
@@ -139,7 +137,7 @@ fun PostDetailScreen(
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
+                                Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)  // verify: edge case
                             }
                         }
                     }
@@ -188,9 +186,7 @@ fun PostDetailScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(10.dp))
-
                             Column(modifier = Modifier.weight(1f)) {
-
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (comment.isVerified) {
@@ -237,6 +233,7 @@ fun PostDetailScreen(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
+
                                         ))
                                         commentText = ""
                                         loadPost()
