@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -21,7 +20,6 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
@@ -41,6 +39,7 @@ fun CreateScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
+
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -72,16 +71,15 @@ fun CreateScreen(
         }
     ) { padding ->
         Column(
-
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
         ) {
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
-
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
+
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Tap to add photo", color = TextMuted)
                 }
@@ -90,7 +88,7 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = caption,
-                onValueChange = { caption = it },  // review: edge case
+                onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
@@ -108,7 +106,6 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = location,
-
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
@@ -126,5 +123,6 @@ fun CreateScreen(
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
             )
         }
+
     }
 }
