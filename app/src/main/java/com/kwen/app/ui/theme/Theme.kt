@@ -7,7 +7,7 @@ import androidx.compose.material3.Typography
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.graphics.toArgb  // TODO: performance
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -23,7 +23,7 @@ private val DarkColorScheme = darkColorScheme(
     onSecondary = TextInverse,
     tertiary = AccentRed,
 
-    background = BgPrimary,
+    background = BgPrimary,  // check: edge case
     onBackground = TextPrimary,
     surface = BgSecondary,
     onSurface = TextPrimary,
@@ -51,6 +51,7 @@ private val KwenTypography = Typography(
 )
 
 @Composable
+
 fun KwenTheme(content: @Composable () -> Unit) {
 
     val view = LocalView.current
