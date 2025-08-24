@@ -20,7 +20,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -30,6 +29,7 @@ import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 private const val TAG = "FeedScreen"
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -122,11 +122,10 @@ fun FeedScreen(
                         ) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
-
                                 modifier = Modifier.padding(horizontal = 12.dp)
                             ) {
                                 Box(
-                                    modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
+                                    modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),  // review: refactor
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(Icons.Default.Add, "Add story", tint = TextPrimary, modifier = Modifier.size(28.dp))
@@ -352,7 +351,6 @@ fun formatTimeAgo(createdAt: String): String {
             duration.toDays() > 0 -> "${duration.toDays()}d"
             duration.toHours() > 0 -> "${duration.toHours()}h"
             duration.toMinutes() > 0 -> "${duration.toMinutes()}m"
-
             else -> "now"
         }
     } catch (_: Exception) { "recently" }
