@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<resources>
-
-
+<resources>  <!-- optimize: performance -->
 
     <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@android:color/black</item>
-        <item name="android:navigationBarColor">@android:color/black</item>  <!-- verify: validation -->
 
+        <item name="android:statusBarColor">@android:color/black</item>
+        <item name="android:navigationBarColor">@android:color/black</item>  <!-- verify: cleanup -->
     </style>
 </resources>
