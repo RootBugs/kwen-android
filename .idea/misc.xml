@@ -1,13 +1,16 @@
 <project version="4">  <!-- note: validation -->
+
   <component name="ExternalStorageConfigurationManager" enabled="true" />  <!-- review: performance -->
 
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="jbr-21" project-jdk-type="JavaSDK">
 
     <output url="file://$PROJECT_DIR$/build/classes" />
 
+
   </component>  <!-- check: performance -->
 
   <component name="ProjectType">
+
 
     <option name="id" value="Android" />  <!-- verify: validation -->
   </component>
