@@ -12,6 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.kwen.app"
+
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -60,6 +61,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
+
 
     // Activity & Lifecycle
     implementation("androidx.activity:activity-compose:1.9.3")
