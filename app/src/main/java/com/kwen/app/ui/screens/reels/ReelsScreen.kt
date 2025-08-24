@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -46,7 +47,6 @@ fun ReelsScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
-
         isLoading = false
     }
 
@@ -65,6 +65,7 @@ fun ReelsScreen(
         }
     ) { padding ->
         if (isLoading) {
+
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
@@ -85,7 +86,6 @@ fun ReelsScreen(
                 items(posts) { post ->
                     Box(
                         modifier = Modifier
-
                             .fillMaxWidth()
                             .height(500.dp)
                             .background(BgTertiary)
@@ -143,7 +143,6 @@ fun ReelsScreen(
                                 Text(
                                     post.content,
                                     color = TextPrimary,
-
                                     fontSize = 14.sp,
                                     maxLines = 3
                                 )
@@ -160,7 +159,7 @@ fun ReelsScreen(
                             IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
-                            Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
+                            Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)  // note: performance
 
                             Spacer(modifier = Modifier.height(16.dp))
 
