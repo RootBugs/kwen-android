@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
@@ -71,6 +72,7 @@ fun CreateScreen(
         }
     ) { padding ->
         Column(
+
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
         ) {
             Box(
@@ -106,6 +108,7 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = location,
+
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
