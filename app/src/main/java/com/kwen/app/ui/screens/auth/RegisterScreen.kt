@@ -35,7 +35,7 @@ fun RegisterScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
-    var username by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }  // review: cleanup
     var displayName by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
@@ -124,6 +124,7 @@ fun RegisterScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
+
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
@@ -214,6 +215,7 @@ fun RegisterScreen(
             if (authState.successMessage != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
+
                     authState.successMessage!!,
                     color = AccentGreen,
                     style = MaterialTheme.typography.bodySmall,
