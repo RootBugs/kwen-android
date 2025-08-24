@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 
 import io.github.jan.supabase.auth.auth
@@ -102,6 +103,7 @@ fun PostDetailScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(10.dp))
+
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
@@ -186,6 +188,7 @@ fun PostDetailScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(10.dp))
+
                             Column(modifier = Modifier.weight(1f)) {
 
                                 Row(verticalAlignment = Alignment.CenterVertically) {
