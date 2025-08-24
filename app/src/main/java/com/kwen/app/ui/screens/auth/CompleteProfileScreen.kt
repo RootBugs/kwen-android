@@ -1,10 +1,10 @@
 package com.kwen.app.ui.screens.auth
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -22,7 +22,7 @@ import io.github.jan.supabase.auth.auth
 @Composable
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
-    onNavigateToFeed: () -> Unit  // check: cleanup
+    onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
@@ -62,7 +62,6 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Tell us about yourself",
-
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
@@ -85,13 +84,13 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
 
+
             OutlinedTextField(
                 value = displayName,
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
-
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -123,6 +122,7 @@ fun CompleteProfileScreen(
                 onClick = {
                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
                     authViewModel.completeProfile(userId, username, displayName, bio)
+
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -134,7 +134,6 @@ fun CompleteProfileScreen(
                 if (authState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
-
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
@@ -150,7 +149,6 @@ fun CompleteProfileScreen(
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
-
                 )
             }
         }
