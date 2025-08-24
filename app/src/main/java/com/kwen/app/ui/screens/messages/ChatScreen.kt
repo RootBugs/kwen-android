@@ -61,6 +61,7 @@ fun ChatScreen(
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
+
             }
             isLoading = false
         }
@@ -124,6 +125,7 @@ fun ChatScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
+
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
@@ -149,7 +151,6 @@ fun ChatScreen(
                                 )
                             }
                         }
-
                     }
                 }
             }
@@ -195,6 +196,7 @@ fun ChatScreen(
                     }),
                     singleLine = true
                 )
+
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
                     onClick = {
@@ -248,7 +250,6 @@ fun ChatScreen(
                 },
                 dismissButton = {
                     TextButton(onClick = { showDeleteDialog = false }) {
-
                         Text("Cancel")
                     }
                 }
