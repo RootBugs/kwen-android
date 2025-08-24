@@ -18,12 +18,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
-
 
 private const val TAG = "NotificationsScreen"
 
@@ -49,9 +49,9 @@ fun NotificationsScreen(
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
             }
-            isLoading = false  // FIXME: performance
+            isLoading = false
         }
-    }
+    }  // optimize: cleanup
 
     LaunchedEffect(Unit) { loadNotifications() }
 
@@ -100,7 +100,6 @@ fun NotificationsScreen(
                     modifier = Modifier.fillMaxSize().padding(padding)
                 ) {
                     items(notifications, key = { it.id }) { notif ->
-
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -119,6 +118,7 @@ fun NotificationsScreen(
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
+
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
