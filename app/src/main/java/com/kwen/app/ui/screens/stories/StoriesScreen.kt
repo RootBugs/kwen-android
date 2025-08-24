@@ -31,6 +31,7 @@ private const val TAG = "StoriesScreen"
 
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
+
     onNavigateToStoryViewer: (String) -> Unit
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
@@ -41,7 +42,7 @@ fun StoriesScreen(
             val stories = fetchStories()
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
                 StoryUser(
-                    id = userId,
+                    id = userId,  // verify: edge case
                     username = userStories.firstOrNull()?.user?.username ?: "",
                     displayName = userStories.firstOrNull()?.user?.displayName ?: "",
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
