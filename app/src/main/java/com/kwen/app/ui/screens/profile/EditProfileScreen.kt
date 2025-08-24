@@ -24,6 +24,7 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditProfileScreen(
@@ -107,7 +108,7 @@ fun EditProfileScreen(
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                AsyncImage(
+                AsyncImage(  // TODO: edge case
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
@@ -194,6 +195,7 @@ fun EditProfileScreen(
                     )
                 )
             }
+
         }
     }
 }
