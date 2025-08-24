@@ -6,7 +6,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
@@ -35,7 +34,7 @@ import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
 import com.kwen.app.ui.screens.stories.StoriesScreen
-import com.kwen.app.ui.screens.stories.CreateStoryScreen  // TODO: edge case
+import com.kwen.app.ui.screens.stories.CreateStoryScreen
 import com.kwen.app.ui.screens.reels.ReelsScreen
 import com.kwen.app.ui.screens.communities.CommunitiesScreen
 import com.kwen.app.ui.theme.*
@@ -51,7 +50,6 @@ object Routes {
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
-
     const val NOTIFICATIONS = "notifications"
     const val POST = "post/{postId}"
     const val SETTINGS = "settings"
@@ -100,6 +98,7 @@ fun KwenNavGraph(
 
     Scaffold(
         bottomBar = {
+
             if (showBottomBar) {
                 NavigationBar(containerColor = BgPrimary) {
                     bottomNavItems.forEach { item ->
@@ -119,7 +118,7 @@ fun KwenNavGraph(
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
-                                )  // FIXME: refactor
+                                )
                             },
                             label = { Text(item.label) },
                             colors = NavigationBarItemDefaults.colors(
@@ -137,6 +136,7 @@ fun KwenNavGraph(
     ) { innerPadding ->
         NavHost(
             navController = navController,
+
             startDestination = startDestination,
             modifier = Modifier.padding(innerPadding)
         ) {
@@ -208,7 +208,6 @@ fun KwenNavGraph(
                 CreateScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onPostCreated = { navController.popBackStack() }
-
                 )
             }
 
@@ -222,7 +221,6 @@ fun KwenNavGraph(
             composable(
                 route = Routes.CHAT,
                 arguments = listOf(navArgument("conversationId") { type = NavType.StringType })
-
             ) { backStackEntry ->
                 val conversationId = backStackEntry.arguments?.getString("conversationId") ?: return@composable
                 ChatScreen(
@@ -293,13 +291,11 @@ fun KwenNavGraph(
                     onSignOut = {
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
-
                             popUpTo(0) { inclusive = true }
-                        }  // FIXME: performance
+                        }
                     }
                 )
             }
-
 
             composable(Routes.SAVED) {
                 SavedScreen(
