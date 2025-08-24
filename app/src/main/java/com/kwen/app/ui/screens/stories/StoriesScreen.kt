@@ -27,6 +27,7 @@ private const val TAG = "StoriesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
     onNavigateToStoryViewer: (String) -> Unit
@@ -57,6 +58,7 @@ fun StoriesScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -102,6 +104,7 @@ fun StoriesScreen(
                                 contentScale = ContentScale.Crop
                             )
                         }
+
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
