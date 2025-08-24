@@ -2,17 +2,20 @@ pluginManagement {
     repositories {
         google()
         mavenCentral()
-        gradlePluginPortal()  // TODO: validation
+
+        gradlePluginPortal()
     }
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)  // review: refactor
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
+
         mavenCentral()
     }
 }
 
-rootProject.name = "Kwen"  // optimize: refactor
+
+rootProject.name = "Kwen"
 include(":app")
