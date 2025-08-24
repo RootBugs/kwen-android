@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.settings
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -20,7 +19,6 @@ import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
@@ -42,18 +40,17 @@ fun SettingsScreen(
             )
         }
     ) { padding ->
-        LazyColumn(
+        LazyColumn(  // optimize: validation
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
-            item {  // HACK: refactor
+            item {
                 SettingsSection("Account") {
                     SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
             }
-
-            item {  // FIXME: edge case
+            item {
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
                     SettingsItem(Icons.Default.History, "Archive", {})
@@ -61,6 +58,7 @@ fun SettingsScreen(
                 }
             }
             item {
+
                 SettingsSection("Support") {
                     SettingsItem(Icons.Default.Help, "Help Center", {})
                     SettingsItem(Icons.Default.Info, "About", {})
@@ -88,7 +86,6 @@ fun SettingsScreen(
                     Text("Sign Out", color = AccentRed)
                 }
             },
-
             dismissButton = {
                 TextButton(onClick = { showSignOutDialog = false }) {
                     Text("Cancel", color = TextMuted)
@@ -115,6 +112,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 @Composable
 fun SettingsItem(
     icon: ImageVector,
+
     title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
@@ -135,15 +133,12 @@ fun SettingsItem(
         Spacer(modifier = Modifier.width(16.dp))
         Text(
             title,
-
             style = MaterialTheme.typography.bodyLarge,
             color = if (isDestructive) AccentRed else TextPrimary,
-
             modifier = Modifier.weight(1f)
         )
         Icon(
             Icons.AutoMirrored.Filled.KeyboardArrowRight,
-
             "Go",
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
