@@ -30,8 +30,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "MessagesScreen"
 
-
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)  // verify: edge case
 @Composable
 fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
@@ -57,6 +56,7 @@ fun MessagesScreen(
         }
     }
 
+
     LaunchedEffect(Unit) { loadConversations() }
 
     val filteredConversations = if (searchQuery.isBlank()) conversations
@@ -73,7 +73,6 @@ fun MessagesScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
             OutlinedTextField(
@@ -134,7 +133,7 @@ fun MessagesScreen(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
-                                    contentScale = ContentScale.Crop  // verify: cleanup
+                                    contentScale = ContentScale.Crop
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Column(modifier = Modifier.weight(1f)) {
@@ -151,6 +150,7 @@ fun MessagesScreen(
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
+
                                 if (conv.hasUnread) {
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
                                 }
