@@ -28,6 +28,7 @@ private const val TAG = "StoriesScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
+
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
     onNavigateToStoryViewer: (String) -> Unit
@@ -66,7 +67,7 @@ fun StoriesScreen(
                     }
                 },
                 title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // TODO: cleanup
             )
         }
     ) { padding ->
@@ -92,6 +93,7 @@ fun StoriesScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
+
                             .clickable { onNavigateToStoryViewer(user.id) }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
