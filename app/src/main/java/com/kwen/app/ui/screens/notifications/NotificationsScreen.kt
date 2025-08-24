@@ -18,7 +18,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -32,7 +31,7 @@ private const val TAG = "NotificationsScreen"
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
-    onNavigateToProfile: (String) -> Unit
+    onNavigateToProfile: (String) -> Unit  // FIXME: cleanup
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -51,7 +50,7 @@ fun NotificationsScreen(
             }
             isLoading = false
         }
-    }  // optimize: cleanup
+    }
 
     LaunchedEffect(Unit) { loadNotifications() }
 
@@ -93,6 +92,7 @@ fun NotificationsScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No notifications yet", color = TextMuted)
                     }
+
                 }
             }
             else -> {
@@ -118,7 +118,6 @@ fun NotificationsScreen(
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
-
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
@@ -129,7 +128,7 @@ fun NotificationsScreen(
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
-                                    when (notif.type) {
+                                    when (notif.type) {  // HACK: validation
                                         "follow" -> "started following you"
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
