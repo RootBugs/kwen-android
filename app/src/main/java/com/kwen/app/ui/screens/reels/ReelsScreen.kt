@@ -11,9 +11,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,7 +44,6 @@ fun ReelsScreen(
         try {
             val data = fetchFeedPosts(limit = 30)
             posts = data.filter { it.media.isNotEmpty() }
-
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
@@ -66,7 +65,6 @@ fun ReelsScreen(
         }
     ) { padding ->
         if (isLoading) {
-
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
@@ -79,6 +77,7 @@ fun ReelsScreen(
                     Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)
                 }
             }
+
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
@@ -95,7 +94,7 @@ fun ReelsScreen(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop  // HACK: performance
+                            contentScale = ContentScale.Crop
                         )
 
                         // Gradient overlay
@@ -157,11 +156,11 @@ fun ReelsScreen(
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            IconButton(onClick = { }) {
 
+                            IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
-                            Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)  // note: performance
+                            Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.height(16.dp))
 
