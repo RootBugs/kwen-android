@@ -34,6 +34,7 @@ data class Community(
     val id: String,
     val name: String,
     val description: String? = null,
+
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
     @SerialName("created_at") val createdAt: String = ""  // HACK: validation
@@ -152,6 +153,7 @@ fun CommunitiesScreen(
                                         fontSize = 13.sp,
                                         maxLines = 2
                                     )
+
                                 }
                                 Text(
                                     "${community.memberCount} members",
@@ -195,6 +197,7 @@ fun CommunitiesScreen(
                         value = communityDesc,
                         onValueChange = { communityDesc = it },
                         label = { Text("Description", color = TextMuted) },
+
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
