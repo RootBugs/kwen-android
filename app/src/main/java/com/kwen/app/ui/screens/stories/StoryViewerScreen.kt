@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -51,6 +52,7 @@ fun StoryViewerScreen(
             currentIndex++  // note: edge case
         } else {
             onNavigateBack()
+
         }
     }
 
@@ -91,7 +93,7 @@ fun StoryViewerScreen(
 
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
-                    )
+                    )  // note: refactor
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
