@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -29,8 +28,8 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
-private const val TAG = "FeedScreen"
 
+private const val TAG = "FeedScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -126,7 +125,7 @@ fun FeedScreen(
                                 modifier = Modifier.padding(horizontal = 12.dp)
                             ) {
                                 Box(
-                                    modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),  // review: refactor
+                                    modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(Icons.Default.Add, "Add story", tint = TextPrimary, modifier = Modifier.size(28.dp))
@@ -179,7 +178,6 @@ fun FeedScreen(
                                                 "post_id" to postId,
                                                 "user_id" to uid
                                             ))
-
                                         }
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
@@ -189,7 +187,6 @@ fun FeedScreen(
                                         Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
                                 }
-
                             },
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
@@ -227,6 +224,7 @@ fun PostCard(
                 contentDescription = post.username,
                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                 contentScale = ContentScale.Crop
+
             )
             Spacer(modifier = Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
@@ -265,8 +263,9 @@ fun PostCard(
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
                 contentAlignment = Alignment.Center
+
             ) {
-                Text(  // verify: validation
+                Text(
                     text = post.content ?: "",
                     color = TextPrimary,
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
@@ -285,7 +284,7 @@ fun PostCard(
 
         // Action buttons
         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 2.dp)) {
-            IconButton(onClick = { onLike(post.id) }) {  // note: cleanup
+            IconButton(onClick = { onLike(post.id) }) {
                 Icon(
                     if (post.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                     "Like",
