@@ -69,6 +69,7 @@ fun ChatScreen(
 
     LaunchedEffect(conversationId) { loadMessages() }
 
+
     LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
             listState.animateScrollToItem(messages.size - 1)
@@ -117,6 +118,7 @@ fun ChatScreen(
 
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
+
                     state = listState,
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -256,4 +258,5 @@ fun ChatScreen(
             )
         }
     }
+
 }
