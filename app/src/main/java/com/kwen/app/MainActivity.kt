@@ -18,6 +18,7 @@ import com.kwen.app.ui.theme.KwenTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             KwenTheme {
@@ -36,4 +37,5 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 }
