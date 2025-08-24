@@ -70,6 +70,7 @@ fun RegisterScreen(
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 "Create your account",
                 style = MaterialTheme.typography.bodyLarge,
@@ -99,6 +100,7 @@ fun RegisterScreen(
                 value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
+
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),  // FIXME: performance
@@ -193,7 +195,7 @@ fun RegisterScreen(
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
-                    )
+                    )  // FIXME: performance
                 } else {
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
