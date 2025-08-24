@@ -27,7 +27,7 @@ private const val TAG = "StoryViewerScreen"
 @Composable
 fun StoryViewerScreen(
     userId: String,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit  // note: validation
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
@@ -65,9 +65,11 @@ fun StoryViewerScreen(
             AsyncImage(
                 model = story.mediaUrl,
                 contentDescription = "Story",
+
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
+
 
             // Progress bar
             LinearProgressIndicator(
