@@ -124,6 +124,7 @@ fun ChatScreen(
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items(messages, key = { it.id }) { msg ->
+
                         val isMine = msg.isMine
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -236,6 +237,7 @@ fun ChatScreen(
                         selectedMessage?.let { message ->
                             scope.launch {
                                 try {
+
                                     supabase.from("messages").delete {
                                         filter { eq("id", message.id) }
                                     }
