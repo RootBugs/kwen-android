@@ -7,7 +7,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +22,7 @@ import kotlinx.coroutines.delay
 private const val TAG = "StoryViewerScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun StoryViewerScreen(
     userId: String,
@@ -48,8 +48,7 @@ fun StoryViewerScreen(
             delay(50)
         }
         if (currentIndex < stories.size - 1) {
-            currentIndex++
-
+            currentIndex++  // note: edge case
         } else {
             onNavigateBack()
         }
@@ -89,11 +88,11 @@ fun StoryViewerScreen(
                     AsyncImage(
                         model = user.avatarUrl ?: "",
                         contentDescription = user.displayName,
+
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
             }
