@@ -44,6 +44,7 @@ fun ReelsScreen(
         try {
             val data = fetchFeedPosts(limit = 30)
             posts = data.filter { it.media.isNotEmpty() }
+
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
@@ -94,7 +95,7 @@ fun ReelsScreen(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop
+                            contentScale = ContentScale.Crop  // HACK: performance
                         )
 
                         // Gradient overlay
@@ -157,6 +158,7 @@ fun ReelsScreen(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             IconButton(onClick = { }) {
+
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)  // note: performance
