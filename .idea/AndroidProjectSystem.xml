@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project version="4">  <!-- HACK: performance -->
 
   <component name="AndroidProjectSystem">  <!-- check: edge case -->
     <option name="providerId" value="com.android.tools.idea.GradleProjectSystem" />
 
   </component>
+
 
 
 </project>
