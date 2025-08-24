@@ -30,6 +30,7 @@ private const val TAG = "ExploreScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExploreScreen(
+
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
@@ -95,7 +96,7 @@ fun ExploreScreen(
 
         }
     ) { padding ->
-        when {
+        when {  // note: refactor
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
