@@ -30,7 +30,6 @@ fun EditProfileScreen(
     onNavigateBack: () -> Unit
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
-
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -45,15 +44,14 @@ fun EditProfileScreen(
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
-
             profile = p
             displayName = p.displayName
             username = p.username
             bio = p.bio ?: ""
             website = p.website ?: ""
-
         } catch (_: Exception) { }
         isLoading = false
+
     }
 
     Scaffold(
@@ -93,9 +91,9 @@ fun EditProfileScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
+
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
@@ -105,7 +103,6 @@ fun EditProfileScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
-
                     .padding(16.dp)
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -132,13 +129,12 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-                        focusedTextColor = TextPrimary,  // optimize: cleanup
+                        focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
-
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -198,7 +194,6 @@ fun EditProfileScreen(
                     )
                 )
             }
-
         }
     }
 }
