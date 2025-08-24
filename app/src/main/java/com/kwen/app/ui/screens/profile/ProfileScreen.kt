@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
+
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -33,12 +34,12 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ProfileScreen"
 
-@OptIn(ExperimentalMaterial3Api::class)  // review: validation
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
     username: String?,
     currentUserId: String,
-    onBack: () -> Unit = {},  // HACK: edge case
+    onBack: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToEdit: () -> Unit = {},
     onNavigateToSettings: () -> Unit = {},
@@ -76,7 +77,6 @@ fun ProfileScreen(
                         supabase.from("follows").select {
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
                         }.decodeList<Follow>()
-
                     } catch (_: Exception) { emptyList() }
                     isFollowing = followCheck.isNotEmpty()
                 }
@@ -108,7 +108,7 @@ fun ProfileScreen(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
                 actions = {
-                    if (isOwnProfile) {  // check: cleanup
+                    if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
@@ -126,6 +126,7 @@ fun ProfileScreen(
                 Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AsyncImage(model = profile!!.avatarUrl ?: "", contentDescription = profile!!.displayName,
+
                             modifier = Modifier.size(80.dp).clip(CircleShape).background(BgTertiary), contentScale = ContentScale.Crop)
                         Spacer(modifier = Modifier.width(20.dp))
                         Row(modifier = Modifier.weight(1f), horizontalArrangement = Arrangement.SpaceEvenly) {
@@ -140,6 +141,7 @@ fun ProfileScreen(
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
                     val bioText = profile?.bio
+
                     if (!bioText.isNullOrBlank()) { Text(bioText, color = TextPrimary, modifier = Modifier.padding(top = 4.dp)) }
                     Spacer(modifier = Modifier.height(12.dp))
                     if (isOwnProfile) {
@@ -149,7 +151,7 @@ fun ProfileScreen(
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
                     } else {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Button(onClick = {  // check: refactor
+                            Button(onClick = {
                                 scope.launch {
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
@@ -177,7 +179,6 @@ fun ProfileScreen(
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.PlayCircle, "Reels", tint = TextMuted) }
                     if (isOwnProfile) IconButton(onClick = onNavigateToSaved, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextMuted) }
                 }
-
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
                 if (posts.isEmpty()) {
