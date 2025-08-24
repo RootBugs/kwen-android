@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>  <!-- optimize: cleanup -->
+<?xml version="1.0" encoding="utf-8"?>
 
-<resources>  <!-- optimize: edge case -->  <!-- check: validation -->
+<resources>  <!-- note: cleanup -->
     <string name="app_name">Kwen</string>
 </resources>
