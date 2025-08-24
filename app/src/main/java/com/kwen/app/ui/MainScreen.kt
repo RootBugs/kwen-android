@@ -20,14 +20,13 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    authViewModel: AuthViewModel,
+    authViewModel: AuthViewModel,  // check: validation
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
-
-) {  // optimize: edge case
+) {
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
@@ -39,7 +38,7 @@ fun MainScreen(
         Icons.Filled.Person to Icons.Outlined.Person
     )
 
-    Scaffold(  // note: cleanup
+    Scaffold(
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
@@ -47,13 +46,12 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
-
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
-                    },
+                    },  // review: cleanup
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
@@ -70,7 +68,7 @@ fun MainScreen(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
-                        onClick = { selectedTab = index },
+                        onClick = { selectedTab = index },  // check: cleanup
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
@@ -91,7 +89,6 @@ fun MainScreen(
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
-
                     onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
@@ -99,7 +96,6 @@ fun MainScreen(
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
-
                     username = null,
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
