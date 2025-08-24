@@ -37,6 +37,7 @@ private const val TAG = "ChatScreen"
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun ChatScreen(
+
     conversationId: String,
     onBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -61,7 +62,6 @@ fun ChatScreen(
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
-
             }
             isLoading = false
         }
@@ -114,6 +114,7 @@ fun ChatScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             } else {
+
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
@@ -125,7 +126,6 @@ fun ChatScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
-
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
@@ -196,7 +196,6 @@ fun ChatScreen(
                     }),
                     singleLine = true
                 )
-
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
                     onClick = {
@@ -226,6 +225,7 @@ fun ChatScreen(
 
         if (showDeleteDialog) {
             AlertDialog(
+
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
                 text = { Text("Are you sure you want to delete this message?") },
