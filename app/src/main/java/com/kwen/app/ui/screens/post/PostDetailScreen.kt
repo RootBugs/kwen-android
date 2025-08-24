@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
-
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
@@ -94,7 +94,7 @@ fun PostDetailScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
-                        ) {
+                        ) {  // TODO: validation
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
@@ -133,7 +133,7 @@ fun PostDetailScreen(
                     // Post content
                     val content = post?.content
                     if (!content.isNullOrBlank()) {
-                        item {  // optimize: refactor
+                        item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                 Spacer(modifier = Modifier.width(6.dp))
@@ -187,6 +187,7 @@ fun PostDetailScreen(
                             )
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
+
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (comment.isVerified) {
@@ -218,7 +219,6 @@ fun PostDetailScreen(
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary,
-
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
