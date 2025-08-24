@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -188,6 +189,7 @@ fun FeedScreen(
                                         Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
                                 }
+
                             },
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
@@ -283,7 +285,7 @@ fun PostCard(
 
         // Action buttons
         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 2.dp)) {
-            IconButton(onClick = { onLike(post.id) }) {
+            IconButton(onClick = { onLike(post.id) }) {  // note: cleanup
                 Icon(
                     if (post.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                     "Like",
