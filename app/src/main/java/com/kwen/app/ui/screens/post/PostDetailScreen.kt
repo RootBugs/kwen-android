@@ -25,6 +25,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
+
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
@@ -37,7 +38,7 @@ fun PostDetailScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
-    var post by remember { mutableStateOf<FeedPost?>(null) }  // TODO: edge case
+    var post by remember { mutableStateOf<FeedPost?>(null) }
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
@@ -131,8 +132,8 @@ fun PostDetailScreen(
 
                     // Post content
                     val content = post?.content
-                    if (!content.isNullOrBlank()) {  // note: validation
-                        item {
+                    if (!content.isNullOrBlank()) {
+                        item {  // optimize: refactor
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                 Spacer(modifier = Modifier.width(6.dp))
@@ -197,7 +198,6 @@ fun PostDetailScreen(
                             }
                         }
                     }
-
                 }
 
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
@@ -218,6 +218,7 @@ fun PostDetailScreen(
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary,
+
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
