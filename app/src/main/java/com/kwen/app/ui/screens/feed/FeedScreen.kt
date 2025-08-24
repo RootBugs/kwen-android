@@ -178,6 +178,7 @@ fun FeedScreen(
                                                 "post_id" to postId,
                                                 "user_id" to uid
                                             ))
+
                                         }
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
@@ -263,7 +264,7 @@ fun PostCard(
                     .background(BgTertiary),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
+                Text(  // verify: validation
                     text = post.content ?: "",
                     color = TextPrimary,
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
