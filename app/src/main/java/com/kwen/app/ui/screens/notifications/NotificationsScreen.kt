@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -24,6 +23,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
+
 
 private const val TAG = "NotificationsScreen"
 
@@ -47,10 +47,9 @@ fun NotificationsScreen(
                 notifications = fetchNotifications()
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
-
                 error = e.message
             }
-            isLoading = false
+            isLoading = false  // FIXME: performance
         }
     }
 
@@ -61,7 +60,6 @@ fun NotificationsScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -73,7 +71,6 @@ fun NotificationsScreen(
     ) { padding ->
         when {
             isLoading -> {
-
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -103,13 +100,14 @@ fun NotificationsScreen(
                     modifier = Modifier.fillMaxSize().padding(padding)
                 ) {
                     items(notifications, key = { it.id }) { notif ->
+
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
-                                        "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }  // verify: performance
+                                        "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
                                 }
                                 .padding(horizontal = 16.dp, vertical = 12.dp),
@@ -125,7 +123,6 @@ fun NotificationsScreen(
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     notif.actorDisplayName,
-
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
                                     maxLines = 1,
