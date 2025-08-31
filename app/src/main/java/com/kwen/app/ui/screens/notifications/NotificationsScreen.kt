@@ -35,6 +35,7 @@ fun NotificationsScreen(
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
+
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
@@ -43,7 +44,6 @@ fun NotificationsScreen(
             isLoading = true
             error = null
             try {
-
                 notifications = fetchNotifications()
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
@@ -113,6 +113,7 @@ fun NotificationsScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
+
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
@@ -136,7 +137,6 @@ fun NotificationsScreen(
                                     },
                                     style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
-
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
