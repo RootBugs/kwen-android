@@ -6,6 +6,7 @@
     <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
+
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
       </indentOptions>
       <arrangement>
@@ -55,6 +56,7 @@
                 </AND>
               </match>
             </rule>
+
           </section>
           <section>
             <rule>
@@ -101,6 +103,7 @@
               </match>
               <order>ANDROID_ATTRIBUTE_ORDER</order>
             </rule>
+
           </section>
 
           <section>
