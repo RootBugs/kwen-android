@@ -14,7 +14,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -23,11 +22,10 @@ import kotlinx.coroutines.delay
 private const val TAG = "StoryViewerScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun StoryViewerScreen(
     userId: String,
-    onNavigateBack: () -> Unit  // note: validation
+    onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
@@ -49,10 +47,10 @@ fun StoryViewerScreen(
             delay(50)
         }
         if (currentIndex < stories.size - 1) {
-            currentIndex++  // note: edge case
+            currentIndex++
+
         } else {
             onNavigateBack()
-
         }
     }
 
@@ -65,11 +63,9 @@ fun StoryViewerScreen(
             AsyncImage(
                 model = story.mediaUrl,
                 contentDescription = "Story",
-
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
-
 
             // Progress bar
             LinearProgressIndicator(
@@ -91,11 +87,11 @@ fun StoryViewerScreen(
                 story.user?.let { user ->
                     AsyncImage(
                         model = user.avatarUrl ?: "",
-                        contentDescription = user.displayName,
 
+                        contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
-                    )  // note: refactor
+                    )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
