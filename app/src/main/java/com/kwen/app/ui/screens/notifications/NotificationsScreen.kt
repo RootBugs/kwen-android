@@ -47,6 +47,7 @@ fun NotificationsScreen(
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
+
             }
             isLoading = false
         }
@@ -71,6 +72,7 @@ fun NotificationsScreen(
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
@@ -109,7 +111,7 @@ fun NotificationsScreen(
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
                                 }
-                                .padding(horizontal = 16.dp, vertical = 12.dp),
+                                .padding(horizontal = 16.dp, vertical = 12.dp),  // HACK: performance
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
