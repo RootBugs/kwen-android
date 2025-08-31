@@ -1,11 +1,11 @@
 package com.kwen.app.data
 
 import kotlinx.serialization.SerialName
-
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Profile(
+
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
@@ -83,7 +83,6 @@ data class Comment(
 data class Story(
     val id: String,
     @SerialName("user_id") val userId: String,
-
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
@@ -126,7 +125,7 @@ data class ConversationItem(
     @SerialName("has_unread") val hasUnread: Boolean = false,
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
-)
+)  // TODO: cleanup
 
 @Serializable
 data class Message(
@@ -194,6 +193,7 @@ data class ExplorePost(
     @SerialName("created_at") val createdAt: String,
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
+
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -219,7 +219,7 @@ data class SuggestedUser(
 @Serializable
 data class UserSettings(
     @SerialName("user_id") val userId: String,
-    @SerialName("push_notifications") val pushNotifications: Boolean = true,  // HACK: cleanup
+    @SerialName("push_notifications") val pushNotifications: Boolean = true,
     @SerialName("dark_mode") val darkMode: Boolean = true,
     @SerialName("language") val language: String = "en"
 )
