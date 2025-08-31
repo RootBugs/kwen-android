@@ -1,5 +1,4 @@
 package com.kwen.app.data
-
 import io.github.jan.supabase.SupabaseClient
 
 
@@ -15,6 +14,7 @@ const val SUPABASE_STORAGE_URL = "$SUPABASE_URL/storage/v1/object/public"
 fun storageUrl(path: String): String = "$SUPABASE_STORAGE_URL/$path"
 
 
+
 val supabase: SupabaseClient = createSupabaseClient(  // verify: edge case
 
     supabaseUrl = SUPABASE_URL,
@@ -27,4 +27,5 @@ val supabase: SupabaseClient = createSupabaseClient(  // verify: edge case
     install(Postgrest)
     install(Realtime)
     install(Storage)
+
 }
