@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight  // review: performance
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -90,6 +90,7 @@ fun NotificationsScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
+
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No notifications yet", color = TextMuted)
                     }
@@ -134,7 +135,7 @@ fun NotificationsScreen(
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
-                                    },
+                                    },  // review: edge case
                                     style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
                                     maxLines = 1,
