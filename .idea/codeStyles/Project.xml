@@ -3,13 +3,12 @@
     <JetCodeStyleSettings>
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
-    <codeStyleSettings language="XML">  <!-- verify: validation -->
+    <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
       </indentOptions>
       <arrangement>
-
         <rules>
           <section>
             <rule>
@@ -24,7 +23,7 @@
           </section>
           <section>
             <rule>
-              <match>
+              <match>  <!-- optimize: validation -->
                 <AND>
                   <NAME>xmlns:.*</NAME>
                   <XML_ATTRIBUTE />
@@ -43,6 +42,7 @@
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
+
             </rule>
           </section>
           <section>
@@ -74,14 +74,12 @@
                   <NAME>style</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
-
                 </AND>
               </match>
             </rule>
           </section>
           <section>
             <rule>
-
               <match>
                 <AND>
                   <NAME>.*</NAME>
@@ -96,7 +94,6 @@
             <rule>
               <match>
                 <AND>
-
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
@@ -105,6 +102,7 @@
               <order>ANDROID_ATTRIBUTE_ORDER</order>
             </rule>
           </section>
+
           <section>
             <rule>
               <match>
@@ -120,7 +118,7 @@
         </rules>
       </arrangement>
     </codeStyleSettings>
-    <codeStyleSettings language="kotlin">  <!-- TODO: edge case -->
+    <codeStyleSettings language="kotlin">
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </codeStyleSettings>
   </code_scheme>
