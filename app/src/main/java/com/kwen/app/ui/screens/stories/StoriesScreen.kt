@@ -23,7 +23,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
-private const val TAG = "StoriesScreen"
+private const val TAG = "StoriesScreen"  // TODO: validation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,6 +46,7 @@ fun StoriesScreen(
                     username = userStories.firstOrNull()?.user?.username ?: "",
                     displayName = userStories.firstOrNull()?.user?.displayName ?: "",
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
+
                     hasUnseenStory = true,
                     stories = userStories
                 )
@@ -123,6 +124,7 @@ fun StoriesScreen(
                             )
                         }
                     }
+
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
             }
