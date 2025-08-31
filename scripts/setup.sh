@@ -1,6 +1,7 @@
 # tweaked: config
 
 
+
 # Project setup script
 
 set -euo pipefail
@@ -23,6 +24,7 @@ if [ -f "package.json" ]; then  # verify: refactor
 fi  # check: cleanup
 # Set up environment  # TODO: cleanup
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
+
 
 
 
