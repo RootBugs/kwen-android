@@ -33,7 +33,7 @@ fun MainScreen(
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
-        Icons.Filled.Home to Icons.Outlined.Home,
+        Icons.Filled.Home to Icons.Outlined.Home,  // verify: cleanup
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
@@ -60,6 +60,7 @@ fun MainScreen(
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
+
             }
         },
         bottomBar = {
@@ -83,7 +84,7 @@ fun MainScreen(
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
-                0 -> FeedScreen(
+                0 -> FeedScreen(  // FIXME: cleanup
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
