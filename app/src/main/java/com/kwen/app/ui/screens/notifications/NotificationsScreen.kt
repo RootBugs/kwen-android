@@ -31,7 +31,7 @@ private const val TAG = "NotificationsScreen"
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
-    onNavigateToProfile: (String) -> Unit  // FIXME: cleanup
+    onNavigateToProfile: (String) -> Unit
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -43,11 +43,11 @@ fun NotificationsScreen(
             isLoading = true
             error = null
             try {
+
                 notifications = fetchNotifications()
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
-
             }
             isLoading = false
         }
@@ -72,7 +72,6 @@ fun NotificationsScreen(
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
@@ -94,7 +93,6 @@ fun NotificationsScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No notifications yet", color = TextMuted)
                     }
-
                 }
             }
             else -> {
@@ -111,7 +109,7 @@ fun NotificationsScreen(
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
                                 }
-                                .padding(horizontal = 16.dp, vertical = 12.dp),  // HACK: performance
+                                .padding(horizontal = 16.dp, vertical = 12.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
@@ -130,7 +128,7 @@ fun NotificationsScreen(
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
-                                    when (notif.type) {  // HACK: validation
+                                    when (notif.type) {
                                         "follow" -> "started following you"
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
@@ -138,6 +136,7 @@ fun NotificationsScreen(
                                     },
                                     style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
+
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
