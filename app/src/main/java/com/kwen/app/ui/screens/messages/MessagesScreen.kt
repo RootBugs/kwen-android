@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import kotlinx.coroutines.launch
 
 private const val TAG = "MessagesScreen"
@@ -83,6 +84,7 @@ fun MessagesScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -132,6 +134,7 @@ fun MessagesScreen(
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
+
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
                                     contentScale = ContentScale.Crop
                                 )
