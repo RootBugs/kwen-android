@@ -13,7 +13,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -54,6 +53,7 @@ fun ReelsScreen(
         containerColor = Color.Black,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -77,7 +77,6 @@ fun ReelsScreen(
                     Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)
                 }
             }
-
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
@@ -100,6 +99,7 @@ fun ReelsScreen(
                         // Gradient overlay
                         Box(
                             modifier = Modifier
+
                                 .fillMaxSize()
                                 .background(
                                     Brush.verticalGradient(
@@ -136,7 +136,7 @@ fun ReelsScreen(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
-                                )
+                                )  // FIXME: performance
                             }
                             if (!post.content.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(8.dp))
@@ -156,7 +156,6 @@ fun ReelsScreen(
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-
                             IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
