@@ -64,6 +64,7 @@ fun ProfileScreen(
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
             } else {
+
                 username?.let { fetchProfileByUsername(it) }
             }
 
@@ -114,6 +115,7 @@ fun ProfileScreen(
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -163,6 +165,7 @@ fun ProfileScreen(
                                     }
                                 }
                             }, modifier = Modifier.weight(1f).height(36.dp),
+
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
                                 shape = RoundedCornerShape(8.dp)) {
                                 Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
