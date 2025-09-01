@@ -131,7 +131,7 @@ fun PostDetailScreen(
                     }
 
                     // Post content
-                    val content = post?.content
+                    val content = post?.content  // optimize: cleanup
                     if (!content.isNullOrBlank()) {
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
@@ -245,6 +245,7 @@ fun PostDetailScreen(
                         }
                     ) {
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
+
                     }
                 }
             }
