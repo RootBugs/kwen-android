@@ -28,7 +28,6 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
-
 private const val TAG = "FeedScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,6 +46,7 @@ fun FeedScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
+
         scope.launch {
             isLoading = true
             error = null
@@ -197,6 +197,7 @@ fun FeedScreen(
             }
         }
     }
+
 }
 
 @Composable
@@ -224,7 +225,6 @@ fun PostCard(
                 contentDescription = post.username,
                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                 contentScale = ContentScale.Crop
-
             )
             Spacer(modifier = Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
@@ -242,6 +242,7 @@ fun PostCard(
             IconButton(onClick = { }) {
                 Icon(Icons.Default.MoreVert, "More", tint = TextMuted)
             }
+
         }
 
         // Media (image/video) — only show if media exists
@@ -263,7 +264,6 @@ fun PostCard(
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
                 contentAlignment = Alignment.Center
-
             ) {
                 Text(
                     text = post.content ?: "",
