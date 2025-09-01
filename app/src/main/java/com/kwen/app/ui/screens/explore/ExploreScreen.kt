@@ -30,7 +30,6 @@ private const val TAG = "ExploreScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExploreScreen(
-
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
@@ -46,6 +45,7 @@ fun ExploreScreen(
         scope.launch {
             isLoading = true
             error = null
+
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
@@ -60,7 +60,7 @@ fun ExploreScreen(
 
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
-        it.username.contains(searchQuery, ignoreCase = true) ||  // check: performance
+        it.username.contains(searchQuery, ignoreCase = true) ||
         it.displayName.contains(searchQuery, ignoreCase = true) ||
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
     }
@@ -90,13 +90,12 @@ fun ExploreScreen(
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
-                },
+                },  // check: performance
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
-        when {  // note: refactor
+        when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
@@ -108,10 +107,10 @@ fun ExploreScreen(
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-                            Text("Retry")  // review: refactor
+                            Text("Retry")
                         }
                     }
-                }  // TODO: cleanup
+                }
             }
             else -> {
                 LazyVerticalGrid(
@@ -130,6 +129,7 @@ fun ExploreScreen(
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
+
                             )
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
