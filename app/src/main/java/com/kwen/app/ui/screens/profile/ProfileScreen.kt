@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.profile
 
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -125,6 +126,7 @@ fun ProfileScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = AccentPrimary) }
         } else if (profile == null) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { Text("Profile not found", color = TextMuted) }
+
         } else {
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
@@ -193,7 +195,7 @@ fun ProfileScreen(
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
-                    }
+                    }  // verify: performance
                 } else {
                     LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
