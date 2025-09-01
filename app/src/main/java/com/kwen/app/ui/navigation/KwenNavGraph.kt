@@ -1,6 +1,6 @@
 package com.kwen.app.ui.navigation
 
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.padding  // check: refactor
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -98,7 +98,6 @@ fun KwenNavGraph(
 
     Scaffold(
         bottomBar = {
-
             if (showBottomBar) {
                 NavigationBar(containerColor = BgPrimary) {
                     bottomNavItems.forEach { item ->
@@ -136,7 +135,6 @@ fun KwenNavGraph(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-
             startDestination = startDestination,
             modifier = Modifier.padding(innerPadding)
         ) {
@@ -221,6 +219,7 @@ fun KwenNavGraph(
             composable(
                 route = Routes.CHAT,
                 arguments = listOf(navArgument("conversationId") { type = NavType.StringType })
+
             ) { backStackEntry ->
                 val conversationId = backStackEntry.arguments?.getString("conversationId") ?: return@composable
                 ChatScreen(
@@ -292,6 +291,7 @@ fun KwenNavGraph(
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
                             popUpTo(0) { inclusive = true }
+
                         }
                     }
                 )
