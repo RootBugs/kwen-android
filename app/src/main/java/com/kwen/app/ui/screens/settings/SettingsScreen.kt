@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -40,7 +41,7 @@ fun SettingsScreen(
             )
         }
     ) { padding ->
-        LazyColumn(  // optimize: validation
+        LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
             item {
@@ -55,10 +56,10 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
                     SettingsItem(Icons.Default.History, "Archive", {})
                     SettingsItem(Icons.Default.Favorite, "Liked Posts", {})
+
                 }
             }
             item {
-
                 SettingsSection("Support") {
                     SettingsItem(Icons.Default.Help, "Help Center", {})
                     SettingsItem(Icons.Default.Info, "About", {})
@@ -112,7 +113,6 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 @Composable
 fun SettingsItem(
     icon: ImageVector,
-
     title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
@@ -129,6 +129,7 @@ fun SettingsItem(
             contentDescription = title,
             tint = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.size(24.dp)
+
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
