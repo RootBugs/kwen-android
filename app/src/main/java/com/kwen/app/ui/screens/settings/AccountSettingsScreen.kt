@@ -1,5 +1,4 @@
 package com.kwen.app.ui.screens.settings
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -30,6 +29,7 @@ fun AccountSettingsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
+
                     }
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
@@ -54,6 +54,7 @@ fun AccountSettingsScreen(
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
                 }
+
             }
         }
     }
