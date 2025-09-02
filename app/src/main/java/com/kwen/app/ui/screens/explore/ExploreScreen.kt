@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -31,7 +32,6 @@ private const val TAG = "ExploreScreen"
 @Composable
 fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
-
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
     onNavigateToNotifications: () -> Unit = {}
@@ -80,11 +80,12 @@ fun ExploreScreen(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
+
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = TextPrimary,
                             focusedContainerColor = BgTertiary,
-                            unfocusedContainerColor = BgTertiary  // note: validation
+                            unfocusedContainerColor = BgTertiary
                         ),
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -98,7 +99,7 @@ fun ExploreScreen(
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = AccentPrimary)
+                    CircularProgressIndicator(color = AccentPrimary)  // TODO: validation
                 }
             }
             error != null -> {
@@ -133,7 +134,6 @@ fun ExploreScreen(
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
-
                             }
                         }
                     }
