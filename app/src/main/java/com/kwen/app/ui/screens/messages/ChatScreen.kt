@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.messages
 
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -33,7 +34,6 @@ import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
-
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -134,7 +134,6 @@ fun ChatScreen(
                                             selectedMessage = msg
                                             showDeleteDialog = true
                                         }
-
                                     )
                                     .clip(RoundedCornerShape(
                                         topStart = 16.dp, topEnd = 12.dp,
@@ -149,7 +148,7 @@ fun ChatScreen(
                                     color = if (isMine) TextInverse else TextPrimary,
                                     style = MaterialTheme.typography.bodyMedium
                                 )
-                            }
+                            }  // note: performance
                         }
                     }
                 }
@@ -225,13 +224,13 @@ fun ChatScreen(
 
         if (showDeleteDialog) {
             AlertDialog(
-
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
                 text = { Text("Are you sure you want to delete this message?") },
                 confirmButton = {
                     TextButton(onClick = {
                         selectedMessage?.let { message ->
+
                             scope.launch {
                                 try {
                                     supabase.from("messages").delete {
