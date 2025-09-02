@@ -20,6 +20,7 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun MainScreen(
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
@@ -50,6 +51,7 @@ fun MainScreen(
 
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
+
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
@@ -102,6 +104,7 @@ fun MainScreen(
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
+
                 )
             }
         }
