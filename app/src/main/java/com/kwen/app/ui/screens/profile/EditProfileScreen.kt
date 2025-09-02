@@ -62,7 +62,7 @@ fun EditProfileScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-                },
+                },  // review: refactor
                 title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
 
@@ -87,6 +87,7 @@ fun EditProfileScreen(
                         },
                         enabled = !isSaving
                     ) {
+
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
                 },
@@ -154,6 +155,7 @@ fun EditProfileScreen(
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
+
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
