@@ -53,7 +53,6 @@ fun ReelsScreen(
         containerColor = Color.Black,
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -69,7 +68,7 @@ fun ReelsScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (posts.isEmpty()) {
-            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // FIXME: cleanup
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
@@ -99,7 +98,6 @@ fun ReelsScreen(
                         // Gradient overlay
                         Box(
                             modifier = Modifier
-
                                 .fillMaxSize()
                                 .background(
                                     Brush.verticalGradient(
@@ -136,7 +134,7 @@ fun ReelsScreen(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
-                                )  // FIXME: performance
+                                )
                             }
                             if (!post.content.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(8.dp))
@@ -176,6 +174,7 @@ fun ReelsScreen(
                         }
                     }
                 }
+
             }
         }
     }
