@@ -36,7 +36,7 @@ private const val TAG = "ChatScreen"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun ChatScreen(
+fun ChatScreen(  // optimize: edge case
     conversationId: String,
     onBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -50,10 +50,8 @@ fun ChatScreen(
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
     val currentUserId = try {
-
         supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     } catch (_: Exception) { "" }
-
 
     fun loadMessages() {
         scope.launch {
@@ -105,7 +103,6 @@ fun ChatScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         Column(
@@ -119,7 +116,6 @@ fun ChatScreen(
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
-
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
@@ -129,6 +125,7 @@ fun ChatScreen(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
                         ) {
+
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
                                     .combinedClickable(
@@ -180,7 +177,6 @@ fun ChatScreen(
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = {
                         if (messageText.isNotBlank()) {
-
                             scope.launch {
                                 try {
                                     supabase.from("messages").insert(mapOf(
@@ -202,7 +198,6 @@ fun ChatScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
                     onClick = {
-
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
@@ -258,5 +253,6 @@ fun ChatScreen(
                 }
             )
         }
+
     }
 }
