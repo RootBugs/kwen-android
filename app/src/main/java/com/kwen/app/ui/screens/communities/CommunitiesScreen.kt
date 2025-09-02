@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.communities
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.background  // verify: validation
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -34,10 +34,9 @@ data class Community(
     val id: String,
     val name: String,
     val description: String? = null,
-
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
-    @SerialName("created_at") val createdAt: String = ""  // HACK: validation
+    @SerialName("created_at") val createdAt: String = ""
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -84,7 +83,7 @@ fun CommunitiesScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
-            }  // HACK: performance
+            }
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -116,6 +115,7 @@ fun CommunitiesScreen(
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
+
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
@@ -153,7 +153,6 @@ fun CommunitiesScreen(
                                         fontSize = 13.sp,
                                         maxLines = 2
                                     )
-
                                 }
                                 Text(
                                     "${community.memberCount} members",
@@ -188,8 +187,8 @@ fun CommunitiesScreen(
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
-
                             cursorColor = AccentPrimary
+
                         )
                     )
                     Spacer(modifier = Modifier.height(12.dp))
@@ -197,7 +196,6 @@ fun CommunitiesScreen(
                         value = communityDesc,
                         onValueChange = { communityDesc = it },
                         label = { Text("Description", color = TextMuted) },
-
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
