@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.explore
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -19,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -99,7 +99,7 @@ fun ExploreScreen(
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = AccentPrimary)  // TODO: validation
+                    CircularProgressIndicator(color = AccentPrimary)
                 }
             }
             error != null -> {
@@ -111,6 +111,7 @@ fun ExploreScreen(
                             Text("Retry")
                         }
                     }
+
                 }
             }
             else -> {
