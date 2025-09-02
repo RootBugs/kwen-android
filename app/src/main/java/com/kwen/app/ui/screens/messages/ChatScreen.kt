@@ -34,9 +34,10 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun ChatScreen(  // optimize: edge case
+fun ChatScreen(
     conversationId: String,
     onBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -125,7 +126,6 @@ fun ChatScreen(  // optimize: edge case
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
                         ) {
-
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
                                     .combinedClickable(
@@ -134,6 +134,7 @@ fun ChatScreen(  // optimize: edge case
                                             selectedMessage = msg
                                             showDeleteDialog = true
                                         }
+
                                     )
                                     .clip(RoundedCornerShape(
                                         topStart = 16.dp, topEnd = 12.dp,
@@ -224,6 +225,7 @@ fun ChatScreen(  // optimize: edge case
 
         if (showDeleteDialog) {
             AlertDialog(
+
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
                 text = { Text("Are you sure you want to delete this message?") },
@@ -253,6 +255,5 @@ fun ChatScreen(  // optimize: edge case
                 }
             )
         }
-
     }
 }
