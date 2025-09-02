@@ -24,7 +24,6 @@ fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
 ) {
-
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
@@ -40,6 +39,7 @@ fun CreateScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
+
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -66,6 +66,7 @@ fun CreateScreen(
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -73,7 +74,6 @@ fun CreateScreen(
         Column(
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
         ) {
-
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
@@ -92,9 +92,10 @@ fun CreateScreen(
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
-                colors = OutlinedTextFieldDefaults.colors(  // note: performance
+                colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
