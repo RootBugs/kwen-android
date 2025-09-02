@@ -29,6 +29,7 @@ android {
         }
     }
 
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -79,6 +80,7 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
     // Ktor (required by Supabase)
+
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
