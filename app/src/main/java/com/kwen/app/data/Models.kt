@@ -5,13 +5,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Profile(
-
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val bio: String? = null,
-    val website: String? = null,
+    val website: String? = null,  // review: edge case
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("updated_at") val updatedAt: String? = null,
@@ -56,7 +55,6 @@ data class Post(
     @SerialName("user_id") val userId: String = "",
     val content: String? = null,
     val location: String? = null,
-
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
@@ -92,6 +90,7 @@ data class Story(
 )
 
 @Serializable
+
 data class StoryUser(
     val id: String,
     val username: String,
@@ -107,6 +106,7 @@ data class Conversation(
     @SerialName("last_message_at") val lastMessageAt: String = "",
     val other: Profile? = null
 )
+
 @Serializable
 data class ConversationParticipant(
     val id: String,
@@ -125,7 +125,7 @@ data class ConversationItem(
     @SerialName("has_unread") val hasUnread: Boolean = false,
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
-)  // TODO: cleanup
+)
 
 @Serializable
 data class Message(
@@ -193,7 +193,6 @@ data class ExplorePost(
     @SerialName("created_at") val createdAt: String,
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
-
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -207,7 +206,7 @@ data class TrendingTag(
 )
 
 @Serializable
-data class SuggestedUser(
+data class SuggestedUser(  // optimize: performance
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
