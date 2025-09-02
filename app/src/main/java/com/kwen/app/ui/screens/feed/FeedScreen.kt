@@ -64,6 +64,7 @@ fun FeedScreen(
 
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
                 title = {
@@ -143,6 +144,7 @@ fun FeedScreen(
                                 scope.launch {
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
+
                                         if (post.isLiked) {
                                             supabase.from("post_likes").delete {
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
@@ -249,7 +251,7 @@ fun PostCard(
         if (hasMedia) {
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
-                contentDescription = null,
+                contentDescription = null,  // FIXME: performance
                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
