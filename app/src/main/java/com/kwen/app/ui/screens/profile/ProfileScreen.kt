@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.profile
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -9,13 +8,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-
 import androidx.compose.foundation.shape.CircleShape
-
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -65,7 +63,6 @@ fun ProfileScreen(
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
             } else {
-
                 username?.let { fetchProfileByUsername(it) }
             }
 
@@ -87,7 +84,6 @@ fun ProfileScreen(
                 val followers = try {
                     supabase.from("follows").select {
                         filter { eq("following_id", targetProfile.id) }
-
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
                 followerCount = followers.size
@@ -108,6 +104,7 @@ fun ProfileScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
@@ -116,7 +113,6 @@ fun ProfileScreen(
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
-
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -126,13 +122,11 @@ fun ProfileScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = AccentPrimary) }
         } else if (profile == null) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { Text("Profile not found", color = TextMuted) }
-
         } else {
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AsyncImage(model = profile!!.avatarUrl ?: "", contentDescription = profile!!.displayName,
-
                             modifier = Modifier.size(80.dp).clip(CircleShape).background(BgTertiary), contentScale = ContentScale.Crop)
                         Spacer(modifier = Modifier.width(20.dp))
                         Row(modifier = Modifier.weight(1f), horizontalArrangement = Arrangement.SpaceEvenly) {
@@ -147,7 +141,6 @@ fun ProfileScreen(
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
                     val bioText = profile?.bio
-
                     if (!bioText.isNullOrBlank()) { Text(bioText, color = TextPrimary, modifier = Modifier.padding(top = 4.dp)) }
                     Spacer(modifier = Modifier.height(12.dp))
                     if (isOwnProfile) {
@@ -167,7 +160,6 @@ fun ProfileScreen(
                                     }
                                 }
                             }, modifier = Modifier.weight(1f).height(36.dp),
-
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
                                 shape = RoundedCornerShape(8.dp)) {
                                 Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
@@ -176,6 +168,7 @@ fun ProfileScreen(
                                 modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
+
                                 shape = RoundedCornerShape(8.dp)) { Text("Message") }
                         }
                     }
@@ -195,12 +188,11 @@ fun ProfileScreen(
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
-                    }  // verify: performance
+                    }
                 } else {
                     LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
                         items(posts) { post ->
-
                             Box(modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }) {
                                 AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
