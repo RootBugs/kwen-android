@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.messages
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -37,7 +38,6 @@ fun MessagesScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
-
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
@@ -83,7 +83,7 @@ fun MessagesScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = BorderSoft,
+                    focusedBorderColor = BorderSoft,  // FIXME: edge case
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -99,7 +99,6 @@ fun MessagesScreen(
             when {
                 isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-
                         CircularProgressIndicator(color = AccentPrimary)
                     }
                 }
@@ -154,11 +153,11 @@ fun MessagesScreen(
                                 if (conv.hasUnread) {
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
                                 }
+
                             }
                             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                         }
                     }
-
                 }
             }
         }
