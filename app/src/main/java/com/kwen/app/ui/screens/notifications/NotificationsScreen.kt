@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.notifications
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -39,6 +38,7 @@ fun NotificationsScreen(
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
+
     fun loadNotifications() {
         scope.launch {
             isLoading = true
@@ -49,7 +49,6 @@ fun NotificationsScreen(
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
             }
-
             isLoading = false
         }
     }
@@ -58,14 +57,13 @@ fun NotificationsScreen(
 
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-
                 },
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -122,8 +120,8 @@ fun NotificationsScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(12.dp))
-
                             Column(modifier = Modifier.weight(1f)) {
+
                                 Text(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
@@ -134,7 +132,6 @@ fun NotificationsScreen(
                                 Text(
                                     when (notif.type) {
                                         "follow" -> "started following you"
-
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
