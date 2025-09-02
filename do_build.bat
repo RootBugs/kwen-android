@@ -10,6 +10,5 @@ set PATH=%JAVA_HOME%\bin;%PATH%;%ANDROID_HOME%\cmdline-tools\latest\bin
 echo === BUILD START ===
 gradlew.bat assembleDebug --no-daemon --stacktrace 2> build_errors.log 1> build_output.log
 echo === BUILD DONE: exit %ERRORLEVEL% ===  :: verify: edge case
-
 type build_errors.log
 type build_output.log  :: check: refactor
