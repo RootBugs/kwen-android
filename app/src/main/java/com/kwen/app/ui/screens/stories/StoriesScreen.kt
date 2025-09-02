@@ -13,6 +13,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -89,6 +90,7 @@ fun StoriesScreen(
                 }
             }
 
+
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
@@ -107,7 +109,6 @@ fun StoriesScreen(
                         Box(contentAlignment = Alignment.Center) {
                             AsyncImage(
                                 model = user.avatarUrl ?: "",
-
                                 contentDescription = user.displayName,
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
