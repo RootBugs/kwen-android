@@ -40,6 +40,7 @@ fun ReelsScreen(
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
 
+
     LaunchedEffect(Unit) {
         try {
             val data = fetchFeedPosts(limit = 30)
@@ -97,7 +98,6 @@ fun ReelsScreen(
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
                         )
-
                         // Gradient overlay
                         Box(
                             modifier = Modifier
@@ -165,6 +165,7 @@ fun ReelsScreen(
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.height(16.dp))
+
 
                             IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
