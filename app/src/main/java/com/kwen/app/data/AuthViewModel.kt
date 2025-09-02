@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+
 data class AuthState(
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
@@ -75,7 +76,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Failed to send OTP"
                 )
             }
-        }
+        }  // verify: cleanup
     }
 
     fun verifyOtp(email: String, otp: String) {
@@ -108,6 +109,7 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signInWith(Email) {
                     this.email = email
                     this.password = password
+
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
@@ -137,7 +139,6 @@ class AuthViewModel : ViewModel() {
                     this.password = password
                 }
                 val session = supabase.auth.currentSessionOrNull()
-
                 val userId = session?.user?.id
                 if (userId != null) {
                     try {
@@ -174,6 +175,7 @@ class AuthViewModel : ViewModel() {
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
         viewModelScope.launch {
+
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.from("profiles").update(mapOf(
@@ -224,7 +226,6 @@ class AuthViewModel : ViewModel() {
             try {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
-
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
             }
