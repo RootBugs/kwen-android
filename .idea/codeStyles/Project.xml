@@ -6,6 +6,7 @@
     <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
+
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
       </indentOptions>
       <arrangement>
@@ -28,7 +29,7 @@
                   <NAME>xmlns:.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
-                </AND>  <!-- verify: cleanup -->
+                </AND>
               </match>
               <order>BY_NAME</order>
             </rule>
@@ -44,7 +45,6 @@
               </match>
             </rule>
           </section>
-
           <section>
             <rule>
               <match>
@@ -71,6 +71,7 @@
             <rule>
               <match>
                 <AND>
+
                   <NAME>style</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
@@ -91,6 +92,7 @@
             </rule>
           </section>
           <section>
+
             <rule>
               <match>
                 <AND>
@@ -115,7 +117,6 @@
             </rule>
           </section>
         </rules>
-
       </arrangement>
     </codeStyleSettings>
     <codeStyleSettings language="kotlin">
