@@ -152,6 +152,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 displayName = profile?.displayName ?: "",
+
                 username = profile?.username ?: "",
                 avatarUrl = profile?.avatarUrl,
                 media = mediaMap[post.id] ?: emptyList()
@@ -381,6 +382,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
         null
     }
+
 }
 
 // ─────────────────────────── Profile ───────────────────────────
@@ -563,7 +565,6 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
             } catch (_: Exception) { emptyList() }
         } else emptyList()
         val profileMap = profiles.associateBy { it.id }
-
         result.map { story ->
             story.copy(user = profileMap[story.userId])
         }
