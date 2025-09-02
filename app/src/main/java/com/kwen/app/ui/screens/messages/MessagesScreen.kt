@@ -35,6 +35,7 @@ private const val TAG = "MessagesScreen"
 @Composable
 fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
+
     onNavigateToProfile: (String) -> Unit
 ) {
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
@@ -59,6 +60,7 @@ fun MessagesScreen(
 
 
     LaunchedEffect(Unit) { loadConversations() }
+
 
     val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
@@ -110,7 +112,7 @@ fun MessagesScreen(
                             Text("Failed to load messages", color = AccentRed)
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-                                Text("Retry")
+                                Text("Retry")  // note: edge case
                             }
                         }
                     }
