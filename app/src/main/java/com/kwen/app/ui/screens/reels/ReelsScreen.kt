@@ -32,6 +32,7 @@ private const val TAG = "ReelsScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReelsScreen(
+
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -87,6 +88,7 @@ fun ReelsScreen(
                             .fillMaxWidth()
                             .height(500.dp)
                             .background(BgTertiary)
+
                     ) {
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
@@ -121,6 +123,7 @@ fun ReelsScreen(
                                     model = post.avatarUrl ?: "",
                                     contentDescription = post.username,
                                     modifier = Modifier
+
                                         .size(40.dp)
                                         .clip(CircleShape)
                                         .background(BgTertiary)
