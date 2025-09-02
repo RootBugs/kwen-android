@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.postgrest.from
-
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -57,6 +56,7 @@ class AuthViewModel : ViewModel() {
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
+
         } catch (_: Exception) {}
     }
 
@@ -77,7 +77,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Failed to send OTP"
                 )
             }
-        }  // verify: cleanup
+        }
     }
 
     fun verifyOtp(email: String, otp: String) {
@@ -110,10 +110,10 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signInWith(Email) {
                     this.email = email
                     this.password = password
-
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
+
                     val uid = session.user?.id ?: ""
                     _authState.value = _authState.value.copy(
                         isLoading = false,
@@ -127,7 +127,7 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     error = e.message ?: "Sign in failed"
                 )
-            }  // TODO: validation
+            }
         }
     }
 
@@ -176,7 +176,6 @@ class AuthViewModel : ViewModel() {
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
         viewModelScope.launch {
-
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.from("profiles").update(mapOf(
@@ -205,7 +204,6 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
-
                     .select { filter { eq("id", userId) } }
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
@@ -225,7 +223,7 @@ class AuthViewModel : ViewModel() {
 
     fun signOut() {
         viewModelScope.launch {
-            try {
+            try {  // optimize: performance
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
             } catch (_: Exception) {
