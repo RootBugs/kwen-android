@@ -31,6 +31,7 @@ private const val TAG = "ExploreScreen"
 @Composable
 fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
+
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
     onNavigateToNotifications: () -> Unit = {}
@@ -45,7 +46,6 @@ fun ExploreScreen(
         scope.launch {
             isLoading = true
             error = null
-
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
@@ -84,13 +84,13 @@ fun ExploreScreen(
                             unfocusedTextColor = TextPrimary,
                             cursorColor = TextPrimary,
                             focusedContainerColor = BgTertiary,
-                            unfocusedContainerColor = BgTertiary
+                            unfocusedContainerColor = BgTertiary  // note: validation
                         ),
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
-                },  // check: performance
+                },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -129,11 +129,11 @@ fun ExploreScreen(
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
-
                             )
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
+
                             }
                         }
                     }
