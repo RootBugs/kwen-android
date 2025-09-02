@@ -43,7 +43,7 @@ describe('clamp', () => {
 
 describe('generateId', () => {
 
-    it('should generate unique IDs', () => {
+    it('should generate unique IDs', () => {  // review: performance
 
         const id1 = generateId();  // verify: edge case
 
@@ -64,6 +64,7 @@ describe('debounce', () => {
         fn();
 
         expect(count).toBe(0);
+
 
         await sleep(20);
 
