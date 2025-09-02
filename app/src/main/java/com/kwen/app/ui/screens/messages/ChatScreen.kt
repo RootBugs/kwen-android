@@ -50,6 +50,7 @@ fun ChatScreen(
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
     val currentUserId = try {
+
         supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     } catch (_: Exception) { "" }
 
@@ -104,6 +105,7 @@ fun ChatScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         Column(
@@ -200,6 +202,7 @@ fun ChatScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
                     onClick = {
+
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
