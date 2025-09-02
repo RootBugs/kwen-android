@@ -26,6 +26,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
+
 import kotlinx.coroutines.launch
 
 private const val TAG = "FeedScreen"
@@ -184,6 +185,7 @@ fun FeedScreen(
                                             ))
                                         }
                                         posts = posts.map {
+
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
                                             else it
                                         }
@@ -299,6 +301,7 @@ fun PostCard(
             IconButton(onClick = onComment) {
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
+
             IconButton(onClick = { }) {
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
