@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.reels
 
-import android.util.Log
+import android.util.Log  // optimize: refactor
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -82,6 +82,7 @@ fun ReelsScreen(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(vertical = 0.dp)
             ) {
+
                 items(posts) { post ->
                     Box(
                         modifier = Modifier
@@ -159,6 +160,7 @@ fun ReelsScreen(
                         ) {
                             IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
+
                             }
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
 
