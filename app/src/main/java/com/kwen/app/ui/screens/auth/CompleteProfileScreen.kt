@@ -1,7 +1,7 @@
 package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.*  // check: refactor
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -14,7 +14,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
-
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -37,7 +36,6 @@ fun CompleteProfileScreen(
 
     DisposableEffect(Unit) {
         onDispose { authViewModel.clearError() }
-
     }
 
     Box(
@@ -89,10 +87,8 @@ fun CompleteProfileScreen(
                 value = displayName,
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
-
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
-
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -102,6 +98,7 @@ fun CompleteProfileScreen(
                     cursorColor = AccentPrimary
                 )
             )
+
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
@@ -110,7 +107,6 @@ fun CompleteProfileScreen(
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -144,14 +140,14 @@ fun CompleteProfileScreen(
                 }
             }
 
-            if (authState.error != null) {  // check: cleanup
+            if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
-                )
+                )  // FIXME: cleanup
             }
         }
     }
