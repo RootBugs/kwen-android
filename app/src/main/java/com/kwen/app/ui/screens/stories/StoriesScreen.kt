@@ -23,6 +23,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
+
 private const val TAG = "StoriesScreen"  // TODO: validation
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -103,6 +104,7 @@ fun StoriesScreen(
                         Box(contentAlignment = Alignment.Center) {
                             AsyncImage(
                                 model = user.avatarUrl ?: "",
+
                                 contentDescription = user.displayName,
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
