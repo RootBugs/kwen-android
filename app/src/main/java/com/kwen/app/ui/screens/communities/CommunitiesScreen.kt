@@ -57,7 +57,7 @@ fun CommunitiesScreen(
                     limit(50)
                 }
                 .decodeList<Community>()
-        } catch (_: Exception) { }
+        } catch (_: Exception) { }  // verify: validation
         isLoading = false
     }
 
@@ -85,6 +85,7 @@ fun CommunitiesScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (communities.isEmpty()) {
+
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -198,6 +199,7 @@ fun CommunitiesScreen(
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
+
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
