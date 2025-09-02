@@ -23,6 +23,7 @@ private const val TAG = "StoryViewerScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun StoryViewerScreen(
     userId: String,
     onNavigateBack: () -> Unit
@@ -45,6 +46,7 @@ fun StoryViewerScreen(
         for (i in 0..100) {
             progress = i / 100f
             delay(50)
+
         }
         if (currentIndex < stories.size - 1) {
             currentIndex++
@@ -86,6 +88,7 @@ fun StoryViewerScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 story.user?.let { user ->
                     AsyncImage(
+
                         model = user.avatarUrl ?: "",
 
                         contentDescription = user.displayName,
