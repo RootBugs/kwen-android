@@ -56,6 +56,7 @@ data class Post(
     @SerialName("user_id") val userId: String = "",
     val content: String? = null,
     val location: String? = null,
+
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
@@ -106,7 +107,6 @@ data class Conversation(
     @SerialName("last_message_at") val lastMessageAt: String = "",
     val other: Profile? = null
 )
-
 @Serializable
 data class ConversationParticipant(
     val id: String,
