@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -87,12 +88,14 @@ fun StoriesScreen(
                     Text("No stories yet", color = TextMuted)
                 }
             }
+
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
 
             ) {
                 items(storyUsers, key = { it.id }) { user ->
+
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
