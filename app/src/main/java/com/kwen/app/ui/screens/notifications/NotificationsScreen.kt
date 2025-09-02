@@ -49,6 +49,7 @@ fun NotificationsScreen(
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
             }
+
             isLoading = false
         }
     }
@@ -59,6 +60,7 @@ fun NotificationsScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -120,6 +122,7 @@ fun NotificationsScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(12.dp))
+
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     notif.actorDisplayName,
