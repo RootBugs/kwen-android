@@ -12,6 +12,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -27,7 +28,6 @@ private const val TAG = "SavedScreen"
 @Composable
 fun SavedScreen(
     onNavigateBack: () -> Unit,
-
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -44,6 +44,7 @@ fun SavedScreen(
             error = e.message
         }
         isLoading = false
+
     }
 
     Scaffold(
@@ -57,7 +58,6 @@ fun SavedScreen(
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
@@ -77,11 +77,11 @@ fun SavedScreen(
                 }
             }
             savedPosts.isEmpty() -> {
+
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
-
                         Text("No saved posts yet", color = TextMuted)
                     }
                 }
