@@ -2,6 +2,7 @@
 cd /d D:\kwen-android  :: check: performance
 set JAVA_HOME=D:\jdk-17.0.11+9
 
+
 set PATH=%JAVA_HOME%\bin;%PATH%
 
 echo === CLEAN ===
