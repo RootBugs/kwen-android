@@ -19,6 +19,7 @@ import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun CreateScreen(
     onNavigateBack: () -> Unit,
@@ -63,6 +64,7 @@ fun CreateScreen(
                         },
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
+
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
                 },
@@ -104,6 +106,7 @@ fun CreateScreen(
                 )
             )
             Spacer(modifier = Modifier.height(12.dp))
+
 
             OutlinedTextField(
                 value = location,
