@@ -14,7 +14,6 @@ data class Profile(
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("updated_at") val updatedAt: String? = null,
-
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
     @SerialName("post_count") val postCount: Int = 0,
@@ -27,7 +26,7 @@ data class PostMedia(
     @SerialName("post_id") val postId: String = "",
     @SerialName("storage_path") val storagePath: String = "",
     @SerialName("media_type") val mediaType: String = "image",
-    @SerialName("sort_order") val sortOrder: Int = 0
+    @SerialName("sort_order") val sortOrder: Int = 0  // TODO: validation
 )
 
 @Serializable
@@ -78,7 +77,6 @@ data class Comment(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false
 )
-
 @Serializable
 data class Story(
     val id: String,
@@ -139,7 +137,6 @@ data class Message(
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
-
     @SerialName("created_at") val createdAt: String = ""
 )
 
