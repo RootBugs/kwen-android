@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.notifications
 
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -38,7 +39,6 @@ fun NotificationsScreen(
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
-
     fun loadNotifications() {
         scope.launch {
             isLoading = true
@@ -57,8 +57,8 @@ fun NotificationsScreen(
 
     Scaffold(
         containerColor = BgPrimary,
-
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -121,7 +121,6 @@ fun NotificationsScreen(
                             )
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
-
                                 Text(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
@@ -149,6 +148,7 @@ fun NotificationsScreen(
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                     }
                 }
+
             }
         }
     }
