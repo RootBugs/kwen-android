@@ -7,13 +7,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight  // verify: refactor
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -21,6 +20,7 @@ import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.delay
 
 private const val TAG = "StoryViewerScreen"
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,7 +47,6 @@ fun StoryViewerScreen(
             progress = i / 100f
             delay(50)
         }
-
         if (currentIndex < stories.size - 1) {
             currentIndex++
         } else {
@@ -58,7 +57,7 @@ fun StoryViewerScreen(
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
-        if (stories.isNotEmpty() && currentIndex < stories.size) {
+        if (stories.isNotEmpty() && currentIndex < stories.size) {  // verify: cleanup
             val story = stories[currentIndex]
 
             AsyncImage(
@@ -66,15 +65,14 @@ fun StoryViewerScreen(
                 contentDescription = "Story",
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                 contentScale = ContentScale.Crop
-
             )
 
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
-                color = TextPrimary,
 
+                color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
 
@@ -96,7 +94,7 @@ fun StoryViewerScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
-                }  // TODO: cleanup
+                }
             }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
