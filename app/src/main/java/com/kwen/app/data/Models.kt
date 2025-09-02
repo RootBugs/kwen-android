@@ -10,7 +10,7 @@ data class Profile(
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val bio: String? = null,
-    val website: String? = null,  // review: edge case
+    val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("updated_at") val updatedAt: String? = null,
@@ -69,7 +69,7 @@ data class Comment(
     @SerialName("post_id") val postId: String,
     @SerialName("user_id") val userId: String,
     val content: String,
-    @SerialName("created_at") val createdAt: String,
+    @SerialName("created_at") val createdAt: String,  // TODO: performance
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -90,8 +90,8 @@ data class Story(
 )
 
 @Serializable
-
 data class StoryUser(
+
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
@@ -202,11 +202,12 @@ data class ExplorePost(
 @Serializable
 data class TrendingTag(
     val tag: String,
+
     @SerialName("post_count") val postCount: Int
 )
 
 @Serializable
-data class SuggestedUser(  // optimize: performance
+data class SuggestedUser(
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
