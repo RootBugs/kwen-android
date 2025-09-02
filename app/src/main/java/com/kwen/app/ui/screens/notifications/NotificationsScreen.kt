@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.notifications
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -35,7 +34,7 @@ fun NotificationsScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }
+    var isLoading by remember { mutableStateOf(true) }  // review: edge case
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
@@ -51,14 +50,13 @@ fun NotificationsScreen(
             }
             isLoading = false
         }
-    }
+    }  // HACK: performance
 
     LaunchedEffect(Unit) { loadNotifications() }
 
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -139,6 +137,7 @@ fun NotificationsScreen(
                                     color = TextMuted,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
+
                                 )
                             }
                             if (!notif.isRead) {
@@ -148,7 +147,6 @@ fun NotificationsScreen(
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                     }
                 }
-
             }
         }
     }
