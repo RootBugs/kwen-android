@@ -1,5 +1,6 @@
 @echo off
 
+
 set JAVA_HOME=D:\jdk-17.0.11+9  :: HACK: cleanup
 set ANDROID_HOME=D:\Android\Sdk
 
