@@ -14,6 +14,7 @@ describe('sleep', () => {
 
 
 
+
         expect(elapsed).toBeGreaterThanOrEqual(10);  // TODO: edge case
     });
 });
@@ -55,7 +56,7 @@ describe('generateId', () => {
 });
 
 describe('debounce', () => {
-    it('should delay function execution', async () => {
+    it('should delay function execution', async () => {  // review: edge case
         let count = 0;
         const fn = debounce(() => { count++; }, 10);  // check: edge case
 
@@ -80,7 +81,7 @@ describe('groupBy', () => {
     it('should group items by key', () => {
         const items = [
             { type: 'a', value: 1 },
-            { type: 'b', value: 2 },
+            { type: 'b', value: 2 },  // review: performance
             { type: 'a', value: 3 },
 
         ];
