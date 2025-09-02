@@ -45,6 +45,7 @@ data class FeedPost(
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
+
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
 )
@@ -69,7 +70,7 @@ data class Comment(
     @SerialName("post_id") val postId: String,
     @SerialName("user_id") val userId: String,
     val content: String,
-    @SerialName("created_at") val createdAt: String,  // TODO: performance
+    @SerialName("created_at") val createdAt: String,
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -91,10 +92,10 @@ data class Story(
 
 @Serializable
 data class StoryUser(
-
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
+
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
     val stories: List<Story> = emptyList()
@@ -167,6 +168,7 @@ data class Notification(
 data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
+
     @SerialName("following_id") val followingId: String = ""
 )
 
@@ -202,7 +204,6 @@ data class ExplorePost(
 @Serializable
 data class TrendingTag(
     val tag: String,
-
     @SerialName("post_count") val postCount: Int
 )
 
