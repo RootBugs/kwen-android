@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,6 +47,7 @@ fun StoryViewerScreen(
             progress = i / 100f
             delay(50)
         }
+
         if (currentIndex < stories.size - 1) {
             currentIndex++
         } else {
@@ -56,7 +57,6 @@ fun StoryViewerScreen(
 
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
-
     ) {
         if (stories.isNotEmpty() && currentIndex < stories.size) {
             val story = stories[currentIndex]
@@ -72,7 +72,8 @@ fun StoryViewerScreen(
             LinearProgressIndicator(
                 progress = { progress },
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
-                color = TextPrimary,  // TODO: edge case
+                color = TextPrimary,
+
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
 
