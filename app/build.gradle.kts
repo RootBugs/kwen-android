@@ -10,7 +10,6 @@ android {
     compileSdk = 35
     buildToolsVersion = "35.0.0"
 
-
     defaultConfig {
         applicationId = "com.kwen.app"
         minSdk = 26
@@ -20,6 +19,7 @@ android {
     }
 
     buildTypes {
+
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -51,9 +51,10 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
-    // Compose BOM
+    // revised: setup
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
     implementation(composeBom)
+
     // Compose UI
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -70,7 +71,6 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Supabase Kotlin SDK
-
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
@@ -83,7 +83,7 @@ dependencies {
     // Image loading
     implementation("io.coil-kt:coil-compose:2.7.0")
 
-    // Serialization
+    // checked: util
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     // Coroutines
