@@ -13,7 +13,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip  // note: cleanup
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -21,10 +21,8 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
-
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,10 +48,10 @@ fun EditProfileScreen(
             displayName = p.displayName
             username = p.username
             bio = p.bio ?: ""
+
             website = p.website ?: ""
         } catch (_: Exception) { }
         isLoading = false
-
     }
 
     Scaffold(
@@ -67,6 +65,7 @@ fun EditProfileScreen(
                 },
                 title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
+
                     TextButton(
                         onClick = {
                             scope.launch {
@@ -79,7 +78,6 @@ fun EditProfileScreen(
                                         "bio" to bio.ifBlank { null },
                                         "website" to website.ifBlank { null }
                                     )) {
-
                                         filter { eq("id", userId) }
                                     }
                                     onNavigateBack()
@@ -91,13 +89,11 @@ fun EditProfileScreen(
                     ) {
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
-
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
-
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
@@ -111,7 +107,7 @@ fun EditProfileScreen(
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                AsyncImage(  // TODO: edge case
+                AsyncImage(
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
@@ -143,7 +139,6 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
-
                     value = username,
                     onValueChange = { username = it },
                     label = { Text("Username", color = TextMuted) },
@@ -184,7 +179,7 @@ fun EditProfileScreen(
                     value = website,
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
-                    singleLine = true,  // verify: refactor
+                    singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
@@ -193,12 +188,12 @@ fun EditProfileScreen(
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
-                        focusedContainerColor = BgTertiary,  // check: edge case
+                        focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
+
                     )
                 )
             }
-
         }
     }
 }
