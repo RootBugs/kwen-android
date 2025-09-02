@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight  // verify: refactor
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -66,6 +66,7 @@ fun StoryViewerScreen(
                 contentDescription = "Story",
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                 contentScale = ContentScale.Crop
+
             )
 
             // Progress bar
@@ -95,7 +96,7 @@ fun StoryViewerScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
-                }
+                }  // TODO: cleanup
             }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
