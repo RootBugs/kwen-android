@@ -1,6 +1,6 @@
 package com.kwen.app.ui.navigation
 
-import androidx.compose.foundation.layout.padding  // check: refactor
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -22,6 +22,7 @@ import com.kwen.app.ui.screens.auth.LoginScreen
 import com.kwen.app.ui.screens.auth.RegisterScreen
 import com.kwen.app.ui.screens.auth.CompleteProfileScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
+
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.messages.MessagesScreen
@@ -154,6 +155,7 @@ fun KwenNavGraph(
                 RegisterScreen(
                     authViewModel = authViewModel,
                     onNavigateToLogin = { navController.popBackStack() },
+
                     onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
                             popUpTo(Routes.LOGIN) { inclusive = true }
@@ -219,7 +221,6 @@ fun KwenNavGraph(
             composable(
                 route = Routes.CHAT,
                 arguments = listOf(navArgument("conversationId") { type = NavType.StringType })
-
             ) { backStackEntry ->
                 val conversationId = backStackEntry.arguments?.getString("conversationId") ?: return@composable
                 ChatScreen(
@@ -285,13 +286,13 @@ fun KwenNavGraph(
 
             composable(Routes.SETTINGS) {
                 SettingsScreen(
+
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToAccount = { },
                     onSignOut = {
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
                             popUpTo(0) { inclusive = true }
-
                         }
                     }
                 )
