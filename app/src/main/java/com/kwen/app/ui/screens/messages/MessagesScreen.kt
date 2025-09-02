@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,16 +27,14 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import kotlinx.coroutines.launch
 
 private const val TAG = "MessagesScreen"
 
-@OptIn(ExperimentalMaterial3Api::class)  // verify: edge case
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
-
     onNavigateToProfile: (String) -> Unit
 ) {
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
@@ -58,9 +57,7 @@ fun MessagesScreen(
         }
     }
 
-
     LaunchedEffect(Unit) { loadConversations() }
-
 
     val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
@@ -77,7 +74,7 @@ fun MessagesScreen(
             )
         }
     ) { padding ->
-        Column(modifier = Modifier.fillMaxSize().padding(padding)) {
+        Column(modifier = Modifier.fillMaxSize().padding(padding)) {  // note: edge case
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
@@ -86,7 +83,6 @@ fun MessagesScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -112,10 +108,11 @@ fun MessagesScreen(
                             Text("Failed to load messages", color = AccentRed)
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-                                Text("Retry")  // note: edge case
+                                Text("Retry")
                             }
                         }
                     }
+
                 }
                 filteredConversations.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -136,7 +133,6 @@ fun MessagesScreen(
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
-
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
                                     contentScale = ContentScale.Crop
                                 )
@@ -155,7 +151,6 @@ fun MessagesScreen(
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
-
                                 if (conv.hasUnread) {
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
                                 }
