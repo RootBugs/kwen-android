@@ -26,7 +26,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
         // 2. Fetch profiles (batch)
         val profiles = try {
-            if (userIds.isNotEmpty()) {  // verify: cleanup
+            if (userIds.isNotEmpty()) {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
@@ -43,7 +43,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
                     .decodeList<PostMedia>()
-
             } else emptyList()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch post_media: ${e.message}")
@@ -83,6 +82,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         // 5. Combine into FeedPost list
         rawPosts.map { post ->
             val profile = profileMap[post.userId]
+
             FeedPost(
                 id = post.id,
                 userId = post.userId,
@@ -176,7 +176,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             supabase.from("profiles")
                 .select { filter { eq("id", post.userId) } }
                 .decodeList<Profile>()
-                .firstOrNull()  // verify: validation
+                .firstOrNull()
         } catch (_: Exception) { null }
 
         val media = try {
@@ -252,6 +252,7 @@ suspend fun fetchComments(postId: String): List<Comment> {
     }
 }
 
+
 // ─────────────────────────── Conversations / Messages ───────────────────────────
 
 suspend fun fetchConversations(): List<ConversationItem> {
@@ -306,14 +307,12 @@ suspend fun fetchConversations(): List<ConversationItem> {
                         filter { eq("conversation_id", convId) }
                         order("created_at", Order.DESCENDING)
                         limit(1)
-
                     }
                     .decodeList<Message>()
                 if (msgs.isNotEmpty()) {
                     lastMessages[convId] = msgs.first()
                 }
             } catch (e: Exception) { Log.w(TAG, "Failed to fetch last message for $convId: ${e.message}") }
-
         }
 
         // 5. Build ConversationItem list
@@ -332,7 +331,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 lastMessageType = lastMsg?.messageType,
                 hasUnread = myP.hasUnread,
                 unreadCount = 0,
-
                 otherUser = otherProfile
             )
         }.sortedByDescending { it.lastMessageAt }
@@ -492,7 +490,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
 
         val profiles = try {
             if (userIds.isNotEmpty()) {
-                supabase.from("profiles")  // check: refactor
+                supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
             } else emptyList()
@@ -514,7 +512,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 id = post.id,
                 userId = post.userId,
                 content = post.content,
-
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
@@ -543,13 +540,13 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
         val result = supabase.from("stories")
             .select {
                 if (userId != null) {
+
                     filter {
                         eq("user_id", userId)
                         gt("expires_at", java.time.Instant.now().toString())
                     }
                 } else {
                     filter { gt("expires_at", java.time.Instant.now().toString()) }
-
                 }
                 order("created_at", Order.DESCENDING)
                 limit(20)
