@@ -3,6 +3,7 @@ package com.kwen.app.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -11,7 +12,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
-
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
@@ -21,7 +21,7 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    authViewModel: AuthViewModel,  // check: validation
+    authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
@@ -33,7 +33,7 @@ fun MainScreen(
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
-        Icons.Filled.Home to Icons.Outlined.Home,  // verify: cleanup
+        Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
@@ -47,12 +47,13 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
+
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
-                    },  // review: cleanup
+                    },
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
@@ -60,31 +61,29 @@ fun MainScreen(
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
-
             }
         },
         bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
-
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
-                        onClick = { selectedTab = index },  // check: cleanup
+                        onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
                     )
-                }
+                }  // FIXME: edge case
             }
         }
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
-                0 -> FeedScreen(  // FIXME: cleanup
+                0 -> FeedScreen(
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
@@ -96,7 +95,6 @@ fun MainScreen(
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
-
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
