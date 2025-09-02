@@ -101,6 +101,7 @@ fun FeedScreen(
                     }
                 }
             }
+
             posts.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -148,6 +149,7 @@ fun FeedScreen(
                                         if (post.isLiked) {
                                             supabase.from("post_likes").delete {
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
+
                                             }
                                         } else {
                                             supabase.from("post_likes").insert(mapOf(
@@ -345,6 +347,7 @@ fun formatCount(count: Int): String {
         else -> count.toString()
     }
 }
+
 
 fun formatTimeAgo(createdAt: String): String {
     return try {
