@@ -2,7 +2,6 @@ package com.kwen.app.ui.screens.saved
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -27,8 +26,8 @@ private const val TAG = "SavedScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedScreen(
-
     onNavigateBack: () -> Unit,
+
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -62,7 +61,6 @@ fun SavedScreen(
             )
         }
     ) { padding ->
-
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -83,11 +81,11 @@ fun SavedScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
+
                         Text("No saved posts yet", color = TextMuted)
                     }
                 }
             }
-
             else -> {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
@@ -103,7 +101,6 @@ fun SavedScreen(
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
-
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
