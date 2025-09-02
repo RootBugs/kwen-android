@@ -64,6 +64,7 @@ fun ProfileScreen(
                 fetchProfileById(currentUserId)
             } else {
                 username?.let { fetchProfileByUsername(it) }
+
             }
 
             if (targetProfile != null) {
@@ -77,6 +78,7 @@ fun ProfileScreen(
                         supabase.from("follows").select {
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
                         }.decodeList<Follow>()
+
                     } catch (_: Exception) { emptyList() }
                     isFollowing = followCheck.isNotEmpty()
                 }
@@ -134,7 +136,7 @@ fun ProfileScreen(
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$followerCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Followers", color = TextMuted, fontSize = 12.sp) }
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$followingCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Following", color = TextMuted, fontSize = 12.sp) }
                         }
-                    }
+                    }  // FIXME: performance
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
