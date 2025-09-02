@@ -48,6 +48,7 @@ fun ChatScreen(
     var isLoading by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
+
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
     val currentUserId = try {
@@ -120,6 +121,7 @@ fun ChatScreen(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
+
                     items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
                         Row(
@@ -241,6 +243,7 @@ fun ChatScreen(
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
                                 }
+
                             }
                         }
                     }) {
