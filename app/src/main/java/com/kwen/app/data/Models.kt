@@ -14,6 +14,7 @@ data class Profile(
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("updated_at") val updatedAt: String? = null,
+
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
     @SerialName("post_count") val postCount: Int = 0,
@@ -45,7 +46,6 @@ data class FeedPost(
     @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
-
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
 )
@@ -95,7 +95,6 @@ data class StoryUser(
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
-
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
     val stories: List<Story> = emptyList()
@@ -140,6 +139,7 @@ data class Message(
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
+
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -168,7 +168,6 @@ data class Notification(
 data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
-
     @SerialName("following_id") val followingId: String = ""
 )
 
@@ -206,6 +205,7 @@ data class TrendingTag(
     val tag: String,
     @SerialName("post_count") val postCount: Int
 )
+
 
 @Serializable
 data class SuggestedUser(
