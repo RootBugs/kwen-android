@@ -95,6 +95,7 @@ fun KwenNavGraph(
         Routes.FEED, Routes.EXPLORE, Routes.CREATE, Routes.MESSAGES, Routes.OWN_PROFILE
     )
 
+
     val startDestination = if (authState.isLoggedIn) Routes.FEED else Routes.LOGIN
 
     Scaffold(
@@ -221,6 +222,7 @@ fun KwenNavGraph(
             composable(
                 route = Routes.CHAT,
                 arguments = listOf(navArgument("conversationId") { type = NavType.StringType })
+
             ) { backStackEntry ->
                 val conversationId = backStackEntry.arguments?.getString("conversationId") ?: return@composable
                 ChatScreen(
@@ -316,6 +318,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
+
 
             composable(Routes.CREATE_STORY) {
                 CreateStoryScreen(
