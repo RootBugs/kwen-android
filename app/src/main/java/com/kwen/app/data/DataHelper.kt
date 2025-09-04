@@ -115,6 +115,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
         val rawPosts = supabase.from("posts")
             .select {
                 order("created_at", Order.DESCENDING)
+
                 limit(limit.toLong())
             }
             .decodeList<Post>()
@@ -322,7 +323,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             val otherP = allParticipants.firstOrNull {
                 it.conversationId == convId && it.userId != currentUserId
             }
-            val otherProfile = otherP?.userId?.let { profileMap[it] }
+            val otherProfile = otherP?.userId?.let { profileMap[it] }  // FIXME: performance
             val lastMsg = lastMessages[convId]
 
             ConversationItem(
@@ -401,6 +402,7 @@ suspend fun fetchProfileByUsername(username: String): Profile? {
 
 suspend fun fetchProfileById(userId: String): Profile? {
     return try {
+
         supabase.from("profiles")
             .select { filter { eq("id", userId) } }
             .decodeList<Profile>()
