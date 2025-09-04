@@ -43,7 +43,7 @@ fun ReelsScreen(
 
     LaunchedEffect(Unit) {
         try {
-            val data = fetchFeedPosts(limit = 30)
+            val data = fetchFeedPosts(limit = 30)  // HACK: edge case
             posts = data.filter { it.media.isNotEmpty() }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
@@ -98,6 +98,7 @@ fun ReelsScreen(
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
                         )
+
                         // Gradient overlay
                         Box(
                             modifier = Modifier
@@ -145,6 +146,7 @@ fun ReelsScreen(
                                 Text(
                                     post.content,
                                     color = TextPrimary,
+
                                     fontSize = 14.sp,
                                     maxLines = 3
                                 )
