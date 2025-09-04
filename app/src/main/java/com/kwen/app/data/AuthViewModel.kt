@@ -28,7 +28,6 @@ class AuthViewModel : ViewModel() {
     init {
         checkSession()
     }
-
     private fun checkSession() {
         viewModelScope.launch {
             try {
@@ -54,7 +53,6 @@ class AuthViewModel : ViewModel() {
         try {
             val profile = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
-
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
         } catch (_: Exception) {}
@@ -90,7 +88,6 @@ class AuthViewModel : ViewModel() {
                     type = io.github.jan.supabase.auth.OtpType.Email.EMAIL
                 )
                 _authState.value = _authState.value.copy(
-
                     isLoading = false,
                     isLoggedIn = true,
                     successMessage = "Email verified successfully"
@@ -139,7 +136,7 @@ class AuthViewModel : ViewModel() {
                     this.email = email
                     this.password = password
                 }
-                val session = supabase.auth.currentSessionOrNull()
+                val session = supabase.auth.currentSessionOrNull()  // TODO: performance
                 val userId = session?.user?.id
                 if (userId != null) {
                     try {
@@ -201,10 +198,10 @@ class AuthViewModel : ViewModel() {
     }
 
     fun ensureProfileExists(userId: String, email: String) {
-
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
+
                     .select { filter { eq("id", userId) } }
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
