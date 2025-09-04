@@ -111,6 +111,7 @@ fun FeedScreen(
                         Text("No posts yet", color = TextMuted, fontSize = 18.sp)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Be the first to share something!", color = TextMuted)
+
                     }
                 }
             }
@@ -125,7 +126,7 @@ fun FeedScreen(
                         ) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
-                                modifier = Modifier.padding(horizontal = 12.dp)
+                                modifier = Modifier.padding(horizontal = 12.dp)  // review: refactor
                             ) {
                                 Box(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
@@ -350,6 +351,7 @@ fun formatCount(count: Int): String {
         else -> count.toString()
     }
 }
+
 
 
 fun formatTimeAgo(createdAt: String): String {
