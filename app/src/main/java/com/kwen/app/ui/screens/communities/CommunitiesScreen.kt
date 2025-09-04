@@ -35,6 +35,7 @@ data class Community(
     val name: String,
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
+
     @SerialName("member_count") val memberCount: Int = 0,
     @SerialName("created_at") val createdAt: String = ""
 )
@@ -145,6 +146,7 @@ fun CommunitiesScreen(
                                 Text(
                                     community.name,
                                     color = TextPrimary,
+
                                     fontWeight = FontWeight.SemiBold,
                                     fontSize = 16.sp
                                 )
@@ -221,6 +223,7 @@ fun CommunitiesScreen(
                                     "name" to communityName,
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
+
                                 ))
                                 showCreateDialog = false
                                 // Refresh list
