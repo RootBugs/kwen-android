@@ -1,7 +1,7 @@
 package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*  // check: refactor
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -19,6 +19,7 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
 @Composable
+
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
@@ -65,7 +66,6 @@ fun CompleteProfileScreen(
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(32.dp))
-
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
@@ -98,11 +98,11 @@ fun CompleteProfileScreen(
                     cursorColor = AccentPrimary
                 )
             )
-
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
                 value = bio,
+
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
@@ -147,7 +147,7 @@ fun CompleteProfileScreen(
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
-                )  // FIXME: cleanup
+                )
             }
         }
     }
