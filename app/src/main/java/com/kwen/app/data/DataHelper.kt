@@ -141,7 +141,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
             } else emptyList()
         } catch (e: Exception) { Log.w(TAG, "Failed to fetch explore media: ${e.message}"); emptyList() }
         val mediaMap = media.groupBy { it.postId }
-
         rawPosts.map { post ->
             val profile = profileMap[post.userId]
             ExplorePost(
@@ -300,6 +299,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         val profileMap = otherProfiles.associateBy { it.id }
 
         // 4. Get last message for each conversation
+
         val lastMessages = mutableMapOf<String, Message>()
         for (convId in convIds) {
             try {
@@ -520,6 +520,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
+
                 isLiked = false,
                 isSaved = true,
                 displayName = profile?.displayName ?: "",
