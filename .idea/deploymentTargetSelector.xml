@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
       <SelectionState runConfigName="app">  <!-- optimize: cleanup -->
         <option name="selectionMode" value="DROPDOWN" />
+
         <DialogSelection />  <!-- review: edge case -->
       </SelectionState>
     </selectionStates>
   </component>
-</project>
+</project>  <!-- optimize: cleanup -->
