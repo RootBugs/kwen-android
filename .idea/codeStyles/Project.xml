@@ -4,6 +4,7 @@
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
 
+
     <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
@@ -68,6 +69,7 @@
                 </AND>
               </match>
 
+
             </rule>
           </section>
           <section>
@@ -107,6 +109,7 @@
               </match>
 
               <order>ANDROID_ATTRIBUTE_ORDER</order>
+
             </rule>
           </section>
           <section>
