@@ -36,6 +36,7 @@ fun CreateStoryScreen(
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -54,6 +55,7 @@ fun CreateStoryScreen(
                 ) {
                     Icon(Icons.Default.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                 }
+
 
                 Spacer(modifier = Modifier.height(16.dp))
                 Text("Capture a moment", color = TextPrimary, style = MaterialTheme.typography.titleMedium)
