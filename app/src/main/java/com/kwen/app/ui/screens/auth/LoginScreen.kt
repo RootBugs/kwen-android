@@ -44,7 +44,6 @@ fun LoginScreen(
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
     }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -85,6 +84,7 @@ fun LoginScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
+
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(16.dp))
