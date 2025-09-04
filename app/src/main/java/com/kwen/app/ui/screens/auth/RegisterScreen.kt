@@ -48,7 +48,6 @@ fun RegisterScreen(
     LaunchedEffect(email, password, confirmPassword, username, displayName) {
         if (authState.error != null) authViewModel.clearError()
     }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -87,6 +86,7 @@ fun RegisterScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -204,6 +204,7 @@ fun RegisterScreen(
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
+
                 Text(
                     authState.error!!,
                     color = AccentRed,
