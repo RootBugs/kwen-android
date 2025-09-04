@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -30,7 +31,6 @@ private const val TAG = "NotificationsScreen"
 @Composable
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
-
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -65,6 +65,7 @@ fun NotificationsScreen(
                     }
                 },
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -94,7 +95,7 @@ fun NotificationsScreen(
                         Text("No notifications yet", color = TextMuted)
                     }
                 }
-            }  // FIXME: performance
+            }
             else -> {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize().padding(padding)
@@ -118,6 +119,7 @@ fun NotificationsScreen(
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
+
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
@@ -141,7 +143,6 @@ fun NotificationsScreen(
                                 )
                             }
                             if (!notif.isRead) {
-
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
                         }
