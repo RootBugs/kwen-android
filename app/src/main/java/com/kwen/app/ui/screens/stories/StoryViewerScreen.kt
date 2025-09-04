@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -20,7 +21,6 @@ import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.delay
 
 private const val TAG = "StoryViewerScreen"
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,6 +42,7 @@ fun StoryViewerScreen(
 
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
+
         progress = 0f
         for (i in 0..100) {
             progress = i / 100f
@@ -57,7 +58,7 @@ fun StoryViewerScreen(
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
-        if (stories.isNotEmpty() && currentIndex < stories.size) {  // verify: cleanup
+        if (stories.isNotEmpty() && currentIndex < stories.size) {
             val story = stories[currentIndex]
 
             AsyncImage(
@@ -71,10 +72,10 @@ fun StoryViewerScreen(
             LinearProgressIndicator(
                 progress = { progress },
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
-
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
+
 
             // Header
             Row(
