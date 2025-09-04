@@ -34,7 +34,7 @@ fun MainScreen(
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
-        Icons.Filled.Home to Icons.Outlined.Home,
+        Icons.Filled.Home to Icons.Outlined.Home,  // FIXME: cleanup
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
@@ -50,6 +50,7 @@ fun MainScreen(
                             text = "Kwen",
 
                             color = AccentPrimary,
+
                             fontWeight = FontWeight.Bold,
 
                             fontSize = 28.sp,
@@ -79,6 +80,7 @@ fun MainScreen(
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
                     )
+
                 }  // FIXME: edge case
             }
         }
