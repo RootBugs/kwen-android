@@ -38,6 +38,7 @@ data class FeedPost(
     @SerialName("created_at") val createdAt: String,
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
+
     @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false,
@@ -121,6 +122,7 @@ data class ConversationItem(
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
     @SerialName("last_message_type") val lastMessageType: String? = null,
     @SerialName("has_unread") val hasUnread: Boolean = false,
+
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
 )
@@ -179,6 +181,7 @@ data class SavedPost(
 @Serializable
 data class PostLike(
     val id: String = "",
+
     @SerialName("post_id") val postId: String = "",
     @SerialName("user_id") val userId: String = ""
 )
