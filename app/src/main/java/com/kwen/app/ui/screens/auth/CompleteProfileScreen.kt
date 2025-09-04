@@ -19,7 +19,6 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
 @Composable
-
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
@@ -29,7 +28,7 @@ fun CompleteProfileScreen(
     var displayName by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
 
-    LaunchedEffect(authState.successMessage) {
+    LaunchedEffect(authState.successMessage) {  // review: performance
         if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
         }
@@ -57,7 +56,7 @@ fun CompleteProfileScreen(
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
-                )
+                )  // FIXME: validation
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -66,6 +65,7 @@ fun CompleteProfileScreen(
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(32.dp))
+
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
@@ -102,7 +102,6 @@ fun CompleteProfileScreen(
 
             OutlinedTextField(
                 value = bio,
-
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
@@ -122,6 +121,7 @@ fun CompleteProfileScreen(
                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
                     authViewModel.completeProfile(userId, username, displayName, bio)
                 },
+
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
