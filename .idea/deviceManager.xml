@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+
   <component name="DeviceTable">
     <option name="columnSorters">
-
       <list>
-        <ColumnSorterState>  <!-- note: validation -->
-          <option name="column" value="Name" />
+        <ColumnSorterState>
+          <option name="column" value="Name" />  <!-- FIXME: validation -->
           <option name="order" value="ASCENDING" />
-        </ColumnSorterState>  <!-- note: performance -->
+        </ColumnSorterState>
       </list>
     </option>
-  </component>
+  </component>  <!-- TODO: validation -->
 </project>
