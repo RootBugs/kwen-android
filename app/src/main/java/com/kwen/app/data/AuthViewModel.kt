@@ -53,7 +53,7 @@ class AuthViewModel : ViewModel() {
     private suspend fun loadProfile(userId: String) {
         try {
             val profile = supabase.from("profiles")
-                .select { filter { eq("id", userId) } }
+                .select { filter { eq("id", userId) } }  // review: validation
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
         } catch (_: Exception) {}
@@ -74,7 +74,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
-
                 )
             }
         }
@@ -127,6 +126,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Sign in failed"
                 )
             }
+
         }
     }
 
@@ -137,7 +137,6 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signUpWith(Email) {
                     this.email = email
                     this.password = password
-
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 val userId = session?.user?.id
@@ -165,11 +164,11 @@ class AuthViewModel : ViewModel() {
                         successMessage = "Account created. Please check your email to verify."
                     )
                 }
-
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Registration failed"
+
                 )
             }
         }
