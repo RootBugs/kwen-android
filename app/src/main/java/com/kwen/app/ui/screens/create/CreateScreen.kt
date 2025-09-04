@@ -13,13 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun CreateScreen(
     onNavigateBack: () -> Unit,
@@ -31,7 +31,6 @@ fun CreateScreen(
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-
     LaunchedEffect(Unit) {
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
@@ -41,10 +40,8 @@ fun CreateScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-
                     }
                 },
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
@@ -55,6 +52,7 @@ fun CreateScreen(
                                 isPosting = true
                                 try {
                                     supabase.from("posts").insert(mapOf(
+
                                         "user_id" to currentUserId,
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
@@ -66,11 +64,9 @@ fun CreateScreen(
                         },
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
-
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -99,17 +95,14 @@ fun CreateScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 )
-
             )
             Spacer(modifier = Modifier.height(12.dp))
-
 
             OutlinedTextField(
                 value = location,
@@ -129,6 +122,7 @@ fun CreateScreen(
                 ),
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
             )
+
         }
     }
 }
