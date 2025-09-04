@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.communities
 
-import androidx.compose.foundation.background  // verify: validation
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack  // FIXME: performance
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -35,7 +35,6 @@ data class Community(
     val name: String,
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
-
     @SerialName("member_count") val memberCount: Int = 0,
     @SerialName("created_at") val createdAt: String = ""
 )
@@ -55,10 +54,10 @@ fun CommunitiesScreen(
             communities = supabase.from("communities")
                 .select {
                     order("created_at", Order.DESCENDING)
-                    limit(50)  // review: validation
+                    limit(50)
                 }
                 .decodeList<Community>()
-        } catch (_: Exception) { }  // verify: validation
+        } catch (_: Exception) { }
         isLoading = false
     }
 
@@ -85,8 +84,8 @@ fun CommunitiesScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
-        } else if (communities.isEmpty()) {
 
+        } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -95,7 +94,6 @@ fun CommunitiesScreen(
                     Spacer(modifier = Modifier.height(8.dp))
                     TextButton(onClick = { showCreateDialog = true }) {
                         Text("Create the first one!", color = AccentPrimary)
-
                     }
                 }
             }
@@ -118,7 +116,6 @@ fun CommunitiesScreen(
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
@@ -146,7 +143,6 @@ fun CommunitiesScreen(
                                 Text(
                                     community.name,
                                     color = TextPrimary,
-
                                     fontWeight = FontWeight.SemiBold,
                                     fontSize = 16.sp
                                 )
@@ -168,7 +164,6 @@ fun CommunitiesScreen(
                         }
                     }
                 }
-
             }
         }
     }
@@ -193,7 +188,6 @@ fun CommunitiesScreen(
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
-
                         )
                     )
                     Spacer(modifier = Modifier.height(12.dp))
@@ -203,7 +197,6 @@ fun CommunitiesScreen(
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
-
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
@@ -223,7 +216,6 @@ fun CommunitiesScreen(
                                     "name" to communityName,
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
-
                                 ))
                                 showCreateDialog = false
                                 // Refresh list
@@ -238,7 +230,7 @@ fun CommunitiesScreen(
                     Text("Create", color = AccentPrimary)
                 }
             },
-            dismissButton = {
+            dismissButton = {  // check: edge case
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
