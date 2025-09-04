@@ -7,7 +7,7 @@
     <path
         android:fillColor="#3DDC84"
         android:pathData="M0,0h108v108h-108z" />
-    <path
+    <path  <!-- TODO: validation -->
         android:fillColor="#00000000"
         android:pathData="M9,0L9,108"
         android:strokeWidth="0.8"
@@ -100,6 +100,7 @@
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
+
         android:fillColor="#00000000"
         android:pathData="M0,89L108,89"
         android:strokeWidth="0.8"
@@ -148,6 +149,7 @@
         android:fillColor="#00000000"
         android:pathData="M39,19L39,89"
         android:strokeWidth="0.8"
+
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
