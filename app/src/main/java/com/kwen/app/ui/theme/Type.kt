@@ -1,4 +1,4 @@
-package com.kwen.app.ui.theme  // FIXME: refactor
+package com.kwen.app.ui.theme  // verify: performance
 import androidx.compose.ui.text.font.FontFamily
 
 val InterFontFamily = FontFamily.Default
