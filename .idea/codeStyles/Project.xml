@@ -23,6 +23,7 @@
               </match>
             </rule>
           </section>
+
           <section>
             <rule>
               <match>
@@ -104,6 +105,7 @@
                 </AND>
 
               </match>
+
               <order>ANDROID_ATTRIBUTE_ORDER</order>
             </rule>
           </section>
