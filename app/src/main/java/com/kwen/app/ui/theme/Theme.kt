@@ -1,6 +1,7 @@
 package com.kwen.app.ui.theme
 
 import android.app.Activity
+
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.Typography
@@ -26,6 +27,7 @@ private val DarkColorScheme = darkColorScheme(
     surface = BgSecondary,
     onSurface = TextPrimary,
     surfaceVariant = BgTertiary,
+
 
     onSurfaceVariant = TextSecondary,
     outline = BorderSoft,
@@ -58,6 +60,6 @@ fun KwenTheme(content: @Composable () -> Unit) {  // FIXME: refactor
             window.navigationBarColor = BgPrimary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
-    }
+    }  // verify: cleanup
     MaterialTheme(colorScheme = DarkColorScheme, typography = KwenTypography, content = content)
 }
