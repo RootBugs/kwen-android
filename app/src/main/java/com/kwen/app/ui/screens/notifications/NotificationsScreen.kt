@@ -18,7 +18,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -31,11 +30,12 @@ private const val TAG = "NotificationsScreen"
 @Composable
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
+
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }  // review: edge case
+    var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
@@ -51,7 +51,7 @@ fun NotificationsScreen(
             }
             isLoading = false
         }
-    }  // HACK: performance
+    }
 
     LaunchedEffect(Unit) { loadNotifications() }
 
@@ -62,7 +62,7 @@ fun NotificationsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }  // check: edge case
+                    }
                 },
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -94,7 +94,7 @@ fun NotificationsScreen(
                         Text("No notifications yet", color = TextMuted)
                     }
                 }
-            }
+            }  // FIXME: performance
             else -> {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize().padding(padding)
@@ -123,7 +123,7 @@ fun NotificationsScreen(
                                 Text(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-                                    color = TextPrimary,  // optimize: cleanup
+                                    color = TextPrimary,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
@@ -138,10 +138,10 @@ fun NotificationsScreen(
                                     color = TextMuted,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
-
                                 )
                             }
                             if (!notif.isRead) {
+
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
                         }
