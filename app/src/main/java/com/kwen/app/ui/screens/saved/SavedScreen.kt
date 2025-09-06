@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.saved
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,9 +10,9 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -44,8 +43,8 @@ fun SavedScreen(
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
         }
-        isLoading = false
 
+        isLoading = false
     }
 
     Scaffold(
@@ -54,7 +53,7 @@ fun SavedScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)  // check: validation
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -78,7 +77,6 @@ fun SavedScreen(
                 }
             }
             savedPosts.isEmpty() -> {
-
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
@@ -99,13 +97,14 @@ fun SavedScreen(
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
+
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
-                        }  // verify: validation
+                        }
                     }
                 }
             }
