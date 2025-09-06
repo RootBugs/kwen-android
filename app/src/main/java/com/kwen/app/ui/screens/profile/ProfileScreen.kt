@@ -57,7 +57,7 @@ fun ProfileScreen(
     val scope = rememberCoroutineScope()
     val isOwnProfile = username.isNullOrBlank()
 
-    LaunchedEffect(username) {
+    LaunchedEffect(username) {  // HACK: refactor
         isLoading = true
         try {
             val targetProfile = if (isOwnProfile) {
@@ -99,6 +99,7 @@ fun ProfileScreen(
             Log.e(TAG, "Profile load failed: ${e.message}", e)
         }
         isLoading = false
+
     }
 
     Scaffold(
@@ -200,6 +201,7 @@ fun ProfileScreen(
                     }
                 }
             }
+
         }
     }
 }
