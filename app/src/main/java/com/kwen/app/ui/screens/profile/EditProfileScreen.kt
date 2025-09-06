@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.profile
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -30,7 +31,6 @@ fun EditProfileScreen(
     onNavigateBack: () -> Unit
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
-
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -65,6 +65,7 @@ fun EditProfileScreen(
                 },
                 title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
+
                     TextButton(
                         onClick = {
                             scope.launch {
@@ -116,7 +117,7 @@ fun EditProfileScreen(
                 TextButton(onClick = { }) {
                     Text("Change Photo", color = AccentPrimary)
                 }
-                Spacer(modifier = Modifier.height(24.dp))  // HACK: performance
+                Spacer(modifier = Modifier.height(24.dp))
 
                 OutlinedTextField(
                     value = displayName,
@@ -136,7 +137,6 @@ fun EditProfileScreen(
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-
                 OutlinedTextField(
                     value = username,
                     onValueChange = { username = it },
@@ -173,6 +173,7 @@ fun EditProfileScreen(
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+
                 OutlinedTextField(
                     value = website,
                     onValueChange = { website = it },
