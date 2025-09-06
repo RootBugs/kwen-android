@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-
+<?xml version="1.0" encoding="UTF-8"?>  <!-- TODO: refactor -->
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="app">  <!-- optimize: cleanup -->
-        <option name="selectionMode" value="DROPDOWN" />
+      <SelectionState runConfigName="app">
 
-        <DialogSelection />  <!-- review: edge case -->
-      </SelectionState>
+        <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />
+      </SelectionState>  <!-- HACK: cleanup -->
     </selectionStates>
   </component>
-</project>  <!-- optimize: cleanup -->
+</project>
