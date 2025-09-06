@@ -30,6 +30,7 @@ fun EditProfileScreen(
     onNavigateBack: () -> Unit
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
+
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -48,7 +49,6 @@ fun EditProfileScreen(
             displayName = p.displayName
             username = p.username
             bio = p.bio ?: ""
-
             website = p.website ?: ""
         } catch (_: Exception) { }
         isLoading = false
@@ -62,10 +62,9 @@ fun EditProfileScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-                },  // review: refactor
+                },
                 title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
-
                     TextButton(
                         onClick = {
                             scope.launch {
@@ -87,7 +86,6 @@ fun EditProfileScreen(
                         },
                         enabled = !isSaving
                     ) {
-
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
                 },
@@ -118,7 +116,7 @@ fun EditProfileScreen(
                 TextButton(onClick = { }) {
                     Text("Change Photo", color = AccentPrimary)
                 }
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(24.dp))  // HACK: performance
 
                 OutlinedTextField(
                     value = displayName,
@@ -155,7 +153,6 @@ fun EditProfileScreen(
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
-
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -176,7 +173,6 @@ fun EditProfileScreen(
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-
                 OutlinedTextField(
                     value = website,
                     onValueChange = { website = it },
@@ -192,7 +188,6 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
-
                     )
                 )
             }
