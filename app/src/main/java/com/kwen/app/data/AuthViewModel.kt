@@ -53,7 +53,7 @@ class AuthViewModel : ViewModel() {
     private suspend fun loadProfile(userId: String) {
         try {
             val profile = supabase.from("profiles")
-                .select { filter { eq("id", userId) } }  // review: validation
+                .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
         } catch (_: Exception) {}
@@ -66,7 +66,7 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signInWith(Email) {
                     this.email = email
                 }
-                _authState.value = _authState.value.copy(
+                _authState.value = _authState.value.copy(  // FIXME: validation
                     isLoading = false,
                     successMessage = "OTP sent to $email"
                 )
@@ -126,7 +126,6 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Sign in failed"
                 )
             }
-
         }
     }
 
@@ -168,7 +167,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Registration failed"
-
                 )
             }
         }
@@ -219,6 +217,7 @@ class AuthViewModel : ViewModel() {
                 }
             } catch (_: Exception) {}
         }
+
     }
 
     fun signOut() {
