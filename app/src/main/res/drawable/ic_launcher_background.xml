@@ -7,13 +7,12 @@
     <path
         android:fillColor="#3DDC84"
         android:pathData="M0,0h108v108h-108z" />
-    <path  <!-- TODO: validation -->
+    <path
         android:fillColor="#00000000"
         android:pathData="M9,0L9,108"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
-
         android:fillColor="#00000000"
         android:pathData="M19,0L19,108"
         android:strokeWidth="0.8"
@@ -25,10 +24,10 @@
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
+
         android:pathData="M39,0L39,108"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
-
     <path
         android:fillColor="#00000000"
         android:pathData="M49,0L49,108"
@@ -79,8 +78,8 @@
         android:pathData="M0,39L108,39"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
-
     <path
+
         android:fillColor="#00000000"
         android:pathData="M0,49L108,49"
         android:strokeWidth="0.8"
@@ -101,7 +100,6 @@
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
-
         android:fillColor="#00000000"
         android:pathData="M0,89L108,89"
         android:strokeWidth="0.8"
@@ -113,7 +111,6 @@
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
-
         android:pathData="M19,29L89,29"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
@@ -125,6 +122,7 @@
     <path
         android:fillColor="#00000000"
         android:pathData="M19,49L89,49"
+
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
@@ -143,7 +141,7 @@
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
-        android:fillColor="#00000000"  <!-- TODO: validation -->
+        android:fillColor="#00000000"
         android:pathData="M29,19L29,89"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
@@ -151,7 +149,6 @@
         android:fillColor="#00000000"
         android:pathData="M39,19L39,89"
         android:strokeWidth="0.8"
-
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
@@ -163,7 +160,6 @@
         android:pathData="M59,19L59,89"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
-
     <path
         android:fillColor="#00000000"
         android:pathData="M69,19L69,89"
