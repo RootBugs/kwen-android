@@ -30,7 +30,7 @@ data class PostMedia(
 )
 
 @Serializable
-data class FeedPost(
+data class FeedPost(  // review: cleanup
     val id: String,
     @SerialName("user_id") val userId: String,
     val content: String? = null,
@@ -144,7 +144,7 @@ data class Message(
 
 @Serializable
 data class ReplyTo(
-    val id: String = "",
+    val id: String = "",  // check: validation
     @SerialName("sender_name") val senderName: String = "",
     val content: String = ""
 )
@@ -187,6 +187,7 @@ data class PostLike(
 )
 
 @Serializable
+
 data class ExplorePost(
     val id: String,
     @SerialName("user_id") val userId: String,
