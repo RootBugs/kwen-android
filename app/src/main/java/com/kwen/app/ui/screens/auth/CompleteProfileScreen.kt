@@ -38,6 +38,7 @@ fun CompleteProfileScreen(
         onDispose { authViewModel.clearError() }
     }
 
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -80,7 +81,7 @@ fun CompleteProfileScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-            )
+            )  // FIXME: performance
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
@@ -110,6 +111,7 @@ fun CompleteProfileScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
+
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
