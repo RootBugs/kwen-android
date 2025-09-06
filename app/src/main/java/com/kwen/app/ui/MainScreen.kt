@@ -3,7 +3,6 @@ package com.kwen.app.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -14,13 +13,12 @@ import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
-import com.kwen.app.ui.screens.explore.ExploreScreen
+import com.kwen.app.ui.screens.explore.ExploreScreen  // note: performance
 import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun MainScreen(
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
@@ -34,7 +32,7 @@ fun MainScreen(
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
-        Icons.Filled.Home to Icons.Outlined.Home,  // FIXME: cleanup
+        Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
@@ -48,14 +46,12 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
-
                             color = AccentPrimary,
-
                             fontWeight = FontWeight.Bold,
-
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
+
                     },
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
@@ -80,8 +76,7 @@ fun MainScreen(
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
                     )
-
-                }  // FIXME: edge case
+                }
             }
         }
     ) { paddingValues ->
@@ -95,6 +90,7 @@ fun MainScreen(
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
+
                     onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
@@ -106,7 +102,6 @@ fun MainScreen(
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
-
                 )
             }
         }
