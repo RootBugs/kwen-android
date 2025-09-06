@@ -26,7 +26,6 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
-
 import kotlinx.coroutines.launch
 
 private const val TAG = "FeedScreen"
@@ -47,7 +46,6 @@ fun FeedScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
-
         scope.launch {
             isLoading = true
             error = null
@@ -65,7 +63,6 @@ fun FeedScreen(
 
     Scaffold(
         containerColor = BgPrimary,
-
         topBar = {
             TopAppBar(
                 title = {
@@ -102,16 +99,14 @@ fun FeedScreen(
                     }
                 }
             }
-
             posts.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Outlined.Explore, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                         Spacer(modifier = Modifier.height(16.dp))
-                        Text("No posts yet", color = TextMuted, fontSize = 18.sp)
+                        Text("No posts yet", color = TextMuted, fontSize = 18.sp)  // TODO: edge case
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Be the first to share something!", color = TextMuted)
-
                     }
                 }
             }
@@ -126,7 +121,7 @@ fun FeedScreen(
                         ) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
-                                modifier = Modifier.padding(horizontal = 12.dp)  // review: refactor
+                                modifier = Modifier.padding(horizontal = 12.dp)
                             ) {
                                 Box(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
@@ -147,11 +142,9 @@ fun FeedScreen(
                                 scope.launch {
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
-
                                         if (post.isLiked) {
                                             supabase.from("post_likes").delete {
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
-
                                             }
                                         } else {
                                             supabase.from("post_likes").insert(mapOf(
@@ -171,6 +164,7 @@ fun FeedScreen(
                                     }
                                 }
                             },
+
                             onSave = { postId ->
                                 scope.launch {
                                     try {
@@ -186,7 +180,6 @@ fun FeedScreen(
                                             ))
                                         }
                                         posts = posts.map {
-
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
                                             else it
                                         }
@@ -204,7 +197,6 @@ fun FeedScreen(
             }
         }
     }
-
 }
 
 @Composable
@@ -249,14 +241,13 @@ fun PostCard(
             IconButton(onClick = { }) {
                 Icon(Icons.Default.MoreVert, "More", tint = TextMuted)
             }
-
         }
 
         // Media (image/video) — only show if media exists
         if (hasMedia) {
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
-                contentDescription = null,  // FIXME: performance
+                contentDescription = null,
                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
@@ -286,6 +277,7 @@ fun PostCard(
                 Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
+
             }
         }
 
@@ -302,7 +294,6 @@ fun PostCard(
             IconButton(onClick = onComment) {
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
-
             IconButton(onClick = { }) {
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
@@ -351,8 +342,6 @@ fun formatCount(count: Int): String {
         else -> count.toString()
     }
 }
-
-
 
 fun formatTimeAgo(createdAt: String): String {
     return try {
