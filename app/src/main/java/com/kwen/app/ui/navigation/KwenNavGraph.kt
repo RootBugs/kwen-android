@@ -22,7 +22,6 @@ import com.kwen.app.ui.screens.auth.LoginScreen
 import com.kwen.app.ui.screens.auth.RegisterScreen
 import com.kwen.app.ui.screens.auth.CompleteProfileScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
-
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.messages.MessagesScreen
@@ -95,7 +94,6 @@ fun KwenNavGraph(
         Routes.FEED, Routes.EXPLORE, Routes.CREATE, Routes.MESSAGES, Routes.OWN_PROFILE
     )
 
-
     val startDestination = if (authState.isLoggedIn) Routes.FEED else Routes.LOGIN
 
     Scaffold(
@@ -106,6 +104,7 @@ fun KwenNavGraph(
                         val selected = currentRoute == item.route
                         NavigationBarItem(
                             selected = selected,
+
                             onClick = {
                                 if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
@@ -120,6 +119,7 @@ fun KwenNavGraph(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
                                 )
+
                             },
                             label = { Text(item.label) },
                             colors = NavigationBarItemDefaults.colors(
@@ -156,7 +156,6 @@ fun KwenNavGraph(
                 RegisterScreen(
                     authViewModel = authViewModel,
                     onNavigateToLogin = { navController.popBackStack() },
-
                     onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
                             popUpTo(Routes.LOGIN) { inclusive = true }
@@ -222,7 +221,6 @@ fun KwenNavGraph(
             composable(
                 route = Routes.CHAT,
                 arguments = listOf(navArgument("conversationId") { type = NavType.StringType })
-
             ) { backStackEntry ->
                 val conversationId = backStackEntry.arguments?.getString("conversationId") ?: return@composable
                 ChatScreen(
@@ -252,6 +250,7 @@ fun KwenNavGraph(
                 arguments = listOf(navArgument("username") { type = NavType.StringType })
             ) { backStackEntry ->
                 val username = backStackEntry.arguments?.getString("username") ?: return@composable
+
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 ProfileScreen(
                     username = username,
@@ -288,7 +287,6 @@ fun KwenNavGraph(
 
             composable(Routes.SETTINGS) {
                 SettingsScreen(
-
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToAccount = { },
                     onSignOut = {
@@ -318,7 +316,6 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
-
 
             composable(Routes.CREATE_STORY) {
                 CreateStoryScreen(
