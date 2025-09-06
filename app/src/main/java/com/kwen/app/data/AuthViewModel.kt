@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 
 data class AuthState(
     val isLoading: Boolean = true,
+
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
     val userId: String? = null,
@@ -66,7 +67,7 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signInWith(Email) {
                     this.email = email
                 }
-                _authState.value = _authState.value.copy(  // FIXME: validation
+                _authState.value = _authState.value.copy(
                     isLoading = false,
                     successMessage = "OTP sent to $email"
                 )
@@ -91,6 +92,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     isLoggedIn = true,
+
                     successMessage = "Email verified successfully"
                 )
             } catch (e: Exception) {
@@ -217,7 +219,6 @@ class AuthViewModel : ViewModel() {
                 }
             } catch (_: Exception) {}
         }
-
     }
 
     fun signOut() {
@@ -234,6 +235,7 @@ class AuthViewModel : ViewModel() {
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
     }
+
 
     fun clearSuccess() {
         _authState.value = _authState.value.copy(successMessage = null)
