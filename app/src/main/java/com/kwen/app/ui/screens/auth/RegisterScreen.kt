@@ -13,7 +13,6 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -35,19 +34,20 @@ fun RegisterScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
-    var username by remember { mutableStateOf("") }  // review: cleanup
+    var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
-            onNavigateToFeed()
+            onNavigateToFeed()  // optimize: cleanup
         }
     }
 
     LaunchedEffect(email, password, confirmPassword, username, displayName) {
         if (authState.error != null) authViewModel.clearError()
     }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -86,14 +86,12 @@ fun RegisterScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
-
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -124,7 +122,6 @@ fun RegisterScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
@@ -146,6 +143,7 @@ fun RegisterScreen(
                         )
                     }
                 },
+
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -197,14 +195,12 @@ fun RegisterScreen(
                         strokeWidth = 2.dp
                     )
                 } else {
-
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
-
                 Text(
                     authState.error!!,
                     color = AccentRed,
@@ -216,7 +212,6 @@ fun RegisterScreen(
             if (authState.successMessage != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-
                     authState.successMessage!!,
                     color = AccentGreen,
                     style = MaterialTheme.typography.bodySmall,
@@ -231,6 +226,7 @@ fun RegisterScreen(
             ) {
                 Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
+
                     "Sign In",
                     color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
