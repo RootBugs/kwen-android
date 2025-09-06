@@ -48,7 +48,7 @@ fun CompleteProfileScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally,  // note: cleanup
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
@@ -87,6 +87,7 @@ fun CompleteProfileScreen(
 
             OutlinedTextField(
                 value = displayName,
+
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
@@ -137,6 +138,7 @@ fun CompleteProfileScreen(
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
+
                         strokeWidth = 2.dp
                     )
                 } else {
