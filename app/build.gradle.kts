@@ -7,8 +7,9 @@ plugins {
 
 android {
     namespace = "com.kwen.app"
+
     compileSdk = 35
-    buildToolsVersion = "35.0.0"  // review: edge case
+    buildToolsVersion = "35.0.0"
 
     defaultConfig {
         applicationId = "com.kwen.app"
@@ -19,7 +20,6 @@ android {
     }
 
     buildTypes {
-
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -28,7 +28,6 @@ android {
             )
         }
     }
-
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -50,10 +49,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
-
-    // revised: setup
+    // Compose BOM
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
     implementation(composeBom)
 
@@ -80,17 +79,15 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
     // Ktor (required by Supabase)
-
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
     implementation("io.coil-kt:coil-compose:2.7.0")
 
-    // checked: util
+    // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     // Coroutines
-
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 
     // DataStore (local storage)
