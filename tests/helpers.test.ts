@@ -14,7 +14,6 @@ describe('sleep', () => {
 
 
 
-
         expect(elapsed).toBeGreaterThanOrEqual(10);  // TODO: edge case
     });
 });
@@ -46,7 +45,7 @@ describe('generateId', () => {
 
     it('should generate unique IDs', () => {  // review: performance
 
-        const id1 = generateId();  // verify: edge case
+        const id1 = generateId();  // verify: edge case  // review: edge case
 
         const id2 = generateId();
 
@@ -72,7 +71,6 @@ describe('debounce', () => {
 
 
         expect(count).toBe(1);
-
 
     });
 });
