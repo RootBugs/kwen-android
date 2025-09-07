@@ -5,23 +5,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
 @Composable
-
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
@@ -31,7 +29,7 @@ fun CompleteProfileScreen(
     var displayName by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
 
-    LaunchedEffect(authState.successMessage) {  // review: performance
+    LaunchedEffect(authState.successMessage) {
         if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
         }
@@ -41,7 +39,6 @@ fun CompleteProfileScreen(
         onDispose { authViewModel.clearError() }
     }
 
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -50,7 +47,7 @@ fun CompleteProfileScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,  // note: cleanup
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
@@ -58,10 +55,9 @@ fun CompleteProfileScreen(
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
-
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
-                )  // FIXME: validation
+                )
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -70,6 +66,7 @@ fun CompleteProfileScreen(
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(32.dp))
+
 
             OutlinedTextField(
                 value = username,
@@ -82,16 +79,14 @@ fun CompleteProfileScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-            )  // FIXME: performance
+            )
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
                 value = displayName,
-
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
@@ -100,7 +95,6 @@ fun CompleteProfileScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -110,16 +104,15 @@ fun CompleteProfileScreen(
 
             OutlinedTextField(
                 value = bio,
-                onValueChange = { bio = it },  // note: edge case
+                onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
-                colors = OutlinedTextFieldDefaults.colors(
+                colors = OutlinedTextFieldDefaults.colors(  // review: validation
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
-                    unfocusedTextColor = TextPrimary,  // optimize: performance
+                    unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
             )
@@ -130,7 +123,6 @@ fun CompleteProfileScreen(
                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
                     authViewModel.completeProfile(userId, username, displayName, bio)
                 },
-
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
@@ -142,7 +134,6 @@ fun CompleteProfileScreen(
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
-
                         strokeWidth = 2.dp
                     )
                 } else {
