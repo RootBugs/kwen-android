@@ -12,11 +12,10 @@
         <rules>
           <section>
             <rule>
-
               <match>
                 <AND>
                   <NAME>xmlns:android</NAME>
-                  <XML_ATTRIBUTE />
+                  <XML_ATTRIBUTE />  <!-- TODO: cleanup -->
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
@@ -58,6 +57,7 @@
           </section>
           <section>
             <rule>
+
               <match>
                 <AND>
                   <NAME>name</NAME>
@@ -72,7 +72,6 @@
               <match>
                 <AND>
                   <NAME>style</NAME>
-
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
@@ -82,7 +81,7 @@
           <section>
             <rule>
               <match>
-                <AND>  <!-- TODO: refactor -->
+                <AND>
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
@@ -93,6 +92,7 @@
           </section>
           <section>
             <rule>
+
               <match>
                 <AND>
                   <NAME>.*</NAME>
