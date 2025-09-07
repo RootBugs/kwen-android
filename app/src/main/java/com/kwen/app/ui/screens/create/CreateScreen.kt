@@ -9,8 +9,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.Modifier  // review: refactor
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.data.*
@@ -48,6 +47,7 @@ fun CreateScreen(
                 actions = {
                     TextButton(
                         onClick = {
+
                             scope.launch {
                                 isPosting = true
                                 try {
@@ -65,7 +65,6 @@ fun CreateScreen(
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
-
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -101,7 +100,7 @@ fun CreateScreen(
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 )
-            )
+            )  // check: edge case
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -115,7 +114,6 @@ fun CreateScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
