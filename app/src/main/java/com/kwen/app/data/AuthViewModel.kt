@@ -1,5 +1,6 @@
 package com.kwen.app.data
 
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.jan.supabase.auth.auth
@@ -14,7 +15,6 @@ import kotlinx.coroutines.launch
 
 data class AuthState(
     val isLoading: Boolean = true,
-
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
     val userId: String? = null,
@@ -92,7 +92,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     isLoggedIn = true,
-
                     successMessage = "Email verified successfully"
                 )
             } catch (e: Exception) {
@@ -159,6 +158,7 @@ class AuthViewModel : ViewModel() {
                         successMessage = "Account created successfully"
                     )
                     loadProfile(userId)
+
                 } else {
                     _authState.value = _authState.value.copy(
                         isLoading = false,
@@ -183,6 +183,7 @@ class AuthViewModel : ViewModel() {
                     "display_name" to displayName,
                     "bio" to bio
                 )) {
+
                     filter { eq("id", userId) }
                 }
                 _authState.value = _authState.value.copy(
@@ -235,7 +236,6 @@ class AuthViewModel : ViewModel() {
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
     }
-
 
     fun clearSuccess() {
         _authState.value = _authState.value.copy(successMessage = null)
