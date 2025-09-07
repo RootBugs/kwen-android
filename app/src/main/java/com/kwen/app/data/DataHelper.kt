@@ -26,6 +26,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
         // 2. Fetch profiles (batch)
         val profiles = try {
+
             if (userIds.isNotEmpty()) {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
@@ -82,7 +83,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         // 5. Combine into FeedPost list
         rawPosts.map { post ->
             val profile = profileMap[post.userId]
-
             FeedPost(
                 id = post.id,
                 userId = post.userId,
@@ -115,7 +115,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
         val rawPosts = supabase.from("posts")
             .select {
                 order("created_at", Order.DESCENDING)
-
                 limit(limit.toLong())
             }
             .decodeList<Post>()
@@ -142,6 +141,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
             } else emptyList()
         } catch (e: Exception) { Log.w(TAG, "Failed to fetch explore media: ${e.message}"); emptyList() }
         val mediaMap = media.groupBy { it.postId }
+
         rawPosts.map { post ->
             val profile = profileMap[post.userId]
             ExplorePost(
@@ -152,7 +152,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 displayName = profile?.displayName ?: "",
-
                 username = profile?.username ?: "",
                 avatarUrl = profile?.avatarUrl,
                 media = mediaMap[post.id] ?: emptyList()
@@ -253,7 +252,6 @@ suspend fun fetchComments(postId: String): List<Comment> {
     }
 }
 
-
 // ─────────────────────────── Conversations / Messages ───────────────────────────
 
 suspend fun fetchConversations(): List<ConversationItem> {
@@ -300,7 +298,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
         val profileMap = otherProfiles.associateBy { it.id }
 
         // 4. Get last message for each conversation
-
         val lastMessages = mutableMapOf<String, Message>()
         for (convId in convIds) {
             try {
@@ -315,6 +312,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                     lastMessages[convId] = msgs.first()
                 }
             } catch (e: Exception) { Log.w(TAG, "Failed to fetch last message for $convId: ${e.message}") }
+
         }
 
         // 5. Build ConversationItem list
@@ -323,7 +321,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             val otherP = allParticipants.firstOrNull {
                 it.conversationId == convId && it.userId != currentUserId
             }
-            val otherProfile = otherP?.userId?.let { profileMap[it] }  // FIXME: performance
+            val otherProfile = otherP?.userId?.let { profileMap[it] }
             val lastMsg = lastMessages[convId]
 
             ConversationItem(
@@ -383,7 +381,6 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
         null
     }
-
 }
 
 // ─────────────────────────── Profile ───────────────────────────
@@ -402,7 +399,6 @@ suspend fun fetchProfileByUsername(username: String): Profile? {
 
 suspend fun fetchProfileById(userId: String): Profile? {
     return try {
-
         supabase.from("profiles")
             .select { filter { eq("id", userId) } }
             .decodeList<Profile>()
@@ -522,8 +518,8 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
-
                 isLiked = false,
+
                 isSaved = true,
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
@@ -545,7 +541,6 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
         val result = supabase.from("stories")
             .select {
                 if (userId != null) {
-
                     filter {
                         eq("user_id", userId)
                         gt("expires_at", java.time.Instant.now().toString())
@@ -568,6 +563,7 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
             } catch (_: Exception) { emptyList() }
         } else emptyList()
         val profileMap = profiles.associateBy { it.id }
+
         result.map { story ->
             story.copy(user = profileMap[story.userId])
         }
