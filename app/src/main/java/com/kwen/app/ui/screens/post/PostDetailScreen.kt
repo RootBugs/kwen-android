@@ -50,6 +50,7 @@ fun PostDetailScreen(
         scope.launch {
             isLoading = true
             try {
+
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
@@ -164,6 +165,7 @@ fun PostDetailScreen(
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
                             color = TextPrimary,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+
                         )
                     }
 
@@ -239,6 +241,7 @@ fun PostDetailScreen(
                                         ))
                                         commentText = ""
                                         loadPost()
+
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
