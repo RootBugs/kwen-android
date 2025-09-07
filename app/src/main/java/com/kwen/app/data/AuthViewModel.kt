@@ -1,6 +1,5 @@
 package com.kwen.app.data
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.jan.supabase.auth.auth
@@ -9,6 +8,7 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
+
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -126,6 +126,7 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     error = e.message ?: "Sign in failed"
                 )
+
             }
         }
     }
@@ -158,7 +159,6 @@ class AuthViewModel : ViewModel() {
                         successMessage = "Account created successfully"
                     )
                     loadProfile(userId)
-
                 } else {
                     _authState.value = _authState.value.copy(
                         isLoading = false,
@@ -183,7 +183,6 @@ class AuthViewModel : ViewModel() {
                     "display_name" to displayName,
                     "bio" to bio
                 )) {
-
                     filter { eq("id", userId) }
                 }
                 _authState.value = _authState.value.copy(
@@ -227,6 +226,7 @@ class AuthViewModel : ViewModel() {
             try {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
+
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
             }
