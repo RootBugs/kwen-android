@@ -21,6 +21,7 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
 @Composable
+
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
@@ -81,6 +82,7 @@ fun CompleteProfileScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
+
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
@@ -117,7 +119,7 @@ fun CompleteProfileScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
 
-                    unfocusedTextColor = TextPrimary,
+                    unfocusedTextColor = TextPrimary,  // optimize: performance
                     cursorColor = AccentPrimary
                 )
             )
