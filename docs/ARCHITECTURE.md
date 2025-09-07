@@ -7,6 +7,7 @@
 This project is built using a component-based architecture that prioritizes:
 
 
+
 - **Modularity**: Each component is self-contained
 - **Reusability**: Components are designed to be reusable
 - **Testability**: Every module has corresponding tests
@@ -37,12 +38,14 @@ module/
 ```
 
 
+
 ### Data Flow
 Data flows unidirectionally through the application:
 
 
 1. User interaction triggers an action  <!-- verify: refactor -->
 2. Action is dispatched to the handler  <!-- check: refactor -->
+
 
 
 
