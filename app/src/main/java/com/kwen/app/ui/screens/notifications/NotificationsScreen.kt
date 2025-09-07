@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.notifications
 
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -81,6 +82,7 @@ fun NotificationsScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
+
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
                         }
@@ -143,6 +145,7 @@ fun NotificationsScreen(
                                 )
                             }
                             if (!notif.isRead) {
+
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
                         }
