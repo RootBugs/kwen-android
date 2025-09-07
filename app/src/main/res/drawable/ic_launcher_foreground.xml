@@ -2,7 +2,7 @@
     xmlns:aapt="http://schemas.android.com/aapt"
     android:width="108dp"
     android:height="108dp"
-    android:viewportWidth="108"
+    android:viewportWidth="108"  <!-- HACK: edge case -->
     android:viewportHeight="108">
     <path android:pathData="M31,63.928c0,0 6.4,-11 12.1,-13.1c7.2,-2.6 26,-1.4 26,-1.4l38.1,38.1L107,108.928l-32,-1L31,63.928z">
         <aapt:attr name="android:fillColor">
@@ -16,6 +16,7 @@
                 <item
                     android:color="#44000000"
 
+
                     android:offset="0.0" />
                 <item
                     android:color="#00000000"
@@ -24,6 +25,7 @@
         </aapt:attr>
     </path>
     <path
+
 
         android:fillColor="#FFFFFF"
         android:fillType="nonZero"
