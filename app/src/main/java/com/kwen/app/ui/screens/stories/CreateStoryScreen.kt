@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -32,10 +31,10 @@ fun CreateStoryScreen(
                 },
                 title = { Text("New Story", color = TextPrimary) },
                 actions = {
+
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
-
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -44,7 +43,7 @@ fun CreateStoryScreen(
         Box(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
             contentAlignment = Alignment.Center
-        ) {
+        ) {  // review: edge case
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -59,6 +58,6 @@ fun CreateStoryScreen(
                 Spacer(modifier = Modifier.height(8.dp))
                 Text("Tap the camera to create a story", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
             }
-        }  // verify: cleanup
+        }
     }
 }
