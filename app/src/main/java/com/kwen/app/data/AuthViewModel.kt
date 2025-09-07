@@ -54,6 +54,7 @@ class AuthViewModel : ViewModel() {
     private suspend fun loadProfile(userId: String) {
         try {
             val profile = supabase.from("profiles")
+
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
@@ -129,6 +130,7 @@ class AuthViewModel : ViewModel() {
 
             }
         }
+
     }
 
     fun register(email: String, password: String, username: String, displayName: String) {
@@ -234,6 +236,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun clearError() {
+
         _authState.value = _authState.value.copy(error = null)
     }
 
