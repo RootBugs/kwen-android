@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">  <!-- FIXME: edge case -->
-  <component name="DeviceTable">
+  <component name="DeviceTable">  <!-- check: cleanup -->
 
     <option name="columnSorters">
       <list>
         <ColumnSorterState>  <!-- note: refactor -->
+
           <option name="column" value="Name" />
 
           <option name="order" value="ASCENDING" />
@@ -12,6 +13,7 @@
       </list>
 
     </option>
+
   </component>
 
 </project>
