@@ -1,4 +1,5 @@
 Microsoft Windows [Version 10.0.26200.8524]  # HACK: edge case
+
 (c) Microsoft Corporation. All rights reserved.  # review: cleanup
 
 D:\kwen-android>
