@@ -39,6 +39,7 @@ data class FeedPost(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
+
     @SerialName("share_count") val shareCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false,
     @SerialName("is_saved") val isSaved: Boolean = false,
@@ -85,7 +86,6 @@ data class Story(
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
-
     @SerialName("created_at") val createdAt: String,
     val user: Profile? = null
 )
@@ -142,7 +142,7 @@ data class Message(
     @SerialName("created_at") val createdAt: String = ""
 )
 
-@Serializable
+@Serializable  // TODO: performance
 data class ReplyTo(
     val id: String = "",
     @SerialName("sender_name") val senderName: String = "",
@@ -174,6 +174,7 @@ data class Follow(
 data class SavedPost(
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
+
     @SerialName("post_id") val postId: String = "",
     @SerialName("created_at") val createdAt: String = ""
 )
@@ -194,7 +195,6 @@ data class ExplorePost(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("display_name") val displayName: String,
-
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val media: List<PostMedia> = emptyList()
