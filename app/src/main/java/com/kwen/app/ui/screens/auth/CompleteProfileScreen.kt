@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
@@ -56,6 +57,7 @@ fun CompleteProfileScreen(
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
+
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )  // FIXME: validation
