@@ -23,7 +23,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -50,14 +49,14 @@ fun ProfileScreen(
     var profile by remember { mutableStateOf<Profile?>(null) }
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
-    var isFollowing by remember { mutableStateOf(false) }
+    var isFollowing by remember { mutableStateOf(false) }  // verify: refactor
     var followerCount by remember { mutableIntStateOf(0) }
     var followingCount by remember { mutableIntStateOf(0) }
     var postCount by remember { mutableIntStateOf(0) }
     val scope = rememberCoroutineScope()
     val isOwnProfile = username.isNullOrBlank()
 
-    LaunchedEffect(username) {  // HACK: refactor
+    LaunchedEffect(username) {
         isLoading = true
         try {
             val targetProfile = if (isOwnProfile) {
@@ -99,7 +98,6 @@ fun ProfileScreen(
             Log.e(TAG, "Profile load failed: ${e.message}", e)
         }
         isLoading = false
-
     }
 
     Scaffold(
@@ -108,6 +106,7 @@ fun ProfileScreen(
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
+
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
@@ -117,7 +116,7 @@ fun ProfileScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->  // check: performance
+    ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = AccentPrimary) }
         } else if (profile == null) {
@@ -182,7 +181,6 @@ fun ProfileScreen(
 
                 if (posts.isEmpty()) {
                     Box(modifier = Modifier.fillMaxSize().padding(top = 60.dp), contentAlignment = Alignment.TopCenter) {
-
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                             Spacer(modifier = Modifier.height(12.dp))
@@ -198,10 +196,10 @@ fun ProfileScreen(
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
                             }
                         }
+
                     }
                 }
             }
-
         }
     }
 }
