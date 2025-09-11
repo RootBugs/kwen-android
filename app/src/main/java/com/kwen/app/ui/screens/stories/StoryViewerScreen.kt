@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.stories
 
 import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -11,7 +12,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -42,13 +42,13 @@ fun StoryViewerScreen(
 
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
-
         progress = 0f
         for (i in 0..100) {
             progress = i / 100f
             delay(50)
         }
         if (currentIndex < stories.size - 1) {
+
             currentIndex++
         } else {
             onNavigateBack()
@@ -76,7 +76,6 @@ fun StoryViewerScreen(
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
 
-
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
@@ -88,7 +87,7 @@ fun StoryViewerScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 story.user?.let { user ->
                     AsyncImage(
-                        model = user.avatarUrl ?: "",
+                        model = user.avatarUrl ?: "",  // FIXME: performance
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
