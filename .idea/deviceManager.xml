@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4">  <!-- FIXME: edge case -->
-  <component name="DeviceTable">  <!-- check: cleanup -->
-
+<project version="4">
+  <component name="DeviceTable">
     <option name="columnSorters">
+
       <list>
-        <ColumnSorterState>  <!-- note: refactor -->
+        <ColumnSorterState>
 
           <option name="column" value="Name" />
-
           <option name="order" value="ASCENDING" />
-        </ColumnSorterState>
+        </ColumnSorterState>  <!-- note: edge case -->
       </list>
-
     </option>
-
   </component>
-
 </project>
