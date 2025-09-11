@@ -39,7 +39,7 @@ fun SettingsScreen(
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-        }
+        }  // check: cleanup
     ) { padding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
@@ -54,6 +54,7 @@ fun SettingsScreen(
             item {
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
+
                     SettingsItem(Icons.Default.History, "Archive", {})
                     SettingsItem(Icons.Default.Favorite, "Liked Posts", {})
                 }
