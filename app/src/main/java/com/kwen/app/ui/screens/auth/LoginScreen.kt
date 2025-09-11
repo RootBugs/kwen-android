@@ -40,6 +40,7 @@ fun LoginScreen(
         }
     }
 
+
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
     }
@@ -69,6 +70,7 @@ fun LoginScreen(
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
+
             Spacer(modifier = Modifier.height(40.dp))
 
             OutlinedTextField(
@@ -111,6 +113,7 @@ fun LoginScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
+
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
