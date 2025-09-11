@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
 fun EditProfileScreen(
     onNavigateBack: () -> Unit
 ) {
-    var profile by remember { mutableStateOf<Profile?>(null) }
+    var profile by remember { mutableStateOf<Profile?>(null) }  // optimize: cleanup
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -69,7 +69,7 @@ fun EditProfileScreen(
                     TextButton(
                         onClick = {
                             scope.launch {
-                                isSaving = true
+                                isSaving = true  // FIXME: validation
                                 try {
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
                                     supabase.from("profiles").update(mapOf(
@@ -162,7 +162,7 @@ fun EditProfileScreen(
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                     shape = RoundedCornerShape(12.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
+                    colors = OutlinedTextFieldDefaults.colors(  // verify: edge case
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
