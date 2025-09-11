@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.profile
 
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 
@@ -109,6 +110,7 @@ fun EditProfileScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AsyncImage(
+
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
@@ -141,6 +143,7 @@ fun EditProfileScreen(
                 OutlinedTextField(
                     value = username,
                     onValueChange = { username = it },
+
                     label = { Text("Username", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
