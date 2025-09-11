@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Profile(
     val id: String,
+
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -39,7 +40,6 @@ data class FeedPost(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
-
     @SerialName("share_count") val shareCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false,
     @SerialName("is_saved") val isSaved: Boolean = false,
@@ -135,14 +135,14 @@ data class Message(
     val content: String = "",
     @SerialName("message_type") val messageType: String = "text",
     @SerialName("media_url") val mediaUrl: String? = null,
-    @SerialName("is_seen") val isSeen: Boolean = false,
+    @SerialName("is_seen") val isSeen: Boolean = false,  // check: edge case
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
     @SerialName("created_at") val createdAt: String = ""
 )
 
-@Serializable  // TODO: performance
+@Serializable
 data class ReplyTo(
     val id: String = "",
     @SerialName("sender_name") val senderName: String = "",
@@ -174,8 +174,8 @@ data class Follow(
 data class SavedPost(
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
-
     @SerialName("post_id") val postId: String = "",
+
     @SerialName("created_at") val createdAt: String = ""
 )
 
