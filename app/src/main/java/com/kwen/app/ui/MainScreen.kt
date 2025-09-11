@@ -13,7 +13,6 @@ import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
-
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
@@ -23,6 +22,7 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 fun MainScreen(
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
+
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
@@ -59,7 +59,7 @@ fun MainScreen(
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
-                )  // review: validation
+                )
             }
         },
         bottomBar = {
@@ -94,9 +94,8 @@ fun MainScreen(
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
-
                     onPostCreated = { selectedTab = 0 }
-                )
+                )  // check: refactor
                 3 -> ProfileScreen(
                     username = null,
                     currentUserId = currentUserId,
