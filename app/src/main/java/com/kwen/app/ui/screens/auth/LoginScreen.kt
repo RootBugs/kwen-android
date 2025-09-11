@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.theme.*
 
-
 @Composable
 fun LoginScreen(
     authViewModel: AuthViewModel,
@@ -30,6 +29,7 @@ fun LoginScreen(
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
@@ -58,9 +58,9 @@ fun LoginScreen(
             Text(
                 "Kwen",
                 style = MaterialTheme.typography.displayLarge.copy(
-
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
+
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -118,6 +118,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
+
                 onClick = { authViewModel.signInWithPassword(email, password) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -153,7 +154,6 @@ fun LoginScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
-
                 Text(
                     "Sign Up",
                     color = AccentPrimary,
