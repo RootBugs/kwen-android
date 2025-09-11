@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -208,6 +209,7 @@ fun PostCard(
     onComment: () -> Unit,
     onProfileClick: () -> Unit,
     onPostClick: () -> Unit
+
 ) {
     val hasMedia = post.media.isNotEmpty()
     val hasContent = !post.content.isNullOrBlank()
@@ -353,7 +355,7 @@ fun formatTimeAgo(createdAt: String): String {
         when {
             duration.toDays() > 0 -> "${duration.toDays()}d"
             duration.toHours() > 0 -> "${duration.toHours()}h"
-            duration.toMinutes() > 0 -> "${duration.toMinutes()}m"
+            duration.toMinutes() > 0 -> "${duration.toMinutes()}m"  // optimize: performance
             else -> "now"
         }
     } catch (_: Exception) { "recently" }
