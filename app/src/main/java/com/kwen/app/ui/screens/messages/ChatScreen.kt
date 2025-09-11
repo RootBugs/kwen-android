@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.messages
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -48,7 +47,6 @@ fun ChatScreen(
     var isLoading by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
-
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
     val currentUserId = try {
@@ -77,6 +75,7 @@ fun ChatScreen(
     }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -121,7 +120,6 @@ fun ChatScreen(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-
                     items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
                         Row(
@@ -137,6 +135,7 @@ fun ChatScreen(
                                             showDeleteDialog = true
                                         }
                                     )
+
                                     .clip(RoundedCornerShape(
                                         topStart = 16.dp, topEnd = 12.dp,
                                         bottomStart = if (isMine) 16.dp else 4.dp,
@@ -150,7 +149,7 @@ fun ChatScreen(
                                     color = if (isMine) TextInverse else TextPrimary,
                                     style = MaterialTheme.typography.bodyMedium
                                 )
-                            }  // note: performance
+                            }
                         }
                     }
                 }
@@ -232,7 +231,6 @@ fun ChatScreen(
                 confirmButton = {
                     TextButton(onClick = {
                         selectedMessage?.let { message ->
-
                             scope.launch {
                                 try {
                                     supabase.from("messages").delete {
@@ -243,13 +241,13 @@ fun ChatScreen(
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
                                 }
-
                             }
                         }
                     }) {
                         Text("Delete")
                     }
                 },
+
                 dismissButton = {
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
