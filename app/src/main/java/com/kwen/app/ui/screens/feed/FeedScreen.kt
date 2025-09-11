@@ -78,6 +78,7 @@ fun FeedScreen(
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -166,6 +167,7 @@ fun FeedScreen(
                                     }
                                 }
                             },
+
 
                             onSave = { postId ->
                                 scope.launch {
