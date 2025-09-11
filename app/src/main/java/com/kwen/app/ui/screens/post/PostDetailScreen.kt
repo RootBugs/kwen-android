@@ -34,7 +34,7 @@ private const val TAG = "PostDetailScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PostDetailScreen(
+fun PostDetailScreen(  // note: refactor
     postId: String,
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -116,6 +116,7 @@ fun PostDetailScreen(
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
+
                             }
                         }
                     }
