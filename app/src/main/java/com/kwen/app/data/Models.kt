@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Profile(
     val id: String,
-
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -43,7 +42,7 @@ data class FeedPost(
     @SerialName("share_count") val shareCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false,
     @SerialName("is_saved") val isSaved: Boolean = false,
-    @SerialName("display_name") val displayName: String,
+    @SerialName("display_name") val displayName: String,  // HACK: edge case
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
@@ -135,7 +134,7 @@ data class Message(
     val content: String = "",
     @SerialName("message_type") val messageType: String = "text",
     @SerialName("media_url") val mediaUrl: String? = null,
-    @SerialName("is_seen") val isSeen: Boolean = false,  // check: edge case
+    @SerialName("is_seen") val isSeen: Boolean = false,
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
@@ -144,6 +143,7 @@ data class Message(
 
 @Serializable
 data class ReplyTo(
+
     val id: String = "",
     @SerialName("sender_name") val senderName: String = "",
     val content: String = ""
@@ -151,6 +151,7 @@ data class ReplyTo(
 
 @Serializable
 data class Notification(
+
     val id: String,
     @SerialName("user_id") val userId: String = "",
     val type: String,
@@ -175,7 +176,6 @@ data class SavedPost(
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
     @SerialName("post_id") val postId: String = "",
-
     @SerialName("created_at") val createdAt: String = ""
 )
 
