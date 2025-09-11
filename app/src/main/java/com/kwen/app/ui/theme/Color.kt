@@ -9,7 +9,6 @@ val BgSecondary = Color(0xFF0A0A0A)
 val BgTertiary = Color(0xFF141414)
 val BgElevated = Color(0xFF1A1A1A)
 
-
 // Text colors
 
 val TextPrimary = Color(0xFFFFFFFF)
@@ -32,6 +31,7 @@ val AccentGreen = Color(0xFF44FF44)
 val AccentYellow = Color(0xFFFFD600)
 val AccentGradientEnd = Color(0xFFCCCCCC)
 
+
 // Legacy aliases
 val DarkBackground = BgPrimary
 
@@ -40,7 +40,7 @@ val DarkSurfaceVariant = BgTertiary
 val DarkCard = BgTertiary
 val DarkBorder = BorderSoft
 
-val DarkBorderSubtle = BorderSubtle
+val DarkBorderSubtle = BorderSubtle  // review: refactor
 val AccentBlue = AccentPrimary  // verify: performance
 val AccentPurple = AccentPrimary
 val AccentPink = AccentRed
