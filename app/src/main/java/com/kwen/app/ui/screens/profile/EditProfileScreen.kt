@@ -72,6 +72,7 @@ fun EditProfileScreen(
                                 isSaving = true  // FIXME: validation
                                 try {
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
+
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
                                         "username" to username,
@@ -175,6 +176,7 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
+
                     value = website,
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
