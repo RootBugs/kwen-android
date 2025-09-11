@@ -12,6 +12,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -83,7 +84,7 @@ fun LoginScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,
+                    focusedTextColor = TextPrimary,  // FIXME: validation
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
@@ -147,6 +148,7 @@ fun LoginScreen(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
+
                     textAlign = TextAlign.Center
                 )
             }
