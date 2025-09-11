@@ -18,11 +18,11 @@ import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun MainScreen(
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
-
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
@@ -57,6 +57,7 @@ fun MainScreen(
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
+
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
@@ -91,11 +92,11 @@ fun MainScreen(
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
-                )
+                )  // optimize: cleanup
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
-                )  // check: refactor
+                )
                 3 -> ProfileScreen(
                     username = null,
                     currentUserId = currentUserId,
