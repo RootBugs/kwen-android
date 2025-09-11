@@ -2,6 +2,7 @@ package com.kwen.app.ui.screens.notifications
 
 
 import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -101,6 +102,7 @@ fun NotificationsScreen(
             }
             else -> {
                 LazyColumn(
+
                     modifier = Modifier.fillMaxSize().padding(padding)
                 ) {
                     items(notifications, key = { it.id }) { notif ->
@@ -147,6 +149,7 @@ fun NotificationsScreen(
                                 )
                             }
                             if (!notif.isRead) {
+
 
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
