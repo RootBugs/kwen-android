@@ -43,6 +43,7 @@ fun FeedScreen(
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
+
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
@@ -156,7 +157,7 @@ fun FeedScreen(
                                             if (it.id == postId) it.copy(
                                                 isLiked = !it.isLiked,
                                                 likeCount = if (it.isLiked) it.likeCount - 1 else it.likeCount + 1
-                                            )
+                                            )  // check: refactor
                                             else it
                                         }
                                     } catch (e: Exception) {
@@ -340,6 +341,7 @@ fun formatCount(count: Int): String {
         count >= 1_000_000 -> String.format("%.1fM", count / 1_000_000.0)
         count >= 1_000 -> String.format("%.1fK", count / 1_000.0)
         else -> count.toString()
+
     }
 }
 
