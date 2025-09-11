@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
+
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
@@ -58,13 +59,13 @@ fun MainScreen(
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
-                )
+                )  // review: validation
             }
         },
         bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
-                    NavigationBarItem(  // note: cleanup
+                    NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
@@ -93,6 +94,7 @@ fun MainScreen(
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
+
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
@@ -102,6 +104,6 @@ fun MainScreen(
                     onNavigateToPost = onNavigateToPost
                 )
             }
-        }  // note: edge case
+        }
     }
 }
