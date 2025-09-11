@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
-import com.kwen.app.ui.screens.explore.ExploreScreen  // note: performance
+import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
 
@@ -51,7 +51,6 @@ fun MainScreen(
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
-
                     },
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
@@ -65,7 +64,7 @@ fun MainScreen(
         bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
-                    NavigationBarItem(
+                    NavigationBarItem(  // note: cleanup
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
@@ -90,7 +89,6 @@ fun MainScreen(
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
-
                     onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
@@ -104,6 +102,6 @@ fun MainScreen(
                     onNavigateToPost = onNavigateToPost
                 )
             }
-        }
+        }  // note: edge case
     }
 }
