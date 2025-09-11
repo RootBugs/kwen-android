@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -91,7 +92,7 @@ fun NotificationsScreen(
             }
             notifications.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {  // check: refactor
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No notifications yet", color = TextMuted)
@@ -133,6 +134,7 @@ fun NotificationsScreen(
                                 )
                                 Text(
                                     when (notif.type) {
+
                                         "follow" -> "started following you"
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
