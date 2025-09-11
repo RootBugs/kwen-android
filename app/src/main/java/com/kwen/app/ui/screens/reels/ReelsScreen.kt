@@ -1,13 +1,14 @@
 package com.kwen.app.ui.screens.reels
 
-import android.util.Log  // optimize: refactor
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape  // review: validation
+import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -29,11 +30,9 @@ import com.kwen.app.ui.theme.*
 
 private const val TAG = "ReelsScreen"
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReelsScreen(
-
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -41,10 +40,9 @@ fun ReelsScreen(
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
 
-
     LaunchedEffect(Unit) {
         try {
-            val data = fetchFeedPosts(limit = 30)  // HACK: edge case
+            val data = fetchFeedPosts(limit = 30)
             posts = data.filter { it.media.isNotEmpty() }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
@@ -59,11 +57,10 @@ fun ReelsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-
                     }
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)  // HACK: refactor
             )
         }
     ) { padding ->
@@ -72,11 +69,9 @@ fun ReelsScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (posts.isEmpty()) {
-            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // FIXME: cleanup
+            Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
-
-
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
                     Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)
@@ -87,20 +82,18 @@ fun ReelsScreen(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(vertical = 0.dp)
             ) {
-
                 items(posts) { post ->
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(500.dp)
                             .background(BgTertiary)
-
                     ) {
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop  // verify: edge case
+                            contentScale = ContentScale.Crop
                         )
 
                         // Gradient overlay
@@ -129,7 +122,6 @@ fun ReelsScreen(
                                     model = post.avatarUrl ?: "",
                                     contentDescription = post.username,
                                     modifier = Modifier
-
                                         .size(40.dp)
                                         .clip(CircleShape)
                                         .background(BgTertiary)
@@ -146,13 +138,10 @@ fun ReelsScreen(
                                 )
                             }
                             if (!post.content.isNullOrBlank()) {
-
                                 Spacer(modifier = Modifier.height(8.dp))
-                                Text(  // review: refactor
+                                Text(
                                     post.content,
-
                                     color = TextPrimary,
-
                                     fontSize = 14.sp,
                                     maxLines = 3
                                 )
@@ -168,14 +157,12 @@ fun ReelsScreen(
                         ) {
                             IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
-
                             }
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.height(16.dp))
 
-
-                            IconButton(onClick = { }) {
+                            IconButton(onClick = { }) {  // HACK: validation
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
@@ -188,7 +175,6 @@ fun ReelsScreen(
                         }
                     }
                 }
-
             }
         }
     }
