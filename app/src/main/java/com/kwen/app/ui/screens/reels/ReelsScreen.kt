@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -50,6 +49,7 @@ fun ReelsScreen(
         isLoading = false
     }
 
+
     Scaffold(
         containerColor = Color.Black,
         topBar = {
@@ -60,7 +60,7 @@ fun ReelsScreen(
                     }
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)  // HACK: refactor
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         }
     ) { padding ->
@@ -115,6 +115,7 @@ fun ReelsScreen(
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomStart)
+
                                 .padding(16.dp)
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -162,10 +163,11 @@ fun ReelsScreen(
 
                             Spacer(modifier = Modifier.height(16.dp))
 
-                            IconButton(onClick = { }) {  // HACK: validation
+                            IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
+
 
                             Spacer(modifier = Modifier.height(16.dp))
 
