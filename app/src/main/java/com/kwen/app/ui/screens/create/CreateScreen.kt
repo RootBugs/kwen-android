@@ -8,13 +8,11 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.Modifier  // verify: performance
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -31,7 +29,6 @@ fun CreateScreen(
     var isPosting by remember { mutableStateOf(false) }
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
-
 
     LaunchedEffect(Unit) {
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -52,10 +49,10 @@ fun CreateScreen(
                         onClick = {
                             scope.launch {
                                 isPosting = true
+
                                 try {
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
-
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
                                     ))
@@ -81,9 +78,8 @@ fun CreateScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
-                    Spacer(modifier = Modifier.height(8.dp))  // note: validation
+                    Spacer(modifier = Modifier.height(8.dp))
                     Text("Tap to add photo", color = TextMuted)
                 }
             }
@@ -93,10 +89,10 @@ fun CreateScreen(
                 value = caption,
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
+
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -106,7 +102,6 @@ fun CreateScreen(
                     unfocusedContainerColor = BgTertiary
                 )
             )
-
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -125,7 +120,6 @@ fun CreateScreen(
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 ),
-
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
             )
         }
