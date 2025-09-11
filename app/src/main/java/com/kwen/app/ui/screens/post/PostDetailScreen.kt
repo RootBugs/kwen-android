@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.post
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -14,7 +15,6 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,12 +45,10 @@ fun PostDetailScreen(
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-
     fun loadPost() {
         scope.launch {
             isLoading = true
             try {
-
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
@@ -93,6 +91,7 @@ fun PostDetailScreen(
                 ) {
                     // Post header
                     item {
+
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -128,19 +127,18 @@ fun PostDetailScreen(
                                 contentDescription = null,
                                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                                 contentScale = ContentScale.Crop
-
                             )
                         }
                     }
 
                     // Post content
-                    val content = post?.content  // optimize: cleanup
+                    val content = post?.content
                     if (!content.isNullOrBlank()) {
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)  // verify: edge case
+                                Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
                         }
                     }
@@ -165,7 +163,6 @@ fun PostDetailScreen(
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
                             color = TextPrimary,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-
                         )
                     }
 
@@ -182,7 +179,7 @@ fun PostDetailScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
-                        ) {
+                        ) {  // review: validation
                             AsyncImage(
                                 model = comment.avatarUrl ?: "",
                                 contentDescription = comment.username,
@@ -237,11 +234,9 @@ fun PostDetailScreen(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
-
                                         ))
                                         commentText = ""
                                         loadPost()
-
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
@@ -250,7 +245,6 @@ fun PostDetailScreen(
                         }
                     ) {
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
-
                     }
                 }
             }
