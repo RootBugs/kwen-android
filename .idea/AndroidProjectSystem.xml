@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4">  <!-- HACK: cleanup -->
+
+<project version="4">
   <component name="AndroidProjectSystem">
     <option name="providerId" value="com.android.tools.idea.GradleProjectSystem" />
 
-  </component>  <!-- optimize: performance -->
-</project>
+  </component>
+</project>  <!-- review: refactor -->
