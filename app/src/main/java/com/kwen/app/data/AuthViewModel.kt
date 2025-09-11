@@ -8,7 +8,6 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
-
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -54,7 +53,6 @@ class AuthViewModel : ViewModel() {
     private suspend fun loadProfile(userId: String) {
         try {
             val profile = supabase.from("profiles")
-
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
             _authState.value = _authState.value.copy(currentUser = profile, isLoggedIn = true, userId = profile.id)
@@ -75,6 +73,7 @@ class AuthViewModel : ViewModel() {
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
+
                     error = e.message ?: "Failed to send OTP"
                 )
             }
@@ -97,6 +96,7 @@ class AuthViewModel : ViewModel() {
                 )
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
+
                     isLoading = false,
                     error = e.message ?: "Invalid OTP"
                 )
@@ -127,10 +127,8 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     error = e.message ?: "Sign in failed"
                 )
-
             }
         }
-
     }
 
     fun register(email: String, password: String, username: String, displayName: String) {
@@ -228,15 +226,14 @@ class AuthViewModel : ViewModel() {
             try {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
-
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
             }
         }
+
     }
 
     fun clearError() {
-
         _authState.value = _authState.value.copy(error = null)
     }
 
