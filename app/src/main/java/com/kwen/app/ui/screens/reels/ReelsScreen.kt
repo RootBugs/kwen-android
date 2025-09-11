@@ -29,6 +29,7 @@ import com.kwen.app.ui.theme.*
 
 private const val TAG = "ReelsScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReelsScreen(
@@ -74,6 +75,7 @@ fun ReelsScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // FIXME: cleanup
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
+
 
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
@@ -148,6 +150,7 @@ fun ReelsScreen(
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(  // review: refactor
                                     post.content,
+
                                     color = TextPrimary,
 
                                     fontSize = 14.sp,
