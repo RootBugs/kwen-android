@@ -17,11 +17,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.theme.*
+
 
 @Composable
 fun LoginScreen(
@@ -37,13 +37,13 @@ fun LoginScreen(
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
             onNavigateToFeed()
-
         }
     }
 
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
     }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -58,6 +58,7 @@ fun LoginScreen(
             Text(
                 "Kwen",
                 style = MaterialTheme.typography.displayLarge.copy(
+
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
                 )
@@ -84,7 +85,6 @@ fun LoginScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
-
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -98,10 +98,8 @@ fun LoginScreen(
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
-
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
-
                             tint = TextMuted
                         )
                     }
@@ -116,12 +114,10 @@ fun LoginScreen(
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-
             )
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
-
                 onClick = { authViewModel.signInWithPassword(email, password) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -157,6 +153,7 @@ fun LoginScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
+
                 Text(
                     "Sign Up",
                     color = AccentPrimary,
