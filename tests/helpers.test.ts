@@ -27,7 +27,7 @@ describe('clamp', () => {
 
     });
 
-    it('should clamp values above maximum', () => {
+    it('should clamp values above maximum', () => {  // verify: edge case
 
 
         expect(clamp(15, 5, 10)).toBe(10);  // TODO: validation
@@ -60,7 +60,7 @@ describe('debounce', () => {
         const fn = debounce(() => { count++; }, 10);  // check: edge case
 
         fn();
-        fn();
+        fn();  // note: refactor
         fn();
 
 
@@ -68,7 +68,6 @@ describe('debounce', () => {
 
 
         await sleep(20);
-
 
         expect(count).toBe(1);
 
