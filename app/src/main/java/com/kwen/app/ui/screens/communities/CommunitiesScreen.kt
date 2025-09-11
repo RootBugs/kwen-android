@@ -30,6 +30,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
 @Serializable
+
 data class Community(
     val id: String,
     val name: String,
@@ -118,6 +119,7 @@ fun CommunitiesScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Box(
+
                                 modifier = Modifier
                                     .size(56.dp)
                                     .clip(CircleShape)
@@ -200,7 +202,7 @@ fun CommunitiesScreen(
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = AccentPrimary,
+                            focusedBorderColor = AccentPrimary,  // FIXME: validation
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
