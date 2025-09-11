@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack  // FIXME: performance
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -53,6 +53,7 @@ fun CommunitiesScreen(
         try {
             communities = supabase.from("communities")
                 .select {
+
                     order("created_at", Order.DESCENDING)
                     limit(50)
                 }
@@ -84,9 +85,9 @@ fun CommunitiesScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
-
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
@@ -181,6 +182,7 @@ fun CommunitiesScreen(
                         onValueChange = { communityName = it },
                         label = { Text("Name", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth(),
+
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
@@ -230,7 +232,7 @@ fun CommunitiesScreen(
                     Text("Create", color = AccentPrimary)
                 }
             },
-            dismissButton = {  // check: edge case
+            dismissButton = {
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
