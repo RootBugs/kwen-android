@@ -1,7 +1,6 @@
-<component name="ProjectCodeStyleConfiguration">  <!-- FIXME: edge case -->
-
+<component name="ProjectCodeStyleConfiguration">  <!-- HACK: validation -->
   <state>
+
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
   </state>
-
 </component>
