@@ -26,7 +26,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
         // 2. Fetch profiles (batch)
         val profiles = try {
-
             if (userIds.isNotEmpty()) {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
@@ -288,6 +287,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             .map { it.userId }
             .distinct()
 
+
         val otherProfiles = if (otherUserIds.isNotEmpty()) {
             try {
                 supabase.from("profiles")
@@ -312,7 +312,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
                     lastMessages[convId] = msgs.first()
                 }
             } catch (e: Exception) { Log.w(TAG, "Failed to fetch last message for $convId: ${e.message}") }
-
         }
 
         // 5. Build ConversationItem list
@@ -434,6 +433,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 .select { filter { isIn("post_id", postIds) } }
                 .decodeList<PostMedia>()
         } catch (_: Exception) { emptyList() }
+
         val mediaMap = media.groupBy { it.postId }
 
         rawPosts.map { post ->
@@ -519,7 +519,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
                 isLiked = false,
-
                 isSaved = true,
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
