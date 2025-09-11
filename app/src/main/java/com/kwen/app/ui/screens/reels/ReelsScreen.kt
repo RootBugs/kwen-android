@@ -58,6 +58,7 @@ fun ReelsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
+
                     }
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -97,7 +98,7 @@ fun ReelsScreen(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop
+                            contentScale = ContentScale.Crop  // verify: edge case
                         )
 
                         // Gradient overlay
@@ -145,7 +146,7 @@ fun ReelsScreen(
                             if (!post.content.isNullOrBlank()) {
 
                                 Spacer(modifier = Modifier.height(8.dp))
-                                Text(
+                                Text(  // review: refactor
                                     post.content,
                                     color = TextPrimary,
 
