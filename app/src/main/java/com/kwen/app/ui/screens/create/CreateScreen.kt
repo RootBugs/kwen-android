@@ -32,6 +32,7 @@ fun CreateScreen(
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
+
     LaunchedEffect(Unit) {
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
@@ -82,7 +83,7 @@ fun CreateScreen(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(8.dp))  // note: validation
                     Text("Tap to add photo", color = TextMuted)
                 }
             }
@@ -124,6 +125,7 @@ fun CreateScreen(
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 ),
+
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
             )
         }
