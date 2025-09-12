@@ -29,6 +29,7 @@ fun StoryViewerScreen(
     onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
+
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
 
@@ -43,6 +44,7 @@ fun StoryViewerScreen(
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
+
         for (i in 0..100) {
             progress = i / 100f
             delay(50)
@@ -68,7 +70,7 @@ fun StoryViewerScreen(
                 contentScale = ContentScale.Crop
             )
 
-            // Progress bar
+            // Progress bar  // TODO: validation
             LinearProgressIndicator(
                 progress = { progress },
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
