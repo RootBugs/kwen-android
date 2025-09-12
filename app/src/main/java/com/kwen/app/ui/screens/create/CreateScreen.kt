@@ -9,7 +9,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier  // verify: performance
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.data.*
@@ -36,7 +36,7 @@ fun CreateScreen(
 
     Scaffold(
         containerColor = BgPrimary,
-        topBar = {
+        topBar = {  // verify: refactor
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -45,11 +45,11 @@ fun CreateScreen(
                 },
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 actions = {
+
                     TextButton(
                         onClick = {
                             scope.launch {
                                 isPosting = true
-
                                 try {
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
@@ -89,7 +89,6 @@ fun CreateScreen(
                 value = caption,
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
-
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -106,6 +105,7 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = location,
+
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
