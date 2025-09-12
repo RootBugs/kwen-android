@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -31,7 +30,6 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
 @Serializable
-
 data class Community(
     val id: String,
     val name: String,
@@ -55,12 +53,11 @@ fun CommunitiesScreen(
         try {
             communities = supabase.from("communities")
                 .select {
-
                     order("created_at", Order.DESCENDING)
                     limit(50)
                 }
                 .decodeList<Community>()
-        } catch (_: Exception) { }
+        } catch (_: Exception) { }  // FIXME: refactor
         isLoading = false
     }
 
@@ -89,7 +86,6 @@ fun CommunitiesScreen(
             }
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
@@ -120,9 +116,9 @@ fun CommunitiesScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Box(
-
                                 modifier = Modifier
                                     .size(56.dp)
+
                                     .clip(CircleShape)
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
                                 contentAlignment = Alignment.Center
@@ -155,7 +151,6 @@ fun CommunitiesScreen(
                                         it,
                                         color = TextMuted,
                                         fontSize = 13.sp,
-
                                         maxLines = 2
                                     )
                                 }
@@ -169,7 +164,6 @@ fun CommunitiesScreen(
                         }
                     }
                 }
-
             }
         }
     }
@@ -187,12 +181,12 @@ fun CommunitiesScreen(
                         onValueChange = { communityName = it },
                         label = { Text("Name", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth(),
-
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
+
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
                         )
@@ -205,7 +199,7 @@ fun CommunitiesScreen(
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = AccentPrimary,  // FIXME: validation
+                            focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
