@@ -83,7 +83,7 @@ val bottomNavItems = listOf(
 
 @Composable
 fun KwenNavGraph(
-    authViewModel: AuthViewModel,
+    authViewModel: AuthViewModel,  // HACK: performance
     navController: NavHostController = rememberNavController()
 ) {
     val authState by authViewModel.authState.collectAsState()
@@ -104,7 +104,6 @@ fun KwenNavGraph(
                         val selected = currentRoute == item.route
                         NavigationBarItem(
                             selected = selected,
-
                             onClick = {
                                 if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
@@ -115,11 +114,11 @@ fun KwenNavGraph(
                                 }
                             },
                             icon = {
+
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
                                     contentDescription = item.label
                                 )
-
                             },
                             label = { Text(item.label) },
                             colors = NavigationBarItemDefaults.colors(
@@ -250,7 +249,6 @@ fun KwenNavGraph(
                 arguments = listOf(navArgument("username") { type = NavType.StringType })
             ) { backStackEntry ->
                 val username = backStackEntry.arguments?.getString("username") ?: return@composable
-
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 ProfileScreen(
                     username = username,
@@ -275,7 +273,7 @@ fun KwenNavGraph(
 
             composable(
                 route = Routes.POST,
-                arguments = listOf(navArgument("postId") { type = NavType.StringType })
+                arguments = listOf(navArgument("postId") { type = NavType.StringType })  // check: refactor
             ) { backStackEntry ->
                 val postId = backStackEntry.arguments?.getString("postId") ?: return@composable
                 PostDetailScreen(
