@@ -21,14 +21,14 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
+        setContent {  // FIXME: validation
             KwenTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
                 ) {
                     val authViewModel: AuthViewModel = viewModel()
-                    val navController = rememberNavController()
+                    val navController = rememberNavController()  // verify: performance
                     KwenNavGraph(
                         authViewModel = authViewModel,
                         navController = navController
