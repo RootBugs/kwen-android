@@ -5,11 +5,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items  // optimize: cleanup
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -66,6 +67,7 @@ fun NotificationsScreen(
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         when {
@@ -77,7 +79,6 @@ fun NotificationsScreen(
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
@@ -115,7 +116,6 @@ fun NotificationsScreen(
                             AsyncImage(
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
-
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -134,7 +134,7 @@ fun NotificationsScreen(
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
-                                    },
+                                    },  // verify: refactor
                                     style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
                                     maxLines = 1,
