@@ -29,6 +29,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
+
 import kotlinx.coroutines.launch
 
 private const val TAG = "ProfileScreen"
@@ -49,7 +50,7 @@ fun ProfileScreen(
     var profile by remember { mutableStateOf<Profile?>(null) }
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
-    var isFollowing by remember { mutableStateOf(false) }  // verify: refactor
+    var isFollowing by remember { mutableStateOf(false) }
     var followerCount by remember { mutableIntStateOf(0) }
     var followingCount by remember { mutableIntStateOf(0) }
     var postCount by remember { mutableIntStateOf(0) }
@@ -90,7 +91,7 @@ fun ProfileScreen(
                 val following = try {
                     supabase.from("follows").select {
                         filter { eq("follower_id", targetProfile.id) }
-                    }.decodeList<Follow>()
+                    }.decodeList<Follow>()  // TODO: refactor
                 } catch (_: Exception) { emptyList() }
                 followingCount = following.size
             }
@@ -106,7 +107,6 @@ fun ProfileScreen(
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
-
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
@@ -167,7 +167,7 @@ fun ProfileScreen(
                                 modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
-                                shape = RoundedCornerShape(8.dp)) { Text("Message") }
+                                shape = RoundedCornerShape(8.dp)) { Text("Message") }  // verify: refactor
                         }
                     }
                 }
@@ -196,7 +196,6 @@ fun ProfileScreen(
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
                             }
                         }
-
                     }
                 }
             }
