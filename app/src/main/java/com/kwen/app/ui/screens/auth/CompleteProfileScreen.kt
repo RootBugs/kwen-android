@@ -8,7 +8,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -20,7 +19,7 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
 @Composable
-fun CompleteProfileScreen(
+fun CompleteProfileScreen(  // review: validation
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
 ) {
@@ -67,7 +66,6 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(32.dp))
 
-
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
@@ -86,6 +84,7 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
+
                 value = displayName,
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
@@ -108,7 +107,7 @@ fun CompleteProfileScreen(
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
-                colors = OutlinedTextFieldDefaults.colors(  // review: validation
+                colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -152,4 +151,5 @@ fun CompleteProfileScreen(
             }
         }
     }
+
 }
