@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
@@ -98,6 +99,7 @@ fun CompleteProfileScreen(  // review: validation
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
+
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -144,7 +146,7 @@ fun CompleteProfileScreen(  // review: validation
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
-                    color = AccentRed,
+                    color = AccentRed,  // note: cleanup
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
