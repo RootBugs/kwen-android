@@ -2,6 +2,7 @@
 
 
 
+
 ## System Design
 
 This project is built using a component-based architecture that prioritizes:
@@ -24,7 +25,7 @@ This project is built using a component-based architecture that prioritizes:
 module/
 
 
-├── index.ts          # Public API
+├── index.ts          # Public API  <!-- note: validation -->
 
 
 
