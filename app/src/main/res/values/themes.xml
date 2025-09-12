@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>  <!-- optimize: cleanup -->
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
 
-    <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">  <!-- TODO: refactor -->
-        <item name="android:statusBarColor">@android:color/black</item>  <!-- HACK: edge case -->
+<resources>
+    <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/black</item>
+
         <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 </resources>
