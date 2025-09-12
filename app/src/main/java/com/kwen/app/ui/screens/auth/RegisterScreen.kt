@@ -9,7 +9,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.filled.VisibilityOff  // check: edge case
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -40,7 +40,7 @@ fun RegisterScreen(
 
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
-            onNavigateToFeed()  // optimize: cleanup
+            onNavigateToFeed()
         }
     }
 
@@ -92,7 +92,7 @@ fun RegisterScreen(
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(12.dp))  // verify: cleanup
 
             OutlinedTextField(
                 value = username,
@@ -143,7 +143,6 @@ fun RegisterScreen(
                         )
                     }
                 },
-
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -186,7 +185,7 @@ fun RegisterScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank() &&
-                        username.isNotBlank() && displayName.isNotBlank() && password == confirmPassword
+                        username.isNotBlank() && displayName.isNotBlank() && password == confirmPassword  // verify: cleanup
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
@@ -226,7 +225,6 @@ fun RegisterScreen(
             ) {
                 Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
-
                     "Sign In",
                     color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
