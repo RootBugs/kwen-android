@@ -12,7 +12,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -30,17 +29,14 @@ fun LoginScreen(
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
-
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
-
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
     }
-
 
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
@@ -62,7 +58,6 @@ fun LoginScreen(
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
-
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -71,7 +66,6 @@ fun LoginScreen(
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
-
             Spacer(modifier = Modifier.height(40.dp))
 
             OutlinedTextField(
@@ -84,13 +78,14 @@ fun LoginScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,  // FIXME: validation
+                    focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(16.dp))
+
 
             OutlinedTextField(
                 value = password,
@@ -114,7 +109,6 @@ fun LoginScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
@@ -122,7 +116,6 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
-
                 onClick = { authViewModel.signInWithPassword(email, password) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -148,7 +141,6 @@ fun LoginScreen(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
-
                     textAlign = TextAlign.Center
                 )
             }
@@ -157,6 +149,7 @@ fun LoginScreen(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
+
             ) {
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
