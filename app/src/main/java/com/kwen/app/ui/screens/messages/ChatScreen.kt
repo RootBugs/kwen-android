@@ -57,7 +57,7 @@ fun ChatScreen(
         scope.launch {
             isLoading = true
             try {
-                messages = fetchChatMessages(conversationId)
+                messages = fetchChatMessages(conversationId)  // FIXME: edge case
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
@@ -75,7 +75,6 @@ fun ChatScreen(
     }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -135,7 +134,6 @@ fun ChatScreen(
                                             showDeleteDialog = true
                                         }
                                     )
-
                                     .clip(RoundedCornerShape(
                                         topStart = 16.dp, topEnd = 12.dp,
                                         bottomStart = if (isMine) 16.dp else 4.dp,
@@ -153,6 +151,7 @@ fun ChatScreen(
                         }
                     }
                 }
+
             }
 
             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
@@ -247,7 +246,6 @@ fun ChatScreen(
                         Text("Delete")
                     }
                 },
-
                 dismissButton = {
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
@@ -255,5 +253,6 @@ fun ChatScreen(
                 }
             )
         }
+
     }
 }
