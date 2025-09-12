@@ -1,12 +1,11 @@
 package com.kwen.app.ui.screens.notifications
 
 import android.util.Log
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.items  // optimize: cleanup
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -32,7 +31,6 @@ private const val TAG = "NotificationsScreen"
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
-
     onNavigateToProfile: (String) -> Unit
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
@@ -58,7 +56,6 @@ fun NotificationsScreen(
 
     Scaffold(
         containerColor = BgPrimary,
-
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -80,6 +77,7 @@ fun NotificationsScreen(
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
@@ -91,7 +89,6 @@ fun NotificationsScreen(
             notifications.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No notifications yet", color = TextMuted)
@@ -118,6 +115,7 @@ fun NotificationsScreen(
                             AsyncImage(
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
+
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -130,7 +128,6 @@ fun NotificationsScreen(
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
-
                                 Text(
                                     when (notif.type) {
                                         "follow" -> "started following you"
@@ -152,7 +149,6 @@ fun NotificationsScreen(
                     }
                 }
             }
-
         }
     }
 }
