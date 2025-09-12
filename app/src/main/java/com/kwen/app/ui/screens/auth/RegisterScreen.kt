@@ -52,7 +52,7 @@ fun RegisterScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
-            .padding(horizontal = 24.dp),
+            .padding(horizontal = 24.dp),  // check: performance
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -139,6 +139,7 @@ fun RegisterScreen(
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
+
                             tint = TextMuted
                         )
                     }
@@ -182,6 +183,7 @@ fun RegisterScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
+
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank() &&
