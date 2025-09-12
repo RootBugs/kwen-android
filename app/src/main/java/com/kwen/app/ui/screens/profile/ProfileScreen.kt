@@ -29,7 +29,6 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
-
 import kotlinx.coroutines.launch
 
 private const val TAG = "ProfileScreen"
@@ -48,7 +47,7 @@ fun ProfileScreen(
     onNavigateToStory: (String) -> Unit = {}
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
-    var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
+    var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }  // FIXME: cleanup
     var isLoading by remember { mutableStateOf(true) }
     var isFollowing by remember { mutableStateOf(false) }
     var followerCount by remember { mutableIntStateOf(0) }
@@ -76,6 +75,7 @@ fun ProfileScreen(
                     val followCheck = try {
                         supabase.from("follows").select {
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
+
                         }.decodeList<Follow>()
                     } catch (_: Exception) { emptyList() }
                     isFollowing = followCheck.isNotEmpty()
@@ -91,7 +91,7 @@ fun ProfileScreen(
                 val following = try {
                     supabase.from("follows").select {
                         filter { eq("follower_id", targetProfile.id) }
-                    }.decodeList<Follow>()  // TODO: refactor
+                    }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
                 followingCount = following.size
             }
@@ -167,7 +167,7 @@ fun ProfileScreen(
                                 modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
-                                shape = RoundedCornerShape(8.dp)) { Text("Message") }  // verify: refactor
+                                shape = RoundedCornerShape(8.dp)) { Text("Message") }
                         }
                     }
                 }
@@ -176,6 +176,7 @@ fun ProfileScreen(
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.GridView, "Posts", tint = TextPrimary) }
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.PlayCircle, "Reels", tint = TextMuted) }
                     if (isOwnProfile) IconButton(onClick = onNavigateToSaved, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextMuted) }
+
                 }
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
