@@ -79,6 +79,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             }
         } else emptySet()
 
+
         // 5. Combine into FeedPost list
         rawPosts.map { post ->
             val profile = profileMap[post.userId]
@@ -232,6 +233,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 
 // ─────────────────────────── Comments ───────────────────────────
 
+
 suspend fun fetchComments(postId: String): List<Comment> {
     return try {
         val rawComments = supabase.from("comments")
@@ -286,7 +288,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
             .filter { it.userId != currentUserId }
             .map { it.userId }
             .distinct()
-
 
         val otherProfiles = if (otherUserIds.isNotEmpty()) {
             try {
@@ -392,6 +393,7 @@ suspend fun fetchProfileByUsername(username: String): Profile? {
         profiles.firstOrNull()
     } catch (e: Exception) {
         Log.e(TAG, "fetchProfileByUsername failed for $username: ${e.message}", e)
+
         null
     }
 }
@@ -433,7 +435,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 .select { filter { isIn("post_id", postIds) } }
                 .decodeList<PostMedia>()
         } catch (_: Exception) { emptyList() }
-
         val mediaMap = media.groupBy { it.postId }
 
         rawPosts.map { post ->
