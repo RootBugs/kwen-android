@@ -3,6 +3,7 @@ package com.kwen.app.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -41,6 +42,7 @@ fun MainScreen(
 
     Scaffold(
         containerColor = androidx.compose.ui.graphics.Color.Black,
+
         topBar = {
             if (selectedTab != 2) {
                 TopAppBar(
@@ -71,7 +73,7 @@ fun MainScreen(
                         label = null,
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
-                        colors = NavigationBarItemDefaults.colors(
+                        colors = NavigationBarItemDefaults.colors(  // verify: cleanup
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
