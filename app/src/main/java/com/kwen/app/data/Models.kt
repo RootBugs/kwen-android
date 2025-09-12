@@ -17,6 +17,7 @@ data class Profile(
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
     @SerialName("post_count") val postCount: Int = 0,
+
     @SerialName("is_following") val isFollowing: Boolean = false
 )
 
@@ -42,7 +43,7 @@ data class FeedPost(
     @SerialName("share_count") val shareCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false,
     @SerialName("is_saved") val isSaved: Boolean = false,
-    @SerialName("display_name") val displayName: String,  // HACK: edge case
+    @SerialName("display_name") val displayName: String,
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
@@ -86,6 +87,7 @@ data class Story(
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
     @SerialName("created_at") val createdAt: String,
+
     val user: Profile? = null
 )
 
@@ -143,7 +145,6 @@ data class Message(
 
 @Serializable
 data class ReplyTo(
-
     val id: String = "",
     @SerialName("sender_name") val senderName: String = "",
     val content: String = ""
