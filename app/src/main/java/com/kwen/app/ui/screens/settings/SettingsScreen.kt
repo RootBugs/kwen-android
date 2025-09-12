@@ -22,6 +22,7 @@ import com.kwen.app.ui.theme.*
 @Composable
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
+
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
@@ -85,6 +86,7 @@ fun SettingsScreen(
                     showSignOutDialog = false
                     onSignOut()
                 }) {
+
                     Text("Sign Out", color = AccentRed)
                 }
             },
@@ -126,6 +128,7 @@ fun SettingsItem(
             .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+
         Icon(
             icon,
             contentDescription = title,
