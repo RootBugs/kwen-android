@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +43,7 @@ fun StoryViewerScreen(
     }
 
     LaunchedEffect(currentIndex) {
+
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
 
@@ -80,6 +82,7 @@ fun StoryViewerScreen(
             )
 
             // Header
+
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
