@@ -49,6 +49,7 @@ fun StoryViewerScreen(
             progress = i / 100f
             delay(50)
         }
+
         if (currentIndex < stories.size - 1) {
 
             currentIndex++
@@ -83,6 +84,7 @@ fun StoryViewerScreen(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+
                 IconButton(onClick = onNavigateBack) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                 }
