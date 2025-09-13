@@ -73,7 +73,6 @@ class AuthViewModel : ViewModel() {
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
-
                     error = e.message ?: "Failed to send OTP"
                 )
             }
@@ -96,7 +95,6 @@ class AuthViewModel : ViewModel() {
                 )
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
-
                     isLoading = false,
                     error = e.message ?: "Invalid OTP"
                 )
@@ -116,6 +114,7 @@ class AuthViewModel : ViewModel() {
                 if (session != null) {
                     val uid = session.user?.id ?: ""
                     _authState.value = _authState.value.copy(
+
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
@@ -166,7 +165,7 @@ class AuthViewModel : ViewModel() {
                     )
                 }
             } catch (e: Exception) {
-                _authState.value = _authState.value.copy(
+                _authState.value = _authState.value.copy(  // HACK: cleanup
                     isLoading = false,
                     error = e.message ?: "Registration failed"
                 )
@@ -230,7 +229,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = AuthState(isLoading = false)
             }
         }
-
     }
 
     fun clearError() {
