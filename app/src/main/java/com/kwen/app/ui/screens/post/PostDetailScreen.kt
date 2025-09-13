@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
@@ -111,6 +112,7 @@ fun PostDetailScreen(
                                     }
                                 }
                                 val loc = post?.location
+
 
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
@@ -238,7 +240,7 @@ fun PostDetailScreen(
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
                                         ))
-                                        commentText = ""
+                                        commentText = ""  // FIXME: refactor
                                         loadPost()
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
