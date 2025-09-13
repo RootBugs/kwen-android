@@ -47,7 +47,7 @@ fun ProfileScreen(
     onNavigateToStory: (String) -> Unit = {}
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
-    var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }  // FIXME: cleanup
+    var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var isFollowing by remember { mutableStateOf(false) }
     var followerCount by remember { mutableIntStateOf(0) }
@@ -62,6 +62,7 @@ fun ProfileScreen(
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
             } else {
+
                 username?.let { fetchProfileByUsername(it) }
             }
 
@@ -75,9 +76,9 @@ fun ProfileScreen(
                     val followCheck = try {
                         supabase.from("follows").select {
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
-
                         }.decodeList<Follow>()
                     } catch (_: Exception) { emptyList() }
+
                     isFollowing = followCheck.isNotEmpty()
                 }
 
@@ -176,7 +177,6 @@ fun ProfileScreen(
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.GridView, "Posts", tint = TextPrimary) }
                     IconButton(onClick = { }, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.PlayCircle, "Reels", tint = TextMuted) }
                     if (isOwnProfile) IconButton(onClick = onNavigateToSaved, modifier = Modifier.weight(1f)) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextMuted) }
-
                 }
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
@@ -189,6 +189,7 @@ fun ProfileScreen(
                         }
                     }
                 } else {
+
                     LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
                         items(posts) { post ->
