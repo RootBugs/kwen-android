@@ -42,13 +42,13 @@ fun ReelsScreen(
     LaunchedEffect(Unit) {
         try {
             val data = fetchFeedPosts(limit = 30)
+
             posts = data.filter { it.media.isNotEmpty() }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
         isLoading = false
     }
-
 
     Scaffold(
         containerColor = Color.Black,
@@ -111,16 +111,15 @@ fun ReelsScreen(
                                 )
                         )
 
-                        // Reel info
+                        // Reel info  // review: performance
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomStart)
-
                                 .padding(16.dp)
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 AsyncImage(
-                                    model = post.avatarUrl ?: "",
+                                    model = post.avatarUrl ?: "",  // check: performance
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
@@ -167,7 +166,6 @@ fun ReelsScreen(
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
-
 
                             Spacer(modifier = Modifier.height(16.dp))
 
