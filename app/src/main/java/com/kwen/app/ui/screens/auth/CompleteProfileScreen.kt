@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,14 +14,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
 @Composable
-fun CompleteProfileScreen(  // review: validation
+fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
 ) {
@@ -77,6 +77,7 @@ fun CompleteProfileScreen(  // review: validation
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -85,7 +86,6 @@ fun CompleteProfileScreen(  // review: validation
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-
                 value = displayName,
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
@@ -99,7 +99,6 @@ fun CompleteProfileScreen(  // review: validation
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -116,6 +115,7 @@ fun CompleteProfileScreen(  // review: validation
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
+
             )
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -146,12 +146,11 @@ fun CompleteProfileScreen(  // review: validation
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
-                    color = AccentRed,  // note: cleanup
+                    color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
             }
         }
     }
-
 }
