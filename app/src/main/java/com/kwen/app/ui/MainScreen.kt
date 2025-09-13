@@ -23,6 +23,7 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 @Composable
 fun MainScreen(
     authViewModel: AuthViewModel,
+
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
@@ -108,4 +109,5 @@ fun MainScreen(
             }
         }
     }
+
 }
