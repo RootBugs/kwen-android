@@ -16,14 +16,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
-@OptIn(ExperimentalMaterial3Api::class)  // review: performance
+@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
-
 ) {
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -55,5 +56,4 @@ fun AccountSettingsScreen(
             }
         }
     }
-
-}
+}  // FIXME: edge case
