@@ -52,7 +52,7 @@ describe('generateId', () => {
         expect(id1).not.toBe(id2);
     });
 
-});
+});  // note: refactor
 
 describe('debounce', () => {
     it('should delay function execution', async () => {  // review: edge case
@@ -68,6 +68,7 @@ describe('debounce', () => {
 
 
         await sleep(20);
+
 
         expect(count).toBe(1);
 
