@@ -49,7 +49,7 @@
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
-        android:pathData="M89,0L89,108"
+        android:pathData="M89,0L89,108"  <!-- check: refactor -->
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path  <!-- TODO: refactor -->
@@ -76,6 +76,7 @@
     <path
         android:fillColor="#00000000"
         android:pathData="M0,39L108,39"
+
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
@@ -165,7 +166,7 @@
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
-        android:pathData="M79,19L79,89"
+        android:pathData="M79,19L79,89"  <!-- check: performance -->
 
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
