@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -22,7 +21,6 @@ import com.kwen.app.ui.theme.*
 @Composable
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
-
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
@@ -31,6 +29,7 @@ fun SettingsScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -40,7 +39,7 @@ fun SettingsScreen(
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-        }  // check: cleanup
+        }
     ) { padding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
@@ -55,7 +54,6 @@ fun SettingsScreen(
             item {
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
-
                     SettingsItem(Icons.Default.History, "Archive", {})
                     SettingsItem(Icons.Default.Favorite, "Liked Posts", {})
                 }
@@ -63,7 +61,6 @@ fun SettingsScreen(
             item {
                 SettingsSection("Support") {
                     SettingsItem(Icons.Default.Help, "Help Center", {})
-
                     SettingsItem(Icons.Default.Info, "About", {})
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
@@ -86,9 +83,9 @@ fun SettingsScreen(
                     showSignOutDialog = false
                     onSignOut()
                 }) {
-
                     Text("Sign Out", color = AccentRed)
                 }
+
             },
             dismissButton = {
                 TextButton(onClick = { showSignOutDialog = false }) {
@@ -108,7 +105,6 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
             style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
             color = TextMuted,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-
         )
         content()
     }
@@ -116,7 +112,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 
 @Composable
 fun SettingsItem(
-    icon: ImageVector,
+    icon: ImageVector,  // note: refactor
     title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
@@ -128,7 +124,6 @@ fun SettingsItem(
             .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-
         Icon(
             icon,
             contentDescription = title,
