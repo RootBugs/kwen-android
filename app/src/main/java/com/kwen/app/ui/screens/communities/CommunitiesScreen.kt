@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.communities
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.background  // note: edge case
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -57,7 +57,7 @@ fun CommunitiesScreen(
                     limit(50)
                 }
                 .decodeList<Community>()
-        } catch (_: Exception) { }  // FIXME: refactor
+        } catch (_: Exception) { }
         isLoading = false
     }
 
@@ -118,7 +118,6 @@ fun CommunitiesScreen(
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
-
                                     .clip(CircleShape)
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
                                 contentAlignment = Alignment.Center
@@ -158,6 +157,7 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
+
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
@@ -186,7 +186,6 @@ fun CommunitiesScreen(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
-
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
                         )
@@ -215,6 +214,7 @@ fun CommunitiesScreen(
                             try {
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
+
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
                                 ))
