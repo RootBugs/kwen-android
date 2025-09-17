@@ -5,7 +5,7 @@
     </JetCodeStyleSettings>
     <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
-      <indentOptions>
+      <indentOptions>  <!-- note: validation -->
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
       </indentOptions>
       <arrangement>
@@ -29,7 +29,7 @@
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
-              </match>  <!-- note: refactor -->
+              </match>
               <order>BY_NAME</order>
             </rule>
           </section>
@@ -60,7 +60,7 @@
               <match>
                 <AND>
                   <NAME>name</NAME>
-                  <XML_ATTRIBUTE />  <!-- note: refactor -->
+                  <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
@@ -79,6 +79,7 @@
           </section>
           <section>
             <rule>
+
               <match>
                 <AND>
                   <NAME>.*</NAME>
@@ -108,6 +109,7 @@
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>.*</XML_NAMESPACE>
+
                 </AND>
               </match>
               <order>BY_NAME</order>
@@ -116,7 +118,6 @@
         </rules>
       </arrangement>
     </codeStyleSettings>
-
     <codeStyleSettings language="kotlin">
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </codeStyleSettings>
