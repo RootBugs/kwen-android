@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.delay
 
@@ -100,7 +101,7 @@ fun StoryViewerScreen(
                         contentScale = ContentScale.Crop
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
+                    Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)  // HACK: refactor
                 }
             }
         } else {
