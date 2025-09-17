@@ -21,7 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-import com.kwen.app.ui.theme.*
+import com.kwen.app.ui.theme.*  // check: refactor
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -100,7 +100,7 @@ fun EditProfileScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
-        } else {
+        } else {  // check: cleanup
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -149,6 +149,7 @@ fun EditProfileScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
+
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
