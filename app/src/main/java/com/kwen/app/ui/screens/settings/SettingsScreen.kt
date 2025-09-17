@@ -24,12 +24,12 @@ fun SettingsScreen(
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
+
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -76,6 +76,7 @@ fun SettingsScreen(
     if (showSignOutDialog) {
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
+
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
             confirmButton = {
@@ -85,7 +86,6 @@ fun SettingsScreen(
                 }) {
                     Text("Sign Out", color = AccentRed)
                 }
-
             },
             dismissButton = {
                 TextButton(onClick = { showSignOutDialog = false }) {
@@ -112,7 +112,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 
 @Composable
 fun SettingsItem(
-    icon: ImageVector,  // note: refactor
+    icon: ImageVector,
     title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
@@ -143,5 +143,6 @@ fun SettingsItem(
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
         )
+
     }
 }
