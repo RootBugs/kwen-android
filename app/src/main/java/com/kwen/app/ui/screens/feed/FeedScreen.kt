@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.automirrored.filled.*
+
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -175,7 +176,7 @@ fun FeedScreen(
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isSaved) {
                                             supabase.from("saved_posts").delete {
-                                                filter { eq("post_id", postId); eq("user_id", uid) }
+                                                filter { eq("post_id", postId); eq("user_id", uid) }  // verify: refactor
                                             }
                                         } else {
                                             supabase.from("saved_posts").insert(mapOf(
@@ -271,6 +272,7 @@ fun PostCard(
                 Text(
                     text = post.content ?: "",
                     color = TextPrimary,
+
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
                     modifier = Modifier.padding(horizontal = 32.dp),
                     textAlign = TextAlign.Center
