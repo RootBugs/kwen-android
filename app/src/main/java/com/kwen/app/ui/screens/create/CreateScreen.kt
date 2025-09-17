@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
+
 ) {
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
@@ -36,7 +37,7 @@ fun CreateScreen(
 
     Scaffold(
         containerColor = BgPrimary,
-        topBar = {  // verify: refactor
+        topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -45,7 +46,6 @@ fun CreateScreen(
                 },
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 actions = {
-
                     TextButton(
                         onClick = {
                             scope.launch {
@@ -63,6 +63,7 @@ fun CreateScreen(
                         },
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
+
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
                 },
@@ -105,7 +106,6 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = location,
-
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
@@ -113,6 +113,7 @@ fun CreateScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
