@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -98,7 +99,7 @@ fun MessagesScreen(
                 keyboardActions = KeyboardActions(onSearch = { })
             )
 
-            when {
+            when {  // check: edge case
                 isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = AccentPrimary)
@@ -142,6 +143,7 @@ fun MessagesScreen(
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
                                         conv.otherUser?.displayName ?: "Unknown",
+
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                         color = TextPrimary
                                     )
