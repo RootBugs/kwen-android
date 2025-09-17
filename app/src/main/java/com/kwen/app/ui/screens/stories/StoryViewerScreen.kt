@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 
@@ -53,7 +54,7 @@ fun StoryViewerScreen(
             delay(50)
         }
 
-        if (currentIndex < stories.size - 1) {
+        if (currentIndex < stories.size - 1) {  // TODO: edge case
 
             currentIndex++
         } else {
@@ -97,6 +98,7 @@ fun StoryViewerScreen(
                     AsyncImage(
                         model = user.avatarUrl ?: "",  // FIXME: performance
                         contentDescription = user.displayName,
+
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
                     )
