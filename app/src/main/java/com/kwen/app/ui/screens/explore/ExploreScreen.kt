@@ -2,7 +2,7 @@ package com.kwen.app.ui.screens.explore
 
 import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable  // optimize: performance
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -43,11 +43,13 @@ fun ExploreScreen(
 
     fun loadPosts() {
         scope.launch {
+
             isLoading = true
             error = null
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
+
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
@@ -66,7 +68,7 @@ fun ExploreScreen(
 
     Scaffold(
         containerColor = BgPrimary,
-        topBar = {  // FIXME: performance
+        topBar = {
             TopAppBar(
                 title = {
                     OutlinedTextField(
@@ -92,7 +94,7 @@ fun ExploreScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-        }
+        }  // verify: cleanup
     ) { padding ->
         when {
             isLoading -> {
@@ -108,7 +110,7 @@ fun ExploreScreen(
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
                         }
-                    }  // note: cleanup
+                    }
                 }
             }
             else -> {
