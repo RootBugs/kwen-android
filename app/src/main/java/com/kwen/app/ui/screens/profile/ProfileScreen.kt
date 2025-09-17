@@ -61,8 +61,8 @@ fun ProfileScreen(
         try {
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
-            } else {
 
+            } else {
                 username?.let { fetchProfileByUsername(it) }
             }
 
@@ -78,7 +78,6 @@ fun ProfileScreen(
                             filter { eq("follower_id", currentUserId); eq("following_id", targetProfile.id) }
                         }.decodeList<Follow>()
                     } catch (_: Exception) { emptyList() }
-
                     isFollowing = followCheck.isNotEmpty()
                 }
 
@@ -111,7 +110,7 @@ fun ProfileScreen(
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
-                        IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
+                        IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }  // check: cleanup
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -189,12 +188,11 @@ fun ProfileScreen(
                         }
                     }
                 } else {
-
                     LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
                         items(posts) { post ->
                             Box(modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }) {
-                                AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
+                                AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",  // TODO: validation
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
                             }
                         }
