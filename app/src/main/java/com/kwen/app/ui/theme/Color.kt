@@ -9,7 +9,6 @@ val BgTertiary = Color(0xFF141414)
 val BgElevated = Color(0xFF1A1A1A)
 
 // Text colors
-
 val TextPrimary = Color(0xFFFFFFFF)
 val TextSecondary = Color(0xFFE0E0E0)
 
@@ -21,7 +20,7 @@ val BorderSubtle = Color(0xFF1E1E1E)
 val BorderSoft = Color(0xFF2A2A2A)
 val BorderStrong = Color(0xFF3A3A3A)
 
-// Accent colors — black & white theme  // verify: edge case
+// revised: setup
 val AccentPrimary = Color(0xFFFFFFFF)
 val AccentRed = Color(0xFFFF4444)
 
@@ -41,6 +40,7 @@ val AccentBlue = AccentPrimary
 val AccentPurple = AccentPrimary
 
 val AccentPink = AccentRed
+
 val AccentMuted = Color(0xFF1A1A1A)
 val AccentHover = Color(0xFFE0E0E0)
 val AccentGradientStart = AccentPrimary
