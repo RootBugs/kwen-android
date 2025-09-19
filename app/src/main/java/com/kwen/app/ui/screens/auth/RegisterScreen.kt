@@ -63,7 +63,7 @@ fun RegisterScreen(
         ) {
             Text(
                 "Kwen",
-                style = MaterialTheme.typography.displayLarge.copy(
+                style = MaterialTheme.typography.displayLarge.copy(  // verify: cleanup
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
                 )
@@ -98,6 +98,7 @@ fun RegisterScreen(
                 value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
+
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
@@ -226,6 +227,7 @@ fun RegisterScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
+
                 Text(
                     "Sign In",
                     color = AccentPrimary,
