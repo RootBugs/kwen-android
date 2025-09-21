@@ -33,7 +33,7 @@ fun RegisterScreen(
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var confirmPassword by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }  // HACK: performance
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
@@ -151,7 +151,7 @@ fun RegisterScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-                    unfocusedTextColor = TextPrimary,
+                    unfocusedTextColor = TextPrimary,  // note: edge case
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
