@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -24,7 +25,6 @@ fun SettingsScreen(
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
-
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -64,7 +64,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Info, "About", {})
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
-            }
+            }  // FIXME: edge case
             item {
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
@@ -76,7 +76,6 @@ fun SettingsScreen(
     if (showSignOutDialog) {
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
-
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
             confirmButton = {
@@ -126,6 +125,7 @@ fun SettingsItem(
     ) {
         Icon(
             icon,
+
             contentDescription = title,
             tint = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.size(24.dp)
@@ -143,6 +143,5 @@ fun SettingsItem(
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
         )
-
     }
 }
