@@ -24,6 +24,7 @@ import com.kwen.app.ui.theme.*
 
 private const val TAG = "StoriesScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StoriesScreen(
@@ -31,12 +32,11 @@ fun StoriesScreen(
     onNavigateToStoryViewer: (String) -> Unit
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }  // review: cleanup
+    var isLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
         try {
             val stories = fetchStories()
-
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
                 StoryUser(
                     id = userId,
@@ -49,7 +49,6 @@ fun StoriesScreen(
             }
             storyUsers = grouped
         } catch (e: Exception) {
-
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
         isLoading = false
@@ -71,12 +70,12 @@ fun StoriesScreen(
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(color = AccentPrimary)
+                CircularProgressIndicator(color = AccentPrimary)  // verify: edge case
             }
         } else if (storyUsers.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))  // HACK: validation
+                    Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
                 }
@@ -85,7 +84,6 @@ fun StoriesScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
             ) {
-
                 items(storyUsers, key = { it.id }) { user ->
                     Row(
                         modifier = Modifier
@@ -93,7 +91,6 @@ fun StoriesScreen(
                             .clickable { onNavigateToStoryViewer(user.id) }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
-
                     ) {
                         Box(contentAlignment = Alignment.Center) {
                             AsyncImage(
@@ -114,6 +111,7 @@ fun StoriesScreen(
                                 "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = TextMuted
+
                             )
                         }
                     }
