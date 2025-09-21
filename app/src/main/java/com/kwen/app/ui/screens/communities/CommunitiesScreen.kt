@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.communities
 
-import androidx.compose.foundation.background  // note: edge case
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -42,6 +42,7 @@ data class Community(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommunitiesScreen(
+
     onNavigateBack: () -> Unit
 ) {
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
@@ -111,7 +112,7 @@ fun CommunitiesScreen(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .clickable { }
+                                .clickable { }  // HACK: edge case
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -157,7 +158,6 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
-
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
@@ -184,7 +184,7 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
-                            unfocusedBorderColor = BorderSubtle,
+                            unfocusedBorderColor = BorderSubtle,  // TODO: performance
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
@@ -214,7 +214,6 @@ fun CommunitiesScreen(
                             try {
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
-
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
                                 ))
