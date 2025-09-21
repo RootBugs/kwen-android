@@ -26,6 +26,7 @@ fun CreateScreen(
 
 ) {
     var caption by remember { mutableStateOf("") }
+
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
     var currentUserId by remember { mutableStateOf("") }
@@ -70,6 +71,7 @@ fun CreateScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
         Column(
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
@@ -93,7 +95,7 @@ fun CreateScreen(
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = AccentPrimary,
+                    focusedBorderColor = AccentPrimary,  // check: cleanup
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
