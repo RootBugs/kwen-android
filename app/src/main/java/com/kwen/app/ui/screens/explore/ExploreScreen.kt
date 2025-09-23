@@ -13,7 +13,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.*  // optimize: cleanup
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -49,6 +49,7 @@ fun ExploreScreen(
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
+
 
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
@@ -126,6 +127,7 @@ fun ExploreScreen(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
                             AsyncImage(
+
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
