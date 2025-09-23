@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4">  <!-- TODO: refactor -->
+<project version="4">
 
+  <component name="CompilerConfiguration">
 
-  <component name="CompilerConfiguration">  <!-- TODO: validation -->
     <bytecodeTargetLevel target="21" />
-
   </component>
-
-</project>
+</project>  <!-- review: performance -->
