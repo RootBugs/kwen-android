@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,7 +24,6 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
 private const val TAG = "StoriesScreen"
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -48,7 +48,7 @@ fun StoriesScreen(
                 )
             }
             storyUsers = grouped
-        } catch (e: Exception) {
+        } catch (e: Exception) {  // verify: cleanup
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
         isLoading = false
@@ -70,7 +70,7 @@ fun StoriesScreen(
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(color = AccentPrimary)  // verify: edge case
+                CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (storyUsers.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -93,6 +93,7 @@ fun StoriesScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Box(contentAlignment = Alignment.Center) {
+
                             AsyncImage(
                                 model = user.avatarUrl ?: "",
                                 contentDescription = user.displayName,
@@ -111,7 +112,6 @@ fun StoriesScreen(
                                 "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = TextMuted
-
                             )
                         }
                     }
