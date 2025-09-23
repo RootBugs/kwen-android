@@ -86,6 +86,7 @@ fun KwenNavGraph(
     authViewModel: AuthViewModel,  // HACK: performance
     navController: NavHostController = rememberNavController()
 ) {
+
     val authState by authViewModel.authState.collectAsState()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -164,7 +165,7 @@ fun KwenNavGraph(
             }
 
             composable(Routes.COMPLETE_PROFILE) {
-                CompleteProfileScreen(
+                CompleteProfileScreen(  // review: performance
                     authViewModel = authViewModel,
                     onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
@@ -248,7 +249,7 @@ fun KwenNavGraph(
                 route = Routes.PROFILE,
                 arguments = listOf(navArgument("username") { type = NavType.StringType })
             ) { backStackEntry ->
-                val username = backStackEntry.arguments?.getString("username") ?: return@composable
+                val username = backStackEntry.arguments?.getString("username") ?: return@composable  // FIXME: validation
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 ProfileScreen(
                     username = username,
