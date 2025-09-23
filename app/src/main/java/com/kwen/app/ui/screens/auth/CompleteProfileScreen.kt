@@ -44,6 +44,7 @@ fun CompleteProfileScreen(
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
+
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -89,6 +90,7 @@ fun CompleteProfileScreen(
                 value = displayName,
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
+
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
@@ -133,6 +135,7 @@ fun CompleteProfileScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
+
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
