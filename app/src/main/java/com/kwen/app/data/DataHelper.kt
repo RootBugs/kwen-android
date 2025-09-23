@@ -74,6 +74,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                     .decodeList<SavedPost>()
                 saves.map { it.postId }.toSet()
             } catch (e: Exception) {
+
                 Log.w(TAG, "Failed to fetch saves: ${e.message}")
                 emptySet()
             }
@@ -83,7 +84,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         rawPosts.map { post ->
             val profile = profileMap[post.userId]
             FeedPost(
-
                 id = post.id,
                 userId = post.userId,
                 content = post.content,
@@ -204,6 +204,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
                     .decodeList<SavedPost>()
                 saves.isNotEmpty()
+
             } catch (_: Exception) { false }
         } else false
 
@@ -378,7 +379,6 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         } catch (_: Exception) { null }
     } catch (e: Exception) {
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
-
         null
     }
 }
@@ -404,6 +404,7 @@ suspend fun fetchProfileById(userId: String): Profile? {
             .decodeList<Profile>()
             .firstOrNull()
     } catch (e: Exception) {
+
         Log.e(TAG, "fetchProfileById failed for $userId: ${e.message}", e)
         null
     }
@@ -526,7 +527,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
             )
-
         }
     } catch (e: Exception) {
         Log.e(TAG, "fetchSavedPosts failed: ${e.message}", e)
