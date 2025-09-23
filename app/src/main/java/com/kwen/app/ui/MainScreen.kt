@@ -61,6 +61,7 @@ fun MainScreen(
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
 
+
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
@@ -90,6 +91,7 @@ fun MainScreen(
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
+
                     onNavigateToProfile = onNavigateToProfile
                 )
                 1 -> ExploreScreen(
