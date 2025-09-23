@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -60,6 +61,7 @@ fun CreateScreen(
                                     onPostCreated()
                                 } catch (_: Exception) { }
                                 isPosting = false
+
                             }
                         },
                         enabled = !isPosting && caption.isNotBlank()
@@ -115,6 +117,7 @@ fun CreateScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
 
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
