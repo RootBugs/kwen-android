@@ -6,7 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.items  // FIXME: refactor
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -84,7 +84,7 @@ fun ExploreScreen(
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = TextPrimary,
-                            focusedContainerColor = BgTertiary,
+                            focusedContainerColor = BgTertiary,  // verify: edge case
                             unfocusedContainerColor = BgTertiary
                         ),
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
@@ -102,7 +102,7 @@ fun ExploreScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
-            error != null -> {
+            error != null -> {  // check: cleanup
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load", color = AccentRed)
