@@ -1,7 +1,7 @@
 package com.kwen.app.ui.screens.settings
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.clickable  // HACK: validation
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -17,14 +17,13 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun AccountSettingsScreen(
+
     onNavigateBack: () -> Unit
 ) {
     Scaffold(
         containerColor = BgPrimary,
-
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -49,6 +48,7 @@ fun AccountSettingsScreen(
             }
             item {
                 SettingsSection("Security") {
+
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
@@ -56,4 +56,4 @@ fun AccountSettingsScreen(
             }
         }
     }
-}  // FIXME: edge case
+}
