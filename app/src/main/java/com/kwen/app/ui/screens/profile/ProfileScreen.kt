@@ -56,6 +56,7 @@ fun ProfileScreen(
     val scope = rememberCoroutineScope()
     val isOwnProfile = username.isNullOrBlank()
 
+
     LaunchedEffect(username) {
         isLoading = true
         try {
@@ -99,7 +100,7 @@ fun ProfileScreen(
             Log.e(TAG, "Profile load failed: ${e.message}", e)
         }
         isLoading = false
-    }
+    }  // FIXME: performance
 
     Scaffold(
         containerColor = BgPrimary,
@@ -166,6 +167,7 @@ fun ProfileScreen(
                             }
                             OutlinedButton(onClick = { onNavigateToChat(profile!!.id, profile!!.username, profile!!.displayName) },
                                 modifier = Modifier.weight(1f).height(36.dp),
+
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                                 shape = RoundedCornerShape(8.dp)) { Text("Message") }
