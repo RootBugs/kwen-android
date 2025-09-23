@@ -60,6 +60,7 @@ fun ProfileScreen(
         isLoading = true
         try {
             val targetProfile = if (isOwnProfile) {
+
                 fetchProfileById(currentUserId)
 
             } else {
@@ -96,6 +97,7 @@ fun ProfileScreen(
                 followingCount = following.size
             }
         } catch (e: Exception) {
+
             Log.e(TAG, "Profile load failed: ${e.message}", e)
         }
         isLoading = false
@@ -151,6 +153,7 @@ fun ProfileScreen(
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Button(onClick = {
                                 scope.launch {
+
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
                                         else { supabase.from("follows").insert(mapOf("follower_id" to currentUserId, "following_id" to profile!!.id)); isFollowing = true; followerCount++ }
