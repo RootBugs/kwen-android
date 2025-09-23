@@ -38,6 +38,7 @@ fun LoginScreen(
         }
     }
 
+
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
     }
@@ -67,6 +68,7 @@ fun LoginScreen(
                 color = TextMuted
             )
             Spacer(modifier = Modifier.height(40.dp))
+
 
             OutlinedTextField(
                 value = email,
