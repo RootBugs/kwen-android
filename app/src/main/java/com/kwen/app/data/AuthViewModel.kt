@@ -31,6 +31,7 @@ class AuthViewModel : ViewModel() {
 
     private fun checkSession() {
         viewModelScope.launch {
+
             try {
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
@@ -131,6 +132,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun register(email: String, password: String, username: String, displayName: String) {
+
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -183,6 +185,7 @@ class AuthViewModel : ViewModel() {
                     "bio" to bio
                 )) {
                     filter { eq("id", userId) }
+
                 }
                 _authState.value = _authState.value.copy(
                     isLoading = false,
