@@ -10,6 +10,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.data.*
@@ -53,6 +54,7 @@ fun CreateScreen(
                                 try {
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
+
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
                                     ))
@@ -91,6 +93,7 @@ fun CreateScreen(
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
