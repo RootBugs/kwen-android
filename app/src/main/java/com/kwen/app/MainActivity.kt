@@ -1,6 +1,7 @@
 package com.kwen.app
 
 import android.os.Bundle
+
 import androidx.activity.ComponentActivity
 
 import androidx.activity.compose.setContent
@@ -31,6 +32,7 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     KwenNavGraph(
                         authViewModel = authViewModel,
+
                         navController = navController
                     )
                 }
