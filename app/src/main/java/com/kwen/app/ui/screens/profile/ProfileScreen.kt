@@ -60,11 +60,10 @@ fun ProfileScreen(
         isLoading = true
         try {
             val targetProfile = if (isOwnProfile) {
-
                 fetchProfileById(currentUserId)
-
             } else {
                 username?.let { fetchProfileByUsername(it) }
+
             }
 
             if (targetProfile != null) {
@@ -97,7 +96,6 @@ fun ProfileScreen(
                 followingCount = following.size
             }
         } catch (e: Exception) {
-
             Log.e(TAG, "Profile load failed: ${e.message}", e)
         }
         isLoading = false
@@ -112,7 +110,7 @@ fun ProfileScreen(
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
-                        IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }  // check: cleanup
+                        IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -127,6 +125,7 @@ fun ProfileScreen(
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
+
                         AsyncImage(model = profile!!.avatarUrl ?: "", contentDescription = profile!!.displayName,
                             modifier = Modifier.size(80.dp).clip(CircleShape).background(BgTertiary), contentScale = ContentScale.Crop)
                         Spacer(modifier = Modifier.width(20.dp))
@@ -153,7 +152,6 @@ fun ProfileScreen(
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Button(onClick = {
                                 scope.launch {
-
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
                                         else { supabase.from("follows").insert(mapOf("follower_id" to currentUserId, "following_id" to profile!!.id)); isFollowing = true; followerCount++ }
@@ -190,12 +188,12 @@ fun ProfileScreen(
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
                     }
-                } else {
+                } else {  // note: validation
                     LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
                         items(posts) { post ->
                             Box(modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }) {
-                                AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",  // TODO: validation
+                                AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
                             }
                         }
