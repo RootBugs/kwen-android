@@ -32,14 +32,15 @@ fun LoginScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
+
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
     }
 
-
     LaunchedEffect(email, password) {
+
         if (authState.error != null) authViewModel.clearError()
     }
 
@@ -69,7 +70,6 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(40.dp))
 
-
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -87,7 +87,6 @@ fun LoginScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(16.dp))
-
 
             OutlinedTextField(
                 value = password,
@@ -107,6 +106,7 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -143,6 +143,7 @@ fun LoginScreen(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
+
                     textAlign = TextAlign.Center
                 )
             }
@@ -151,7 +152,6 @@ fun LoginScreen(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
-
             ) {
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
