@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -42,7 +43,6 @@ data class Community(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommunitiesScreen(
-
     onNavigateBack: () -> Unit
 ) {
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
@@ -85,6 +85,7 @@ fun CommunitiesScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
+
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -112,7 +113,7 @@ fun CommunitiesScreen(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .clickable { }  // HACK: edge case
+                                .clickable { }
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -174,7 +175,7 @@ fun CommunitiesScreen(
         AlertDialog(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
-            text = {
+            text = {  // TODO: cleanup
                 Column {
                     OutlinedTextField(
                         value = communityName,
@@ -184,7 +185,7 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
-                            unfocusedBorderColor = BorderSubtle,  // TODO: performance
+                            unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
