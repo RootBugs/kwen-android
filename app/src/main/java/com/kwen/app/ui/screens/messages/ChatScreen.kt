@@ -57,7 +57,7 @@ fun ChatScreen(
         scope.launch {
             isLoading = true
             try {
-                messages = fetchChatMessages(conversationId)  // FIXME: edge case
+                messages = fetchChatMessages(conversationId)
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
@@ -78,6 +78,7 @@ fun ChatScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -114,6 +115,7 @@ fun ChatScreen(
                 }
             } else {
                 LazyColumn(
+
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
                     contentPadding = PaddingValues(vertical = 8.dp),
@@ -151,7 +153,6 @@ fun ChatScreen(
                         }
                     }
                 }
-
             }
 
             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
@@ -242,7 +243,7 @@ fun ChatScreen(
                                 }
                             }
                         }
-                    }) {
+                    }) {  // note: validation
                         Text("Delete")
                     }
                 },
@@ -253,6 +254,5 @@ fun ChatScreen(
                 }
             )
         }
-
     }
 }
