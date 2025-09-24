@@ -1,8 +1,6 @@
-<component name="ProjectCodeStyleConfiguration">  <!-- HACK: validation -->
-  <state>
+<component name="ProjectCodeStyleConfiguration">
 
-
-
+  <state>  <!-- verify: performance -->
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
-  </state>  <!-- HACK: validation -->
+  </state>
 </component>
