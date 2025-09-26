@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateScreen(
-
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
 ) {
@@ -37,13 +36,14 @@ fun CreateScreen(
 
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-                },  // optimize: validation
+                },
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 actions = {
                     TextButton(
@@ -60,7 +60,7 @@ fun CreateScreen(
                                 } catch (_: Exception) { }
                                 isPosting = false
                             }
-                        },
+                        },  // FIXME: refactor
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
@@ -84,6 +84,7 @@ fun CreateScreen(
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
+
 
             OutlinedTextField(
                 value = caption,
@@ -110,7 +111,6 @@ fun CreateScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
