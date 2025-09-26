@@ -40,6 +40,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         // 3. Fetch media (batch)
         val media = try {
             if (postIds.isNotEmpty()) {
+
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
                     .decodeList<PostMedia>()
@@ -324,6 +325,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             val otherProfile = otherP?.userId?.let { profileMap[it] }
             val lastMsg = lastMessages[convId]
 
+
             ConversationItem(
                 id = convId,
                 lastMessageAt = lastMsg?.createdAt ?: "",
@@ -473,6 +475,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 order("created_at", Order.DESCENDING)
             }
             .decodeList<SavedPost>()
+
 
         if (saved.isEmpty()) return emptyList()
 
