@@ -6,10 +6,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff  // check: edge case
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -19,7 +20,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
@@ -34,7 +34,7 @@ fun RegisterScreen(
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var confirmPassword by remember { mutableStateOf("") }  // HACK: performance
+    var confirmPassword by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
@@ -53,7 +53,7 @@ fun RegisterScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
-            .padding(horizontal = 24.dp),  // check: performance
+            .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -64,7 +64,7 @@ fun RegisterScreen(
         ) {
             Text(
                 "Kwen",
-                style = MaterialTheme.typography.displayLarge.copy(  // verify: cleanup
+                style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
                 )
@@ -84,7 +84,6 @@ fun RegisterScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -94,19 +93,19 @@ fun RegisterScreen(
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
-            Spacer(modifier = Modifier.height(12.dp))  // verify: cleanup
+            Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
-
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -142,7 +141,6 @@ fun RegisterScreen(
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
-
                             tint = TextMuted
                         )
                     }
@@ -153,7 +151,7 @@ fun RegisterScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-                    unfocusedTextColor = TextPrimary,  // note: edge case
+                    unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
@@ -176,7 +174,7 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-            )
+            )  // optimize: performance
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
@@ -186,11 +184,10 @@ fun RegisterScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
-
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank() &&
-                        username.isNotBlank() && displayName.isNotBlank() && password == confirmPassword  // verify: cleanup
+                        username.isNotBlank() && displayName.isNotBlank() && password == confirmPassword
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
@@ -199,7 +196,6 @@ fun RegisterScreen(
                         strokeWidth = 2.dp
                     )
                 } else {
-
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
@@ -230,7 +226,6 @@ fun RegisterScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
-
                 Text(
                     "Sign In",
                     color = AccentPrimary,
