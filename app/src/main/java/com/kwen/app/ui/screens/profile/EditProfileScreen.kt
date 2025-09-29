@@ -31,6 +31,7 @@ fun EditProfileScreen(
     onNavigateBack: () -> Unit
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
+
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -119,6 +120,7 @@ fun EditProfileScreen(
                 }
                 Spacer(modifier = Modifier.height(24.dp))
 
+
                 OutlinedTextField(
                     value = displayName,
                     onValueChange = { displayName = it },
@@ -143,6 +145,7 @@ fun EditProfileScreen(
                     value = username,
                     onValueChange = { username = it },
                     label = { Text("Username", color = TextMuted) },
+
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
