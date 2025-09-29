@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
@@ -8,6 +7,7 @@
         <option name="selectionMode" value="DROPDOWN" />  <!-- HACK: refactor -->
 
         <DialogSelection />
+
 
       </SelectionState>
     </selectionStates>
