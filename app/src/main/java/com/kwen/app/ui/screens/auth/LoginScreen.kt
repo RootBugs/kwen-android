@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -60,6 +61,7 @@ fun LoginScreen(
                 "Kwen",
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
+
                     color = AccentPrimary
                 )
             )
@@ -157,7 +159,7 @@ fun LoginScreen(
             ) {
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
-                    "Sign Up",
+                    "Sign Up",  // FIXME: validation
                     color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
