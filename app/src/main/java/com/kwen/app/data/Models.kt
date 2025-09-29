@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Profile(
     val id: String,
+
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -17,7 +18,6 @@ data class Profile(
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
     @SerialName("post_count") val postCount: Int = 0,
-
     @SerialName("is_following") val isFollowing: Boolean = false
 )
 
@@ -87,7 +87,6 @@ data class Story(
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
     @SerialName("created_at") val createdAt: String,
-
     val user: Profile? = null
 )
 
@@ -126,6 +125,7 @@ data class ConversationItem(
     @SerialName("has_unread") val hasUnread: Boolean = false,
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
+
 )
 
 @Serializable
@@ -152,7 +152,6 @@ data class ReplyTo(
 
 @Serializable
 data class Notification(
-
     val id: String,
     @SerialName("user_id") val userId: String = "",
     val type: String,
@@ -210,6 +209,7 @@ data class TrendingTag(
 @Serializable
 data class SuggestedUser(
     val id: String,
+
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
