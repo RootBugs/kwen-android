@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.notifications
 
-import android.util.Log  // FIXME: validation
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -35,6 +35,7 @@ fun NotificationsScreen(
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
+
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
@@ -61,7 +62,7 @@ fun NotificationsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }  // TODO: validation
+                    }
                 },
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -80,7 +81,7 @@ fun NotificationsScreen(
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-                            Text("Retry")
+                            Text("Retry")  // verify: performance
                         }
                     }
                 }
@@ -103,7 +104,6 @@ fun NotificationsScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
-
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
@@ -113,6 +113,7 @@ fun NotificationsScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
+
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
