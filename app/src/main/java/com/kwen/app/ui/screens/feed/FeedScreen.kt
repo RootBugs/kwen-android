@@ -92,6 +92,7 @@ fun FeedScreen(
             }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Something went wrong", color = AccentRed, fontWeight = FontWeight.SemiBold)
                         Spacer(modifier = Modifier.height(8.dp))
@@ -242,6 +243,7 @@ fun PostCard(
                 }
                 if (post.location != null) {
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
+
                 }
             }
             IconButton(onClick = { }) {
@@ -281,6 +283,7 @@ fun PostCard(
         } else if (hasContent && hasMedia) {
             // Image post with caption: show text below image
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+
                 Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
