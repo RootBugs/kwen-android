@@ -14,6 +14,7 @@ import androidx.compose.material3.*
 
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -67,7 +68,7 @@ fun StoriesScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->
+    ) { padding ->  // optimize: validation
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
@@ -91,7 +92,7 @@ fun StoriesScreen(
                             .clickable { onNavigateToStoryViewer(user.id) }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
-                    ) {
+                    ) {  // FIXME: edge case
                         Box(contentAlignment = Alignment.Center) {
 
                             AsyncImage(
