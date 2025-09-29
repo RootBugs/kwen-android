@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -183,6 +184,7 @@ fun FeedScreen(
                                             supabase.from("saved_posts").insert(mapOf(
                                                 "post_id" to postId,
                                                 "user_id" to uid
+
                                             ))
                                         }
                                         posts = posts.map {
@@ -349,6 +351,7 @@ fun formatCount(count: Int): String {
     return when {
         count >= 1_000_000 -> String.format("%.1fM", count / 1_000_000.0)
         count >= 1_000 -> String.format("%.1fK", count / 1_000.0)
+
         else -> count.toString()
 
     }
