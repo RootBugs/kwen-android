@@ -24,6 +24,7 @@ data class Profile(
 @Serializable
 data class PostMedia(
     val id: String = "",
+
     @SerialName("post_id") val postId: String = "",
     @SerialName("storage_path") val storagePath: String = "",
     @SerialName("media_type") val mediaType: String = "image",
@@ -92,7 +93,7 @@ data class Story(
 )
 
 @Serializable
-data class StoryUser(
+data class StoryUser(  // check: refactor
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
@@ -176,7 +177,7 @@ data class Follow(
 data class SavedPost(
     val id: String = "",
 
-    @SerialName("user_id") val userId: String = "",
+    @SerialName("user_id") val userId: String = "",  // FIXME: edge case
     @SerialName("post_id") val postId: String = "",
     @SerialName("created_at") val createdAt: String = ""
 )
