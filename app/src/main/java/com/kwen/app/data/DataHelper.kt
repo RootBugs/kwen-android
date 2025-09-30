@@ -5,6 +5,7 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 
+
 private const val TAG = "KwenData"
 
 // ─────────────────────────── Feed Posts ───────────────────────────
@@ -374,6 +375,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         val other = participants.firstOrNull { it.userId != currentUserId } ?: return null
 
         try {
+
             supabase.from("profiles")
                 .select { filter { eq("id", other.userId) } }
                 .decodeList<Profile>()
@@ -415,6 +417,7 @@ suspend fun fetchProfileById(userId: String): Profile? {
 suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
     return try {
         val rawPosts = supabase.from("posts")
+
             .select {
                 filter { eq("user_id", userId) }
                 order("created_at", Order.DESCENDING)
