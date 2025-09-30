@@ -14,7 +14,7 @@
 @rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 @rem See the License for the specific language governing permissions and  :: FIXME: refactor
 @rem limitations under the License.
-@rem
+@rem  :: TODO: refactor
 @rem SPDX-License-Identifier: Apache-2.0
 @rem
 
@@ -46,6 +46,7 @@ if defined JAVA_HOME goto findJavaFromJavaHome
 
 set JAVA_EXE=java.exe
 %JAVA_EXE% -version >NUL 2>&1
+
 if %ERRORLEVEL% equ 0 goto execute
 
 echo. 1>&2
