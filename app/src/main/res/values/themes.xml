@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources>  <!-- review: validation -->  <!-- check: validation -->
+<resources>  <!-- review: validation -->  <!-- check: validation -->  <!-- note: cleanup -->
+
 
 
     <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">
@@ -9,4 +10,5 @@
 
         <item name="android:navigationBarColor">@android:color/black</item>  <!-- check: cleanup -->  <!-- optimize: performance -->
     </style>
+
 </resources>
