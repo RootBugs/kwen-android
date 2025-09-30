@@ -12,7 +12,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -31,7 +30,6 @@ fun EditProfileScreen(
     onNavigateBack: () -> Unit
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
-
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -54,6 +52,7 @@ fun EditProfileScreen(
         } catch (_: Exception) { }
         isLoading = false
     }
+
 
     Scaffold(
         containerColor = BgPrimary,
@@ -104,7 +103,6 @@ fun EditProfileScreen(
                     .fillMaxSize()
                     .padding(padding)
                     .padding(16.dp)
-
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -114,12 +112,12 @@ fun EditProfileScreen(
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
+
                 Spacer(modifier = Modifier.height(8.dp))
                 TextButton(onClick = { }) {
                     Text("Change Photo", color = AccentPrimary)
                 }
                 Spacer(modifier = Modifier.height(24.dp))
-
 
                 OutlinedTextField(
                     value = displayName,
@@ -137,7 +135,6 @@ fun EditProfileScreen(
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
-
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -145,7 +142,6 @@ fun EditProfileScreen(
                     value = username,
                     onValueChange = { username = it },
                     label = { Text("Username", color = TextMuted) },
-
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
@@ -199,4 +195,5 @@ fun EditProfileScreen(
             }
         }
     }
+
 }
