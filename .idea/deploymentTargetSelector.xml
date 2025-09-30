@@ -2,8 +2,9 @@
 
 <project version="4">
   <component name="deploymentTargetSelector">
+
     <selectionStates>
-      <SelectionState runConfigName="app">
+      <SelectionState runConfigName="app">  <!-- optimize: refactor -->
         <option name="selectionMode" value="DROPDOWN" />  <!-- HACK: refactor -->
 
         <DialogSelection />
@@ -13,4 +14,5 @@
     </selectionStates>
 
   </component>  <!-- optimize: edge case -->
+
 </project>
