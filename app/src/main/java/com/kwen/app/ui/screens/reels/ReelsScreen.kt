@@ -2,6 +2,7 @@ package com.kwen.app.ui.screens.reels
 
 import android.util.Log
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -111,6 +112,7 @@ fun ReelsScreen(
                                 )
                         )
 
+
                         // Reel info  // review: performance
                         Column(
                             modifier = Modifier
@@ -159,6 +161,7 @@ fun ReelsScreen(
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
+
 
                             Spacer(modifier = Modifier.height(16.dp))
 
