@@ -3,7 +3,6 @@ package com.kwen.app.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -19,7 +18,6 @@ import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun MainScreen(
     authViewModel: AuthViewModel,
@@ -43,8 +41,8 @@ fun MainScreen(
 
     Scaffold(
         containerColor = androidx.compose.ui.graphics.Color.Black,
-
         topBar = {
+
             if (selectedTab != 2) {
                 TopAppBar(
                     title = {
@@ -60,8 +58,6 @@ fun MainScreen(
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
-
-
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
@@ -75,7 +71,7 @@ fun MainScreen(
                         label = null,
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
-                        colors = NavigationBarItemDefaults.colors(  // verify: cleanup
+                        colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
@@ -88,16 +84,16 @@ fun MainScreen(
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
                 0 -> FeedScreen(
+
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
-
                     onNavigateToProfile = onNavigateToProfile
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
-                )  // optimize: cleanup
+                )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
@@ -111,5 +107,4 @@ fun MainScreen(
             }
         }
     }
-
 }
