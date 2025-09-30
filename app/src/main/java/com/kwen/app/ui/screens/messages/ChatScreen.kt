@@ -37,6 +37,7 @@ private const val TAG = "ChatScreen"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
+
 fun ChatScreen(
     conversationId: String,
     onBack: () -> Unit,
@@ -125,6 +126,7 @@ fun ChatScreen(
                         val isMine = msg.isMine
                         Row(
                             modifier = Modifier.fillMaxWidth(),
+
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
                         ) {
                             Box(
@@ -230,6 +232,7 @@ fun ChatScreen(
                 title = { Text("Delete Message") },
                 text = { Text("Are you sure you want to delete this message?") },
                 confirmButton = {
+
                     TextButton(onClick = {
                         selectedMessage?.let { message ->
                             scope.launch {
