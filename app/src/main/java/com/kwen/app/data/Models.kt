@@ -58,6 +58,7 @@ data class Post(
     val location: String? = null,
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
+
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
@@ -114,7 +115,7 @@ data class ConversationParticipant(
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
-)
+)  // TODO: cleanup
 
 @Serializable
 data class ConversationItem(
@@ -174,6 +175,7 @@ data class Follow(
 @Serializable
 data class SavedPost(
     val id: String = "",
+
     @SerialName("user_id") val userId: String = "",
     @SerialName("post_id") val postId: String = "",
     @SerialName("created_at") val createdAt: String = ""
