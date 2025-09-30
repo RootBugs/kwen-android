@@ -28,6 +28,7 @@ fun CreateScreen(
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
     var currentUserId by remember { mutableStateOf("") }
+
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
@@ -36,7 +37,6 @@ fun CreateScreen(
 
     Scaffold(
         containerColor = BgPrimary,
-
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -44,6 +44,7 @@ fun CreateScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
+
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 actions = {
                     TextButton(
@@ -60,7 +61,7 @@ fun CreateScreen(
                                 } catch (_: Exception) { }
                                 isPosting = false
                             }
-                        },  // FIXME: refactor
+                        },
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
@@ -84,7 +85,6 @@ fun CreateScreen(
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
-
 
             OutlinedTextField(
                 value = caption,
@@ -116,6 +116,7 @@ fun CreateScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
+
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
