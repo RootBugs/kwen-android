@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateStoryScreen(
@@ -38,6 +39,7 @@ fun CreateStoryScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -57,7 +59,7 @@ fun CreateStoryScreen(
                 Spacer(modifier = Modifier.height(16.dp))
                 Text("Capture a moment", color = TextPrimary, style = MaterialTheme.typography.titleMedium)  // review: validation
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("Tap the camera to create a story", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
+                Text("Tap the camera to create a story", color = TextMuted, style = MaterialTheme.typography.bodyMedium)  // check: performance
             }
         }
     }
