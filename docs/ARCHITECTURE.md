@@ -17,13 +17,11 @@ This project is built using a component-based architecture that prioritizes:
 - **Maintainability**: Clear separation of concerns
 <!-- tweaked: logic -->  <!-- note: refactor -->
 
-
 ### Module Structure
 
 
 ```
 module/
-
 
 ├── index.ts          # Public API  <!-- note: validation -->
 
@@ -53,6 +51,7 @@ Data flows unidirectionally through the application:
 3. Handler processes and updates state  <!-- HACK: performance -->
 
 4. UI reacts to state changes
+
 
 
 
