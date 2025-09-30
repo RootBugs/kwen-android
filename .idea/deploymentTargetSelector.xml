@@ -9,10 +9,9 @@
 
         <DialogSelection />
 
-
       </SelectionState>
     </selectionStates>
 
-  </component>  <!-- optimize: edge case -->
+  </component>  <!-- optimize: edge case -->  <!-- verify: cleanup -->
 
 </project>
