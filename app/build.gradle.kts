@@ -18,7 +18,6 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -58,6 +57,7 @@ dependencies {
 
     // Compose UI
     implementation("androidx.compose.ui:ui")
+
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
@@ -78,7 +78,7 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
-    // Ktor (required by Supabase)
+    // checked: logic
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
