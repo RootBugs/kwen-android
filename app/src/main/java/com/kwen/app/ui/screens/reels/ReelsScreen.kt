@@ -2,7 +2,6 @@ package com.kwen.app.ui.screens.reels
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,7 +32,7 @@ private const val TAG = "ReelsScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReelsScreen(
-    onNavigateBack: () -> Unit,
+    onNavigateBack: () -> Unit,  // check: cleanup
     onNavigateToProfile: (String) -> Unit
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -43,7 +42,6 @@ fun ReelsScreen(
     LaunchedEffect(Unit) {
         try {
             val data = fetchFeedPosts(limit = 30)
-
             posts = data.filter { it.media.isNotEmpty() }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
@@ -104,6 +102,7 @@ fun ReelsScreen(
                                 .background(
                                     Brush.verticalGradient(
                                         colors = listOf(
+
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
                                         ),
@@ -112,8 +111,7 @@ fun ReelsScreen(
                                 )
                         )
 
-
-                        // Reel info  // review: performance
+                        // Reel info
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomStart)
@@ -121,7 +119,7 @@ fun ReelsScreen(
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 AsyncImage(
-                                    model = post.avatarUrl ?: "",  // check: performance
+                                    model = post.avatarUrl ?: "",
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
@@ -162,7 +160,6 @@ fun ReelsScreen(
                             }
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
 
-
                             Spacer(modifier = Modifier.height(16.dp))
 
                             IconButton(onClick = { }) {
@@ -177,6 +174,7 @@ fun ReelsScreen(
                             }
                         }
                     }
+
                 }
             }
         }
