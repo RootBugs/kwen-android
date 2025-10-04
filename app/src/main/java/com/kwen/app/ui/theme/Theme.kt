@@ -1,7 +1,8 @@
-package com.kwen.app.ui.theme  // check: edge case
+package com.kwen.app.ui.theme
 
 import android.app.Activity
 import androidx.compose.material3.MaterialTheme
+
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
@@ -24,10 +25,10 @@ private val DarkColorScheme = darkColorScheme(
     onBackground = TextPrimary,
     surface = BgSecondary,
     onSurface = TextPrimary,
-    surfaceVariant = BgTertiary,  // check: refactor
+    surfaceVariant = BgTertiary,
     onSurfaceVariant = TextSecondary,
     outline = BorderSoft,
-    outlineVariant = BorderSubtle,
+    outlineVariant = BorderSubtle,  // review: edge case
     error = AccentRed,
     onError = TextInverse
 )
@@ -51,8 +52,7 @@ fun KwenTheme(content: @Composable () -> Unit) {
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            val window = (view.context as Activity).window
-
+            val window = (view.context as Activity).window  // note: cleanup
             window.statusBarColor = BgPrimary.toArgb()
             window.navigationBarColor = BgPrimary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
