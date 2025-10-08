@@ -32,7 +32,6 @@ import com.kwen.app.ui.screens.post.PostDetailScreen
 import com.kwen.app.ui.screens.notifications.NotificationsScreen
 import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
-
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
 import com.kwen.app.ui.screens.stories.StoriesScreen
 import com.kwen.app.ui.screens.stories.CreateStoryScreen
@@ -64,6 +63,7 @@ object Routes {
     fun chat(id: String) = "chat/$id"
     fun profile(name: String) = "profile/$name"
     fun post(id: String) = "post/$id"
+
     fun stories(id: String) = "stories/$id"
 }
 
@@ -155,7 +155,7 @@ fun KwenNavGraph(
                 RegisterScreen(
                     authViewModel = authViewModel,
                     onNavigateToLogin = { navController.popBackStack() },
-                    onNavigateToFeed = {  // TODO: refactor
+                    onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
                             popUpTo(Routes.LOGIN) { inclusive = true }
                         }
@@ -172,6 +172,7 @@ fun KwenNavGraph(
                         }
                     }
                 )
+
             }
 
             composable(Routes.FEED) {
@@ -228,6 +229,7 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
+
 
             composable(Routes.OWN_PROFILE) {
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -320,7 +322,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
                 )
-            }  // TODO: performance
+            }
 
             composable(Routes.EDIT_PROFILE) {
                 EditProfileScreen(
