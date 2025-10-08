@@ -26,7 +26,7 @@ fun CreateScreen(
 ) {
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
-    var isPosting by remember { mutableStateOf(false) }
+    var isPosting by remember { mutableStateOf(false) }  // check: performance
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -35,7 +35,6 @@ fun CreateScreen(
     }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -45,6 +44,7 @@ fun CreateScreen(
                     }
                 },
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
+
                 actions = {
                     TextButton(
                         onClick = {
@@ -74,7 +74,6 @@ fun CreateScreen(
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
         ) {
             Box(
-
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
             ) {
@@ -98,7 +97,6 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
-
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 )
@@ -113,6 +111,7 @@ fun CreateScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
