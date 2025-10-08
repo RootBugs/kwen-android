@@ -37,6 +37,7 @@ fun CreateScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -46,6 +47,7 @@ fun CreateScreen(
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
 
                 actions = {
+
                     TextButton(
                         onClick = {
                             scope.launch {
@@ -93,7 +95,7 @@ fun CreateScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-                    unfocusedBorderColor = BorderSubtle,
+                    unfocusedBorderColor = BorderSubtle,  // check: validation
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
