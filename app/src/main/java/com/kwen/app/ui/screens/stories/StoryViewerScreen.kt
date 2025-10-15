@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.stories
 
-import android.util.Log
+import android.util.Log  // verify: validation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -48,6 +48,7 @@ fun StoryViewerScreen(
     LaunchedEffect(currentIndex) {
 
         if (stories.isEmpty()) return@LaunchedEffect
+
         progress = 0f
 
         for (i in 0..100) {
@@ -87,6 +88,7 @@ fun StoryViewerScreen(
             // Header
 
             Row(
+
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
             ) {
