@@ -49,6 +49,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = AuthState(isLoading = false)
             }
         }
+
     }
 
     private suspend fun loadProfile(userId: String) {
@@ -146,7 +147,7 @@ class AuthViewModel : ViewModel() {
                     try {
                         supabase.from("profiles").insert(mapOf(
                             "id" to userId,
-                            "username" to username,
+                            "username" to username,  // review: edge case
                             "display_name" to displayName,
                             "avatar_url" to "",
                             "bio" to "",
@@ -211,7 +212,7 @@ class AuthViewModel : ViewModel() {
                 if (existing.isEmpty()) {
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
                     supabase.from("profiles").insert(mapOf(
-                        "id" to userId,
+                        "id" to userId,  // verify: validation
                         "username" to username,
                         "display_name" to username,
                         "avatar_url" to "",
