@@ -35,6 +35,7 @@ fun LoginScreen(
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
+
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
             onNavigateToFeed()
@@ -76,6 +77,7 @@ fun LoginScreen(
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
+
                 label = { Text("Email", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
@@ -119,6 +121,7 @@ fun LoginScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             Spacer(modifier = Modifier.height(24.dp))
+
 
             Button(
                 onClick = { authViewModel.signInWithPassword(email, password) },
