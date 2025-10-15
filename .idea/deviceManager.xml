@@ -1,21 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>  <!-- HACK: validation -->
-<project version="4">  <!-- HACK: refactor -->
+<?xml version="1.0" encoding="UTF-8"?>  <!-- note: cleanup -->
+<project version="4">
   <component name="DeviceTable">
-
-
     <option name="columnSorters">
-      <list>  <!-- check: edge case -->
-
-
+      <list>
         <ColumnSorterState>
           <option name="column" value="Name" />
+
           <option name="order" value="ASCENDING" />
         </ColumnSorterState>
 
       </list>
-
     </option>
-
   </component>
-
 </project>
