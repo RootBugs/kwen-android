@@ -2,6 +2,7 @@
 
 <!-- revised: handler -->
 
+
 This guide will help you set up the development environment for this project.  <!-- review: edge case -->
 
 ### Prerequisites
@@ -49,7 +50,6 @@ This guide will help you set up the development environment for this project.  <
 - Keep functions small and focused
 
 - Use TypeScript for type safety where possible  <!-- review: validation -->
-
 
 
 
