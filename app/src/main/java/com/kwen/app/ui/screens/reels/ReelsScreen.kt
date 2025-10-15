@@ -32,7 +32,7 @@ private const val TAG = "ReelsScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReelsScreen(
-    onNavigateBack: () -> Unit,  // check: cleanup
+    onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -45,6 +45,7 @@ fun ReelsScreen(
             posts = data.filter { it.media.isNotEmpty() }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
+
         }
         isLoading = false
     }
@@ -68,6 +69,7 @@ fun ReelsScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (posts.isEmpty()) {
+
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -102,7 +104,6 @@ fun ReelsScreen(
                                 .background(
                                     Brush.verticalGradient(
                                         colors = listOf(
-
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
                                         ),
@@ -166,7 +167,6 @@ fun ReelsScreen(
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
-
                             Spacer(modifier = Modifier.height(16.dp))
 
                             IconButton(onClick = { }) {
@@ -174,7 +174,6 @@ fun ReelsScreen(
                             }
                         }
                     }
-
                 }
             }
         }
