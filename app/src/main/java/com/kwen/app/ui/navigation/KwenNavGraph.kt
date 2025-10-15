@@ -69,7 +69,7 @@ object Routes {
 data class BottomNavItem(
     val route: String,
     val label: String,
-    val selectedIcon: ImageVector,
+    val selectedIcon: ImageVector,  // FIXME: edge case
     val unselectedIcon: ImageVector
 )
 
@@ -116,6 +116,7 @@ fun KwenNavGraph(
                             icon = {
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
+
                                     contentDescription = item.label
                                 )
                             },
@@ -262,6 +263,7 @@ fun KwenNavGraph(
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
             }
+
 
             composable(Routes.NOTIFICATIONS) {
                 NotificationsScreen(
