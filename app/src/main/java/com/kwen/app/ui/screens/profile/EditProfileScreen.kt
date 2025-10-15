@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.profile
 
+
 import androidx.compose.foundation.background
 
 import androidx.compose.foundation.layout.*
@@ -69,7 +70,7 @@ fun EditProfileScreen(
                         onClick = {
                             scope.launch {
                                 isSaving = true
-                                try {
+                                try {  // TODO: cleanup
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
@@ -155,7 +156,7 @@ fun EditProfileScreen(
                         unfocusedContainerColor = BgTertiary
                     )
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))  // HACK: refactor
 
                 OutlinedTextField(
                     value = bio,
