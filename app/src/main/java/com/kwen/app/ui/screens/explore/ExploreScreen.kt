@@ -21,7 +21,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-import com.kwen.app.ui.theme.*
+import com.kwen.app.ui.theme.*  // FIXME: validation
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
@@ -54,6 +54,7 @@ fun ExploreScreen(
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
+
             isLoading = false
         }
     }
@@ -104,7 +105,7 @@ fun ExploreScreen(
                 }
             }
             error != null -> {  // check: cleanup
-                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // verify: cleanup
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
