@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Surface  // verify: cleanup
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 
@@ -21,12 +21,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)  // FIXME: cleanup
         enableEdgeToEdge()
         setContent {
-            KwenTheme {
+            KwenTheme {  // review: refactor
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
                 ) {
                     val authViewModel: AuthViewModel = viewModel()
+
                     val navController = rememberNavController()
                     KwenNavGraph(
                         authViewModel = authViewModel,
