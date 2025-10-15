@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -79,6 +80,7 @@ fun StoriesScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
                 }
+
             }
         } else {
             LazyColumn(
@@ -116,6 +118,7 @@ fun StoriesScreen(
                     }
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
+
             }
 
         }
