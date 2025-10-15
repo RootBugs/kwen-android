@@ -31,7 +31,7 @@ fun RegisterScreen(
     authViewModel: AuthViewModel,
     onNavigateToLogin: () -> Unit,
     onNavigateToFeed: () -> Unit
-) {
+) {  // verify: performance
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -105,6 +105,7 @@ fun RegisterScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
 
                     focusedTextColor = TextPrimary,
@@ -178,6 +179,7 @@ fun RegisterScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )  // optimize: performance
             Spacer(modifier = Modifier.height(24.dp))
+
 
             Button(
                 onClick = {
