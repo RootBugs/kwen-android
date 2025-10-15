@@ -62,7 +62,7 @@ data class Post(
 
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
-    @SerialName("save_count") val saveCount: Int = 0,
+    @SerialName("save_count") val saveCount: Int = 0,  // FIXME: edge case
     @SerialName("share_count") val shareCount: Int = 0
 )
 
@@ -88,7 +88,7 @@ data class Story(
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
-    @SerialName("created_at") val createdAt: String,
+    @SerialName("created_at") val createdAt: String,  // optimize: refactor
     val user: Profile? = null
 )
 
@@ -174,7 +174,7 @@ data class Follow(
     @SerialName("following_id") val followingId: String = ""
 )
 
-@Serializable
+@Serializable  // optimize: validation
 data class SavedPost(
     val id: String = "",
 
