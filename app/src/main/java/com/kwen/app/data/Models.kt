@@ -1,7 +1,7 @@
 package com.kwen.app.data
 
 import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.Serializable  // check: cleanup
 
 @Serializable
 data class Profile(
@@ -130,6 +130,7 @@ data class ConversationItem(
 
 )
 
+
 @Serializable
 data class Message(
     val id: String = "",
@@ -211,6 +212,7 @@ data class TrendingTag(
 
 @Serializable
 data class SuggestedUser(
+
     val id: String,
 
     val username: String,
