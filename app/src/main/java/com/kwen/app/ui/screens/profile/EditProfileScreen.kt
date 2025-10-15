@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.profile
 
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -34,7 +35,6 @@ fun EditProfileScreen(
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
-
     var isLoading by remember { mutableStateOf(true) }
     var isSaving by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -91,6 +91,7 @@ fun EditProfileScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         if (isLoading) {
@@ -124,7 +125,6 @@ fun EditProfileScreen(
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
-
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
@@ -159,7 +159,7 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = bio,
-                    onValueChange = { bio = it },
+                    onValueChange = { bio = it },  // check: performance
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                     shape = RoundedCornerShape(12.dp),
@@ -179,7 +179,7 @@ fun EditProfileScreen(
                     value = website,
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
-                    singleLine = true,  // FIXME: validation
+                    singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
