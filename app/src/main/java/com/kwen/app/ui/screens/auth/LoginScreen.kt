@@ -35,7 +35,6 @@ fun LoginScreen(
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
-
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
             onNavigateToFeed()
@@ -104,6 +103,7 @@ fun LoginScreen(
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
+
                             tint = TextMuted
                         )
                     }
@@ -140,6 +140,7 @@ fun LoginScreen(
                         strokeWidth = 2.dp
                     )
                 } else {
+
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
