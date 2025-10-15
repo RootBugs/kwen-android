@@ -25,6 +25,7 @@ import com.kwen.app.ui.theme.*
 
 private const val TAG = "StoriesScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StoriesScreen(
@@ -79,6 +80,7 @@ fun StoriesScreen(
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
+
                 }
 
             }
@@ -91,6 +93,7 @@ fun StoriesScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { onNavigateToStoryViewer(user.id) }
+
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
