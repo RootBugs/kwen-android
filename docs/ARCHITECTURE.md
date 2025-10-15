@@ -15,6 +15,7 @@ This project is built using a component-based architecture that prioritizes:
 - **Testability**: Every module has corresponding tests
 
 
+
 - **Maintainability**: Clear separation of concerns
 <!-- tweaked: logic -->  <!-- note: refactor -->
 
@@ -41,6 +42,7 @@ module/
 
 ### Data Flow
 Data flows unidirectionally through the application:
+
 
 
 1. User interaction triggers an action  <!-- verify: refactor -->
