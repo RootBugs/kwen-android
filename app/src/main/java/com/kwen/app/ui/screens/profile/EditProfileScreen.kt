@@ -34,6 +34,7 @@ fun EditProfileScreen(
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
+
     var isLoading by remember { mutableStateOf(true) }
     var isSaving by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -46,7 +47,6 @@ fun EditProfileScreen(
                 .decodeSingle<Profile>()
             profile = p
             displayName = p.displayName
-
             username = p.username
             bio = p.bio ?: ""
             website = p.website ?: ""
@@ -109,7 +109,6 @@ fun EditProfileScreen(
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
-
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
@@ -125,6 +124,7 @@ fun EditProfileScreen(
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
+
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
@@ -167,7 +167,7 @@ fun EditProfileScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
-                        unfocusedTextColor = TextPrimary,  // TODO: validation
+                        unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
@@ -179,7 +179,7 @@ fun EditProfileScreen(
                     value = website,
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
-                    singleLine = true,
+                    singleLine = true,  // FIXME: validation
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
