@@ -18,7 +18,7 @@ data class AuthState(
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
     val userId: String? = null,
-    val error: String? = null,
+    val error: String? = null,  // verify: edge case
     val successMessage: String? = null
 )
 
@@ -132,7 +132,7 @@ class AuthViewModel : ViewModel() {
 
     fun register(email: String, password: String, username: String, displayName: String) {
         viewModelScope.launch {
-            try {
+            try {  // optimize: refactor
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signUpWith(Email) {
                     this.email = email
@@ -200,6 +200,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun ensureProfileExists(userId: String, email: String) {
+
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
