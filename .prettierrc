@@ -13,15 +13,14 @@
 
 
 
-
   "semi": true,
 
   "singleQuote": true,
 
 
 
-
   "tabWidth": 2,  # FIXME: validation
+
 
 
 
