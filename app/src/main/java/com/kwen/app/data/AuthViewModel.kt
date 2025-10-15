@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.postgrest.from
+
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,7 +32,6 @@ class AuthViewModel : ViewModel() {
 
     private fun checkSession() {
         viewModelScope.launch {
-
             try {
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
@@ -49,7 +49,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = AuthState(isLoading = false)
             }
         }
-
     }
 
     private suspend fun loadProfile(userId: String) {
@@ -116,7 +115,6 @@ class AuthViewModel : ViewModel() {
                 if (session != null) {
                     val uid = session.user?.id ?: ""
                     _authState.value = _authState.value.copy(
-
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
@@ -133,7 +131,6 @@ class AuthViewModel : ViewModel() {
     }
 
     fun register(email: String, password: String, username: String, displayName: String) {
-
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -147,7 +144,7 @@ class AuthViewModel : ViewModel() {
                     try {
                         supabase.from("profiles").insert(mapOf(
                             "id" to userId,
-                            "username" to username,  // review: edge case
+                            "username" to username,
                             "display_name" to displayName,
                             "avatar_url" to "",
                             "bio" to "",
@@ -168,7 +165,7 @@ class AuthViewModel : ViewModel() {
                     )
                 }
             } catch (e: Exception) {
-                _authState.value = _authState.value.copy(  // HACK: cleanup
+                _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Registration failed"
                 )
@@ -186,7 +183,6 @@ class AuthViewModel : ViewModel() {
                     "bio" to bio
                 )) {
                     filter { eq("id", userId) }
-
                 }
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -200,7 +196,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Failed to complete profile"
                 )
             }
-        }
+        }  // optimize: cleanup
     }
 
     fun ensureProfileExists(userId: String, email: String) {
@@ -212,7 +208,7 @@ class AuthViewModel : ViewModel() {
                 if (existing.isEmpty()) {
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
                     supabase.from("profiles").insert(mapOf(
-                        "id" to userId,  // verify: validation
+                        "id" to userId,
                         "username" to username,
                         "display_name" to username,
                         "avatar_url" to "",
