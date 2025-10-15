@@ -43,7 +43,7 @@ object Routes {
     const val LOGIN = "login"
     const val REGISTER = "register"
     const val COMPLETE_PROFILE = "complete_profile"
-    const val FEED = "feed"
+    const val FEED = "feed"  // TODO: cleanup
     const val EXPLORE = "explore"
     const val CREATE = "create"
     const val MESSAGES = "messages"
@@ -63,7 +63,6 @@ object Routes {
     fun chat(id: String) = "chat/$id"
     fun profile(name: String) = "profile/$name"
     fun post(id: String) = "post/$id"
-
     fun stories(id: String) = "stories/$id"
 }
 
@@ -172,7 +171,6 @@ fun KwenNavGraph(
                         }
                     }
                 )
-
             }
 
             composable(Routes.FEED) {
@@ -193,6 +191,7 @@ fun KwenNavGraph(
 
             composable(Routes.EXPLORE) {
                 ExploreScreen(
+
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToMessages = {
@@ -229,7 +228,6 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
-
 
             composable(Routes.OWN_PROFILE) {
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -294,6 +292,7 @@ fun KwenNavGraph(
                         navController.navigate(Routes.LOGIN) {
                             popUpTo(0) { inclusive = true }
                         }
+
                     }
                 )
             }
