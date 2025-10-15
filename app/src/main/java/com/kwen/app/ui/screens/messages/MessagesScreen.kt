@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -107,6 +108,7 @@ fun MessagesScreen(
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text("Failed to load messages", color = AccentRed)
 
+
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                                 Text("Retry")
@@ -123,6 +125,7 @@ fun MessagesScreen(
                         }
                     }
                 }
+
                 else -> {
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
                         items(filteredConversations) { conv ->
