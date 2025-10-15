@@ -7,22 +7,22 @@ plugins {
 
 android {
     namespace = "com.kwen.app"
-
     compileSdk = 35
     buildToolsVersion = "35.0.0"
 
     defaultConfig {
         applicationId = "com.kwen.app"
-
         minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
+
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
+
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
@@ -44,21 +44,19 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)  // FIXME: performance
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     // Compose BOM
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
     implementation(composeBom)
 
-    // Compose UI
+    // Compose UI  // review: edge case
     implementation("androidx.compose.ui:ui")
-
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
@@ -67,10 +65,10 @@ dependencies {
     // Activity & Lifecycle
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")  // optimize: edge case
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     // Navigation
-    implementation("androidx.navigation:navigation-compose:2.8.5")
+    implementation("androidx.navigation:navigation-compose:2.8.5")  // optimize: validation
 
     // Supabase Kotlin SDK
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
@@ -79,7 +77,7 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
-    // checked: logic
+    // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
