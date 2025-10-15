@@ -36,6 +36,7 @@ fun ExploreScreen(
     onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
+
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
@@ -76,7 +77,7 @@ fun ExploreScreen(
                     OutlinedTextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
-                        placeholder = { Text("Search", color = TextMuted) },
+                        placeholder = { Text("Search", color = TextMuted) },  // check: performance
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth().height(48.dp),
                         shape = RoundedCornerShape(12.dp),
@@ -131,7 +132,7 @@ fun ExploreScreen(
 
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
-                                modifier = Modifier.fillMaxSize().background(BgTertiary),
+                                modifier = Modifier.fillMaxSize().background(BgTertiary),  // check: refactor
                                 contentScale = ContentScale.Crop
                             )
                             if (post.media.size > 1) {
