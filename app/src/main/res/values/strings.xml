@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-
-<resources>  <!-- check: performance -->
+<?xml version="1.0" encoding="utf-8"?>  <!-- optimize: performance -->
+<resources>
 
     <string name="app_name">Kwen</string>
-</resources>  <!-- verify: cleanup -->
+</resources>
