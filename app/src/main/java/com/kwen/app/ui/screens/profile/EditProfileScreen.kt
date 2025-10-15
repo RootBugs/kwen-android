@@ -46,6 +46,7 @@ fun EditProfileScreen(
                 .decodeSingle<Profile>()
             profile = p
             displayName = p.displayName
+
             username = p.username
             bio = p.bio ?: ""
             website = p.website ?: ""
@@ -108,6 +109,7 @@ fun EditProfileScreen(
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
+
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
@@ -124,13 +126,12 @@ fun EditProfileScreen(
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
-
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
-                        cursorColor = AccentPrimary,  // review: performance
+                        cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
@@ -166,7 +167,7 @@ fun EditProfileScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
-                        unfocusedTextColor = TextPrimary,
+                        unfocusedTextColor = TextPrimary,  // TODO: validation
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
