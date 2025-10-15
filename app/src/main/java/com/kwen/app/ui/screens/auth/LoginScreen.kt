@@ -10,16 +10,14 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp  // HACK: validation
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.theme.*
@@ -33,6 +31,7 @@ fun LoginScreen(
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
@@ -42,7 +41,6 @@ fun LoginScreen(
     }
 
     LaunchedEffect(email, password) {
-
         if (authState.error != null) authViewModel.clearError()
     }
 
@@ -61,11 +59,10 @@ fun LoginScreen(
                 "Kwen",
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
-
                     color = AccentPrimary
                 )
             )
-            Spacer(modifier = Modifier.height(8.dp))  // FIXME: edge case
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
@@ -76,7 +73,6 @@ fun LoginScreen(
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
-
                 label = { Text("Email", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
@@ -94,6 +90,7 @@ fun LoginScreen(
 
             OutlinedTextField(
                 value = password,
+
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
@@ -103,7 +100,6 @@ fun LoginScreen(
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
-
                             tint = TextMuted
                         )
                     }
@@ -111,7 +107,6 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -122,15 +117,14 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(24.dp))
 
-
             Button(
                 onClick = { authViewModel.signInWithPassword(email, password) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
 
+                colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank()
             ) {
                 if (authState.isLoading) {
@@ -140,7 +134,6 @@ fun LoginScreen(
                         strokeWidth = 2.dp
                     )
                 } else {
-
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
@@ -151,7 +144,6 @@ fun LoginScreen(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
-
                     textAlign = TextAlign.Center
                 )
             }
@@ -163,7 +155,7 @@ fun LoginScreen(
             ) {
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
-                    "Sign Up",  // FIXME: validation
+                    "Sign Up",
                     color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
