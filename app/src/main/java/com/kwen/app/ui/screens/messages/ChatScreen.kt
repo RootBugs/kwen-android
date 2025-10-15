@@ -24,7 +24,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
-
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -37,7 +36,6 @@ private const val TAG = "ChatScreen"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-
 fun ChatScreen(
     conversationId: String,
     onBack: () -> Unit,
@@ -55,7 +53,8 @@ fun ChatScreen(
         supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     } catch (_: Exception) { "" }
 
-    fun loadMessages() {  // check: validation
+
+    fun loadMessages() {
         scope.launch {
             isLoading = true
             try {
@@ -87,9 +86,9 @@ fun ChatScreen(
                 },
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-
                         AsyncImage(
                             model = otherUser?.avatarUrl ?: "",
+
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
@@ -99,7 +98,6 @@ fun ChatScreen(
                             otherUser?.displayName ?: "Chat",
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
-
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -127,7 +125,6 @@ fun ChatScreen(
                         val isMine = msg.isMine
                         Row(
                             modifier = Modifier.fillMaxWidth(),
-
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
                         ) {
                             Box(
@@ -174,10 +171,10 @@ fun ChatScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
+
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         unfocusedContainerColor = BgTertiary
-
                     ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = {
@@ -233,7 +230,6 @@ fun ChatScreen(
                 title = { Text("Delete Message") },
                 text = { Text("Are you sure you want to delete this message?") },
                 confirmButton = {
-
                     TextButton(onClick = {
                         selectedMessage?.let { message ->
                             scope.launch {
@@ -256,7 +252,6 @@ fun ChatScreen(
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
                     }
-
                 }
             )
         }
