@@ -13,6 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.kwen.app"
+
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -43,7 +44,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.ktx)  // FIXME: performance
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -66,7 +67,7 @@ dependencies {
     // Activity & Lifecycle
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")  // optimize: edge case
 
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.8.5")
