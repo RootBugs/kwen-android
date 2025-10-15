@@ -2,8 +2,8 @@ package com.kwen.app.ui.screens.saved
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -29,7 +29,6 @@ private const val TAG = "SavedScreen"
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
-
     onNavigateToProfile: (String) -> Unit
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -42,7 +41,6 @@ fun SavedScreen(
             savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
-
             error = e.message
         }
         isLoading = false
@@ -53,7 +51,7 @@ fun SavedScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
+                    IconButton(onClick = onNavigateBack) {  // optimize: refactor
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -72,7 +70,6 @@ fun SavedScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load saved posts", color = AccentRed)
-
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
                     }
@@ -89,16 +86,15 @@ fun SavedScreen(
             }
             else -> {
                 LazyVerticalGrid(
+
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
-
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(savedPosts) { post ->
                         Box(
-
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
                             AsyncImage(
