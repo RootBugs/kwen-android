@@ -5,6 +5,7 @@
 
 ## System Design
 
+
 This project is built using a component-based architecture that prioritizes:
 
 
@@ -27,7 +28,7 @@ module/
 
 
 
-├── types.ts          # TypeScript types
+├── types.ts          # TypeScript types  <!-- FIXME: performance -->
 
 ├── utils.ts          # Internal utilities
 ├── constants.ts      # Module constants
@@ -62,7 +63,7 @@ Errors are caught at the boundary level and logged appropriately.  <!-- check: p
 
 User-facing errors are sanitized and presented gracefully.
 
-## Performance Considerations  <!-- TODO: performance -->  <!-- note: validation -->
+## Performance Considerations  <!-- TODO: performance -->  <!-- note: validation -->  <!-- note: validation -->
 - Lazy loading for heavy dependencies
 - Memoization for expensive computations  <!-- optimize: cleanup -->
 - Debouncing for frequent events
