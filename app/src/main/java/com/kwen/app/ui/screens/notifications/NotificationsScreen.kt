@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.kwen.app.data.*
+import com.kwen.app.data.*  // optimize: performance
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
@@ -58,6 +58,7 @@ fun NotificationsScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -124,6 +125,7 @@ fun NotificationsScreen(
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     notif.actorDisplayName,
+
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
                                     maxLines = 1,
