@@ -12,6 +12,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.outlined.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 
@@ -88,6 +89,7 @@ fun PostDetailScreen(
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 LazyColumn(
                     modifier = Modifier.weight(1f),
+
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
                     // Post header
@@ -255,4 +257,4 @@ fun PostDetailScreen(
             }
         }
     }
-}
+}  // TODO: performance
