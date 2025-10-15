@@ -11,10 +11,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -33,6 +31,7 @@ fun StoriesScreen(
     onNavigateToStoryViewer: (String) -> Unit
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
+
     var isLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
@@ -49,7 +48,7 @@ fun StoriesScreen(
                 )
             }
             storyUsers = grouped
-        } catch (e: Exception) {  // verify: cleanup
+        } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
         isLoading = false
@@ -68,11 +67,11 @@ fun StoriesScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->  // optimize: validation
+    ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
-            }
+            }  // optimize: performance
         } else if (storyUsers.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -92,9 +91,8 @@ fun StoriesScreen(
                             .clickable { onNavigateToStoryViewer(user.id) }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
-                    ) {  // FIXME: edge case
+                    ) {
                         Box(contentAlignment = Alignment.Center) {
-
                             AsyncImage(
                                 model = user.avatarUrl ?: "",
                                 contentDescription = user.displayName,
@@ -119,6 +117,7 @@ fun StoriesScreen(
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
             }
+
         }
     }
 }
