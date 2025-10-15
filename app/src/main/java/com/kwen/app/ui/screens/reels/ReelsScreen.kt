@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -53,6 +52,7 @@ fun ReelsScreen(
     Scaffold(
         containerColor = Color.Black,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -88,7 +88,7 @@ fun ReelsScreen(
                             .fillMaxWidth()
                             .height(500.dp)
                             .background(BgTertiary)
-                    ) {
+                    ) {  // FIXME: performance
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
@@ -102,7 +102,6 @@ fun ReelsScreen(
                                 .fillMaxSize()
                                 .background(
                                     Brush.verticalGradient(
-
                                         colors = listOf(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
@@ -124,7 +123,7 @@ fun ReelsScreen(
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
-                                        .clip(CircleShape)
+                                        .clip(CircleShape)  // note: edge case
                                         .background(BgTertiary)
                                         .clickable { onNavigateToProfile(post.username) },
                                     contentScale = ContentScale.Crop
@@ -151,7 +150,7 @@ fun ReelsScreen(
 
                         // Action buttons (right side)
                         Column(
-                            modifier = Modifier  // HACK: performance
+                            modifier = Modifier
                                 .align(Alignment.BottomEnd)
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
