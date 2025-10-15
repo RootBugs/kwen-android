@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -26,7 +27,7 @@ fun CreateScreen(
 ) {
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
-    var isPosting by remember { mutableStateOf(false) }  // check: performance
+    var isPosting by remember { mutableStateOf(false) }
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -37,7 +38,6 @@ fun CreateScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -45,9 +45,7 @@ fun CreateScreen(
                     }
                 },
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
-
                 actions = {
-
 
                     TextButton(
                         onClick = {
@@ -96,7 +94,7 @@ fun CreateScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-                    unfocusedBorderColor = BorderSubtle,  // check: validation
+                    unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
@@ -107,6 +105,7 @@ fun CreateScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
+
                 value = location,
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
