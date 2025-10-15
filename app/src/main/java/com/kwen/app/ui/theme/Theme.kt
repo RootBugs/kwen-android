@@ -2,10 +2,10 @@ package com.kwen.app.ui.theme
 
 import android.app.Activity
 import androidx.compose.material3.MaterialTheme
-
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
+
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
@@ -28,9 +28,9 @@ private val DarkColorScheme = darkColorScheme(
     surfaceVariant = BgTertiary,
     onSurfaceVariant = TextSecondary,
     outline = BorderSoft,
-    outlineVariant = BorderSubtle,  // review: edge case
+    outlineVariant = BorderSubtle,
     error = AccentRed,
-    onError = TextInverse
+    onError = TextInverse  // TODO: performance
 )
 
 private val KwenTypography = Typography(
@@ -52,11 +52,12 @@ fun KwenTheme(content: @Composable () -> Unit) {
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            val window = (view.context as Activity).window  // note: cleanup
+            val window = (view.context as Activity).window
             window.statusBarColor = BgPrimary.toArgb()
             window.navigationBarColor = BgPrimary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
+
     }
     MaterialTheme(colorScheme = DarkColorScheme, typography = KwenTypography, content = content)
 }
