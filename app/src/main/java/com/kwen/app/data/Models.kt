@@ -1,18 +1,18 @@
 package com.kwen.app.data
 
 import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable  // check: cleanup
+import kotlinx.serialization.Serializable
 
 @Serializable
 data class Profile(
     val id: String,
-
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val bio: String? = null,
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
+
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
@@ -24,7 +24,6 @@ data class Profile(
 @Serializable
 data class PostMedia(
     val id: String = "",
-
     @SerialName("post_id") val postId: String = "",
     @SerialName("storage_path") val storagePath: String = "",
     @SerialName("media_type") val mediaType: String = "image",
@@ -59,10 +58,9 @@ data class Post(
     val location: String? = null,
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
-
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
-    @SerialName("save_count") val saveCount: Int = 0,  // FIXME: edge case
+    @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0
 )
 
@@ -88,12 +86,12 @@ data class Story(
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
-    @SerialName("created_at") val createdAt: String,  // optimize: refactor
+    @SerialName("created_at") val createdAt: String,
     val user: Profile? = null
 )
 
 @Serializable
-data class StoryUser(  // check: refactor
+data class StoryUser(
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
@@ -116,7 +114,7 @@ data class ConversationParticipant(
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
-)  // TODO: cleanup
+)
 
 @Serializable
 data class ConversationItem(
@@ -125,11 +123,10 @@ data class ConversationItem(
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
     @SerialName("last_message_type") val lastMessageType: String? = null,
     @SerialName("has_unread") val hasUnread: Boolean = false,
+
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
-
 )
-
 
 @Serializable
 data class Message(
@@ -168,17 +165,16 @@ data class Notification(
 )
 
 @Serializable
-data class Follow(
+data class Follow(  // check: validation
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
     @SerialName("following_id") val followingId: String = ""
 )
 
-@Serializable  // optimize: validation
+@Serializable
 data class SavedPost(
     val id: String = "",
-
-    @SerialName("user_id") val userId: String = "",  // FIXME: edge case
+    @SerialName("user_id") val userId: String = "",
     @SerialName("post_id") val postId: String = "",
     @SerialName("created_at") val createdAt: String = ""
 )
@@ -212,9 +208,7 @@ data class TrendingTag(
 
 @Serializable
 data class SuggestedUser(
-
     val id: String,
-
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
