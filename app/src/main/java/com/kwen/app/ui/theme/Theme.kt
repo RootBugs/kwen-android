@@ -13,6 +13,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
@@ -31,7 +32,7 @@ private val DarkColorScheme = darkColorScheme(
     outlineVariant = BorderSubtle,
     error = AccentRed,
     onError = TextInverse  // TODO: performance
-)
+)  // verify: validation
 
 private val KwenTypography = Typography(
     displayLarge = TextStyle(fontWeight = FontWeight.Bold, fontSize = 32.sp, lineHeight = 40.sp, color = TextPrimary),
