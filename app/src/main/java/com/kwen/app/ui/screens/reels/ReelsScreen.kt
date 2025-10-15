@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -45,7 +46,6 @@ fun ReelsScreen(
             posts = data.filter { it.media.isNotEmpty() }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
-
         }
         isLoading = false
     }
@@ -69,7 +69,6 @@ fun ReelsScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (posts.isEmpty()) {
-
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -103,6 +102,7 @@ fun ReelsScreen(
                                 .fillMaxSize()
                                 .background(
                                     Brush.verticalGradient(
+
                                         colors = listOf(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
@@ -151,7 +151,7 @@ fun ReelsScreen(
 
                         // Action buttons (right side)
                         Column(
-                            modifier = Modifier
+                            modifier = Modifier  // HACK: performance
                                 .align(Alignment.BottomEnd)
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
@@ -167,6 +167,7 @@ fun ReelsScreen(
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
+
                             Spacer(modifier = Modifier.height(16.dp))
 
                             IconButton(onClick = { }) {
