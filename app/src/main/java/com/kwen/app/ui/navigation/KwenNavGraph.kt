@@ -43,7 +43,7 @@ object Routes {
     const val LOGIN = "login"
     const val REGISTER = "register"
     const val COMPLETE_PROFILE = "complete_profile"
-    const val FEED = "feed"  // TODO: cleanup
+    const val FEED = "feed"
     const val EXPLORE = "explore"
     const val CREATE = "create"
     const val MESSAGES = "messages"
@@ -69,7 +69,7 @@ object Routes {
 data class BottomNavItem(
     val route: String,
     val label: String,
-    val selectedIcon: ImageVector,  // FIXME: edge case
+    val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
 )
 
@@ -116,7 +116,6 @@ fun KwenNavGraph(
                             icon = {
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
-
                                     contentDescription = item.label
                                 )
                             },
@@ -192,7 +191,6 @@ fun KwenNavGraph(
 
             composable(Routes.EXPLORE) {
                 ExploreScreen(
-
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToMessages = {
@@ -203,6 +201,7 @@ fun KwenNavGraph(
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) }
                 )
             }
+
 
             composable(Routes.CREATE) {
                 CreateScreen(
@@ -264,7 +263,6 @@ fun KwenNavGraph(
                 )
             }
 
-
             composable(Routes.NOTIFICATIONS) {
                 NotificationsScreen(
                     onNavigateBack = { navController.popBackStack() },
@@ -286,6 +284,7 @@ fun KwenNavGraph(
             }
 
             composable(Routes.SETTINGS) {
+
                 SettingsScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToAccount = { },
@@ -294,7 +293,6 @@ fun KwenNavGraph(
                         navController.navigate(Routes.LOGIN) {
                             popUpTo(0) { inclusive = true }
                         }
-
                     }
                 )
             }
