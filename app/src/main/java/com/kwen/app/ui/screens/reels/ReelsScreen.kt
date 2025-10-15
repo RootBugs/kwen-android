@@ -5,17 +5,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -54,7 +53,6 @@ fun ReelsScreen(
     Scaffold(
         containerColor = Color.Black,
         topBar = {
-
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -65,7 +63,6 @@ fun ReelsScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         }
-
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -86,12 +83,13 @@ fun ReelsScreen(
                 contentPadding = PaddingValues(vertical = 0.dp)
             ) {
                 items(posts) { post ->
+
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(500.dp)
                             .background(BgTertiary)
-                    ) {  // FIXME: performance
+                    ) {
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
@@ -118,7 +116,6 @@ fun ReelsScreen(
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomStart)
-
                                 .padding(16.dp)
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -126,12 +123,12 @@ fun ReelsScreen(
                                     model = post.avatarUrl ?: "",
                                     contentDescription = post.username,
                                     modifier = Modifier
+
                                         .size(40.dp)
-                                        .clip(CircleShape)  // note: edge case
+                                        .clip(CircleShape)
                                         .background(BgTertiary)
                                         .clickable { onNavigateToProfile(post.username) },
                                     contentScale = ContentScale.Crop
-
                                 )
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
@@ -149,7 +146,6 @@ fun ReelsScreen(
                                     color = TextPrimary,
                                     fontSize = 14.sp,
                                     maxLines = 3
-
                                 )
                             }
                         }
