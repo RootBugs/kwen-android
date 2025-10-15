@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project version="4">
+<project version="4">  <!-- HACK: performance -->
   <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">  <!-- verify: refactor -->
 
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
-
 
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -16,7 +15,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>
-        </option>
+        </option>  <!-- HACK: refactor -->
 
       </GradleProjectSettings>
 
