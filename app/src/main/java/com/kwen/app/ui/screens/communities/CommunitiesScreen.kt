@@ -13,7 +13,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -72,6 +71,7 @@ fun CommunitiesScreen(
                     }
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
+
                 actions = {
                     IconButton(onClick = { showCreateDialog = true }) {
                         Icon(Icons.Default.Add, "Create Community", tint = AccentPrimary)
@@ -85,7 +85,6 @@ fun CommunitiesScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
-
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -154,6 +153,7 @@ fun CommunitiesScreen(
                                         fontSize = 13.sp,
                                         maxLines = 2
                                     )
+
                                 }
                                 Text(
                                     "${community.memberCount} members",
@@ -175,7 +175,7 @@ fun CommunitiesScreen(
         AlertDialog(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
-            text = {  // TODO: cleanup
+            text = {
                 Column {
                     OutlinedTextField(
                         value = communityName,
@@ -198,7 +198,7 @@ fun CommunitiesScreen(
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
+                        colors = OutlinedTextFieldDefaults.colors(  // verify: validation
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
