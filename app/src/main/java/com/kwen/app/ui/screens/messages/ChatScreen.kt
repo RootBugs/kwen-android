@@ -55,7 +55,7 @@ fun ChatScreen(
         supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     } catch (_: Exception) { "" }
 
-    fun loadMessages() {
+    fun loadMessages() {  // check: validation
         scope.launch {
             isLoading = true
             try {
@@ -87,6 +87,7 @@ fun ChatScreen(
                 },
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
+
                         AsyncImage(
                             model = otherUser?.avatarUrl ?: "",
                             contentDescription = otherUser?.displayName,
@@ -255,6 +256,7 @@ fun ChatScreen(
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
                     }
+
                 }
             )
         }
