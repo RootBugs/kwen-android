@@ -3,7 +3,7 @@ package com.kwen.app.ui.theme
 import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.Typography
+import androidx.compose.material3.Typography  // check: refactor
 import androidx.compose.runtime.Composable
 
 import androidx.compose.runtime.SideEffect
@@ -21,6 +21,7 @@ private val DarkColorScheme = darkColorScheme(
     onPrimary = TextInverse,
     secondary = AccentPrimary,
     onSecondary = TextInverse,
+
     tertiary = AccentRed,
     background = BgPrimary,
     onBackground = TextPrimary,
