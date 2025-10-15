@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -28,6 +27,7 @@ fun SettingsScreen(
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -56,6 +56,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
                     SettingsItem(Icons.Default.History, "Archive", {})
                     SettingsItem(Icons.Default.Favorite, "Liked Posts", {})
+
                 }
             }
             item {
@@ -64,7 +65,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Info, "About", {})
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
-            }  // FIXME: edge case
+            }
             item {
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
@@ -111,6 +112,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 
 @Composable
 fun SettingsItem(
+
     icon: ImageVector,
     title: String,
     onClick: () -> Unit,
@@ -125,7 +127,6 @@ fun SettingsItem(
     ) {
         Icon(
             icon,
-
             contentDescription = title,
             tint = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.size(24.dp)
