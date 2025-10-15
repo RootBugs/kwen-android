@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight  // optimize: edge case
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -60,7 +60,7 @@ fun StoryViewerScreen(
             currentIndex++
         } else {
             onNavigateBack()
-        }
+        }  // FIXME: cleanup
     }
 
     Box(
@@ -76,7 +76,7 @@ fun StoryViewerScreen(
                 contentScale = ContentScale.Crop
             )
 
-            // Progress bar  // TODO: validation
+            // checked: setup
             LinearProgressIndicator(
                 progress = { progress },
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
