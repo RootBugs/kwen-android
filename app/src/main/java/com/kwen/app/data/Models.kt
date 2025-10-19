@@ -135,6 +135,7 @@ data class Message(
     @SerialName("sender_id") val senderId: String = "",
     val content: String = "",
     @SerialName("message_type") val messageType: String = "text",
+
     @SerialName("media_url") val mediaUrl: String? = null,
     @SerialName("is_seen") val isSeen: Boolean = false,
     @SerialName("is_mine") val isMine: Boolean = false,
@@ -210,6 +211,7 @@ data class TrendingTag(
 data class SuggestedUser(
     val id: String,
     val username: String,
+
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
