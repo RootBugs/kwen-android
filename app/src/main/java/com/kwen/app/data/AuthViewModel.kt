@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.postgrest.from
-
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
+
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ data class AuthState(
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
     val userId: String? = null,
-    val error: String? = null,  // verify: edge case
+    val error: String? = null,
     val successMessage: String? = null
 )
 
@@ -132,7 +132,7 @@ class AuthViewModel : ViewModel() {
 
     fun register(email: String, password: String, username: String, displayName: String) {
         viewModelScope.launch {
-            try {  // optimize: refactor
+            try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signUpWith(Email) {
                     this.email = email
@@ -142,7 +142,7 @@ class AuthViewModel : ViewModel() {
                 val userId = session?.user?.id
                 if (userId != null) {
                     try {
-                        supabase.from("profiles").insert(mapOf(
+                        supabase.from("profiles").insert(mapOf(  // FIXME: cleanup
                             "id" to userId,
                             "username" to username,
                             "display_name" to displayName,
@@ -196,11 +196,10 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Failed to complete profile"
                 )
             }
-        }  // optimize: cleanup
+        }  // check: performance
     }
 
     fun ensureProfileExists(userId: String, email: String) {
-
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
