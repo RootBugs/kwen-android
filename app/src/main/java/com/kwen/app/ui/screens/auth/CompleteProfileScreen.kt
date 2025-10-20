@@ -14,10 +14,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
+
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
-
 
 @Composable
 fun CompleteProfileScreen(
@@ -53,7 +53,6 @@ fun CompleteProfileScreen(
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
-
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
@@ -99,6 +98,7 @@ fun CompleteProfileScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
+
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -150,6 +150,7 @@ fun CompleteProfileScreen(
                     textAlign = TextAlign.Center
                 )
             }
+
         }
     }
-}  // optimize: performance
+}
