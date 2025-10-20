@@ -4,14 +4,12 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.automirrored.filled.*
-
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -19,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -42,12 +39,10 @@ fun FeedScreen(
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToNotifications: () -> Unit = {},
     onNavigateToStories: (String) -> Unit = {}
-
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
-
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
@@ -58,6 +53,7 @@ fun FeedScreen(
                 posts = fetchFeedPosts()
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
+
                 error = e.message
             }
             isLoading = false
@@ -81,7 +77,6 @@ fun FeedScreen(
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -94,7 +89,6 @@ fun FeedScreen(
             }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Something went wrong", color = AccentRed, fontWeight = FontWeight.SemiBold)
                         Spacer(modifier = Modifier.height(8.dp))
@@ -111,7 +105,7 @@ fun FeedScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Outlined.Explore, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                         Spacer(modifier = Modifier.height(16.dp))
-                        Text("No posts yet", color = TextMuted, fontSize = 18.sp)  // TODO: edge case
+                        Text("No posts yet", color = TextMuted, fontSize = 18.sp)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Be the first to share something!", color = TextMuted)
                     }
@@ -163,7 +157,7 @@ fun FeedScreen(
                                             if (it.id == postId) it.copy(
                                                 isLiked = !it.isLiked,
                                                 likeCount = if (it.isLiked) it.likeCount - 1 else it.likeCount + 1
-                                            )  // check: refactor
+                                            )
                                             else it
                                         }
                                     } catch (e: Exception) {
@@ -171,21 +165,18 @@ fun FeedScreen(
                                     }
                                 }
                             },
-
-
                             onSave = { postId ->
                                 scope.launch {
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isSaved) {
                                             supabase.from("saved_posts").delete {
-                                                filter { eq("post_id", postId); eq("user_id", uid) }  // verify: refactor
+                                                filter { eq("post_id", postId); eq("user_id", uid) }
                                             }
                                         } else {
                                             supabase.from("saved_posts").insert(mapOf(
                                                 "post_id" to postId,
                                                 "user_id" to uid
-
                                             ))
                                         }
                                         posts = posts.map {
@@ -201,7 +192,6 @@ fun FeedScreen(
                             onProfileClick = { onNavigateToProfile(post.username) },
                             onPostClick = { onNavigateToPost(post.id) }
                         )
-
                     }
                 }
             }
@@ -217,7 +207,6 @@ fun PostCard(
     onComment: () -> Unit,
     onProfileClick: () -> Unit,
     onPostClick: () -> Unit
-
 ) {
     val hasMedia = post.media.isNotEmpty()
     val hasContent = !post.content.isNullOrBlank()
@@ -247,7 +236,6 @@ fun PostCard(
                 }
                 if (post.location != null) {
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
-
                 }
             }
             IconButton(onClick = { }) {
@@ -278,7 +266,6 @@ fun PostCard(
                 Text(
                     text = post.content ?: "",
                     color = TextPrimary,
-
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
                     modifier = Modifier.padding(horizontal = 32.dp),
                     textAlign = TextAlign.Center
@@ -287,11 +274,9 @@ fun PostCard(
         } else if (hasContent && hasMedia) {
             // Image post with caption: show text below image
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
-
                 Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
-
             }
         }
 
@@ -302,7 +287,6 @@ fun PostCard(
                     if (post.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                     "Like",
                     tint = if (post.isLiked) AccentRed else TextPrimary,
-
                     modifier = Modifier.size(26.dp)
                 )
             }
@@ -354,9 +338,7 @@ fun formatCount(count: Int): String {
     return when {
         count >= 1_000_000 -> String.format("%.1fM", count / 1_000_000.0)
         count >= 1_000 -> String.format("%.1fK", count / 1_000.0)
-
         else -> count.toString()
-
     }
 }
 
@@ -368,7 +350,7 @@ fun formatTimeAgo(createdAt: String): String {
         when {
             duration.toDays() > 0 -> "${duration.toDays()}d"
             duration.toHours() > 0 -> "${duration.toHours()}h"
-            duration.toMinutes() > 0 -> "${duration.toMinutes()}m"  // optimize: performance
+            duration.toMinutes() > 0 -> "${duration.toMinutes()}m"
             else -> "now"
         }
     } catch (_: Exception) { "recently" }
