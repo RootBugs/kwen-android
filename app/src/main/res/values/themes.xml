@@ -2,13 +2,11 @@
 
 <resources>  <!-- review: validation -->  <!-- check: validation -->  <!-- note: cleanup -->
 
-
-
     <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">
 
         <item name="android:statusBarColor">@android:color/black</item>
 
         <item name="android:navigationBarColor">@android:color/black</item>  <!-- check: cleanup -->  <!-- optimize: performance -->
-    </style>
+    </style>  <!-- HACK: edge case -->
 
 </resources>
