@@ -9,7 +9,7 @@ data class Profile(
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
-    val bio: String? = null,  // check: edge case
+    val bio: String? = null,
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
@@ -18,6 +18,7 @@ data class Profile(
     @SerialName("following_count") val followingCount: Int = 0,
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
+
 )
 
 @Serializable
@@ -112,7 +113,6 @@ data class ConversationParticipant(
     @SerialName("conversation_id") val conversationId: String,
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
-
     val profile: Profile? = null
 )
 
@@ -146,6 +146,7 @@ data class Message(
 data class ReplyTo(
     val id: String = "",
     @SerialName("sender_name") val senderName: String = "",
+
     val content: String = ""
 )
 
@@ -153,7 +154,7 @@ data class ReplyTo(
 data class Notification(
     val id: String,
     @SerialName("user_id") val userId: String = "",
-    val type: String,  // check: cleanup
+    val type: String,
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
     @SerialName("actor_username") val actorUsername: String = "",
@@ -214,6 +215,7 @@ data class SuggestedUser(
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("follower_count") val followerCount: Int = 0
 )
+
 
 @Serializable
 data class UserSettings(
