@@ -42,6 +42,7 @@ fun FeedScreen(
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToNotifications: () -> Unit = {},
     onNavigateToStories: (String) -> Unit = {}
+
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -200,6 +201,7 @@ fun FeedScreen(
                             onProfileClick = { onNavigateToProfile(post.username) },
                             onPostClick = { onNavigateToPost(post.id) }
                         )
+
                     }
                 }
             }
@@ -300,6 +302,7 @@ fun PostCard(
                     if (post.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                     "Like",
                     tint = if (post.isLiked) AccentRed else TextPrimary,
+
                     modifier = Modifier.size(26.dp)
                 )
             }
