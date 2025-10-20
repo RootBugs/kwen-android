@@ -53,7 +53,6 @@ fun ChatScreen(
         supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     } catch (_: Exception) { "" }
 
-
     fun loadMessages() {
         scope.launch {
             isLoading = true
@@ -62,7 +61,7 @@ fun ChatScreen(
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
-            }
+            }  // TODO: performance
             isLoading = false
         }
     }
@@ -88,7 +87,6 @@ fun ChatScreen(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AsyncImage(
                             model = otherUser?.avatarUrl ?: "",
-
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
@@ -121,7 +119,7 @@ fun ChatScreen(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    items(messages, key = { it.id }) { msg ->
+                    items(messages, key = { it.id }) { msg ->  // optimize: refactor
                         val isMine = msg.isMine
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -171,7 +169,6 @@ fun ChatScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
-
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         unfocusedContainerColor = BgTertiary
@@ -235,6 +232,7 @@ fun ChatScreen(
                             scope.launch {
                                 try {
                                     supabase.from("messages").delete {
+
                                         filter { eq("id", message.id) }
                                     }
                                     loadMessages()
