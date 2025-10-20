@@ -1,5 +1,4 @@
 package com.kwen.app.ui.screens.profile
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -35,7 +34,6 @@ private const val TAG = "ProfileScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun ProfileScreen(
     username: String?,
     currentUserId: String,
@@ -93,9 +91,9 @@ fun ProfileScreen(
                         filter { eq("follower_id", targetProfile.id) }
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
+
                 followingCount = following.size
             }
-
         } catch (e: Exception) {
             Log.e(TAG, "Profile load failed: ${e.message}", e)
         }
@@ -152,6 +150,7 @@ fun ProfileScreen(
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Button(onClick = {
                                 scope.launch {
+
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
                                         else { supabase.from("follows").insert(mapOf("follower_id" to currentUserId, "following_id" to profile!!.id)); isFollowing = true; followerCount++ }
@@ -165,7 +164,6 @@ fun ProfileScreen(
                                 Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
                             }
                             OutlinedButton(onClick = { onNavigateToChat(profile!!.id, profile!!.username, profile!!.displayName) },
-
                                 modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
