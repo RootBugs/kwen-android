@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -61,7 +62,7 @@ fun ChatScreen(
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
-            }  // TODO: performance
+            }
             isLoading = false
         }
     }
@@ -119,7 +120,7 @@ fun ChatScreen(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    items(messages, key = { it.id }) { msg ->  // optimize: refactor
+                    items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -149,6 +150,7 @@ fun ChatScreen(
                                 )
                             }
                         }
+
                     }
                 }
             }
@@ -198,6 +200,7 @@ fun ChatScreen(
                 IconButton(
                     onClick = {
                         if (messageText.isNotBlank()) {
+
                             scope.launch {
                                 try {
                                     supabase.from("messages").insert(mapOf(
@@ -232,7 +235,6 @@ fun ChatScreen(
                             scope.launch {
                                 try {
                                     supabase.from("messages").delete {
-
                                         filter { eq("id", message.id) }
                                     }
                                     loadMessages()
