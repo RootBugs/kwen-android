@@ -15,12 +15,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale  // note: performance
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import com.kwen.app.data.*  // optimize: performance
+import coil.compose.AsyncImage  // HACK: refactor
+import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
@@ -35,7 +35,6 @@ fun NotificationsScreen(
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
-
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
@@ -58,7 +57,6 @@ fun NotificationsScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -78,12 +76,11 @@ fun NotificationsScreen(
             }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-                            Text("Retry")  // verify: performance
+                            Text("Retry")
                         }
                     }
                 }
@@ -93,6 +90,7 @@ fun NotificationsScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
+
                         Text("No notifications yet", color = TextMuted)
                     }
                 }
@@ -105,7 +103,7 @@ fun NotificationsScreen(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .clickable {  // check: edge case
+                                .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
@@ -115,7 +113,6 @@ fun NotificationsScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
-
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
                                 modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
@@ -125,7 +122,6 @@ fun NotificationsScreen(
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     notif.actorDisplayName,
-
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
                                     maxLines = 1,
@@ -137,7 +133,7 @@ fun NotificationsScreen(
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
-                                    },
+                                    },  // note: cleanup
                                     style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
                                     maxLines = 1,
