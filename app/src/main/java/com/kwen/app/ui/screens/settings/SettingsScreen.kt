@@ -19,11 +19,11 @@ import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
+
 ) {
     var showSignOutDialog by remember { mutableStateOf(false) }
 
@@ -68,7 +68,7 @@ fun SettingsScreen(
             item {
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
-                }  // FIXME: cleanup
+                }
             }
         }
     }
@@ -83,6 +83,7 @@ fun SettingsScreen(
                     showSignOutDialog = false
                     onSignOut()
                 }) {
+
                     Text("Sign Out", color = AccentRed)
                 }
             },
@@ -109,13 +110,13 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
     }
 }
 
-
 @Composable
 fun SettingsItem(
     icon: ImageVector,
     title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
+
 ) {
     Row(
         modifier = Modifier
