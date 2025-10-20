@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.feed
 
 import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -79,7 +80,7 @@ fun FeedScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->  // optimize: refactor
+    ) { padding ->
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -116,7 +117,7 @@ fun FeedScreen(
                     contentPadding = PaddingValues(bottom = 80.dp)
                 ) {
                     item {
-                        Row(  // note: performance
+                        Row(
                             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
                         ) {
                             Column(
@@ -204,6 +205,7 @@ fun PostCard(
     onLike: (String) -> Unit,
     onSave: (String) -> Unit,
     onComment: () -> Unit,
+
     onProfileClick: () -> Unit,
     onPostClick: () -> Unit
 ) {
@@ -241,6 +243,7 @@ fun PostCard(
                 Icon(Icons.Default.MoreVert, "More", tint = TextMuted)
             }
         }
+
         // Media (image/video) — only show if media exists
         if (hasMedia) {
             AsyncImage(
@@ -288,6 +291,7 @@ fun PostCard(
                     modifier = Modifier.size(26.dp)
                 )
             }
+
             IconButton(onClick = onComment) {
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
