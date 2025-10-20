@@ -14,7 +14,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
-
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -23,7 +22,7 @@ import io.github.jan.supabase.auth.auth
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
-) {
+) {  // FIXME: edge case
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
@@ -88,6 +87,7 @@ fun CompleteProfileScreen(
                 value = displayName,
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
+
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
@@ -98,7 +98,6 @@ fun CompleteProfileScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -114,6 +113,7 @@ fun CompleteProfileScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
+
                 )
             )
             Spacer(modifier = Modifier.height(24.dp))
@@ -150,7 +150,6 @@ fun CompleteProfileScreen(
                     textAlign = TextAlign.Center
                 )
             }
-
         }
     }
 }
