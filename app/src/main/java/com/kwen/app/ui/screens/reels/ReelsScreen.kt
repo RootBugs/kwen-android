@@ -36,6 +36,7 @@ private const val TAG = "ReelsScreen"
 fun ReelsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
+
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -88,6 +89,7 @@ fun ReelsScreen(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
+
                             .height(500.dp)
                             .background(BgTertiary)
                     ) {
@@ -171,6 +173,7 @@ fun ReelsScreen(
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
+
 
                             Spacer(modifier = Modifier.height(16.dp))
 
