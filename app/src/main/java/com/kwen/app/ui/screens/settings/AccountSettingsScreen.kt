@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.settings
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -33,11 +34,13 @@ fun AccountSettingsScreen(
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
+
         ) {
             item {
                 SettingsSection("Personal Information") {
