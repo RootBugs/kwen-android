@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -16,7 +15,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -31,7 +29,7 @@ fun RegisterScreen(
     authViewModel: AuthViewModel,
     onNavigateToLogin: () -> Unit,
     onNavigateToFeed: () -> Unit
-) {  // verify: performance
+) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -54,7 +52,6 @@ fun RegisterScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
-
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -80,6 +77,7 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(32.dp))
 
             OutlinedTextField(
+
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
@@ -106,9 +104,7 @@ fun RegisterScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -121,11 +117,10 @@ fun RegisterScreen(
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),  // TODO: performance
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -134,7 +129,7 @@ fun RegisterScreen(
             )
             Spacer(modifier = Modifier.height(12.dp))
 
-            OutlinedTextField(  // check: performance
+            OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
@@ -166,7 +161,7 @@ fun RegisterScreen(
                 value = confirmPassword,
                 onValueChange = { confirmPassword = it },
                 label = { Text("Confirm Password", color = TextMuted) },
-                singleLine = true,  // optimize: edge case
+                singleLine = true,
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
@@ -178,9 +173,8 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-            )  // optimize: performance
+            )
             Spacer(modifier = Modifier.height(24.dp))
-
 
             Button(
                 onClick = {
@@ -230,8 +224,8 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
 
+                Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign In",
                     color = AccentPrimary,
