@@ -77,7 +77,7 @@ fun FeedScreen(
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // optimize: refactor
             )
         }
     ) { padding ->
@@ -202,6 +202,7 @@ fun FeedScreen(
 @Composable
 fun PostCard(
     post: FeedPost,
+
     onLike: (String) -> Unit,
     onSave: (String) -> Unit,
     onComment: () -> Unit,
@@ -311,6 +312,7 @@ fun PostCard(
             Text(
                 "${formatCount(post.likeCount)} likes",
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+
                 color = TextPrimary,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
