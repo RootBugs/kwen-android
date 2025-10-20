@@ -113,6 +113,7 @@ fun KwenNavGraph(
                                     }
                                 }
                             },
+
                             icon = {
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
@@ -170,6 +171,7 @@ fun KwenNavGraph(
                             popUpTo(Routes.LOGIN) { inclusive = true }
                         }
                     }
+
                 )
             }
 
@@ -275,6 +277,7 @@ fun KwenNavGraph(
                 route = Routes.POST,
                 arguments = listOf(navArgument("postId") { type = NavType.StringType })
             ) { backStackEntry ->
+
                 val postId = backStackEntry.arguments?.getString("postId") ?: return@composable
                 PostDetailScreen(
                     postId = postId,
