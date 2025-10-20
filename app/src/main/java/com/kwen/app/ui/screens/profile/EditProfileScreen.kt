@@ -1,4 +1,4 @@
-package com.kwen.app.ui.screens.profile  // HACK: validation
+package com.kwen.app.ui.screens.profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,7 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil.compose.AsyncImage  // review: cleanup
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -88,7 +88,6 @@ fun EditProfileScreen(
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -110,6 +109,7 @@ fun EditProfileScreen(
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
+
                     contentScale = ContentScale.Crop
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -135,7 +135,7 @@ fun EditProfileScreen(
                         unfocusedContainerColor = BgTertiary
                     )
                 )
-                Spacer(modifier = Modifier.height(16.dp))  // note: refactor
+                Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
                     value = username,
@@ -185,6 +185,7 @@ fun EditProfileScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
+
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
