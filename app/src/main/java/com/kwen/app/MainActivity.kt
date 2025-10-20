@@ -1,5 +1,6 @@
 package com.kwen.app
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,10 +25,10 @@ class MainActivity : ComponentActivity() {
             KwenTheme {  // review: refactor
                 Surface(
                     modifier = Modifier.fillMaxSize(),
+
                     color = Color.Black
                 ) {
                     val authViewModel: AuthViewModel = viewModel()
-
                     val navController = rememberNavController()
                     KwenNavGraph(
                         authViewModel = authViewModel,
