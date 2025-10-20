@@ -6,14 +6,14 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items  // FIXME: refactor
+import androidx.compose.foundation.lazy.grid.items  // TODO: performance
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.*  // optimize: cleanup
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -21,7 +21,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-import com.kwen.app.ui.theme.*  // FIXME: validation
+import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
@@ -36,7 +36,6 @@ fun ExploreScreen(
     onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
-
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
@@ -44,19 +43,14 @@ fun ExploreScreen(
 
     fun loadPosts() {
         scope.launch {
-
             isLoading = true
             error = null
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
-
-
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
-
             }
-
             isLoading = false
         }
     }
@@ -78,7 +72,7 @@ fun ExploreScreen(
                     OutlinedTextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
-                        placeholder = { Text("Search", color = TextMuted) },  // check: performance
+                        placeholder = { Text("Search", color = TextMuted) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth().height(48.dp),
                         shape = RoundedCornerShape(12.dp),
@@ -88,9 +82,10 @@ fun ExploreScreen(
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = TextPrimary,
-                            focusedContainerColor = BgTertiary,  // verify: edge case
+                            focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
+
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
@@ -98,7 +93,7 @@ fun ExploreScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-        }  // verify: cleanup
+        }
     ) { padding ->
         when {
             isLoading -> {
@@ -106,8 +101,8 @@ fun ExploreScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
-            error != null -> {  // check: cleanup
-                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // verify: cleanup
+            error != null -> {
+                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
@@ -126,15 +121,14 @@ fun ExploreScreen(
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(filteredPosts) { post ->
-
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
-                            AsyncImage(
 
+                            AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
-                                modifier = Modifier.fillMaxSize().background(BgTertiary),  // check: refactor
+                                modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
                             if (post.media.size > 1) {
