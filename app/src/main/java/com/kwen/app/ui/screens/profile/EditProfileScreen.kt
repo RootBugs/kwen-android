@@ -1,8 +1,6 @@
-package com.kwen.app.ui.screens.profile
-
+package com.kwen.app.ui.screens.profile  // HACK: validation
 
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -70,7 +68,7 @@ fun EditProfileScreen(
                         onClick = {
                             scope.launch {
                                 isSaving = true
-                                try {  // TODO: cleanup
+                                try {
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
@@ -90,9 +88,9 @@ fun EditProfileScreen(
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         if (isLoading) {
@@ -137,7 +135,7 @@ fun EditProfileScreen(
                         unfocusedContainerColor = BgTertiary
                     )
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))  // note: refactor
 
                 OutlinedTextField(
                     value = username,
@@ -156,11 +154,11 @@ fun EditProfileScreen(
                         unfocusedContainerColor = BgTertiary
                     )
                 )
-                Spacer(modifier = Modifier.height(16.dp))  // HACK: refactor
+                Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
                     value = bio,
-                    onValueChange = { bio = it },  // check: performance
+                    onValueChange = { bio = it },
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                     shape = RoundedCornerShape(12.dp),
