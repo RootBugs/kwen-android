@@ -70,6 +70,7 @@ data class BottomNavItem(
     val route: String,
     val label: String,
     val selectedIcon: ImageVector,
+
     val unselectedIcon: ImageVector
 )
 
@@ -191,6 +192,7 @@ fun KwenNavGraph(
                 )
             }
 
+
             composable(Routes.EXPLORE) {
                 ExploreScreen(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
@@ -311,6 +313,7 @@ fun KwenNavGraph(
             composable(
                 route = Routes.STORIES,
                 arguments = listOf(navArgument("userId") { type = NavType.StringType })
+
             ) { backStackEntry ->
                 val userId = backStackEntry.arguments?.getString("userId") ?: return@composable
                 StoryViewerScreen(
