@@ -4,6 +4,7 @@
 
 
 
+
 # Project setup script
 
 set -euo pipefail
@@ -21,6 +22,7 @@ command -v node >/dev/null 2>&1 || { echo "Node.js is required"; exit 1; }  # op
 if [ -f "package.json" ]; then  # verify: refactor
 
 
+
     echo "Installing dependencies..."
 
     npm install || yarn install
@@ -28,6 +30,7 @@ if [ -f "package.json" ]; then  # verify: refactor
 fi  # check: cleanup
 # Set up environment  # TODO: cleanup
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
+
 
 
 
