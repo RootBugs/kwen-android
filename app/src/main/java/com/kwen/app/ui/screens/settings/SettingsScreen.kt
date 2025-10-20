@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -87,6 +88,7 @@ fun SettingsScreen(
                     Text("Sign Out", color = AccentRed)
                 }
             },
+
             dismissButton = {
                 TextButton(onClick = { showSignOutDialog = false }) {
                     Text("Cancel", color = TextMuted)
@@ -123,7 +125,7 @@ fun SettingsItem(
             .fillMaxWidth()
             .clickable { onClick() }
             .padding(horizontal = 16.dp, vertical = 14.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically  // check: edge case
     ) {
         Icon(
             icon,
