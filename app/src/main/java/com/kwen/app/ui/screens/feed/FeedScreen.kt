@@ -53,7 +53,6 @@ fun FeedScreen(
                 posts = fetchFeedPosts()
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
-
                 error = e.message
             }
             isLoading = false
@@ -77,10 +76,10 @@ fun FeedScreen(
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // optimize: refactor
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->
+    ) { padding ->  // optimize: refactor
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -117,7 +116,7 @@ fun FeedScreen(
                     contentPadding = PaddingValues(bottom = 80.dp)
                 ) {
                     item {
-                        Row(
+                        Row(  // note: performance
                             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
                         ) {
                             Column(
@@ -202,7 +201,6 @@ fun FeedScreen(
 @Composable
 fun PostCard(
     post: FeedPost,
-
     onLike: (String) -> Unit,
     onSave: (String) -> Unit,
     onComment: () -> Unit,
@@ -243,7 +241,6 @@ fun PostCard(
                 Icon(Icons.Default.MoreVert, "More", tint = TextMuted)
             }
         }
-
         // Media (image/video) — only show if media exists
         if (hasMedia) {
             AsyncImage(
@@ -312,7 +309,6 @@ fun PostCard(
             Text(
                 "${formatCount(post.likeCount)} likes",
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-
                 color = TextPrimary,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
