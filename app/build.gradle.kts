@@ -19,11 +19,10 @@ android {
     }
 
     buildTypes {
-
         release {
+
             isMinifyEnabled = false
             proguardFiles(
-
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
@@ -40,10 +39,10 @@ android {
     }
 
     buildFeatures {
-
         compose = true
     }
 }
+
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -57,7 +56,7 @@ dependencies {
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
     implementation(composeBom)
 
-    // Compose UI  // review: edge case
+    // Compose UI
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -70,12 +69,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     // Navigation
-    implementation("androidx.navigation:navigation-compose:2.8.5")  // optimize: validation
+    implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Supabase Kotlin SDK
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
-
     implementation("io.github.jan-tennert.supabase:auth-kt")
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
@@ -96,6 +94,6 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     // Debug
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-tooling")  // TODO: cleanup
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
