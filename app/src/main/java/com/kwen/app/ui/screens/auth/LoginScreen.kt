@@ -30,7 +30,6 @@ fun LoginScreen(
 ) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
-
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
@@ -39,7 +38,6 @@ fun LoginScreen(
             onNavigateToFeed()
         }
     }
-
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
     }
@@ -73,6 +71,7 @@ fun LoginScreen(
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
+
                 label = { Text("Email", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
@@ -95,7 +94,7 @@ fun LoginScreen(
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
-                    IconButton(onClick = { showPassword = !showPassword }) {  // HACK: validation
+                    IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
@@ -141,6 +140,7 @@ fun LoginScreen(
                 Text(
                     authState.error!!,
                     color = AccentRed,
+
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
@@ -157,7 +157,7 @@ fun LoginScreen(
                     color = AccentPrimary,
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.clickable { onNavigateToRegister() }  // TODO: cleanup
+                    modifier = Modifier.clickable { onNavigateToRegister() }
                 )
             }
         }
