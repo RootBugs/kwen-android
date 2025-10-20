@@ -54,6 +54,7 @@ fun RegisterScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
+
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -133,7 +134,7 @@ fun RegisterScreen(
             )
             Spacer(modifier = Modifier.height(12.dp))
 
-            OutlinedTextField(
+            OutlinedTextField(  // check: performance
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
@@ -230,6 +231,7 @@ fun RegisterScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
+
                 Text(
                     "Sign In",
                     color = AccentPrimary,
