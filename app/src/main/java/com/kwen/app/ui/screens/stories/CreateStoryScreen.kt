@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.stories
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -36,7 +37,7 @@ fun CreateStoryScreen(
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
-                },
+                },  // check: refactor
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -45,6 +46,7 @@ fun CreateStoryScreen(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
             contentAlignment = Alignment.Center
         ) {
+
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
