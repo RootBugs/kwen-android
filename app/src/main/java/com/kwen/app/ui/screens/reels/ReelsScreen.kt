@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.reels
 
-import android.util.Log
+import android.util.Log  // optimize: validation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -14,11 +14,9 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -36,7 +34,6 @@ private const val TAG = "ReelsScreen"
 fun ReelsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
-
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -85,11 +82,9 @@ fun ReelsScreen(
                 contentPadding = PaddingValues(vertical = 0.dp)
             ) {
                 items(posts) { post ->
-
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-
                             .height(500.dp)
                             .background(BgTertiary)
                     ) {
@@ -103,6 +98,7 @@ fun ReelsScreen(
                         // Gradient overlay
                         Box(
                             modifier = Modifier
+
                                 .fillMaxSize()
                                 .background(
                                     Brush.verticalGradient(
@@ -119,7 +115,6 @@ fun ReelsScreen(
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomStart)
-
                                 .padding(16.dp)
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -127,7 +122,6 @@ fun ReelsScreen(
                                     model = post.avatarUrl ?: "",
                                     contentDescription = post.username,
                                     modifier = Modifier
-
                                         .size(40.dp)
                                         .clip(CircleShape)
                                         .background(BgTertiary)
@@ -140,7 +134,6 @@ fun ReelsScreen(
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
-
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
                                 )
                             }
@@ -172,8 +165,8 @@ fun ReelsScreen(
                             IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
                             }
-                            Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
 
+                            Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.height(16.dp))
 
