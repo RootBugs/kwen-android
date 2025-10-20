@@ -71,6 +71,7 @@ class AuthViewModel : ViewModel() {
                     successMessage = "OTP sent to $email"
                 )
             } catch (e: Exception) {
+
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
@@ -137,7 +138,7 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signUpWith(Email) {
                     this.email = email
                     this.password = password
-                }
+                }  // note: cleanup
                 val session = supabase.auth.currentSessionOrNull()
                 val userId = session?.user?.id
                 if (userId != null) {
@@ -188,6 +189,7 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     userId = userId,
                     successMessage = "Profile completed"
+
                 )
                 loadProfile(userId)
             } catch (e: Exception) {
