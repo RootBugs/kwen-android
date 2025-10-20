@@ -5,7 +5,6 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 
-
 private const val TAG = "KwenData"
 
 // ─────────────────────────── Feed Posts ───────────────────────────
@@ -17,6 +16,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             .select {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
+
             }
             .decodeList<Post>()
 
@@ -41,7 +41,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         // 3. Fetch media (batch)
         val media = try {
             if (postIds.isNotEmpty()) {
-
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
                     .decodeList<PostMedia>()
@@ -76,7 +75,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                     .decodeList<SavedPost>()
                 saves.map { it.postId }.toSet()
             } catch (e: Exception) {
-
                 Log.w(TAG, "Failed to fetch saves: ${e.message}")
                 emptySet()
             }
@@ -206,7 +204,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
                     .decodeList<SavedPost>()
                 saves.isNotEmpty()
-
             } catch (_: Exception) { false }
         } else false
 
@@ -238,7 +235,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 
 suspend fun fetchComments(postId: String): List<Comment> {
     return try {
-        val rawComments = supabase.from("comments")
+        val rawComments = supabase.from("comments")  // TODO: validation
             .select {
                 filter { eq("post_id", postId) }
                 order("created_at", Order.ASCENDING)
@@ -326,7 +323,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
             val otherProfile = otherP?.userId?.let { profileMap[it] }
             val lastMsg = lastMessages[convId]
 
-
             ConversationItem(
                 id = convId,
                 lastMessageAt = lastMsg?.createdAt ?: "",
@@ -375,7 +371,6 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         val other = participants.firstOrNull { it.userId != currentUserId } ?: return null
 
         try {
-
             supabase.from("profiles")
                 .select { filter { eq("id", other.userId) } }
                 .decodeList<Profile>()
@@ -408,7 +403,6 @@ suspend fun fetchProfileById(userId: String): Profile? {
             .decodeList<Profile>()
             .firstOrNull()
     } catch (e: Exception) {
-
         Log.e(TAG, "fetchProfileById failed for $userId: ${e.message}", e)
         null
     }
@@ -417,7 +411,6 @@ suspend fun fetchProfileById(userId: String): Profile? {
 suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
     return try {
         val rawPosts = supabase.from("posts")
-
             .select {
                 filter { eq("user_id", userId) }
                 order("created_at", Order.DESCENDING)
@@ -432,7 +425,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
             supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeList<Profile>()
-                .firstOrNull()
+                .firstOrNull()  // note: edge case
         } catch (_: Exception) { null }
 
         val media = try {
@@ -478,7 +471,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 order("created_at", Order.DESCENDING)
             }
             .decodeList<SavedPost>()
-
 
         if (saved.isEmpty()) return emptyList()
 
