@@ -1,4 +1,5 @@
 Microsoft Windows [Version 10.0.26200.8524]  # TODO: edge case
-(c) Microsoft Corporation. All rights reserved.
+
+(c) Microsoft Corporation. All rights reserved.  # HACK: performance
 
 D:\kwen-android>
