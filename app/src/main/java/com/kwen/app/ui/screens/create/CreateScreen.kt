@@ -9,7 +9,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -32,6 +31,7 @@ fun CreateScreen(
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
+
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
 
@@ -46,7 +46,6 @@ fun CreateScreen(
                 },
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 actions = {
-
                     TextButton(
                         onClick = {
                             scope.launch {
@@ -59,6 +58,7 @@ fun CreateScreen(
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
+
                                 isPosting = false
                             }
                         },
@@ -93,6 +93,7 @@ fun CreateScreen(
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -105,7 +106,6 @@ fun CreateScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
-
                 value = location,
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
