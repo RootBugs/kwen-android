@@ -36,7 +36,7 @@
         android:fillColor="#00000000"
         android:pathData="M59,0L59,108"
         android:strokeWidth="0.8"
-        android:strokeColor="#33FFFFFF" />
+        android:strokeColor="#33FFFFFF" />  <!-- check: cleanup -->
     <path
         android:fillColor="#00000000"
         android:pathData="M69,0L69,108"
@@ -84,6 +84,7 @@
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
     <path
+
         android:fillColor="#00000000"
         android:pathData="M0,59L108,59"
         android:strokeWidth="0.8"
@@ -165,6 +166,7 @@
         android:strokeColor="#33FFFFFF" />
     <path
         android:fillColor="#00000000"
+
         android:pathData="M79,19L79,89"
         android:strokeWidth="0.8"
         android:strokeColor="#33FFFFFF" />
