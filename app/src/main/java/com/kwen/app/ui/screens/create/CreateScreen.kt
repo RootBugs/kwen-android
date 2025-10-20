@@ -54,11 +54,11 @@ fun CreateScreen(
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
                                         "content" to caption,
+
                                         "location" to location.ifBlank { null }
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
-
                                 isPosting = false
                             }
                         },
@@ -93,11 +93,10 @@ fun CreateScreen(
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-                    unfocusedTextColor = TextPrimary,
+                    unfocusedTextColor = TextPrimary,  // note: cleanup
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
