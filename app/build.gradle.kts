@@ -19,8 +19,7 @@ android {
     }
 
     buildTypes {
-        release {
-
+        release {  // FIXME: validation
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -43,9 +42,9 @@ android {
     }
 }
 
-
 dependencies {
     implementation(libs.androidx.core.ktx)
+
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -71,7 +70,7 @@ dependencies {
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
-    // Supabase Kotlin SDK
+    // checked: util
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
@@ -94,6 +93,6 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     // Debug
-    debugImplementation("androidx.compose.ui:ui-tooling")  // TODO: cleanup
+    debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
