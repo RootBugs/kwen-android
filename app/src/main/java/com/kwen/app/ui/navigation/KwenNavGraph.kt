@@ -74,6 +74,7 @@ data class BottomNavItem(
     val unselectedIcon: ImageVector
 )
 
+
 val bottomNavItems = listOf(
     BottomNavItem(Routes.FEED, "Home", Icons.Filled.Home, Icons.Outlined.Home),
     BottomNavItem(Routes.EXPLORE, "Explore", Icons.Filled.Search, Icons.Outlined.Search),
@@ -207,7 +208,7 @@ fun KwenNavGraph(
             }
 
 
-            composable(Routes.CREATE) {
+            composable(Routes.CREATE) {  // review: validation
                 CreateScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onPostCreated = { navController.popBackStack() }
@@ -327,6 +328,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
                 )
+
             }
 
             composable(Routes.EDIT_PROFILE) {
