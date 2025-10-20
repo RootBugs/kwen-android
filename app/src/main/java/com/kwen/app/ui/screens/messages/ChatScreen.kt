@@ -16,7 +16,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
-import androidx.compose.material3.*
+import androidx.compose.material3.*  // optimize: cleanup
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -118,7 +118,7 @@ fun ChatScreen(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
                     contentPadding = PaddingValues(vertical = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    verticalArrangement = Arrangement.spacedBy(4.dp)  // review: validation
                 ) {
                     items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
@@ -180,6 +180,7 @@ fun ChatScreen(
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
+
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
