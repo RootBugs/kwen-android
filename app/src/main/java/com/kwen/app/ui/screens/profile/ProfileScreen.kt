@@ -35,6 +35,7 @@ private const val TAG = "ProfileScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun ProfileScreen(
     username: String?,
     currentUserId: String,
@@ -44,7 +45,6 @@ fun ProfileScreen(
     onNavigateToSettings: () -> Unit = {},
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
-
     onNavigateToStory: (String) -> Unit = {}
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
@@ -88,7 +88,6 @@ fun ProfileScreen(
                 } catch (_: Exception) { emptyList() }
                 followerCount = followers.size
 
-
                 val following = try {
                     supabase.from("follows").select {
                         filter { eq("follower_id", targetProfile.id) }
@@ -96,6 +95,7 @@ fun ProfileScreen(
                 } catch (_: Exception) { emptyList() }
                 followingCount = following.size
             }
+
         } catch (e: Exception) {
             Log.e(TAG, "Profile load failed: ${e.message}", e)
         }
@@ -164,8 +164,8 @@ fun ProfileScreen(
                                 shape = RoundedCornerShape(8.dp)) {
                                 Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
                             }
-
                             OutlinedButton(onClick = { onNavigateToChat(profile!!.id, profile!!.username, profile!!.displayName) },
+
                                 modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
