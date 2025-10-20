@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
@@ -21,6 +22,7 @@ import com.kwen.app.ui.theme.*
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
 ) {
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -32,7 +34,7 @@ fun AccountSettingsScreen(
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-            )  // FIXME: validation
+            )
         }
     ) { padding ->
         LazyColumn(
@@ -43,14 +45,13 @@ fun AccountSettingsScreen(
                     SettingsItem(Icons.Default.Email, "Email", {})
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
-
                 }
             }
             item {
                 SettingsSection("Security") {
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
-                    SettingsItem(Icons.Default.Devices, "Active Sessions", {})
+                    SettingsItem(Icons.Default.Devices, "Active Sessions", {})  // check: validation
                 }
             }
         }
