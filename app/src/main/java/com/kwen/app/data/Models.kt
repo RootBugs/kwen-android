@@ -9,10 +9,9 @@ data class Profile(
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
-    val bio: String? = null,
+    val bio: String? = null,  // check: edge case
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
-
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
@@ -113,6 +112,7 @@ data class ConversationParticipant(
     @SerialName("conversation_id") val conversationId: String,
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
+
     val profile: Profile? = null
 )
 
@@ -123,7 +123,6 @@ data class ConversationItem(
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
     @SerialName("last_message_type") val lastMessageType: String? = null,
     @SerialName("has_unread") val hasUnread: Boolean = false,
-
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
 )
@@ -135,7 +134,6 @@ data class Message(
     @SerialName("sender_id") val senderId: String = "",
     val content: String = "",
     @SerialName("message_type") val messageType: String = "text",
-
     @SerialName("media_url") val mediaUrl: String? = null,
     @SerialName("is_seen") val isSeen: Boolean = false,
     @SerialName("is_mine") val isMine: Boolean = false,
@@ -155,7 +153,7 @@ data class ReplyTo(
 data class Notification(
     val id: String,
     @SerialName("user_id") val userId: String = "",
-    val type: String,
+    val type: String,  // check: cleanup
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
     @SerialName("actor_username") val actorUsername: String = "",
@@ -166,7 +164,7 @@ data class Notification(
 )
 
 @Serializable
-data class Follow(  // check: validation
+data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
     @SerialName("following_id") val followingId: String = ""
@@ -211,7 +209,6 @@ data class TrendingTag(
 data class SuggestedUser(
     val id: String,
     val username: String,
-
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
