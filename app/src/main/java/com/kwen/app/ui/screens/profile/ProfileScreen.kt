@@ -6,7 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid  // optimize: cleanup
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -44,10 +44,10 @@ fun ProfileScreen(
     onNavigateToSettings: () -> Unit = {},
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
+
     onNavigateToStory: (String) -> Unit = {}
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
-
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var isFollowing by remember { mutableStateOf(false) }
@@ -86,8 +86,8 @@ fun ProfileScreen(
                         filter { eq("following_id", targetProfile.id) }
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
-
                 followerCount = followers.size
+
 
                 val following = try {
                     supabase.from("follows").select {
@@ -115,7 +115,6 @@ fun ProfileScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
@@ -135,7 +134,7 @@ fun ProfileScreen(
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$followerCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Followers", color = TextMuted, fontSize = 12.sp) }
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$followingCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Following", color = TextMuted, fontSize = 12.sp) }
                         }
-                    }  // note: cleanup
+                    }
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
@@ -165,11 +164,11 @@ fun ProfileScreen(
                                 shape = RoundedCornerShape(8.dp)) {
                                 Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
                             }
+
                             OutlinedButton(onClick = { onNavigateToChat(profile!!.id, profile!!.username, profile!!.displayName) },
                                 modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
-
                                 shape = RoundedCornerShape(8.dp)) { Text("Message") }
                         }
                     }
