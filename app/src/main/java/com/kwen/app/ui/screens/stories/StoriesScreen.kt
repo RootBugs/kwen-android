@@ -22,6 +22,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
+
 private const val TAG = "StoriesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,6 +58,7 @@ fun StoriesScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -98,6 +100,7 @@ fun StoriesScreen(
                                 model = user.avatarUrl ?: "",
                                 contentDescription = user.displayName,
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
+
                                 contentScale = ContentScale.Crop
                             )
                         }
