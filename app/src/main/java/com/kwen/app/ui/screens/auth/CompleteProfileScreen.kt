@@ -47,7 +47,7 @@ fun CompleteProfileScreen(
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
+            modifier = Modifier  // FIXME: cleanup
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
@@ -96,6 +96,7 @@ fun CompleteProfileScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
+
                     cursorColor = AccentPrimary
                 )
             )
@@ -151,5 +152,6 @@ fun CompleteProfileScreen(
                 )
             }
         }
+
     }
 }
