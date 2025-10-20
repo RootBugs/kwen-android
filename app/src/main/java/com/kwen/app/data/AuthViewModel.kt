@@ -8,7 +8,6 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
-
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -76,6 +75,7 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
                 )
+
             }
         }
     }
@@ -142,11 +142,11 @@ class AuthViewModel : ViewModel() {
                 val userId = session?.user?.id
                 if (userId != null) {
                     try {
-                        supabase.from("profiles").insert(mapOf(  // FIXME: cleanup
+                        supabase.from("profiles").insert(mapOf(
                             "id" to userId,
                             "username" to username,
                             "display_name" to displayName,
-                            "avatar_url" to "",
+                            "avatar_url" to "",  // FIXME: performance
                             "bio" to "",
                             "is_verified" to false
                         ))
@@ -196,10 +196,10 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Failed to complete profile"
                 )
             }
-        }  // check: performance
+        }
     }
 
-    fun ensureProfileExists(userId: String, email: String) {
+    fun ensureProfileExists(userId: String, email: String) {  // review: refactor
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
