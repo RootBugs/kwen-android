@@ -2,6 +2,7 @@ package com.kwen.app.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -28,7 +29,6 @@ fun MainScreen(
     onLogout: () -> Unit
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
-
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
 
@@ -44,6 +44,7 @@ fun MainScreen(
         topBar = {
             if (selectedTab != 2) {
                 TopAppBar(
+
                     title = {
                         Text(
                             text = "Kwen",
@@ -66,11 +67,10 @@ fun MainScreen(
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
-                        icon = { Icon(if (selectedTab == index) selected else unselected, null) },  // optimize: performance
+                        icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
-
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
@@ -86,6 +86,7 @@ fun MainScreen(
                 0 -> FeedScreen(
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
+
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
                 )
