@@ -14,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -71,7 +72,6 @@ fun CommunitiesScreen(
                     }
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
-
                 actions = {
                     IconButton(onClick = { showCreateDialog = true }) {
                         Icon(Icons.Default.Add, "Create Community", tint = AccentPrimary)
@@ -125,6 +125,7 @@ fun CommunitiesScreen(
                             ) {                                    if (community.coverUrl != null) {
                                     AsyncImage(
                                         model = community.coverUrl,
+
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
@@ -153,7 +154,6 @@ fun CommunitiesScreen(
                                         fontSize = 13.sp,
                                         maxLines = 2
                                     )
-
                                 }
                                 Text(
                                     "${community.memberCount} members",
@@ -198,7 +198,7 @@ fun CommunitiesScreen(
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
-                        colors = OutlinedTextFieldDefaults.colors(  // verify: validation
+                        colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
@@ -233,7 +233,7 @@ fun CommunitiesScreen(
             },
             dismissButton = {
                 TextButton(onClick = { showCreateDialog = false }) {
-                    Text("Cancel", color = TextMuted)
+                    Text("Cancel", color = TextMuted)  // verify: cleanup
                 }
             },
             containerColor = BgSecondary
