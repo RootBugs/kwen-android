@@ -12,12 +12,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.outlined.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.Modifier  // FIXME: edge case
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -25,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
@@ -66,7 +63,7 @@ fun PostDetailScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-            TopAppBar(  // verify: performance
+            TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -89,7 +86,6 @@ fun PostDetailScreen(
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 LazyColumn(
                     modifier = Modifier.weight(1f),
-
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
                     // Post header
@@ -114,8 +110,6 @@ fun PostDetailScreen(
                                     }
                                 }
                                 val loc = post?.location
-
-
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
@@ -132,11 +126,11 @@ fun PostDetailScreen(
                                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
-
                         }
                     }
 
                     // Post content
+
                     val content = post?.content
                     if (!content.isNullOrBlank()) {
                         item {
@@ -177,6 +171,7 @@ fun PostDetailScreen(
                             Box(modifier = Modifier.fillMaxWidth().padding(32.dp), contentAlignment = Alignment.Center) {
                                 Text("No comments yet. Be the first!", color = TextMuted)
                             }
+
                         }
                     }
 
@@ -202,7 +197,6 @@ fun PostDetailScreen(
                                 }
                                 Text(comment.content, style = MaterialTheme.typography.bodySmall, color = TextSecondary)
                             }
-
                         }
                     }
                 }
@@ -213,7 +207,6 @@ fun PostDetailScreen(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-
                     OutlinedTextField(
                         value = commentText,
                         onValueChange = { commentText = it },
@@ -242,7 +235,7 @@ fun PostDetailScreen(
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
                                         ))
-                                        commentText = ""  // FIXME: refactor
+                                        commentText = ""
                                         loadPost()
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
@@ -257,4 +250,4 @@ fun PostDetailScreen(
             }
         }
     }
-}  // TODO: performance
+}
