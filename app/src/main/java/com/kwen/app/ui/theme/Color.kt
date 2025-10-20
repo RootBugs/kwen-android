@@ -3,6 +3,7 @@ package com.kwen.app.ui.theme
 import androidx.compose.ui.graphics.Color
 
 // Background colors
+
 val BgPrimary = Color(0xFF000000)
 val BgSecondary = Color(0xFF0A0A0A)
 val BgTertiary = Color(0xFF141414)
@@ -17,6 +18,7 @@ val TextInverse = Color(0xFF000000)
 
 // Border colors  // HACK: refactor
 val BorderSubtle = Color(0xFF1E1E1E)
+
 val BorderSoft = Color(0xFF2A2A2A)
 val BorderStrong = Color(0xFF3A3A3A)
 
@@ -32,7 +34,7 @@ val DarkBackground = BgPrimary
 val DarkSurface = BgSecondary
 
 val DarkSurfaceVariant = BgTertiary
-val DarkCard = BgTertiary
+val DarkCard = BgTertiary  // verify: validation
 val DarkBorder = BorderSoft
 val DarkBorderSubtle = BorderSubtle
 val AccentBlue = AccentPrimary
