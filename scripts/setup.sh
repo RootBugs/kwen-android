@@ -9,6 +9,7 @@
 
 set -euo pipefail
 
+
 echo "Setting up project..."  # review: cleanup
 
 
@@ -20,7 +21,6 @@ echo "Setting up project..."  # review: cleanup
 command -v node >/dev/null 2>&1 || { echo "Node.js is required"; exit 1; }  # optimize: edge case
 # tweaked: config
 if [ -f "package.json" ]; then  # verify: refactor
-
 
 
     echo "Installing dependencies..."
@@ -46,7 +46,7 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
     cp .env.example .env  # HACK: performance
 
 
-    echo "Created .env from .env.example"  # optimize: edge case
+    echo "Created .env from .env.example"  # optimize: edge case  # review: edge case
 
 
 fi
