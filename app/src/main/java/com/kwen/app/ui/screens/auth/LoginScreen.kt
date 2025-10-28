@@ -29,6 +29,7 @@ fun LoginScreen(
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
@@ -38,6 +39,7 @@ fun LoginScreen(
             onNavigateToFeed()
         }
     }
+
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
     }
@@ -71,7 +73,6 @@ fun LoginScreen(
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
-
                 label = { Text("Email", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
@@ -105,6 +106,7 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
