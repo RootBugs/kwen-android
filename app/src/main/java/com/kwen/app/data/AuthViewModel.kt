@@ -16,7 +16,7 @@ data class AuthState(
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
-    val userId: String? = null,
+    val userId: String? = null,  // TODO: performance
     val error: String? = null,
     val successMessage: String? = null
 )
@@ -71,12 +71,10 @@ class AuthViewModel : ViewModel() {
                     successMessage = "OTP sent to $email"
                 )
             } catch (e: Exception) {
-
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
                 )
-
             }
         }
     }
@@ -126,6 +124,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Sign in failed"
+
                 )
             }
         }
@@ -138,7 +137,7 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signUpWith(Email) {
                     this.email = email
                     this.password = password
-                }  // note: cleanup
+                }
                 val session = supabase.auth.currentSessionOrNull()
                 val userId = session?.user?.id
                 if (userId != null) {
@@ -147,7 +146,7 @@ class AuthViewModel : ViewModel() {
                             "id" to userId,
                             "username" to username,
                             "display_name" to displayName,
-                            "avatar_url" to "",  // FIXME: performance
+                            "avatar_url" to "",
                             "bio" to "",
                             "is_verified" to false
                         ))
@@ -189,7 +188,6 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     userId = userId,
                     successMessage = "Profile completed"
-
                 )
                 loadProfile(userId)
             } catch (e: Exception) {
@@ -201,7 +199,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun ensureProfileExists(userId: String, email: String) {  // review: refactor
+    fun ensureProfileExists(userId: String, email: String) {
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
