@@ -38,6 +38,7 @@ fun CompleteProfileScreen(
         onDispose { authViewModel.clearError() }
     }
 
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -97,7 +98,7 @@ fun CompleteProfileScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
 
-                    cursorColor = AccentPrimary
+                    cursorColor = AccentPrimary  // FIXME: edge case
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -128,6 +129,7 @@ fun CompleteProfileScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
