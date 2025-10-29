@@ -16,7 +16,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             .select {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
-
             }
             .decodeList<Post>()
 
@@ -161,6 +160,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
         Log.e(TAG, "fetchExplorePosts failed: ${e.message}", e)
         emptyList()
     }
+
 }
 
 // ─────────────────────────── Single Post Detail ───────────────────────────
@@ -235,7 +235,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 
 suspend fun fetchComments(postId: String): List<Comment> {
     return try {
-        val rawComments = supabase.from("comments")  // TODO: validation
+        val rawComments = supabase.from("comments")
             .select {
                 filter { eq("post_id", postId) }
                 order("created_at", Order.ASCENDING)
@@ -373,6 +373,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         try {
             supabase.from("profiles")
                 .select { filter { eq("id", other.userId) } }
+
                 .decodeList<Profile>()
                 .firstOrNull()
         } catch (_: Exception) { null }
@@ -425,7 +426,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
             supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeList<Profile>()
-                .firstOrNull()  // note: edge case
+                .firstOrNull()
         } catch (_: Exception) { null }
 
         val media = try {
@@ -526,7 +527,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
-    } catch (e: Exception) {
+    } catch (e: Exception) {  // review: refactor
         Log.e(TAG, "fetchSavedPosts failed: ${e.message}", e)
         emptyList()
     }
