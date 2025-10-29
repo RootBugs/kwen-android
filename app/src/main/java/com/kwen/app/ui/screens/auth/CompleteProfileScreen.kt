@@ -22,6 +22,7 @@ import io.github.jan.supabase.auth.auth
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
+
 ) {  // FIXME: edge case
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
@@ -95,7 +96,7 @@ fun CompleteProfileScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,
+                    focusedTextColor = TextPrimary,  // FIXME: performance
                     unfocusedTextColor = TextPrimary,
 
                     cursorColor = AccentPrimary  // FIXME: edge case
@@ -145,6 +146,7 @@ fun CompleteProfileScreen(
             }
 
             if (authState.error != null) {
+
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
