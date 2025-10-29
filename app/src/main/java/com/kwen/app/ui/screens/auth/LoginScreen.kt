@@ -29,7 +29,6 @@ fun LoginScreen(
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
-
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
@@ -52,8 +51,9 @@ fun LoginScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
+
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()  // FIXME: edge case
         ) {
             Text(
                 "Kwen",
@@ -106,7 +106,6 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -139,10 +138,10 @@ fun LoginScreen(
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
+
                 Text(
                     authState.error!!,
                     color = AccentRed,
-
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
