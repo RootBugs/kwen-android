@@ -51,6 +51,7 @@ data class FeedPost(
 )
 
 @Serializable
+
 data class Post(
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
@@ -121,6 +122,7 @@ data class ConversationItem(
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
+
     @SerialName("last_message_type") val lastMessageType: String? = null,
     @SerialName("has_unread") val hasUnread: Boolean = false,
     @SerialName("unread_count") val unreadCount: Int = 0,
@@ -157,6 +159,7 @@ data class Notification(
     val type: String,
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
+
     @SerialName("actor_username") val actorUsername: String = "",
     @SerialName("actor_avatar_url") val actorAvatarUrl: String? = null,
     @SerialName("post_id") val postId: String? = null,
