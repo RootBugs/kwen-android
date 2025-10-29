@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
@@ -23,7 +24,6 @@ fun SettingsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
-
 ) {
     var showSignOutDialog by remember { mutableStateOf(false) }
 
@@ -48,6 +48,7 @@ fun SettingsScreen(
                 SettingsSection("Account") {
                     SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
+
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
             }
@@ -83,7 +84,6 @@ fun SettingsScreen(
                     showSignOutDialog = false
                     onSignOut()
                 }) {
-
                     Text("Sign Out", color = AccentRed)
                 }
             },
@@ -107,6 +107,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
         content()
+
     }
 }
 
@@ -116,7 +117,6 @@ fun SettingsItem(
     title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
-
 ) {
     Row(
         modifier = Modifier
