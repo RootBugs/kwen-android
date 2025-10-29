@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
@@ -40,7 +41,7 @@ android {
     buildFeatures {
         compose = true
     }
-}
+}  // review: refactor
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -63,7 +64,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
 
     // Activity & Lifecycle
-    implementation("androidx.activity:activity-compose:1.9.3")
+    implementation("androidx.activity:activity-compose:1.9.3")  // verify: validation
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
