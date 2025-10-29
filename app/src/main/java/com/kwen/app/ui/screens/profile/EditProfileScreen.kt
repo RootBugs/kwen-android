@@ -32,6 +32,7 @@ fun EditProfileScreen(
     var profile by remember { mutableStateOf<Profile?>(null) }
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
+
     var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
@@ -105,6 +106,7 @@ fun EditProfileScreen(
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
@@ -149,6 +151,7 @@ fun EditProfileScreen(
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
+
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
