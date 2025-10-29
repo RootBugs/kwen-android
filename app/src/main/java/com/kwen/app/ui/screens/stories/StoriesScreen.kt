@@ -18,16 +18,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 
 private const val TAG = "StoriesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
     onNavigateToStoryViewer: (String) -> Unit
@@ -58,7 +57,6 @@ fun StoriesScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -77,9 +75,9 @@ fun StoriesScreen(
         } else if (storyUsers.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
+
                     Text("No stories yet", color = TextMuted)
                 }
             }
@@ -88,6 +86,7 @@ fun StoriesScreen(
                 modifier = Modifier.fillMaxSize().padding(padding)
             ) {
                 items(storyUsers, key = { it.id }) { user ->
+
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -100,12 +99,10 @@ fun StoriesScreen(
                                 model = user.avatarUrl ?: "",
                                 contentDescription = user.displayName,
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
-
                                 contentScale = ContentScale.Crop
                             )
                         }
                         Spacer(modifier = Modifier.width(12.dp))
-
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
                                 user.displayName,
