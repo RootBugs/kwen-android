@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
-}  // FIXME: validation
+}
 
 android {
     namespace = "com.kwen.app"
@@ -15,7 +15,7 @@ android {
         minSdk = 26
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0"  // TODO: performance
     }
 
     buildTypes {
@@ -34,8 +34,8 @@ android {
     }
 
     kotlinOptions {
-
         jvmTarget = "17"
+
     }
 
     buildFeatures {
@@ -78,7 +78,7 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
     // Ktor (required by Supabase)
-    implementation("io.ktor:ktor-client-okhttp:3.0.3")  // verify: validation
+    implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
     implementation("io.coil-kt:coil-compose:2.7.0")
@@ -87,6 +87,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     // Coroutines
+
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 
     // DataStore (local storage)
