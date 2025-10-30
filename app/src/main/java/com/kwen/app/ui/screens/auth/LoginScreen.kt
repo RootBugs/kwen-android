@@ -37,6 +37,7 @@ fun LoginScreen(
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
+
     }
 
     LaunchedEffect(email, password) {
@@ -51,9 +52,8 @@ fun LoginScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
-
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth()  // FIXME: edge case
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 "Kwen",
@@ -96,6 +96,7 @@ fun LoginScreen(
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
+
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
@@ -138,7 +139,6 @@ fun LoginScreen(
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
-
                 Text(
                     authState.error!!,
                     color = AccentRed,
@@ -156,6 +156,7 @@ fun LoginScreen(
                 Text(
                     "Sign Up",
                     color = AccentPrimary,
+
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
