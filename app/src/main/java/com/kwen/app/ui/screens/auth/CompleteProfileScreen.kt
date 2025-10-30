@@ -22,8 +22,7 @@ import io.github.jan.supabase.auth.auth
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
-
-) {  // FIXME: edge case
+) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
@@ -36,9 +35,9 @@ fun CompleteProfileScreen(
     }
 
     DisposableEffect(Unit) {
+
         onDispose { authViewModel.clearError() }
     }
-
 
     Box(
         modifier = Modifier
@@ -49,7 +48,7 @@ fun CompleteProfileScreen(
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier  // FIXME: cleanup
+            modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
@@ -76,6 +75,7 @@ fun CompleteProfileScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -89,17 +89,15 @@ fun CompleteProfileScreen(
                 value = displayName,
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
-
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,  // FIXME: performance
+                    focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-
-                    cursorColor = AccentPrimary  // FIXME: edge case
+                    cursorColor = AccentPrimary
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -116,7 +114,6 @@ fun CompleteProfileScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
-
                 )
             )
             Spacer(modifier = Modifier.height(24.dp))
@@ -130,7 +127,6 @@ fun CompleteProfileScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
@@ -146,7 +142,6 @@ fun CompleteProfileScreen(
             }
 
             if (authState.error != null) {
-
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
@@ -156,6 +151,5 @@ fun CompleteProfileScreen(
                 )
             }
         }
-
     }
 }
