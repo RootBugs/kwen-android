@@ -40,6 +40,7 @@ fun RegisterScreen(
 
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
+
             onNavigateToFeed()
         }
     }
@@ -77,7 +78,6 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(32.dp))
 
             OutlinedTextField(
-
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Email", color = TextMuted) },
@@ -110,6 +110,7 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 )
             )
+
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -117,7 +118,7 @@ fun RegisterScreen(
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(),  // TODO: performance
+                modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -165,6 +166,7 @@ fun RegisterScreen(
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -224,7 +226,6 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-
                 Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign In",
