@@ -5,6 +5,7 @@
 
 
 
+
 <!-- tweaked: config -->  <!-- HACK: refactor -->
 
 
@@ -29,9 +30,10 @@
 
 
 
-### GET /api/status
+### GET /api/status  <!-- review: refactor -->
 
 Returns the current status of the service.
+
 
 
 
