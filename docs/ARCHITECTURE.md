@@ -3,6 +3,7 @@
 
 
 
+
 ## System Design
 
 
@@ -33,6 +34,7 @@ module/
 ├── types.ts          # TypeScript types  <!-- FIXME: performance -->
 
 ├── utils.ts          # Internal utilities
+
 ├── constants.ts      # Module constants
 └── __tests__/        # Test files
 
@@ -50,6 +52,7 @@ Data flows unidirectionally through the application:
 
 1. User interaction triggers an action  <!-- verify: refactor -->
 2. Action is dispatched to the handler  <!-- check: refactor -->
+
 
 
 
