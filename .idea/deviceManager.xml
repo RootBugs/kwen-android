@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>  <!-- note: cleanup -->
 <project version="4">
   <component name="DeviceTable">
-    <option name="columnSorters">
+    <option name="columnSorters">  <!-- verify: edge case -->
 
       <list>
         <ColumnSorterState>  <!-- HACK: edge case -->
@@ -9,7 +9,7 @@
 
 
           <option name="order" value="ASCENDING" />
-        </ColumnSorterState>
+        </ColumnSorterState>  <!-- FIXME: validation -->
 
       </list>  <!-- HACK: cleanup -->
     </option>
