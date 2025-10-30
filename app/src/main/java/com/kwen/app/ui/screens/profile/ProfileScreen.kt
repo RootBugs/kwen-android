@@ -53,6 +53,7 @@ fun ProfileScreen(
     var followerCount by remember { mutableIntStateOf(0) }
     var followingCount by remember { mutableIntStateOf(0) }
     var postCount by remember { mutableIntStateOf(0) }
+
     val scope = rememberCoroutineScope()
     val isOwnProfile = username.isNullOrBlank()
 
@@ -67,6 +68,7 @@ fun ProfileScreen(
 
             if (targetProfile != null) {
                 profile = targetProfile
+
                 val userPosts = fetchPostsByUser(targetProfile.id)
                 posts = userPosts
                 postCount = userPosts.size
@@ -138,6 +140,7 @@ fun ProfileScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
                     val bioText = profile?.bio
