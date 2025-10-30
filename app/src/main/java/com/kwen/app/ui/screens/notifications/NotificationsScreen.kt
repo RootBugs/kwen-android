@@ -15,12 +15,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage  // HACK: refactor
+import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
@@ -33,6 +32,7 @@ fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
+
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -69,7 +69,7 @@ fun NotificationsScreen(
             )
         }
     ) { padding ->
-        when {  // optimize: edge case
+        when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
@@ -91,7 +91,6 @@ fun NotificationsScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
-
                         Text("No notifications yet", color = TextMuted)
                     }
                 }
@@ -99,11 +98,12 @@ fun NotificationsScreen(
             else -> {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize().padding(padding)
+
                 ) {
                     items(notifications, key = { it.id }) { notif ->
+
                         Row(
                             modifier = Modifier
-
                                 .fillMaxWidth()
                                 .clickable {
                                     when (notif.type) {
@@ -135,7 +135,7 @@ fun NotificationsScreen(
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
-                                    },  // note: cleanup
+                                    },
                                     style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
                                     maxLines = 1,
