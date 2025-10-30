@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.stories
 
 import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -65,6 +66,7 @@ fun StoriesScreen(
                 },
                 title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -100,6 +102,7 @@ fun StoriesScreen(
                                 contentDescription = user.displayName,
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
+
                             )
                         }
                         Spacer(modifier = Modifier.width(12.dp))
