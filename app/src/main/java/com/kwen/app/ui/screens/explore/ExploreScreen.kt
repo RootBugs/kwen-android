@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.explore
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -23,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
@@ -39,7 +39,6 @@ fun ExploreScreen(
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
-
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -54,6 +53,7 @@ fun ExploreScreen(
                 error = e.message
             }
             isLoading = false
+
         }
     }
 
@@ -67,7 +67,6 @@ fun ExploreScreen(
     }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -81,7 +80,6 @@ fun ExploreScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
-
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
@@ -106,6 +104,7 @@ fun ExploreScreen(
             }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
