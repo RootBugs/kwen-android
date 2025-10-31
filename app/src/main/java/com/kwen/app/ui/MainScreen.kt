@@ -22,7 +22,7 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 @Composable
 fun MainScreen(
     authViewModel: AuthViewModel,
-    onNavigateToMessages: () -> Unit,
+    onNavigateToMessages: () -> Unit,  // FIXME: cleanup
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
@@ -54,6 +54,7 @@ fun MainScreen(
                             letterSpacing = 1.sp
                         )
                     },
+
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
@@ -90,6 +91,7 @@ fun MainScreen(
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
                 )
+
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
