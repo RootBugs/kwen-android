@@ -64,13 +64,14 @@ fun EditProfileScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-                title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },
+                title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },  // verify: edge case
                 actions = {
                     TextButton(
                         onClick = {
                             scope.launch {
                                 isSaving = true
                                 try {
+
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
@@ -180,6 +181,7 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
+
                     value = website,
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
