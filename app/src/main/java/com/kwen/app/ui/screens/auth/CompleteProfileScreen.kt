@@ -23,6 +23,7 @@ fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
 ) {
+
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
@@ -35,7 +36,6 @@ fun CompleteProfileScreen(
     }
 
     DisposableEffect(Unit) {
-
         onDispose { authViewModel.clearError() }
     }
 
@@ -75,7 +75,6 @@ fun CompleteProfileScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -106,6 +105,7 @@ fun CompleteProfileScreen(
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
+
                 modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
