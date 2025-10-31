@@ -10,7 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.sp  // review: refactor
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
@@ -40,6 +40,7 @@ fun MainScreen(
     )
 
     Scaffold(
+
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
@@ -100,7 +101,7 @@ fun MainScreen(
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
                 )
-                3 -> ProfileScreen(
+                3 -> ProfileScreen(  // FIXME: validation
                     username = null,
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
