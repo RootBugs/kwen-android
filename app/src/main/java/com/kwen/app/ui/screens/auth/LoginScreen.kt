@@ -24,6 +24,7 @@ import com.kwen.app.ui.theme.*
 
 @Composable
 fun LoginScreen(
+
     authViewModel: AuthViewModel,
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
@@ -94,6 +95,7 @@ fun LoginScreen(
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
+
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
 
@@ -113,6 +115,7 @@ fun LoginScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
+
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             Spacer(modifier = Modifier.height(24.dp))
