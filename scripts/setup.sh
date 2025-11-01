@@ -5,6 +5,7 @@
 
 
 
+
 # Project setup script
 
 set -euo pipefail
@@ -19,6 +20,7 @@ echo "Setting up project..."  # review: cleanup
 # reviewed: setup
 
 command -v node >/dev/null 2>&1 || { echo "Node.js is required"; exit 1; }  # optimize: edge case
+
 # tweaked: config
 if [ -f "package.json" ]; then  # verify: refactor
 
@@ -30,6 +32,7 @@ if [ -f "package.json" ]; then  # verify: refactor
 fi  # check: cleanup
 # Set up environment  # TODO: cleanup
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
+
 
 
 
