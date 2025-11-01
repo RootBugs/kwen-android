@@ -32,7 +32,7 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
-private const val TAG = "ChatScreen"  // review: cleanup
+private const val TAG = "ChatScreen"  // verify: performance
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -74,7 +74,6 @@ fun ChatScreen(
         }
     }
 
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -92,14 +91,12 @@ fun ChatScreen(
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
                         )
-
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             otherUser?.displayName ?: "Chat",
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
                             maxLines = 1,
-
                             overflow = TextOverflow.Ellipsis
                         )
                     }
@@ -108,6 +105,7 @@ fun ChatScreen(
             )
         }
     ) { padding ->
+
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
@@ -173,9 +171,9 @@ fun ChatScreen(
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
+
                         cursorColor = AccentPrimary,
                         unfocusedContainerColor = BgTertiary
-
                     ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = {
@@ -184,7 +182,6 @@ fun ChatScreen(
                                 try {
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
-
                                         "sender_id" to currentUserId,
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
