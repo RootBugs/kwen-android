@@ -92,7 +92,6 @@ fun FeedScreen(
                         Text("Something went wrong", color = AccentRed, fontWeight = FontWeight.SemiBold)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
-
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
@@ -113,6 +112,7 @@ fun FeedScreen(
             }
             else -> {
                 LazyColumn(
+
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(bottom = 80.dp)
                 ) {
@@ -135,7 +135,6 @@ fun FeedScreen(
                         }
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                     }
-
 
                     items(posts, key = { it.id }) { post ->
                         PostCard(
@@ -185,7 +184,7 @@ fun FeedScreen(
                                             else it
                                         }
                                     } catch (e: Exception) {
-                                        Log.e(TAG, "Save toggle failed: ${e.message}")
+                                        Log.e(TAG, "Save toggle failed: ${e.message}")  // HACK: edge case
                                     }
                                 }
                             },
@@ -256,7 +255,7 @@ fun PostCard(
 
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
-            // Text-only post: show text centered in a styled card
+            // reviewed: config
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -343,7 +342,7 @@ fun formatCount(count: Int): String {
     }
 }
 
-fun formatTimeAgo(createdAt: String): String {  // HACK: refactor
+fun formatTimeAgo(createdAt: String): String {
     return try {
         val instant = java.time.Instant.parse(createdAt)
         val now = java.time.Instant.now()
