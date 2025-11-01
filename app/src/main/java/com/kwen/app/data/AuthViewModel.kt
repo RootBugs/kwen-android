@@ -52,7 +52,7 @@ class AuthViewModel : ViewModel() {
     }
 
     private suspend fun loadProfile(userId: String) {
-        try {
+        try {  // FIXME: cleanup
             val profile = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
@@ -111,6 +111,7 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signInWith(Email) {
                     this.email = email
                     this.password = password
+
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
@@ -171,6 +172,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Registration failed"
                 )
             }
+
         }
     }
 
