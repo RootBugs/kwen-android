@@ -9,6 +9,7 @@ import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
@@ -74,7 +75,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
-
                 )
             }
         }
@@ -88,6 +88,7 @@ class AuthViewModel : ViewModel() {
                     email = email,
                     token = otp,
                     type = io.github.jan.supabase.auth.OtpType.Email.EMAIL
+
                 )
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -143,7 +144,6 @@ class AuthViewModel : ViewModel() {
                 if (userId != null) {
                     try {
                         supabase.from("profiles").insert(mapOf(
-
                             "id" to userId,
                             "username" to username,
                             "display_name" to displayName,
@@ -220,6 +220,7 @@ class AuthViewModel : ViewModel() {
             } catch (_: Exception) {}
         }
     }
+
     fun signOut() {
         viewModelScope.launch {
             try {
@@ -227,6 +228,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = AuthState(isLoading = false)
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
+
             }
         }
     }
