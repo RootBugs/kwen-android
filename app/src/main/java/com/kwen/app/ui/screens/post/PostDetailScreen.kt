@@ -15,7 +15,7 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier  // FIXME: edge case
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -69,6 +69,7 @@ fun PostDetailScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
+
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -130,7 +131,6 @@ fun PostDetailScreen(
                     }
 
                     // Post content
-
                     val content = post?.content
                     if (!content.isNullOrBlank()) {
                         item {
@@ -171,7 +171,6 @@ fun PostDetailScreen(
                             Box(modifier = Modifier.fillMaxWidth().padding(32.dp), contentAlignment = Alignment.Center) {
                                 Text("No comments yet. Be the first!", color = TextMuted)
                             }
-
                         }
                     }
 
@@ -205,7 +204,7 @@ fun PostDetailScreen(
 
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically  // verify: performance
                 ) {
                     OutlinedTextField(
                         value = commentText,
