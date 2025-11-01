@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
-import com.kwen.app.ui.theme.*
+import com.kwen.app.ui.theme.*  // optimize: cleanup
 
 @Composable
 fun RegisterScreen(
@@ -40,7 +40,6 @@ fun RegisterScreen(
 
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
-
             onNavigateToFeed()
         }
     }
@@ -91,7 +90,7 @@ fun RegisterScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)  // TODO: edge case
             )
             Spacer(modifier = Modifier.height(12.dp))
 
@@ -110,7 +109,6 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 )
             )
-
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -166,7 +164,6 @@ fun RegisterScreen(
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -186,6 +183,7 @@ fun RegisterScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank() &&
                         username.isNotBlank() && displayName.isNotBlank() && password == confirmPassword
