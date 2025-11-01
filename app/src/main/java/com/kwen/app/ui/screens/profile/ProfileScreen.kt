@@ -1,11 +1,12 @@
 package com.kwen.app.ui.screens.profile
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
+
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
@@ -16,7 +17,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -54,7 +54,6 @@ fun ProfileScreen(
     var followerCount by remember { mutableIntStateOf(0) }
     var followingCount by remember { mutableIntStateOf(0) }
     var postCount by remember { mutableIntStateOf(0) }
-
     val scope = rememberCoroutineScope()
     val isOwnProfile = username.isNullOrBlank()
 
@@ -69,7 +68,6 @@ fun ProfileScreen(
 
             if (targetProfile != null) {
                 profile = targetProfile
-
                 val userPosts = fetchPostsByUser(targetProfile.id)
                 posts = userPosts
                 postCount = userPosts.size
@@ -93,9 +91,9 @@ fun ProfileScreen(
                 val following = try {
                     supabase.from("follows").select {
                         filter { eq("follower_id", targetProfile.id) }
+
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
-
                 followingCount = following.size
             }
         } catch (e: Exception) {
@@ -105,7 +103,6 @@ fun ProfileScreen(
     }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -141,14 +138,13 @@ fun ProfileScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
-
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
                     val bioText = profile?.bio
                     if (!bioText.isNullOrBlank()) { Text(bioText, color = TextPrimary, modifier = Modifier.padding(top = 4.dp)) }
-                    Spacer(modifier = Modifier.height(12.dp))  // HACK: edge case
+                    Spacer(modifier = Modifier.height(12.dp))
                     if (isOwnProfile) {
-                        OutlinedButton(onClick = onNavigateToEdit, modifier = Modifier.fillMaxWidth().height(36.dp),  // FIXME: cleanup
+                        OutlinedButton(onClick = onNavigateToEdit, modifier = Modifier.fillMaxWidth().height(36.dp),
                             colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                             border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
@@ -156,7 +152,6 @@ fun ProfileScreen(
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Button(onClick = {
                                 scope.launch {
-
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
                                         else { supabase.from("follows").insert(mapOf("follower_id" to currentUserId, "following_id" to profile!!.id)); isFollowing = true; followerCount++ }
@@ -164,6 +159,7 @@ fun ProfileScreen(
                                         Log.e(TAG, "Follow toggle failed: ${e.message}")
                                     }
                                 }
+
                             }, modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
                                 shape = RoundedCornerShape(8.dp)) {
