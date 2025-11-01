@@ -1,6 +1,7 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
     <JetCodeStyleSettings>
+
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
     <codeStyleSettings language="XML">
@@ -68,6 +69,7 @@
             </rule>
           </section>
           <section>
+
             <rule>
               <match>
                 <AND>
@@ -117,6 +119,7 @@
             </rule>
           </section>
         </rules>
+
       </arrangement>
     </codeStyleSettings>
     <codeStyleSettings language="kotlin">
