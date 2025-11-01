@@ -17,7 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage  // review: cleanup
+import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -32,7 +32,6 @@ fun EditProfileScreen(
     var profile by remember { mutableStateOf<Profile?>(null) }
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
-
     var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
@@ -47,7 +46,6 @@ fun EditProfileScreen(
                 .decodeSingle<Profile>()
             profile = p
             displayName = p.displayName
-
             username = p.username
             bio = p.bio ?: ""
             website = p.website ?: ""
@@ -62,16 +60,16 @@ fun EditProfileScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
+
                     }
                 },
-                title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },  // verify: edge case
+                title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
                     TextButton(
                         onClick = {
                             scope.launch {
                                 isSaving = true
                                 try {
-
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
@@ -108,13 +106,10 @@ fun EditProfileScreen(
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
-
-
                     contentScale = ContentScale.Crop
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -129,6 +124,7 @@ fun EditProfileScreen(
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
+
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
@@ -149,12 +145,11 @@ fun EditProfileScreen(
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
-                    colors = OutlinedTextFieldDefaults.colors(  // FIXME: performance
+                    colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
-
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
@@ -181,9 +176,9 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
-
                     value = website,
                     onValueChange = { website = it },
+
                     label = { Text("Website", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
@@ -192,7 +187,6 @@ fun EditProfileScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
-
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
