@@ -52,7 +52,7 @@ class AuthViewModel : ViewModel() {
     }
 
     private suspend fun loadProfile(userId: String) {
-        try {  // FIXME: cleanup
+        try {
             val profile = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
@@ -82,13 +82,13 @@ class AuthViewModel : ViewModel() {
 
     fun verifyOtp(email: String, otp: String) {
         viewModelScope.launch {
+
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.verifyEmailOtp(
                     email = email,
                     token = otp,
                     type = io.github.jan.supabase.auth.OtpType.Email.EMAIL
-
                 )
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -111,7 +111,6 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signInWith(Email) {
                     this.email = email
                     this.password = password
-
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
@@ -172,7 +171,6 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Registration failed"
                 )
             }
-
         }
     }
 
@@ -230,13 +228,13 @@ class AuthViewModel : ViewModel() {
                 _authState.value = AuthState(isLoading = false)
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
-
             }
         }
     }
 
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
+
     }
 
     fun clearSuccess() {
