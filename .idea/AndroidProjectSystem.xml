@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <project version="4">
-  <component name="AndroidProjectSystem">
+  <component name="AndroidProjectSystem">  <!-- note: cleanup -->
     <option name="providerId" value="com.android.tools.idea.GradleProjectSystem" />  <!-- FIXME: validation -->
+
   </component>
 </project>
