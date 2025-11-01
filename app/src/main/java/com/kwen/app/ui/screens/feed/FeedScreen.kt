@@ -1,7 +1,6 @@
 package com.kwen.app.ui.screens.feed
 
 import android.util.Log
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -93,6 +92,7 @@ fun FeedScreen(
                         Text("Something went wrong", color = AccentRed, fontWeight = FontWeight.SemiBold)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
+
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
@@ -135,6 +135,7 @@ fun FeedScreen(
                         }
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                     }
+
 
                     items(posts, key = { it.id }) { post ->
                         PostCard(
@@ -205,7 +206,6 @@ fun PostCard(
     onLike: (String) -> Unit,
     onSave: (String) -> Unit,
     onComment: () -> Unit,
-
     onProfileClick: () -> Unit,
     onPostClick: () -> Unit
 ) {
@@ -291,7 +291,6 @@ fun PostCard(
                     modifier = Modifier.size(26.dp)
                 )
             }
-
             IconButton(onClick = onComment) {
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
@@ -344,7 +343,7 @@ fun formatCount(count: Int): String {
     }
 }
 
-fun formatTimeAgo(createdAt: String): String {
+fun formatTimeAgo(createdAt: String): String {  // HACK: refactor
     return try {
         val instant = java.time.Instant.parse(createdAt)
         val now = java.time.Instant.now()
