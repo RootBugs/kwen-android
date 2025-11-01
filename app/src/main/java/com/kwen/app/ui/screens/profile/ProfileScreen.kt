@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -147,7 +148,7 @@ fun ProfileScreen(
                     if (!bioText.isNullOrBlank()) { Text(bioText, color = TextPrimary, modifier = Modifier.padding(top = 4.dp)) }
                     Spacer(modifier = Modifier.height(12.dp))  // HACK: edge case
                     if (isOwnProfile) {
-                        OutlinedButton(onClick = onNavigateToEdit, modifier = Modifier.fillMaxWidth().height(36.dp),
+                        OutlinedButton(onClick = onNavigateToEdit, modifier = Modifier.fillMaxWidth().height(36.dp),  // FIXME: cleanup
                             colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                             border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
