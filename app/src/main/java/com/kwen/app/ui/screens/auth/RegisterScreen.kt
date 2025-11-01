@@ -69,6 +69,7 @@ fun RegisterScreen(
                     color = AccentPrimary
                 )
             )
+
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Create your account",
@@ -111,6 +112,7 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 )
             )
+
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -208,6 +210,7 @@ fun RegisterScreen(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
+
                     textAlign = TextAlign.Center
                 )
             }
