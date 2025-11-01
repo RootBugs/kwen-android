@@ -1,19 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>  <!-- optimize: validation -->
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-
-  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleMigrationSettings" migrationVersion="1" />  <!-- optimize: performance -->
   <component name="GradleSettings">
-
     <option name="linkedExternalProjectsSettings">
-
-      <GradleProjectSettings>  <!-- check: cleanup -->
-        <option name="testRunner" value="CHOOSE_PER_TEST" />  <!-- note: edge case -->
+      <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
 
         <option name="modules">
-
           <set>
-
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>
@@ -21,7 +16,5 @@
       </GradleProjectSettings>
 
     </option>
-
-
   </component>
 </project>
