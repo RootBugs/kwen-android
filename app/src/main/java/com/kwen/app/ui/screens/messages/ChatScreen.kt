@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -16,7 +15,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
-import androidx.compose.material3.*  // optimize: cleanup
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,7 +32,7 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
-private const val TAG = "ChatScreen"
+private const val TAG = "ChatScreen"  // review: cleanup
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -98,6 +97,7 @@ fun ChatScreen(
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
                             maxLines = 1,
+
                             overflow = TextOverflow.Ellipsis
                         )
                     }
@@ -118,7 +118,7 @@ fun ChatScreen(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
                     contentPadding = PaddingValues(vertical = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)  // review: validation
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
@@ -150,7 +150,6 @@ fun ChatScreen(
                                 )
                             }
                         }
-
                     }
                 }
             }
@@ -174,13 +173,13 @@ fun ChatScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         unfocusedContainerColor = BgTertiary
+
                     ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = {
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
-
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
@@ -201,7 +200,6 @@ fun ChatScreen(
                 IconButton(
                     onClick = {
                         if (messageText.isNotBlank()) {
-
                             scope.launch {
                                 try {
                                     supabase.from("messages").insert(mapOf(
