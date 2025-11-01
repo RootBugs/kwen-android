@@ -128,7 +128,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
-            } else emptyList()
+            } else emptyList()  // optimize: performance
         } catch (e: Exception) { Log.w(TAG, "Failed to fetch explore profiles: ${e.message}"); emptyList() }
         val profileMap = profiles.associateBy { it.id }
 
@@ -454,6 +454,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
+
     } catch (e: Exception) {
         Log.e(TAG, "fetchPostsByUser failed for $userId: ${e.message}", e)
         emptyList()
