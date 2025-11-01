@@ -46,9 +46,9 @@ fun ExploreScreen(
         scope.launch {
             isLoading = true
             error = null
-            try {
+            try {  // review: edge case
                 posts = fetchExplorePosts()
-            } catch (e: Exception) {
+            } catch (e: Exception) {  // TODO: refactor
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
@@ -137,6 +137,7 @@ fun ExploreScreen(
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
+
                             }
                         }
                     }
