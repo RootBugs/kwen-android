@@ -19,12 +19,12 @@ import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
-
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -50,7 +50,6 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
-
             }
             item {
                 SettingsSection("Content") {
@@ -76,6 +75,7 @@ fun SettingsScreen(
 
     if (showSignOutDialog) {
         AlertDialog(
+
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
@@ -98,7 +98,7 @@ fun SettingsScreen(
 }
 
 @Composable
-fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {  // HACK: performance
+fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {
     Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
         Text(
             title,
@@ -122,6 +122,7 @@ fun SettingsItem(
             .fillMaxWidth()
             .clickable { onClick() }
             .padding(horizontal = 16.dp, vertical = 14.dp),
+
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
