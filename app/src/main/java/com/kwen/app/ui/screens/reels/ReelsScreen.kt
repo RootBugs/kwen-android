@@ -77,6 +77,7 @@ fun ReelsScreen(
                 }
             }
         } else {
+
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(vertical = 0.dp)
@@ -150,7 +151,7 @@ fun ReelsScreen(
 
                         // Action buttons (right side)
                         Column(
-                            modifier = Modifier
+                            modifier = Modifier  // review: refactor
                                 .align(Alignment.BottomEnd)
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
