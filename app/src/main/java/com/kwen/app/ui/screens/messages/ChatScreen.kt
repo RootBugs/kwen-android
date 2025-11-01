@@ -74,6 +74,7 @@ fun ChatScreen(
         }
     }
 
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -91,6 +92,7 @@ fun ChatScreen(
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
                         )
+
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             otherUser?.displayName ?: "Chat",
@@ -182,6 +184,7 @@ fun ChatScreen(
                                 try {
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
+
                                         "sender_id" to currentUserId,
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
