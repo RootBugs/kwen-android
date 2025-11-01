@@ -10,6 +10,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -58,6 +59,7 @@ fun CompleteProfileScreen(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
+
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -110,6 +112,7 @@ fun CompleteProfileScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
