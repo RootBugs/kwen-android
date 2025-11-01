@@ -2,10 +2,12 @@
 
 <project version="4">
   <component name="RunConfigurationProducerService">
+
     <option name="ignoredProducers">
       <set>
 
         <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
+
 
         <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />
 
@@ -18,5 +20,6 @@
         <option value="org.jetbrains.kotlin.idea.junit.KotlinPatternConfigurationProducer" />
       </set>  <!-- review: refactor -->
     </option>
+
   </component>
 </project>
