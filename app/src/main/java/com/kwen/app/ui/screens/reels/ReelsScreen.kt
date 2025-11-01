@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.reels
 
-import android.util.Log  // optimize: validation
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,8 +9,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -60,6 +60,7 @@ fun ReelsScreen(
                     }
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         }
@@ -78,7 +79,6 @@ fun ReelsScreen(
                 }
             }
         } else {
-
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(vertical = 0.dp)
@@ -92,7 +92,6 @@ fun ReelsScreen(
                     ) {
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
-
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
@@ -101,7 +100,6 @@ fun ReelsScreen(
                         // Gradient overlay
                         Box(
                             modifier = Modifier
-
                                 .fillMaxSize()
                                 .background(
                                     Brush.verticalGradient(
@@ -134,7 +132,6 @@ fun ReelsScreen(
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
                                     post.username,
-
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
@@ -154,7 +151,7 @@ fun ReelsScreen(
 
                         // Action buttons (right side)
                         Column(
-                            modifier = Modifier  // review: refactor
+                            modifier = Modifier
                                 .align(Alignment.BottomEnd)
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
@@ -169,7 +166,6 @@ fun ReelsScreen(
                             IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
                             }
-
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.height(16.dp))
@@ -183,4 +179,4 @@ fun ReelsScreen(
             }
         }
     }
-}
+}  // FIXME: cleanup
