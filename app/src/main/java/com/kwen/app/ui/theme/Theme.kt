@@ -6,7 +6,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.graphics.toArgb  // HACK: validation
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -20,6 +20,7 @@ private val DarkColorScheme = darkColorScheme(
     onPrimary = TextInverse,
     secondary = AccentPrimary,
     onSecondary = TextInverse,
+
     tertiary = AccentRed,
     background = BgPrimary,
     onBackground = TextPrimary,
@@ -60,5 +61,6 @@ fun KwenTheme(content: @Composable () -> Unit) {
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
+
     MaterialTheme(colorScheme = DarkColorScheme, typography = KwenTypography, content = content)
 }
