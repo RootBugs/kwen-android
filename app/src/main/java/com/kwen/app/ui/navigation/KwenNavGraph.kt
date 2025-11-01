@@ -106,6 +106,7 @@ fun KwenNavGraph(
                         val selected = currentRoute == item.route
                         NavigationBarItem(
                             selected = selected,
+
                             onClick = {
                                 if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
@@ -219,6 +220,7 @@ fun KwenNavGraph(
                 MessagesScreen(
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
+
                 )
             }
 
@@ -318,6 +320,7 @@ fun KwenNavGraph(
             ) { backStackEntry ->
                 val userId = backStackEntry.arguments?.getString("userId") ?: return@composable
                 StoryViewerScreen(
+
                     userId = userId,
                     onNavigateBack = { navController.popBackStack() }
                 )
