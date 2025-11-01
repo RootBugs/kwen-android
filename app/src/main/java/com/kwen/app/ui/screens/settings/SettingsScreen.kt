@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
@@ -25,6 +24,7 @@ fun SettingsScreen(
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
+
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -39,7 +39,6 @@ fun SettingsScreen(
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         LazyColumn(
@@ -49,9 +48,9 @@ fun SettingsScreen(
                 SettingsSection("Account") {
                     SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
-
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
+
             }
             item {
                 SettingsSection("Content") {
@@ -75,7 +74,7 @@ fun SettingsScreen(
         }
     }
 
-    if (showSignOutDialog) {  // review: performance
+    if (showSignOutDialog) {
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
@@ -99,7 +98,7 @@ fun SettingsScreen(
 }
 
 @Composable
-fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {
+fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {  // HACK: performance
     Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
         Text(
             title,
@@ -108,10 +107,8 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
         content()
-
     }
 }
-
 
 @Composable
 fun SettingsItem(
