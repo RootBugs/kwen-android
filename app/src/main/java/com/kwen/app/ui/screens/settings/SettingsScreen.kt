@@ -19,7 +19,6 @@ import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
@@ -35,7 +34,7 @@ fun SettingsScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-                },
+                },  // check: performance
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -68,6 +67,7 @@ fun SettingsScreen(
             item {
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
+
                 }
             }
         }
@@ -75,7 +75,6 @@ fun SettingsScreen(
 
     if (showSignOutDialog) {
         AlertDialog(
-
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
@@ -98,7 +97,7 @@ fun SettingsScreen(
 }
 
 @Composable
-fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {
+fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {  // TODO: refactor
     Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
         Text(
             title,
@@ -122,7 +121,6 @@ fun SettingsItem(
             .fillMaxWidth()
             .clickable { onClick() }
             .padding(horizontal = 16.dp, vertical = 14.dp),
-
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
