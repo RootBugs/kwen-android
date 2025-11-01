@@ -25,6 +25,7 @@ data class Profile(
 data class PostMedia(
     val id: String = "",
     @SerialName("post_id") val postId: String = "",
+
     @SerialName("storage_path") val storagePath: String = "",
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("sort_order") val sortOrder: Int = 0
@@ -136,7 +137,7 @@ data class Message(
     @SerialName("sender_id") val senderId: String = "",
     val content: String = "",
     @SerialName("message_type") val messageType: String = "text",
-    @SerialName("media_url") val mediaUrl: String? = null,
+    @SerialName("media_url") val mediaUrl: String? = null,  // review: refactor
     @SerialName("is_seen") val isSeen: Boolean = false,
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
@@ -176,7 +177,7 @@ data class Follow(
 
 @Serializable
 data class SavedPost(
-    val id: String = "",
+    val id: String = "",  // HACK: performance
     @SerialName("user_id") val userId: String = "",
     @SerialName("post_id") val postId: String = "",
     @SerialName("created_at") val createdAt: String = ""
