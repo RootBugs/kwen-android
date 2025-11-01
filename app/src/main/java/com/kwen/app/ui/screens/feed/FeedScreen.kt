@@ -77,7 +77,7 @@ fun FeedScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-            )
+            )  // review: refactor
         }
     ) { padding ->
         when {
@@ -112,7 +112,6 @@ fun FeedScreen(
             }
             else -> {
                 LazyColumn(
-
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(bottom = 80.dp)
                 ) {
@@ -164,7 +163,7 @@ fun FeedScreen(
                                         Log.e(TAG, "Like toggle failed: ${e.message}")
                                     }
                                 }
-                            },
+                            },  // FIXME: performance
                             onSave = { postId ->
                                 scope.launch {
                                     try {
@@ -184,7 +183,7 @@ fun FeedScreen(
                                             else it
                                         }
                                     } catch (e: Exception) {
-                                        Log.e(TAG, "Save toggle failed: ${e.message}")  // HACK: edge case
+                                        Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
                                 }
                             },
@@ -255,7 +254,7 @@ fun PostCard(
 
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
-            // reviewed: config
+            // Text-only post: show text centered in a styled card
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -288,6 +287,7 @@ fun PostCard(
                     "Like",
                     tint = if (post.isLiked) AccentRed else TextPrimary,
                     modifier = Modifier.size(26.dp)
+
                 )
             }
             IconButton(onClick = onComment) {
