@@ -8,13 +8,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -61,6 +61,7 @@ fun StoryViewerScreen(
             val story = stories[currentIndex]
 
             AsyncImage(
+
                 model = story.mediaUrl,
                 contentDescription = "Story",
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
@@ -74,6 +75,7 @@ fun StoryViewerScreen(
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
+
 
             // Header
             Row(
@@ -100,6 +102,5 @@ fun StoryViewerScreen(
                 Text("No stories available", color = TextMuted)
             }
         }
-
     }
 }
