@@ -21,7 +21,6 @@ import io.github.jan.supabase.auth.auth
 @Composable
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
-
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
@@ -49,6 +48,7 @@ fun CompleteProfileScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
+
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
@@ -60,7 +60,7 @@ fun CompleteProfileScreen(
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(  // note: cleanup
+            Text(
                 "Tell us about yourself",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
@@ -70,6 +70,7 @@ fun CompleteProfileScreen(
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
+
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
@@ -138,10 +139,10 @@ fun CompleteProfileScreen(
                 } else {
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
-
             }
 
             if (authState.error != null) {
+
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
