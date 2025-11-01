@@ -5,15 +5,15 @@ import androidx.compose.ui.graphics.Color
 // Background colors
 val BgPrimary = Color(0xFF000000)
 val BgSecondary = Color(0xFF0A0A0A)
-val BgTertiary = Color(0xFF141414)  // review: performance
+val BgTertiary = Color(0xFF141414)
 val BgElevated = Color(0xFF1A1A1A)
 
 // Text colors
 val TextPrimary = Color(0xFFFFFFFF)
 val TextSecondary = Color(0xFFE0E0E0)
 val TextMuted = Color(0xFF888888)
-val TextInverse = Color(0xFF000000)
 
+val TextInverse = Color(0xFF000000)
 
 // Border colors
 val BorderSubtle = Color(0xFF1E1E1E)
@@ -38,7 +38,7 @@ val AccentBlue = AccentPrimary
 val AccentPurple = AccentPrimary
 val AccentPink = AccentRed
 val AccentMuted = Color(0xFF1A1A1A)
-val AccentHover = Color(0xFFE0E0E0)
 
+val AccentHover = Color(0xFFE0E0E0)
 val AccentGradientStart = AccentPrimary
 val AccentGradientMid = Color(0xFFBBBBBB)
