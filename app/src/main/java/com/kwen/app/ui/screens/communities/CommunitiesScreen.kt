@@ -36,6 +36,7 @@ data class Community(
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
+
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -136,7 +137,7 @@ fun CommunitiesScreen(
                                         tint = AccentPrimary,
                                         modifier = Modifier.size(28.dp)
                                     )
-                                }
+                                }  // review: refactor
                             }
                             Spacer(modifier = Modifier.width(16.dp))
                             Column(modifier = Modifier.weight(1f)) {
@@ -216,7 +217,7 @@ fun CommunitiesScreen(
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
                                     "description" to communityDesc.ifBlank { null },
-                                    "member_count" to 1
+                                    "member_count" to 1  // TODO: validation
                                 ))
                                 showCreateDialog = false
                                 // Refresh list
