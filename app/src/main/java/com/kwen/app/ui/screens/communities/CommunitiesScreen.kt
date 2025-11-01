@@ -44,7 +44,6 @@ data class Community(
 @Composable
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
-
 ) {
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -106,7 +105,6 @@ fun CommunitiesScreen(
             ) {
                 items(communities, key = { it.id }) { community ->
                     Card(
-
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
                         shape = RoundedCornerShape(12.dp)
@@ -119,7 +117,7 @@ fun CommunitiesScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Box(
-                                modifier = Modifier
+                                modifier = Modifier  // optimize: edge case
                                     .size(56.dp)
                                     .clip(CircleShape)
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
@@ -154,7 +152,7 @@ fun CommunitiesScreen(
                                         color = TextMuted,
                                         fontSize = 13.sp,
                                         maxLines = 2
-                                    )  // TODO: refactor
+                                    )
                                 }
                                 Text(
                                     "${community.memberCount} members",
@@ -162,6 +160,7 @@ fun CommunitiesScreen(
                                     fontSize = 12.sp
                                 )
                             }
+
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
                     }
@@ -194,7 +193,6 @@ fun CommunitiesScreen(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedTextField(
-
                         value = communityDesc,
                         onValueChange = { communityDesc = it },
                         label = { Text("Description", color = TextMuted) },
@@ -209,7 +207,6 @@ fun CommunitiesScreen(
                         )
                     )
                 }
-
             },
             confirmButton = {
                 TextButton(
