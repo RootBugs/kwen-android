@@ -26,6 +26,7 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
+
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
@@ -105,6 +106,7 @@ fun CommunitiesScreen(
             ) {
                 items(communities, key = { it.id }) { community ->
                     Card(
+
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
                         shape = RoundedCornerShape(12.dp)
@@ -207,6 +209,7 @@ fun CommunitiesScreen(
                         )
                     )
                 }
+
             },
             confirmButton = {
                 TextButton(
