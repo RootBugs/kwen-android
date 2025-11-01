@@ -6,6 +6,7 @@
 
 
 
+
 # Project setup script
 
 set -euo pipefail
@@ -50,6 +51,7 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
 
     echo "Created .env from .env.example"  # optimize: edge case  # review: edge case
+
 
 
 fi
