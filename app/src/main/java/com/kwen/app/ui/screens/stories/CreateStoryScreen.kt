@@ -1,12 +1,11 @@
 package com.kwen.app.ui.screens.stories
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -37,7 +36,7 @@ fun CreateStoryScreen(
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
-                },  // check: refactor
+                },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -46,12 +45,12 @@ fun CreateStoryScreen(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
             contentAlignment = Alignment.Center
         ) {
-
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
-                    modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),  // check: edge case
+
+                    modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(Icons.Default.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
