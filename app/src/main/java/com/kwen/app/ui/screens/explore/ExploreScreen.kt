@@ -86,6 +86,7 @@ fun ExploreScreen(
                             cursorColor = TextPrimary,
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
+
                         ),
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -132,6 +133,7 @@ fun ExploreScreen(
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
+
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
