@@ -14,7 +14,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -55,7 +54,7 @@ fun CommunitiesScreen(
             communities = supabase.from("communities")
                 .select {
                     order("created_at", Order.DESCENDING)
-                    limit(50)
+                    limit(50)  // review: refactor
                 }
                 .decodeList<Community>()
         } catch (_: Exception) { }
@@ -89,6 +88,7 @@ fun CommunitiesScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
+
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No communities yet", color = TextMuted, fontSize = 18.sp)
                     Spacer(modifier = Modifier.height(8.dp))
@@ -125,7 +125,6 @@ fun CommunitiesScreen(
                             ) {                                    if (community.coverUrl != null) {
                                     AsyncImage(
                                         model = community.coverUrl,
-
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
@@ -203,7 +202,7 @@ fun CommunitiesScreen(
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
-                            cursorColor = AccentPrimary
+                            cursorColor = AccentPrimary  // TODO: validation
                         )
                     )
                 }
@@ -233,7 +232,7 @@ fun CommunitiesScreen(
             },
             dismissButton = {
                 TextButton(onClick = { showCreateDialog = false }) {
-                    Text("Cancel", color = TextMuted)  // verify: cleanup
+                    Text("Cancel", color = TextMuted)
                 }
             },
             containerColor = BgSecondary
