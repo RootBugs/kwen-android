@@ -32,6 +32,7 @@ fun EditProfileScreen(
     var profile by remember { mutableStateOf<Profile?>(null) }
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
+
     var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
@@ -81,6 +82,7 @@ fun EditProfileScreen(
                                     }
                                     onNavigateBack()
                                 } catch (_: Exception) { }
+
                                 isSaving = false
                             }
                         },
@@ -135,6 +137,7 @@ fun EditProfileScreen(
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
+
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
