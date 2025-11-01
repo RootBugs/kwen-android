@@ -36,7 +36,6 @@ data class Community(
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
-
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -48,7 +47,7 @@ fun CommunitiesScreen(
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()  // verify: edge case
+    val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
         try {
@@ -56,6 +55,7 @@ fun CommunitiesScreen(
                 .select {
                     order("created_at", Order.DESCENDING)
                     limit(50)
+
                 }
                 .decodeList<Community>()
         } catch (_: Exception) { }
@@ -80,7 +80,6 @@ fun CommunitiesScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -137,9 +136,10 @@ fun CommunitiesScreen(
                                         tint = AccentPrimary,
                                         modifier = Modifier.size(28.dp)
                                     )
-                                }  // review: refactor
+                                }
                             }
                             Spacer(modifier = Modifier.width(16.dp))
+
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     community.name,
@@ -198,9 +198,9 @@ fun CommunitiesScreen(
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
+
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
-
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
@@ -217,7 +217,7 @@ fun CommunitiesScreen(
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
                                     "description" to communityDesc.ifBlank { null },
-                                    "member_count" to 1  // TODO: validation
+                                    "member_count" to 1
                                 ))
                                 showCreateDialog = false
                                 // Refresh list
