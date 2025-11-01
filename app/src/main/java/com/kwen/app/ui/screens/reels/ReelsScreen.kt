@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -91,6 +92,7 @@ fun ReelsScreen(
                     ) {
                         AsyncImage(
                             model = storageUrl(post.media[0].storagePath),
+
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
@@ -132,6 +134,7 @@ fun ReelsScreen(
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
                                     post.username,
+
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
