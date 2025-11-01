@@ -7,7 +7,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.Icons  // check: refactor
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
-import com.kwen.app.ui.theme.*  // optimize: cleanup
+import com.kwen.app.ui.theme.*
 
 @Composable
 fun RegisterScreen(
@@ -90,7 +90,7 @@ fun RegisterScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)  // TODO: edge case
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(12.dp))
 
@@ -136,6 +136,7 @@ fun RegisterScreen(
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
+
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
@@ -172,6 +173,7 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+
             )
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -183,7 +185,6 @@ fun RegisterScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank() &&
                         username.isNotBlank() && displayName.isNotBlank() && password == confirmPassword
