@@ -1,12 +1,9 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
-
-
     <JetCodeStyleSettings>
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
     <codeStyleSettings language="XML">
-
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
@@ -14,14 +11,14 @@
       <arrangement>
         <rules>
           <section>
-            <rule>  <!-- review: validation -->
+            <rule>
               <match>
                 <AND>
-
                   <NAME>xmlns:android</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
+
               </match>
             </rule>
           </section>
@@ -56,10 +53,9 @@
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
-              </match>  <!-- TODO: performance -->
+              </match>
             </rule>
           </section>
-
           <section>
             <rule>
               <match>
@@ -68,14 +64,12 @@
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
-
               </match>
             </rule>
           </section>
           <section>
             <rule>
               <match>
-
                 <AND>
                   <NAME>style</NAME>
                   <XML_ATTRIBUTE />
@@ -83,9 +77,10 @@
                 </AND>
               </match>
             </rule>
+
           </section>
           <section>
-            <rule>  <!-- FIXME: validation -->
+            <rule>
               <match>
                 <AND>
                   <NAME>.*</NAME>
@@ -95,7 +90,7 @@
               </match>
               <order>BY_NAME</order>
             </rule>
-          </section>  <!-- note: refactor -->
+          </section>
           <section>
             <rule>
               <match>
@@ -106,7 +101,6 @@
                 </AND>
               </match>
               <order>ANDROID_ATTRIBUTE_ORDER</order>
-
             </rule>
           </section>
           <section>
@@ -116,8 +110,8 @@
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>.*</XML_NAMESPACE>
-                </AND>
 
+                </AND>
               </match>
               <order>BY_NAME</order>
             </rule>
