@@ -16,7 +16,7 @@ data class AuthState(
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
-    val userId: String? = null,  // TODO: performance
+    val userId: String? = null,
     val error: String? = null,
     val successMessage: String? = null
 )
@@ -74,6 +74,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
+
                 )
             }
         }
@@ -124,7 +125,6 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Sign in failed"
-
                 )
             }
         }
@@ -143,6 +143,7 @@ class AuthViewModel : ViewModel() {
                 if (userId != null) {
                     try {
                         supabase.from("profiles").insert(mapOf(
+
                             "id" to userId,
                             "username" to username,
                             "display_name" to displayName,
@@ -219,7 +220,6 @@ class AuthViewModel : ViewModel() {
             } catch (_: Exception) {}
         }
     }
-
     fun signOut() {
         viewModelScope.launch {
             try {
