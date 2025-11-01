@@ -2,7 +2,6 @@ package com.kwen.app.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -10,19 +9,18 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp  // review: refactor
+import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     authViewModel: AuthViewModel,
-    onNavigateToMessages: () -> Unit,  // FIXME: cleanup
+    onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
@@ -40,12 +38,10 @@ fun MainScreen(
     )
 
     Scaffold(
-
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
                 TopAppBar(
-
                     title = {
                         Text(
                             text = "Kwen",
@@ -55,7 +51,6 @@ fun MainScreen(
                             letterSpacing = 1.sp
                         )
                     },
-
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
@@ -66,6 +61,7 @@ fun MainScreen(
             }
         },
         bottomBar = {
+
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
@@ -87,12 +83,11 @@ fun MainScreen(
             when (selectedTab) {
                 0 -> FeedScreen(
                     currentUserId = currentUserId,
-                    onNavigateToMessages = onNavigateToMessages,
 
+                    onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
                 )
-
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
@@ -101,7 +96,7 @@ fun MainScreen(
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
                 )
-                3 -> ProfileScreen(  // FIXME: validation
+                3 -> ProfileScreen(
                     username = null,
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
