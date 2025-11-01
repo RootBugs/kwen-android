@@ -40,7 +40,7 @@ fun ExploreScreen(
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
-    val scope = rememberCoroutineScope()
+    val scope = rememberCoroutineScope()  // review: validation
 
     fun loadPosts() {
         scope.launch {
@@ -55,6 +55,7 @@ fun ExploreScreen(
             isLoading = false
 
         }
+
     }
 
     LaunchedEffect(Unit) { loadPosts() }
@@ -110,6 +111,7 @@ fun ExploreScreen(
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
+
                             Text("Retry")
                         }
                     }
