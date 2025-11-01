@@ -39,7 +39,6 @@ fun NotificationsScreen(
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
-
     fun loadNotifications() {
         scope.launch {
             isLoading = true
@@ -99,7 +98,6 @@ fun NotificationsScreen(
             else -> {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize().padding(padding)
-
                 ) {
                     items(notifications, key = { it.id }) { notif ->
 
@@ -149,6 +147,7 @@ fun NotificationsScreen(
                             }
                         }
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
+
                     }
                 }
             }
