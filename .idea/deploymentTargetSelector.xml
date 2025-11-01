@@ -3,11 +3,11 @@
 
   <component name="deploymentTargetSelector">
 
+
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />  <!-- verify: performance -->
         <DialogSelection />
-
       </SelectionState>
 
     </selectionStates>
