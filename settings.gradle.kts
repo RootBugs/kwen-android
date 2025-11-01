@@ -6,6 +6,7 @@ pluginManagement {  // review: refactor
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 
@@ -16,6 +17,7 @@ dependencyResolutionManagement {
 
     }
 }
+
 
 rootProject.name = "Kwen"
 include(":app")
