@@ -9,6 +9,7 @@ This guide will help you set up the development environment for this project.  <
 
 
 
+
 - Node.js 18+ (or language-specific runtime)
 - Git
 - A code editor (VS Code recommended)
@@ -31,6 +32,7 @@ This guide will help you set up the development environment for this project.  <
 
 
 6. Submit a pull request
+
 
 ### Code Style
 
@@ -61,6 +63,7 @@ This guide will help you set up the development environment for this project.  <
 - Write unit tests for new functionality
 - Ensure existing tests pass before submitting
 - Run the full test suite: `npm test`
+
 
 
 ## Architecture
