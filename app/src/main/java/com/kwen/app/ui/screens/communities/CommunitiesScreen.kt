@@ -43,6 +43,7 @@ data class Community(
 @Composable
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
+
 ) {
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -54,7 +55,7 @@ fun CommunitiesScreen(
             communities = supabase.from("communities")
                 .select {
                     order("created_at", Order.DESCENDING)
-                    limit(50)  // review: refactor
+                    limit(50)
                 }
                 .decodeList<Community>()
         } catch (_: Exception) { }
@@ -88,7 +89,6 @@ fun CommunitiesScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
-
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No communities yet", color = TextMuted, fontSize = 18.sp)
                     Spacer(modifier = Modifier.height(8.dp))
@@ -152,7 +152,7 @@ fun CommunitiesScreen(
                                         color = TextMuted,
                                         fontSize = 13.sp,
                                         maxLines = 2
-                                    )
+                                    )  // TODO: refactor
                                 }
                                 Text(
                                     "${community.memberCount} members",
@@ -192,6 +192,7 @@ fun CommunitiesScreen(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedTextField(
+
                         value = communityDesc,
                         onValueChange = { communityDesc = it },
                         label = { Text("Description", color = TextMuted) },
@@ -202,7 +203,7 @@ fun CommunitiesScreen(
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
-                            cursorColor = AccentPrimary  // TODO: validation
+                            cursorColor = AccentPrimary
                         )
                     )
                 }
