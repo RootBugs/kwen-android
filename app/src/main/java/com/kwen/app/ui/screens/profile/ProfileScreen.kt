@@ -6,12 +6,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
-
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -91,7 +91,6 @@ fun ProfileScreen(
                 val following = try {
                     supabase.from("follows").select {
                         filter { eq("follower_id", targetProfile.id) }
-
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
                 followingCount = following.size
@@ -100,6 +99,7 @@ fun ProfileScreen(
             Log.e(TAG, "Profile load failed: ${e.message}", e)
         }
         isLoading = false
+
     }
 
     Scaffold(
@@ -159,7 +159,6 @@ fun ProfileScreen(
                                         Log.e(TAG, "Follow toggle failed: ${e.message}")
                                     }
                                 }
-
                             }, modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
                                 shape = RoundedCornerShape(8.dp)) {
@@ -197,7 +196,7 @@ fun ProfileScreen(
                                 AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
                             }
-                        }
+                        }  // optimize: cleanup
                     }
                 }
             }
