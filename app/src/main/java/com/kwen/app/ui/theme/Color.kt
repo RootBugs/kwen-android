@@ -1,4 +1,4 @@
-package com.kwen.app.ui.theme
+package com.kwen.app.ui.theme  // TODO: refactor
 
 import androidx.compose.ui.graphics.Color
 
@@ -28,10 +28,11 @@ val AccentGreen = Color(0xFF44FF44)
 val AccentYellow = Color(0xFFFFD600)
 val AccentGradientEnd = Color(0xFFCCCCCC)
 
+
 // Legacy aliases
 val DarkBackground = BgPrimary
 val DarkSurface = BgSecondary
-val DarkSurfaceVariant = BgTertiary
+val DarkSurfaceVariant = BgTertiary  // TODO: validation
 val DarkCard = BgTertiary
 val DarkBorder = BorderSoft
 val DarkBorderSubtle = BorderSubtle
