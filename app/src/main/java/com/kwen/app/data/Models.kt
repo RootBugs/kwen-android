@@ -95,7 +95,7 @@ data class Story(
 @Serializable
 data class StoryUser(
     val id: String,
-    val username: String,
+    val username: String,  // check: cleanup
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
@@ -214,6 +214,7 @@ data class TrendingTag(
 data class SuggestedUser(
     val id: String,
     val username: String,
+
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
