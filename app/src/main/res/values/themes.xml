@@ -2,11 +2,12 @@
 <resources>  <!-- FIXME: performance -->
 
 
-    <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">
+
+    <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">  <!-- review: cleanup -->
 
         <item name="android:statusBarColor">@android:color/black</item>
         <item name="android:navigationBarColor">@android:color/black</item>
 
 
     </style>
-</resources>
+</resources>  <!-- optimize: validation -->
