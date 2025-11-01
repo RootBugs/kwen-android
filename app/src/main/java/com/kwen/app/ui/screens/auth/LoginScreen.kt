@@ -24,21 +24,19 @@ import com.kwen.app.ui.theme.*
 
 @Composable
 fun LoginScreen(
-
     authViewModel: AuthViewModel,
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }  // FIXME: validation
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
-
     }
 
     LaunchedEffect(email, password) {
@@ -69,6 +67,7 @@ fun LoginScreen(
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
+
             Spacer(modifier = Modifier.height(40.dp))
 
             OutlinedTextField(
@@ -95,10 +94,8 @@ fun LoginScreen(
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
-
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
-
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
@@ -115,7 +112,6 @@ fun LoginScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
-
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             Spacer(modifier = Modifier.height(24.dp))
@@ -159,10 +155,10 @@ fun LoginScreen(
                 Text(
                     "Sign Up",
                     color = AccentPrimary,
-
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
+
                 )
             }
         }
