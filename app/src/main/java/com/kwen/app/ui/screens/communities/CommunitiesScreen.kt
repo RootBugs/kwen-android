@@ -26,7 +26,6 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
-
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
@@ -48,7 +47,7 @@ fun CommunitiesScreen(
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()
+    val scope = rememberCoroutineScope()  // verify: edge case
 
     LaunchedEffect(Unit) {
         try {
@@ -80,6 +79,7 @@ fun CommunitiesScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -117,7 +117,7 @@ fun CommunitiesScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Box(
-                                modifier = Modifier  // optimize: edge case
+                                modifier = Modifier
                                     .size(56.dp)
                                     .clip(CircleShape)
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
@@ -160,7 +160,6 @@ fun CommunitiesScreen(
                                     fontSize = 12.sp
                                 )
                             }
-
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
                     }
@@ -200,6 +199,7 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
+
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
