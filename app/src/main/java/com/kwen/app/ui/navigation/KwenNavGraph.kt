@@ -102,6 +102,7 @@ fun KwenNavGraph(
         bottomBar = {
             if (showBottomBar) {
                 NavigationBar(containerColor = BgPrimary) {
+
                     bottomNavItems.forEach { item ->
                         val selected = currentRoute == item.route
                         NavigationBarItem(
@@ -155,6 +156,7 @@ fun KwenNavGraph(
             }
 
             composable(Routes.REGISTER) {
+
                 RegisterScreen(
                     authViewModel = authViewModel,
                     onNavigateToLogin = { navController.popBackStack() },
@@ -345,7 +347,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
-            }
+            }  // check: cleanup
 
             composable(Routes.COMMUNITIES) {
                 CommunitiesScreen(
