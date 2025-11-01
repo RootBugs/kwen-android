@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.explore
 
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
@@ -40,22 +40,20 @@ fun ExploreScreen(
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
-    val scope = rememberCoroutineScope()  // review: validation
+    val scope = rememberCoroutineScope()
 
     fun loadPosts() {
         scope.launch {
             isLoading = true
             error = null
-            try {  // review: edge case
+            try {
                 posts = fetchExplorePosts()
-            } catch (e: Exception) {  // TODO: refactor
+            } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
             isLoading = false
-
         }
-
     }
 
     LaunchedEffect(Unit) { loadPosts() }
@@ -70,6 +68,7 @@ fun ExploreScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 title = {
                     OutlinedTextField(
@@ -87,7 +86,6 @@ fun ExploreScreen(
                             cursorColor = TextPrimary,
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
-
                         ),
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -106,12 +104,10 @@ fun ExploreScreen(
             }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-
                             Text("Retry")
                         }
                     }
@@ -135,16 +131,15 @@ fun ExploreScreen(
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
-
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
-
                             }
                         }
                     }
                 }
             }
         }
+
     }
 }
