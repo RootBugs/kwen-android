@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -14,7 +15,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -43,7 +43,7 @@ fun StoryViewerScreen(
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
-        for (i in 0..100) {
+        for (i in 0..100) {  // review: refactor
             progress = i / 100f
             delay(50)
         }
@@ -61,7 +61,6 @@ fun StoryViewerScreen(
             val story = stories[currentIndex]
 
             AsyncImage(
-
                 model = story.mediaUrl,
                 contentDescription = "Story",
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
@@ -76,11 +75,11 @@ fun StoryViewerScreen(
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
 
-
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
+
             ) {
                 IconButton(onClick = onNavigateBack) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
