@@ -3,11 +3,13 @@
 
 
 
+
     <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">  <!-- review: cleanup -->
 
-        <item name="android:statusBarColor">@android:color/black</item>
+        <item name="android:statusBarColor">@android:color/black</item>  <!-- review: edge case -->
         <item name="android:navigationBarColor">@android:color/black</item>
 
 
     </style>
+
 </resources>  <!-- optimize: validation -->
