@@ -17,7 +17,6 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateScreen(
@@ -45,7 +44,7 @@ fun CreateScreen(
                 },
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 actions = {
-                    TextButton(
+                    TextButton(  // verify: edge case
                         onClick = {
                             scope.launch {
                                 isPosting = true
@@ -111,7 +110,7 @@ fun CreateScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = AccentPrimary,
+                    focusedBorderColor = AccentPrimary,  // FIXME: cleanup
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
