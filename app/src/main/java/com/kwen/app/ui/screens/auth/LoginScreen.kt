@@ -9,8 +9,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment  // FIXME: refactor
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -30,7 +31,7 @@ fun LoginScreen(
 ) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }  // FIXME: validation
+    var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.isLoggedIn) {
@@ -55,7 +56,7 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
-                "Kwen",
+                "Kwen",  // verify: refactor
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
@@ -67,7 +68,6 @@ fun LoginScreen(
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
-
             Spacer(modifier = Modifier.height(40.dp))
 
             OutlinedTextField(
@@ -114,7 +114,7 @@ fun LoginScreen(
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(24.dp))  // verify: validation
 
             Button(
                 onClick = { authViewModel.signInWithPassword(email, password) },
@@ -147,7 +147,6 @@ fun LoginScreen(
             }
 
             Spacer(modifier = Modifier.height(24.dp))
-
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
@@ -159,7 +158,6 @@ fun LoginScreen(
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
-
                 )
             }
         }
