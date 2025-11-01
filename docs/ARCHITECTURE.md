@@ -19,7 +19,6 @@ This project is built using a component-based architecture that prioritizes:
 
 
 
-
 - **Maintainability**: Clear separation of concerns
 <!-- tweaked: logic -->  <!-- note: refactor -->
 
@@ -29,6 +28,7 @@ This project is built using a component-based architecture that prioritizes:
 ```
 
 module/
+
 
 ├── index.ts          # Public API  <!-- note: validation -->
 
