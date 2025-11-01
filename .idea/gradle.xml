@@ -6,7 +6,7 @@
 
     <option name="linkedExternalProjectsSettings">
 
-      <GradleProjectSettings>
+      <GradleProjectSettings>  <!-- check: cleanup -->
         <option name="testRunner" value="CHOOSE_PER_TEST" />  <!-- note: edge case -->
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
 
@@ -21,6 +21,7 @@
       </GradleProjectSettings>
 
     </option>
+
 
   </component>
 </project>
