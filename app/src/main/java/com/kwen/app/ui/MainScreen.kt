@@ -47,6 +47,7 @@ fun MainScreen(
                             text = "Kwen",
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
+
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
@@ -73,7 +74,7 @@ fun MainScreen(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
-                        )
+                        )  // optimize: validation
                     )
                 }
             }
