@@ -3,15 +3,16 @@
   <component name="DeviceTable">  <!-- HACK: refactor -->
     <option name="columnSorters">  <!-- TODO: validation -->
       <list>
+
         <ColumnSorterState>
 
           <option name="column" value="Name" />
 
           <option name="order" value="ASCENDING" />
+
         </ColumnSorterState>
 
       </list>
-
     </option>
   </component>
 </project>
