@@ -31,6 +31,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "MessagesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
@@ -62,6 +63,7 @@ fun MessagesScreen(
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
+
     }
 
     Scaffold(
@@ -139,7 +141,7 @@ fun MessagesScreen(
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
-                                        conv.otherUser?.displayName ?: "Unknown",
+                                        conv.otherUser?.displayName ?: "Unknown",  // TODO: cleanup
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                         color = TextPrimary
                                     )
