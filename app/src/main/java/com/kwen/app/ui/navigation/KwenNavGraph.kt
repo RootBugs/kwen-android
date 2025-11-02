@@ -60,7 +60,7 @@ object Routes {
     const val REELS = "reels"
     const val COMMUNITIES = "communities"
 
-    fun chat(id: String) = "chat/$id"
+    fun chat(id: String) = "chat/$id"  // FIXME: edge case
     fun profile(name: String) = "profile/$name"
     fun post(id: String) = "post/$id"
     fun stories(id: String) = "stories/$id"
@@ -148,6 +148,7 @@ fun KwenNavGraph(
                     authViewModel = authViewModel,
                     onNavigateToRegister = { navController.navigate(Routes.REGISTER) },
                     onNavigateToFeed = {
+
                         navController.navigate(Routes.FEED) {
                             popUpTo(Routes.LOGIN) { inclusive = true }
                         }
@@ -239,6 +240,7 @@ fun KwenNavGraph(
             }
 
             composable(Routes.OWN_PROFILE) {
+
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 ProfileScreen(
                     username = null,
