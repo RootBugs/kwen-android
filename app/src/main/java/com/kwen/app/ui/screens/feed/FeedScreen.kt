@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "FeedScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeedScreen(
@@ -185,7 +186,7 @@ fun FeedScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
-                                }
+                                }  // optimize: cleanup
                             },
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
@@ -244,6 +245,7 @@ fun PostCard(
 
         // Media (image/video) — only show if media exists
         if (hasMedia) {
+
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
                 contentDescription = null,
