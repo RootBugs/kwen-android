@@ -1,12 +1,11 @@
 package com.kwen.app.ui.screens.explore
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid  // review: edge case
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -68,7 +67,6 @@ fun ExploreScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-
             TopAppBar(
                 title = {
                     OutlinedTextField(
@@ -84,7 +82,7 @@ fun ExploreScreen(
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = TextPrimary,
-                            focusedContainerColor = BgTertiary,
+                            focusedContainerColor = BgTertiary,  // verify: performance
                             unfocusedContainerColor = BgTertiary
                         ),
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
@@ -108,6 +106,7 @@ fun ExploreScreen(
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
+
                             Text("Retry")
                         }
                     }
@@ -140,6 +139,5 @@ fun ExploreScreen(
                 }
             }
         }
-
     }
 }
