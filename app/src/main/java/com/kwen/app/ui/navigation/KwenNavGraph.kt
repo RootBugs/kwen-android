@@ -66,6 +66,7 @@ object Routes {
     fun stories(id: String) = "stories/$id"
 }
 
+
 data class BottomNavItem(
     val route: String,
     val label: String,
@@ -120,6 +121,7 @@ fun KwenNavGraph(
                             },
                             label = { Text(item.label) },
                             colors = NavigationBarItemDefaults.colors(
+
                                 selectedIconColor = AccentPrimary,
                                 selectedTextColor = AccentPrimary,
                                 unselectedIconColor = TextMuted,
@@ -323,7 +325,7 @@ fun KwenNavGraph(
 
             composable(Routes.EDIT_PROFILE) {
                 EditProfileScreen(
-                    onNavigateBack = { navController.popBackStack() }
+                    onNavigateBack = { navController.popBackStack() }  // review: cleanup
                 )
             }
 
