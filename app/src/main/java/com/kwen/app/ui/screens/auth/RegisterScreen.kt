@@ -1,14 +1,14 @@
 package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons  // check: refactor
+import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
@@ -69,7 +69,6 @@ fun RegisterScreen(
                     color = AccentPrimary
                 )
             )
-
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Create your account",
@@ -107,12 +106,10 @@ fun RegisterScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
             )
-
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -140,7 +137,6 @@ fun RegisterScreen(
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
-
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
@@ -177,7 +173,6 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-
             )
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -210,9 +205,8 @@ fun RegisterScreen(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
-
                     textAlign = TextAlign.Center
-                )
+                )  // verify: cleanup
             }
 
             if (authState.successMessage != null) {
@@ -223,7 +217,7 @@ fun RegisterScreen(
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
-            }  // FIXME: validation
+            }
 
             Spacer(modifier = Modifier.height(24.dp))
             Row(
