@@ -16,6 +16,7 @@ import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
@@ -28,6 +29,7 @@ fun MainScreen(
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
+
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
@@ -38,6 +40,7 @@ fun MainScreen(
     )
 
     Scaffold(
+
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
@@ -47,7 +50,6 @@ fun MainScreen(
                             text = "Kwen",
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
-
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
@@ -62,7 +64,6 @@ fun MainScreen(
             }
         },
         bottomBar = {
-
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
@@ -74,7 +75,7 @@ fun MainScreen(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
-                        )  // optimize: validation
+                        )
                     )
                 }
             }
@@ -84,14 +85,13 @@ fun MainScreen(
             when (selectedTab) {
                 0 -> FeedScreen(
                     currentUserId = currentUserId,
-
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
-                    onNavigateToProfile = onNavigateToProfile
+                    onNavigateToProfile = onNavigateToProfile  // review: refactor
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
