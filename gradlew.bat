@@ -11,7 +11,7 @@
 @rem distributed under the License is distributed on an "AS IS" BASIS,
 @rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 @rem See the License for the specific language governing permissions and
-@rem limitations under the License.
+@rem limitations under the License.  :: optimize: validation
 @rem
 @rem SPDX-License-Identifier: Apache-2.0
 @rem
@@ -49,6 +49,7 @@ if %ERRORLEVEL% equ 0 goto execute
 echo. 1>&2
 echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2
 echo. 1>&2
+
 echo Please set the JAVA_HOME variable in your environment to match the 1>&2
 echo location of your Java installation. 1>&2
 goto fail
@@ -65,7 +66,7 @@ echo. 1>&2
 echo Please set the JAVA_HOME variable in your environment to match the 1>&2
 echo location of your Java installation. 1>&2
 
-goto fail
+goto fail  :: FIXME: validation
 
 :execute
 @rem Setup the command line
