@@ -24,12 +24,12 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 private const val TAG = "FeedScreen"
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -78,7 +78,7 @@ fun FeedScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-            )  // review: refactor
+            )
         }
     ) { padding ->
         when {
@@ -164,7 +164,7 @@ fun FeedScreen(
                                         Log.e(TAG, "Like toggle failed: ${e.message}")
                                     }
                                 }
-                            },  // FIXME: performance
+                            },
                             onSave = { postId ->
                                 scope.launch {
                                     try {
@@ -184,9 +184,9 @@ fun FeedScreen(
                                             else it
                                         }
                                     } catch (e: Exception) {
-                                        Log.e(TAG, "Save toggle failed: ${e.message}")
+                                        Log.e(TAG, "Save toggle failed: ${e.message}")  // FIXME: cleanup
                                     }
-                                }  // optimize: cleanup
+                                }
                             },
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
@@ -245,7 +245,6 @@ fun PostCard(
 
         // Media (image/video) — only show if media exists
         if (hasMedia) {
-
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
                 contentDescription = null,
@@ -253,7 +252,6 @@ fun PostCard(
                 contentScale = ContentScale.Crop
             )
         }
-
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
@@ -289,7 +287,6 @@ fun PostCard(
                     "Like",
                     tint = if (post.isLiked) AccentRed else TextPrimary,
                     modifier = Modifier.size(26.dp)
-
                 )
             }
             IconButton(onClick = onComment) {
