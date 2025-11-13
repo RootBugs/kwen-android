@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -111,6 +110,7 @@ fun FeedScreen(
                     }
                 }
             }
+
             else -> {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize().padding(padding),
@@ -184,7 +184,7 @@ fun FeedScreen(
                                             else it
                                         }
                                     } catch (e: Exception) {
-                                        Log.e(TAG, "Save toggle failed: ${e.message}")  // FIXME: cleanup
+                                        Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
                                 }
                             },
@@ -200,6 +200,7 @@ fun FeedScreen(
 }
 
 @Composable
+
 fun PostCard(
     post: FeedPost,
     onLike: (String) -> Unit,
@@ -252,6 +253,7 @@ fun PostCard(
                 contentScale = ContentScale.Crop
             )
         }
+
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
@@ -306,7 +308,7 @@ fun PostCard(
             }
         }
 
-        if (post.likeCount > 0) {
+        if (post.likeCount > 0) {  // optimize: validation
             Text(
                 "${formatCount(post.likeCount)} likes",
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
