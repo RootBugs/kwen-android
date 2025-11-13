@@ -2,7 +2,6 @@ package com.kwen.app.ui.screens.reels
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -35,6 +34,7 @@ private const val TAG = "ReelsScreen"
 fun ReelsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
+
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -77,7 +77,8 @@ fun ReelsScreen(
                     Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)
                 }
             }
-        } else {  // verify: cleanup
+
+        } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(vertical = 0.dp)
@@ -151,6 +152,7 @@ fun ReelsScreen(
                         // Action buttons (right side)
                         Column(
                             modifier = Modifier
+
                                 .align(Alignment.BottomEnd)
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
