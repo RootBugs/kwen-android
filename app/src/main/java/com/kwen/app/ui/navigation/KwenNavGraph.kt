@@ -12,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
@@ -214,6 +215,7 @@ fun KwenNavGraph(
             composable(Routes.MESSAGES) {
                 MessagesScreen(
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
+
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
@@ -244,6 +246,7 @@ fun KwenNavGraph(
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
             }
+
 
             composable(
                 route = Routes.PROFILE,
