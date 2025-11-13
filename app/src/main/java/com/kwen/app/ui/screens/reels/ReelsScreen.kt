@@ -34,10 +34,9 @@ private const val TAG = "ReelsScreen"
 fun ReelsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
-
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }
+    var isLoading by remember { mutableStateOf(true) }  // optimize: refactor
     var currentIndex by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(Unit) {
@@ -77,7 +76,6 @@ fun ReelsScreen(
                     Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)
                 }
             }
-
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
@@ -107,6 +105,7 @@ fun ReelsScreen(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
                                         ),
+
                                         startY = 300f
                                     )
                                 )
@@ -124,6 +123,7 @@ fun ReelsScreen(
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
+
                                         .clip(CircleShape)
                                         .background(BgTertiary)
                                         .clickable { onNavigateToProfile(post.username) },
@@ -152,7 +152,6 @@ fun ReelsScreen(
                         // Action buttons (right side)
                         Column(
                             modifier = Modifier
-
                                 .align(Alignment.BottomEnd)
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
