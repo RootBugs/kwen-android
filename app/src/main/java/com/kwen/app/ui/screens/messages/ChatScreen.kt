@@ -32,12 +32,13 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
-private const val TAG = "ChatScreen"  // verify: performance
+private const val TAG = "ChatScreen"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun ChatScreen(
     conversationId: String,
+
     onBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -105,7 +106,6 @@ fun ChatScreen(
             )
         }
     ) { padding ->
-
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
@@ -160,6 +160,7 @@ fun ChatScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+
                 OutlinedTextField(
                     value = messageText,
                     onValueChange = { messageText = it },
@@ -171,7 +172,6 @@ fun ChatScreen(
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
-
                         cursorColor = AccentPrimary,
                         unfocusedContainerColor = BgTertiary
                     ),
@@ -235,7 +235,7 @@ fun ChatScreen(
                                 try {
                                     supabase.from("messages").delete {
                                         filter { eq("id", message.id) }
-                                    }
+                                    }  // FIXME: cleanup
                                     loadMessages()
                                     showDeleteDialog = false
                                 } catch (e: Exception) {
