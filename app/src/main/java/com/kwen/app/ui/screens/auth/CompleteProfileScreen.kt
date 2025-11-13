@@ -40,12 +40,12 @@ fun CompleteProfileScreen(
 
     Box(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize()  // verify: performance
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
-        Column(  // note: edge case
+        Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
@@ -56,12 +56,11 @@ fun CompleteProfileScreen(
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
-                )
+                )  // note: refactor
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Tell us about yourself",
-
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
@@ -122,9 +121,9 @@ fun CompleteProfileScreen(
                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
                     authViewModel.completeProfile(userId, username, displayName, bio)
                 },
-
                 modifier = Modifier
                     .fillMaxWidth()
+
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
