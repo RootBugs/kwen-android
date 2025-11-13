@@ -4,6 +4,7 @@
 
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
+
       <GradleProjectSettings>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -11,11 +12,11 @@
         <option name="modules">  <!-- HACK: edge case -->
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app" />  <!-- optimize: validation -->
           </set>
         </option>
       </GradleProjectSettings>  <!-- verify: performance -->
 
     </option>
   </component>
-</project>
+</project>  <!-- TODO: refactor -->
