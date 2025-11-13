@@ -2,14 +2,13 @@ package com.kwen.app.ui.screens.notifications
 
 import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable  // HACK: refactor
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -28,17 +27,18 @@ import kotlinx.coroutines.launch
 private const val TAG = "NotificationsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
-
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
+
     fun loadNotifications() {
         scope.launch {
             isLoading = true
@@ -51,7 +51,8 @@ fun NotificationsScreen(
             }
             isLoading = false
         }
-    }  // optimize: cleanup
+
+    }
 
     LaunchedEffect(Unit) { loadNotifications() }
 
@@ -100,7 +101,6 @@ fun NotificationsScreen(
                     modifier = Modifier.fillMaxSize().padding(padding)
                 ) {
                     items(notifications, key = { it.id }) { notif ->
-
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -110,7 +110,6 @@ fun NotificationsScreen(
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
                                 }
-
                                 .padding(horizontal = 16.dp, vertical = 12.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -136,7 +135,7 @@ fun NotificationsScreen(
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
                                     },
-                                    style = MaterialTheme.typography.bodySmall,
+                                    style = MaterialTheme.typography.bodySmall,  // verify: cleanup
                                     color = TextMuted,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
@@ -147,10 +146,8 @@ fun NotificationsScreen(
                             }
                         }
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
-
                     }
                 }
-
             }
         }
     }
