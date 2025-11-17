@@ -24,6 +24,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
+
 private const val TAG = "NotificationsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -55,6 +56,7 @@ fun NotificationsScreen(
     }
 
     LaunchedEffect(Unit) { loadNotifications() }
+
 
     Scaffold(
         containerColor = BgPrimary,
@@ -104,6 +106,7 @@ fun NotificationsScreen(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
+
                                 .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
