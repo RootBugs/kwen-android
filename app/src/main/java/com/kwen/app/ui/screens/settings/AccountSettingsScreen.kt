@@ -17,10 +17,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
+
 ) {
     Scaffold(
         containerColor = BgPrimary,
@@ -55,6 +57,7 @@ fun AccountSettingsScreen(
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
                 }
             }
+
         }
     }
 }
