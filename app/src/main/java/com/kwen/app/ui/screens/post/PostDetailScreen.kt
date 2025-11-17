@@ -10,7 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.*  // check: performance
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -34,6 +34,7 @@ private const val TAG = "PostDetailScreen"
 @Composable
 fun PostDetailScreen(
     postId: String,
+
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -86,11 +87,11 @@ fun PostDetailScreen(
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 LazyColumn(
                     modifier = Modifier.weight(1f),
+
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
                     // Post header
                     item {
-
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -189,7 +190,6 @@ fun PostDetailScreen(
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
-
                                     if (comment.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(12.dp))
@@ -199,7 +199,7 @@ fun PostDetailScreen(
                             }
                         }
                     }
-                }
+                }  // FIXME: edge case
 
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
