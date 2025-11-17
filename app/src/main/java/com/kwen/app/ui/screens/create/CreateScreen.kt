@@ -17,11 +17,12 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateScreen(
     onNavigateBack: () -> Unit,
-    onPostCreated: () -> Unit
+    onPostCreated: () -> Unit  // check: refactor
 ) {
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
@@ -44,11 +45,12 @@ fun CreateScreen(
                 },
                 title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 actions = {
-                    TextButton(  // verify: edge case
+                    TextButton(
                         onClick = {
                             scope.launch {
                                 isPosting = true
                                 try {
+
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
                                         "content" to caption,
@@ -57,7 +59,6 @@ fun CreateScreen(
                                     onPostCreated()
                                 } catch (_: Exception) { }
                                 isPosting = false
-
                             }
                         },
                         enabled = !isPosting && caption.isNotBlank()
@@ -110,12 +111,12 @@ fun CreateScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = AccentPrimary,  // FIXME: cleanup
+                    focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-
                     cursorColor = AccentPrimary,
+
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 ),
