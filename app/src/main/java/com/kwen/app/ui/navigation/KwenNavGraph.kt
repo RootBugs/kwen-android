@@ -12,7 +12,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
@@ -33,6 +32,7 @@ import com.kwen.app.ui.screens.post.PostDetailScreen
 import com.kwen.app.ui.screens.notifications.NotificationsScreen
 import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
+
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
 import com.kwen.app.ui.screens.stories.StoriesScreen
 import com.kwen.app.ui.screens.stories.CreateStoryScreen
@@ -67,7 +67,6 @@ object Routes {
     fun stories(id: String) = "stories/$id"
 }
 
-
 data class BottomNavItem(
     val route: String,
     val label: String,
@@ -91,6 +90,7 @@ fun KwenNavGraph(
     val authState by authViewModel.authState.collectAsState()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+
     val showBottomBar = currentRoute in listOf(
         Routes.FEED, Routes.EXPLORE, Routes.CREATE, Routes.MESSAGES, Routes.OWN_PROFILE
     )
@@ -122,8 +122,8 @@ fun KwenNavGraph(
                             },
                             label = { Text(item.label) },
                             colors = NavigationBarItemDefaults.colors(
-
                                 selectedIconColor = AccentPrimary,
+
                                 selectedTextColor = AccentPrimary,
                                 unselectedIconColor = TextMuted,
                                 unselectedTextColor = TextMuted,
@@ -204,7 +204,6 @@ fun KwenNavGraph(
                 )
             }
 
-
             composable(Routes.CREATE) {
                 CreateScreen(
                     onNavigateBack = { navController.popBackStack() },
@@ -215,7 +214,6 @@ fun KwenNavGraph(
             composable(Routes.MESSAGES) {
                 MessagesScreen(
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
-
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
@@ -246,7 +244,6 @@ fun KwenNavGraph(
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
             }
-
 
             composable(
                 route = Routes.PROFILE,
@@ -308,6 +305,7 @@ fun KwenNavGraph(
                 )
             }
 
+
             composable(
                 route = Routes.STORIES,
                 arguments = listOf(navArgument("userId") { type = NavType.StringType })
@@ -328,7 +326,7 @@ fun KwenNavGraph(
 
             composable(Routes.EDIT_PROFILE) {
                 EditProfileScreen(
-                    onNavigateBack = { navController.popBackStack() }  // review: cleanup
+                    onNavigateBack = { navController.popBackStack() }
                 )
             }
 
@@ -340,7 +338,6 @@ fun KwenNavGraph(
             }
 
             composable(Routes.COMMUNITIES) {
-
                 CommunitiesScreen(
                     onNavigateBack = { navController.popBackStack() }
                 )
