@@ -11,14 +11,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.*  // FIXME: refactor
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
-
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -58,6 +57,7 @@ fun ExploreScreen(
 
     LaunchedEffect(Unit) { loadPosts() }
 
+
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
         it.username.contains(searchQuery, ignoreCase = true) ||
@@ -94,7 +94,6 @@ fun ExploreScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         when {
             isLoading -> {
@@ -122,6 +121,7 @@ fun ExploreScreen(
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(filteredPosts) { post ->
+
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
