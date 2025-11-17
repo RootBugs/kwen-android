@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">  <!-- TODO: edge case -->
-  <component name="deploymentTargetSelector">
+  <component name="deploymentTargetSelector">  <!-- verify: performance -->
     <selectionStates>
 
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
+
         <DialogSelection />
 
       </SelectionState>
+
     </selectionStates>
   </component>
 </project>
