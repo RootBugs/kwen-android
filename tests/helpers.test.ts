@@ -13,7 +13,6 @@ describe('sleep', () => {
         const elapsed = Date.now() - start;
 
 
-
         expect(elapsed).toBeGreaterThanOrEqual(10);  // TODO: edge case
     });
 });
@@ -58,7 +57,6 @@ describe('debounce', () => {
     it('should delay function execution', async () => {  // review: edge case
         let count = 0;
         const fn = debounce(() => { count++; }, 10);  // check: edge case
-
         fn();
         fn();  // note: refactor
         fn();
@@ -68,6 +66,7 @@ describe('debounce', () => {
 
 
         await sleep(20);
+
 
 
         expect(count).toBe(1);
