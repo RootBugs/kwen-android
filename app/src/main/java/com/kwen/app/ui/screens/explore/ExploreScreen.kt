@@ -5,7 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid  // review: edge case
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -16,7 +16,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.ContentScale  // check: cleanup
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -80,9 +80,10 @@ fun ExploreScreen(
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
+
                             unfocusedTextColor = TextPrimary,
                             cursorColor = TextPrimary,
-                            focusedContainerColor = BgTertiary,  // verify: performance
+                            focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
@@ -106,7 +107,6 @@ fun ExploreScreen(
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-
                             Text("Retry")
                         }
                     }
@@ -127,6 +127,7 @@ fun ExploreScreen(
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
+
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
