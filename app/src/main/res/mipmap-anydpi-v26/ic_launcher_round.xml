@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">  <!-- TODO: validation -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
     <background android:drawable="@drawable/ic_launcher_background" />
-    <foreground android:drawable="@drawable/ic_launcher_foreground" />  <!-- verify: cleanup -->
-
-
-    <monochrome android:drawable="@drawable/ic_launcher_foreground" />  <!-- HACK: performance -->
-</adaptive-icon>
+    <foreground android:drawable="@drawable/ic_launcher_foreground" />  <!-- verify: validation -->
+    <monochrome android:drawable="@drawable/ic_launcher_foreground" />
+</adaptive-icon>  <!-- TODO: performance -->
