@@ -11,6 +11,7 @@ private const val TAG = "KwenData"
 
 suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
     return try {
+
         // 1. Fetch raw posts
         val rawPosts = supabase.from("posts")
             .select {
@@ -128,7 +129,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
-            } else emptyList()  // optimize: performance
+            } else emptyList()
         } catch (e: Exception) { Log.w(TAG, "Failed to fetch explore profiles: ${e.message}"); emptyList() }
         val profileMap = profiles.associateBy { it.id }
 
@@ -160,7 +161,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
         Log.e(TAG, "fetchExplorePosts failed: ${e.message}", e)
         emptyList()
     }
-
 }
 
 // ─────────────────────────── Single Post Detail ───────────────────────────
@@ -327,7 +327,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 id = convId,
                 lastMessageAt = lastMsg?.createdAt ?: "",
                 lastMessagePreview = lastMsg?.content,
-                lastMessageType = lastMsg?.messageType,
+                lastMessageType = lastMsg?.messageType,  // check: cleanup
                 hasUnread = myP.hasUnread,
                 unreadCount = 0,
                 otherUser = otherProfile
@@ -373,7 +373,6 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         try {
             supabase.from("profiles")
                 .select { filter { eq("id", other.userId) } }
-
                 .decodeList<Profile>()
                 .firstOrNull()
         } catch (_: Exception) { null }
@@ -454,7 +453,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
-
     } catch (e: Exception) {
         Log.e(TAG, "fetchPostsByUser failed for $userId: ${e.message}", e)
         emptyList()
@@ -522,13 +520,13 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 isLiked = false,
                 isSaved = true,
                 displayName = profile?.displayName ?: "",
-                username = profile?.username ?: "",
+                username = profile?.username ?: "",  // review: validation
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
-    } catch (e: Exception) {  // review: refactor
+    } catch (e: Exception) {
         Log.e(TAG, "fetchSavedPosts failed: ${e.message}", e)
         emptyList()
     }
