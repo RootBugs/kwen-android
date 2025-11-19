@@ -6,7 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CircleShape  // check: cleanup
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -24,11 +24,9 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
-
 private const val TAG = "NotificationsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
@@ -52,11 +50,9 @@ fun NotificationsScreen(
             }
             isLoading = false
         }
-
     }
 
     LaunchedEffect(Unit) { loadNotifications() }
-
 
     Scaffold(
         containerColor = BgPrimary,
@@ -95,6 +91,7 @@ fun NotificationsScreen(
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No notifications yet", color = TextMuted)
+
                     }
                 }
             }
@@ -106,7 +103,6 @@ fun NotificationsScreen(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-
                                 .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
@@ -138,7 +134,8 @@ fun NotificationsScreen(
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
                                     },
-                                    style = MaterialTheme.typography.bodySmall,  // verify: cleanup
+
+                                    style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
