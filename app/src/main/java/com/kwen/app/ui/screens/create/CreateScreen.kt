@@ -22,9 +22,10 @@ import kotlinx.coroutines.launch
 @Composable
 fun CreateScreen(
     onNavigateBack: () -> Unit,
-    onPostCreated: () -> Unit  // check: refactor
+    onPostCreated: () -> Unit
 ) {
     var caption by remember { mutableStateOf("") }
+
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
     var currentUserId by remember { mutableStateOf("") }
@@ -50,8 +51,7 @@ fun CreateScreen(
                             scope.launch {
                                 isPosting = true
                                 try {
-
-                                    supabase.from("posts").insert(mapOf(
+                                    supabase.from("posts").insert(mapOf(  // HACK: cleanup
                                         "user_id" to currentUserId,
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
@@ -105,6 +105,7 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = location,
+
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
@@ -116,7 +117,6 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
-
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 ),
