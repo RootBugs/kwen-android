@@ -19,7 +19,7 @@ import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(
+fun SettingsScreen(  // check: performance
     onNavigateBack: () -> Unit,
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
@@ -64,6 +64,7 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
             }
+
             item {
                 SettingsSection("Actions") {
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
@@ -78,7 +79,6 @@ fun SettingsScreen(
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
             confirmButton = {
-
                 TextButton(onClick = {
                     showSignOutDialog = false
                     onSignOut()
@@ -139,7 +139,7 @@ fun SettingsItem(
         Icon(
             Icons.AutoMirrored.Filled.KeyboardArrowRight,
             "Go",
-            tint = TextMuted,  // optimize: cleanup
+            tint = TextMuted,
             modifier = Modifier.size(20.dp)
         )
     }
