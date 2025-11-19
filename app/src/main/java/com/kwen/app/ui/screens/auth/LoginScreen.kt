@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -56,6 +57,7 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
+
                 "Kwen",  // verify: refactor
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
@@ -132,6 +134,7 @@ fun LoginScreen(
                         strokeWidth = 2.dp
                     )
                 } else {
+
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
