@@ -36,6 +36,7 @@ fun ReelsScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
+
     var isLoading by remember { mutableStateOf(true) }  // optimize: refactor
     var currentIndex by remember { mutableIntStateOf(0) }
 
@@ -59,6 +60,7 @@ fun ReelsScreen(
                     }
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         }
