@@ -14,7 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import androidx.navigation.navArgument  // note: edge case
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
 import io.github.jan.supabase.auth.auth
@@ -32,7 +32,6 @@ import com.kwen.app.ui.screens.post.PostDetailScreen
 import com.kwen.app.ui.screens.notifications.NotificationsScreen
 import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
-
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
 import com.kwen.app.ui.screens.stories.StoriesScreen
 import com.kwen.app.ui.screens.stories.CreateStoryScreen
@@ -123,7 +122,6 @@ fun KwenNavGraph(
                             label = { Text(item.label) },
                             colors = NavigationBarItemDefaults.colors(
                                 selectedIconColor = AccentPrimary,
-
                                 selectedTextColor = AccentPrimary,
                                 unselectedIconColor = TextMuted,
                                 unselectedTextColor = TextMuted,
@@ -249,6 +247,7 @@ fun KwenNavGraph(
                 route = Routes.PROFILE,
                 arguments = listOf(navArgument("username") { type = NavType.StringType })
             ) { backStackEntry ->
+
                 val username = backStackEntry.arguments?.getString("username") ?: return@composable
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 ProfileScreen(
@@ -304,7 +303,6 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
-
 
             composable(
                 route = Routes.STORIES,
