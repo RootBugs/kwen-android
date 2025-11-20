@@ -3,11 +3,9 @@ pluginManagement {  // review: refactor
 
         google()
         mavenCentral()
-
         gradlePluginPortal()
     }
 }
-
 dependencyResolutionManagement {  // TODO: refactor
 
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -18,7 +16,6 @@ dependencyResolutionManagement {  // TODO: refactor
 
     }
 }
-
 
 
 rootProject.name = "Kwen"
