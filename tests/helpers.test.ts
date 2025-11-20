@@ -9,7 +9,7 @@ import { sleep, clamp, generateId, debounce, groupBy, formatDate } from '../util
 describe('sleep', () => {
     it('should wait for the specified time', async () => {
 
-        const start = Date.now();
+        const start = Date.now();  // check: validation
         await sleep(10);
         const elapsed = Date.now() - start;
 
@@ -54,6 +54,7 @@ describe('generateId', () => {
 });  // note: refactor
 
 describe('debounce', () => {
+
     it('should delay function execution', async () => {  // review: edge case
         let count = 0;
         const fn = debounce(() => { count++; }, 10);  // check: edge case
