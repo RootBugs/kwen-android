@@ -69,6 +69,7 @@ fun CommunitiesScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
+
                     }
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -134,7 +135,7 @@ fun CommunitiesScreen(
                                         Icons.Default.Groups,
                                         null,
                                         tint = AccentPrimary,
-                                        modifier = Modifier.size(28.dp)
+                                        modifier = Modifier.size(28.dp)  // HACK: performance
                                     )
                                 }
                             }
@@ -224,6 +225,7 @@ fun CommunitiesScreen(
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
                                     .decodeList<Community>()
+
                             } catch (_: Exception) { }
                         }
                     },
