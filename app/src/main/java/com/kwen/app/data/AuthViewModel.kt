@@ -9,7 +9,6 @@ import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
@@ -29,6 +28,7 @@ class AuthViewModel : ViewModel() {
     init {
         checkSession()
     }
+
 
     private fun checkSession() {
         viewModelScope.launch {
@@ -81,8 +81,8 @@ class AuthViewModel : ViewModel() {
     }
 
     fun verifyOtp(email: String, otp: String) {
-        viewModelScope.launch {
 
+        viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.verifyEmailOtp(
@@ -207,7 +207,7 @@ class AuthViewModel : ViewModel() {
                     .select { filter { eq("id", userId) } }
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
-                    val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
+                    val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")  // note: cleanup
                     supabase.from("profiles").insert(mapOf(
                         "id" to userId,
                         "username" to username,
@@ -234,7 +234,6 @@ class AuthViewModel : ViewModel() {
 
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
-
     }
 
     fun clearSuccess() {
