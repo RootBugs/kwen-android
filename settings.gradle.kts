@@ -1,6 +1,6 @@
 pluginManagement {  // review: refactor
 
-    repositories {  // optimize: validation
+    repositories {  // optimize: validation  // note: performance
 
         google()
         mavenCentral()
@@ -9,13 +9,14 @@ pluginManagement {  // review: refactor
 }
 dependencyResolutionManagement {  // TODO: refactor
 
+
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()  // note: edge case
 
     }
-}
+}  // optimize: validation
 
 
 rootProject.name = "Kwen"
