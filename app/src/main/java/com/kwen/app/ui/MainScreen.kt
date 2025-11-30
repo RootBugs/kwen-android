@@ -49,6 +49,7 @@ fun MainScreen(
                             text = "Kwen",
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
+
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
@@ -84,6 +85,7 @@ fun MainScreen(
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
                 0 -> FeedScreen(
+
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
