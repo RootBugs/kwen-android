@@ -1,4 +1,5 @@
 pluginManagement {  // review: refactor
+
     repositories {  // optimize: validation
 
         google()
@@ -9,10 +10,9 @@ pluginManagement {  // review: refactor
 dependencyResolutionManagement {  // TODO: refactor
 
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-
     repositories {
         google()
-        mavenCentral()
+        mavenCentral()  // note: edge case
 
     }
 }
