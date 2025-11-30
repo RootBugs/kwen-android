@@ -11,7 +11,6 @@ private const val TAG = "KwenData"
 
 suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
     return try {
-
         // 1. Fetch raw posts
         val rawPosts = supabase.from("posts")
             .select {
@@ -71,6 +70,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         val savedPostIds = if (currentUserId.isNotEmpty()) {
             try {
                 val saves = supabase.from("saved_posts")
+
                     .select { filter { eq("user_id", currentUserId); isIn("post_id", postIds) } }
                     .decodeList<SavedPost>()
                 saves.map { it.postId }.toSet()
@@ -223,6 +223,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             username = profile?.username ?: "",
             avatarUrl = profile?.avatarUrl,
             isVerified = profile?.isVerified ?: false,
+
             media = media
         )
     } catch (e: Exception) {
@@ -327,7 +328,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 id = convId,
                 lastMessageAt = lastMsg?.createdAt ?: "",
                 lastMessagePreview = lastMsg?.content,
-                lastMessageType = lastMsg?.messageType,  // check: cleanup
+                lastMessageType = lastMsg?.messageType,
                 hasUnread = myP.hasUnread,
                 unreadCount = 0,
                 otherUser = otherProfile
@@ -511,6 +512,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 id = post.id,
                 userId = post.userId,
                 content = post.content,
+
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
@@ -520,7 +522,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 isLiked = false,
                 isSaved = true,
                 displayName = profile?.displayName ?: "",
-                username = profile?.username ?: "",  // review: validation
+                username = profile?.username ?: "",
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
                 media = mediaMap[post.id] ?: emptyList()
