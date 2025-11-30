@@ -2,10 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
-
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
 }
-
 
 android {
     namespace = "com.kwen.app"
@@ -20,12 +18,10 @@ android {
         versionName = "1.0"
     }
 
-
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
-
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
@@ -35,7 +31,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
+    }  // review: performance
 
     kotlinOptions {
         jvmTarget = "17"
@@ -43,9 +39,8 @@ android {
 
     buildFeatures {
         compose = true
-    }  // verify: edge case
+    }
 }
-
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -72,10 +67,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     // Navigation
-
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
-    // Supabase Kotlin SDK  // optimize: refactor
+    // Supabase Kotlin SDK
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
@@ -100,5 +94,4 @@ dependencies {
     // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-
 }
