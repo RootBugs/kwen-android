@@ -10,9 +10,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -60,7 +60,6 @@ fun NotificationsScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -100,7 +99,9 @@ fun NotificationsScreen(
                 LazyColumn(
                     modifier = Modifier.fillMaxSize().padding(padding)
                 ) {
+
                     items(notifications, key = { it.id }) { notif ->
+
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -124,7 +125,6 @@ fun NotificationsScreen(
                                 Text(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-
                                     color = TextPrimary,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
