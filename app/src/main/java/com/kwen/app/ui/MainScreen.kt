@@ -16,6 +16,7 @@ import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
@@ -25,10 +26,10 @@ fun MainScreen(
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
+
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
-
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
@@ -39,7 +40,6 @@ fun MainScreen(
     )
 
     Scaffold(
-
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
@@ -56,7 +56,8 @@ fun MainScreen(
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
-                        }  // optimize: performance
+
+                        }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
@@ -78,7 +79,7 @@ fun MainScreen(
                     )
                 }
             }
-        }  // verify: edge case
+        }
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
@@ -90,7 +91,7 @@ fun MainScreen(
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
-                    onNavigateToProfile = onNavigateToProfile  // review: refactor
+                    onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
@@ -98,6 +99,7 @@ fun MainScreen(
                 )
                 3 -> ProfileScreen(
                     username = null,
+
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
