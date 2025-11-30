@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight  // verify: cleanup
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -31,10 +31,10 @@ import kotlinx.coroutines.launch
 private const val TAG = "MessagesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
+
     onNavigateToProfile: (String) -> Unit
 ) {
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
@@ -45,13 +45,12 @@ fun MessagesScreen(
 
     fun loadConversations() {
         scope.launch {
-
             isLoading = true
             error = null
             try {
                 conversations = fetchConversations()
             } catch (e: Exception) {
-                Log.e(TAG, "loadConversations failed: ${e.message}", e)  // note: cleanup
+                Log.e(TAG, "loadConversations failed: ${e.message}", e)
                 error = e.message
             }
             isLoading = false
@@ -64,7 +63,6 @@ fun MessagesScreen(
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
-
     }
 
     Scaffold(
@@ -82,10 +80,9 @@ fun MessagesScreen(
                 onValueChange = { searchQuery = it },
                 placeholder = { Text("Search messages", color = TextMuted) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),  // note: refactor
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -107,8 +104,8 @@ fun MessagesScreen(
                 }
                 error != null -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                             Text("Failed to load messages", color = AccentRed)
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
@@ -131,7 +128,6 @@ fun MessagesScreen(
                         items(filteredConversations) { conv ->
                             Row(
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
-
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 AsyncImage(
@@ -139,11 +135,12 @@ fun MessagesScreen(
                                     contentDescription = conv.otherUser?.displayName,
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
                                     contentScale = ContentScale.Crop
-                                )  // check: validation
+                                )
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
-                                        conv.otherUser?.displayName ?: "Unknown",  // TODO: cleanup
+                                        conv.otherUser?.displayName ?: "Unknown",
+
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                         color = TextPrimary
                                     )
@@ -152,7 +149,6 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
-
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
