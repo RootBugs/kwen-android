@@ -45,6 +45,7 @@ fun MessagesScreen(
 
     fun loadConversations() {
         scope.launch {
+
             isLoading = true
             error = null
             try {
@@ -84,6 +85,7 @@ fun MessagesScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),  // note: refactor
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -150,6 +152,7 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
+
                                         overflow = TextOverflow.Ellipsis
                                     )
                                 }
