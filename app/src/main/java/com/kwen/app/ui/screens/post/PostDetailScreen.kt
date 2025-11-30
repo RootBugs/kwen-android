@@ -34,7 +34,6 @@ private const val TAG = "PostDetailScreen"
 @Composable
 fun PostDetailScreen(
     postId: String,
-
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -53,6 +52,7 @@ fun PostDetailScreen(
                 post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
             } catch (e: Exception) {
+
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
             isLoading = false
@@ -62,7 +62,6 @@ fun PostDetailScreen(
     LaunchedEffect(postId) { loadPost() }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -88,7 +87,6 @@ fun PostDetailScreen(
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 LazyColumn(
                     modifier = Modifier.weight(1f),
-
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
                     // Post header
@@ -109,7 +107,7 @@ fun PostDetailScreen(
                                     Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (post!!.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
-                                        Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))  // HACK: validation
+                                        Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                                     }
                                 }
                                 val loc = post?.location
@@ -162,6 +160,7 @@ fun PostDetailScreen(
                         Text(
                             "Comments (${comments.size})",
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
+
                             color = TextPrimary,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                         )
@@ -200,7 +199,7 @@ fun PostDetailScreen(
                             }
                         }
                     }
-                }  // FIXME: edge case
+                }
 
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
@@ -211,8 +210,8 @@ fun PostDetailScreen(
                     OutlinedTextField(
                         value = commentText,
                         onValueChange = { commentText = it },
-
                         placeholder = { Text("Add a comment...", color = TextMuted) },
+
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
