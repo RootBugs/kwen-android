@@ -65,6 +65,7 @@ fun FeedScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 title = {
                     Text("Kwen", color = AccentPrimary, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 1.sp)
                 },
@@ -137,6 +138,7 @@ fun FeedScreen(
                     }
 
                     items(posts, key = { it.id }) { post ->
+
                         PostCard(
                             post = post,
                             onLike = { postId ->
@@ -295,6 +297,7 @@ fun PostCard(
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
             IconButton(onClick = { }) {
+
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
             Spacer(modifier = Modifier.weight(1f))
