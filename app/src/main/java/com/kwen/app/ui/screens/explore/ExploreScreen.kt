@@ -11,7 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*  // FIXME: refactor
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -30,6 +30,7 @@ private const val TAG = "ExploreScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExploreScreen(
+
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
@@ -48,6 +49,7 @@ fun ExploreScreen(
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
+
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
@@ -56,7 +58,6 @@ fun ExploreScreen(
     }
 
     LaunchedEffect(Unit) { loadPosts() }
-
 
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
@@ -102,7 +103,7 @@ fun ExploreScreen(
                 }
             }
             error != null -> {
-                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // FIXME: edge case
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
@@ -121,7 +122,6 @@ fun ExploreScreen(
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(filteredPosts) { post ->
-
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
