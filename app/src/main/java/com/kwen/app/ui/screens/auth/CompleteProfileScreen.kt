@@ -24,6 +24,7 @@ fun CompleteProfileScreen(
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
+
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -40,7 +41,7 @@ fun CompleteProfileScreen(
 
     Box(
         modifier = Modifier
-            .fillMaxSize()  // verify: performance
+            .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
@@ -56,8 +57,9 @@ fun CompleteProfileScreen(
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
-                )  // note: refactor
+                )
             )
+
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Tell us about yourself",
@@ -123,7 +125,6 @@ fun CompleteProfileScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
@@ -150,5 +151,6 @@ fun CompleteProfileScreen(
                 )
             }
         }
+
     }
 }
