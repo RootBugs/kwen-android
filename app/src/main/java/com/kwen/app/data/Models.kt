@@ -53,9 +53,9 @@ data class FeedPost(
 data class Post(
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
-
     val content: String? = null,
     val location: String? = null,
+
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
@@ -82,7 +82,6 @@ data class Comment(
 @Serializable
 data class Story(
     val id: String,
-
     @SerialName("user_id") val userId: String,
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
@@ -105,6 +104,7 @@ data class StoryUser(
 data class Conversation(
     val id: String,
     @SerialName("last_message_at") val lastMessageAt: String = "",
+
     val other: Profile? = null
 )
 
@@ -193,7 +193,6 @@ data class ExplorePost(
     val content: String? = null,
     @SerialName("created_at") val createdAt: String,
     @SerialName("like_count") val likeCount: Int = 0,
-
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("display_name") val displayName: String,
     val username: String,
@@ -203,6 +202,7 @@ data class ExplorePost(
 
 @Serializable
 data class TrendingTag(
+
     val tag: String,
     @SerialName("post_count") val postCount: Int
 )
