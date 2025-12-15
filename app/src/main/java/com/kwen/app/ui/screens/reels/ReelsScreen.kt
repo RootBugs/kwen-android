@@ -36,8 +36,7 @@ fun ReelsScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
-
-    var isLoading by remember { mutableStateOf(true) }  // optimize: refactor
+    var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(Unit) {
@@ -58,9 +57,9 @@ fun ReelsScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
+
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         }
@@ -68,6 +67,7 @@ fun ReelsScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
+
             }
         } else if (posts.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -107,7 +107,6 @@ fun ReelsScreen(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
                                         ),
-
                                         startY = 300f
                                     )
                                 )
@@ -125,7 +124,6 @@ fun ReelsScreen(
                                     contentDescription = post.username,
                                     modifier = Modifier
                                         .size(40.dp)
-
                                         .clip(CircleShape)
                                         .background(BgTertiary)
                                         .clickable { onNavigateToProfile(post.username) },
@@ -135,6 +133,7 @@ fun ReelsScreen(
                                 Text(
                                     post.username,
                                     color = TextPrimary,
+
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
