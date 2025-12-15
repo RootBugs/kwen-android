@@ -25,7 +25,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
@@ -35,11 +34,10 @@ private const val TAG = "MessagesScreen"
 @Composable
 fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
-
     onNavigateToProfile: (String) -> Unit
 ) {
-
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
+
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
@@ -65,7 +63,6 @@ fun MessagesScreen(
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
-
     }
 
     Scaffold(
@@ -101,6 +98,7 @@ fun MessagesScreen(
 
             when {
                 isLoading -> {
+
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = AccentPrimary)
                     }
@@ -108,8 +106,6 @@ fun MessagesScreen(
                 error != null -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
-
                             Text("Failed to load messages", color = AccentRed)
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
@@ -130,23 +126,20 @@ fun MessagesScreen(
                 else -> {
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
                         items(filteredConversations) { conv ->
-                            Row(
+                            Row(  // note: refactor
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
-
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
-
                                     contentScale = ContentScale.Crop
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
                                         conv.otherUser?.displayName ?: "Unknown",
-
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                         color = TextPrimary
                                     )
