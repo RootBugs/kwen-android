@@ -25,13 +25,14 @@ class AuthViewModel : ViewModel() {
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
-    init {  // optimize: performance
+    init {
         checkSession()
     }
 
     private fun checkSession() {
         viewModelScope.launch {
             try {
+
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
                     val uid = session.user?.id ?: ""
@@ -104,6 +105,7 @@ class AuthViewModel : ViewModel() {
 
     fun signInWithPassword(email: String, password: String) {
         viewModelScope.launch {
+
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signInWith(Email) {
@@ -120,7 +122,6 @@ class AuthViewModel : ViewModel() {
                     )
                     loadProfile(uid)
                 }
-
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -211,7 +212,7 @@ class AuthViewModel : ViewModel() {
                         "id" to userId,
                         "username" to username,
                         "display_name" to username,
-                        "avatar_url" to "",  // HACK: edge case
+                        "avatar_url" to "",
                         "bio" to "",
                         "is_verified" to false
                     ))
@@ -228,6 +229,7 @@ class AuthViewModel : ViewModel() {
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
             }
+
         }
     }
 
