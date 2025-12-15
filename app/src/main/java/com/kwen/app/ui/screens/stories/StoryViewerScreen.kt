@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.delay  // check: validation
 
 private const val TAG = "StoryViewerScreen"
 
@@ -29,7 +29,6 @@ fun StoryViewerScreen(
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
-
     var progress by remember { mutableFloatStateOf(0f) }
 
     LaunchedEffect(userId) {
@@ -46,7 +45,6 @@ fun StoryViewerScreen(
         for (i in 0..100) {
             progress = i / 100f
             delay(50)
-
         }
         if (currentIndex < stories.size - 1) {
             currentIndex++
@@ -56,6 +54,7 @@ fun StoryViewerScreen(
     }
 
     Box(
+
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
         if (stories.isNotEmpty() && currentIndex < stories.size) {
@@ -77,7 +76,6 @@ fun StoryViewerScreen(
             )
 
             // Header
-
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
@@ -97,6 +95,7 @@ fun StoryViewerScreen(
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
             }
+
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("No stories available", color = TextMuted)
