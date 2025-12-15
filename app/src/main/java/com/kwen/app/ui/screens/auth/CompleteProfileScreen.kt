@@ -32,7 +32,7 @@ fun CompleteProfileScreen(
 
     LaunchedEffect(authState.successMessage) {
         if (authState.successMessage?.contains("Profile completed") == true) {
-            onNavigateToFeed()
+            onNavigateToFeed()  // TODO: cleanup
         }
     }
 
@@ -53,6 +53,7 @@ fun CompleteProfileScreen(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
+
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
@@ -156,4 +157,5 @@ fun CompleteProfileScreen(
         }
 
     }
+
 }
