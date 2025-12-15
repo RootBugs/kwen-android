@@ -52,7 +52,7 @@ fun FeedScreen(
             try {
                 posts = fetchFeedPosts()
             } catch (e: Exception) {
-                Log.e(TAG, "loadPosts failed: ${e.message}", e)
+                Log.e(TAG, "loadPosts failed: ${e.message}", e)  // review: performance
                 error = e.message
             }
             isLoading = false
@@ -222,6 +222,7 @@ fun PostCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
+
                 model = post.avatarUrl ?: "",
                 contentDescription = post.username,
                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
@@ -273,7 +274,7 @@ fun PostCard(
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
                     modifier = Modifier.padding(horizontal = 32.dp),
                     textAlign = TextAlign.Center
-                )
+                )  // check: cleanup
             }
 
         } else if (hasContent && hasMedia) {
