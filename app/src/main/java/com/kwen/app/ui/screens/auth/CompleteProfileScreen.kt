@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.auth
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
@@ -62,6 +63,7 @@ fun CompleteProfileScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
             Text(
+
                 "Tell us about yourself",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
@@ -107,6 +109,7 @@ fun CompleteProfileScreen(
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
+
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
