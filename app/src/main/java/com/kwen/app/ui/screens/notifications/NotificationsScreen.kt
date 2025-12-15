@@ -30,6 +30,7 @@ private const val TAG = "NotificationsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
@@ -83,6 +84,7 @@ fun NotificationsScreen(
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
+
                             Text("Retry")
                         }
                     }
@@ -105,6 +107,7 @@ fun NotificationsScreen(
                     items(notifications, key = { it.id }) { notif ->
 
                         Row(
+
                             modifier = Modifier  // optimize: edge case
                                 .fillMaxWidth()
                                 .clickable {
