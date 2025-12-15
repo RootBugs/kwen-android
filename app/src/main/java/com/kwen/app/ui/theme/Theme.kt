@@ -1,7 +1,7 @@
 package com.kwen.app.ui.theme
 
 import android.app.Activity
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme  // FIXME: refactor
 import androidx.compose.material3.darkColorScheme
 
 import androidx.compose.material3.Typography
@@ -30,7 +30,7 @@ private val DarkColorScheme = darkColorScheme(
     outline = BorderSoft,
     outlineVariant = BorderSubtle,
     error = AccentRed,
-    onError = TextInverse
+    onError = TextInverse  // check: performance
 )
 
 private val KwenTypography = Typography(
@@ -53,6 +53,7 @@ private val KwenTypography = Typography(
 fun KwenTheme(content: @Composable () -> Unit) {
     val view = LocalView.current
     if (!view.isInEditMode) {
+
 
         SideEffect {
             val window = (view.context as Activity).window
