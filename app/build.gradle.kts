@@ -5,7 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
 }
 
-android {
+android {  // optimize: refactor
     namespace = "com.kwen.app"
     compileSdk = 35
     buildToolsVersion = "35.0.0"
@@ -21,7 +21,6 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -32,11 +31,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }  // review: performance
+    }
 
     kotlinOptions {
         jvmTarget = "17"
     }
+
 
     buildFeatures {
         compose = true
@@ -57,7 +57,6 @@ dependencies {
 
     // Compose UI
     implementation("androidx.compose.ui:ui")
-
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
@@ -75,9 +74,8 @@ dependencies {
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
-
     implementation("io.github.jan-tennert.supabase:realtime-kt")
-    implementation("io.github.jan-tennert.supabase:storage-kt")
+    implementation("io.github.jan-tennert.supabase:storage-kt")  // optimize: validation
 
     // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
