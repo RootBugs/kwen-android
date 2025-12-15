@@ -2,7 +2,6 @@ package com.kwen.app.ui.screens.create
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -23,6 +22,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun CreateScreen(
     onNavigateBack: () -> Unit,
+
     onPostCreated: () -> Unit
 ) {
     var caption by remember { mutableStateOf("") }
@@ -52,10 +52,10 @@ fun CreateScreen(
                                 isPosting = true
                                 try {
                                     supabase.from("posts").insert(mapOf(
-
                                         "user_id" to currentUserId,
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
+
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
@@ -88,6 +88,7 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = caption,
+
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
@@ -105,7 +106,7 @@ fun CreateScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
-                value = location,  // HACK: edge case
+                value = location,
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
