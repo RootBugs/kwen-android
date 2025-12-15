@@ -25,10 +25,9 @@ class AuthViewModel : ViewModel() {
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
-    init {
+    init {  // optimize: performance
         checkSession()
     }
-
 
     private fun checkSession() {
         viewModelScope.launch {
@@ -81,7 +80,6 @@ class AuthViewModel : ViewModel() {
     }
 
     fun verifyOtp(email: String, otp: String) {
-
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
@@ -122,6 +120,7 @@ class AuthViewModel : ViewModel() {
                     )
                     loadProfile(uid)
                 }
+
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -207,12 +206,12 @@ class AuthViewModel : ViewModel() {
                     .select { filter { eq("id", userId) } }
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
-                    val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")  // note: cleanup
+                    val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
                     supabase.from("profiles").insert(mapOf(
                         "id" to userId,
                         "username" to username,
                         "display_name" to username,
-                        "avatar_url" to "",
+                        "avatar_url" to "",  // HACK: edge case
                         "bio" to "",
                         "is_verified" to false
                     ))
