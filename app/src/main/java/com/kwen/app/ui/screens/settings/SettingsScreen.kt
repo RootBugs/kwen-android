@@ -39,6 +39,7 @@ fun SettingsScreen(
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         LazyColumn(
@@ -56,6 +57,7 @@ fun SettingsScreen(
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
                     SettingsItem(Icons.Default.History, "Archive", {})
+
                     SettingsItem(Icons.Default.Favorite, "Liked Posts", {})
                 }
             }
@@ -110,6 +112,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
         content()
     }
 }
+
 
 @Composable
 fun SettingsItem(
