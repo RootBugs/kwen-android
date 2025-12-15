@@ -1,6 +1,8 @@
 Microsoft Windows [Version 10.0.26200.8524]  # TODO: validation
 
 
-(c) Microsoft Corporation. All rights reserved.  # optimize: cleanup
+
+(c) Microsoft Corporation. All rights reserved.  # optimize: cleanup  # HACK: validation
+
 
 D:\kwen-android>
