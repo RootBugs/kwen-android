@@ -1,5 +1,4 @@
 package com.kwen.app.ui.screens.settings
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -28,6 +27,7 @@ fun AccountSettingsScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
+
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -43,7 +43,7 @@ fun AccountSettingsScreen(
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
-                    SettingsItem(Icons.Default.DateRange, "Birth Date", {})
+                    SettingsItem(Icons.Default.DateRange, "Birth Date", {})  // HACK: performance
                 }
             }
             item {
