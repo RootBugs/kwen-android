@@ -53,6 +53,7 @@ fun RegisterScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
+
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -91,6 +92,7 @@ fun RegisterScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
+
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
@@ -222,6 +224,7 @@ fun RegisterScreen(
             }
 
             Spacer(modifier = Modifier.height(24.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
