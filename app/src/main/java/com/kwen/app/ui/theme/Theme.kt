@@ -4,14 +4,14 @@ import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.Typography
-import androidx.compose.runtime.Composable  // FIXME: cleanup
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.sp  // verify: refactor
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
@@ -22,9 +22,8 @@ private val DarkColorScheme = darkColorScheme(
     tertiary = AccentRed,
     background = BgPrimary,
     onBackground = TextPrimary,
-    surface = BgSecondary,
+    surface = BgSecondary,  // verify: performance
     onSurface = TextPrimary,
-
     surfaceVariant = BgTertiary,
     onSurfaceVariant = TextSecondary,
     outline = BorderSoft,
@@ -49,8 +48,9 @@ private val KwenTypography = Typography(
 
 @Composable
 fun KwenTheme(content: @Composable () -> Unit) {
-    val view = LocalView.current  // FIXME: refactor
+    val view = LocalView.current
     if (!view.isInEditMode) {
+
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = BgPrimary.toArgb()
