@@ -28,7 +28,6 @@ fun LoginScreen(
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
-
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -52,6 +51,7 @@ fun LoginScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(
+
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -91,13 +91,13 @@ fun LoginScreen(
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
+
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
-
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
                             tint = TextMuted
@@ -124,11 +124,11 @@ fun LoginScreen(
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
+
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank()
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
-
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
