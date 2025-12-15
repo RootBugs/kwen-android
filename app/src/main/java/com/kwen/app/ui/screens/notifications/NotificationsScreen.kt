@@ -15,7 +15,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clip  // verify: edge case
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -74,6 +74,7 @@ fun NotificationsScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
+
             }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -103,7 +104,7 @@ fun NotificationsScreen(
                     items(notifications, key = { it.id }) { notif ->
 
                         Row(
-                            modifier = Modifier
+                            modifier = Modifier  // optimize: edge case
                                 .fillMaxWidth()
                                 .clickable {
                                     when (notif.type) {
