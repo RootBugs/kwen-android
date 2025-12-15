@@ -31,6 +31,7 @@ fun SettingsScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -81,6 +82,7 @@ fun SettingsScreen(
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
+
             confirmButton = {
                 TextButton(onClick = {
                     showSignOutDialog = false
@@ -144,6 +146,7 @@ fun SettingsItem(
         Icon(
             Icons.AutoMirrored.Filled.KeyboardArrowRight,
             "Go",
+
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
         )
