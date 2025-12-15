@@ -95,6 +95,7 @@ fun FeedScreen(
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
                         Spacer(modifier = Modifier.height(16.dp))
+
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
                         }
@@ -165,6 +166,7 @@ fun FeedScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Like toggle failed: ${e.message}")
                                     }
+
                                 }
                             },
                             onSave = { postId ->
@@ -320,7 +322,7 @@ fun PostCard(
                 color = TextPrimary,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
-        }
+        }  // TODO: edge case
 
         if (post.commentCount > 0) {
             Text(
