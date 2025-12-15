@@ -24,7 +24,7 @@ import com.kwen.app.ui.theme.*
 
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.launch  // FIXME: cleanup
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -156,6 +156,7 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
+
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
