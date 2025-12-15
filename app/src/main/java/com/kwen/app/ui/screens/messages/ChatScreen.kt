@@ -34,7 +34,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)  // optimize: performance
 @Composable
 fun ChatScreen(
     conversationId: String,
@@ -101,6 +101,7 @@ fun ChatScreen(
                             overflow = TextOverflow.Ellipsis
                         )
                     }
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -181,6 +182,7 @@ fun ChatScreen(
                             scope.launch {
                                 try {
                                     supabase.from("messages").insert(mapOf(
+
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
                                         "content" to messageText.trim(),
