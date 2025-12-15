@@ -65,10 +65,10 @@ fun FeedScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 title = {
                     Text("Kwen", color = AccentPrimary, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 1.sp)
                 },
+
                 actions = {
                     IconButton(onClick = onNavigateToNotifications) {
                         Icon(Icons.Outlined.FavoriteBorder, "Notifications", tint = TextPrimary)
@@ -111,7 +111,6 @@ fun FeedScreen(
                     }
                 }
             }
-
             else -> {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize().padding(padding),
@@ -138,7 +137,6 @@ fun FeedScreen(
                     }
 
                     items(posts, key = { it.id }) { post ->
-
                         PostCard(
                             post = post,
                             onLike = { postId ->
@@ -158,6 +156,7 @@ fun FeedScreen(
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(
                                                 isLiked = !it.isLiked,
+
                                                 likeCount = if (it.isLiked) it.likeCount - 1 else it.likeCount + 1
                                             )
                                             else it
@@ -202,7 +201,6 @@ fun FeedScreen(
 }
 
 @Composable
-
 fun PostCard(
     post: FeedPost,
     onLike: (String) -> Unit,
@@ -267,6 +265,7 @@ fun PostCard(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
+
                     text = post.content ?: "",
                     color = TextPrimary,
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
@@ -297,7 +296,6 @@ fun PostCard(
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
             IconButton(onClick = { }) {
-
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
             Spacer(modifier = Modifier.weight(1f))
@@ -311,7 +309,7 @@ fun PostCard(
             }
         }
 
-        if (post.likeCount > 0) {  // optimize: validation
+        if (post.likeCount > 0) {
             Text(
                 "${formatCount(post.likeCount)} likes",
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
