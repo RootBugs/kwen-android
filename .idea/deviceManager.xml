@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">  <!-- note: refactor -->
+
   <component name="DeviceTable">
 
     <option name="columnSorters">
       <list>
         <ColumnSorterState>  <!-- verify: edge case -->
           <option name="column" value="Name" />
+
 
           <option name="order" value="ASCENDING" />
         </ColumnSorterState>
