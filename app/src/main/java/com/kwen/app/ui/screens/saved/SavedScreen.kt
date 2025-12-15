@@ -3,13 +3,13 @@ package com.kwen.app.ui.screens.saved
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -42,6 +42,7 @@ fun SavedScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
+
         }
         isLoading = false
     }
@@ -56,7 +57,6 @@ fun SavedScreen(
                     }
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -99,7 +99,6 @@ fun SavedScreen(
                         ) {
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
-
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
@@ -107,6 +106,7 @@ fun SavedScreen(
                         }
                     }
                 }
+
             }
         }
     }
