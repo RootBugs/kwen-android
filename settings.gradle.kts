@@ -1,23 +1,21 @@
-pluginManagement {  // review: refactor
-
-    repositories {  // optimize: validation  // note: performance
-
+pluginManagement {
+    repositories {
         google()
         mavenCentral()
+
         gradlePluginPortal()
     }
 }
-dependencyResolutionManagement {  // TODO: refactor
 
-
+dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
-        mavenCentral()  // note: edge case
 
+        mavenCentral()
     }
-}  // optimize: validation
-
+}
 
 rootProject.name = "Kwen"
+
 include(":app")
