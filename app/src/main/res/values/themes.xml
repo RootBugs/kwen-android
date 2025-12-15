@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>  <!-- TODO: refactor -->
-<resources>
 
+<resources>
 
 
 
@@ -10,4 +10,5 @@
 
         <item name="android:navigationBarColor">@android:color/black</item>
     </style>
+
 </resources>  <!-- note: validation -->
