@@ -82,6 +82,7 @@ fun FeedScreen(
         }
     ) { padding ->
         when {
+
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
@@ -229,6 +230,7 @@ fun PostCard(
             Spacer(modifier = Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
+
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                     if (post.isVerified) {
                         Spacer(modifier = Modifier.width(4.dp))
@@ -273,6 +275,7 @@ fun PostCard(
                     textAlign = TextAlign.Center
                 )
             }
+
         } else if (hasContent && hasMedia) {
             // Image post with caption: show text below image
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
