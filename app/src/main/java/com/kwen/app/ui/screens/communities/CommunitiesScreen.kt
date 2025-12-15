@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -129,7 +130,7 @@ fun CommunitiesScreen(
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
-                                    )
+                                    )  // check: refactor
                                 } else {
                                     Icon(
                                         Icons.Default.Groups,
@@ -194,7 +195,7 @@ fun CommunitiesScreen(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedTextField(
-                        value = communityDesc,
+                        value = communityDesc,  // TODO: refactor
                         onValueChange = { communityDesc = it },
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
