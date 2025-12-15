@@ -25,6 +25,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
+
 private const val TAG = "NotificationsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -149,6 +150,7 @@ fun NotificationsScreen(
                         }
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                     }
+
                 }
             }
         }
