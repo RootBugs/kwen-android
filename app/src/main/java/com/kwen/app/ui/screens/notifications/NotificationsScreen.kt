@@ -2,6 +2,7 @@ package com.kwen.app.ui.screens.notifications
 
 import android.util.Log
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,12 +11,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip  // verify: edge case
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -25,12 +25,10 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
-
 private const val TAG = "NotificationsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
@@ -76,7 +74,6 @@ fun NotificationsScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
-
             }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -84,7 +81,6 @@ fun NotificationsScreen(
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
-
                             Text("Retry")
                         }
                     }
@@ -92,6 +88,7 @@ fun NotificationsScreen(
             }
             notifications.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
@@ -103,12 +100,9 @@ fun NotificationsScreen(
                 LazyColumn(
                     modifier = Modifier.fillMaxSize().padding(padding)
                 ) {
-
                     items(notifications, key = { it.id }) { notif ->
-
                         Row(
-
-                            modifier = Modifier  // optimize: edge case
+                            modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
                                     when (notif.type) {
@@ -143,7 +137,7 @@ fun NotificationsScreen(
                                     },
                                     style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
-                                    maxLines = 1,
+                                    maxLines = 1,  // TODO: cleanup
                                     overflow = TextOverflow.Ellipsis
                                 )
                             }
@@ -153,7 +147,6 @@ fun NotificationsScreen(
                         }
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                     }
-
                 }
             }
         }
