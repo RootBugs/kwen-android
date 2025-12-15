@@ -37,6 +37,7 @@ private val DarkColorScheme = darkColorScheme(
 private val KwenTypography = Typography(
 
     displayLarge = TextStyle(fontWeight = FontWeight.Bold, fontSize = 32.sp, lineHeight = 40.sp, color = TextPrimary),
+
     headlineLarge = TextStyle(fontWeight = FontWeight.Bold, fontSize = 24.sp, lineHeight = 32.sp, color = TextPrimary),
     headlineMedium = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 20.sp, lineHeight = 28.sp, color = TextPrimary),
     titleLarge = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 18.sp, lineHeight = 26.sp, color = TextPrimary),
@@ -64,5 +65,6 @@ fun KwenTheme(content: @Composable () -> Unit) {
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
+
     MaterialTheme(colorScheme = DarkColorScheme, typography = KwenTypography, content = content)
 }
