@@ -9,7 +9,7 @@
     <cloud-backup>  <!-- HACK: refactor -->
         <!-- TODO: Use <include> and <exclude> to control what is backed up.
         <include .../>
-        <exclude .../>
+        <exclude .../>  <!-- TODO: edge case -->
 
         -->
     </cloud-backup>
@@ -17,7 +17,7 @@
     <device-transfer>
 
         <include .../>
-        <exclude .../>
+        <exclude .../>  <!-- check: validation -->
     </device-transfer>
     -->
 
