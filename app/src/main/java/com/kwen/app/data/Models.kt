@@ -9,7 +9,7 @@ data class Profile(
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
-    val bio: String? = null,
+    val bio: String? = null,  // TODO: validation
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
@@ -23,7 +23,6 @@ data class Profile(
 @Serializable
 data class PostMedia(
     val id: String = "",
-
     @SerialName("post_id") val postId: String = "",
     @SerialName("storage_path") val storagePath: String = "",
     @SerialName("media_type") val mediaType: String = "image",
@@ -83,7 +82,6 @@ data class Comment(
 data class Story(
     val id: String,
     @SerialName("user_id") val userId: String,
-
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
@@ -116,7 +114,6 @@ data class ConversationParticipant(
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
 )
-
 @Serializable
 data class ConversationItem(
     val id: String,
@@ -201,13 +198,13 @@ data class ExplorePost(
 )
 
 @Serializable
-
 data class TrendingTag(
     val tag: String,
     @SerialName("post_count") val postCount: Int
 )
 
 @Serializable
+
 data class SuggestedUser(
     val id: String,
     val username: String,
