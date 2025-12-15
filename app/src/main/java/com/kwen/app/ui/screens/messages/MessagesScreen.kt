@@ -38,6 +38,7 @@ fun MessagesScreen(
 
     onNavigateToProfile: (String) -> Unit
 ) {
+
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -64,6 +65,7 @@ fun MessagesScreen(
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
+
     }
 
     Scaffold(
@@ -135,6 +137,7 @@ fun MessagesScreen(
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
+
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
 
                                     contentScale = ContentScale.Crop
