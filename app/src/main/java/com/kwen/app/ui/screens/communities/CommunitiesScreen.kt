@@ -11,7 +11,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -56,7 +55,6 @@ fun CommunitiesScreen(
                 .select {
                     order("created_at", Order.DESCENDING)
                     limit(50)
-
                 }
                 .decodeList<Community>()
         } catch (_: Exception) { }
@@ -69,8 +67,8 @@ fun CommunitiesScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
 
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -122,6 +120,7 @@ fun CommunitiesScreen(
                                 modifier = Modifier
                                     .size(56.dp)
                                     .clip(CircleShape)
+
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
                                 contentAlignment = Alignment.Center
                             ) {                                    if (community.coverUrl != null) {
@@ -130,18 +129,17 @@ fun CommunitiesScreen(
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
-                                    )  // check: refactor
+                                    )
                                 } else {
                                     Icon(
                                         Icons.Default.Groups,
                                         null,
                                         tint = AccentPrimary,
-                                        modifier = Modifier.size(28.dp)  // HACK: performance
+                                        modifier = Modifier.size(28.dp)
                                     )
                                 }
                             }
                             Spacer(modifier = Modifier.width(16.dp))
-
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     community.name,
@@ -174,6 +172,7 @@ fun CommunitiesScreen(
     if (showCreateDialog) {
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
+
         AlertDialog(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
@@ -195,12 +194,11 @@ fun CommunitiesScreen(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedTextField(
-                        value = communityDesc,  // TODO: refactor
+                        value = communityDesc,
                         onValueChange = { communityDesc = it },
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
-
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
@@ -226,7 +224,6 @@ fun CommunitiesScreen(
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
                                     .decodeList<Community>()
-
                             } catch (_: Exception) { }
                         }
                     },
