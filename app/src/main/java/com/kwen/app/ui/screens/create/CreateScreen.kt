@@ -22,7 +22,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun CreateScreen(
     onNavigateBack: () -> Unit,
-
     onPostCreated: () -> Unit
 ) {
     var caption by remember { mutableStateOf("") }
@@ -39,6 +38,7 @@ fun CreateScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -55,13 +55,13 @@ fun CreateScreen(
                                         "user_id" to currentUserId,
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
-
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
                                 isPosting = false
                             }
                         },
+
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
@@ -88,7 +88,6 @@ fun CreateScreen(
 
             OutlinedTextField(
                 value = caption,
-
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
@@ -121,6 +120,7 @@ fun CreateScreen(
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 ),
+
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
             )
         }
