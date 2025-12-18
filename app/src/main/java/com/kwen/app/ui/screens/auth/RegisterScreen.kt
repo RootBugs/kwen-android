@@ -8,7 +8,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
@@ -53,11 +52,9 @@ fun RegisterScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
-
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -92,7 +89,6 @@ fun RegisterScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
-
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
@@ -130,12 +126,13 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 )
             )
+
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text("Password", color = TextMuted) },  // note: performance
+                label = { Text("Password", color = TextMuted) },
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
@@ -169,7 +166,6 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -184,6 +180,7 @@ fun RegisterScreen(
                 onClick = {
                     authViewModel.register(email, password, username, displayName)
                 },
+
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
@@ -210,7 +207,7 @@ fun RegisterScreen(
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
-                )  // verify: cleanup
+                )
             }
 
             if (authState.successMessage != null) {
@@ -224,7 +221,6 @@ fun RegisterScreen(
             }
 
             Spacer(modifier = Modifier.height(24.dp))
-
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
