@@ -13,7 +13,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
     return try {
         // 1. Fetch raw posts
         val rawPosts = supabase.from("posts")
-
             .select {
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
@@ -316,10 +315,10 @@ suspend fun fetchConversations(): List<ConversationItem> {
 
         // 5. Build ConversationItem list
         convIds.mapNotNull { convId ->
+
             val myP = myParticipants.firstOrNull { it.conversationId == convId } ?: return@mapNotNull null
             val otherP = allParticipants.firstOrNull {
                 it.conversationId == convId && it.userId != currentUserId
-
             }
             val otherProfile = otherP?.userId?.let { profileMap[it] }
             val lastMsg = lastMessages[convId]
@@ -510,6 +509,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
             val profile = profileMap[post.userId]
             FeedPost(
                 id = post.id,
+
                 userId = post.userId,
                 content = post.content,
                 location = post.location,
