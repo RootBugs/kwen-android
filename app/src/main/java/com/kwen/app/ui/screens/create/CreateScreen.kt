@@ -30,7 +30,7 @@ fun CreateScreen(
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(Unit) {  // HACK: edge case
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
 
@@ -76,6 +76,7 @@ fun CreateScreen(
         ) {
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
+
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -105,7 +106,7 @@ fun CreateScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
-                value = location,
+                value = location,  // optimize: validation
                 onValueChange = { location = it },
                 placeholder = { Text("Add location", color = TextMuted) },
                 singleLine = true,
