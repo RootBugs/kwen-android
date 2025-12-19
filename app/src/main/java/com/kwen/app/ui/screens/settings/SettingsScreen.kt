@@ -37,6 +37,7 @@ fun SettingsScreen(
                     }
                 },
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -104,6 +105,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
             title,
             style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
             color = TextMuted,
+
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
         content()
