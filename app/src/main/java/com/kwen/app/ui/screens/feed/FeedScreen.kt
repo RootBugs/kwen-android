@@ -73,6 +73,7 @@ fun FeedScreen(
                     IconButton(onClick = onNavigateToNotifications) {
                         Icon(Icons.Outlined.FavoriteBorder, "Notifications", tint = TextPrimary)
                     }
+
                     IconButton(onClick = onNavigateToMessages) {
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
@@ -143,6 +144,7 @@ fun FeedScreen(
                             post = post,
                             onLike = { postId ->
                                 scope.launch {
+
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isLiked) {
@@ -264,6 +266,7 @@ fun PostCard(
             // Text-only post: show text centered in a styled card
             Box(
                 modifier = Modifier
+
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
