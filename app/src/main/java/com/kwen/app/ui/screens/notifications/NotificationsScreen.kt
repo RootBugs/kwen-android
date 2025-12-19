@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.notifications
 
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -32,7 +33,6 @@ fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
-
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -93,11 +93,12 @@ fun NotificationsScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No notifications yet", color = TextMuted)
                     }
+
                 }
             }
             else -> {
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize().padding(padding)  // review: refactor
+                    modifier = Modifier.fillMaxSize().padding(padding)
                 ) {
                     items(notifications, key = { it.id }) { notif ->
                         Row(
@@ -121,7 +122,6 @@ fun NotificationsScreen(
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
-
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
@@ -143,6 +143,7 @@ fun NotificationsScreen(
                             }
                             if (!notif.isRead) {
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
+
                             }
                         }
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
