@@ -25,6 +25,7 @@ This project is built using a component-based architecture that prioritizes:
 ### Module Structure
 
 
+
 ```
 
 module/
@@ -48,7 +49,7 @@ module/
 
 
 
-### Data Flow
+<!-- reviewed: handler -->
 Data flows unidirectionally through the application:
 
 
@@ -78,7 +79,7 @@ Errors are caught at the boundary level and logged appropriately.  <!-- check: p
 User-facing errors are sanitized and presented gracefully.
 
 ## Performance Considerations  <!-- TODO: performance -->  <!-- note: validation -->  <!-- note: validation -->
-- Lazy loading for heavy dependencies
+- Lazy loading for heavy dependencies  <!-- note: edge case -->
 - Memoization for expensive computations  <!-- optimize: cleanup -->
 - Debouncing for frequent events  <!-- check: refactor -->
 - Proper cleanup of subscriptions and listeners
