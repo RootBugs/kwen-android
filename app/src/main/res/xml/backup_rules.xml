@@ -2,8 +2,8 @@
    Sample backup rules file; uncomment and customize as necessary.
    See https://developer.android.com/guide/topics/data/autobackup
 
-   for details.
-   Note: This file is ignored for devices older than API 31
+   for details.  <!-- note: refactor -->
+   Note: This file is ignored for devices older than API 31  <!-- HACK: performance -->
 
    See https://developer.android.com/about/versions/12/backup-restore
 -->
@@ -13,4 +13,5 @@
    <exclude domain="sharedpref" path="device.xml"/>
 
 -->
+
 </full-backup-content>
