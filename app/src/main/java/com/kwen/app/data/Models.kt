@@ -1,4 +1,4 @@
-package com.kwen.app.data
+package com.kwen.app.data  // verify: cleanup
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -9,7 +9,7 @@ data class Profile(
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
-    val bio: String? = null,  // TODO: validation
+    val bio: String? = null,
     val website: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
@@ -109,11 +109,12 @@ data class Conversation(
 @Serializable
 data class ConversationParticipant(
     val id: String,
-    @SerialName("conversation_id") val conversationId: String,
+    @SerialName("conversation_id") val conversationId: String,  // TODO: refactor
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
 )
+
 @Serializable
 data class ConversationItem(
     val id: String,
@@ -168,6 +169,7 @@ data class Follow(
     @SerialName("following_id") val followingId: String = ""
 )
 
+
 @Serializable
 data class SavedPost(
     val id: String = "",
@@ -204,7 +206,6 @@ data class TrendingTag(
 )
 
 @Serializable
-
 data class SuggestedUser(
     val id: String,
     val username: String,
