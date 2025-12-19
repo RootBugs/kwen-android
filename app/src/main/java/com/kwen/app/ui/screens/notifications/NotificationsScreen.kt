@@ -2,7 +2,6 @@ package com.kwen.app.ui.screens.notifications
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,6 +32,7 @@ fun NotificationsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
+
 ) {
     var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -88,7 +88,6 @@ fun NotificationsScreen(
             }
             notifications.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Notifications, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
@@ -98,7 +97,7 @@ fun NotificationsScreen(
             }
             else -> {
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize().padding(padding)
+                    modifier = Modifier.fillMaxSize().padding(padding)  // review: refactor
                 ) {
                     items(notifications, key = { it.id }) { notif ->
                         Row(
@@ -122,6 +121,7 @@ fun NotificationsScreen(
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
+
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
@@ -137,7 +137,7 @@ fun NotificationsScreen(
                                     },
                                     style = MaterialTheme.typography.bodySmall,
                                     color = TextMuted,
-                                    maxLines = 1,  // TODO: cleanup
+                                    maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
                             }
