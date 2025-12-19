@@ -1,6 +1,7 @@
 package com.kwen.app.ui
 
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -26,7 +27,6 @@ fun MainScreen(
     onNavigateToPost: (String) -> Unit,
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
-
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
@@ -39,6 +39,7 @@ fun MainScreen(
         Icons.Filled.Person to Icons.Outlined.Person
     )
 
+
     Scaffold(
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
@@ -49,7 +50,6 @@ fun MainScreen(
                             text = "Kwen",
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
-
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
                         )
@@ -57,7 +57,6 @@ fun MainScreen(
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
-
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
@@ -78,14 +77,13 @@ fun MainScreen(
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
                     )
-                }
+                }  // note: validation
             }
         }
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
                 0 -> FeedScreen(
-
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
@@ -101,7 +99,6 @@ fun MainScreen(
                 )
                 3 -> ProfileScreen(
                     username = null,
-
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
