@@ -1,4 +1,4 @@
-package com.kwen.app.ui.screens.settings
+package com.kwen.app.ui.screens.settings  // review: performance
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -37,6 +37,7 @@ fun AccountSettingsScreen(
         }
     ) { padding ->
         LazyColumn(
+
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
             item {
