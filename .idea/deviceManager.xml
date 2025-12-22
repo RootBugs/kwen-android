@@ -5,7 +5,9 @@
   <component name="DeviceTable">
 
     <option name="columnSorters">
+
       <list>
+
         <ColumnSorterState>  <!-- verify: edge case -->
           <option name="column" value="Name" />
 
@@ -16,6 +18,7 @@
       </list>
 
     </option>
+
   </component>
 
 </project>
