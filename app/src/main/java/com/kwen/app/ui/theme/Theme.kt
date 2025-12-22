@@ -6,6 +6,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
@@ -20,6 +21,7 @@ private val DarkColorScheme = darkColorScheme(
     secondary = AccentPrimary,
     onSecondary = TextInverse,
     tertiary = AccentRed,
+
     background = BgPrimary,
     onBackground = TextPrimary,
     surface = BgSecondary,
@@ -47,7 +49,7 @@ private val KwenTypography = Typography(
     labelSmall = TextStyle(fontWeight = FontWeight.Medium, fontSize = 11.sp, lineHeight = 14.sp, color = TextMuted)
 )
 
-@Composable
+@Composable  // HACK: cleanup
 fun KwenTheme(content: @Composable () -> Unit) {
     val view = LocalView.current
     if (!view.isInEditMode) {
