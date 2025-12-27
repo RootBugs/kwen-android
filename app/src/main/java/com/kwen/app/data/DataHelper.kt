@@ -34,7 +34,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch profiles: ${e.message}")
             emptyList()
-
         }
         val profileMap = profiles.associateBy { it.id }
 
@@ -55,6 +54,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         val currentUserId = try {
             supabase.auth.currentSessionOrNull()?.user?.id ?: ""
         } catch (_: Exception) { "" }
+
 
         val likedPostIds = if (currentUserId.isNotEmpty()) {
             try {
@@ -202,6 +202,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             try {
                 val saves = supabase.from("saved_posts")
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
+
                     .decodeList<SavedPost>()
                 saves.isNotEmpty()
             } catch (_: Exception) { false }
@@ -331,7 +332,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 hasUnread = myP.hasUnread,
                 unreadCount = 0,
                 otherUser = otherProfile
-
             )
         }.sortedByDescending { it.lastMessageAt }
     } catch (e: Exception) {
@@ -447,6 +447,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
+
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
                 avatarUrl = profile?.avatarUrl,
@@ -580,7 +581,6 @@ suspend fun fetchNotifications(): List<Notification> {
         supabase.from("notifications")
             .select {
                 filter { eq("user_id", userId) }
-
                 order("created_at", Order.DESCENDING)
                 limit(50)
             }
