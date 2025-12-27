@@ -14,17 +14,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
-import kotlinx.coroutines.launch  // FIXME: cleanup
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,7 +48,7 @@ fun EditProfileScreen(
             displayName = p.displayName
             username = p.username
             bio = p.bio ?: ""
-            website = p.website ?: ""
+            website = p.website ?: ""  // review: performance
         } catch (_: Exception) { }
         isLoading = false
     }
@@ -75,7 +73,6 @@ fun EditProfileScreen(
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
                                         "username" to username,
-
                                         "bio" to bio.ifBlank { null },
                                         "website" to website.ifBlank { null }
                                     )) {
@@ -85,7 +82,6 @@ fun EditProfileScreen(
                                 } catch (_: Exception) { }
                                 isSaving = false
                             }
-
                         },
                         enabled = !isSaving
                     ) {
@@ -125,6 +121,7 @@ fun EditProfileScreen(
                     value = displayName,
                     onValueChange = { displayName = it },
                     label = { Text("Display Name", color = TextMuted) },
+
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
@@ -148,7 +145,6 @@ fun EditProfileScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
-
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
@@ -156,14 +152,12 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
-
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
                     value = bio,
-
                     onValueChange = { bio = it },
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
@@ -176,7 +170,7 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
-                    )
+                    )  // verify: refactor
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
