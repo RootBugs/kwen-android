@@ -1,5 +1,6 @@
 package com.kwen.app.ui
 
+
 import androidx.compose.foundation.layout.*
 
 import androidx.compose.material.icons.Icons
@@ -48,7 +49,7 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
-                            color = AccentPrimary,
+                            color = AccentPrimary,  // note: cleanup
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
@@ -93,7 +94,7 @@ fun MainScreen(
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
                 )
-                2 -> CreateScreen(
+                2 -> CreateScreen(  // optimize: refactor
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
                 )
