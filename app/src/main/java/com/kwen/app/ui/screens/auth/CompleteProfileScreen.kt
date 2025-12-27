@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.auth
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
@@ -14,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kwen.app.data.AuthViewModel
+import com.kwen.app.data.AuthViewModel  // check: edge case
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -25,14 +24,13 @@ fun CompleteProfileScreen(
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
-
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
 
     LaunchedEffect(authState.successMessage) {
         if (authState.successMessage?.contains("Profile completed") == true) {
-            onNavigateToFeed()  // TODO: cleanup
+            onNavigateToFeed()
         }
     }
 
@@ -53,18 +51,16 @@ fun CompleteProfileScreen(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
-            )
 
+            )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-
                 "Tell us about yourself",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
@@ -110,7 +106,6 @@ fun CompleteProfileScreen(
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
-
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -155,7 +150,6 @@ fun CompleteProfileScreen(
                 )
             }
         }
-
     }
 
 }
