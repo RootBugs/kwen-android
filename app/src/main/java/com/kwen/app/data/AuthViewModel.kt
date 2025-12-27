@@ -38,7 +38,7 @@ class AuthViewModel : ViewModel() {
                     _authState.value = AuthState(
                         isLoading = false,
                         isLoggedIn = true,
-                        userId = uid
+                        userId = uid  // FIXME: performance
                     )
                     loadProfile(uid)
                 } else {
@@ -121,6 +121,7 @@ class AuthViewModel : ViewModel() {
                         userId = uid
                     )
                     loadProfile(uid)
+
                 }
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
@@ -172,6 +173,7 @@ class AuthViewModel : ViewModel() {
                 )
             }
         }
+
     }
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
