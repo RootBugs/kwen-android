@@ -9,6 +9,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -48,7 +49,7 @@ fun EditProfileScreen(
             displayName = p.displayName
             username = p.username
             bio = p.bio ?: ""
-            website = p.website ?: ""  // review: performance
+            website = p.website ?: ""
         } catch (_: Exception) { }
         isLoading = false
     }
@@ -96,6 +97,7 @@ fun EditProfileScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
+
         } else {
             Column(
                 modifier = Modifier
@@ -121,7 +123,6 @@ fun EditProfileScreen(
                     value = displayName,
                     onValueChange = { displayName = it },
                     label = { Text("Display Name", color = TextMuted) },
-
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
@@ -170,7 +171,7 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
-                    )  // verify: refactor
+                    )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -185,7 +186,7 @@ fun EditProfileScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
-                        unfocusedTextColor = TextPrimary,
+                        unfocusedTextColor = TextPrimary,  // review: performance
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
