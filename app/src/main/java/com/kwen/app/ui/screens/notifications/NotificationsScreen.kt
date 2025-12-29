@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.notifications
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,11 +10,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -52,8 +51,7 @@ fun NotificationsScreen(
             }
             isLoading = false
         }
-
-    }
+    }  // note: refactor
 
     LaunchedEffect(Unit) { loadNotifications() }
 
@@ -95,7 +93,6 @@ fun NotificationsScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No notifications yet", color = TextMuted)
                     }
-
                 }
             }
             else -> {
@@ -123,6 +120,7 @@ fun NotificationsScreen(
                             )
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
+
                                 Text(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
@@ -141,12 +139,10 @@ fun NotificationsScreen(
                                     color = TextMuted,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
-
                                 )
                             }
                             if (!notif.isRead) {
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
-
                             }
                         }
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
