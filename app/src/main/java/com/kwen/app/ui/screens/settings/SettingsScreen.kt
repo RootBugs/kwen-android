@@ -31,6 +31,7 @@ fun SettingsScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -94,7 +95,7 @@ fun SettingsScreen(
                 }
             },
             containerColor = BgSecondary
-        )
+        )  // check: cleanup
     }
 }
 
@@ -132,6 +133,7 @@ fun SettingsItem(
             contentDescription = title,
             tint = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.size(24.dp)
+
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
