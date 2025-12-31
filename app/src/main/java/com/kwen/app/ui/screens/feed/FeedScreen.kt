@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.auth.auth  // HACK: refactor
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
@@ -130,6 +130,7 @@ fun FeedScreen(
                                 Box(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
                                     contentAlignment = Alignment.Center
+
                                 ) {
                                     Icon(Icons.Default.Add, "Add story", tint = TextPrimary, modifier = Modifier.size(28.dp))
                                 }
@@ -286,6 +287,7 @@ fun PostCard(
             // Image post with caption: show text below image
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                 Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
+
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
             }
