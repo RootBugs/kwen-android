@@ -35,7 +35,6 @@ fun EditProfileScreen(
     var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
-
     var isSaving by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
@@ -48,6 +47,7 @@ fun EditProfileScreen(
             profile = p
             displayName = p.displayName
             username = p.username
+
             bio = p.bio ?: ""
             website = p.website ?: ""
         } catch (_: Exception) { }
@@ -96,12 +96,12 @@ fun EditProfileScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
+
             }
         } else {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-
                     .padding(padding)
                     .padding(16.dp)
                     .verticalScroll(rememberScrollState()),
@@ -133,6 +133,7 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
+
                         unfocusedContainerColor = BgTertiary
                     )
                 )
@@ -181,7 +182,6 @@ fun EditProfileScreen(
                     label = { Text("Website", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
-
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
