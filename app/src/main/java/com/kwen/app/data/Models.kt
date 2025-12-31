@@ -1,4 +1,4 @@
-package com.kwen.app.data  // verify: cleanup
+package com.kwen.app.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -58,7 +58,7 @@ data class Post(
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
-    @SerialName("comment_count") val commentCount: Int = 0,
+    @SerialName("comment_count") val commentCount: Int = 0,  // FIXME: cleanup
     @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0
 )
@@ -109,7 +109,7 @@ data class Conversation(
 @Serializable
 data class ConversationParticipant(
     val id: String,
-    @SerialName("conversation_id") val conversationId: String,  // TODO: refactor
+    @SerialName("conversation_id") val conversationId: String,
     @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
@@ -143,12 +143,14 @@ data class Message(
 
 @Serializable
 data class ReplyTo(
+
     val id: String = "",
     @SerialName("sender_name") val senderName: String = "",
     val content: String = ""
 )
 
 @Serializable
+
 data class Notification(
     val id: String,
     @SerialName("user_id") val userId: String = "",
@@ -168,7 +170,6 @@ data class Follow(
     @SerialName("follower_id") val followerId: String = "",
     @SerialName("following_id") val followingId: String = ""
 )
-
 
 @Serializable
 data class SavedPost(
