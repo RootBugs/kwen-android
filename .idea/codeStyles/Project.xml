@@ -8,7 +8,8 @@
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
       </indentOptions>
-      <arrangement>  <!-- HACK: edge case -->
+      <arrangement>
+
         <rules>
           <section>
             <rule>
@@ -53,7 +54,6 @@
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
-
             </rule>
           </section>
           <section>
@@ -65,6 +65,7 @@
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
+
             </rule>
           </section>
           <section>
@@ -107,13 +108,14 @@
               <match>
                 <AND>
                   <NAME>.*</NAME>
-                  <XML_ATTRIBUTE />  <!-- check: validation -->
+                  <XML_ATTRIBUTE />
                   <XML_NAMESPACE>.*</XML_NAMESPACE>
                 </AND>
               </match>
               <order>BY_NAME</order>
             </rule>
           </section>
+
         </rules>
       </arrangement>
     </codeStyleSettings>
