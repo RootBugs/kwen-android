@@ -3,6 +3,7 @@
 
 
 
+
   <component name="DeviceTable">
 
     <option name="columnSorters">
@@ -15,7 +16,8 @@
 
 
 
-          <option name="order" value="ASCENDING" />
+
+          <option name="order" value="ASCENDING" />  <!-- review: cleanup -->
         </ColumnSorterState>
       </list>
 
