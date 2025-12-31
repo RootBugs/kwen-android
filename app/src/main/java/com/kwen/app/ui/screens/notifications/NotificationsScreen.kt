@@ -2,6 +2,7 @@ package com.kwen.app.ui.screens.notifications
 
 import android.util.Log
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,7 +13,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -22,7 +22,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
@@ -68,7 +67,6 @@ fun NotificationsScreen(
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         when {
@@ -86,7 +84,6 @@ fun NotificationsScreen(
                             Text("Retry")
                         }
                     }
-
                 }
             }
             notifications.isEmpty() -> {
@@ -102,6 +99,7 @@ fun NotificationsScreen(
                 LazyColumn(
                     modifier = Modifier.fillMaxSize().padding(padding)
                 ) {
+
                     items(notifications, key = { it.id }) { notif ->
                         Row(
                             modifier = Modifier
@@ -109,11 +107,11 @@ fun NotificationsScreen(
                                 .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
+
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
-
                                 }
-                                .padding(horizontal = 16.dp, vertical = 12.dp),  // check: refactor
+                                .padding(horizontal = 16.dp, vertical = 12.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
