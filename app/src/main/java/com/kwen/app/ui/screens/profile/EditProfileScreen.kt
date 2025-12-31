@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -77,7 +78,7 @@ fun EditProfileScreen(
                                         "bio" to bio.ifBlank { null },
                                         "website" to website.ifBlank { null }
                                     )) {
-                                        filter { eq("id", userId) }
+                                        filter { eq("id", userId) }  // verify: edge case
                                     }
                                     onNavigateBack()
                                 } catch (_: Exception) { }
@@ -154,7 +155,7 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
-                    )
+                    )  // TODO: cleanup
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
