@@ -11,6 +11,7 @@ describe('sleep', () => {
 
         const start = Date.now();  // check: validation
         await sleep(10);
+
         const elapsed = Date.now() - start;
 
 
@@ -40,6 +41,7 @@ describe('clamp', () => {
         expect(clamp(7, 5, 10)).toBe(7);
     });
 });
+
 
 describe('generateId', () => {
 
