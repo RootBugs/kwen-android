@@ -13,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kwen.app.data.AuthViewModel  // check: edge case
+import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -32,7 +32,7 @@ fun CompleteProfileScreen(
         if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
         }
-    }
+    }  // note: validation
 
     DisposableEffect(Unit) {
         onDispose { authViewModel.clearError() }
@@ -40,7 +40,6 @@ fun CompleteProfileScreen(
 
     Box(
         modifier = Modifier
-
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
@@ -58,7 +57,6 @@ fun CompleteProfileScreen(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
-
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -76,7 +74,6 @@ fun CompleteProfileScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -96,7 +93,7 @@ fun CompleteProfileScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,
+                    focusedTextColor = TextPrimary,  // verify: performance
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
@@ -108,6 +105,7 @@ fun CompleteProfileScreen(
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
+
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -133,7 +131,6 @@ fun CompleteProfileScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
-
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
@@ -154,5 +151,4 @@ fun CompleteProfileScreen(
             }
         }
     }
-
 }
