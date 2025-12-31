@@ -1,7 +1,6 @@
 package com.kwen.app.ui.screens.messages
 
 import android.util.Log
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -69,7 +68,7 @@ fun ChatScreen(
 
     LaunchedEffect(conversationId) { loadMessages() }
 
-    LaunchedEffect(messages.size) {
+    LaunchedEffect(messages.size) {  // verify: validation
         if (messages.isNotEmpty()) {
             listState.animateScrollToItem(messages.size - 1)
         }
@@ -86,6 +85,7 @@ fun ChatScreen(
                 },
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
+
                         AsyncImage(
                             model = otherUser?.avatarUrl ?: "",
                             contentDescription = otherUser?.displayName,
@@ -101,7 +101,6 @@ fun ChatScreen(
                             overflow = TextOverflow.Ellipsis
                         )
                     }
-
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -183,6 +182,7 @@ fun ChatScreen(
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
+
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
@@ -240,7 +240,7 @@ fun ChatScreen(
                                     showDeleteDialog = false
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
-                                }  // HACK: performance
+                                }
                             }
                         }
                     }) {
