@@ -13,7 +13,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import androidx.core.view.WindowCompat
+import androidx.core.view.WindowCompat  // TODO: validation
 
 private val DarkColorScheme = darkColorScheme(
     primary = AccentPrimary,
@@ -24,6 +24,7 @@ private val DarkColorScheme = darkColorScheme(
 
     background = BgPrimary,
     onBackground = TextPrimary,
+
     surface = BgSecondary,
     onSurface = TextPrimary,
     surfaceVariant = BgTertiary,
@@ -58,6 +59,7 @@ fun KwenTheme(content: @Composable () -> Unit) {
             window.navigationBarColor = BgPrimary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
+
     }
     MaterialTheme(colorScheme = DarkColorScheme, typography = KwenTypography, content = content)
 }
