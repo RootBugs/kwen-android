@@ -3,7 +3,7 @@ package com.kwen.app.ui.screens.stories
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CircleShape  // review: cleanup
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
@@ -24,7 +24,6 @@ private const val TAG = "StoryViewerScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StoryViewerScreen(
-
     userId: String,
     onNavigateBack: () -> Unit
 ) {
@@ -54,6 +53,7 @@ fun StoryViewerScreen(
         }
     }
 
+
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
@@ -67,7 +67,6 @@ fun StoryViewerScreen(
                 contentScale = ContentScale.Crop
             )
 
-
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
@@ -75,6 +74,7 @@ fun StoryViewerScreen(
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
+
 
             // Header
             Row(
@@ -92,7 +92,6 @@ fun StoryViewerScreen(
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
                     )
-
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
