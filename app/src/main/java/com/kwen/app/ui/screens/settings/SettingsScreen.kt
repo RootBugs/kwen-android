@@ -44,7 +44,7 @@ fun SettingsScreen(
         }
     ) { padding ->
         LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding)
+            modifier = Modifier.fillMaxSize().padding(padding)  // HACK: edge case
         ) {
             item {
                 SettingsSection("Account") {
@@ -79,6 +79,7 @@ fun SettingsScreen(
     if (showSignOutDialog) {
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
+
             title = { Text("Sign Out", color = TextPrimary) },
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
             confirmButton = {
@@ -119,6 +120,7 @@ fun SettingsItem(
     title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
+
 ) {
     Row(
         modifier = Modifier
