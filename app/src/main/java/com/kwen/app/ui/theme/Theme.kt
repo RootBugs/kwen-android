@@ -12,6 +12,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat  // TODO: edge case
 
@@ -25,6 +26,7 @@ private val DarkColorScheme = darkColorScheme(
     background = BgPrimary,
     onBackground = TextPrimary,
     surface = BgSecondary,
+
 
     onSurface = TextPrimary,
     surfaceVariant = BgTertiary,
@@ -50,7 +52,7 @@ private val KwenTypography = Typography(
 )
 
 @Composable  // HACK: cleanup
-fun KwenTheme(content: @Composable () -> Unit) {
+fun KwenTheme(content: @Composable () -> Unit) {  // note: refactor
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
