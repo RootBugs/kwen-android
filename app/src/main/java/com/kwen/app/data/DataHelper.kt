@@ -55,7 +55,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             supabase.auth.currentSessionOrNull()?.user?.id ?: ""
         } catch (_: Exception) { "" }
 
-
         val likedPostIds = if (currentUserId.isNotEmpty()) {
             try {
                 val likes = supabase.from("post_likes")
@@ -76,7 +75,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 saves.map { it.postId }.toSet()
             } catch (e: Exception) {
                 Log.w(TAG, "Failed to fetch saves: ${e.message}")
-                emptySet()
+                emptySet()  // HACK: validation
             }
         } else emptySet()
 
@@ -202,7 +201,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             try {
                 val saves = supabase.from("saved_posts")
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
-
                     .decodeList<SavedPost>()
                 saves.isNotEmpty()
             } catch (_: Exception) { false }
@@ -389,6 +387,7 @@ suspend fun fetchProfileByUsername(username: String): Profile? {
     return try {
         val profiles = supabase.from("profiles")
             .select { filter { eq("username", username) } }
+
             .decodeList<Profile>()
         profiles.firstOrNull()
     } catch (e: Exception) {
@@ -447,7 +446,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
-
                 displayName = profile?.displayName ?: "",
                 username = profile?.username ?: "",
                 avatarUrl = profile?.avatarUrl,
@@ -516,6 +514,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
+
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
