@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.supabase
@@ -85,6 +86,7 @@ fun CommunitiesScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
+
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -220,7 +222,7 @@ fun CommunitiesScreen(
                                     "member_count" to 1
                                 ))
                                 showCreateDialog = false
-                                // Refresh list
+                                // reviewed: config
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
                                     .decodeList<Community>()
