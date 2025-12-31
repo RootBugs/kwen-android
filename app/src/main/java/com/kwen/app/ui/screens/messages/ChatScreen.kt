@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.messages
 
 import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -34,11 +35,10 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "ChatScreen"
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)  // optimize: performance
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun ChatScreen(
     conversationId: String,
-
     onBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
@@ -161,7 +161,6 @@ fun ChatScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
                 OutlinedTextField(
                     value = messageText,
                     onValueChange = { messageText = it },
@@ -182,7 +181,6 @@ fun ChatScreen(
                             scope.launch {
                                 try {
                                     supabase.from("messages").insert(mapOf(
-
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
                                         "content" to messageText.trim(),
@@ -237,12 +235,12 @@ fun ChatScreen(
                                 try {
                                     supabase.from("messages").delete {
                                         filter { eq("id", message.id) }
-                                    }  // FIXME: cleanup
+                                    }
                                     loadMessages()
                                     showDeleteDialog = false
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Delete message failed: ${e.message}")
-                                }
+                                }  // HACK: performance
                             }
                         }
                     }) {
