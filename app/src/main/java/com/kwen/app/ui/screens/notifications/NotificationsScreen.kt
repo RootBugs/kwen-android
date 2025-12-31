@@ -12,6 +12,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -85,6 +86,7 @@ fun NotificationsScreen(
                             Text("Retry")
                         }
                     }
+
                 }
             }
             notifications.isEmpty() -> {
@@ -109,6 +111,7 @@ fun NotificationsScreen(
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
+
                                 }
                                 .padding(horizontal = 16.dp, vertical = 12.dp),  // check: refactor
                             verticalAlignment = Alignment.CenterVertically
