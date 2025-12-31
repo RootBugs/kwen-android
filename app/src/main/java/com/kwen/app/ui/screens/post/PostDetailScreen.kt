@@ -38,7 +38,7 @@ fun PostDetailScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
-    var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
+    var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }  // TODO: cleanup
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
@@ -52,7 +52,6 @@ fun PostDetailScreen(
                 post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
             } catch (e: Exception) {
-
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
             isLoading = false
@@ -107,6 +106,7 @@ fun PostDetailScreen(
                                     Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (post!!.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
+
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                                     }
                                 }
@@ -160,7 +160,6 @@ fun PostDetailScreen(
                         Text(
                             "Comments (${comments.size})",
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-
                             color = TextPrimary,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                         )
@@ -211,7 +210,6 @@ fun PostDetailScreen(
                         value = commentText,
                         onValueChange = { commentText = it },
                         placeholder = { Text("Add a comment...", color = TextMuted) },
-
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
@@ -241,6 +239,7 @@ fun PostDetailScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
+
                                 }
                             }
                         }
