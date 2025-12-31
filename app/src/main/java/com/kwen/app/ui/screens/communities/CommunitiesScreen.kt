@@ -46,6 +46,7 @@ fun CommunitiesScreen(
 ) {
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
+
     var showCreateDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
@@ -67,7 +68,6 @@ fun CommunitiesScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -120,7 +120,6 @@ fun CommunitiesScreen(
                                 modifier = Modifier
                                     .size(56.dp)
                                     .clip(CircleShape)
-
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
                                 contentAlignment = Alignment.Center
                             ) {                                    if (community.coverUrl != null) {
@@ -153,6 +152,7 @@ fun CommunitiesScreen(
                                         color = TextMuted,
                                         fontSize = 13.sp,
                                         maxLines = 2
+
                                     )
                                 }
                                 Text(
@@ -172,7 +172,6 @@ fun CommunitiesScreen(
     if (showCreateDialog) {
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
-
         AlertDialog(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
@@ -205,6 +204,7 @@ fun CommunitiesScreen(
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
+
                         )
                     )
                 }
