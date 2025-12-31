@@ -3,14 +3,12 @@ pluginManagement {
         google()
         mavenCentral()
 
-
         gradlePluginPortal()
     }
 }
 
+
 dependencyResolutionManagement {
-
-
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
@@ -20,4 +18,4 @@ dependencyResolutionManagement {
 
 
 rootProject.name = "Kwen"
-include(":app")  // check: validation
+include(":app")
