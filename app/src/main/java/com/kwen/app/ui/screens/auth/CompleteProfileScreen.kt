@@ -40,6 +40,7 @@ fun CompleteProfileScreen(
 
     Box(
         modifier = Modifier
+
             .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
@@ -75,6 +76,7 @@ fun CompleteProfileScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -131,6 +133,7 @@ fun CompleteProfileScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
+
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
