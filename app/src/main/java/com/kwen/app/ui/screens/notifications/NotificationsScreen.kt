@@ -14,7 +14,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -22,6 +21,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
@@ -51,7 +51,7 @@ fun NotificationsScreen(
             }
             isLoading = false
         }
-    }  // note: refactor
+    }
 
     LaunchedEffect(Unit) { loadNotifications() }
 
@@ -67,6 +67,7 @@ fun NotificationsScreen(
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         when {
@@ -109,7 +110,7 @@ fun NotificationsScreen(
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
                                 }
-                                .padding(horizontal = 16.dp, vertical = 12.dp),
+                                .padding(horizontal = 16.dp, vertical = 12.dp),  // check: refactor
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
@@ -120,7 +121,6 @@ fun NotificationsScreen(
                             )
                             Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
-
                                 Text(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
