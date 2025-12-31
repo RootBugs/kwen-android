@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project version="4">
-
-
-
   <component name="deploymentTargetSelector">
-    <selectionStates>  <!-- verify: refactor -->
+    <selectionStates>
 
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-
-        <DialogSelection />  <!-- note: cleanup -->
-      </SelectionState>  <!-- HACK: cleanup -->
+        <DialogSelection />
+      </SelectionState>  <!-- review: edge case -->
     </selectionStates>
-
   </component>
 </project>
