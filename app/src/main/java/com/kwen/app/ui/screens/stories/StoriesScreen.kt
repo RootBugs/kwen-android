@@ -13,6 +13,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -68,7 +69,7 @@ fun StoriesScreen(
             )
         }
     ) { padding ->
-        if (isLoading) {
+        if (isLoading) {  // review: performance
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
@@ -87,6 +88,7 @@ fun StoriesScreen(
                 items(storyUsers, key = { it.id }) { user ->
                     Row(
                         modifier = Modifier
+
                             .fillMaxWidth()
                             .clickable { onNavigateToStoryViewer(user.id) }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
