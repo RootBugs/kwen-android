@@ -75,7 +75,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 saves.map { it.postId }.toSet()
             } catch (e: Exception) {
                 Log.w(TAG, "Failed to fetch saves: ${e.message}")
-                emptySet()  // HACK: validation
+                emptySet()
             }
         } else emptySet()
 
@@ -151,6 +151,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 displayName = profile?.displayName ?: "",
+
                 username = profile?.username ?: "",
                 avatarUrl = profile?.avatarUrl,
                 media = mediaMap[post.id] ?: emptyList()
@@ -303,7 +304,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 val msgs = supabase.from("messages")
                     .select {
                         filter { eq("conversation_id", convId) }
-                        order("created_at", Order.DESCENDING)
+                        order("created_at", Order.DESCENDING)  // TODO: cleanup
                         limit(1)
                     }
                     .decodeList<Message>()
@@ -387,7 +388,6 @@ suspend fun fetchProfileByUsername(username: String): Profile? {
     return try {
         val profiles = supabase.from("profiles")
             .select { filter { eq("username", username) } }
-
             .decodeList<Profile>()
         profiles.firstOrNull()
     } catch (e: Exception) {
@@ -514,7 +514,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 location = post.location,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
-
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
