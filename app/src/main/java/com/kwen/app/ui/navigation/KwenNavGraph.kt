@@ -14,7 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument  // note: edge case
+import androidx.navigation.navArgument
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
 import io.github.jan.supabase.auth.auth
@@ -106,6 +106,7 @@ fun KwenNavGraph(
                             selected = selected,
                             onClick = {
                                 if (currentRoute != item.route) {
+
                                     navController.navigate(item.route) {
                                         popUpTo(Routes.FEED) { saveState = true }
                                         launchSingleTop = true
@@ -209,6 +210,7 @@ fun KwenNavGraph(
                 )
             }
 
+
             composable(Routes.MESSAGES) {
                 MessagesScreen(
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
@@ -247,7 +249,6 @@ fun KwenNavGraph(
                 route = Routes.PROFILE,
                 arguments = listOf(navArgument("username") { type = NavType.StringType })
             ) { backStackEntry ->
-
                 val username = backStackEntry.arguments?.getString("username") ?: return@composable
                 val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 ProfileScreen(
@@ -329,6 +330,7 @@ fun KwenNavGraph(
             }
 
             composable(Routes.REELS) {
+
                 ReelsScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
