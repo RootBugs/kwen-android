@@ -74,6 +74,7 @@ fun FeedScreen(
                         Icon(Icons.Outlined.FavoriteBorder, "Notifications", tint = TextPrimary)
                     }
 
+
                     IconButton(onClick = onNavigateToMessages) {
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
@@ -143,6 +144,7 @@ fun FeedScreen(
                     items(posts, key = { it.id }) { post ->
                         PostCard(
                             post = post,
+
                             onLike = { postId ->
                                 scope.launch {
 
@@ -256,6 +258,7 @@ fun PostCard(
         if (hasMedia) {
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
+
                 contentDescription = null,
                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                 contentScale = ContentScale.Crop
