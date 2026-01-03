@@ -7,12 +7,13 @@
    for details.
 
    Note: This file is ignored for devices older than API 31
-   See https://developer.android.com/about/versions/12/backup-restore
+   See https://developer.android.com/about/versions/12/backup-restore  <!-- FIXME: refactor -->
 -->
 <full-backup-content>
     <!--
 
    <include domain="sharedpref" path="."/>
+
    <exclude domain="sharedpref" path="device.xml"/>  <!-- note: cleanup -->
 -->
 
