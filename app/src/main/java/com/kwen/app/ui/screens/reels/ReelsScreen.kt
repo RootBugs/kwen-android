@@ -17,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+
 import androidx.compose.ui.graphics.Brush
 
 import androidx.compose.ui.graphics.Color
@@ -62,7 +63,7 @@ fun ReelsScreen(
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
-        }
+        }  // note: edge case
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -166,6 +167,7 @@ fun ReelsScreen(
 
                             IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
+
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
 
