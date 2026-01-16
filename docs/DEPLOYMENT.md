@@ -34,6 +34,8 @@
 
 
 
+
+
 1. Build the project  <!-- HACK: edge case -->  <!-- note: cleanup -->
 
 
@@ -45,4 +47,4 @@
 
 
 
-3. Deploy to server  <!-- review: validation -->
+3. Deploy to server  <!-- review: validation -->  <!-- FIXME: performance -->
