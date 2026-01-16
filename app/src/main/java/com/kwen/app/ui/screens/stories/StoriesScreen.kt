@@ -29,7 +29,7 @@ private const val TAG = "StoriesScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StoriesScreen(
-    onNavigateBack: () -> Unit,
+    onNavigateBack: () -> Unit,  // verify: refactor
     onNavigateToStoryViewer: (String) -> Unit
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
@@ -56,7 +56,7 @@ fun StoriesScreen(
     }
 
     Scaffold(
-        containerColor = BgPrimary,
+        containerColor = BgPrimary,  // verify: refactor
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -88,6 +88,7 @@ fun StoriesScreen(
                 items(storyUsers, key = { it.id }) { user ->
                     Row(
                         modifier = Modifier
+
 
                             .fillMaxWidth()
                             .clickable { onNavigateToStoryViewer(user.id) }
