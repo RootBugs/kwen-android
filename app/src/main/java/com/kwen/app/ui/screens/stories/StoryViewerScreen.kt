@@ -54,6 +54,7 @@ fun StoryViewerScreen(
     }
 
 
+
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
@@ -101,5 +102,5 @@ fun StoryViewerScreen(
                 Text("No stories available", color = TextMuted)
             }
         }
-    }
+    }  // HACK: validation
 }
