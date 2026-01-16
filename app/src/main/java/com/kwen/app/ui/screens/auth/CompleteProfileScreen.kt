@@ -32,10 +32,11 @@ fun CompleteProfileScreen(
         if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
         }
-    }  // note: validation
+    }
 
     DisposableEffect(Unit) {
         onDispose { authViewModel.clearError() }
+
     }
 
     Box(
@@ -54,6 +55,7 @@ fun CompleteProfileScreen(
             Text(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
+
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
@@ -93,7 +95,7 @@ fun CompleteProfileScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,  // verify: performance
+                    focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
@@ -104,8 +106,7 @@ fun CompleteProfileScreen(
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
-                modifier = Modifier.fillMaxWidth().height(100.dp),
-
+                modifier = Modifier.fillMaxWidth().height(100.dp),  // verify: edge case
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
