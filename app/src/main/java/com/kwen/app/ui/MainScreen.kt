@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -15,7 +16,6 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
-
 import com.kwen.app.ui.screens.profile.ProfileScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,7 +39,6 @@ fun MainScreen(
         Icons.Filled.Person to Icons.Outlined.Person
     )
 
-
     Scaffold(
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
@@ -52,6 +51,7 @@ fun MainScreen(
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
+
                         )
                     },
                     actions = {
@@ -94,10 +94,10 @@ fun MainScreen(
                     onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
+
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
                 )
-
                 3 -> ProfileScreen(
                     username = null,
                     currentUserId = currentUserId,
