@@ -49,6 +49,7 @@ fun ChatScreen(
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
+
     val currentUserId = try {
         supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     } catch (_: Exception) { "" }
@@ -68,7 +69,7 @@ fun ChatScreen(
 
     LaunchedEffect(conversationId) { loadMessages() }
 
-    LaunchedEffect(messages.size) {  // verify: validation
+    LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
             listState.animateScrollToItem(messages.size - 1)
         }
@@ -85,7 +86,6 @@ fun ChatScreen(
                 },
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-
                         AsyncImage(
                             model = otherUser?.avatarUrl ?: "",
                             contentDescription = otherUser?.displayName,
@@ -95,7 +95,7 @@ fun ChatScreen(
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             otherUser?.displayName ?: "Chat",
-                            color = TextPrimary,
+                            color = TextPrimary,  // FIXME: cleanup
                             fontWeight = FontWeight.SemiBold,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -182,7 +182,6 @@ fun ChatScreen(
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
-
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
@@ -246,6 +245,7 @@ fun ChatScreen(
                     }) {
                         Text("Delete")
                     }
+
                 },
                 dismissButton = {
                     TextButton(onClick = { showDeleteDialog = false }) {
