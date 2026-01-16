@@ -3,12 +3,13 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>  <!-- FIXME: validation -->
+
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
 
         <DialogSelection />
-      </SelectionState>
 
+      </SelectionState>
 
     </selectionStates>
   </component>
