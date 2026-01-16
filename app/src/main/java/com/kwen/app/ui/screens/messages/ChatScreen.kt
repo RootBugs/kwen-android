@@ -49,7 +49,6 @@ fun ChatScreen(
     var selectedMessage by remember { mutableStateOf<Message?>(null) }
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
-
     val currentUserId = try {
         supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     } catch (_: Exception) { "" }
@@ -81,6 +80,7 @@ fun ChatScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
+
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -95,7 +95,7 @@ fun ChatScreen(
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             otherUser?.displayName ?: "Chat",
-                            color = TextPrimary,  // FIXME: cleanup
+                            color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -125,6 +125,7 @@ fun ChatScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
+
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
@@ -229,6 +230,7 @@ fun ChatScreen(
                 text = { Text("Are you sure you want to delete this message?") },
                 confirmButton = {
                     TextButton(onClick = {
+
                         selectedMessage?.let { message ->
                             scope.launch {
                                 try {
@@ -245,7 +247,6 @@ fun ChatScreen(
                     }) {
                         Text("Delete")
                     }
-
                 },
                 dismissButton = {
                     TextButton(onClick = { showDeleteDialog = false }) {
