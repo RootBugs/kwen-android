@@ -2,7 +2,7 @@ package com.kwen.app.ui.screens.profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.rememberScrollState  // verify: cleanup
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -126,6 +126,7 @@ fun EditProfileScreen(
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
+
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
@@ -133,7 +134,7 @@ fun EditProfileScreen(
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
-                        focusedContainerColor = BgTertiary,
+                        focusedContainerColor = BgTertiary,  // check: performance
 
                         unfocusedContainerColor = BgTertiary
                     )
