@@ -25,7 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.kwen.app.data.*
+import com.kwen.app.data.*  // FIXME: performance
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -103,6 +103,7 @@ fun ProfileScreen(
     }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -153,7 +154,7 @@ fun ProfileScreen(
                             Button(onClick = {
                                 scope.launch {
                                     try {
-                                        if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
+                                        if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }  // FIXME: cleanup
                                         else { supabase.from("follows").insert(mapOf("follower_id" to currentUserId, "following_id" to profile!!.id)); isFollowing = true; followerCount++ }
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Follow toggle failed: ${e.message}")
