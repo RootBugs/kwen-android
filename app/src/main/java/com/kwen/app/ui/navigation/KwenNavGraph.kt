@@ -53,6 +53,7 @@ object Routes {
     const val NOTIFICATIONS = "notifications"
     const val POST = "post/{postId}"
     const val SETTINGS = "settings"
+
     const val SAVED = "saved"
     const val STORIES = "stories/{userId}"
     const val CREATE_STORY = "create_story"
@@ -162,6 +163,7 @@ fun KwenNavGraph(
                     }
                 )
             }
+
 
             composable(Routes.COMPLETE_PROFILE) {
                 CompleteProfileScreen(
@@ -278,6 +280,7 @@ fun KwenNavGraph(
             ) { backStackEntry ->
                 val postId = backStackEntry.arguments?.getString("postId") ?: return@composable
                 PostDetailScreen(
+
                     postId = postId,
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
