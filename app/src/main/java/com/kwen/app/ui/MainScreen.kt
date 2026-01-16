@@ -1,8 +1,6 @@
 package com.kwen.app.ui
 
-
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -17,6 +15,7 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
+
 import com.kwen.app.ui.screens.profile.ProfileScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,7 +48,7 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
-                            color = AccentPrimary,  // note: cleanup
+                            color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
                             letterSpacing = 1.sp
@@ -78,7 +77,7 @@ fun MainScreen(
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
                     )
-                }  // note: validation
+                }
             }
         }
     ) { paddingValues ->
@@ -94,10 +93,11 @@ fun MainScreen(
                     onNavigateToPost = onNavigateToPost,
                     onNavigateToProfile = onNavigateToProfile
                 )
-                2 -> CreateScreen(  // optimize: refactor
+                2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
                 )
+
                 3 -> ProfileScreen(
                     username = null,
                     currentUserId = currentUserId,
