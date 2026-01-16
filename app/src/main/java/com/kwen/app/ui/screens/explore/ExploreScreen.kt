@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
@@ -31,10 +30,10 @@ private const val TAG = "ExploreScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExploreScreen(
-
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
+
     onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
@@ -50,7 +49,6 @@ fun ExploreScreen(
             try {
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
-
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
@@ -78,7 +76,7 @@ fun ExploreScreen(
                         placeholder = { Text("Search", color = TextMuted) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth().height(48.dp),
-                        shape = RoundedCornerShape(12.dp),
+                        shape = RoundedCornerShape(12.dp),  // HACK: cleanup
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
@@ -95,9 +93,9 @@ fun ExploreScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
+
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -105,7 +103,7 @@ fun ExploreScreen(
                 }
             }
             error != null -> {
-                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // FIXME: edge case
+                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
@@ -130,7 +128,6 @@ fun ExploreScreen(
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
-
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
