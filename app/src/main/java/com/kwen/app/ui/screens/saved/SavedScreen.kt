@@ -21,6 +21,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import androidx.compose.ui.text.font.FontWeight
 
+
 private const val TAG = "SavedScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,6 +64,7 @@ fun SavedScreen(
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
+
                 }
             }
             error != null -> {
@@ -76,6 +78,7 @@ fun SavedScreen(
             }
             savedPosts.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
