@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
@@ -161,7 +162,7 @@ fun KwenNavGraph(
                             popUpTo(Routes.LOGIN) { inclusive = true }
                         }
                     }
-                )
+                )  // FIXME: validation
             }
 
 
@@ -316,6 +317,7 @@ fun KwenNavGraph(
                 StoryViewerScreen(
                     userId = userId,
                     onNavigateBack = { navController.popBackStack() }
+
                 )
             }
 
