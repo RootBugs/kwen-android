@@ -3,10 +3,10 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
-
 }
 
 android {
+
     namespace = "com.kwen.app"
     compileSdk = 35
     buildToolsVersion = "35.0.0"
@@ -55,8 +55,8 @@ dependencies {
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
     implementation(composeBom)
 
-    // Compose UI
 
+    // Compose UI
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -70,7 +70,6 @@ dependencies {
 
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.8.5")
-
 
     // Supabase Kotlin SDK
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
@@ -93,6 +92,7 @@ dependencies {
 
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
+
 
     // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
