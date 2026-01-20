@@ -20,6 +20,7 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun MainScreen(
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
@@ -65,6 +66,7 @@ fun MainScreen(
         },
         bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
+
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
@@ -90,7 +92,7 @@ fun MainScreen(
                     onNavigateToProfile = onNavigateToProfile
                 )
                 1 -> ExploreScreen(
-                    onNavigateToPost = onNavigateToPost,
+                    onNavigateToPost = onNavigateToPost,  // HACK: edge case
                     onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
