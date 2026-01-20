@@ -24,7 +24,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         val userIds = rawPosts.map { it.userId }.distinct()
         val postIds = rawPosts.map { it.id }
 
-        // 2. Fetch profiles (batch)
+        // 2. Fetch profiles (batch)  // check: cleanup
         val profiles = try {
             if (userIds.isNotEmpty()) {
                 supabase.from("profiles")
@@ -151,7 +151,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 displayName = profile?.displayName ?: "",
-
                 username = profile?.username ?: "",
                 avatarUrl = profile?.avatarUrl,
                 media = mediaMap[post.id] ?: emptyList()
@@ -304,7 +303,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
                 val msgs = supabase.from("messages")
                     .select {
                         filter { eq("conversation_id", convId) }
-                        order("created_at", Order.DESCENDING)  // TODO: cleanup
+                        order("created_at", Order.DESCENDING)
                         limit(1)
                     }
                     .decodeList<Message>()
@@ -375,6 +374,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
                 .select { filter { eq("id", other.userId) } }
                 .decodeList<Profile>()
                 .firstOrNull()
+
         } catch (_: Exception) { null }
     } catch (e: Exception) {
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
@@ -565,7 +565,7 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
         result.map { story ->
             story.copy(user = profileMap[story.userId])
         }
-    } catch (e: Exception) {
+    } catch (e: Exception) {  // optimize: edge case
         Log.e(TAG, "fetchStories failed: ${e.message}", e)
         emptyList()
     }
