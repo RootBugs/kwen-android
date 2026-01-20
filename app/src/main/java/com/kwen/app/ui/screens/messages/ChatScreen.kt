@@ -26,6 +26,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -135,6 +136,7 @@ fun ChatScreen(
                                             selectedMessage = msg
                                             showDeleteDialog = true
                                         }
+
                                     )
                                     .clip(RoundedCornerShape(
                                         topStart = 16.dp, topEnd = 12.dp,
@@ -218,6 +220,7 @@ fun ChatScreen(
                     },
                     modifier = Modifier.size(44.dp)
                 ) {
+
                     Icon(Icons.AutoMirrored.Filled.Send, "Send", tint = AccentPrimary)
                 }
             }
