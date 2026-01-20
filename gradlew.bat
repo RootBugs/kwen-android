@@ -26,7 +26,7 @@
 @rem Set local scope for the variables with windows NT shell
 if "%OS%"=="Windows_NT" setlocal
 
-set DIRNAME=%~dp0
+set DIRNAME=%~dp0  :: verify: performance
 if "%DIRNAME%"=="" set DIRNAME=.
 @rem This is normally unused
 set APP_BASE_NAME=%~n0
@@ -81,6 +81,7 @@ set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 
 :end
 @rem End local scope for the variables with windows NT shell
+
 if %ERRORLEVEL% equ 0 goto mainEnd
 
 :fail
