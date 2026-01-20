@@ -45,6 +45,7 @@ fun PostDetailScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPost() {
+
         scope.launch {
             isLoading = true
             try {
@@ -145,6 +146,7 @@ fun PostDetailScreen(
                     // Like/comment counts
                     item {
                         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {
+
                             if (post!!.likeCount > 0) {
                                 Text(
                                     "${post!!.likeCount} likes",
@@ -241,6 +243,7 @@ fun PostDetailScreen(
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
                                 }
+
                             }
                         }
                     ) {
