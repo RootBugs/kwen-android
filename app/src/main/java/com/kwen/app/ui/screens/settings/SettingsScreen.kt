@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.settings
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -31,7 +32,6 @@ fun SettingsScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -62,7 +62,6 @@ fun SettingsScreen(
                 SettingsSection("Support") {
                     SettingsItem(Icons.Default.Help, "Help Center", {})
                     SettingsItem(Icons.Default.Info, "About", {})
-
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
             }
@@ -87,6 +86,7 @@ fun SettingsScreen(
                     Text("Sign Out", color = AccentRed)
                 }
             },
+
             dismissButton = {
                 TextButton(onClick = { showSignOutDialog = false }) {
                     Text("Cancel", color = TextMuted)
@@ -114,7 +114,6 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 fun SettingsItem(
     icon: ImageVector,
     title: String,
-
     onClick: () -> Unit,
     isDestructive: Boolean = false
 ) {
@@ -123,6 +122,7 @@ fun SettingsItem(
             .fillMaxWidth()
             .clickable { onClick() }
             .padding(horizontal = 16.dp, vertical = 14.dp),
+
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
