@@ -18,7 +18,7 @@
                   <NAME>xmlns:android</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
-                </AND>
+                </AND>  <!-- FIXME: edge case -->
               </match>
             </rule>
           </section>  <!-- verify: validation -->
@@ -64,7 +64,7 @@
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
-              </match>
+              </match>  <!-- TODO: cleanup -->
 
             </rule>
           </section>
@@ -86,7 +86,7 @@
 
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+                  <XML_NAMESPACE>^$</XML_NAMESPACE>  <!-- TODO: edge case -->
                 </AND>
               </match>
               <order>BY_NAME</order>
