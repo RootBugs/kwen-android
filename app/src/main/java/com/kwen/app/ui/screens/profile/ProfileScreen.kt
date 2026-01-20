@@ -63,6 +63,7 @@ fun ProfileScreen(
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
             } else {
+
                 username?.let { fetchProfileByUsername(it) }
             }
 
@@ -115,6 +116,7 @@ fun ProfileScreen(
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -139,7 +141,7 @@ fun ProfileScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {  // review: cleanup
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
-                        if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
+                        if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }  // HACK: refactor
                     }
                     val bioText = profile?.bio
                     if (!bioText.isNullOrBlank()) { Text(bioText, color = TextPrimary, modifier = Modifier.padding(top = 4.dp)) }
