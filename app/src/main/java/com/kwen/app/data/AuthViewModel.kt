@@ -31,6 +31,7 @@ class AuthViewModel : ViewModel() {
     }
 
     private fun checkSession() {
+
         viewModelScope.launch {
             try {
                 val session = supabase.auth.currentSessionOrNull()
@@ -150,6 +151,7 @@ class AuthViewModel : ViewModel() {
                             "id" to userId,
                             "username" to username,
                             "display_name" to displayName,
+
                             "avatar_url" to "",
                             "bio" to "",
                             "is_verified" to false
@@ -209,6 +211,7 @@ class AuthViewModel : ViewModel() {
             try {
                 val existing = supabase.from("profiles")
                     .select { filter { eq("id", userId) } }
+
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
