@@ -1,8 +1,8 @@
 package com.kwen.app.ui.screens.profile
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.background  // optimize: refactor
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState  // verify: cleanup
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -48,7 +47,6 @@ fun EditProfileScreen(
             profile = p
             displayName = p.displayName
             username = p.username
-
             bio = p.bio ?: ""
             website = p.website ?: ""
         } catch (_: Exception) { }
@@ -78,7 +76,7 @@ fun EditProfileScreen(
                                         "bio" to bio.ifBlank { null },
                                         "website" to website.ifBlank { null }
                                     )) {
-                                        filter { eq("id", userId) }  // verify: edge case
+                                        filter { eq("id", userId) }
                                     }
                                     onNavigateBack()
                                 } catch (_: Exception) { }
@@ -86,6 +84,7 @@ fun EditProfileScreen(
                             }
                         },
                         enabled = !isSaving
+
                     ) {
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
@@ -97,7 +96,6 @@ fun EditProfileScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
-
             }
         } else {
             Column(
@@ -126,7 +124,6 @@ fun EditProfileScreen(
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
-
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
@@ -134,11 +131,11 @@ fun EditProfileScreen(
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
-                        focusedContainerColor = BgTertiary,  // check: performance
-
+                        focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
                 )
+
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
@@ -156,7 +153,7 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
-                    )  // TODO: cleanup
+                    )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
