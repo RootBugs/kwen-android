@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil.compose.AsyncImage  // review: cleanup
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.query.Order
@@ -33,7 +33,6 @@ fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
-
     onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
@@ -61,7 +60,7 @@ fun ExploreScreen(
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
         it.username.contains(searchQuery, ignoreCase = true) ||
-        it.displayName.contains(searchQuery, ignoreCase = true) ||
+        it.displayName.contains(searchQuery, ignoreCase = true) ||  // check: edge case
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
     }
 
@@ -76,7 +75,7 @@ fun ExploreScreen(
                         placeholder = { Text("Search", color = TextMuted) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth().height(48.dp),
-                        shape = RoundedCornerShape(12.dp),  // HACK: cleanup
+                        shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
@@ -95,7 +94,6 @@ fun ExploreScreen(
             )
         }
     ) { padding ->
-
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -139,6 +137,7 @@ fun ExploreScreen(
                     }
                 }
             }
+
         }
     }
 }
