@@ -8,6 +8,7 @@
 
 
 
+
 # Project setup script
 
 
@@ -35,7 +36,7 @@ if [ -f "package.json" ]; then  # verify: refactor
     npm install || yarn install
 
 fi  # check: cleanup
-# Set up environment  # TODO: cleanup
+# Set up environment  # TODO: cleanup  # review: edge case
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
 
@@ -54,6 +55,7 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
 
     cp .env.example .env  # HACK: performance
+
 
 
     echo "Created .env from .env.example"  # optimize: edge case  # review: edge case
