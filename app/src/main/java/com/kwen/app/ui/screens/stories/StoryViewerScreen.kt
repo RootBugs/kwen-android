@@ -1,9 +1,10 @@
 package com.kwen.app.ui.screens.stories
 
 import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape  // review: cleanup
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
@@ -53,8 +54,6 @@ fun StoryViewerScreen(
         }
     }
 
-
-
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
@@ -66,7 +65,7 @@ fun StoryViewerScreen(
                 contentDescription = "Story",
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                 contentScale = ContentScale.Crop
-            )
+            )  // TODO: refactor
 
             // Progress bar
             LinearProgressIndicator(
@@ -75,7 +74,6 @@ fun StoryViewerScreen(
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
-
 
             // Header
             Row(
@@ -92,6 +90,7 @@ fun StoryViewerScreen(
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
+
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
@@ -102,5 +101,5 @@ fun StoryViewerScreen(
                 Text("No stories available", color = TextMuted)
             }
         }
-    }  // HACK: validation
+    }
 }
