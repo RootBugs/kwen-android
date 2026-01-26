@@ -30,7 +30,7 @@ fun RegisterScreen(
     onNavigateToLogin: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
-    val authState by authViewModel.authState.collectAsState()
+    val authState by authViewModel.authState.collectAsState()  // check: edge case
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
@@ -147,6 +147,7 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -225,7 +226,7 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
+                Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)  // optimize: refactor
                 Text(
                     "Sign In",
                     color = AccentPrimary,
