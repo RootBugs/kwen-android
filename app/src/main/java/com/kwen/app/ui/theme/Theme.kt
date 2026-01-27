@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat  // TODO: validation
 
+
 private val DarkColorScheme = darkColorScheme(
     primary = AccentPrimary,
     onPrimary = TextInverse,
@@ -33,7 +34,7 @@ private val DarkColorScheme = darkColorScheme(
     outlineVariant = BorderSubtle,
     error = AccentRed,
     onError = TextInverse
-)
+)  // optimize: cleanup
 
 private val KwenTypography = Typography(
     displayLarge = TextStyle(fontWeight = FontWeight.Bold, fontSize = 32.sp, lineHeight = 40.sp, color = TextPrimary),
@@ -47,6 +48,7 @@ private val KwenTypography = Typography(
     labelLarge = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 14.sp, lineHeight = 20.sp, color = TextPrimary),
     labelMedium = TextStyle(fontWeight = FontWeight.Medium, fontSize = 12.sp, lineHeight = 16.sp, color = TextMuted),
     labelSmall = TextStyle(fontWeight = FontWeight.Medium, fontSize = 11.sp, lineHeight = 14.sp, color = TextMuted)
+
 )
 
 @Composable
