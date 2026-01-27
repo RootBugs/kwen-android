@@ -79,6 +79,7 @@ fun FeedScreen(
                     IconButton(onClick = onNavigateToMessages) {
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -147,6 +148,7 @@ fun FeedScreen(
                             post = post,
 
                             onLike = { postId ->
+
                                 scope.launch {
 
                                     try {
@@ -337,6 +339,7 @@ fun PostCard(
                 "View all ${post.commentCount} comments",
 
                 style = MaterialTheme.typography.bodySmall,
+
                 color = TextMuted,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp).clickable { onComment() }
             )
