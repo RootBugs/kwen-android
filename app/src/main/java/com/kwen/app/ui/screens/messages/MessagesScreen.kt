@@ -46,6 +46,7 @@ fun MessagesScreen(
 
     fun loadConversations() {
         scope.launch {
+
             isLoading = true
             error = null
             try {
@@ -62,6 +63,7 @@ fun MessagesScreen(
 
     val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
+
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
     }
@@ -146,6 +148,7 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                         color = TextPrimary
                                     )
+
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
                                         style = MaterialTheme.typography.bodySmall,
