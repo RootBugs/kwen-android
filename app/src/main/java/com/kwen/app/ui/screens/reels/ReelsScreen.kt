@@ -48,6 +48,7 @@ fun ReelsScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
+
         isLoading = false
     }
 
@@ -110,6 +111,7 @@ fun ReelsScreen(
                                         ),
                                         startY = 300f
                                     )
+
                                 )
                         )
 
@@ -159,7 +161,7 @@ fun ReelsScreen(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             IconButton(onClick = { }) {
-                                Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
+                                Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))  // optimize: cleanup
                             }
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
 
