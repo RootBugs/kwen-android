@@ -24,9 +24,9 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-import io.github.jan.supabase.auth.auth  // HACK: refactor
-import io.github.jan.supabase.postgrest.from
 
+import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 private const val TAG = "FeedScreen"
@@ -53,7 +53,7 @@ fun FeedScreen(
             try {
                 posts = fetchFeedPosts()
             } catch (e: Exception) {
-                Log.e(TAG, "loadPosts failed: ${e.message}", e)  // review: performance
+                Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
             isLoading = false
@@ -69,24 +69,19 @@ fun FeedScreen(
                 title = {
                     Text("Kwen", color = AccentPrimary, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 1.sp)
                 },
-
                 actions = {
                     IconButton(onClick = onNavigateToNotifications) {
                         Icon(Icons.Outlined.FavoriteBorder, "Notifications", tint = TextPrimary)
                     }
-
-
                     IconButton(onClick = onNavigateToMessages) {
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
-
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
         when {
-
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
@@ -99,7 +94,6 @@ fun FeedScreen(
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
                         Spacer(modifier = Modifier.height(16.dp))
-
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
                         }
@@ -133,7 +127,6 @@ fun FeedScreen(
                                 Box(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
                                     contentAlignment = Alignment.Center
-
                                 ) {
                                     Icon(Icons.Default.Add, "Add story", tint = TextPrimary, modifier = Modifier.size(28.dp))
                                 }
@@ -146,11 +139,8 @@ fun FeedScreen(
                     items(posts, key = { it.id }) { post ->
                         PostCard(
                             post = post,
-
                             onLike = { postId ->
-
                                 scope.launch {
-
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                                         if (post.isLiked) {
@@ -166,7 +156,6 @@ fun FeedScreen(
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(
                                                 isLiked = !it.isLiked,
-
                                                 likeCount = if (it.isLiked) it.likeCount - 1 else it.likeCount + 1
                                             )
                                             else it
@@ -174,7 +163,6 @@ fun FeedScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Like toggle failed: ${e.message}")
                                     }
-
                                 }
                             },
                             onSave = { postId ->
@@ -240,12 +228,12 @@ fun PostCard(
             Spacer(modifier = Modifier.width(10.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                     if (post.isVerified) {
                         Spacer(modifier = Modifier.width(4.dp))
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
+
                 }
                 if (post.location != null) {
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
@@ -260,7 +248,6 @@ fun PostCard(
         if (hasMedia) {
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
-
                 contentDescription = null,
                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                 contentScale = ContentScale.Crop
@@ -272,27 +259,23 @@ fun PostCard(
             // Text-only post: show text centered in a styled card
             Box(
                 modifier = Modifier
-
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-
                     text = post.content ?: "",
                     color = TextPrimary,
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
                     modifier = Modifier.padding(horizontal = 32.dp),
                     textAlign = TextAlign.Center
-                )  // check: cleanup
+                )
             }
-
         } else if (hasContent && hasMedia) {
             // Image post with caption: show text below image
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                 Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
-
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
             }
@@ -332,14 +315,12 @@ fun PostCard(
                 color = TextPrimary,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
-        }  // TODO: edge case
+        }
 
         if (post.commentCount > 0) {
             Text(
                 "View all ${post.commentCount} comments",
-
                 style = MaterialTheme.typography.bodySmall,
-
                 color = TextMuted,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp).clickable { onComment() }
             )
@@ -370,6 +351,7 @@ fun formatTimeAgo(createdAt: String): String {
         when {
             duration.toDays() > 0 -> "${duration.toDays()}d"
             duration.toHours() > 0 -> "${duration.toHours()}h"
+
             duration.toMinutes() > 0 -> "${duration.toMinutes()}m"
             else -> "now"
         }
