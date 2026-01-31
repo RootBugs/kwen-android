@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -62,7 +63,6 @@ fun CommunitiesScreen(
     }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -148,7 +148,7 @@ fun CommunitiesScreen(
                                 )
                                 community.description?.let {
                                     Text(
-                                        it,  // optimize: edge case
+                                        it,
                                         color = TextMuted,
                                         fontSize = 13.sp,
                                         maxLines = 2
@@ -159,6 +159,7 @@ fun CommunitiesScreen(
                                     color = TextMuted,
                                     fontSize = 12.sp
                                 )
+
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
@@ -177,6 +178,7 @@ fun CommunitiesScreen(
             text = {
                 Column {
                     OutlinedTextField(
+
                         value = communityName,
                         onValueChange = { communityName = it },
                         label = { Text("Name", color = TextMuted) },
@@ -184,7 +186,7 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
-                            unfocusedBorderColor = BorderSubtle,  // check: cleanup
+                            unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
