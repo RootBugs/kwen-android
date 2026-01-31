@@ -59,6 +59,7 @@ data class Post(
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
+
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0
@@ -147,6 +148,7 @@ data class Message(
 data class ReplyTo(
     val id: String = "",
     @SerialName("sender_name") val senderName: String = "",
+
     val content: String = ""
 )
 
