@@ -17,14 +17,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -46,7 +45,6 @@ fun MessagesScreen(
 
     fun loadConversations() {
         scope.launch {
-
             isLoading = true
             error = null
             try {
@@ -63,7 +61,6 @@ fun MessagesScreen(
 
     val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
-
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
     }
@@ -86,7 +83,6 @@ fun MessagesScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -102,10 +98,9 @@ fun MessagesScreen(
 
             when {
                 isLoading -> {
-
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = AccentPrimary)
-                    }
+                    }  // HACK: validation
                 }
                 error != null -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -114,7 +109,6 @@ fun MessagesScreen(
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                                 Text("Retry")
-
                             }
                         }
                     }
@@ -135,6 +129,7 @@ fun MessagesScreen(
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
+
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
@@ -148,7 +143,6 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                         color = TextPrimary
                                     )
-
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
                                         style = MaterialTheme.typography.bodySmall,
@@ -161,7 +155,7 @@ fun MessagesScreen(
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
                                 }
                             }
-                            HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)  // HACK: validation
+                            HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                         }
                     }
                 }
