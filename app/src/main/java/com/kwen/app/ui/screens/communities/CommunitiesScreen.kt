@@ -3,7 +3,7 @@ package com.kwen.app.ui.screens.communities
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyColumn  // optimize: refactor
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -89,6 +89,7 @@ fun CommunitiesScreen(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
+
                     Text("No communities yet", color = TextMuted, fontSize = 18.sp)
                     Spacer(modifier = Modifier.height(8.dp))
                     TextButton(onClick = { showCreateDialog = true }) {
@@ -189,6 +190,7 @@ fun CommunitiesScreen(
                             cursorColor = AccentPrimary
                         )
                     )
+
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedTextField(
                         value = communityDesc,
