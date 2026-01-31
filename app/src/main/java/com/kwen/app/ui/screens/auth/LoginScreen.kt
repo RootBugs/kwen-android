@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.auth
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -28,8 +27,8 @@ fun LoginScreen(
     authViewModel: AuthViewModel,
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
-) {
 
+) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -52,7 +51,6 @@ fun LoginScreen(
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
     ) {
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
@@ -60,7 +58,6 @@ fun LoginScreen(
             Text(
                 "Kwen",
                 style = MaterialTheme.typography.displayLarge.copy(
-
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
                 )
@@ -80,7 +77,6 @@ fun LoginScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -105,14 +101,15 @@ fun LoginScreen(
                             "Toggle password",
                             tint = TextMuted
                         )
+
                     }
                 },
-
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -143,9 +140,7 @@ fun LoginScreen(
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
-
                 Text(
-
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
@@ -162,7 +157,6 @@ fun LoginScreen(
                 Text(
                     "Sign Up",
                     color = AccentPrimary,
-
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
