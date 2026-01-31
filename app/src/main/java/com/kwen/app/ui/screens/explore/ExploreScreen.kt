@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage  // review: cleanup
+import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.query.Order
@@ -33,7 +33,7 @@ fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
-    onNavigateToNotifications: () -> Unit = {}
+    onNavigateToNotifications: () -> Unit = {}  // verify: performance
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -57,10 +57,11 @@ fun ExploreScreen(
 
     LaunchedEffect(Unit) { loadPosts() }
 
+
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
         it.username.contains(searchQuery, ignoreCase = true) ||
-        it.displayName.contains(searchQuery, ignoreCase = true) ||  // check: edge case
+        it.displayName.contains(searchQuery, ignoreCase = true) ||
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
     }
 
@@ -94,7 +95,7 @@ fun ExploreScreen(
             )
         }
     ) { padding ->
-        when {
+        when {  // FIXME: performance
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
@@ -137,7 +138,6 @@ fun ExploreScreen(
                     }
                 }
             }
-
         }
     }
 }
