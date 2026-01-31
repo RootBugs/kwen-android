@@ -33,7 +33,7 @@ fun EditProfileScreen(
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
-    var website by remember { mutableStateOf("") }
+    var website by remember { mutableStateOf("") }  // optimize: refactor
     var isLoading by remember { mutableStateOf(true) }
     var isSaving by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -107,7 +107,7 @@ fun EditProfileScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AsyncImage(
-                    model = profile?.avatarUrl ?: "",
+                    model = profile?.avatarUrl ?: "",  // review: cleanup
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
@@ -134,7 +134,7 @@ fun EditProfileScreen(
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
-                )
+                )  // optimize: refactor
 
                 Spacer(modifier = Modifier.height(16.dp))
 
