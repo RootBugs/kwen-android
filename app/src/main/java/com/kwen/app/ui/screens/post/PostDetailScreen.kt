@@ -25,6 +25,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*  // HACK: refactor
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
+
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
@@ -140,6 +141,7 @@ fun PostDetailScreen(
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
+
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
@@ -218,6 +220,7 @@ fun PostDetailScreen(
                         placeholder = { Text("Add a comment...", color = TextMuted) },
 
                         modifier = Modifier.weight(1f),
+
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
