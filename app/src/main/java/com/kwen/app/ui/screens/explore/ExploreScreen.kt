@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.explore
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -33,7 +34,7 @@ fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
-    onNavigateToNotifications: () -> Unit = {}  // verify: performance
+    onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -57,7 +58,6 @@ fun ExploreScreen(
 
     LaunchedEffect(Unit) { loadPosts() }
 
-
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
         it.username.contains(searchQuery, ignoreCase = true) ||
@@ -79,6 +79,7 @@ fun ExploreScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
+
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
@@ -95,7 +96,7 @@ fun ExploreScreen(
             )
         }
     ) { padding ->
-        when {  // FIXME: performance
+        when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
@@ -110,6 +111,7 @@ fun ExploreScreen(
                             Text("Retry")
                         }
                     }
+
                 }
             }
             else -> {
