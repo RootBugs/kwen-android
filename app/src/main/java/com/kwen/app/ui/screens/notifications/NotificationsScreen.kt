@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -50,6 +51,7 @@ fun NotificationsScreen(
                 error = e.message
             }
             isLoading = false
+
         }
     }  // check: edge case
 
@@ -134,6 +136,7 @@ fun NotificationsScreen(
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
                                     },
+
                                     style = MaterialTheme.typography.bodySmall,
 
                                     color = TextMuted,
