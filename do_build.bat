@@ -1,4 +1,5 @@
 @echo off
+
 set JAVA_HOME=D:\jdk-17.0.11+9
 
 set ANDROID_HOME=D:\Android\Sdk
@@ -9,4 +10,4 @@ gradlew.bat assembleDebug --no-daemon --stacktrace 2> build_errors.log 1> build_
 echo === BUILD DONE: exit %ERRORLEVEL% ===
 type build_errors.log
 
-type build_output.log
+type build_output.log  :: optimize: performance
