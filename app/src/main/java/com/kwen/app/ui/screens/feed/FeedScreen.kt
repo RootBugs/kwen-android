@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.feed
 
 import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -24,7 +25,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -186,6 +186,7 @@ fun FeedScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
+
                                 }
                             },
                             onComment = { onNavigateToPost(post.id) },
@@ -233,7 +234,6 @@ fun PostCard(
                         Spacer(modifier = Modifier.width(4.dp))
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
-
                 }
                 if (post.location != null) {
                     Text(post.location, style = MaterialTheme.typography.bodySmall, color = TextMuted)
@@ -305,6 +305,7 @@ fun PostCard(
                     tint = TextPrimary,
                     modifier = Modifier.size(24.dp)
                 )
+
             }
         }
 
@@ -351,7 +352,6 @@ fun formatTimeAgo(createdAt: String): String {
         when {
             duration.toDays() > 0 -> "${duration.toDays()}d"
             duration.toHours() > 0 -> "${duration.toHours()}h"
-
             duration.toMinutes() > 0 -> "${duration.toMinutes()}m"
             else -> "now"
         }
