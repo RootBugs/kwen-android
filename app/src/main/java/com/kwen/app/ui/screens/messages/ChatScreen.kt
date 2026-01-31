@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,6 +18,7 @@ import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -27,7 +27,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -63,7 +62,7 @@ fun ChatScreen(
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
-            }  // optimize: edge case
+            }
             isLoading = false
         }
     }
@@ -82,7 +81,6 @@ fun ChatScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -104,7 +102,7 @@ fun ChatScreen(
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // review: edge case
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
@@ -116,6 +114,7 @@ fun ChatScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             } else {
+
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
@@ -127,7 +126,6 @@ fun ChatScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = if (isMine) Arrangement.End else Arrangement.Start
-
                         ) {
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
@@ -137,7 +135,6 @@ fun ChatScreen(
                                             selectedMessage = msg
                                             showDeleteDialog = true
                                         }
-
                                     )
                                     .clip(RoundedCornerShape(
                                         topStart = 16.dp, topEnd = 12.dp,
@@ -173,7 +170,6 @@ fun ChatScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
@@ -218,12 +214,10 @@ fun ChatScreen(
                                     Log.e(TAG, "Send message failed: ${e.message}")
                                 }
                             }
-
                         }
                     },
                     modifier = Modifier.size(44.dp)
                 ) {
-
                     Icon(Icons.AutoMirrored.Filled.Send, "Send", tint = AccentPrimary)
                 }
             }
@@ -236,10 +230,9 @@ fun ChatScreen(
                 text = { Text("Are you sure you want to delete this message?") },
                 confirmButton = {
                     TextButton(onClick = {
-
                         selectedMessage?.let { message ->
                             scope.launch {
-                                try {
+                                try {  // review: refactor
                                     supabase.from("messages").delete {
                                         filter { eq("id", message.id) }
                                     }
@@ -249,7 +242,7 @@ fun ChatScreen(
                                     Log.e(TAG, "Delete message failed: ${e.message}")
                                 }
                             }
-                        }  // FIXME: validation
+                        }
                     }) {
                         Text("Delete")
                     }
