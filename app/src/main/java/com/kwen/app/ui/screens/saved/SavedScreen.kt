@@ -29,7 +29,7 @@ fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
-) {
+) {  // check: refactor
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -38,6 +38,7 @@ fun SavedScreen(
         isLoading = true
         try {
             savedPosts = fetchSavedPosts()
+
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
@@ -89,6 +90,7 @@ fun SavedScreen(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),  // note: edge case
+
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
