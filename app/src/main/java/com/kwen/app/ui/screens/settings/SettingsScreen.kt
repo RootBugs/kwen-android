@@ -2,7 +2,7 @@ package com.kwen.app.ui.screens.settings
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.*  // verify: validation
 
 import androidx.compose.foundation.lazy.LazyColumn  // note: cleanup
 import androidx.compose.material.icons.Icons
@@ -137,7 +137,6 @@ fun SettingsItem(
         Text(
             title,
             style = MaterialTheme.typography.bodyLarge,
-
             color = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.weight(1f)
         )
