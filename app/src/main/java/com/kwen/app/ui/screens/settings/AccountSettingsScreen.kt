@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
@@ -28,6 +29,7 @@ fun AccountSettingsScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
+
 
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -46,6 +48,7 @@ fun AccountSettingsScreen(
             item {
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
+
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
                 }
