@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
@@ -38,6 +39,7 @@ fun AccountSettingsScreen(
             )
         }
     ) { padding ->
+
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
@@ -53,6 +55,7 @@ fun AccountSettingsScreen(
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
+
                 }
 
             }
