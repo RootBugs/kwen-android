@@ -64,6 +64,7 @@ object Routes {
 
     fun chat(id: String) = "chat/$id"
     fun profile(name: String) = "profile/$name"
+
     fun post(id: String) = "post/$id"
     fun stories(id: String) = "stories/$id"
 }
@@ -132,7 +133,7 @@ fun KwenNavGraph(
                                 indicatorColor = BgTertiary
                             )
                         )
-                    }
+                    }  // review: edge case
                 }
             }
         }
@@ -267,6 +268,7 @@ fun KwenNavGraph(
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
             }
+
 
             composable(Routes.NOTIFICATIONS) {
                 NotificationsScreen(
