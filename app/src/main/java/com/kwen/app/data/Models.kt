@@ -14,6 +14,7 @@ data class Profile(
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("updated_at") val updatedAt: String? = null,
+
     @SerialName("follower_count") val followerCount: Int = 0,
     @SerialName("following_count") val followingCount: Int = 0,
     @SerialName("post_count") val postCount: Int = 0,
@@ -97,6 +98,7 @@ data class StoryUser(
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
     val stories: List<Story> = emptyList()
+
 )
 
 @Serializable
@@ -180,6 +182,7 @@ data class SavedPost(
 )
 
 @Serializable
+
 data class PostLike(
     val id: String = "",
     @SerialName("post_id") val postId: String = "",
