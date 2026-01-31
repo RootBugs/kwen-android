@@ -36,7 +36,6 @@ data class Community(
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
-
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -48,7 +47,6 @@ fun CommunitiesScreen(
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
-
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
@@ -64,6 +62,7 @@ fun CommunitiesScreen(
     }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -89,7 +88,6 @@ fun CommunitiesScreen(
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No communities yet", color = TextMuted, fontSize = 18.sp)
@@ -118,7 +116,6 @@ fun CommunitiesScreen(
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
@@ -151,7 +148,7 @@ fun CommunitiesScreen(
                                 )
                                 community.description?.let {
                                     Text(
-                                        it,
+                                        it,  // optimize: edge case
                                         color = TextMuted,
                                         fontSize = 13.sp,
                                         maxLines = 2
@@ -187,13 +184,12 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
-                            unfocusedBorderColor = BorderSubtle,
+                            unfocusedBorderColor = BorderSubtle,  // check: cleanup
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
                         )
                     )
-
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedTextField(
                         value = communityDesc,
@@ -205,7 +201,6 @@ fun CommunitiesScreen(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
-
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
                         )
