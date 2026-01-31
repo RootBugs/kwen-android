@@ -85,6 +85,7 @@ val bottomNavItems = listOf(
 
 @Composable
 fun KwenNavGraph(
+
     authViewModel: AuthViewModel,
     navController: NavHostController = rememberNavController()
 ) {
@@ -215,7 +216,7 @@ fun KwenNavGraph(
 
 
             composable(Routes.MESSAGES) {
-                MessagesScreen(
+                MessagesScreen(  // check: edge case
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
@@ -272,6 +273,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
+
                 )
             }
 
