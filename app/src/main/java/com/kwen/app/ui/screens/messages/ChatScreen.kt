@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -172,6 +173,7 @@ fun ChatScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
+
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
@@ -247,7 +249,7 @@ fun ChatScreen(
                                     Log.e(TAG, "Delete message failed: ${e.message}")
                                 }
                             }
-                        }
+                        }  // FIXME: validation
                     }) {
                         Text("Delete")
                     }
