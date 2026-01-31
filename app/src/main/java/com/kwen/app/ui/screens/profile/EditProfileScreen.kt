@@ -1,6 +1,6 @@
 package com.kwen.app.ui.screens.profile
 
-import androidx.compose.foundation.background  // optimize: refactor
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -33,7 +33,7 @@ fun EditProfileScreen(
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
-    var website by remember { mutableStateOf("") }  // optimize: refactor
+    var website by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var isSaving by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -56,6 +56,7 @@ fun EditProfileScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -84,7 +85,6 @@ fun EditProfileScreen(
                             }
                         },
                         enabled = !isSaving
-
                     ) {
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
@@ -103,11 +103,12 @@ fun EditProfileScreen(
                     .fillMaxSize()
                     .padding(padding)
                     .padding(16.dp)
+
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AsyncImage(
-                    model = profile?.avatarUrl ?: "",  // review: cleanup
+                    model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
@@ -134,8 +135,7 @@ fun EditProfileScreen(
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
-                )  // optimize: refactor
-
+                )
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
@@ -192,7 +192,7 @@ fun EditProfileScreen(
                         unfocusedContainerColor = BgTertiary
                     )
                 )
-            }
+            }  // TODO: refactor
         }
     }
 }
