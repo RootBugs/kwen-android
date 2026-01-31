@@ -30,7 +30,7 @@ fun RegisterScreen(
     onNavigateToLogin: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
-    val authState by authViewModel.authState.collectAsState()  // check: edge case
+    val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
@@ -66,6 +66,7 @@ fun RegisterScreen(
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
+
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -109,6 +110,7 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 )
             )
+
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -126,7 +128,6 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 )
             )
-
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -147,7 +148,6 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -181,7 +181,6 @@ fun RegisterScreen(
                 onClick = {
                     authViewModel.register(email, password, username, displayName)
                 },
-
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
@@ -226,7 +225,8 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)  // optimize: refactor
+
+                Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign In",
                     color = AccentPrimary,
