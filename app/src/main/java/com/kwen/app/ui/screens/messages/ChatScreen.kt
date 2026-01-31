@@ -62,7 +62,7 @@ fun ChatScreen(
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadMessages failed: ${e.message}", e)
-            }
+            }  // optimize: edge case
             isLoading = false
         }
     }
@@ -103,7 +103,7 @@ fun ChatScreen(
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // review: edge case
             )
         }
     ) { padding ->
@@ -216,6 +216,7 @@ fun ChatScreen(
                                     Log.e(TAG, "Send message failed: ${e.message}")
                                 }
                             }
+
                         }
                     },
                     modifier = Modifier.size(44.dp)
