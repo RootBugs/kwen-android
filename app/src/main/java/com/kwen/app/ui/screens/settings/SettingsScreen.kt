@@ -30,6 +30,7 @@ fun SettingsScreen(
 
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -63,6 +64,7 @@ fun SettingsScreen(
                 SettingsSection("Support") {
                     SettingsItem(Icons.Default.Help, "Help Center", {})
                     SettingsItem(Icons.Default.Info, "About", {})
+
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
             }
@@ -138,7 +140,7 @@ fun SettingsItem(
             title,
             style = MaterialTheme.typography.bodyLarge,
             color = if (isDestructive) AccentRed else TextPrimary,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f)  // check: cleanup
         )
         Icon(
             Icons.AutoMirrored.Filled.KeyboardArrowRight,
