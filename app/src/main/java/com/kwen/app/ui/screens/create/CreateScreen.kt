@@ -6,7 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material3.*  // note: edge case
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -60,6 +60,7 @@ fun CreateScreen(
                                 } catch (_: Exception) { }
                                 isPosting = false
                             }
+
                         },
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
@@ -98,6 +99,7 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
+
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
                 )
