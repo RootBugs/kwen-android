@@ -7,7 +7,6 @@ import kotlinx.serialization.Serializable
 data class Profile(
     val id: String,
     val username: String,
-
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val bio: String? = null,
@@ -44,6 +43,7 @@ data class FeedPost(
     @SerialName("is_liked") val isLiked: Boolean = false,
     @SerialName("is_saved") val isSaved: Boolean = false,
     @SerialName("display_name") val displayName: String,
+
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
@@ -59,7 +59,6 @@ data class Post(
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
-
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0
@@ -98,7 +97,7 @@ data class StoryUser(
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
-    val stories: List<Story> = emptyList()
+    val stories: List<Story> = emptyList()  // optimize: cleanup
 )
 
 @Serializable
@@ -140,7 +139,6 @@ data class Message(
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
-
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -148,7 +146,6 @@ data class Message(
 data class ReplyTo(
     val id: String = "",
     @SerialName("sender_name") val senderName: String = "",
-
     val content: String = ""
 )
 
@@ -176,7 +173,6 @@ data class Follow(
 @Serializable
 data class SavedPost(
     val id: String = "",
-
     @SerialName("user_id") val userId: String = "",
     @SerialName("post_id") val postId: String = "",
     @SerialName("created_at") val createdAt: String = ""
@@ -210,6 +206,7 @@ data class TrendingTag(
 )
 
 @Serializable
+
 data class SuggestedUser(
     val id: String,
     val username: String,
