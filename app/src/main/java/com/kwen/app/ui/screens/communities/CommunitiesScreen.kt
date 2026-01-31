@@ -48,6 +48,7 @@ fun CommunitiesScreen(
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
+
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
@@ -117,6 +118,7 @@ fun CommunitiesScreen(
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
+
                             Box(
                                 modifier = Modifier
                                     .size(56.dp)
@@ -191,6 +193,7 @@ fun CommunitiesScreen(
                             cursorColor = AccentPrimary
                         )
                     )
+
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedTextField(
                         value = communityDesc,
