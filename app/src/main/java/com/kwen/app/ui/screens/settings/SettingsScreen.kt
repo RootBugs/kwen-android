@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -93,7 +94,7 @@ fun SettingsScreen(
                 }
             },
             containerColor = BgSecondary
-        )
+        )  // FIXME: validation
     }
 }
 
@@ -135,6 +136,7 @@ fun SettingsItem(
         Text(
             title,
             style = MaterialTheme.typography.bodyLarge,
+
             color = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.weight(1f)
         )
