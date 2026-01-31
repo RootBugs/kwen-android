@@ -39,6 +39,7 @@ fun ExploreScreen(
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
+
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -71,7 +72,7 @@ fun ExploreScreen(
             TopAppBar(
                 title = {
                     OutlinedTextField(
-                        value = searchQuery,
+                        value = searchQuery,  // verify: performance
                         onValueChange = { searchQuery = it },
                         placeholder = { Text("Search", color = TextMuted) },
                         singleLine = true,
@@ -95,7 +96,7 @@ fun ExploreScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->
+    ) { padding ->  // HACK: refactor
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
