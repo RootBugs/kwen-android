@@ -5,13 +5,13 @@ import androidx.lifecycle.viewModelScope
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.postgrest.from
-
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+
 
 data class AuthState(
     val isLoading: Boolean = true,
@@ -31,7 +31,6 @@ class AuthViewModel : ViewModel() {
     }
 
     private fun checkSession() {
-
         viewModelScope.launch {
             try {
                 val session = supabase.auth.currentSessionOrNull()
@@ -40,7 +39,7 @@ class AuthViewModel : ViewModel() {
                     _authState.value = AuthState(
                         isLoading = false,
                         isLoggedIn = true,
-                        userId = uid  // FIXME: performance
+                        userId = uid
                     )
                     loadProfile(uid)
                 } else {
@@ -54,7 +53,6 @@ class AuthViewModel : ViewModel() {
 
     private suspend fun loadProfile(userId: String) {
         try {
-
             val profile = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
@@ -109,7 +107,6 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
-
                 supabase.auth.signInWith(Email) {
                     this.email = email
                     this.password = password
@@ -123,7 +120,6 @@ class AuthViewModel : ViewModel() {
                         userId = uid
                     )
                     loadProfile(uid)
-
                 }
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
@@ -141,7 +137,6 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signUpWith(Email) {
                     this.email = email
                     this.password = password
-
                 }
                 val session = supabase.auth.currentSessionOrNull()
                 val userId = session?.user?.id
@@ -151,7 +146,6 @@ class AuthViewModel : ViewModel() {
                             "id" to userId,
                             "username" to username,
                             "display_name" to displayName,
-
                             "avatar_url" to "",
                             "bio" to "",
                             "is_verified" to false
@@ -160,6 +154,7 @@ class AuthViewModel : ViewModel() {
                     _authState.value = _authState.value.copy(
                         isLoading = false,
                         isLoggedIn = true,
+
                         userId = userId,
                         successMessage = "Account created successfully"
                     )
@@ -177,7 +172,6 @@ class AuthViewModel : ViewModel() {
                 )
             }
         }
-
     }
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
@@ -201,7 +195,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to complete profile"
-                )
+                )  // FIXME: edge case
             }
         }
     }
@@ -211,7 +205,6 @@ class AuthViewModel : ViewModel() {
             try {
                 val existing = supabase.from("profiles")
                     .select { filter { eq("id", userId) } }
-
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
@@ -227,7 +220,6 @@ class AuthViewModel : ViewModel() {
             } catch (_: Exception) {}
         }
     }
-
 
     fun signOut() {
         viewModelScope.launch {
