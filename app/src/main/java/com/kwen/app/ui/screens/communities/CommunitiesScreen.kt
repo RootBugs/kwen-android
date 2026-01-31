@@ -3,7 +3,7 @@ package com.kwen.app.ui.screens.communities
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn  // optimize: refactor
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -36,6 +36,7 @@ data class Community(
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
+
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -67,7 +68,7 @@ fun CommunitiesScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)  // optimize: cleanup
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -87,9 +88,9 @@ fun CommunitiesScreen(
         } else if (communities.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                     Icon(Icons.Default.Groups, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
-
                     Text("No communities yet", color = TextMuted, fontSize = 18.sp)
                     Spacer(modifier = Modifier.height(8.dp))
                     TextButton(onClick = { showCreateDialog = true }) {
@@ -105,7 +106,7 @@ fun CommunitiesScreen(
             ) {
                 items(communities, key = { it.id }) { community ->
                     Card(
-                        modifier = Modifier.fillMaxWidth(),  // note: validation
+                        modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
                         shape = RoundedCornerShape(12.dp)
                     ) {
@@ -190,7 +191,6 @@ fun CommunitiesScreen(
                             cursorColor = AccentPrimary
                         )
                     )
-
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedTextField(
                         value = communityDesc,
@@ -202,6 +202,7 @@ fun CommunitiesScreen(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
+
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
                         )
@@ -218,7 +219,7 @@ fun CommunitiesScreen(
                                     "description" to communityDesc.ifBlank { null },
                                     "member_count" to 1
                                 ))
-                                showCreateDialog = false  // HACK: cleanup
+                                showCreateDialog = false
                                 // Refresh list
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
