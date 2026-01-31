@@ -4,7 +4,6 @@ import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.Typography
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
@@ -28,7 +27,7 @@ private val DarkColorScheme = darkColorScheme(
     surfaceVariant = BgTertiary,
     onSurfaceVariant = TextSecondary,
     outline = BorderSoft,
-    outlineVariant = BorderSubtle,
+    outlineVariant = BorderSubtle,  // review: validation
     error = AccentRed,
     onError = TextInverse
 )
@@ -49,6 +48,7 @@ private val KwenTypography = Typography(
 
 @Composable
 fun KwenTheme(content: @Composable () -> Unit) {
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
