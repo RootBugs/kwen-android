@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyColumn  // note: cleanup
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 
@@ -94,6 +94,7 @@ fun SettingsScreen(
                 }
             },
             containerColor = BgSecondary
+
         )  // FIXME: validation
     }
 }
@@ -103,7 +104,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
     Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
         Text(
             title,
-            style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
+            style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),  // HACK: cleanup
             color = TextMuted,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
