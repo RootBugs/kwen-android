@@ -80,6 +80,7 @@ fun PostDetailScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (post == null) {
+
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Text("Post not found", color = TextMuted)
             }
@@ -155,6 +156,7 @@ fun PostDetailScreen(
                                 )
                             }
                         }
+
                     }
 
                     // Comments header
@@ -218,7 +220,7 @@ fun PostDetailScreen(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
-                            focusedTextColor = TextPrimary,
+                            focusedTextColor = TextPrimary,  // HACK: cleanup
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary,
                             focusedContainerColor = BgTertiary,
