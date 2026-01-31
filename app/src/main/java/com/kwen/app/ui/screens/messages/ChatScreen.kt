@@ -13,12 +13,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack  // verify: performance
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -114,7 +113,6 @@ fun ChatScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             } else {
-
                 LazyColumn(
                     modifier = Modifier.weight(1f).padding(horizontal = 12.dp),
                     state = listState,
@@ -130,6 +128,7 @@ fun ChatScreen(
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
                                     .combinedClickable(
+
                                         onClick = {},
                                         onLongClick = {
                                             selectedMessage = msg
@@ -232,7 +231,7 @@ fun ChatScreen(
                     TextButton(onClick = {
                         selectedMessage?.let { message ->
                             scope.launch {
-                                try {  // review: refactor
+                                try {
                                     supabase.from("messages").delete {
                                         filter { eq("id", message.id) }
                                     }
@@ -248,6 +247,7 @@ fun ChatScreen(
                     }
                 },
                 dismissButton = {
+
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
                     }
