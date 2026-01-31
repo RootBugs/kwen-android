@@ -3,7 +3,6 @@ package com.kwen.app.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -22,6 +21,7 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 @Composable
 fun MainScreen(
     authViewModel: AuthViewModel,
+
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
@@ -35,6 +35,7 @@ fun MainScreen(
     val tabs = listOf(
         Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
+
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
     )
@@ -62,7 +63,7 @@ fun MainScreen(
                 )
             }
         },
-        bottomBar = {  // note: performance
+        bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
@@ -73,7 +74,6 @@ fun MainScreen(
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
-
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
                     )
@@ -103,7 +103,7 @@ fun MainScreen(
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
                 )
-            }
+            }  // FIXME: refactor
         }
     }
 }
