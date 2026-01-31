@@ -73,6 +73,7 @@ class AuthViewModel : ViewModel() {
                 )
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
+
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
                 )
@@ -111,6 +112,7 @@ class AuthViewModel : ViewModel() {
                     this.email = email
                     this.password = password
                 }
+
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
                     val uid = session.user?.id ?: ""
@@ -202,6 +204,7 @@ class AuthViewModel : ViewModel() {
 
     fun ensureProfileExists(userId: String, email: String) {
         viewModelScope.launch {
+
             try {
                 val existing = supabase.from("profiles")
                     .select { filter { eq("id", userId) } }
