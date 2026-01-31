@@ -29,6 +29,7 @@ fun LoginScreen(
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
+
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -59,6 +60,7 @@ fun LoginScreen(
             Text(
                 "Kwen",
                 style = MaterialTheme.typography.displayLarge.copy(
+
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
                 )
@@ -143,6 +145,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
+
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
