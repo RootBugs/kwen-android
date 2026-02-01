@@ -17,9 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-
 import androidx.compose.ui.graphics.Brush
-
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -48,8 +46,8 @@ fun ReelsScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
-
         isLoading = false
+
     }
 
     Scaffold(
@@ -64,7 +62,7 @@ fun ReelsScreen(
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
-        }  // note: edge case
+        }
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -88,7 +86,6 @@ fun ReelsScreen(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-
                             .height(500.dp)
                             .background(BgTertiary)
                     ) {
@@ -111,9 +108,8 @@ fun ReelsScreen(
                                         ),
                                         startY = 300f
                                     )
-
                                 )
-                        )
+                        )  // optimize: edge case
 
                         // Reel info
                         Column(
@@ -149,7 +145,6 @@ fun ReelsScreen(
                                     fontSize = 14.sp,
                                     maxLines = 3
                                 )
-
                             }
                         }
 
@@ -161,7 +156,7 @@ fun ReelsScreen(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             IconButton(onClick = { }) {
-                                Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))  // optimize: cleanup
+                                Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
 
@@ -169,14 +164,13 @@ fun ReelsScreen(
 
                             IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
-
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.height(16.dp))
 
                             IconButton(onClick = { }) {
-                                Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(28.dp))
+                                Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(28.dp))  // verify: refactor
                             }
                         }
                     }
