@@ -34,6 +34,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "ProfileScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun ProfileScreen(
     username: String?,
@@ -72,6 +73,7 @@ fun ProfileScreen(
                 val userPosts = fetchPostsByUser(targetProfile.id)
                 posts = userPosts
                 postCount = userPosts.size
+
 
                 if (!isOwnProfile) {
                     val followCheck = try {
@@ -164,6 +166,7 @@ fun ProfileScreen(
                                 }
                             }, modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
+
                                 shape = RoundedCornerShape(8.dp)) {
                                 Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
                             }
