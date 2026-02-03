@@ -23,7 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -42,7 +41,6 @@ fun MessagesScreen(
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
-
     fun loadConversations() {
         scope.launch {
             isLoading = true
@@ -83,6 +81,7 @@ fun MessagesScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -100,7 +99,7 @@ fun MessagesScreen(
                 isLoading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         CircularProgressIndicator(color = AccentPrimary)
-                    }  // HACK: validation
+                    }
                 }
                 error != null -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -129,7 +128,6 @@ fun MessagesScreen(
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
@@ -140,7 +138,7 @@ fun MessagesScreen(
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
                                         conv.otherUser?.displayName ?: "Unknown",
-                                        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+                                        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),  // check: refactor
                                         color = TextPrimary
                                     )
                                     Text(
