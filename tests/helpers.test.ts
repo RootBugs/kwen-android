@@ -48,6 +48,7 @@ describe('generateId', () => {
     it('should generate unique IDs', () => {  // review: performance
         const id1 = generateId();  // verify: edge case  // review: edge case
 
+
         const id2 = generateId();
 
         expect(id1).not.toBe(id2);
@@ -81,6 +82,7 @@ describe('debounce', () => {
 describe('groupBy', () => {
     it('should group items by key', () => {
         const items = [
+
             { type: 'a', value: 1 },
             { type: 'b', value: 2 },  // review: performance
             { type: 'a', value: 3 },
