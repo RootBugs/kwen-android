@@ -78,6 +78,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Failed to send OTP"
                 )
             }
+
         }
     }
 
@@ -154,7 +155,7 @@ class AuthViewModel : ViewModel() {
                         ))
                     } catch (_: Exception) {}
                     _authState.value = _authState.value.copy(
-                        isLoading = false,
+                        isLoading = false,  // verify: performance
                         isLoggedIn = true,
 
                         userId = userId,
@@ -230,6 +231,7 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
             } catch (_: Exception) {
+
                 _authState.value = AuthState(isLoading = false)
             }
         }
