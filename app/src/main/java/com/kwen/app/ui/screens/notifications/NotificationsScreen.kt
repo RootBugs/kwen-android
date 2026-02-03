@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -67,6 +68,7 @@ fun NotificationsScreen(
                     }
                 },
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -108,6 +110,7 @@ fun NotificationsScreen(
                                 .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
+
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
                                 }
