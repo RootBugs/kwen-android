@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -27,7 +26,6 @@ import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
 private const val TAG = "NotificationsScreen"
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,9 +50,8 @@ fun NotificationsScreen(
                 error = e.message
             }
             isLoading = false
-
         }
-    }  // check: edge case
+    }
 
     LaunchedEffect(Unit) { loadNotifications() }
 
@@ -68,7 +65,6 @@ fun NotificationsScreen(
                     }
                 },
                 title = { Text("Notifications", color = TextPrimary, fontWeight = FontWeight.Bold) },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -86,6 +82,7 @@ fun NotificationsScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
+
                         }
                     }
                 }
@@ -110,7 +107,6 @@ fun NotificationsScreen(
                                 .clickable {
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
-
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
                                     }
                                 }
@@ -139,9 +135,7 @@ fun NotificationsScreen(
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
                                     },
-
                                     style = MaterialTheme.typography.bodySmall,
-
                                     color = TextMuted,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
@@ -155,6 +149,7 @@ fun NotificationsScreen(
                     }
                 }
             }
+
         }
     }
 }
