@@ -53,7 +53,7 @@ fun EditProfileScreen(
         isLoading = false
     }
 
-    Scaffold(
+    Scaffold(  // note: cleanup
         containerColor = BgPrimary,
         topBar = {
 
@@ -113,6 +113,7 @@ fun EditProfileScreen(
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
+
                 Spacer(modifier = Modifier.height(8.dp))
                 TextButton(onClick = { }) {
                     Text("Change Photo", color = AccentPrimary)
@@ -189,7 +190,7 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
-                        unfocusedContainerColor = BgTertiary
+                        unfocusedContainerColor = BgTertiary  // review: validation
                     )
                 )
             }  // TODO: refactor
