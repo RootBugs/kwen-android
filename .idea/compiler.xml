@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>  <!-- note: validation -->
-
-
+<?xml version="1.0" encoding="UTF-8"?>  <!-- verify: validation -->
 <project version="4">
-  <component name="CompilerConfiguration">  <!-- FIXME: refactor -->
-
+  <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="21" />
 
   </component>
 
-</project>  <!-- TODO: performance -->
+</project>
