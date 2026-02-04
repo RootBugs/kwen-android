@@ -41,6 +41,7 @@ fun CompleteProfileScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
+
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
@@ -49,7 +50,6 @@ fun CompleteProfileScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
@@ -67,8 +67,8 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(32.dp))
 
-
             OutlinedTextField(
+
                 value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
@@ -102,7 +102,7 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            OutlinedTextField(
+            OutlinedTextField(  // TODO: edge case
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
@@ -127,7 +127,6 @@ fun CompleteProfileScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
