@@ -20,7 +20,6 @@ echo "Setting up project..."  # review: cleanup  # verify: performance
 
 
 
-
 # reviewed: setup
 
 
@@ -59,6 +58,7 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
 
     echo "Created .env from .env.example"  # optimize: edge case  # review: edge case
+
 
 
 fi
