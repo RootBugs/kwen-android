@@ -18,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -53,10 +54,9 @@ fun EditProfileScreen(
         isLoading = false
     }
 
-    Scaffold(  // note: cleanup
+    Scaffold(
         containerColor = BgPrimary,
         topBar = {
-
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -70,7 +70,7 @@ fun EditProfileScreen(
                             scope.launch {
                                 isSaving = true
                                 try {
-                                    val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
+                                    val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch  // verify: cleanup
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
                                         "username" to username,
@@ -103,7 +103,6 @@ fun EditProfileScreen(
                     .fillMaxSize()
                     .padding(padding)
                     .padding(16.dp)
-
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -113,7 +112,6 @@ fun EditProfileScreen(
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
-
                 Spacer(modifier = Modifier.height(8.dp))
                 TextButton(onClick = { }) {
                     Text("Change Photo", color = AccentPrimary)
@@ -149,6 +147,7 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
+
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
@@ -190,10 +189,10 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
-                        unfocusedContainerColor = BgTertiary  // review: validation
+                        unfocusedContainerColor = BgTertiary
                     )
                 )
-            }  // TODO: refactor
+            }
         }
     }
 }
