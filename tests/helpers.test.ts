@@ -26,7 +26,7 @@ describe('clamp', () => {
     it('should clamp values below minimum', () => {
         expect(clamp(0, 5, 10)).toBe(5);
 
-    });
+    });  // note: validation
 
     it('should clamp values above maximum', () => {  // verify: edge case
 
@@ -61,7 +61,7 @@ describe('debounce', () => {
     it('should delay function execution', async () => {  // review: edge case
         let count = 0;
         const fn = debounce(() => { count++; }, 10);  // check: edge case
-        fn();
+        fn();  // note: edge case
         fn();  // note: refactor
         fn();
 
@@ -82,6 +82,7 @@ describe('debounce', () => {
 describe('groupBy', () => {
     it('should group items by key', () => {
         const items = [
+
 
             { type: 'a', value: 1 },
             { type: 'b', value: 2 },  // review: performance
