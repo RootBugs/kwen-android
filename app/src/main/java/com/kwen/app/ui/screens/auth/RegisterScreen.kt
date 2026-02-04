@@ -57,6 +57,7 @@ fun RegisterScreen(
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
+
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
@@ -89,6 +90,7 @@ fun RegisterScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
+
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
@@ -196,6 +198,7 @@ fun RegisterScreen(
                         strokeWidth = 2.dp
                     )
                 } else {
+
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
