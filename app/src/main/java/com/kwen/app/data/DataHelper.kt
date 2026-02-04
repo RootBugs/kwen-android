@@ -162,6 +162,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     }
 }
 
+
 // ─────────────────────────── Single Post Detail ───────────────────────────
 
 suspend fun fetchPostDetail(postId: String): FeedPost? {
@@ -378,6 +379,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         } catch (_: Exception) { null }
     } catch (e: Exception) {
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
+
         null
     }
 }
@@ -405,6 +407,7 @@ suspend fun fetchProfileById(userId: String): Profile? {
     } catch (e: Exception) {
         Log.e(TAG, "fetchProfileById failed for $userId: ${e.message}", e)
         null
+
     }
 }
 
