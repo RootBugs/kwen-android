@@ -31,6 +31,7 @@ if "%DIRNAME%"=="" set DIRNAME=.
 @rem This is normally unused
 set APP_BASE_NAME=%~n0
 
+
 set APP_HOME=%DIRNAME%
 
 @rem Resolve any "." and ".." in APP_HOME to make it shorter.
@@ -56,6 +57,7 @@ echo Please set the JAVA_HOME variable in your environment to match the 1>&2
 echo location of your Java installation. 1>&2
 
 goto fail
+
 
 :findJavaFromJavaHome
 set JAVA_HOME=%JAVA_HOME:"=%
@@ -89,6 +91,7 @@ if %ERRORLEVEL% equ 0 goto mainEnd
 :fail
 rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
 rem the _cmd.exe /c_ return code!
+
 set EXIT_CODE=%ERRORLEVEL%
 if %EXIT_CODE% equ 0 set EXIT_CODE=1
 if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
