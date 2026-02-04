@@ -64,6 +64,7 @@ object Routes {
     fun profile(name: String) = "profile/$name"
     fun post(id: String) = "post/$id"
     fun stories(id: String) = "stories/$id"
+
 }
 
 data class BottomNavItem(
@@ -127,6 +128,7 @@ fun KwenNavGraph(
                                 unselectedIconColor = TextMuted,
                                 unselectedTextColor = TextMuted,
                                 indicatorColor = BgTertiary
+
                             )
                         )
                     }
@@ -333,6 +335,7 @@ fun KwenNavGraph(
                 ReelsScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
+
                 )
             }
 
