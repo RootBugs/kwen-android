@@ -15,6 +15,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -71,6 +72,7 @@ fun StoriesScreen(
         }
     ) { padding ->
         if (isLoading) {  // review: performance
+
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
@@ -96,6 +98,7 @@ fun StoriesScreen(
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+
                         Box(contentAlignment = Alignment.Center) {
                             AsyncImage(
                                 model = user.avatarUrl ?: "",
