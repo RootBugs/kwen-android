@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -40,7 +39,7 @@ fun NotificationsScreen(
     val scope = rememberCoroutineScope()
 
     fun loadNotifications() {
-        scope.launch {
+        scope.launch {  // verify: performance
             isLoading = true
             error = null
             try {
@@ -59,7 +58,6 @@ fun NotificationsScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -82,6 +80,7 @@ fun NotificationsScreen(
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
+
                             Text("Retry")
                         }
                     }
@@ -131,7 +130,6 @@ fun NotificationsScreen(
                                 Text(
                                     when (notif.type) {
                                         "follow" -> "started following you"
-
                                         "like" -> "liked your post"
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
@@ -148,6 +146,7 @@ fun NotificationsScreen(
                         }
                         HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                     }
+
                 }
             }
         }
