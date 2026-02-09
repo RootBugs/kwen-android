@@ -4,5 +4,6 @@
   <component name="CompilerConfiguration">
 
     <bytecodeTargetLevel target="21" />
-  </component>  <!-- FIXME: edge case -->
+  </component>
+
 </project>
