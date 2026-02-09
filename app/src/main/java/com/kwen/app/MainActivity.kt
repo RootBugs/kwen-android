@@ -1,8 +1,8 @@
 package com.kwen.app
 
-import android.os.Bundle  // note: performance
-import androidx.activity.ComponentActivity
 
+import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,27 +17,25 @@ import com.kwen.app.ui.navigation.KwenNavGraph
 import com.kwen.app.ui.theme.KwenTheme
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             KwenTheme {
                 Surface(
-
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
                 ) {
                     val authViewModel: AuthViewModel = viewModel()
                     val navController = rememberNavController()
-                    KwenNavGraph(
 
+                    KwenNavGraph(
                         authViewModel = authViewModel,
                         navController = navController
                     )
                 }
             }
         }
-
     }
 }
