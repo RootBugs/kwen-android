@@ -105,7 +105,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         Log.e(TAG, "fetchFeedPosts failed: ${e.message}", e)
         emptyList()
     }
-}
+}  // note: validation
 
 // ─────────────────────────── Explore Posts ───────────────────────────
 
@@ -221,6 +221,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             isSaved = isSaved,
             displayName = profile?.displayName ?: "",
             username = profile?.username ?: "",
+
             avatarUrl = profile?.avatarUrl,
             isVerified = profile?.isVerified ?: false,
             media = media
@@ -504,6 +505,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
                     .decodeList<PostMedia>()
+
             } else emptyList()
         } catch (_: Exception) { emptyList() }
         val mediaMap = media.groupBy { it.postId }
