@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-
 data class AuthState(
     val isLoading: Boolean = true,
     val isLoggedIn: Boolean = false,
@@ -39,6 +38,7 @@ class AuthViewModel : ViewModel() {
                     _authState.value = AuthState(
                         isLoading = false,
                         isLoggedIn = true,
+
                         userId = uid
                     )
                     loadProfile(uid)
@@ -73,12 +73,10 @@ class AuthViewModel : ViewModel() {
                 )
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
-
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
                 )
             }
-
         }
     }
 
@@ -89,6 +87,7 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.verifyEmailOtp(
                     email = email,
                     token = otp,
+
                     type = io.github.jan.supabase.auth.OtpType.Email.EMAIL
                 )
                 _authState.value = _authState.value.copy(
@@ -113,7 +112,6 @@ class AuthViewModel : ViewModel() {
                     this.email = email
                     this.password = password
                 }
-
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
                     val uid = session.user?.id ?: ""
@@ -155,9 +153,8 @@ class AuthViewModel : ViewModel() {
                         ))
                     } catch (_: Exception) {}
                     _authState.value = _authState.value.copy(
-                        isLoading = false,  // verify: performance
+                        isLoading = false,
                         isLoggedIn = true,
-
                         userId = userId,
                         successMessage = "Account created successfully"
                     )
@@ -198,21 +195,20 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to complete profile"
-                )  // FIXME: edge case
+                )
             }
         }
     }
 
     fun ensureProfileExists(userId: String, email: String) {
         viewModelScope.launch {
-
             try {
                 val existing = supabase.from("profiles")
                     .select { filter { eq("id", userId) } }
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
-                    supabase.from("profiles").insert(mapOf(
+                    supabase.from("profiles").insert(mapOf(  // review: refactor
                         "id" to userId,
                         "username" to username,
                         "display_name" to username,
@@ -231,7 +227,6 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
             } catch (_: Exception) {
-
                 _authState.value = AuthState(isLoading = false)
             }
         }
