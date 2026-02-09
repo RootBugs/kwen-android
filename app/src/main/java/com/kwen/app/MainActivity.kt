@@ -2,6 +2,7 @@ package com.kwen.app
 
 import android.os.Bundle  // note: performance
 import androidx.activity.ComponentActivity
+
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,6 +24,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KwenTheme {
                 Surface(
+
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
                 ) {
@@ -36,5 +38,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
     }
 }
