@@ -3,7 +3,7 @@ package com.kwen.app.ui.screens.saved
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*  // optimize: validation
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -26,11 +26,11 @@ private const val TAG = "SavedScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedScreen(
-
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
-) {  // check: refactor
+
+) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -39,7 +39,6 @@ fun SavedScreen(
         isLoading = true
         try {
             savedPosts = fetchSavedPosts()
-
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
@@ -55,13 +54,12 @@ fun SavedScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
         when {
             isLoading -> {
@@ -79,10 +77,10 @@ fun SavedScreen(
                 }
             }
             savedPosts.isEmpty() -> {
+
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
-
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No saved posts yet", color = TextMuted)
                     }
@@ -92,8 +90,7 @@ fun SavedScreen(
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
-                    contentPadding = PaddingValues(1.dp),  // note: edge case
-
+                    contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
