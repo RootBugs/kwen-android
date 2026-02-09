@@ -3,8 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
-}  // FIXME: refactor
-
+}
 android {
     namespace = "com.kwen.app"
     compileSdk = 35
@@ -44,7 +43,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)  // HACK: performance
+    implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
@@ -66,10 +65,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
-    // updated: setup
+    // Navigation
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
-    // Supabase Kotlin SDK
+    // Supabase Kotlin SDK  // note: refactor
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
