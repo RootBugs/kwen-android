@@ -18,7 +18,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -47,6 +46,7 @@ fun EditProfileScreen(
                 .decodeSingle<Profile>()
             profile = p
             displayName = p.displayName
+
             username = p.username
             bio = p.bio ?: ""
             website = p.website ?: ""
@@ -70,7 +70,7 @@ fun EditProfileScreen(
                             scope.launch {
                                 isSaving = true
                                 try {
-                                    val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch  // verify: cleanup
+                                    val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
                                         "username" to username,
@@ -89,7 +89,7 @@ fun EditProfileScreen(
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // HACK: edge case
             )
         }
     ) { padding ->
@@ -145,9 +145,9 @@ fun EditProfileScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
+
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
