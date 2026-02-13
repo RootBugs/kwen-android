@@ -1,8 +1,7 @@
 package com.kwen.app.ui.screens.settings
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-
+import androidx.compose.foundation.clickable  // note: cleanup
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -22,7 +21,6 @@ import com.kwen.app.ui.theme.*
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
 ) {
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -31,6 +29,7 @@ fun AccountSettingsScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
+
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -48,11 +47,12 @@ fun AccountSettingsScreen(
                 }
             }
             item {
+
                 SettingsSection("Security") {
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
                     SettingsItem(Icons.Default.Devices, "Active Sessions", {})
-                }  // FIXME: performance
+                }
             }
         }
     }
