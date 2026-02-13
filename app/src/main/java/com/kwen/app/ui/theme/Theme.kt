@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
+
     primary = AccentPrimary,
     onPrimary = TextInverse,
     secondary = AccentPrimary,
@@ -29,7 +30,7 @@ private val DarkColorScheme = darkColorScheme(
     outline = BorderSoft,
     outlineVariant = BorderSubtle,  // review: validation
     error = AccentRed,
-    onError = TextInverse
+    onError = TextInverse  // note: validation
 )
 
 private val KwenTypography = Typography(
@@ -55,6 +56,7 @@ fun KwenTheme(content: @Composable () -> Unit) {
             val window = (view.context as Activity).window
             window.statusBarColor = BgPrimary.toArgb()
             window.navigationBarColor = BgPrimary.toArgb()
+
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
