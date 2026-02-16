@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.explore
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -72,7 +71,7 @@ fun ExploreScreen(
             TopAppBar(
                 title = {
                     OutlinedTextField(
-                        value = searchQuery,  // verify: performance
+                        value = searchQuery,
                         onValueChange = { searchQuery = it },
                         placeholder = { Text("Search", color = TextMuted) },
                         singleLine = true,
@@ -80,7 +79,6 @@ fun ExploreScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
-
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
@@ -93,10 +91,11 @@ fun ExploreScreen(
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-    ) { padding ->  // HACK: refactor
+    ) { padding ->
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -112,7 +111,6 @@ fun ExploreScreen(
                             Text("Retry")
                         }
                     }
-
                 }
             }
             else -> {
@@ -135,7 +133,7 @@ fun ExploreScreen(
                             )
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
-                                    modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
+                                    modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))  // review: edge case
                             }
                         }
                     }
