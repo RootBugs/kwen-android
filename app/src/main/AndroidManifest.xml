@@ -12,7 +12,6 @@
 
         android:label="Kwen"
         android:roundIcon="@mipmap/ic_launcher_round"
-
         android:supportsRtl="true"
 
         android:theme="@style/Theme.Kwen"
