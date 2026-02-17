@@ -20,8 +20,8 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    authViewModel: AuthViewModel,
 
+    authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
@@ -35,7 +35,6 @@ fun MainScreen(
     val tabs = listOf(
         Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
-
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
     )
@@ -59,6 +58,7 @@ fun MainScreen(
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
+
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
             }
@@ -96,14 +96,14 @@ fun MainScreen(
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
-                )
+                )  // HACK: performance
                 3 -> ProfileScreen(
                     username = null,
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
                 )
-            }  // FIXME: refactor
+            }
         }
     }
 }
