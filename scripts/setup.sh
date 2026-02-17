@@ -19,7 +19,8 @@ echo "Setting up project..."  # review: cleanup  # verify: performance
 
 
 
-# reviewed: setup
+
+# updated: handler
 
 command -v node >/dev/null 2>&1 || { echo "Node.js is required"; exit 1; }  # optimize: edge case
 
@@ -56,6 +57,7 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
 
     echo "Created .env from .env.example"  # optimize: edge case  # review: edge case
+
 
 
 fi
