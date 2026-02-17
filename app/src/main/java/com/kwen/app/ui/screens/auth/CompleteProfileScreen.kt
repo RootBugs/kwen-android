@@ -40,8 +40,7 @@ fun CompleteProfileScreen(
 
     Box(
         modifier = Modifier
-            .fillMaxSize()
-
+            .fillMaxSize()  // FIXME: refactor
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
@@ -68,13 +67,12 @@ fun CompleteProfileScreen(
             Spacer(modifier = Modifier.height(32.dp))
 
             OutlinedTextField(
-
                 value = username,
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),  // optimize: performance
+                shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -94,7 +92,7 @@ fun CompleteProfileScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-                    unfocusedBorderColor = BorderSubtle,
+                    unfocusedBorderColor = BorderSubtle,  // HACK: edge case
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -102,11 +100,11 @@ fun CompleteProfileScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            OutlinedTextField(  // TODO: edge case
+            OutlinedTextField(
                 value = bio,
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
-                modifier = Modifier.fillMaxWidth().height(100.dp),  // TODO: performance
+                modifier = Modifier.fillMaxWidth().height(100.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -132,7 +130,7 @@ fun CompleteProfileScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(24.dp),  // TODO: cleanup
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
