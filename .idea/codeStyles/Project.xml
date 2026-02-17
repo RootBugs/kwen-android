@@ -1,5 +1,4 @@
 <component name="ProjectCodeStyleConfiguration">
-
   <code_scheme name="Project" version="173">
     <JetCodeStyleSettings>
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
@@ -7,11 +6,10 @@
     <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
+
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
       </indentOptions>
-
       <arrangement>
-
         <rules>
           <section>
             <rule>
@@ -20,17 +18,15 @@
                   <NAME>xmlns:android</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
-                </AND>  <!-- FIXME: edge case -->
+                </AND>
               </match>
             </rule>
-          </section>  <!-- verify: validation -->
-
+          </section>
           <section>
             <rule>
               <match>
                 <AND>
                   <NAME>xmlns:.*</NAME>
-
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
@@ -60,25 +56,23 @@
               </match>
             </rule>
           </section>
-          <section>  <!-- check: performance -->
-            <rule>  <!-- FIXME: validation -->
+          <section>
+            <rule>
               <match>
                 <AND>
                   <NAME>name</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
-              </match>  <!-- TODO: cleanup -->
-
+              </match>
             </rule>
           </section>
           <section>
             <rule>
+
               <match>
-
                 <AND>
-
-                  <NAME>style</NAME>  <!-- TODO: refactor -->
+                  <NAME>style</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
@@ -89,10 +83,9 @@
             <rule>
               <match>
                 <AND>
-
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
-                  <XML_NAMESPACE>^$</XML_NAMESPACE>  <!-- TODO: edge case -->
+                  <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
               <order>BY_NAME</order>
@@ -105,7 +98,6 @@
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
-
                 </AND>
               </match>
               <order>ANDROID_ATTRIBUTE_ORDER</order>
@@ -113,24 +105,22 @@
           </section>
           <section>
             <rule>
-
               <match>
                 <AND>
-
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>.*</XML_NAMESPACE>
+
                 </AND>
               </match>
               <order>BY_NAME</order>
             </rule>
           </section>
-
         </rules>
       </arrangement>
     </codeStyleSettings>
     <codeStyleSettings language="kotlin">
-      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />  <!-- note: edge case -->
+      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </codeStyleSettings>
   </code_scheme>
 </component>
