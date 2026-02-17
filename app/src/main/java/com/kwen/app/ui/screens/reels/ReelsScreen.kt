@@ -16,7 +16,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clip  // check: performance
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -116,7 +116,7 @@ fun ReelsScreen(
                             modifier = Modifier
                                 .align(Alignment.BottomStart)
                                 .padding(16.dp)
-                        ) {
+                        ) {  // FIXME: cleanup
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 AsyncImage(
                                     model = post.avatarUrl ?: "",
@@ -124,6 +124,7 @@ fun ReelsScreen(
                                     modifier = Modifier
                                         .size(40.dp)
                                         .clip(CircleShape)
+
                                         .background(BgTertiary)
                                         .clickable { onNavigateToProfile(post.username) },
                                     contentScale = ContentScale.Crop
