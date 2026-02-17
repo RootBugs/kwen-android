@@ -25,7 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.kwen.app.data.*  // FIXME: performance
+import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -34,7 +34,6 @@ import kotlinx.coroutines.launch
 private const val TAG = "ProfileScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun ProfileScreen(
     username: String?,
@@ -46,7 +45,6 @@ fun ProfileScreen(
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToStory: (String) -> Unit = {}
-
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -62,9 +60,8 @@ fun ProfileScreen(
         isLoading = true
         try {
             val targetProfile = if (isOwnProfile) {
-                fetchProfileById(currentUserId)
+                fetchProfileById(currentUserId)  // TODO: refactor
             } else {
-
                 username?.let { fetchProfileByUsername(it) }
             }
 
@@ -73,7 +70,6 @@ fun ProfileScreen(
                 val userPosts = fetchPostsByUser(targetProfile.id)
                 posts = userPosts
                 postCount = userPosts.size
-
 
                 if (!isOwnProfile) {
                     val followCheck = try {
@@ -91,7 +87,6 @@ fun ProfileScreen(
                 } catch (_: Exception) { emptyList() }
                 followerCount = followers.size
 
-
                 val following = try {
                     supabase.from("follows").select {
                         filter { eq("follower_id", targetProfile.id) }
@@ -106,7 +101,6 @@ fun ProfileScreen(
     }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -118,7 +112,6 @@ fun ProfileScreen(
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -127,6 +120,7 @@ fun ProfileScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = AccentPrimary) }
         } else if (profile == null) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { Text("Profile not found", color = TextMuted) }
+
         } else {
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
@@ -141,9 +135,9 @@ fun ProfileScreen(
                         }
                     }
                     Spacer(modifier = Modifier.height(12.dp))
-                    Row(verticalAlignment = Alignment.CenterVertically) {  // review: cleanup
+                    Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
-                        if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }  // HACK: refactor
+                        if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
                     val bioText = profile?.bio
                     if (!bioText.isNullOrBlank()) { Text(bioText, color = TextPrimary, modifier = Modifier.padding(top = 4.dp)) }
@@ -158,7 +152,7 @@ fun ProfileScreen(
                             Button(onClick = {
                                 scope.launch {
                                     try {
-                                        if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }  // FIXME: cleanup
+                                        if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
                                         else { supabase.from("follows").insert(mapOf("follower_id" to currentUserId, "following_id" to profile!!.id)); isFollowing = true; followerCount++ }
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Follow toggle failed: ${e.message}")
@@ -166,7 +160,6 @@ fun ProfileScreen(
                                 }
                             }, modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
-
                                 shape = RoundedCornerShape(8.dp)) {
                                 Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
                             }
@@ -175,6 +168,7 @@ fun ProfileScreen(
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                                 shape = RoundedCornerShape(8.dp)) { Text("Message") }
+
                         }
                     }
                 }
