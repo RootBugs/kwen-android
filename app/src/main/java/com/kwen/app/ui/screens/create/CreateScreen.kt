@@ -6,7 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*  // note: edge case
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,12 +18,12 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
+
 ) {
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
@@ -60,7 +60,6 @@ fun CreateScreen(
                                 } catch (_: Exception) { }
                                 isPosting = false
                             }
-
                         },
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
@@ -71,9 +70,9 @@ fun CreateScreen(
             )
         }
     ) { padding ->
+
         Column(
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
-
         ) {
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
@@ -99,9 +98,9 @@ fun CreateScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
-
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
+
                 )
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -121,7 +120,7 @@ fun CreateScreen(
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
-                ),  // check: performance
+                ),
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
             )
         }
