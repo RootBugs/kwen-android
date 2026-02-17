@@ -30,6 +30,7 @@
               <match>
                 <AND>
                   <NAME>xmlns:.*</NAME>
+
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
@@ -74,6 +75,7 @@
           <section>
             <rule>
               <match>
+
                 <AND>
 
                   <NAME>style</NAME>  <!-- TODO: refactor -->
@@ -103,6 +105,7 @@
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+
                 </AND>
               </match>
               <order>ANDROID_ATTRIBUTE_ORDER</order>
