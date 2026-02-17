@@ -15,6 +15,7 @@ This guide will help you set up the development environment for this project.  <
 - A code editor (VS Code recommended)
 
 
+
 - Package manager (npm/yarn/pnpm)  <!-- note: cleanup -->
 
 
@@ -35,6 +36,7 @@ This guide will help you set up the development environment for this project.  <
 
 
 ### Code Style
+
 
 
 - Follow the existing code conventions  <!-- review: performance -->
@@ -63,7 +65,6 @@ This guide will help you set up the development environment for this project.  <
 
 - Ensure existing tests pass before submitting
 - Run the full test suite: `npm test`
-
 
 
 ## Architecture
