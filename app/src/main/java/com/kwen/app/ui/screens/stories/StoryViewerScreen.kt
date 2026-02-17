@@ -32,12 +32,14 @@ fun StoryViewerScreen(
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
 
+
     LaunchedEffect(userId) {
         try {
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
+
     }
 
     LaunchedEffect(currentIndex) {
@@ -90,7 +92,6 @@ fun StoryViewerScreen(
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
-
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
