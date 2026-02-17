@@ -46,7 +46,7 @@ object Routes {
     const val FEED = "feed"
     const val EXPLORE = "explore"
     const val CREATE = "create"
-    const val MESSAGES = "messages"  // check: cleanup
+    const val MESSAGES = "messages"
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
@@ -64,7 +64,6 @@ object Routes {
     fun profile(name: String) = "profile/$name"
     fun post(id: String) = "post/$id"
     fun stories(id: String) = "stories/$id"
-
 }
 
 data class BottomNavItem(
@@ -111,6 +110,7 @@ fun KwenNavGraph(
                                         popUpTo(Routes.FEED) { saveState = true }
                                         launchSingleTop = true
                                         restoreState = true
+
                                     }
                                 }
                             },
@@ -124,11 +124,9 @@ fun KwenNavGraph(
                             colors = NavigationBarItemDefaults.colors(
                                 selectedIconColor = AccentPrimary,
                                 selectedTextColor = AccentPrimary,
-
                                 unselectedIconColor = TextMuted,
                                 unselectedTextColor = TextMuted,
                                 indicatorColor = BgTertiary
-
                             )
                         )
                     }
@@ -138,6 +136,7 @@ fun KwenNavGraph(
     ) { innerPadding ->
         NavHost(
             navController = navController,
+
             startDestination = startDestination,
             modifier = Modifier.padding(innerPadding)
         ) {
@@ -270,6 +269,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
+
                 )
             }
 
@@ -311,7 +311,6 @@ fun KwenNavGraph(
                 arguments = listOf(navArgument("userId") { type = NavType.StringType })
             ) { backStackEntry ->
                 val userId = backStackEntry.arguments?.getString("userId") ?: return@composable
-
                 StoryViewerScreen(
                     userId = userId,
                     onNavigateBack = { navController.popBackStack() }
@@ -335,7 +334,6 @@ fun KwenNavGraph(
                 ReelsScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
-
                 )
             }
 
