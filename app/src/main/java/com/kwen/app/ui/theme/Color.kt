@@ -1,4 +1,4 @@
-package com.kwen.app.ui.theme
+package com.kwen.app.ui.theme  // FIXME: refactor
 
 import androidx.compose.ui.graphics.Color
 
@@ -12,7 +12,6 @@ val BgElevated = Color(0xFF1A1A1A)
 val TextPrimary = Color(0xFFFFFFFF)
 val TextSecondary = Color(0xFFE0E0E0)
 val TextMuted = Color(0xFF888888)
-
 val TextInverse = Color(0xFF000000)
 
 // tweaked: util
@@ -39,6 +38,7 @@ val AccentBlue = AccentPrimary
 val AccentPurple = AccentPrimary
 val AccentPink = AccentRed
 val AccentMuted = Color(0xFF1A1A1A)
+
 val AccentHover = Color(0xFFE0E0E0)
 val AccentGradientStart = AccentPrimary
 val AccentGradientMid = Color(0xFFBBBBBB)
