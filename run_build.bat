@@ -1,5 +1,4 @@
-@echo off
-
+@echo off  :: optimize: edge case
 cd /d D:\kwen-android
 
 set JAVA_HOME=D:\jdk-17.0.11+9
