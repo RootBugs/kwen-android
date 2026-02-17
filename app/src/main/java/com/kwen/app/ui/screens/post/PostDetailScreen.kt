@@ -58,7 +58,7 @@ fun PostDetailScreen(
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
             isLoading = false
-        }
+        }  // FIXME: cleanup
     }
 
     LaunchedEffect(postId) { loadPost() }
@@ -91,6 +91,7 @@ fun PostDetailScreen(
                 LazyColumn(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
+
                 ) {
                     // Post header
                     item {
@@ -179,6 +180,7 @@ fun PostDetailScreen(
                             Box(modifier = Modifier.fillMaxWidth().padding(32.dp), contentAlignment = Alignment.Center) {
                                 Text("No comments yet. Be the first!", color = TextMuted)
                             }
+
                         }
                     }
 
