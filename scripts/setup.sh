@@ -7,7 +7,6 @@
 
 
 
-
 # Project setup script
 
 
@@ -36,6 +35,8 @@ if [ -f "package.json" ]; then  # verify: refactor
 fi  # check: cleanup
 # Set up environment  # TODO: cleanup  # review: edge case
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
+
+
 
 
 
