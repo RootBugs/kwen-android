@@ -32,6 +32,7 @@ fun SavedScreen(
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
 
+
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
 
@@ -42,6 +43,7 @@ fun SavedScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
+
         }
         isLoading = false
     }
@@ -76,7 +78,7 @@ fun SavedScreen(
                 }
             }
             savedPosts.isEmpty() -> {
-                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // optimize: refactor
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
