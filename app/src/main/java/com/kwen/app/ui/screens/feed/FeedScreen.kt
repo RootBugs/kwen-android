@@ -21,6 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -223,6 +224,7 @@ fun PostCard(
             AsyncImage(
                 model = post.avatarUrl ?: "",
                 contentDescription = post.username,
+
                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
@@ -265,6 +267,7 @@ fun PostCard(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
+
                     text = post.content ?: "",
                     color = TextPrimary,
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
