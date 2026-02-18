@@ -46,6 +46,7 @@ fun ReelsScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
+
         isLoading = false
 
     }
@@ -102,6 +103,7 @@ fun ReelsScreen(
                                 .fillMaxSize()
                                 .background(
                                     Brush.verticalGradient(
+
                                         colors = listOf(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
@@ -142,6 +144,7 @@ fun ReelsScreen(
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     post.content,
+
                                     color = TextPrimary,
                                     fontSize = 14.sp,
                                     maxLines = 3
