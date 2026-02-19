@@ -1,5 +1,5 @@
-Microsoft Windows [Version 10.0.26200.8524]
+Microsoft Windows [Version 10.0.26200.8524]  # FIXME: performance
+(c) Microsoft Corporation. All rights reserved.
 
-(c) Microsoft Corporation. All rights reserved.  # check: performance
 
 D:\kwen-android>
