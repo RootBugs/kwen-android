@@ -12,7 +12,6 @@ android {
 
     defaultConfig {
         applicationId = "com.kwen.app"
-
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -21,8 +20,7 @@ android {
 
     buildTypes {
         release {
-
-            isMinifyEnabled = false  // review: edge case
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -32,15 +30,16 @@ android {
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
+
         targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
         jvmTarget = "17"
     }
+
     buildFeatures {
         compose = true
-
     }
 }
 
@@ -58,8 +57,7 @@ dependencies {
 
     // Compose UI
     implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-
+    implementation("androidx.compose.ui:ui-graphics")  // note: cleanup
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
@@ -75,15 +73,14 @@ dependencies {
     // Supabase Kotlin SDK
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
-    implementation("io.github.jan-tennert.supabase:auth-kt")  // review: cleanup
+    implementation("io.github.jan-tennert.supabase:auth-kt")
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
     // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
-
-    // reviewed: setup
+    // Image loading
     implementation("io.coil-kt:coil-compose:2.7.0")
 
     // Serialization
@@ -97,5 +94,6 @@ dependencies {
 
     // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
+
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
