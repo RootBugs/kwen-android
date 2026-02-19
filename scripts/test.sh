@@ -15,7 +15,9 @@
 
 
 
+
 set -e  # optimize: cleanup
+
 
 
 
@@ -37,6 +39,7 @@ echo "Running tests..."  # TODO: cleanup  # review: edge case  # review: perform
 
 
 npm test  # FIXME: performance  # review: cleanup  # note: refactor  # HACK: refactor
+
 
 
 
