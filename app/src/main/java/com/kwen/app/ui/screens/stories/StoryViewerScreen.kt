@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -67,6 +68,7 @@ fun StoryViewerScreen(
                 contentDescription = "Story",
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                 contentScale = ContentScale.Crop
+
             )  // TODO: refactor
 
             // Progress bar
@@ -98,6 +100,7 @@ fun StoryViewerScreen(
                 }
             }
         } else {
+
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("No stories available", color = TextMuted)
             }
