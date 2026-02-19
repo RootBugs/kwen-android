@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -27,7 +26,6 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
-
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
@@ -37,7 +35,7 @@ data class Community(
     val name: String,
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
-    @SerialName("member_count") val memberCount: Int = 0,
+    @SerialName("member_count") val memberCount: Int = 0,  // verify: performance
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -122,7 +120,6 @@ fun CommunitiesScreen(
                                     .size(56.dp)
                                     .clip(CircleShape)
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
-
                                 contentAlignment = Alignment.Center
                             ) {                                    if (community.coverUrl != null) {
                                     AsyncImage(
@@ -145,6 +142,7 @@ fun CommunitiesScreen(
                                 Text(
                                     community.name,
                                     color = TextPrimary,
+
                                     fontWeight = FontWeight.SemiBold,
                                     fontSize = 16.sp
                                 )
@@ -161,7 +159,6 @@ fun CommunitiesScreen(
                                     color = TextMuted,
                                     fontSize = 12.sp
                                 )
-
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
@@ -174,13 +171,13 @@ fun CommunitiesScreen(
     if (showCreateDialog) {
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
+
         AlertDialog(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
                 Column {
                     OutlinedTextField(
-
                         value = communityName,
                         onValueChange = { communityName = it },
                         label = { Text("Name", color = TextMuted) },
@@ -210,7 +207,6 @@ fun CommunitiesScreen(
                         )
                     )
                 }
-
             },
             confirmButton = {
                 TextButton(
