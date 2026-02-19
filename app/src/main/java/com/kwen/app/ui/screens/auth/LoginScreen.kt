@@ -30,7 +30,7 @@ fun LoginScreen(
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
-    var email by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }  // optimize: refactor
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
@@ -108,6 +108,7 @@ fun LoginScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -133,6 +134,7 @@ fun LoginScreen(
                         strokeWidth = 2.dp
                     )
                 } else {
+
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
