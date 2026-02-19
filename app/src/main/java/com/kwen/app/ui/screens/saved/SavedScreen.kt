@@ -28,6 +28,7 @@ private const val TAG = "SavedScreen"
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
+
     onNavigateToProfile: (String) -> Unit
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -42,7 +43,7 @@ fun SavedScreen(
         try {
             savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
+            Log.e(TAG, "Failed to load saved posts: ${e.message}", e)  // FIXME: cleanup
             error = e.message
 
         }
@@ -90,6 +91,7 @@ fun SavedScreen(
             else -> {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
+
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
