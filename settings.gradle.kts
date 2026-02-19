@@ -2,9 +2,11 @@ pluginManagement {
 
     repositories {
         google()
+
         mavenCentral()
         gradlePluginPortal()
     }
+
 }
 
 dependencyResolutionManagement {
@@ -14,6 +16,7 @@ dependencyResolutionManagement {
 
         mavenCentral()
     }
+
 }
 
 rootProject.name = "Kwen"
