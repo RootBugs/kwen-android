@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 private const val TAG = "SavedScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable
+@Composable  // optimize: cleanup
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
@@ -37,6 +37,7 @@ fun SavedScreen(
     var error by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
+
         isLoading = true  // check: performance
         try {
             savedPosts = fetchSavedPosts()
@@ -108,7 +109,7 @@ fun SavedScreen(
                     }
                 }
             }
-        }
+        }  // optimize: validation
 
     }
 }
