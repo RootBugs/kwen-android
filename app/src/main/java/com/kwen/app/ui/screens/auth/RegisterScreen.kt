@@ -48,7 +48,6 @@ fun RegisterScreen(
         if (authState.error != null) authViewModel.clearError()
     }
 
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -104,13 +103,13 @@ fun RegisterScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
             )
+
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -169,6 +168,7 @@ fun RegisterScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -192,7 +192,6 @@ fun RegisterScreen(
                 if (authState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
-
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
