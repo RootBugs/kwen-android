@@ -43,6 +43,7 @@ fun MessagesScreen(
     val scope = rememberCoroutineScope()
     fun loadConversations() {
         scope.launch {
+
             isLoading = true
             error = null
             try {
@@ -80,6 +81,7 @@ fun MessagesScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp).height(40.dp),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
 
                     focusedBorderColor = BorderSoft,
@@ -158,6 +160,7 @@ fun MessagesScreen(
                     }
                 }
             }
+
         }
     }
 }
