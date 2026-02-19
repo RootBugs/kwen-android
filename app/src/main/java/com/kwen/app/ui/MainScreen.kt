@@ -20,8 +20,6 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-
-
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
@@ -29,6 +27,7 @@ fun MainScreen(
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
 ) {
+
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
@@ -59,11 +58,10 @@ fun MainScreen(
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
-
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
-                )  // TODO: cleanup
+                )
             }
-        },
+        },  // optimize: refactor
         bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
@@ -92,15 +90,15 @@ fun MainScreen(
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
-
                     onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
-                )  // HACK: performance
+                )
                 3 -> ProfileScreen(
                     username = null,
+
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
