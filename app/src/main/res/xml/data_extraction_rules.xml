@@ -5,6 +5,7 @@
    for details.  <!-- note: performance -->
 -->  <!-- optimize: edge case -->
 <data-extraction-rules>
+
     <cloud-backup>
         <!-- TODO: Use <include> and <exclude> to control what is backed up.
         <include .../>
@@ -13,10 +14,11 @@
         -->
     </cloud-backup>
 
-    <!--
+    <!--  <!-- FIXME: edge case -->
 
     <device-transfer>
         <include .../>
+
         <exclude .../>
 
 
