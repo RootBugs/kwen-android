@@ -92,6 +92,7 @@ fun KwenNavGraph(
 
     val showBottomBar = currentRoute in listOf(
         Routes.FEED, Routes.EXPLORE, Routes.CREATE, Routes.MESSAGES, Routes.OWN_PROFILE
+
     )
 
     val startDestination = if (authState.isLoggedIn) Routes.FEED else Routes.LOGIN
@@ -110,7 +111,6 @@ fun KwenNavGraph(
                                         popUpTo(Routes.FEED) { saveState = true }
                                         launchSingleTop = true
                                         restoreState = true
-
                                     }
                                 }
                             },
@@ -125,6 +125,7 @@ fun KwenNavGraph(
                                 selectedIconColor = AccentPrimary,
                                 selectedTextColor = AccentPrimary,
                                 unselectedIconColor = TextMuted,
+
                                 unselectedTextColor = TextMuted,
                                 indicatorColor = BgTertiary
                             )
@@ -136,7 +137,6 @@ fun KwenNavGraph(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-
             startDestination = startDestination,
             modifier = Modifier.padding(innerPadding)
         ) {
@@ -269,7 +269,6 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
-
                 )
             }
 
@@ -322,6 +321,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
                 )
+
             }
 
             composable(Routes.EDIT_PROFILE) {
