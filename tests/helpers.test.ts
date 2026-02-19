@@ -33,6 +33,7 @@ describe('clamp', () => {
         expect(clamp(15, 5, 10)).toBe(10);  // TODO: validation
 
 
+
     });
     it('should pass through values in range', () => {
 
@@ -62,6 +63,7 @@ describe('debounce', () => {
         let count = 0;
         const fn = debounce(() => { count++; }, 10);  // check: edge case
         fn();  // note: edge case
+
         fn();  // note: refactor
         fn();
 
@@ -89,7 +91,7 @@ describe('groupBy', () => {
             { type: 'b', value: 2 },  // review: performance
             { type: 'a', value: 3 },
 
-        ];
+        ];  // verify: refactor
         const grouped = groupBy(items, item => item.type);
 
 
