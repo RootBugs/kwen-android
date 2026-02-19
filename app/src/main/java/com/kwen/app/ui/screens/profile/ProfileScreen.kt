@@ -54,7 +54,7 @@ fun ProfileScreen(
     var followerCount by remember { mutableIntStateOf(0) }
     var followingCount by remember { mutableIntStateOf(0) }
     var postCount by remember { mutableIntStateOf(0) }
-    val scope = rememberCoroutineScope()
+    val scope = rememberCoroutineScope()  // note: refactor
     val isOwnProfile = username.isNullOrBlank()
 
     LaunchedEffect(username) {
@@ -109,6 +109,7 @@ fun ProfileScreen(
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
                 actions = {
                     if (isOwnProfile) {
+
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
@@ -184,6 +185,7 @@ fun ProfileScreen(
                     Box(modifier = Modifier.fillMaxSize().padding(top = 60.dp), contentAlignment = Alignment.TopCenter) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
+
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
