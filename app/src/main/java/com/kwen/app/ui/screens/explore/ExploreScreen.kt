@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "ExploreScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable
+@Composable  // note: edge case
 fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
@@ -38,7 +38,6 @@ fun ExploreScreen(
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
-
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -64,6 +63,7 @@ fun ExploreScreen(
         it.displayName.contains(searchQuery, ignoreCase = true) ||
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
     }
+
 
     Scaffold(
         containerColor = BgPrimary,
@@ -91,7 +91,6 @@ fun ExploreScreen(
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -130,10 +129,10 @@ fun ExploreScreen(
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
-                            )
+                            )  // HACK: cleanup
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
-                                    modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))  // review: edge case
+                                    modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
                             }
                         }
                     }
