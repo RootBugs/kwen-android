@@ -2,7 +2,7 @@ package com.kwen.app.ui.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.*  // FIXME: refactor
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -100,7 +100,6 @@ fun KwenNavGraph(
         bottomBar = {
             if (showBottomBar) {
                 NavigationBar(containerColor = BgPrimary) {
-
                     bottomNavItems.forEach { item ->
                         val selected = currentRoute == item.route
                         NavigationBarItem(
@@ -155,6 +154,7 @@ fun KwenNavGraph(
                 RegisterScreen(
                     authViewModel = authViewModel,
                     onNavigateToLogin = { navController.popBackStack() },
+
                     onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
                             popUpTo(Routes.LOGIN) { inclusive = true }
@@ -212,7 +212,6 @@ fun KwenNavGraph(
 
             composable(Routes.MESSAGES) {
                 MessagesScreen(
-
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
@@ -236,7 +235,7 @@ fun KwenNavGraph(
                     username = null,
                     currentUserId = uid,
                     onBack = { navController.popBackStack() },
-                    onNavigateToPost = { navController.navigate(Routes.post(it)) },  // optimize: refactor
+                    onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToEdit = { navController.navigate(Routes.EDIT_PROFILE) },
                     onNavigateToSettings = { navController.navigate(Routes.SETTINGS) },
                     onNavigateToSaved = { navController.navigate(Routes.SAVED) },
@@ -334,7 +333,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
-            }
+            }  // FIXME: performance
 
             composable(Routes.COMMUNITIES) {
                 CommunitiesScreen(
