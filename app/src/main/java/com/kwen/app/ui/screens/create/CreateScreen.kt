@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
-
 ) {
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
@@ -33,6 +32,7 @@ fun CreateScreen(
 
     LaunchedEffect(Unit) {
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
+
     }
 
     Scaffold(
@@ -70,7 +70,6 @@ fun CreateScreen(
             )
         }
     ) { padding ->
-
         Column(
             modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)
         ) {
@@ -79,6 +78,7 @@ fun CreateScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Tap to add photo", color = TextMuted)
@@ -100,7 +100,6 @@ fun CreateScreen(
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
                     unfocusedContainerColor = BgTertiary
-
                 )
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -114,6 +113,7 @@ fun CreateScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
