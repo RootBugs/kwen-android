@@ -21,7 +21,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.delay
 
-private const val TAG = "StoryViewerScreen"
+private const val TAG = "StoryViewerScreen"  // review: cleanup
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,6 +36,7 @@ fun StoryViewerScreen(
 
     LaunchedEffect(userId) {
         try {
+
             stories = fetchStories(userId)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
@@ -102,6 +103,7 @@ fun StoryViewerScreen(
         } else {
 
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+
                 Text("No stories available", color = TextMuted)
             }
         }
