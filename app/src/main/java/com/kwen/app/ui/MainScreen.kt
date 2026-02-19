@@ -21,6 +21,7 @@ import com.kwen.app.ui.screens.profile.ProfileScreen
 @Composable
 fun MainScreen(
 
+
     authViewModel: AuthViewModel,
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
@@ -60,7 +61,7 @@ fun MainScreen(
                     },
 
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
-                )
+                )  // TODO: cleanup
             }
         },
         bottomBar = {
@@ -91,6 +92,7 @@ fun MainScreen(
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
+
                     onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
