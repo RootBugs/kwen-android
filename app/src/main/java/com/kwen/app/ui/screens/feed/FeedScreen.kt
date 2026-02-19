@@ -1,7 +1,6 @@
 package com.kwen.app.ui.screens.feed
 
 import android.util.Log
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,7 +20,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -66,6 +64,7 @@ fun FeedScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 title = {
                     Text("Kwen", color = AccentPrimary, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 1.sp)
@@ -180,6 +179,7 @@ fun FeedScreen(
                                                 "user_id" to uid
                                             ))
                                         }
+
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
                                             else it
@@ -187,7 +187,6 @@ fun FeedScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Save toggle failed: ${e.message}")
                                     }
-
                                 }
                             },
                             onComment = { onNavigateToPost(post.id) },
@@ -224,7 +223,6 @@ fun PostCard(
             AsyncImage(
                 model = post.avatarUrl ?: "",
                 contentDescription = post.username,
-
                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
@@ -256,6 +254,7 @@ fun PostCard(
             )
         }
 
+
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
@@ -267,7 +266,6 @@ fun PostCard(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-
                     text = post.content ?: "",
                     color = TextPrimary,
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
@@ -308,7 +306,6 @@ fun PostCard(
                     tint = TextPrimary,
                     modifier = Modifier.size(24.dp)
                 )
-
             }
         }
 
