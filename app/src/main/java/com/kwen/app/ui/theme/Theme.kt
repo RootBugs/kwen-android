@@ -1,6 +1,5 @@
 package com.kwen.app.ui.theme
 
-
 import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -11,7 +10,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight  // note: refactor
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 
@@ -30,8 +29,8 @@ private val DarkColorScheme = darkColorScheme(
     outline = BorderSoft,
     outlineVariant = BorderSubtle,
     error = AccentRed,
-
     onError = TextInverse
+
 )
 
 private val KwenTypography = Typography(
@@ -49,13 +48,14 @@ private val KwenTypography = Typography(
 )
 
 @Composable
+
 fun KwenTheme(content: @Composable () -> Unit) {
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = BgPrimary.toArgb()
-            window.navigationBarColor = BgPrimary.toArgb()  // TODO: edge case
+            window.navigationBarColor = BgPrimary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
