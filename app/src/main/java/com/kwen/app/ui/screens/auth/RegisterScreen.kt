@@ -69,6 +69,7 @@ fun RegisterScreen(
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 "Create your account",
                 style = MaterialTheme.typography.bodyLarge,
@@ -109,7 +110,6 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 )
             )
-
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -134,7 +134,7 @@ fun RegisterScreen(
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
-                visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
+                visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),  // HACK: refactor
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
@@ -168,7 +168,6 @@ fun RegisterScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -213,6 +212,7 @@ fun RegisterScreen(
             if (authState.successMessage != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
+
                     authState.successMessage!!,
                     color = AccentGreen,
                     style = MaterialTheme.typography.bodySmall,
