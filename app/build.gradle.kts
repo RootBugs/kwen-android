@@ -12,6 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.kwen.app"
+
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -37,7 +38,6 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
     buildFeatures {
         compose = true
 
@@ -81,6 +81,7 @@ dependencies {
 
     // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
+
 
     // reviewed: setup
     implementation("io.coil-kt:coil-compose:2.7.0")
