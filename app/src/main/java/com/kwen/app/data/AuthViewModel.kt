@@ -25,6 +25,7 @@ class AuthViewModel : ViewModel() {
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
+
     init {
         checkSession()
     }
@@ -82,6 +83,7 @@ class AuthViewModel : ViewModel() {
 
     fun verifyOtp(email: String, otp: String) {
         viewModelScope.launch {
+
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.verifyEmailOtp(
@@ -165,6 +167,7 @@ class AuthViewModel : ViewModel() {
                         successMessage = "Account created. Please check your email to verify."
                     )
                 }
+
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
