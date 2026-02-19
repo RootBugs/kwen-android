@@ -48,6 +48,7 @@ fun RegisterScreen(
         if (authState.error != null) authViewModel.clearError()
     }
 
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -57,7 +58,6 @@ fun RegisterScreen(
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
@@ -67,7 +67,6 @@ fun RegisterScreen(
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = AccentPrimary
-
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -84,13 +83,11 @@ fun RegisterScreen(
                 label = { Text("Email", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
-
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
@@ -107,6 +104,7 @@ fun RegisterScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -194,11 +192,11 @@ fun RegisterScreen(
                 if (authState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
+
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
                 } else {
-
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
@@ -238,7 +236,6 @@ fun RegisterScreen(
                 )
             }
             Spacer(modifier = Modifier.height(32.dp))
-
         }
     }
 }
