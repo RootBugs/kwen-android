@@ -65,6 +65,7 @@ fun CommunitiesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -103,6 +104,7 @@ fun CommunitiesScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(communities, key = { it.id }) { community ->
+
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
@@ -203,6 +205,7 @@ fun CommunitiesScreen(
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
+
                             cursorColor = AccentPrimary
                         )
                     )
