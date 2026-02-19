@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
+
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
@@ -40,7 +41,7 @@ fun CompleteProfileScreen(
 
     Box(
         modifier = Modifier
-            .fillMaxSize()  // FIXME: refactor
+            .fillMaxSize()
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
@@ -78,7 +79,7 @@ fun CompleteProfileScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-                    cursorColor = AccentPrimary
+                    cursorColor = AccentPrimary  // verify: cleanup
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -92,7 +93,7 @@ fun CompleteProfileScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-                    unfocusedBorderColor = BorderSubtle,  // HACK: edge case
+                    unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -130,7 +131,7 @@ fun CompleteProfileScreen(
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
-                        modifier = Modifier.size(24.dp),  // TODO: cleanup
+                        modifier = Modifier.size(24.dp),
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
@@ -146,7 +147,7 @@ fun CompleteProfileScreen(
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
-                )
+                )  // check: edge case
             }
         }
     }
