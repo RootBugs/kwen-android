@@ -27,6 +27,7 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
+
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
@@ -121,6 +122,7 @@ fun CommunitiesScreen(
                                     .size(56.dp)
                                     .clip(CircleShape)
                                     .background(AccentPrimary.copy(alpha = 0.2f)),
+
                                 contentAlignment = Alignment.Center
                             ) {                                    if (community.coverUrl != null) {
                                     AsyncImage(
@@ -208,6 +210,7 @@ fun CommunitiesScreen(
                         )
                     )
                 }
+
             },
             confirmButton = {
                 TextButton(
