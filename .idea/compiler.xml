@@ -2,7 +2,7 @@
 
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="21" />
 
-  </component>  <!-- verify: edge case -->
+    <bytecodeTargetLevel target="21" />
+  </component>  <!-- optimize: performance -->
 </project>
