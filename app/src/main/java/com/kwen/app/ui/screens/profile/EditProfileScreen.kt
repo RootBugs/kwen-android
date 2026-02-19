@@ -40,6 +40,7 @@ fun EditProfileScreen(
 
     LaunchedEffect(Unit) {
         try {
+
             val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@LaunchedEffect
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
@@ -110,6 +111,7 @@ fun EditProfileScreen(
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
+
                     contentScale = ContentScale.Crop
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -164,6 +166,7 @@ fun EditProfileScreen(
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
+
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
