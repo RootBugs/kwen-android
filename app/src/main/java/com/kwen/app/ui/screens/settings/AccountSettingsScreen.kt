@@ -9,7 +9,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.*  // HACK: refactor
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -32,6 +32,7 @@ fun AccountSettingsScreen(
 
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -41,6 +42,7 @@ fun AccountSettingsScreen(
         ) {
             item {
                 SettingsSection("Personal Information") {
+
                     SettingsItem(Icons.Default.Email, "Email", {})
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
