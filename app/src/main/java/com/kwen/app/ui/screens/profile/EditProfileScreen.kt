@@ -61,6 +61,7 @@ fun EditProfileScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
+
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -68,6 +69,7 @@ fun EditProfileScreen(
                 actions = {
                     TextButton(
                         onClick = {
+
                             scope.launch {
                                 isSaving = true
                                 try {
@@ -196,6 +198,7 @@ fun EditProfileScreen(
                     )
                 )
             }
+
         }
     }
 }
