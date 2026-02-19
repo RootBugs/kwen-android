@@ -34,11 +34,11 @@ class AuthViewModel : ViewModel() {
             try {
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
+
                     val uid = session.user?.id ?: ""
                     _authState.value = AuthState(
                         isLoading = false,
                         isLoggedIn = true,
-
                         userId = uid
                     )
                     loadProfile(uid)
@@ -87,7 +87,6 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.verifyEmailOtp(
                     email = email,
                     token = otp,
-
                     type = io.github.jan.supabase.auth.OtpType.Email.EMAIL
                 )
                 _authState.value = _authState.value.copy(
@@ -146,6 +145,7 @@ class AuthViewModel : ViewModel() {
                         supabase.from("profiles").insert(mapOf(
                             "id" to userId,
                             "username" to username,
+
                             "display_name" to displayName,
                             "avatar_url" to "",
                             "bio" to "",
@@ -208,7 +208,7 @@ class AuthViewModel : ViewModel() {
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
-                    supabase.from("profiles").insert(mapOf(  // review: refactor
+                    supabase.from("profiles").insert(mapOf(
                         "id" to userId,
                         "username" to username,
                         "display_name" to username,
@@ -222,6 +222,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun signOut() {
+
         viewModelScope.launch {
             try {
                 supabase.auth.signOut()
