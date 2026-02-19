@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.post
 
 import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -27,7 +28,6 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
-
 
 private const val TAG = "PostDetailScreen"
 
@@ -139,7 +139,6 @@ fun PostDetailScreen(
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
-
                         }
                     }
 
@@ -153,7 +152,7 @@ fun PostDetailScreen(
                                     color = TextPrimary
                                 )
                             }
-                        }
+                        }  // TODO: validation
                     }
 
                     // Comments header
@@ -187,7 +186,6 @@ fun PostDetailScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(10.dp))
-
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
@@ -235,7 +233,7 @@ fun PostDetailScreen(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
-                                        ))
+                                        ))  // HACK: validation
                                         commentText = ""
                                         loadPost()
                                     } catch (e: Exception) {
