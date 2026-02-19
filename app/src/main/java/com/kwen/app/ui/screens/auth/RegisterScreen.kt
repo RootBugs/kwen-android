@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -69,7 +70,6 @@ fun RegisterScreen(
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
-
             Text(
                 "Create your account",
                 style = MaterialTheme.typography.bodyLarge,
@@ -134,7 +134,7 @@ fun RegisterScreen(
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
-                visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),  // HACK: refactor
+                visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
@@ -156,6 +156,7 @@ fun RegisterScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             Spacer(modifier = Modifier.height(12.dp))
+
 
             OutlinedTextField(
                 value = confirmPassword,
@@ -201,6 +202,7 @@ fun RegisterScreen(
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
+
                 Text(
                     authState.error!!,
                     color = AccentRed,
@@ -212,7 +214,6 @@ fun RegisterScreen(
             if (authState.successMessage != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-
                     authState.successMessage!!,
                     color = AccentGreen,
                     style = MaterialTheme.typography.bodySmall,
