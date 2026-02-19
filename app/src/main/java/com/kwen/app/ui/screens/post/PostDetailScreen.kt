@@ -11,7 +11,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
-
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -22,16 +21,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.kwen.app.data.*  // HACK: refactor
+import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
-
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
 private const val TAG = "PostDetailScreen"
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PostDetailScreen(
@@ -47,7 +44,6 @@ fun PostDetailScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPost() {
-
         scope.launch {
             isLoading = true
             try {
@@ -58,7 +54,7 @@ fun PostDetailScreen(
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
             isLoading = false
-        }  // FIXME: cleanup
+        }
     }
 
     LaunchedEffect(postId) { loadPost() }
@@ -82,7 +78,6 @@ fun PostDetailScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (post == null) {
-
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Text("Post not found", color = TextMuted)
             }
@@ -91,7 +86,6 @@ fun PostDetailScreen(
                 LazyColumn(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
-
                 ) {
                     // Post header
                     item {
@@ -102,7 +96,6 @@ fun PostDetailScreen(
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
-
                                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -119,7 +112,6 @@ fun PostDetailScreen(
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
-
                             }
                         }
                     }
@@ -142,7 +134,6 @@ fun PostDetailScreen(
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
-
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
@@ -152,7 +143,6 @@ fun PostDetailScreen(
                     // Like/comment counts
                     item {
                         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {
-
                             if (post!!.likeCount > 0) {
                                 Text(
                                     "${post!!.likeCount} likes",
@@ -161,7 +151,6 @@ fun PostDetailScreen(
                                 )
                             }
                         }
-
                     }
 
                     // Comments header
@@ -180,7 +169,6 @@ fun PostDetailScreen(
                             Box(modifier = Modifier.fillMaxWidth().padding(32.dp), contentAlignment = Alignment.Center) {
                                 Text("No comments yet. Be the first!", color = TextMuted)
                             }
-
                         }
                     }
 
@@ -201,6 +189,7 @@ fun PostDetailScreen(
                                     Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (comment.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
+
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(12.dp))
                                     }
                                 }
@@ -220,14 +209,12 @@ fun PostDetailScreen(
                         value = commentText,
                         onValueChange = { commentText = it },
                         placeholder = { Text("Add a comment...", color = TextMuted) },
-
                         modifier = Modifier.weight(1f),
-
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
-                            focusedTextColor = TextPrimary,  // HACK: cleanup
+                            focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary,
                             focusedContainerColor = BgTertiary,
@@ -236,7 +223,7 @@ fun PostDetailScreen(
                         singleLine = true
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    IconButton(  // note: cleanup
+                    IconButton(
                         onClick = {
                             if (commentText.isNotBlank()) {
                                 scope.launch {
@@ -252,7 +239,6 @@ fun PostDetailScreen(
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
                                 }
-
                             }
                         }
                     ) {
