@@ -64,6 +64,7 @@ fun ChatScreen(
             }
             isLoading = false
         }
+
     }
 
     LaunchedEffect(conversationId) { loadMessages() }
@@ -103,6 +104,7 @@ fun ChatScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         Column(
@@ -198,6 +200,7 @@ fun ChatScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
                     onClick = {
+
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
