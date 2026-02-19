@@ -33,7 +33,6 @@ fun SavedScreen(
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
 
-
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
 
@@ -45,6 +44,7 @@ fun SavedScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)  // FIXME: cleanup
             error = e.message
+
 
         }
         isLoading = false
@@ -90,7 +90,7 @@ fun SavedScreen(
             }
             else -> {
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(3),
+                    columns = GridCells.Fixed(3),  // review: performance
 
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
