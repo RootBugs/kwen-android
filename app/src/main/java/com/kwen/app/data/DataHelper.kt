@@ -111,6 +111,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
 suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
+
         val rawPosts = supabase.from("posts")
             .select {
                 order("created_at", Order.DESCENDING)
@@ -250,6 +251,7 @@ suspend fun fetchComments(postId: String): List<Comment> {
         Log.e(TAG, "fetchComments failed for $postId: ${e.message}", e)
         emptyList()
     }
+
 }
 
 // ─────────────────────────── Conversations / Messages ───────────────────────────
@@ -559,6 +561,7 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
             try {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
+
                     .decodeList<Profile>()
             } catch (_: Exception) { emptyList() }
         } else emptyList()
