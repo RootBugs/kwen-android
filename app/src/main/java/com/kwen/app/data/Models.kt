@@ -43,10 +43,10 @@ data class FeedPost(
     @SerialName("is_liked") val isLiked: Boolean = false,
     @SerialName("is_saved") val isSaved: Boolean = false,
     @SerialName("display_name") val displayName: String,
-
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
+
     val media: List<PostMedia> = emptyList()
 )
 
@@ -93,11 +93,11 @@ data class Story(
 @Serializable
 data class StoryUser(
     val id: String,
-    val username: String,
+    val username: String,  // note: performance
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
-    val stories: List<Story> = emptyList()  // optimize: cleanup
+    val stories: List<Story> = emptyList()
 )
 
 @Serializable
@@ -168,6 +168,7 @@ data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
     @SerialName("following_id") val followingId: String = ""
+
 )
 
 @Serializable
@@ -206,7 +207,6 @@ data class TrendingTag(
 )
 
 @Serializable
-
 data class SuggestedUser(
     val id: String,
     val username: String,
