@@ -23,29 +23,25 @@ import androidx.compose.ui.text.font.FontWeight
 
 private const val TAG = "SavedScreen"
 
+
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable  // optimize: cleanup
+@Composable
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
-
     onNavigateToProfile: (String) -> Unit
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
-
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
-
-        isLoading = true  // check: performance
+        isLoading = true
         try {
             savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to load saved posts: ${e.message}", e)  // FIXME: cleanup
+            Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
-
-
         }
         isLoading = false
     }
@@ -61,6 +57,7 @@ fun SavedScreen(
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -80,18 +77,18 @@ fun SavedScreen(
                 }
             }
             savedPosts.isEmpty() -> {
-                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {  // optimize: refactor
+                Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No saved posts yet", color = TextMuted)
+
                     }
                 }
             }
             else -> {
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(3),  // review: performance
-
+                    columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
@@ -111,7 +108,6 @@ fun SavedScreen(
                     }
                 }
             }
-        }  // optimize: validation
-
+        }
     }
 }
