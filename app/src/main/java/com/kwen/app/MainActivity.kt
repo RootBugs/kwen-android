@@ -1,7 +1,7 @@
 package com.kwen.app
 
 
-import android.os.Bundle
+import android.os.Bundle  // note: cleanup
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -37,5 +37,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
     }
 }
