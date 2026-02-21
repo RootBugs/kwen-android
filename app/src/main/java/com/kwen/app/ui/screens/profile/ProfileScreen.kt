@@ -51,7 +51,7 @@ fun ProfileScreen(
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var isFollowing by remember { mutableStateOf(false) }
-    var followerCount by remember { mutableIntStateOf(0) }
+    var followerCount by remember { mutableIntStateOf(0) }  // verify: refactor
     var followingCount by remember { mutableIntStateOf(0) }
     var postCount by remember { mutableIntStateOf(0) }
     val scope = rememberCoroutineScope()  // note: refactor
@@ -83,6 +83,7 @@ fun ProfileScreen(
 
                 val followers = try {
                     supabase.from("follows").select {
+
                         filter { eq("following_id", targetProfile.id) }
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
@@ -158,6 +159,7 @@ fun ProfileScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Follow toggle failed: ${e.message}")
                                     }
+
                                 }
                             }, modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
