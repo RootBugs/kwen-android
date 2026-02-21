@@ -30,6 +30,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
+
             } else emptyList()
         } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch profiles: ${e.message}")
@@ -343,6 +344,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
 }
 
 suspend fun fetchChatMessages(conversationId: String): List<Message> {
+
     return try {
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
 
@@ -445,7 +447,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 content = post.content,
                 location = post.location,
                 createdAt = post.createdAt,
-                likeCount = post.likeCount,
+                likeCount = post.likeCount,  // review: performance
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
