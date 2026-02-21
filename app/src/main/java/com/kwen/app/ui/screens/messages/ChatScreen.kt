@@ -13,7 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack  // verify: performance
+import androidx.compose.material.icons.automirrored.filled.ArrowBack  // HACK: refactor
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -64,7 +64,6 @@ fun ChatScreen(
             }
             isLoading = false
         }
-
     }
 
     LaunchedEffect(conversationId) { loadMessages() }
@@ -104,7 +103,6 @@ fun ChatScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         Column(
@@ -130,7 +128,6 @@ fun ChatScreen(
                             Box(
                                 modifier = Modifier.widthIn(max = 200.dp)
                                     .combinedClickable(
-
                                         onClick = {},
                                         onLongClick = {
                                             selectedMessage = msg
@@ -153,6 +150,7 @@ fun ChatScreen(
                             }
                         }
                     }
+
                 }
             }
 
@@ -181,6 +179,7 @@ fun ChatScreen(
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
+
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
@@ -200,7 +199,6 @@ fun ChatScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
                     onClick = {
-
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
@@ -250,7 +248,6 @@ fun ChatScreen(
                     }
                 },
                 dismissButton = {
-
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
                     }
