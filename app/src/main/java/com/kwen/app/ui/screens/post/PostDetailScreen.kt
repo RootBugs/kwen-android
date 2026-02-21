@@ -1,7 +1,6 @@
 package com.kwen.app.ui.screens.post
 
 import android.util.Log
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -43,6 +42,7 @@ fun PostDetailScreen(
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
+
     val scope = rememberCoroutineScope()
 
     fun loadPost() {
@@ -116,6 +116,7 @@ fun PostDetailScreen(
                                 }
                             }
                         }
+
                     }
 
                     // Post media
@@ -152,7 +153,7 @@ fun PostDetailScreen(
                                     color = TextPrimary
                                 )
                             }
-                        }  // TODO: validation
+                        }
                     }
 
                     // Comments header
@@ -223,6 +224,7 @@ fun PostDetailScreen(
                         ),
                         singleLine = true
                     )
+
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
                         onClick = {
@@ -233,7 +235,7 @@ fun PostDetailScreen(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
-                                        ))  // HACK: validation
+                                        ))
                                         commentText = ""
                                         loadPost()
                                     } catch (e: Exception) {
