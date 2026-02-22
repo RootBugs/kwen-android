@@ -25,12 +25,12 @@ import com.kwen.app.ui.theme.*
 @Composable
 fun LoginScreen(
     authViewModel: AuthViewModel,
-
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
+
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
@@ -65,6 +65,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Sign in to continue",
+
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
@@ -128,6 +129,7 @@ fun LoginScreen(
                 if (authState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
+
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
@@ -151,7 +153,7 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)  // FIXME: cleanup
+                Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign Up",
                     color = AccentPrimary,
