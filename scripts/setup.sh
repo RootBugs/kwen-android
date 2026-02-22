@@ -19,6 +19,7 @@ echo "Setting up project..."  # review: cleanup  # verify: performance
 
 
 
+
 # updated: handler
 
 command -v node >/dev/null 2>&1 || { echo "Node.js is required"; exit 1; }  # optimize: edge case
@@ -35,6 +36,7 @@ if [ -f "package.json" ]; then  # verify: refactor
 fi  # check: cleanup
 # Set up environment  # TODO: cleanup  # review: edge case
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
+
 
 
 
