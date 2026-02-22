@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -42,7 +43,6 @@ fun PostDetailScreen(
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var currentUserId by remember { mutableStateOf("") }
-
     val scope = rememberCoroutineScope()
 
     fun loadPost() {
@@ -116,7 +116,6 @@ fun PostDetailScreen(
                                 }
                             }
                         }
-
                     }
 
                     // Post media
@@ -149,6 +148,7 @@ fun PostDetailScreen(
                             if (post!!.likeCount > 0) {
                                 Text(
                                     "${post!!.likeCount} likes",
+
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary
                                 )
@@ -179,6 +179,7 @@ fun PostDetailScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
+
                         ) {
                             AsyncImage(
                                 model = comment.avatarUrl ?: "",
@@ -224,7 +225,6 @@ fun PostDetailScreen(
                         ),
                         singleLine = true
                     )
-
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
                         onClick = {
