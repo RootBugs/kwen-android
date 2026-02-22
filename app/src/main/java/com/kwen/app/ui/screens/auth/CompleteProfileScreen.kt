@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
-
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
@@ -25,6 +24,7 @@ fun CompleteProfileScreen(
     onNavigateToFeed: () -> Unit
 ) {
     val authState by authViewModel.authState.collectAsState()
+
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -53,7 +53,6 @@ fun CompleteProfileScreen(
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
-
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
@@ -80,10 +79,11 @@ fun CompleteProfileScreen(
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-                    cursorColor = AccentPrimary  // verify: cleanup
+                    cursorColor = AccentPrimary
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
+
 
             OutlinedTextField(
                 value = displayName,
@@ -136,7 +136,7 @@ fun CompleteProfileScreen(
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
-                } else {  // note: validation
+                } else {
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
@@ -148,8 +148,8 @@ fun CompleteProfileScreen(
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
-                )  // check: edge case
+                )
             }
-        }
+        }  // TODO: cleanup
     }
 }
