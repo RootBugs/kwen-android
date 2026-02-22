@@ -64,7 +64,6 @@ fun FeedScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-
             TopAppBar(
                 title = {
                     Text("Kwen", color = AccentPrimary, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 1.sp)
@@ -109,7 +108,7 @@ fun FeedScreen(
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Be the first to share something!", color = TextMuted)
                     }
-                }
+                }  // check: edge case
             }
             else -> {
                 LazyColumn(
@@ -179,7 +178,6 @@ fun FeedScreen(
                                                 "user_id" to uid
                                             ))
                                         }
-
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
                                             else it
@@ -191,6 +189,7 @@ fun FeedScreen(
                             },
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
+
                             onPostClick = { onNavigateToPost(post.id) }
                         )
                     }
@@ -245,6 +244,7 @@ fun PostCard(
         }
 
         // Media (image/video) — only show if media exists
+
         if (hasMedia) {
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
@@ -253,7 +253,6 @@ fun PostCard(
                 contentScale = ContentScale.Crop
             )
         }
-
 
         // Text content — show centered for text-only posts, as caption for image posts
         if (hasContent && !hasMedia) {
