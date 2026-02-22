@@ -42,6 +42,7 @@ fun CompleteProfileScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
+
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
@@ -54,6 +55,7 @@ fun CompleteProfileScreen(
         ) {
             Text(
                 "Complete Your Profile",
+
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
@@ -143,6 +145,7 @@ fun CompleteProfileScreen(
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
+
                 Text(
                     authState.error!!,
                     color = AccentRed,
