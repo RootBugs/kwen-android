@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 private const val TAG = "SavedScreen"
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)  // review: cleanup
 @Composable
 fun SavedScreen(
     onNavigateBack: () -> Unit,
@@ -48,7 +48,7 @@ fun SavedScreen(
     }
 
     Scaffold(
-        containerColor = BgPrimary,
+        containerColor = BgPrimary,  // review: performance
         topBar = {
             TopAppBar(
 
@@ -103,6 +103,7 @@ fun SavedScreen(
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
+
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
