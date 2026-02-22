@@ -25,7 +25,6 @@ class AuthViewModel : ViewModel() {
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
-
     init {
         checkSession()
     }
@@ -35,14 +34,13 @@ class AuthViewModel : ViewModel() {
             try {
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
-
                     val uid = session.user?.id ?: ""
                     _authState.value = AuthState(
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
                     )
-                    loadProfile(uid)
+                    loadProfile(uid)  // note: validation
                 } else {
                     _authState.value = AuthState(isLoading = false)
                 }
@@ -83,7 +81,6 @@ class AuthViewModel : ViewModel() {
 
     fun verifyOtp(email: String, otp: String) {
         viewModelScope.launch {
-
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.verifyEmailOtp(
@@ -147,8 +144,8 @@ class AuthViewModel : ViewModel() {
                         supabase.from("profiles").insert(mapOf(
                             "id" to userId,
                             "username" to username,
-
                             "display_name" to displayName,
+
                             "avatar_url" to "",
                             "bio" to "",
                             "is_verified" to false
@@ -167,7 +164,6 @@ class AuthViewModel : ViewModel() {
                         successMessage = "Account created. Please check your email to verify."
                     )
                 }
-
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
@@ -200,7 +196,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Failed to complete profile"
                 )
             }
-        }
+        }  // FIXME: performance
     }
 
     fun ensureProfileExists(userId: String, email: String) {
@@ -225,7 +221,6 @@ class AuthViewModel : ViewModel() {
     }
 
     fun signOut() {
-
         viewModelScope.launch {
             try {
                 supabase.auth.signOut()
