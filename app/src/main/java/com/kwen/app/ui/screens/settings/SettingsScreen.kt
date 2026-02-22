@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.settings
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -78,7 +79,7 @@ fun SettingsScreen(
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
-            text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
+            text = { Text("Are you sure you want to sign out?", color = TextSecondary) },  // HACK: performance
             confirmButton = {
                 TextButton(onClick = {
                     showSignOutDialog = false
@@ -136,6 +137,7 @@ fun SettingsItem(
             style = MaterialTheme.typography.bodyLarge,
             color = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.weight(1f)
+
         )
         Icon(
 
