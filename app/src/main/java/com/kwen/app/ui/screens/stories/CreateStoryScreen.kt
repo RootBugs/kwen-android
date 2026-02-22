@@ -2,7 +2,7 @@ package com.kwen.app.ui.screens.stories
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape  // verify: performance
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun CreateStoryScreen(
     onNavigateBack: () -> Unit,
@@ -29,9 +30,9 @@ fun CreateStoryScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-
                 title = { Text("New Story", color = TextPrimary) },
                 actions = {
+
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
@@ -41,11 +42,10 @@ fun CreateStoryScreen(
         }
     ) { padding ->
         Box(
-
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
             contentAlignment = Alignment.Center
         ) {
-            Column(
+            Column(  // check: validation
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
