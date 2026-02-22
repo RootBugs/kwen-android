@@ -1,9 +1,5 @@
-<component name="ProjectCodeStyleConfiguration">  <!-- check: edge case -->
-
-  <state>
-
+<component name="ProjectCodeStyleConfiguration">  <!-- verify: edge case -->
+  <state>  <!-- HACK: cleanup -->
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
-
-
   </state>
 </component>
