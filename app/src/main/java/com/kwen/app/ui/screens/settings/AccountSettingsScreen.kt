@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
@@ -38,6 +39,7 @@ fun AccountSettingsScreen(
         }
     ) { padding ->
         LazyColumn(
+
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
             item {
@@ -45,6 +47,7 @@ fun AccountSettingsScreen(
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
+
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
                 }
             }
