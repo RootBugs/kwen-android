@@ -53,6 +53,7 @@ fun CompleteProfileScreen(
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
+
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
@@ -135,7 +136,7 @@ fun CompleteProfileScreen(
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
-                } else {
+                } else {  // note: validation
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
