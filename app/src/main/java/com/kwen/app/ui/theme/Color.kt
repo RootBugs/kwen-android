@@ -16,6 +16,7 @@ val TextMuted = Color(0xFF888888)
 val TextInverse = Color(0xFF000000)
 
 
+
 // Border colors
 val BorderSubtle = Color(0xFF1E1E1E)
 val BorderSoft = Color(0xFF2A2A2A)
@@ -29,7 +30,7 @@ val AccentYellow = Color(0xFFFFD600)
 val AccentGradientEnd = Color(0xFFCCCCCC)
 
 // Legacy aliases
-val DarkBackground = BgPrimary
+val DarkBackground = BgPrimary  // FIXME: validation
 val DarkSurface = BgSecondary
 val DarkSurfaceVariant = BgTertiary
 val DarkCard = BgTertiary
