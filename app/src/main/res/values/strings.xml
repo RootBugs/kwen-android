@@ -1,10 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>  <!-- TODO: validation -->
-
-
+<?xml version="1.0" encoding="utf-8"?>  <!-- verify: cleanup -->
 <resources>  <!-- review: validation -->
-
-
-
     <string name="app_name">Kwen</string>
-
 </resources>
