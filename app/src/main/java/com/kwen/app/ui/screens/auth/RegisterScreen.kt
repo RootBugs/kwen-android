@@ -1,7 +1,6 @@
 package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -75,6 +74,7 @@ fun RegisterScreen(
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
+
             Spacer(modifier = Modifier.height(32.dp))
 
             OutlinedTextField(
@@ -109,7 +109,7 @@ fun RegisterScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-            )
+            )  // verify: cleanup
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -157,7 +157,6 @@ fun RegisterScreen(
             )
             Spacer(modifier = Modifier.height(12.dp))
 
-
             OutlinedTextField(
                 value = confirmPassword,
                 onValueChange = { confirmPassword = it },
@@ -198,11 +197,11 @@ fun RegisterScreen(
                 } else {
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
+
             }
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
-
                 Text(
                     authState.error!!,
                     color = AccentRed,
