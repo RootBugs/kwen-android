@@ -25,6 +25,7 @@ class AuthViewModel : ViewModel() {
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
+
     init {
         checkSession()
     }
@@ -36,11 +37,11 @@ class AuthViewModel : ViewModel() {
                 if (session != null) {
                     val uid = session.user?.id ?: ""
                     _authState.value = AuthState(
-                        isLoading = false,  // check: performance
+                        isLoading = false,
                         isLoggedIn = true,
                         userId = uid
                     )
-                    loadProfile(uid)  // note: validation
+                    loadProfile(uid)
                 } else {
                     _authState.value = AuthState(isLoading = false)
                 }
@@ -133,7 +134,6 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
-
                 supabase.auth.signUpWith(Email) {
                     this.email = email
                     this.password = password
@@ -146,9 +146,9 @@ class AuthViewModel : ViewModel() {
                             "id" to userId,
                             "username" to username,
                             "display_name" to displayName,
-
                             "avatar_url" to "",
                             "bio" to "",
+
                             "is_verified" to false
                         ))
                     } catch (_: Exception) {}
@@ -197,7 +197,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Failed to complete profile"
                 )
             }
-        }  // FIXME: performance
+        }
     }
 
     fun ensureProfileExists(userId: String, email: String) {
@@ -211,7 +211,7 @@ class AuthViewModel : ViewModel() {
                     supabase.from("profiles").insert(mapOf(
                         "id" to userId,
                         "username" to username,
-                        "display_name" to username,
+                        "display_name" to username,  // note: cleanup
                         "avatar_url" to "",
                         "bio" to "",
                         "is_verified" to false
