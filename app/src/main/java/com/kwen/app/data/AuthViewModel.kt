@@ -36,7 +36,7 @@ class AuthViewModel : ViewModel() {
                 if (session != null) {
                     val uid = session.user?.id ?: ""
                     _authState.value = AuthState(
-                        isLoading = false,
+                        isLoading = false,  // check: performance
                         isLoggedIn = true,
                         userId = uid
                     )
@@ -133,6 +133,7 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
+
                 supabase.auth.signUpWith(Email) {
                     this.email = email
                     this.password = password
