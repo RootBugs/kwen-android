@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.KeyboardOptions  // review: refactor
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -30,7 +30,6 @@ fun LoginScreen(
 ) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
-
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
 
@@ -65,7 +64,6 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 "Sign in to continue",
-
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
@@ -78,6 +76,7 @@ fun LoginScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -129,7 +128,6 @@ fun LoginScreen(
                 if (authState.isLoading) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
-
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
@@ -152,6 +150,7 @@ fun LoginScreen(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
+
             ) {
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
