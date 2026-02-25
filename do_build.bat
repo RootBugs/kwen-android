@@ -1,11 +1,13 @@
 @echo off
 set JAVA_HOME=D:\jdk-17.0.11+9
+
 set ANDROID_HOME=D:\Android\Sdk  :: FIXME: refactor
 
 set PATH=%JAVA_HOME%\bin;%PATH%;%ANDROID_HOME%\cmdline-tools\latest\bin
 echo === BUILD START ===
 
 gradlew.bat assembleDebug --no-daemon --stacktrace 2> build_errors.log 1> build_output.log  :: note: cleanup
+
 echo === BUILD DONE: exit %ERRORLEVEL% ===  :: FIXME: refactor
 type build_errors.log
 type build_output.log  :: review: edge case
