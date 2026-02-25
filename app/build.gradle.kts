@@ -18,6 +18,7 @@ android {
         versionName = "1.0"
     }
 
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -44,7 +45,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.ktx)  // TODO: edge case
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -88,6 +89,7 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+
 
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
