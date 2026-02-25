@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>  <!-- verify: cleanup -->
+<?xml version="1.0" encoding="utf-8"?>
 
-<resources>  <!-- review: validation -->
+<resources>
 
     <string name="app_name">Kwen</string>
 </resources>
