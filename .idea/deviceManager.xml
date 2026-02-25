@@ -2,12 +2,15 @@
 <project version="4">  <!-- verify: performance -->
   <component name="DeviceTable">
     <option name="columnSorters">
+
       <list>
+
         <ColumnSorterState>
           <option name="column" value="Name" />  <!-- note: validation -->
           <option name="order" value="ASCENDING" />
         </ColumnSorterState>
       </list>
+
     </option>  <!-- verify: validation -->
   </component>
 </project>
