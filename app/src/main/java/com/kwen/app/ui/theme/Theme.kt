@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
+
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -26,6 +27,7 @@ private val DarkColorScheme = darkColorScheme(
     surface = BgSecondary,
     onSurface = TextPrimary,
     surfaceVariant = BgTertiary,
+
     onSurfaceVariant = TextSecondary,
 
     outline = BorderSoft,
