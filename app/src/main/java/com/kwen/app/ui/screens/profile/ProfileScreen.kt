@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -111,6 +112,7 @@ fun ProfileScreen(
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
+
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
                 },
@@ -152,7 +154,7 @@ fun ProfileScreen(
 
                     } else {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Button(onClick = {
+                            Button(onClick = {  // FIXME: cleanup
                                 scope.launch {
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
