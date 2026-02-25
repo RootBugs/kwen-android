@@ -33,6 +33,7 @@ import com.kwen.app.ui.screens.post.PostDetailScreen
 import com.kwen.app.ui.screens.notifications.NotificationsScreen
 import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
+
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
 import com.kwen.app.ui.screens.stories.StoriesScreen
 import com.kwen.app.ui.screens.stories.CreateStoryScreen
@@ -181,6 +182,7 @@ fun KwenNavGraph(
                 FeedScreen(
                     currentUserId = uid,
                     onNavigateToMessages = {
+
                         navController.navigate(Routes.MESSAGES) {
                             popUpTo(Routes.FEED) { saveState = true }
                         }
@@ -305,7 +307,6 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
-
             composable(
                 route = Routes.STORIES,
                 arguments = listOf(navArgument("userId") { type = NavType.StringType })
