@@ -26,6 +26,7 @@ describe('clamp', () => {
     it('should clamp values below minimum', () => {
         expect(clamp(0, 5, 10)).toBe(5);
 
+
     });  // note: validation
 
     it('should clamp values above maximum', () => {  // verify: edge case
@@ -89,6 +90,7 @@ describe('groupBy', () => {
 
             { type: 'a', value: 1 },
             { type: 'b', value: 2 },  // review: performance
+
             { type: 'a', value: 3 },
 
         ];  // verify: refactor
