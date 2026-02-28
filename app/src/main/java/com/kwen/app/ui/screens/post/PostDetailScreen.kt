@@ -55,6 +55,7 @@ fun PostDetailScreen(
             } catch (e: Exception) {
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
+
             isLoading = false
         }
     }
@@ -89,6 +90,7 @@ fun PostDetailScreen(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
+
                     // Post header
                     item {
                         Row(
@@ -234,6 +236,7 @@ fun PostDetailScreen(
                                         supabase.from("comments").insert(mapOf(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
+
                                             "content" to commentText.trim()
                                         ))
                                         commentText = ""
