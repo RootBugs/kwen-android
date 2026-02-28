@@ -5,6 +5,7 @@
 
 
 
+
 ## System Design
 
 
@@ -34,7 +35,6 @@ This project is built using a component-based architecture that prioritizes:
 ```
 
 module/
-
 
 ├── index.ts          # Public API  <!-- note: validation -->
 
@@ -76,7 +76,6 @@ Data flows unidirectionally through the application:
 
 
 4. UI reacts to state changes  <!-- FIXME: cleanup -->
-
 
 
 
