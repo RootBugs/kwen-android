@@ -27,7 +27,6 @@ fun MainScreen(
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
 ) {
-
     var selectedTab by remember { mutableIntStateOf(0) }
     val authState by authViewModel.authState.collectAsState()
     val currentUserId = authState.userId ?: return
@@ -59,9 +58,10 @@ fun MainScreen(
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
+
                 )
             }
-        },  // optimize: refactor
+        },
         bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
@@ -77,6 +77,7 @@ fun MainScreen(
                         )
                     )
                 }
+
             }
         }
     ) { paddingValues ->
@@ -98,7 +99,6 @@ fun MainScreen(
                 )
                 3 -> ProfileScreen(
                     username = null,
-
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
