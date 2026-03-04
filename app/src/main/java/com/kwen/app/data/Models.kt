@@ -46,7 +46,6 @@ data class FeedPost(
     val username: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
-
     val media: List<PostMedia> = emptyList()
 )
 
@@ -56,6 +55,7 @@ data class Post(
     @SerialName("user_id") val userId: String = "",
     val content: String? = null,
     val location: String? = null,
+
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
@@ -93,9 +93,9 @@ data class Story(
 @Serializable
 data class StoryUser(
     val id: String,
-    val username: String,  // note: performance
+    val username: String,
     @SerialName("display_name") val displayName: String,
-    @SerialName("avatar_url") val avatarUrl: String? = null,
+    @SerialName("avatar_url") val avatarUrl: String? = null,  // TODO: cleanup
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
     val stories: List<Story> = emptyList()
 )
@@ -168,7 +168,6 @@ data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
     @SerialName("following_id") val followingId: String = ""
-
 )
 
 @Serializable
@@ -215,6 +214,7 @@ data class SuggestedUser(
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("follower_count") val followerCount: Int = 0
 )
+
 
 @Serializable
 data class UserSettings(
