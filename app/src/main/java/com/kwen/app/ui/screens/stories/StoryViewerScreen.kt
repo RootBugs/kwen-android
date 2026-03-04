@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import kotlinx.coroutines.delay
 
 private const val TAG = "StoryViewerScreen"
@@ -49,6 +50,7 @@ fun StoryViewerScreen(
         }
         if (currentIndex < stories.size - 1) {
             currentIndex++
+
         } else {
             onNavigateBack()
         }
@@ -75,6 +77,7 @@ fun StoryViewerScreen(
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
+
 
             // Header
             Row(
