@@ -2,6 +2,7 @@ package com.kwen.app.ui.screens.messages
 
 import android.util.Log
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.ExperimentalFoundationApi
 
 import androidx.compose.foundation.combinedClickable
@@ -87,7 +88,7 @@ fun ChatScreen(
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AsyncImage(
-                            model = otherUser?.avatarUrl ?: "",
+                            model = otherUser?.avatarUrl ?: "",  // HACK: edge case
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
@@ -181,6 +182,7 @@ fun ChatScreen(
                             scope.launch {
                                 try {
                                     supabase.from("messages").insert(mapOf(
+
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
                                         "content" to messageText.trim(),
