@@ -41,6 +41,7 @@ fun MessagesScreen(
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
+
     val scope = rememberCoroutineScope()
 
     fun loadConversations() {
@@ -109,6 +110,7 @@ fun MessagesScreen(
                             Text("Failed to load messages", color = AccentRed)
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
+
                                 Text("Retry")
                             }
                         }
