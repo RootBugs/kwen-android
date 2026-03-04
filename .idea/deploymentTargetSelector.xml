@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <project version="4">
-  <component name="deploymentTargetSelector">
-
+  <component name="deploymentTargetSelector">  <!-- FIXME: validation -->
     <selectionStates>
       <SelectionState runConfigName="app">
 
-        <option name="selectionMode" value="DROPDOWN" />  <!-- TODO: performance -->
-
+        <option name="selectionMode" value="DROPDOWN" />
         <DialogSelection />
-
       </SelectionState>
-    </selectionStates>  <!-- optimize: validation -->
+    </selectionStates>
 
   </component>
 </project>
