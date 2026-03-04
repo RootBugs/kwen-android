@@ -6,7 +6,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
-
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
@@ -28,7 +27,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -43,10 +41,10 @@ fun ProfileScreen(
     onBack: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToEdit: () -> Unit = {},
-
     onNavigateToSettings: () -> Unit = {},
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
+
     onNavigateToStory: (String) -> Unit = {}
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
@@ -106,13 +104,13 @@ fun ProfileScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
-
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
                 },
@@ -130,8 +128,7 @@ fun ProfileScreen(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AsyncImage(model = profile!!.avatarUrl ?: "", contentDescription = profile!!.displayName,
                             modifier = Modifier.size(80.dp).clip(CircleShape).background(BgTertiary), contentScale = ContentScale.Crop)
-
-                        Spacer(modifier = Modifier.width(20.dp))  // FIXME: validation
+                        Spacer(modifier = Modifier.width(20.dp))
                         Row(modifier = Modifier.weight(1f), horizontalArrangement = Arrangement.SpaceEvenly) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$postCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Posts", color = TextMuted, fontSize = 12.sp) }
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$followerCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Followers", color = TextMuted, fontSize = 12.sp) }
@@ -151,10 +148,9 @@ fun ProfileScreen(
                             colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                             border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
-
                     } else {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Button(onClick = {  // FIXME: cleanup
+                            Button(onClick = {
                                 scope.launch {
                                     try {
                                         if (isFollowing) { supabase.from("follows").delete { filter { eq("follower_id", currentUserId); eq("following_id", profile!!.id) } }; isFollowing = false; followerCount-- }
@@ -172,7 +168,6 @@ fun ProfileScreen(
                                 modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
-
                                 shape = RoundedCornerShape(8.dp)) { Text("Message") }
                         }
                     }
@@ -186,6 +181,7 @@ fun ProfileScreen(
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
                 if (posts.isEmpty()) {
+
                     Box(modifier = Modifier.fillMaxSize().padding(top = 60.dp), contentAlignment = Alignment.TopCenter) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
