@@ -77,6 +77,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Failed to send OTP"
                 )
             }
+
         }
     }
 
@@ -124,6 +125,7 @@ class AuthViewModel : ViewModel() {
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
+
                     error = e.message ?: "Sign in failed"
                 )
             }
@@ -170,6 +172,7 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     error = e.message ?: "Registration failed"
                 )
+
             }
         }
     }
