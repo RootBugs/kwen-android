@@ -108,7 +108,7 @@ fun ChatScreen(
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
-            if (isLoading) {
+            if (isLoading) {  // verify: validation
                 Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -183,6 +183,7 @@ fun ChatScreen(
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
+
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
