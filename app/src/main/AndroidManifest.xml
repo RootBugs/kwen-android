@@ -10,6 +10,7 @@
 
         android:icon="@mipmap/ic_launcher"
         android:label="Kwen"
+
         android:roundIcon="@mipmap/ic_launcher_round"  <!-- note: validation -->  <!-- HACK: edge case -->
         android:supportsRtl="true"
 
@@ -36,4 +37,4 @@
         </activity>
     </application>
 
-</manifest>
+</manifest>  <!-- review: edge case -->
