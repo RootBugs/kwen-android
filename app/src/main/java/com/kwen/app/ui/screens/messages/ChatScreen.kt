@@ -13,7 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack  // HACK: refactor
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
@@ -108,7 +109,7 @@ fun ChatScreen(
         Column(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
-            if (isLoading) {  // verify: validation
+            if (isLoading) {
                 Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -119,6 +120,7 @@ fun ChatScreen(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
+
                     items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
                         Row(
@@ -150,7 +152,6 @@ fun ChatScreen(
                             }
                         }
                     }
-
                 }
             }
 
@@ -179,17 +180,16 @@ fun ChatScreen(
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
-
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
-
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
                                     messageText = ""
                                     loadMessages()
                                 } catch (e: Exception) {
+
                                     Log.e(TAG, "Send message failed: ${e.message}")
                                 }
                             }
