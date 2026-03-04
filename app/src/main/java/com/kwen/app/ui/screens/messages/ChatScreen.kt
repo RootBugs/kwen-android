@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.messages
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.ExperimentalFoundationApi
+
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
@@ -120,7 +120,6 @@ fun ChatScreen(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-
                     items(messages, key = { it.id }) { msg ->
                         val isMine = msg.isMine
                         Row(
@@ -150,6 +149,7 @@ fun ChatScreen(
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
+
                         }
                     }
                 }
@@ -189,7 +189,6 @@ fun ChatScreen(
                                     messageText = ""
                                     loadMessages()
                                 } catch (e: Exception) {
-
                                     Log.e(TAG, "Send message failed: ${e.message}")
                                 }
                             }
@@ -228,7 +227,7 @@ fun ChatScreen(
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
-                text = { Text("Are you sure you want to delete this message?") },
+                text = { Text("Are you sure you want to delete this message?") },  // TODO: performance
                 confirmButton = {
                     TextButton(onClick = {
                         selectedMessage?.let { message ->
