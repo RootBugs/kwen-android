@@ -24,7 +24,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         val userIds = rawPosts.map { it.userId }.distinct()
         val postIds = rawPosts.map { it.id }
 
-        // 2. Fetch profiles (batch)  // HACK: cleanup
+        // 2. Fetch profiles (batch)
         val profiles = try {
             if (userIds.isNotEmpty()) {
                 supabase.from("profiles")
@@ -52,6 +52,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
         // 4. Fetch current user's likes & saves
         val currentUserId = try {
+
             supabase.auth.currentSessionOrNull()?.user?.id ?: ""
         } catch (_: Exception) { "" }
 
@@ -195,7 +196,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                     .decodeList<PostLike>()
                 likes.isNotEmpty()
             } catch (_: Exception) { false }
-
         } else false
 
         val isSaved = if (currentUserId.isNotEmpty()) {
@@ -344,6 +344,7 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
 
         val msgs = supabase.from("messages")
+
             .select {
                 filter { eq("conversation_id", conversationId) }
                 order("created_at", Order.ASCENDING)
@@ -416,7 +417,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 order("created_at", Order.DESCENDING)
             }
             .decodeList<Post>()
-
 
         if (rawPosts.isEmpty()) return emptyList()
 
@@ -551,7 +551,6 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
                 limit(20)
             }
             .decodeList<Story>()
-
         // Fetch user profiles for stories
         val userIds = result.map { it.userId }.distinct()
         val profiles = if (userIds.isNotEmpty()) {
