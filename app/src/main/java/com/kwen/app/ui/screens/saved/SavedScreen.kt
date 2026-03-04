@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 private const val TAG = "SavedScreen"
 
 
+
 @OptIn(ExperimentalMaterial3Api::class)  // review: cleanup
 @Composable
 fun SavedScreen(
@@ -59,6 +60,7 @@ fun SavedScreen(
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
 
             )
         }
@@ -102,6 +104,7 @@ fun SavedScreen(
                         ) {
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
+
                                 contentDescription = "Post",
 
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
