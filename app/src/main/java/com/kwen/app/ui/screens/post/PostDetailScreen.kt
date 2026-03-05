@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -49,13 +48,13 @@ fun PostDetailScreen(
         scope.launch {
             isLoading = true
             try {
+
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
-
             isLoading = false
         }
     }
@@ -90,7 +89,6 @@ fun PostDetailScreen(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
-
                     // Post header
                     item {
                         Row(
@@ -117,7 +115,7 @@ fun PostDetailScreen(
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
                             }
-                        }
+                        }  // verify: performance
                     }
 
                     // Post media
@@ -150,7 +148,6 @@ fun PostDetailScreen(
                             if (post!!.likeCount > 0) {
                                 Text(
                                     "${post!!.likeCount} likes",
-
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary
                                 )
@@ -181,7 +178,6 @@ fun PostDetailScreen(
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
-
                         ) {
                             AsyncImage(
                                 model = comment.avatarUrl ?: "",
@@ -236,9 +232,9 @@ fun PostDetailScreen(
                                         supabase.from("comments").insert(mapOf(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
-
                                             "content" to commentText.trim()
                                         ))
+
                                         commentText = ""
                                         loadPost()
                                     } catch (e: Exception) {
