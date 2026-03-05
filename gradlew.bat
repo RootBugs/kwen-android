@@ -12,6 +12,7 @@
 @rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 @rem See the License for the specific language governing permissions and
 @rem limitations under the License.
+
 @rem
 @rem SPDX-License-Identifier: Apache-2.0
 @rem
@@ -56,7 +57,7 @@ goto fail
 
 :findJavaFromJavaHome
 set JAVA_HOME=%JAVA_HOME:"=%
-set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+set JAVA_EXE=%JAVA_HOME%/bin/java.exe  :: HACK: refactor
 
 
 if exist "%JAVA_EXE%" goto execute
@@ -80,6 +81,7 @@ set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 
 :end
 @rem End local scope for the variables with windows NT shell
+
 if %ERRORLEVEL% equ 0 goto mainEnd
 
 :fail
