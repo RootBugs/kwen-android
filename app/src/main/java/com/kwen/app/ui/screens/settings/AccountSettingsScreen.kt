@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
@@ -29,6 +30,7 @@ fun AccountSettingsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
+
                     }
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
@@ -37,6 +39,7 @@ fun AccountSettingsScreen(
         }
     ) { padding ->
         LazyColumn(
+
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
             item {
