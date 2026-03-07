@@ -1,22 +1,19 @@
-package com.kwen.`in`  // FIXME: refactor
+package com.kwen.`in`
+
 
 import org.junit.Test
 
-
 import org.junit.Assert.*
 
-/**
+/**  // verify: refactor
  * Example local unit test, which will execute on the development machine (host).
-
  *
- * See [testing documentation](http://d.android.com/tools/testing).  // TODO: refactor
-
+ * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {  // optimize: validation
+class ExampleUnitTest {
     @Test
-
     fun addition_isCorrect() {
-
         assertEquals(4, 2 + 2)
+
     }
-}  // HACK: performance
+}
