@@ -42,7 +42,6 @@ fun MessagesScreen(
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
-
     fun loadConversations() {
         scope.launch {
             isLoading = true
@@ -52,6 +51,7 @@ fun MessagesScreen(
             } catch (e: Exception) {
                 Log.e(TAG, "loadConversations failed: ${e.message}", e)
                 error = e.message
+
             }
             isLoading = false
         }
@@ -106,7 +106,6 @@ fun MessagesScreen(
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text("Failed to load messages", color = AccentRed)
-
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                                 Text("Retry")
@@ -115,6 +114,7 @@ fun MessagesScreen(
                     }
                 }
                 filteredConversations.isEmpty() -> {
+
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Default.Message, null, tint = TextMuted, modifier = Modifier.size(48.dp))
@@ -145,7 +145,6 @@ fun MessagesScreen(
                                     )
                                     Text(
                                         conv.lastMessagePreview ?: "Start a conversation",
-
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
