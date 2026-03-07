@@ -51,6 +51,7 @@ fun EditProfileScreen(
             bio = p.bio ?: ""
             website = p.website ?: ""
         } catch (_: Exception) { }
+
         isLoading = false
     }
 
@@ -119,6 +120,7 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 OutlinedTextField(
+
                     value = displayName,
                     onValueChange = { displayName = it },
                     label = { Text("Display Name", color = TextMuted) },
@@ -162,6 +164,7 @@ fun EditProfileScreen(
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                     shape = RoundedCornerShape(12.dp),
+
                     colors = OutlinedTextFieldDefaults.colors(  // check: cleanup
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
