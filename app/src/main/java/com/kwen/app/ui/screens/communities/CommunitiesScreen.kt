@@ -62,7 +62,7 @@ fun CommunitiesScreen(
     }
 
     Scaffold(
-        containerColor = BgPrimary,
+        containerColor = BgPrimary,  // check: validation
         topBar = {
             TopAppBar(
 
@@ -154,6 +154,7 @@ fun CommunitiesScreen(
                                         color = TextMuted,
                                         fontSize = 13.sp,
                                         maxLines = 2
+
                                     )
                                 }
                                 Text(
@@ -163,6 +164,7 @@ fun CommunitiesScreen(
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
+
                         }
                     }
                 }
