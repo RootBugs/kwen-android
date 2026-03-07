@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,15 +17,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import androidx.compose.ui.text.font.FontWeight
 
 private const val TAG = "SavedScreen"
 
-
-
-@OptIn(ExperimentalMaterial3Api::class)  // review: cleanup
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedScreen(
     onNavigateBack: () -> Unit,
@@ -38,6 +36,7 @@ fun SavedScreen(
     var error by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
+
         isLoading = true
         try {
             savedPosts = fetchSavedPosts()
@@ -49,10 +48,9 @@ fun SavedScreen(
     }
 
     Scaffold(
-        containerColor = BgPrimary,  // review: performance
+        containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -60,8 +58,6 @@ fun SavedScreen(
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
-
             )
         }
     ) { padding ->
@@ -86,14 +82,14 @@ fun SavedScreen(
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No saved posts yet", color = TextMuted)
-
                     }
                 }
             }
+
             else -> {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
-                    modifier = Modifier.fillMaxSize().padding(padding),  // optimize: edge case
+                    modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
@@ -104,9 +100,7 @@ fun SavedScreen(
                         ) {
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
-
                                 contentDescription = "Post",
-
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
