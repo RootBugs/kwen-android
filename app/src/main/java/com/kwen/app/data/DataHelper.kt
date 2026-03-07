@@ -52,7 +52,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
         // 4. Fetch current user's likes & saves
         val currentUserId = try {
-
             supabase.auth.currentSessionOrNull()?.user?.id ?: ""
         } catch (_: Exception) { "" }
 
@@ -62,7 +61,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                     .select { filter { eq("user_id", currentUserId); isIn("post_id", postIds) } }
                     .decodeList<PostLike>()
                 likes.map { it.postId }.toSet()
-            } catch (e: Exception) {
+            } catch (e: Exception) {  // note: cleanup
                 Log.w(TAG, "Failed to fetch likes: ${e.message}")
                 emptySet()
             }
@@ -290,6 +289,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
 
         val otherProfiles = if (otherUserIds.isNotEmpty()) {
             try {
+
                 supabase.from("profiles")
                     .select { filter { isIn("id", otherUserIds) } }
                     .decodeList<Profile>()
@@ -344,7 +344,6 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
 
         val msgs = supabase.from("messages")
-
             .select {
                 filter { eq("conversation_id", conversationId) }
                 order("created_at", Order.ASCENDING)
@@ -507,6 +506,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         val mediaMap = media.groupBy { it.postId }
 
         rawPosts.map { post ->
+
             val profile = profileMap[post.userId]
             FeedPost(
                 id = post.id,
@@ -551,6 +551,7 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
                 limit(20)
             }
             .decodeList<Story>()
+
         // Fetch user profiles for stories
         val userIds = result.map { it.userId }.distinct()
         val profiles = if (userIds.isNotEmpty()) {
