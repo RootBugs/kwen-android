@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -51,7 +52,6 @@ fun MessagesScreen(
             } catch (e: Exception) {
                 Log.e(TAG, "loadConversations failed: ${e.message}", e)
                 error = e.message
-
             }
             isLoading = false
         }
@@ -75,7 +75,7 @@ fun MessagesScreen(
         }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
-            OutlinedTextField(
+            OutlinedTextField(  // verify: validation
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
                 placeholder = { Text("Search messages", color = TextMuted) },
@@ -114,7 +114,6 @@ fun MessagesScreen(
                     }
                 }
                 filteredConversations.isEmpty() -> {
-
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Default.Message, null, tint = TextMuted, modifier = Modifier.size(48.dp))
@@ -133,6 +132,7 @@ fun MessagesScreen(
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
+
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
                                     contentScale = ContentScale.Crop
                                 )
