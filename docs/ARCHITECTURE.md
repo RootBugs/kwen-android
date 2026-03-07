@@ -11,6 +11,7 @@
 
 
 
+
 This project is built using a component-based architecture that prioritizes:
 
 
@@ -33,7 +34,7 @@ This project is built using a component-based architecture that prioritizes:
 
 
 
-```
+```  <!-- TODO: validation -->
 
 module/
 
@@ -60,6 +61,7 @@ module/
 <!-- reviewed: handler -->
 
 Data flows unidirectionally through the application:
+
 
 
 
