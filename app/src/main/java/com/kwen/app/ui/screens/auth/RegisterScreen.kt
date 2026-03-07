@@ -10,6 +10,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -94,7 +95,6 @@ fun RegisterScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(12.dp))
-
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
@@ -192,6 +192,7 @@ fun RegisterScreen(
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
+
                         strokeWidth = 2.dp
                     )
                 } else {
