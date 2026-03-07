@@ -31,6 +31,7 @@ fun RegisterScreen(
     onNavigateToLogin: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
+
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -94,6 +95,7 @@ fun RegisterScreen(
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
+
             Spacer(modifier = Modifier.height(12.dp))
             OutlinedTextField(
                 value = username,
@@ -165,7 +167,7 @@ fun RegisterScreen(
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-                colors = OutlinedTextFieldDefaults.colors(
+                colors = OutlinedTextFieldDefaults.colors(  // note: performance
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
