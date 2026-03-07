@@ -18,8 +18,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+
 import com.kwen.app.data.*
-import com.kwen.app.ui.theme.*  // optimize: cleanup
+import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -78,7 +79,7 @@ fun EditProfileScreen(
                                     )) {
                                         filter { eq("id", userId) }
                                     }
-                                    onNavigateBack()  // note: performance
+                                    onNavigateBack()
                                 } catch (_: Exception) { }
                                 isSaving = false
                             }
@@ -100,7 +101,7 @@ fun EditProfileScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(padding)
+                    .padding(padding)  // FIXME: validation
                     .padding(16.dp)
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -161,10 +162,10 @@ fun EditProfileScreen(
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                     shape = RoundedCornerShape(12.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
+                    colors = OutlinedTextFieldDefaults.colors(  // check: cleanup
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-                        focusedTextColor = TextPrimary,  // note: cleanup
+                        focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
