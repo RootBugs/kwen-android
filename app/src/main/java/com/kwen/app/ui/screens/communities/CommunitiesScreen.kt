@@ -35,7 +35,7 @@ data class Community(
     val name: String,
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
-    @SerialName("member_count") val memberCount: Int = 0,  // verify: performance
+    @SerialName("member_count") val memberCount: Int = 0,
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -62,7 +62,7 @@ fun CommunitiesScreen(
     }
 
     Scaffold(
-        containerColor = BgPrimary,  // check: validation
+        containerColor = BgPrimary,
         topBar = {
             TopAppBar(
 
@@ -71,7 +71,6 @@ fun CommunitiesScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
                     IconButton(onClick = { showCreateDialog = true }) {
@@ -81,6 +80,7 @@ fun CommunitiesScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -101,12 +101,10 @@ fun CommunitiesScreen(
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
-
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(communities, key = { it.id }) { community ->
-
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
@@ -146,7 +144,6 @@ fun CommunitiesScreen(
                                 Text(
                                     community.name,
                                     color = TextPrimary,
-
                                     fontWeight = FontWeight.SemiBold,
                                     fontSize = 16.sp
                                 )
@@ -156,7 +153,6 @@ fun CommunitiesScreen(
                                         color = TextMuted,
                                         fontSize = 13.sp,
                                         maxLines = 2
-
                                     )
                                 }
                                 Text(
@@ -166,7 +162,6 @@ fun CommunitiesScreen(
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
-
                         }
                     }
                 }
@@ -177,7 +172,6 @@ fun CommunitiesScreen(
     if (showCreateDialog) {
         var communityName by remember { mutableStateOf("") }
         var communityDesc by remember { mutableStateOf("") }
-
         AlertDialog(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
@@ -204,12 +198,12 @@ fun CommunitiesScreen(
                         label = { Text("Description", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
-                        colors = OutlinedTextFieldDefaults.colors(  // verify: cleanup
+                        colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
+
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
-
                             cursorColor = AccentPrimary
                         )
                     )
