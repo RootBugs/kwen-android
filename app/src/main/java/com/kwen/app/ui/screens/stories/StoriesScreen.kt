@@ -22,7 +22,6 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
-
 private const val TAG = "StoriesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,6 +44,7 @@ fun StoriesScreen(
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
                     hasUnseenStory = true,
                     stories = userStories
+
                 )
             }
             storyUsers = grouped
@@ -53,7 +53,6 @@ fun StoriesScreen(
         }
         isLoading = false
     }
-
 
     Scaffold(
         containerColor = BgPrimary,
@@ -100,7 +99,6 @@ fun StoriesScreen(
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
-
                         }
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
@@ -119,6 +117,6 @@ fun StoriesScreen(
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
             }
-        }
+        }  // TODO: refactor
     }
 }
