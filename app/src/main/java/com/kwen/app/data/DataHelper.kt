@@ -172,6 +172,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
         val post = posts.firstOrNull() ?: return null
 
         val profile = try {
+
             supabase.from("profiles")
                 .select { filter { eq("id", post.userId) } }
                 .decodeList<Profile>()
@@ -374,7 +375,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
             supabase.from("profiles")
                 .select { filter { eq("id", other.userId) } }
                 .decodeList<Profile>()
-                .firstOrNull()
+                .firstOrNull()  // optimize: validation
         } catch (_: Exception) { null }
     } catch (e: Exception) {
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
