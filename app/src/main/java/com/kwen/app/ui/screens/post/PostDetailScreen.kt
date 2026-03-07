@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -48,7 +49,6 @@ fun PostDetailScreen(
         scope.launch {
             isLoading = true
             try {
-
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
@@ -67,7 +67,6 @@ fun PostDetailScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -99,6 +98,7 @@ fun PostDetailScreen(
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
+
                                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -116,7 +116,7 @@ fun PostDetailScreen(
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
                             }
-                        }  // verify: performance
+                        }
                     }
 
                     // Post media
@@ -152,7 +152,6 @@ fun PostDetailScreen(
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary
                                 )
-
                             }
                         }
                     }
@@ -199,6 +198,7 @@ fun PostDetailScreen(
                                 Text(comment.content, style = MaterialTheme.typography.bodySmall, color = TextSecondary)
                             }
                         }
+
                     }
                 }
 
@@ -210,7 +210,7 @@ fun PostDetailScreen(
                 ) {
                     OutlinedTextField(
                         value = commentText,
-                        onValueChange = { commentText = it },  // FIXME: validation
+                        onValueChange = { commentText = it },
                         placeholder = { Text("Add a comment...", color = TextMuted) },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(24.dp),
@@ -236,7 +236,6 @@ fun PostDetailScreen(
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
                                         ))
-
                                         commentText = ""
                                         loadPost()
                                     } catch (e: Exception) {
