@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-import com.kwen.app.ui.theme.*
+import com.kwen.app.ui.theme.*  // optimize: cleanup
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -60,7 +60,6 @@ fun EditProfileScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-
                     }
                 },
                 title = { Text("Edit Profile", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -79,7 +78,7 @@ fun EditProfileScreen(
                                     )) {
                                         filter { eq("id", userId) }
                                     }
-                                    onNavigateBack()
+                                    onNavigateBack()  // note: performance
                                 } catch (_: Exception) { }
                                 isSaving = false
                             }
@@ -124,7 +123,6 @@ fun EditProfileScreen(
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
-
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
@@ -166,7 +164,7 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-                        focusedTextColor = TextPrimary,
+                        focusedTextColor = TextPrimary,  // note: cleanup
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
@@ -174,7 +172,6 @@ fun EditProfileScreen(
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-
 
                 OutlinedTextField(
                     value = website,
