@@ -13,6 +13,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -100,7 +101,7 @@ fun EditProfileScreen(
             }
         } else {
             Column(
-                modifier = Modifier
+                modifier = Modifier  // TODO: cleanup
                     .fillMaxSize()
                     .padding(padding)  // FIXME: validation
                     .padding(16.dp)
@@ -182,7 +183,7 @@ fun EditProfileScreen(
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
                     singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),  // FIXME: edge case
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
