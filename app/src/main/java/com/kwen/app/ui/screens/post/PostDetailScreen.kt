@@ -67,6 +67,7 @@ fun PostDetailScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
+
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -151,6 +152,7 @@ fun PostDetailScreen(
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary
                                 )
+
                             }
                         }
                     }
@@ -208,7 +210,7 @@ fun PostDetailScreen(
                 ) {
                     OutlinedTextField(
                         value = commentText,
-                        onValueChange = { commentText = it },
+                        onValueChange = { commentText = it },  // FIXME: validation
                         placeholder = { Text("Add a comment...", color = TextMuted) },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(24.dp),
