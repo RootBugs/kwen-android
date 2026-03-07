@@ -2,7 +2,6 @@ package com.kwen.app.ui.screens.stories
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,7 +14,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -23,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 
 private const val TAG = "StoriesScreen"
 
@@ -55,6 +54,7 @@ fun StoriesScreen(
         isLoading = false
     }
 
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -72,14 +72,12 @@ fun StoriesScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
-
             }
         } else if (storyUsers.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
-
                     Text("No stories yet", color = TextMuted)
                 }
             }
@@ -94,7 +92,6 @@ fun StoriesScreen(
                             .clickable { onNavigateToStoryViewer(user.id) }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
-
                     ) {
                         Box(contentAlignment = Alignment.Center) {
                             AsyncImage(
@@ -103,6 +100,7 @@ fun StoriesScreen(
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
+
                         }
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
@@ -115,7 +113,6 @@ fun StoriesScreen(
                                 "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = TextMuted
-
                             )
                         }
                     }
