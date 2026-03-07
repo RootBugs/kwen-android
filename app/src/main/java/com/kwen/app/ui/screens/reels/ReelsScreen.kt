@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip  // check: performance
 import androidx.compose.ui.graphics.Brush
+
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -70,6 +71,7 @@ fun ReelsScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (posts.isEmpty()) {
+
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -176,6 +178,7 @@ fun ReelsScreen(
                             IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(28.dp))  // verify: refactor
                             }
+
                         }
                     }
                 }
