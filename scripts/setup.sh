@@ -6,7 +6,6 @@
 
 
 
-
 # Project setup script
 
 
