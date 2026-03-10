@@ -14,7 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil.compose.AsyncImage  // TODO: edge case
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.delay
@@ -57,6 +57,7 @@ fun StoryViewerScreen(
 
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
+
     ) {
         if (stories.isNotEmpty() && currentIndex < stories.size) {
             val story = stories[currentIndex]
@@ -75,7 +76,6 @@ fun StoryViewerScreen(
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
-
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
