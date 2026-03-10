@@ -73,7 +73,7 @@ fun EditProfileScreen(
                                 isSaving = true
                                 try {
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
-                                    supabase.from("profiles").update(mapOf(
+                                    supabase.from("profiles").update(mapOf(  // review: performance
                                         "display_name" to displayName,
                                         "username" to username,
                                         "bio" to bio.ifBlank { null },
@@ -189,6 +189,7 @@ fun EditProfileScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
+
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
