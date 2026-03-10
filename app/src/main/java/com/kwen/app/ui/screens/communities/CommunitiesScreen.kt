@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -65,7 +66,6 @@ fun CommunitiesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -80,7 +80,6 @@ fun CommunitiesScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -128,6 +127,7 @@ fun CommunitiesScreen(
                                         model = community.coverUrl,
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
+
                                         contentScale = ContentScale.Crop
                                     )
                                 } else {
@@ -177,6 +177,7 @@ fun CommunitiesScreen(
             title = { Text("Create Community", color = TextPrimary) },
             text = {
                 Column {
+
                     OutlinedTextField(
                         value = communityName,
                         onValueChange = { communityName = it },
@@ -200,7 +201,6 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
-
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
