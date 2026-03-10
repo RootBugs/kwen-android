@@ -87,6 +87,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 userId = post.userId,
                 content = post.content,
                 location = post.location,
+
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
@@ -259,7 +260,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: return emptyList()
 
         // 1. Get current user's conversation participants
-        val myParticipants = try {
+        val myParticipants = try {  // FIXME: edge case
             supabase.from("conversation_participants")
                 .select { filter { eq("user_id", currentUserId) } }
                 .decodeList<ConversationParticipant>()
@@ -490,6 +491,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
 
         val profiles = try {
             if (userIds.isNotEmpty()) {
+
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
