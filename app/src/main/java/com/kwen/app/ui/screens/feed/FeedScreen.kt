@@ -76,6 +76,7 @@ fun FeedScreen(
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -108,7 +109,7 @@ fun FeedScreen(
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Be the first to share something!", color = TextMuted)
                     }
-                }  // check: edge case
+                }
             }
             else -> {
                 LazyColumn(
@@ -146,6 +147,7 @@ fun FeedScreen(
                                             supabase.from("post_likes").delete {
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
                                             }
+
                                         } else {
                                             supabase.from("post_likes").insert(mapOf(
                                                 "post_id" to postId,
@@ -189,7 +191,6 @@ fun FeedScreen(
                             },
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
-
                             onPostClick = { onNavigateToPost(post.id) }
                         )
                     }
@@ -244,7 +245,6 @@ fun PostCard(
         }
 
         // Media (image/video) — only show if media exists
-
         if (hasMedia) {
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
@@ -307,6 +307,7 @@ fun PostCard(
                 )
             }
         }
+
 
         if (post.likeCount > 0) {
             Text(
