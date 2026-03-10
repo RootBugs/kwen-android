@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.style.TextOverflow  // note: refactor
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -80,6 +80,7 @@ fun NotificationsScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
+
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
                         }
@@ -128,7 +129,7 @@ fun NotificationsScreen(
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
-                                Text(
+                                Text(  // verify: edge case
                                     when (notif.type) {
                                         "follow" -> "started following you"
                                         "like" -> "liked your post"
