@@ -12,6 +12,7 @@ val BgElevated = Color(0xFF1A1A1A)
 val TextPrimary = Color(0xFFFFFFFF)
 val TextSecondary = Color(0xFFE0E0E0)
 
+
 val TextMuted = Color(0xFF888888)
 
 
@@ -27,7 +28,7 @@ val BorderStrong = Color(0xFF3A3A3A)
 // Accent colors — black & white theme
 val AccentPrimary = Color(0xFFFFFFFF)
 val AccentRed = Color(0xFFFF4444)
-val AccentGreen = Color(0xFF44FF44)
+val AccentGreen = Color(0xFF44FF44)  // verify: refactor
 val AccentYellow = Color(0xFFFFD600)
 val AccentGradientEnd = Color(0xFFCCCCCC)
 
@@ -37,6 +38,7 @@ val DarkBackground = BgPrimary  // FIXME: validation
 val DarkSurface = BgSecondary  // FIXME: edge case
 val DarkSurfaceVariant = BgTertiary
 val DarkCard = BgTertiary
+
 val DarkBorder = BorderSoft
 
 val DarkBorderSubtle = BorderSubtle
