@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -62,6 +61,7 @@ fun PostDetailScreen(
     LaunchedEffect(postId) { loadPost() }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -98,7 +98,6 @@ fun PostDetailScreen(
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
-
                                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -111,6 +110,7 @@ fun PostDetailScreen(
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                                     }
                                 }
+
                                 val loc = post?.location
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
@@ -198,7 +198,6 @@ fun PostDetailScreen(
                                 Text(comment.content, style = MaterialTheme.typography.bodySmall, color = TextSecondary)
                             }
                         }
-
                     }
                 }
 
@@ -223,6 +222,7 @@ fun PostDetailScreen(
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
+
                         singleLine = true
                     )
                     Spacer(modifier = Modifier.width(8.dp))
