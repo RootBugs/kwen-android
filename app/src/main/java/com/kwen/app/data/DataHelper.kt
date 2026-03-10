@@ -61,7 +61,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                     .select { filter { eq("user_id", currentUserId); isIn("post_id", postIds) } }
                     .decodeList<PostLike>()
                 likes.map { it.postId }.toSet()
-            } catch (e: Exception) {  // note: cleanup
+            } catch (e: Exception) {
                 Log.w(TAG, "Failed to fetch likes: ${e.message}")
                 emptySet()
             }
@@ -111,6 +111,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
 suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
+
         val rawPosts = supabase.from("posts")
             .select {
                 order("created_at", Order.DESCENDING)
@@ -172,7 +173,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
         val post = posts.firstOrNull() ?: return null
 
         val profile = try {
-
             supabase.from("profiles")
                 .select { filter { eq("id", post.userId) } }
                 .decodeList<Profile>()
@@ -290,7 +290,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
 
         val otherProfiles = if (otherUserIds.isNotEmpty()) {
             try {
-
                 supabase.from("profiles")
                     .select { filter { isIn("id", otherUserIds) } }
                     .decodeList<Profile>()
@@ -375,7 +374,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
             supabase.from("profiles")
                 .select { filter { eq("id", other.userId) } }
                 .decodeList<Profile>()
-                .firstOrNull()  // optimize: validation
+                .firstOrNull()
         } catch (_: Exception) { null }
     } catch (e: Exception) {
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
@@ -428,6 +427,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 .decodeList<Profile>()
                 .firstOrNull()
         } catch (_: Exception) { null }
+
 
         val media = try {
             supabase.from("post_media")
@@ -507,7 +507,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         val mediaMap = media.groupBy { it.postId }
 
         rawPosts.map { post ->
-
             val profile = profileMap[post.userId]
             FeedPost(
                 id = post.id,
