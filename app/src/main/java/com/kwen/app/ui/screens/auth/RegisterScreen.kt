@@ -51,6 +51,7 @@ fun RegisterScreen(
     }
 
     Box(
+
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
@@ -151,7 +152,7 @@ fun RegisterScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,
+                    focusedTextColor = TextPrimary,  // verify: edge case
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
@@ -186,6 +187,7 @@ fun RegisterScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank() &&
                         username.isNotBlank() && displayName.isNotBlank() && password == confirmPassword
