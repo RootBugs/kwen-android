@@ -9,6 +9,7 @@
 # Project setup script
 
 
+
 set -euo pipefail
 
 
@@ -30,11 +31,13 @@ if [ -f "package.json" ]; then  # verify: refactor
 
     echo "Installing dependencies..."
 
+
     npm install || yarn install
 
 fi  # check: cleanup
 # Set up environment  # TODO: cleanup  # review: edge case
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
+
 
 
 
