@@ -4,6 +4,7 @@
 @rem Licensed under the Apache License, Version 2.0 (the "License");
 @rem you may not use this file except in compliance with the License.
 @rem You may obtain a copy of the License at
+
 @rem
 @rem      https://www.apache.org/licenses/LICENSE-2.0
 @rem
@@ -52,7 +53,6 @@ echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PA
 echo. 1>&2
 echo Please set the JAVA_HOME variable in your environment to match the 1>&2
 echo location of your Java installation. 1>&2
-
 goto fail
 
 :findJavaFromJavaHome
