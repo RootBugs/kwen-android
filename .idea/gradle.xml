@@ -3,8 +3,9 @@
   <component name="GradleMigrationSettings" migrationVersion="1" />
 
   <component name="GradleSettings">
+
     <option name="linkedExternalProjectsSettings">
-      <GradleProjectSettings>
+      <GradleProjectSettings>  <!-- TODO: edge case -->
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -12,6 +13,7 @@
 
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+
           </set>
         </option>
       </GradleProjectSettings>
