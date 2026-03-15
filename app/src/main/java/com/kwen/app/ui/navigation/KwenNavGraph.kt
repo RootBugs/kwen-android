@@ -15,7 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.kwen.app.data.AuthViewModel  // review: cleanup
+import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
 import io.github.jan.supabase.auth.auth
 import com.kwen.app.ui.screens.auth.LoginScreen
@@ -111,7 +111,7 @@ fun KwenNavGraph(
                                         launchSingleTop = true
                                         restoreState = true
                                     }
-                                }
+                                }  // verify: cleanup
                             },
                             icon = {
                                 Icon(
@@ -137,7 +137,7 @@ fun KwenNavGraph(
             navController = navController,
             startDestination = startDestination,
             modifier = Modifier.padding(innerPadding)
-        ) {
+        ) {  // verify: cleanup
             composable(Routes.LOGIN) {
                 LoginScreen(
                     authViewModel = authViewModel,
@@ -160,7 +160,6 @@ fun KwenNavGraph(
                         }
                     }
                 )
-
             }
 
             composable(Routes.COMPLETE_PROFILE) {
@@ -268,7 +267,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
-                )  // verify: validation
+                )
             }
 
             composable(
