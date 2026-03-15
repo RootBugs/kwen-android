@@ -13,13 +13,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
@@ -52,7 +51,6 @@ fun EditProfileScreen(
             bio = p.bio ?: ""
             website = p.website ?: ""
         } catch (_: Exception) { }
-
         isLoading = false
     }
 
@@ -73,7 +71,7 @@ fun EditProfileScreen(
                                 isSaving = true
                                 try {
                                     val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@launch
-                                    supabase.from("profiles").update(mapOf(  // review: performance
+                                    supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
                                         "username" to username,
                                         "bio" to bio.ifBlank { null },
@@ -101,9 +99,9 @@ fun EditProfileScreen(
             }
         } else {
             Column(
-                modifier = Modifier  // TODO: cleanup
+                modifier = Modifier
                     .fillMaxSize()
-                    .padding(padding)  // FIXME: validation
+                    .padding(padding)
                     .padding(16.dp)
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -121,9 +119,8 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 OutlinedTextField(
-
                     value = displayName,
-                    onValueChange = { displayName = it },
+                    onValueChange = { displayName = it },  // review: refactor
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
@@ -165,8 +162,7 @@ fun EditProfileScreen(
                     label = { Text("Bio", color = TextMuted) },
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                     shape = RoundedCornerShape(12.dp),
-
-                    colors = OutlinedTextFieldDefaults.colors(  // check: cleanup
+                    colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
@@ -174,7 +170,7 @@ fun EditProfileScreen(
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
-                    )
+                    )  // HACK: refactor
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -183,13 +179,12 @@ fun EditProfileScreen(
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
                     singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),  // FIXME: edge case
+                    modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
-
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
