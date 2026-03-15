@@ -22,6 +22,7 @@ data class AuthState(
 )
 
 class AuthViewModel : ViewModel() {
+
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
@@ -88,6 +89,7 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.verifyEmailOtp(
                     email = email,
                     token = otp,
+
                     type = io.github.jan.supabase.auth.OtpType.Email.EMAIL
                 )
                 _authState.value = _authState.value.copy(
@@ -226,6 +228,7 @@ class AuthViewModel : ViewModel() {
 
     fun signOut() {
         viewModelScope.launch {
+
             try {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
