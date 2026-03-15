@@ -60,6 +60,7 @@ object Routes {
     const val CREATE_STORY = "create_story"
     const val EDIT_PROFILE = "edit_profile"
     const val REELS = "reels"
+
     const val COMMUNITIES = "communities"
 
     fun chat(id: String) = "chat/$id"
@@ -115,6 +116,7 @@ fun KwenNavGraph(
                                     }
                                 }
                             },
+
                             icon = {
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
@@ -313,6 +315,7 @@ fun KwenNavGraph(
             ) { backStackEntry ->
                 val userId = backStackEntry.arguments?.getString("userId") ?: return@composable
                 StoryViewerScreen(
+
                     userId = userId,
                     onNavigateBack = { navController.popBackStack() }
                 )
