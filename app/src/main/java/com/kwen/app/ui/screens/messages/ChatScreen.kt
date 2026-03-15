@@ -45,6 +45,7 @@ fun ChatScreen(
 ) {
     var messages by remember { mutableStateOf<List<Message>>(emptyList()) }
     var messageText by remember { mutableStateOf("") }
+
     var otherUser by remember { mutableStateOf<Profile?>(null) }
     var isLoading by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
@@ -92,6 +93,7 @@ fun ChatScreen(
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
+
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
@@ -189,7 +191,7 @@ fun ChatScreen(
                                         "message_type" to "text"
                                     ))
                                     messageText = ""
-                                    loadMessages()
+                                    loadMessages()  // review: validation
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Send message failed: ${e.message}")
                                 }
