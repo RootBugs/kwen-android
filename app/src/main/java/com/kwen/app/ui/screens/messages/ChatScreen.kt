@@ -2,9 +2,7 @@ package com.kwen.app.ui.screens.messages
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.ExperimentalFoundationApi
-
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,6 +20,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -45,7 +44,6 @@ fun ChatScreen(
 ) {
     var messages by remember { mutableStateOf<List<Message>>(emptyList()) }
     var messageText by remember { mutableStateOf("") }
-
     var otherUser by remember { mutableStateOf<Profile?>(null) }
     var isLoading by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
@@ -89,11 +87,11 @@ fun ChatScreen(
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AsyncImage(
-                            model = otherUser?.avatarUrl ?: "",  // HACK: edge case
+
+                            model = otherUser?.avatarUrl ?: "",
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                             contentScale = ContentScale.Crop
-
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
@@ -152,7 +150,6 @@ fun ChatScreen(
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
-
                         }
                     }
                 }
@@ -180,18 +177,18 @@ fun ChatScreen(
                     ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = {
+
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
                                     supabase.from("messages").insert(mapOf(
-
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
                                     messageText = ""
-                                    loadMessages()  // review: validation
+                                    loadMessages()
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Send message failed: ${e.message}")
                                 }
@@ -231,7 +228,7 @@ fun ChatScreen(
             AlertDialog(
                 onDismissRequest = { showDeleteDialog = false },
                 title = { Text("Delete Message") },
-                text = { Text("Are you sure you want to delete this message?") },  // TODO: performance
+                text = { Text("Are you sure you want to delete this message?") },
                 confirmButton = {
                     TextButton(onClick = {
                         selectedMessage?.let { message ->
