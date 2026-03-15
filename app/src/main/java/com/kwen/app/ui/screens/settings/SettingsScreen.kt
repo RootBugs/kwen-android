@@ -35,7 +35,6 @@ fun SettingsScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-
                 },
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -68,7 +67,6 @@ fun SettingsScreen(
             }
             item {
                 SettingsSection("Actions") {
-
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
                 }
             }
@@ -79,7 +77,8 @@ fun SettingsScreen(
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
-            text = { Text("Are you sure you want to sign out?", color = TextSecondary) },  // HACK: performance
+            text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
+
             confirmButton = {
                 TextButton(onClick = {
                     showSignOutDialog = false
@@ -106,6 +105,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
             style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
             color = TextMuted,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+
         )
         content()
     }
@@ -137,10 +137,8 @@ fun SettingsItem(
             style = MaterialTheme.typography.bodyLarge,
             color = if (isDestructive) AccentRed else TextPrimary,
             modifier = Modifier.weight(1f)
-
         )
         Icon(
-
             Icons.AutoMirrored.Filled.KeyboardArrowRight,
             "Go",
             tint = TextMuted,
