@@ -69,6 +69,7 @@ fun MessagesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 title = { Text("Messages", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -111,6 +112,7 @@ fun MessagesScreen(
                                 Text("Retry")
                             }
                         }
+
                     }
                 }
                 filteredConversations.isEmpty() -> {
