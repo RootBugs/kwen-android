@@ -47,6 +47,7 @@ fun EditProfileScreen(
                 .decodeSingle<Profile>()
             profile = p
             displayName = p.displayName
+
             username = p.username
             bio = p.bio ?: ""
             website = p.website ?: ""
@@ -109,6 +110,7 @@ fun EditProfileScreen(
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
+
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
@@ -136,6 +138,7 @@ fun EditProfileScreen(
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+
 
                 OutlinedTextField(
                     value = username,
