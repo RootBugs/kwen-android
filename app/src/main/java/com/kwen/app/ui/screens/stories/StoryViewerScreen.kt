@@ -10,11 +10,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage  // TODO: edge case
+import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.delay
@@ -30,7 +31,6 @@ fun StoryViewerScreen(
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
-
 
     LaunchedEffect(userId) {
         try {
@@ -48,7 +48,6 @@ fun StoryViewerScreen(
             delay(50)
         }
         if (currentIndex < stories.size - 1) {
-
             currentIndex++
         } else {
             onNavigateBack()
@@ -57,7 +56,6 @@ fun StoryViewerScreen(
 
     Box(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
-
     ) {
         if (stories.isNotEmpty() && currentIndex < stories.size) {
             val story = stories[currentIndex]
@@ -69,6 +67,7 @@ fun StoryViewerScreen(
                 contentScale = ContentScale.Crop
             )
 
+
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
@@ -76,6 +75,7 @@ fun StoryViewerScreen(
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
             )
+
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
@@ -95,12 +95,12 @@ fun StoryViewerScreen(
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
+
             }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("No stories available", color = TextMuted)
             }
         }
-
     }
 }
