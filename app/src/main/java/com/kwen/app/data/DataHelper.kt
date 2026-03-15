@@ -87,7 +87,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                 userId = post.userId,
                 content = post.content,
                 location = post.location,
-
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
@@ -104,6 +103,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         }
     } catch (e: Exception) {
         Log.e(TAG, "fetchFeedPosts failed: ${e.message}", e)
+
         emptyList()
     }
 }
@@ -112,7 +112,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
 suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
-
         val rawPosts = supabase.from("posts")
             .select {
                 order("created_at", Order.DESCENDING)
@@ -260,7 +259,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: return emptyList()
 
         // 1. Get current user's conversation participants
-        val myParticipants = try {  // FIXME: edge case
+        val myParticipants = try {
             supabase.from("conversation_participants")
                 .select { filter { eq("user_id", currentUserId) } }
                 .decodeList<ConversationParticipant>()
@@ -429,7 +428,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 .firstOrNull()
         } catch (_: Exception) { null }
 
-
         val media = try {
             supabase.from("post_media")
                 .select { filter { isIn("post_id", postIds) } }
@@ -478,6 +476,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
 
         val postIds = saved.map { it.postId }
 
+
         // Fetch actual posts
         val rawPosts = try {
             supabase.from("posts")
@@ -491,7 +490,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
 
         val profiles = try {
             if (userIds.isNotEmpty()) {
-
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
