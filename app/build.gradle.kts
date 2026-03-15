@@ -16,6 +16,7 @@ android {
         minSdk = 26
         targetSdk = 35
         versionCode = 1
+
         versionName = "1.0"
     }
 
@@ -42,6 +43,7 @@ android {
     }
 
     buildFeatures {
+
         compose = true
 
     }
@@ -83,6 +85,7 @@ dependencies {
 
     // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
+
 
 
     // Image loading
