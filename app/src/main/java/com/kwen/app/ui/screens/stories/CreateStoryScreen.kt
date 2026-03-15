@@ -1,4 +1,5 @@
 package com.kwen.app.ui.screens.stories
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -13,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateStoryScreen(
@@ -22,6 +24,7 @@ fun CreateStoryScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -33,7 +36,6 @@ fun CreateStoryScreen(
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
-
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -41,11 +43,10 @@ fun CreateStoryScreen(
     ) { padding ->
         Box(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
-
             contentAlignment = Alignment.Center
         ) {
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally  // review: edge case
             ) {
                 Box(
                     modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
