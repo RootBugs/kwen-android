@@ -33,7 +33,6 @@ private const val TAG = "ReelsScreen"
 @Composable
 fun ReelsScreen(
     onNavigateBack: () -> Unit,
-
     onNavigateToProfile: (String) -> Unit
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -43,7 +42,7 @@ fun ReelsScreen(
     LaunchedEffect(Unit) {
         try {
             val data = fetchFeedPosts(limit = 30)
-            posts = data.filter { it.media.isNotEmpty() }
+            posts = data.filter { it.media.isNotEmpty() }  // HACK: edge case
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
@@ -71,7 +70,6 @@ fun ReelsScreen(
         } else if (posts.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
@@ -94,7 +92,7 @@ fun ReelsScreen(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop
+                            contentScale = ContentScale.Crop  // TODO: validation
                         )
 
                         // Gradient overlay
@@ -165,7 +163,6 @@ fun ReelsScreen(
 
                             IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
-
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
 
