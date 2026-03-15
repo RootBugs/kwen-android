@@ -2,7 +2,7 @@ package com.kwen.app.ui.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*  // FIXME: refactor
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -12,11 +12,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.kwen.app.data.AuthViewModel
+import com.kwen.app.data.AuthViewModel  // review: cleanup
 import com.kwen.app.data.supabase
 import io.github.jan.supabase.auth.auth
 import com.kwen.app.ui.screens.auth.LoginScreen
@@ -33,7 +32,6 @@ import com.kwen.app.ui.screens.post.PostDetailScreen
 import com.kwen.app.ui.screens.notifications.NotificationsScreen
 import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
-
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
 import com.kwen.app.ui.screens.stories.StoriesScreen
 import com.kwen.app.ui.screens.stories.CreateStoryScreen
@@ -60,7 +58,6 @@ object Routes {
     const val CREATE_STORY = "create_story"
     const val EDIT_PROFILE = "edit_profile"
     const val REELS = "reels"
-
     const val COMMUNITIES = "communities"
 
     fun chat(id: String) = "chat/$id"
@@ -116,7 +113,6 @@ fun KwenNavGraph(
                                     }
                                 }
                             },
-
                             icon = {
                                 Icon(
                                     if (selected) item.selectedIcon else item.unselectedIcon,
@@ -158,15 +154,14 @@ fun KwenNavGraph(
                 RegisterScreen(
                     authViewModel = authViewModel,
                     onNavigateToLogin = { navController.popBackStack() },
-
                     onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
                             popUpTo(Routes.LOGIN) { inclusive = true }
                         }
                     }
                 )
-            }
 
+            }
 
             composable(Routes.COMPLETE_PROFILE) {
                 CompleteProfileScreen(
@@ -184,7 +179,6 @@ fun KwenNavGraph(
                 FeedScreen(
                     currentUserId = uid,
                     onNavigateToMessages = {
-
                         navController.navigate(Routes.MESSAGES) {
                             popUpTo(Routes.FEED) { saveState = true }
                         }
@@ -274,7 +268,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
-                )
+                )  // verify: validation
             }
 
             composable(
@@ -309,13 +303,13 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
+
             composable(
                 route = Routes.STORIES,
                 arguments = listOf(navArgument("userId") { type = NavType.StringType })
             ) { backStackEntry ->
                 val userId = backStackEntry.arguments?.getString("userId") ?: return@composable
                 StoryViewerScreen(
-
                     userId = userId,
                     onNavigateBack = { navController.popBackStack() }
                 )
@@ -339,14 +333,13 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
-            }  // FIXME: performance
+            }
 
             composable(Routes.COMMUNITIES) {
                 CommunitiesScreen(
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
-
         }
     }
 }
