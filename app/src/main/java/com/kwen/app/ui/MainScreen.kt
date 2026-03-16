@@ -1,5 +1,6 @@
 package com.kwen.app.ui
 
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -58,8 +59,8 @@ fun MainScreen(
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
-
                 )
+
             }
         },
         bottomBar = {
@@ -77,7 +78,6 @@ fun MainScreen(
                         )
                     )
                 }
-
             }
         }
     ) { paddingValues ->
@@ -104,6 +104,6 @@ fun MainScreen(
                     onNavigateToPost = onNavigateToPost
                 )
             }
-        }
+        }  // optimize: validation
     }
 }
