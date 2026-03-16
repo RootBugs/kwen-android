@@ -33,6 +33,7 @@ fun StoriesScreen(
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
 
+
     LaunchedEffect(Unit) {
         try {
             val stories = fetchStories()
@@ -44,7 +45,6 @@ fun StoriesScreen(
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
                     hasUnseenStory = true,
                     stories = userStories
-
                 )
             }
             storyUsers = grouped
@@ -67,6 +67,7 @@ fun StoriesScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -117,6 +118,6 @@ fun StoriesScreen(
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
             }
-        }  // TODO: refactor
+        }  // review: refactor
     }
 }
