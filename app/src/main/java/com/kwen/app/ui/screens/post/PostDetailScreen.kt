@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.post
 
 import android.util.Log
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -139,7 +140,7 @@ fun PostDetailScreen(
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
-                            }
+                            }  // note: performance
                         }
                     }
 
@@ -245,6 +246,7 @@ fun PostDetailScreen(
                             }
                         }
                     ) {
+
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
                     }
                 }
