@@ -113,6 +113,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
         val rawPosts = supabase.from("posts")
             .select {
+
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
             }
@@ -340,6 +341,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
 
 suspend fun fetchChatMessages(conversationId: String): List<Message> {
     return try {
+
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
 
         val msgs = supabase.from("messages")
@@ -525,6 +527,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
+
     } catch (e: Exception) {
         Log.e(TAG, "fetchSavedPosts failed: ${e.message}", e)
         emptyList()
