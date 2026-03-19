@@ -25,10 +25,8 @@ fun CompleteProfileScreen(
 ) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
-
     var displayName by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
-
     LaunchedEffect(authState.successMessage) {
         if (authState.successMessage?.contains("Profile completed") == true) {
             onNavigateToFeed()
@@ -56,12 +54,12 @@ fun CompleteProfileScreen(
                 "Complete Your Profile",
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
+
                     color = TextPrimary
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-
                 "Tell us about yourself",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
@@ -115,6 +113,7 @@ fun CompleteProfileScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
+
             )
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -149,7 +148,6 @@ fun CompleteProfileScreen(
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
-
             }
         }
     }
