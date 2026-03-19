@@ -20,7 +20,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -55,6 +54,7 @@ fun ChatScreen(
     } catch (_: Exception) { "" }
 
     fun loadMessages() {
+
         scope.launch {
             isLoading = true
             try {
@@ -87,7 +87,6 @@ fun ChatScreen(
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AsyncImage(
-
                             model = otherUser?.avatarUrl ?: "",
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
@@ -98,6 +97,7 @@ fun ChatScreen(
                             otherUser?.displayName ?: "Chat",
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
+
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -177,7 +177,6 @@ fun ChatScreen(
                     ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = {
-
                         if (messageText.isNotBlank()) {
                             scope.launch {
                                 try {
@@ -249,6 +248,7 @@ fun ChatScreen(
                     }
                 },
                 dismissButton = {
+
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
                     }
