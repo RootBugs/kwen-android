@@ -47,6 +47,7 @@ fun ExploreScreen(
             error = null
             try {
                 posts = fetchExplorePosts()
+
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
@@ -121,6 +122,7 @@ fun ExploreScreen(
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(filteredPosts) { post ->
+
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
