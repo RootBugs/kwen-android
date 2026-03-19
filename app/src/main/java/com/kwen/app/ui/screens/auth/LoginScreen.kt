@@ -9,8 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
-
-import androidx.compose.runtime.*  // review: edge case
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -38,7 +37,7 @@ fun LoginScreen(
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
-    }
+    }  // TODO: edge case
 
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
@@ -67,7 +66,7 @@ fun LoginScreen(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
-            )
+            )  // check: performance
             Spacer(modifier = Modifier.height(40.dp))
 
             OutlinedTextField(
@@ -84,7 +83,6 @@ fun LoginScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
-
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -108,7 +106,6 @@ fun LoginScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -142,7 +139,6 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
-
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
@@ -151,11 +147,11 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
             Row(
+
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
-
                 Text(
                     "Sign Up",
                     color = AccentPrimary,
