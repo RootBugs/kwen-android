@@ -73,6 +73,7 @@ fun CommunitiesScreen(
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
+
                     IconButton(onClick = { showCreateDialog = true }) {
                         Icon(Icons.Default.Add, "Create Community", tint = AccentPrimary)
                     }
@@ -159,6 +160,7 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
+
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
@@ -213,6 +215,7 @@ fun CommunitiesScreen(
                 TextButton(
                     onClick = {
                         scope.launch {
+
                             try {
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
