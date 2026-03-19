@@ -26,9 +26,10 @@ private const val TAG = "StoriesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
-    onNavigateToStoryViewer: (String) -> Unit  // TODO: refactor
+    onNavigateToStoryViewer: (String) -> Unit
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -75,12 +76,11 @@ fun StoriesScreen(
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
+
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
                 }
-
             }
-
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
@@ -90,6 +90,7 @@ fun StoriesScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { onNavigateToStoryViewer(user.id) }
+
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
