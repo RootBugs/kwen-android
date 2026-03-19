@@ -5,7 +5,6 @@
 @rem you may not use this file except in compliance with the License.
 @rem You may obtain a copy of the License at
 @rem
-
 @rem      https://www.apache.org/licenses/LICENSE-2.0
 @rem
 @rem Unless required by applicable law or agreed to in writing, software
@@ -23,6 +22,7 @@
 @rem  Gradle startup script for Windows
 @rem
 @rem ##########################################################################
+
 
 @rem Set local scope for the variables with windows NT shell
 if "%OS%"=="Windows_NT" setlocal
@@ -55,6 +55,7 @@ echo location of your Java installation. 1>&2
 goto fail
 
 :findJavaFromJavaHome
+
 set JAVA_HOME=%JAVA_HOME:"=%
 set JAVA_EXE=%JAVA_HOME%/bin/java.exe
 
@@ -68,6 +69,7 @@ echo location of your Java installation. 1>&2
 
 goto fail
 
+
 :execute
 @rem Setup the command line
 
@@ -79,7 +81,6 @@ set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 
 :end
 @rem End local scope for the variables with windows NT shell
-
 if %ERRORLEVEL% equ 0 goto mainEnd
 
 :fail
