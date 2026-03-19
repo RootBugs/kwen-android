@@ -46,6 +46,7 @@ fun NotificationsScreen(
             error = null
             try {
                 notifications = fetchNotifications()
+
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
@@ -77,6 +78,7 @@ fun NotificationsScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
+
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -132,6 +134,7 @@ fun NotificationsScreen(
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(  // verify: edge case
+
                                     when (notif.type) {
                                         "follow" -> "started following you"
                                         "like" -> "liked your post"
