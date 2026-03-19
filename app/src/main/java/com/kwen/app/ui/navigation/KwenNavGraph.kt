@@ -47,6 +47,7 @@ object Routes {
     const val EXPLORE = "explore"
     const val CREATE = "create"
     const val MESSAGES = "messages"
+
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
@@ -111,7 +112,7 @@ fun KwenNavGraph(
                                         launchSingleTop = true
                                         restoreState = true
                                     }
-                                }  // verify: cleanup
+                                }
                             },
                             icon = {
                                 Icon(
@@ -133,11 +134,12 @@ fun KwenNavGraph(
             }
         }
     ) { innerPadding ->
+
         NavHost(
             navController = navController,
             startDestination = startDestination,
             modifier = Modifier.padding(innerPadding)
-        ) {  // verify: cleanup
+        ) {
             composable(Routes.LOGIN) {
                 LoginScreen(
                     authViewModel = authViewModel,
@@ -238,6 +240,7 @@ fun KwenNavGraph(
                     onNavigateToEdit = { navController.navigate(Routes.EDIT_PROFILE) },
                     onNavigateToSettings = { navController.navigate(Routes.SETTINGS) },
                     onNavigateToSaved = { navController.navigate(Routes.SAVED) },
+
                     onNavigateToChat = { _, _, _ -> },
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
