@@ -15,6 +15,7 @@ data class Profile(
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
+
     @SerialName("following_count") val followingCount: Int = 0,
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
@@ -135,6 +136,7 @@ data class Message(
     val content: String = "",
     @SerialName("message_type") val messageType: String = "text",
     @SerialName("media_url") val mediaUrl: String? = null,
+
     @SerialName("is_seen") val isSeen: Boolean = false,
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
@@ -222,4 +224,5 @@ data class UserSettings(
     @SerialName("push_notifications") val pushNotifications: Boolean = true,
     @SerialName("dark_mode") val darkMode: Boolean = true,
     @SerialName("language") val language: String = "en"
+
 )
