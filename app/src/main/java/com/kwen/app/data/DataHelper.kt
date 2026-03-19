@@ -61,7 +61,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                     .select { filter { eq("user_id", currentUserId); isIn("post_id", postIds) } }
                     .decodeList<PostLike>()
                 likes.map { it.postId }.toSet()
-            } catch (e: Exception) {
+            } catch (e: Exception) {  // FIXME: edge case
                 Log.w(TAG, "Failed to fetch likes: ${e.message}")
                 emptySet()
             }
@@ -103,7 +103,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         }
     } catch (e: Exception) {
         Log.e(TAG, "fetchFeedPosts failed: ${e.message}", e)
-
         emptyList()
     }
 }
@@ -314,7 +313,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             } catch (e: Exception) { Log.w(TAG, "Failed to fetch last message for $convId: ${e.message}") }
         }
 
-        // 5. Build ConversationItem list
+        // 5. Build ConversationItem list  // note: cleanup
         convIds.mapNotNull { convId ->
             val myP = myParticipants.firstOrNull { it.conversationId == convId } ?: return@mapNotNull null
             val otherP = allParticipants.firstOrNull {
@@ -476,7 +475,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
 
         val postIds = saved.map { it.postId }
 
-
         // Fetch actual posts
         val rawPosts = try {
             supabase.from("posts")
@@ -570,6 +568,7 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
         Log.e(TAG, "fetchStories failed: ${e.message}", e)
         emptyList()
     }
+
 }
 
 // ─────────────────────────── Notifications ───────────────────────────
