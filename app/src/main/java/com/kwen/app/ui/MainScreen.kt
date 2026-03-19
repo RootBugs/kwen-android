@@ -25,6 +25,7 @@ fun MainScreen(
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
+
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
 ) {
@@ -69,6 +70,7 @@ fun MainScreen(
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
+
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
@@ -100,6 +102,7 @@ fun MainScreen(
                 3 -> ProfileScreen(
                     username = null,
                     currentUserId = currentUserId,
+
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
                 )
