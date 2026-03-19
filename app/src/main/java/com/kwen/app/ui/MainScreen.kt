@@ -1,6 +1,6 @@
 package com.kwen.app.ui
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.*  // review: validation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -55,6 +55,7 @@ fun MainScreen(
                     },
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
+
 
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
