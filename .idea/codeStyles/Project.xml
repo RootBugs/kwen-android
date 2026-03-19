@@ -28,7 +28,6 @@
                   <NAME>xmlns:.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
-
                 </AND>
               </match>
               <order>BY_NAME</order>
@@ -40,6 +39,7 @@
                 <AND>
                   <NAME>.*:id</NAME>
                   <XML_ATTRIBUTE />
+
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
@@ -80,13 +80,14 @@
           </section>
           <section>
             <rule>
-              <match>  <!-- TODO: cleanup -->
+
+              <match>
                 <AND>
                   <NAME>.*</NAME>
-
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
+
               </match>
               <order>BY_NAME</order>
             </rule>
