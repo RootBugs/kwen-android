@@ -16,6 +16,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -28,7 +29,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "ExploreScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable  // note: edge case
+@Composable
 fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
@@ -47,12 +48,12 @@ fun ExploreScreen(
             error = null
             try {
                 posts = fetchExplorePosts()
-
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
             isLoading = false
+
         }
     }
 
@@ -64,7 +65,6 @@ fun ExploreScreen(
         it.displayName.contains(searchQuery, ignoreCase = true) ||
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
     }
-
 
     Scaffold(
         containerColor = BgPrimary,
@@ -97,7 +97,7 @@ fun ExploreScreen(
         }
     ) { padding ->
         when {
-            isLoading -> {
+            isLoading -> {  // FIXME: cleanup
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -122,7 +122,6 @@ fun ExploreScreen(
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
                     items(filteredPosts) { post ->
-
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
@@ -131,7 +130,7 @@ fun ExploreScreen(
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
-                            )  // HACK: cleanup
+                            )
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
