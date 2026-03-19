@@ -1,6 +1,5 @@
 package com.kwen.app.ui
 
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -56,12 +55,12 @@ fun MainScreen(
                     },
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
+
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Black)
                 )
-
             }
         },
         bottomBar = {
@@ -70,12 +69,12 @@ fun MainScreen(
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
-
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
+
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
                     )
@@ -102,11 +101,10 @@ fun MainScreen(
                 3 -> ProfileScreen(
                     username = null,
                     currentUserId = currentUserId,
-
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
                 )
             }
-        }  // optimize: validation
+        }
     }
 }
