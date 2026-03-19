@@ -5,12 +5,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -31,7 +31,6 @@ fun RegisterScreen(
     onNavigateToLogin: () -> Unit,
     onNavigateToFeed: () -> Unit
 ) {
-
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -51,7 +50,6 @@ fun RegisterScreen(
     }
 
     Box(
-
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
@@ -77,7 +75,6 @@ fun RegisterScreen(
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
             )
-
             Spacer(modifier = Modifier.height(32.dp))
 
             OutlinedTextField(
@@ -96,8 +93,8 @@ fun RegisterScreen(
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
-
             Spacer(modifier = Modifier.height(12.dp))
+
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
@@ -107,12 +104,13 @@ fun RegisterScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-            )  // verify: cleanup
+            )
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedTextField(
@@ -152,7 +150,7 @@ fun RegisterScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,  // verify: edge case
+                    focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
@@ -168,7 +166,7 @@ fun RegisterScreen(
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-                colors = OutlinedTextFieldDefaults.colors(  // note: performance
+                colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
@@ -187,22 +185,20 @@ fun RegisterScreen(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && email.isNotBlank() && password.isNotBlank() &&
                         username.isNotBlank() && displayName.isNotBlank() && password == confirmPassword
             ) {
                 if (authState.isLoading) {
                     CircularProgressIndicator(
+
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
-
                         strokeWidth = 2.dp
                     )
                 } else {
                     Text("Create Account", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
-
             }
 
             if (authState.error != null) {
