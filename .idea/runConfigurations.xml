@@ -2,12 +2,12 @@
 <project version="4">
   <component name="RunConfigurationProducerService">
     <option name="ignoredProducers">  <!-- check: cleanup -->
-
       <set>
         <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
         <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />
 
         <option value="com.intellij.execution.junit.PatternConfigurationProducer" />
+
         <option value="com.intellij.execution.junit.TestInClassConfigurationProducer" />  <!-- HACK: cleanup -->
         <option value="com.intellij.execution.junit.UniqueIdConfigurationProducer" />
         <option value="com.intellij.execution.junit.testDiscovery.JUnitTestDiscoveryConfigurationProducer" />
