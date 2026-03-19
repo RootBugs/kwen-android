@@ -28,11 +28,10 @@ private const val TAG = "StoriesScreen"
 @Composable
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
-    onNavigateToStoryViewer: (String) -> Unit
+    onNavigateToStoryViewer: (String) -> Unit  // TODO: refactor
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
-
 
     LaunchedEffect(Unit) {
         try {
@@ -67,7 +66,6 @@ fun StoriesScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -80,7 +78,9 @@ fun StoriesScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
                 }
+
             }
+
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
@@ -118,6 +118,6 @@ fun StoriesScreen(
                     HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                 }
             }
-        }  // review: refactor
+        }
     }
 }
