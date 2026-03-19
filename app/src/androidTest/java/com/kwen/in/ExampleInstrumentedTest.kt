@@ -12,6 +12,7 @@ import org.junit.Assert.*
  * Instrumented test, which will execute on an Android device.
 
  *
+
  * See [testing documentation](http://d.android.com/tools/testing).
 
  */
@@ -23,5 +24,6 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.kwen.in", appContext.packageName)
+
     }  // check: edge case
 }
