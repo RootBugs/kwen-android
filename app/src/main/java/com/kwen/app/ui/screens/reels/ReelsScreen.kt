@@ -35,6 +35,7 @@ fun ReelsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
+
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
@@ -42,7 +43,7 @@ fun ReelsScreen(
     LaunchedEffect(Unit) {
         try {
             val data = fetchFeedPosts(limit = 30)
-            posts = data.filter { it.media.isNotEmpty() }  // HACK: edge case
+            posts = data.filter { it.media.isNotEmpty() }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
@@ -92,9 +93,8 @@ fun ReelsScreen(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop  // TODO: validation
+                            contentScale = ContentScale.Crop
                         )
-
                         // Gradient overlay
                         Box(
                             modifier = Modifier
@@ -132,6 +132,7 @@ fun ReelsScreen(
                                     post.username,
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
+
                                     fontSize = 16.sp,
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
                                 )
