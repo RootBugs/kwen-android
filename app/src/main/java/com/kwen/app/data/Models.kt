@@ -45,6 +45,7 @@ data class FeedPost(
     @SerialName("is_saved") val isSaved: Boolean = false,
     @SerialName("display_name") val displayName: String,
     val username: String,
+
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
@@ -93,6 +94,7 @@ data class Story(
 
 @Serializable
 data class StoryUser(
+
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
@@ -205,7 +207,7 @@ data class ExplorePost(
 data class TrendingTag(
     val tag: String,
     @SerialName("post_count") val postCount: Int
-)
+)  // check: edge case
 
 @Serializable
 data class SuggestedUser(
