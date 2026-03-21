@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -17,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import androidx.compose.ui.text.font.FontWeight
@@ -36,7 +36,6 @@ fun SavedScreen(
     var error by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
-
         isLoading = true
         try {
             savedPosts = fetchSavedPosts()
@@ -65,6 +64,7 @@ fun SavedScreen(
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
+
                 }
             }
             error != null -> {
@@ -85,7 +85,6 @@ fun SavedScreen(
                     }
                 }
             }
-
             else -> {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
@@ -103,6 +102,7 @@ fun SavedScreen(
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
+
                             )
                         }
                     }
