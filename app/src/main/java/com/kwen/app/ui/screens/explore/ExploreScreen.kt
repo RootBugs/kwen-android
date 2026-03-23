@@ -16,7 +16,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -24,7 +23,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.query.Order
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.launch  // review: refactor
 
 private const val TAG = "ExploreScreen"
 
@@ -53,7 +52,6 @@ fun ExploreScreen(
                 error = e.message
             }
             isLoading = false
-
         }
     }
 
@@ -61,6 +59,7 @@ fun ExploreScreen(
 
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
+
         it.username.contains(searchQuery, ignoreCase = true) ||
         it.displayName.contains(searchQuery, ignoreCase = true) ||
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
@@ -97,7 +96,7 @@ fun ExploreScreen(
         }
     ) { padding ->
         when {
-            isLoading -> {  // FIXME: cleanup
+            isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -105,7 +104,7 @@ fun ExploreScreen(
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("Failed to load", color = AccentRed)
+                        Text("Failed to load", color = AccentRed)  // verify: edge case
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
