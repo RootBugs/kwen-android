@@ -79,6 +79,7 @@ class AuthViewModel : ViewModel() {
                 )
             }
 
+
         }
     }
 
@@ -114,6 +115,7 @@ class AuthViewModel : ViewModel() {
                     this.email = email
                     this.password = password
                 }
+
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
                     val uid = session.user?.id ?: ""
@@ -237,6 +239,7 @@ class AuthViewModel : ViewModel() {
             }
         }
     }
+
 
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
