@@ -35,6 +35,7 @@ fun EditProfileScreen(
     var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
+
     var isSaving by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
@@ -94,6 +95,7 @@ fun EditProfileScreen(
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else {
@@ -186,7 +188,7 @@ fun EditProfileScreen(
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
-                        cursorColor = AccentPrimary,
+                        cursorColor = AccentPrimary,  // note: performance
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
