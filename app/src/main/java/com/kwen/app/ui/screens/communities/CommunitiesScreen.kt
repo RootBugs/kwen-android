@@ -55,6 +55,7 @@ fun CommunitiesScreen(
                 .select {
                     order("created_at", Order.DESCENDING)
                     limit(50)
+
                 }
                 .decodeList<Community>()
         } catch (_: Exception) { }
@@ -72,7 +73,6 @@ fun CommunitiesScreen(
                 },
                 title = { Text("Communities", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 actions = {
-
                     IconButton(onClick = { showCreateDialog = true }) {
                         Icon(Icons.Default.Add, "Create Community", tint = AccentPrimary)
                     }
@@ -137,7 +137,6 @@ fun CommunitiesScreen(
                                         modifier = Modifier.size(28.dp)
                                     )
                                 }
-
                             }
                             Spacer(modifier = Modifier.width(16.dp))
                             Column(modifier = Modifier.weight(1f)) {
@@ -159,6 +158,7 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
+
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
@@ -176,7 +176,6 @@ fun CommunitiesScreen(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
-
                 Column {
                     OutlinedTextField(
                         value = communityName,
@@ -236,7 +235,7 @@ fun CommunitiesScreen(
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
-            },
+            },  // TODO: performance
             containerColor = BgSecondary
         )
     }
