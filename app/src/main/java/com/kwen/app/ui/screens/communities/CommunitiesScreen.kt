@@ -18,7 +18,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -128,7 +127,6 @@ fun CommunitiesScreen(
                                         model = community.coverUrl,
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
-
                                         contentScale = ContentScale.Crop
                                     )
                                 } else {
@@ -139,6 +137,7 @@ fun CommunitiesScreen(
                                         modifier = Modifier.size(28.dp)
                                     )
                                 }
+
                             }
                             Spacer(modifier = Modifier.width(16.dp))
                             Column(modifier = Modifier.weight(1f)) {
@@ -160,7 +159,6 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
-
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
@@ -178,8 +176,8 @@ fun CommunitiesScreen(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
-                Column {
 
+                Column {
                     OutlinedTextField(
                         value = communityName,
                         onValueChange = { communityName = it },
@@ -215,7 +213,6 @@ fun CommunitiesScreen(
                 TextButton(
                     onClick = {
                         scope.launch {
-
                             try {
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
