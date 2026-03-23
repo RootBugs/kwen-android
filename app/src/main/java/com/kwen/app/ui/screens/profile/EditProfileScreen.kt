@@ -15,7 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -47,14 +46,12 @@ fun EditProfileScreen(
                 .decodeSingle<Profile>()
             profile = p
             displayName = p.displayName
-
             username = p.username
             bio = p.bio ?: ""
             website = p.website ?: ""
         } catch (_: Exception) { }
         isLoading = false
     }
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -76,6 +73,7 @@ fun EditProfileScreen(
                                         "display_name" to displayName,
                                         "username" to username,
                                         "bio" to bio.ifBlank { null },
+
                                         "website" to website.ifBlank { null }
                                     )) {
                                         filter { eq("id", userId) }
@@ -110,7 +108,6 @@ fun EditProfileScreen(
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
-
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
                 )
@@ -122,7 +119,7 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = displayName,
-                    onValueChange = { displayName = it },  // review: refactor
+                    onValueChange = { displayName = it },
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
@@ -138,7 +135,6 @@ fun EditProfileScreen(
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-
 
                 OutlinedTextField(
                     value = username,
@@ -172,8 +168,9 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
+
                         unfocusedContainerColor = BgTertiary
-                    )  // HACK: refactor
+                    )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
