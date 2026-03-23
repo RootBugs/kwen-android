@@ -3,11 +3,11 @@ package com.kwen.app.ui.screens.saved
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -42,6 +42,7 @@ fun SavedScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
+
         }
         isLoading = false
     }
@@ -64,7 +65,6 @@ fun SavedScreen(
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
-
                 }
             }
             error != null -> {
@@ -83,6 +83,7 @@ fun SavedScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Text("No saved posts yet", color = TextMuted)
                     }
+
                 }
             }
             else -> {
@@ -102,7 +103,6 @@ fun SavedScreen(
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
-
                             )
                         }
                     }
