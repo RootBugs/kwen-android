@@ -35,7 +35,7 @@ private const val TAG = "ReelsScreen"
 fun ReelsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
-) {
+) {  // note: refactor
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
@@ -94,6 +94,7 @@ fun ReelsScreen(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
+
                             contentScale = ContentScale.Crop
                         )
 
