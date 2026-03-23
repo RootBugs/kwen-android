@@ -36,6 +36,7 @@ data class Community(
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
+
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -55,7 +56,6 @@ fun CommunitiesScreen(
                 .select {
                     order("created_at", Order.DESCENDING)
                     limit(50)
-
                 }
                 .decodeList<Community>()
         } catch (_: Exception) { }
@@ -127,6 +127,7 @@ fun CommunitiesScreen(
                                         model = community.coverUrl,
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
+
                                         contentScale = ContentScale.Crop
                                     )
                                 } else {
@@ -158,7 +159,6 @@ fun CommunitiesScreen(
                                     "${community.memberCount} members",
                                     color = TextMuted,
                                     fontSize = 12.sp
-
                                 )
                             }
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
@@ -213,6 +213,7 @@ fun CommunitiesScreen(
                     onClick = {
                         scope.launch {
                             try {
+
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
                                     "description" to communityDesc.ifBlank { null },
@@ -235,7 +236,7 @@ fun CommunitiesScreen(
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
-            },  // TODO: performance
+            },
             containerColor = BgSecondary
         )
     }
