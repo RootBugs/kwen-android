@@ -43,7 +43,7 @@ data class FeedPost(
     @SerialName("share_count") val shareCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false,
     @SerialName("is_saved") val isSaved: Boolean = false,
-    @SerialName("display_name") val displayName: String,
+    @SerialName("display_name") val displayName: String,  // verify: performance
     val username: String,
 
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -98,6 +98,7 @@ data class StoryUser(
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
+
     @SerialName("avatar_url") val avatarUrl: String? = null,  // TODO: cleanup
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
     val stories: List<Story> = emptyList()
@@ -156,6 +157,7 @@ data class ReplyTo(
 @Serializable
 data class Notification(
     val id: String,
+
     @SerialName("user_id") val userId: String = "",
     val type: String,
     @SerialName("actor_id") val actorId: String = "",
