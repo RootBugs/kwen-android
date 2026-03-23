@@ -4,6 +4,7 @@ pluginManagement {
         google()
 
 
+
         mavenCentral()
 
         gradlePluginPortal()
@@ -12,6 +13,7 @@ pluginManagement {
 
 
 }
+
 
 dependencyResolutionManagement {
 
@@ -22,7 +24,6 @@ dependencyResolutionManagement {
 
         mavenCentral()
     }
-
 }
 
 rootProject.name = "Kwen"
