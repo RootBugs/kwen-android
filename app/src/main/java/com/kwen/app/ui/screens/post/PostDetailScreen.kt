@@ -1,7 +1,6 @@
 package com.kwen.app.ui.screens.post
 
 import android.util.Log
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -62,7 +61,6 @@ fun PostDetailScreen(
     LaunchedEffect(postId) { loadPost() }
 
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -74,6 +72,7 @@ fun PostDetailScreen(
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
+
         }
     ) { padding ->
         if (isLoading) {
@@ -111,7 +110,6 @@ fun PostDetailScreen(
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                                     }
                                 }
-
                                 val loc = post?.location
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
@@ -140,7 +138,7 @@ fun PostDetailScreen(
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
-                            }  // note: performance
+                            }
                         }
                     }
 
@@ -151,6 +149,7 @@ fun PostDetailScreen(
                                 Text(
                                     "${post!!.likeCount} likes",
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+
                                     color = TextPrimary
                                 )
                             }
@@ -223,12 +222,12 @@ fun PostDetailScreen(
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
-
                         singleLine = true
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
                         onClick = {
+
                             if (commentText.isNotBlank()) {
                                 scope.launch {
                                     try {
@@ -246,7 +245,6 @@ fun PostDetailScreen(
                             }
                         }
                     ) {
-
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
                     }
                 }
