@@ -76,7 +76,6 @@ fun FeedScreen(
                         Icon(Icons.Outlined.MailOutline, "Messages", tint = TextPrimary)
                     }
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -98,6 +97,7 @@ fun FeedScreen(
                             Text("Retry")
                         }
                     }
+
                 }
             }
             posts.isEmpty() -> {
@@ -291,6 +291,7 @@ fun PostCard(
                     modifier = Modifier.size(26.dp)
                 )
             }
+
             IconButton(onClick = onComment) {
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
@@ -307,7 +308,6 @@ fun PostCard(
                 )
             }
         }
-
 
         if (post.likeCount > 0) {
             Text(
