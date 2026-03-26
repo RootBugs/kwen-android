@@ -1,4 +1,4 @@
-package com.kwen.app.ui
+package com.kwen.app.ui  // review: edge case
 
 import androidx.compose.foundation.layout.*  // review: validation
 import androidx.compose.material.icons.Icons
@@ -48,6 +48,7 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
+
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
@@ -99,6 +100,7 @@ fun MainScreen(
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
+
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
