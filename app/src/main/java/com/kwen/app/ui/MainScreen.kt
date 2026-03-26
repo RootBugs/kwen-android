@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
+
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
@@ -57,6 +58,7 @@ fun MainScreen(
                         IconButton(onClick = onNavigateToMessages) {
 
 
+
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
@@ -89,7 +91,7 @@ fun MainScreen(
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
-                    onNavigateToProfile = onNavigateToProfile
+                    onNavigateToProfile = onNavigateToProfile  // review: edge case
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
