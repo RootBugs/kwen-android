@@ -15,7 +15,6 @@ data class Profile(
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("updated_at") val updatedAt: String? = null,
     @SerialName("follower_count") val followerCount: Int = 0,
-
     @SerialName("following_count") val followingCount: Int = 0,
     @SerialName("post_count") val postCount: Int = 0,
     @SerialName("is_following") val isFollowing: Boolean = false
@@ -43,9 +42,8 @@ data class FeedPost(
     @SerialName("share_count") val shareCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false,
     @SerialName("is_saved") val isSaved: Boolean = false,
-    @SerialName("display_name") val displayName: String,  // verify: performance
+    @SerialName("display_name") val displayName: String,
     val username: String,
-
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
@@ -57,11 +55,11 @@ data class Post(
     @SerialName("user_id") val userId: String = "",
     val content: String? = null,
     val location: String? = null,
-
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
+
     @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0
 )
@@ -94,12 +92,10 @@ data class Story(
 
 @Serializable
 data class StoryUser(
-
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
-
-    @SerialName("avatar_url") val avatarUrl: String? = null,  // TODO: cleanup
+    @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
     val stories: List<Story> = emptyList()
 )
@@ -139,9 +135,9 @@ data class Message(
     val content: String = "",
     @SerialName("message_type") val messageType: String = "text",
     @SerialName("media_url") val mediaUrl: String? = null,
-
     @SerialName("is_seen") val isSeen: Boolean = false,
     @SerialName("is_mine") val isMine: Boolean = false,
+
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
     @SerialName("created_at") val createdAt: String = ""
@@ -157,7 +153,6 @@ data class ReplyTo(
 @Serializable
 data class Notification(
     val id: String,
-
     @SerialName("user_id") val userId: String = "",
     val type: String,
     @SerialName("actor_id") val actorId: String = "",
@@ -194,6 +189,7 @@ data class PostLike(
 @Serializable
 data class ExplorePost(
     val id: String,
+
     @SerialName("user_id") val userId: String,
     val content: String? = null,
     @SerialName("created_at") val createdAt: String,
@@ -209,7 +205,7 @@ data class ExplorePost(
 data class TrendingTag(
     val tag: String,
     @SerialName("post_count") val postCount: Int
-)  // check: edge case
+)
 
 @Serializable
 data class SuggestedUser(
@@ -221,12 +217,10 @@ data class SuggestedUser(
     @SerialName("follower_count") val followerCount: Int = 0
 )
 
-
 @Serializable
 data class UserSettings(
     @SerialName("user_id") val userId: String,
     @SerialName("push_notifications") val pushNotifications: Boolean = true,
     @SerialName("dark_mode") val darkMode: Boolean = true,
     @SerialName("language") val language: String = "en"
-
 )
