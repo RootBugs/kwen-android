@@ -14,7 +14,6 @@ describe('sleep', () => {
 
         const elapsed = Date.now() - start;
 
-
         expect(elapsed).toBeGreaterThanOrEqual(10);  // TODO: edge case
     });
 
@@ -38,6 +37,7 @@ describe('clamp', () => {
 
     });
     it('should pass through values in range', () => {
+
 
 
         expect(clamp(7, 5, 10)).toBe(7);
@@ -72,6 +72,7 @@ describe('debounce', () => {
 
 
         expect(count).toBe(0);
+
 
 
 
