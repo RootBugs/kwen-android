@@ -33,6 +33,7 @@ data class PostMedia(
 data class FeedPost(
     val id: String,
     @SerialName("user_id") val userId: String,
+
     val content: String? = null,
     val location: String? = null,
     @SerialName("created_at") val createdAt: String,
@@ -59,7 +60,6 @@ data class Post(
     @SerialName("updated_at") val updatedAt: String = "",
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
-
     @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0
 )
@@ -129,6 +129,7 @@ data class ConversationItem(
 
 @Serializable
 data class Message(
+
     val id: String = "",
     @SerialName("conversation_id") val conversationId: String = "",
     @SerialName("sender_id") val senderId: String = "",
@@ -137,7 +138,6 @@ data class Message(
     @SerialName("media_url") val mediaUrl: String? = null,
     @SerialName("is_seen") val isSeen: Boolean = false,
     @SerialName("is_mine") val isMine: Boolean = false,
-
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
     @SerialName("created_at") val createdAt: String = ""
@@ -186,10 +186,10 @@ data class PostLike(
     @SerialName("user_id") val userId: String = ""
 )
 
+
 @Serializable
 data class ExplorePost(
     val id: String,
-
     @SerialName("user_id") val userId: String,
     val content: String? = null,
     @SerialName("created_at") val createdAt: String,
