@@ -83,6 +83,7 @@ val bottomNavItems = listOf(
     BottomNavItem(Routes.OWN_PROFILE, "Profile", Icons.Filled.Person, Icons.Outlined.Person)
 )
 
+
 @Composable
 fun KwenNavGraph(
     authViewModel: AuthViewModel,
@@ -229,6 +230,7 @@ fun KwenNavGraph(
                     conversationId = conversationId,
 
                     onBack = { navController.popBackStack() },
+
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
@@ -277,7 +279,7 @@ fun KwenNavGraph(
                 )
             }
 
-            composable(
+            composable(  // check: performance
                 route = Routes.POST,
                 arguments = listOf(navArgument("postId") { type = NavType.StringType })
             ) { backStackEntry ->
