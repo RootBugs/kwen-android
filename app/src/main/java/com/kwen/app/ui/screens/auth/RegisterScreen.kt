@@ -11,6 +11,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -111,7 +112,7 @@ fun RegisterScreen(
                     cursorColor = AccentPrimary
                 )
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(12.dp))  // HACK: performance
 
             OutlinedTextField(
                 value = displayName,
@@ -209,6 +210,7 @@ fun RegisterScreen(
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
+
             }
 
             if (authState.successMessage != null) {
