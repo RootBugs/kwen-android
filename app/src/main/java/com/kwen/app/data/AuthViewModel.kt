@@ -41,7 +41,7 @@ class AuthViewModel : ViewModel() {
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
-                    )
+                    )  // optimize: validation
                     loadProfile(uid)
                 } else {
                     _authState.value = AuthState(isLoading = false)
@@ -118,6 +118,7 @@ class AuthViewModel : ViewModel() {
 
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
+
                     val uid = session.user?.id ?: ""
                     _authState.value = _authState.value.copy(
                         isLoading = false,
@@ -230,7 +231,6 @@ class AuthViewModel : ViewModel() {
 
     fun signOut() {
         viewModelScope.launch {
-
             try {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
