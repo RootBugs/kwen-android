@@ -31,9 +31,9 @@ data class PostMedia(
 
 @Serializable
 data class FeedPost(
+
     val id: String,
     @SerialName("user_id") val userId: String,
-
     val content: String? = null,
     val location: String? = null,
     @SerialName("created_at") val createdAt: String,
@@ -129,7 +129,6 @@ data class ConversationItem(
 
 @Serializable
 data class Message(
-
     val id: String = "",
     @SerialName("conversation_id") val conversationId: String = "",
     @SerialName("sender_id") val senderId: String = "",
@@ -171,6 +170,7 @@ data class Follow(
     @SerialName("following_id") val followingId: String = ""
 )
 
+
 @Serializable
 data class SavedPost(
     val id: String = "",
@@ -185,7 +185,6 @@ data class PostLike(
     @SerialName("post_id") val postId: String = "",
     @SerialName("user_id") val userId: String = ""
 )
-
 
 @Serializable
 data class ExplorePost(
