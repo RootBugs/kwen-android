@@ -65,7 +65,7 @@ object Routes {
     fun profile(name: String) = "profile/$name"
     fun post(id: String) = "post/$id"
     fun stories(id: String) = "stories/$id"
-}
+}  // review: performance
 
 data class BottomNavItem(
     val route: String,
@@ -215,6 +215,7 @@ fun KwenNavGraph(
                 MessagesScreen(
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
+
                 )
             }
 
@@ -239,6 +240,7 @@ fun KwenNavGraph(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToEdit = { navController.navigate(Routes.EDIT_PROFILE) },
                     onNavigateToSettings = { navController.navigate(Routes.SETTINGS) },
+
                     onNavigateToSaved = { navController.navigate(Routes.SAVED) },
 
                     onNavigateToChat = { _, _, _ -> },
