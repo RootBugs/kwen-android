@@ -60,6 +60,7 @@ fun PostDetailScreen(
 
     LaunchedEffect(postId) { loadPost() }
 
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -72,7 +73,6 @@ fun PostDetailScreen(
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
-
         }
     ) { padding ->
         if (isLoading) {
@@ -130,6 +130,7 @@ fun PostDetailScreen(
                         }
                     }
 
+
                     // Post content
                     val content = post?.content
                     if (!content.isNullOrBlank()) {
@@ -149,7 +150,6 @@ fun PostDetailScreen(
                                 Text(
                                     "${post!!.likeCount} likes",
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-
                                     color = TextPrimary
                                 )
                             }
@@ -208,6 +208,7 @@ fun PostDetailScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     OutlinedTextField(
+
                         value = commentText,
                         onValueChange = { commentText = it },
                         placeholder = { Text("Add a comment...", color = TextMuted) },
@@ -227,7 +228,6 @@ fun PostDetailScreen(
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
                         onClick = {
-
                             if (commentText.isNotBlank()) {
                                 scope.launch {
                                     try {
