@@ -14,9 +14,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -54,6 +54,7 @@ fun MessagesScreen(
                 error = e.message
             }
             isLoading = false
+
         }
     }
 
@@ -69,14 +70,13 @@ fun MessagesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 title = { Text("Messages", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
-            OutlinedTextField(  // verify: validation
+            OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
                 placeholder = { Text("Search messages", color = TextMuted) },
@@ -112,7 +112,6 @@ fun MessagesScreen(
                                 Text("Retry")
                             }
                         }
-
                     }
                 }
                 filteredConversations.isEmpty() -> {
@@ -125,6 +124,7 @@ fun MessagesScreen(
                     }
                 }
                 else -> {
+
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
                         items(filteredConversations) { conv ->
                             Row(
@@ -134,7 +134,6 @@ fun MessagesScreen(
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
                                     contentDescription = conv.otherUser?.displayName,
-
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
                                     contentScale = ContentScale.Crop
                                 )
