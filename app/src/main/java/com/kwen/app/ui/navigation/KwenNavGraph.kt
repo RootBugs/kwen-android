@@ -2,6 +2,7 @@ package com.kwen.app.ui.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -226,6 +227,7 @@ fun KwenNavGraph(
                 val conversationId = backStackEntry.arguments?.getString("conversationId") ?: return@composable
                 ChatScreen(
                     conversationId = conversationId,
+
                     onBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
@@ -294,6 +296,7 @@ fun KwenNavGraph(
                     onSignOut = {
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
+
                             popUpTo(0) { inclusive = true }
                         }
                     }
