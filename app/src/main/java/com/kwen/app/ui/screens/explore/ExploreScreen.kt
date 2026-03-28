@@ -41,11 +41,13 @@ fun ExploreScreen(
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
+
     fun loadPosts() {
         scope.launch {
             isLoading = true
             error = null
             try {
+
                 posts = fetchExplorePosts()
             } catch (e: Exception) {
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
@@ -107,6 +109,7 @@ fun ExploreScreen(
                         Text("Failed to load", color = AccentRed)  // verify: edge case
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
+
                             Text("Retry")
                         }
                     }
