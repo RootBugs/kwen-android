@@ -28,6 +28,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
+
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
@@ -92,6 +93,7 @@ fun ProfileScreen(
                         filter { eq("follower_id", targetProfile.id) }
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
+
                 followingCount = following.size
             }
         } catch (e: Exception) {
@@ -162,6 +164,7 @@ fun ProfileScreen(
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
                                 shape = RoundedCornerShape(8.dp)) {
                                 Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
+
                             }
                             OutlinedButton(onClick = { onNavigateToChat(profile!!.id, profile!!.username, profile!!.displayName) },
                                 modifier = Modifier.weight(1f).height(36.dp),  // note: edge case
