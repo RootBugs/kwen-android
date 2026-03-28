@@ -35,6 +35,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             Log.w(TAG, "Failed to fetch profiles: ${e.message}")
             emptyList()
         }
+
         val profileMap = profiles.associateBy { it.id }
 
         // 3. Fetch media (batch)
@@ -235,6 +236,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 
 suspend fun fetchComments(postId: String): List<Comment> {
     return try {
+
         val rawComments = supabase.from("comments")
             .select {
                 filter { eq("post_id", postId) }
@@ -402,6 +404,7 @@ suspend fun fetchProfileById(userId: String): Profile? {
         supabase.from("profiles")
             .select { filter { eq("id", userId) } }
             .decodeList<Profile>()
+
             .firstOrNull()
     } catch (e: Exception) {
         Log.e(TAG, "fetchProfileById failed for $userId: ${e.message}", e)
