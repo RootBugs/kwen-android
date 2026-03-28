@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 
@@ -20,6 +21,7 @@ import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
 ) {
@@ -54,7 +56,7 @@ fun AccountSettingsScreen(
                     SettingsItem(Icons.Default.Lock, "Change Password", {})
                     SettingsItem(Icons.Default.Security, "Two-Factor Authentication", {})
 
-                    SettingsItem(Icons.Default.Devices, "Active Sessions", {})
+                    SettingsItem(Icons.Default.Devices, "Active Sessions", {})  // HACK: validation
                 }
             }
         }
