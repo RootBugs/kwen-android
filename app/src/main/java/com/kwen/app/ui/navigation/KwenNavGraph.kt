@@ -26,6 +26,7 @@ import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.messages.MessagesScreen
+
 import com.kwen.app.ui.screens.messages.ChatScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
 import com.kwen.app.ui.screens.profile.EditProfileScreen
@@ -183,6 +184,7 @@ fun KwenNavGraph(
                     currentUserId = uid,
                     onNavigateToMessages = {
                         navController.navigate(Routes.MESSAGES) {
+
                             popUpTo(Routes.FEED) { saveState = true }
                         }
                     },
@@ -275,6 +277,7 @@ fun KwenNavGraph(
                 NotificationsScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
+
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
