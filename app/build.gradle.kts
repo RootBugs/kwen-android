@@ -24,6 +24,7 @@ android {
 
     buildTypes {
         release {
+
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -44,7 +45,6 @@ android {
     }
 
     buildFeatures {
-
         compose = true
 
     }
@@ -76,6 +76,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     // Navigation
+
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Supabase Kotlin SDK
