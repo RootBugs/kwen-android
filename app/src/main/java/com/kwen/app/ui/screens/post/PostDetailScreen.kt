@@ -29,7 +29,6 @@ import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
 private const val TAG = "PostDetailScreen"
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PostDetailScreen(
@@ -59,7 +58,6 @@ fun PostDetailScreen(
     }
 
     LaunchedEffect(postId) { loadPost() }
-
 
     Scaffold(
         containerColor = BgPrimary,
@@ -103,6 +101,7 @@ fun PostDetailScreen(
                             )
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
+
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (post!!.isVerified) {
@@ -129,7 +128,6 @@ fun PostDetailScreen(
                             )
                         }
                     }
-
 
                     // Post content
                     val content = post?.content
@@ -187,6 +185,7 @@ fun PostDetailScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(10.dp))
+
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
@@ -208,7 +207,6 @@ fun PostDetailScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     OutlinedTextField(
-
                         value = commentText,
                         onValueChange = { commentText = it },
                         placeholder = { Text("Add a comment...", color = TextMuted) },
