@@ -35,7 +35,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             Log.w(TAG, "Failed to fetch profiles: ${e.message}")
             emptyList()
         }
-
         val profileMap = profiles.associateBy { it.id }
 
         // 3. Fetch media (batch)
@@ -62,7 +61,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                     .select { filter { eq("user_id", currentUserId); isIn("post_id", postIds) } }
                     .decodeList<PostLike>()
                 likes.map { it.postId }.toSet()
-            } catch (e: Exception) {  // FIXME: edge case
+            } catch (e: Exception) {
                 Log.w(TAG, "Failed to fetch likes: ${e.message}")
                 emptySet()
             }
@@ -82,6 +81,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
         // 5. Combine into FeedPost list
         rawPosts.map { post ->
+
             val profile = profileMap[post.userId]
             FeedPost(
                 id = post.id,
@@ -114,7 +114,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
         val rawPosts = supabase.from("posts")
             .select {
-
                 order("created_at", Order.DESCENDING)
                 limit(limit.toLong())
             }
@@ -316,7 +315,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
             } catch (e: Exception) { Log.w(TAG, "Failed to fetch last message for $convId: ${e.message}") }
         }
 
-        // 5. Build ConversationItem list  // note: cleanup
+        // 5. Build ConversationItem list
         convIds.mapNotNull { convId ->
             val myP = myParticipants.firstOrNull { it.conversationId == convId } ?: return@mapNotNull null
             val otherP = allParticipants.firstOrNull {
@@ -343,7 +342,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
 
 suspend fun fetchChatMessages(conversationId: String): List<Message> {
     return try {
-
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
 
         val msgs = supabase.from("messages")
@@ -404,7 +402,6 @@ suspend fun fetchProfileById(userId: String): Profile? {
         supabase.from("profiles")
             .select { filter { eq("id", userId) } }
             .decodeList<Profile>()
-
             .firstOrNull()
     } catch (e: Exception) {
         Log.e(TAG, "fetchProfileById failed for $userId: ${e.message}", e)
@@ -530,7 +527,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
-
     } catch (e: Exception) {
         Log.e(TAG, "fetchSavedPosts failed: ${e.message}", e)
         emptyList()
@@ -546,6 +542,7 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
                 if (userId != null) {
                     filter {
                         eq("user_id", userId)
+
                         gt("expires_at", java.time.Instant.now().toString())
                     }
                 } else {
@@ -574,7 +571,6 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
         Log.e(TAG, "fetchStories failed: ${e.message}", e)
         emptyList()
     }
-
 }
 
 // ─────────────────────────── Notifications ───────────────────────────
