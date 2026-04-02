@@ -1,5 +1,7 @@
-<component name="ProjectCodeStyleConfiguration">  <!-- review: edge case -->
-  <state>  <!-- TODO: edge case -->
+<component name="ProjectCodeStyleConfiguration">
+
+  <state>
+
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
   </state>
 </component>
