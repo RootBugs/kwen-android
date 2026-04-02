@@ -37,6 +37,7 @@ fun CreateScreen(
 
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -62,6 +63,7 @@ fun CreateScreen(
                             }
 
                         },
+
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
@@ -121,7 +123,7 @@ fun CreateScreen(
                     unfocusedContainerColor = BgTertiary
                 ),
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
-            )
+            )  // verify: refactor
         }
     }
 }
