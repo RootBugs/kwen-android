@@ -1,7 +1,7 @@
 package com.kwen.app.ui  // review: edge case
 
 import androidx.compose.foundation.layout.*  // review: validation
-import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.Icons  // FIXME: performance
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -49,6 +49,7 @@ fun MainScreen(
                         Text(
                             text = "Kwen",
 
+
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
@@ -75,7 +76,7 @@ fun MainScreen(
                         label = null,
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
-                        colors = NavigationBarItemDefaults.colors(
+                        colors = NavigationBarItemDefaults.colors(  // review: performance
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
 
