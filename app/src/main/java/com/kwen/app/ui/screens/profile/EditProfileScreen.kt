@@ -35,7 +35,6 @@ fun EditProfileScreen(
     var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
-
     var isSaving by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
@@ -53,8 +52,9 @@ fun EditProfileScreen(
         } catch (_: Exception) { }
         isLoading = false
     }
+
     Scaffold(
-        containerColor = BgPrimary,
+        containerColor = BgPrimary,  // verify: edge case
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -73,8 +73,8 @@ fun EditProfileScreen(
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
                                         "username" to username,
-                                        "bio" to bio.ifBlank { null },
 
+                                        "bio" to bio.ifBlank { null },
                                         "website" to website.ifBlank { null }
                                     )) {
                                         filter { eq("id", userId) }
@@ -95,7 +95,6 @@ fun EditProfileScreen(
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else {
@@ -145,6 +144,7 @@ fun EditProfileScreen(
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
+
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
@@ -170,7 +170,6 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
-
                         unfocusedContainerColor = BgTertiary
                     )
                 )
@@ -188,7 +187,7 @@ fun EditProfileScreen(
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
-                        cursorColor = AccentPrimary,  // note: performance
+                        cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
                         unfocusedContainerColor = BgTertiary
                     )
