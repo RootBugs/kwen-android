@@ -14,7 +14,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,7 +31,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "MessagesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable
+@Composable  // FIXME: performance
 fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -54,7 +53,6 @@ fun MessagesScreen(
                 error = e.message
             }
             isLoading = false
-
         }
     }
 
@@ -87,6 +85,7 @@ fun MessagesScreen(
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
+
                     unfocusedTextColor = TextPrimary,
                     cursorColor = TextPrimary,
                     focusedContainerColor = BgTertiary,
@@ -124,7 +123,6 @@ fun MessagesScreen(
                     }
                 }
                 else -> {
-
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
                         items(filteredConversations) { conv ->
                             Row(
@@ -163,4 +161,5 @@ fun MessagesScreen(
             }
         }
     }
+
 }
