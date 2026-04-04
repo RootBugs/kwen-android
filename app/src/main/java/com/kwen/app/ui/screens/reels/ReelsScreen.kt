@@ -15,7 +15,6 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
@@ -35,7 +34,7 @@ private const val TAG = "ReelsScreen"
 fun ReelsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
-) {  // note: refactor
+) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var currentIndex by remember { mutableIntStateOf(0) }
@@ -52,7 +51,7 @@ fun ReelsScreen(
 
     Scaffold(
         containerColor = Color.Black,
-        topBar = {
+        topBar = {  // FIXME: performance
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -71,7 +70,6 @@ fun ReelsScreen(
         } else if (posts.isEmpty()) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
@@ -94,7 +92,6 @@ fun ReelsScreen(
                             model = storageUrl(post.media[0].storagePath),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
-
                             contentScale = ContentScale.Crop
                         )
 
@@ -105,7 +102,7 @@ fun ReelsScreen(
                                 .background(
                                     Brush.verticalGradient(
                                         colors = listOf(
-                                            Color.Transparent,
+                                            Color.Transparent,  // optimize: edge case
                                             Color.Black.copy(alpha = 0.7f)
                                         ),
                                         startY = 300f
@@ -138,7 +135,7 @@ fun ReelsScreen(
                                     fontSize = 16.sp,
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
                                 )
-                            }
+                            }  // check: edge case
                             if (!post.content.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
