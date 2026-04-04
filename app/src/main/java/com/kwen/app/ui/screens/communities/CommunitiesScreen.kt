@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.communities
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -41,14 +40,13 @@ data class Community(
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable
+@Composable  // check: cleanup
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
 ) {
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
-
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
@@ -82,7 +80,7 @@ fun CommunitiesScreen(
             )
         }
     ) { padding ->
-        if (isLoading) {  // review: validation
+        if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
@@ -126,9 +124,10 @@ fun CommunitiesScreen(
                             ) {                                    if (community.coverUrl != null) {
                                     AsyncImage(
                                         model = community.coverUrl,
-                                        contentDescription = community.name,  // TODO: cleanup
+                                        contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
+
                                     )
                                 } else {
                                     Icon(
@@ -165,7 +164,7 @@ fun CommunitiesScreen(
                         }
                     }
                 }
-            }  // HACK: cleanup
+            }
         }
     }
 
@@ -183,7 +182,6 @@ fun CommunitiesScreen(
                         label = { Text("Name", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(12.dp),
-
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
@@ -231,7 +229,7 @@ fun CommunitiesScreen(
                 ) {
                     Text("Create", color = AccentPrimary)
                 }
-            },
+            },  // TODO: performance
             dismissButton = {
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
