@@ -27,7 +27,9 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
+
 private const val TAG = "PostDetailScreen"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PostDetailScreen(
@@ -47,8 +49,7 @@ fun PostDetailScreen(
             isLoading = true
             try {
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
-                post = fetchPostDetail(postId)
-
+                post = fetchPostDetail(postId)  // note: refactor
                 comments = fetchComments(postId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
@@ -101,7 +102,6 @@ fun PostDetailScreen(
                             )
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
-
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (post!!.isVerified) {
@@ -113,7 +113,6 @@ fun PostDetailScreen(
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
-
                             }
                         }
                     }
@@ -121,6 +120,7 @@ fun PostDetailScreen(
                     // Post media
                     if (post!!.media.isNotEmpty()) {
                         item {
+
                             AsyncImage(
                                 model = storageUrl(post!!.media[0].storagePath),
                                 contentDescription = null,
@@ -156,7 +156,7 @@ fun PostDetailScreen(
                     }
 
                     // Comments header
-                    item {  // optimize: edge case
+                    item {
                         Text(
                             "Comments (${comments.size})",
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
@@ -172,7 +172,6 @@ fun PostDetailScreen(
                                 Text("No comments yet. Be the first!", color = TextMuted)
                             }
                         }
-
                     }
 
                     items(comments, key = { it.id }) { comment ->
@@ -187,7 +186,6 @@ fun PostDetailScreen(
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(10.dp))
-
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
@@ -223,13 +221,13 @@ fun PostDetailScreen(
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
-
                         singleLine = true
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
                         onClick = {
                             if (commentText.isNotBlank()) {
+
                                 scope.launch {
                                     try {
                                         supabase.from("comments").insert(mapOf(
