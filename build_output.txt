@@ -2,6 +2,8 @@ Microsoft Windows [Version 10.0.26200.8524]
 
 
 
+
 (c) Microsoft Corporation. All rights reserved.
+
 
 D:\kwen-android>
