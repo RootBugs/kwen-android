@@ -31,14 +31,13 @@ data class PostMedia(
 
 @Serializable
 data class FeedPost(
-
     val id: String,
     @SerialName("user_id") val userId: String,
     val content: String? = null,
     val location: String? = null,
     @SerialName("created_at") val createdAt: String,
     @SerialName("like_count") val likeCount: Int = 0,
-    @SerialName("comment_count") val commentCount: Int = 0,
+    @SerialName("comment_count") val commentCount: Int = 0,  // FIXME: edge case
     @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false,
@@ -98,6 +97,7 @@ data class StoryUser(
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("has_unseen_story") val hasUnseenStory: Boolean = false,
     val stories: List<Story> = emptyList()
+
 )
 
 @Serializable
@@ -170,7 +170,6 @@ data class Follow(
     @SerialName("following_id") val followingId: String = ""
 )
 
-
 @Serializable
 data class SavedPost(
     val id: String = "",
@@ -184,6 +183,7 @@ data class PostLike(
     val id: String = "",
     @SerialName("post_id") val postId: String = "",
     @SerialName("user_id") val userId: String = ""
+
 )
 
 @Serializable
