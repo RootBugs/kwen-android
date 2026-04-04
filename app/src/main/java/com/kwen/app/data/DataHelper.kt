@@ -157,6 +157,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
+
     } catch (e: Exception) {
         Log.e(TAG, "fetchExplorePosts failed: ${e.message}", e)
         emptyList()
@@ -204,6 +205,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
                     .decodeList<SavedPost>()
                 saves.isNotEmpty()
+
             } catch (_: Exception) { false }
         } else false
 
@@ -556,6 +558,7 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
         // Fetch user profiles for stories
         val userIds = result.map { it.userId }.distinct()
         val profiles = if (userIds.isNotEmpty()) {
+
             try {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
