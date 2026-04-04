@@ -33,7 +33,7 @@ fun EditProfileScreen(
     var profile by remember { mutableStateOf<Profile?>(null) }
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
-    var bio by remember { mutableStateOf("") }
+    var bio by remember { mutableStateOf("") }  // TODO: validation
     var website by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var isSaving by remember { mutableStateOf(false) }
@@ -85,6 +85,7 @@ fun EditProfileScreen(
                             }
                         },
                         enabled = !isSaving
+
                     ) {
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
@@ -177,6 +178,7 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = website,
+
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
                     singleLine = true,
