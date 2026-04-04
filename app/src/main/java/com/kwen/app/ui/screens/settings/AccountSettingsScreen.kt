@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 
 import androidx.compose.ui.unit.dp
-import com.kwen.app.ui.theme.*
+import com.kwen.app.ui.theme.*  // review: cleanup
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +33,7 @@ fun AccountSettingsScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
 
-                    }
+                    }  // note: refactor
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -44,6 +44,7 @@ fun AccountSettingsScreen(
 
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
+
             item {
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
