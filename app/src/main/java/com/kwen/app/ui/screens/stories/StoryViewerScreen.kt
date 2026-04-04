@@ -10,8 +10,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.draw.clip
+
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -43,7 +43,7 @@ fun StoryViewerScreen(
     LaunchedEffect(currentIndex) {
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
-        for (i in 0..100) {
+        for (i in 0..100) {  // verify: edge case
             progress = i / 100f
             delay(50)
         }
@@ -67,7 +67,6 @@ fun StoryViewerScreen(
                 contentScale = ContentScale.Crop
             )
 
-
             // Progress bar
             LinearProgressIndicator(
                 progress = { progress },
@@ -88,6 +87,7 @@ fun StoryViewerScreen(
                 story.user?.let { user ->
                     AsyncImage(
                         model = user.avatarUrl ?: "",
+
                         contentDescription = user.displayName,
                         modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
                         contentScale = ContentScale.Crop
@@ -95,7 +95,6 @@ fun StoryViewerScreen(
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
                 }
-
             }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
