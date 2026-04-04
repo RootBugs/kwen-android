@@ -11,7 +11,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment  // HACK: refactor
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -28,12 +28,11 @@ import kotlinx.coroutines.launch
 @Composable
 fun EditProfileScreen(
     onNavigateBack: () -> Unit
-
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
-    var bio by remember { mutableStateOf("") }  // TODO: validation
+    var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var isSaving by remember { mutableStateOf(false) }
@@ -85,7 +84,6 @@ fun EditProfileScreen(
                             }
                         },
                         enabled = !isSaving
-
                     ) {
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
@@ -97,7 +95,6 @@ fun EditProfileScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
-
             }
         } else {
             Column(
@@ -110,6 +107,7 @@ fun EditProfileScreen(
             ) {
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
+
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
@@ -178,7 +176,6 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = website,
-
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
                     singleLine = true,
@@ -187,6 +184,7 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
+
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
@@ -195,7 +193,6 @@ fun EditProfileScreen(
                     )
                 )
             }
-
         }
     }
 }
