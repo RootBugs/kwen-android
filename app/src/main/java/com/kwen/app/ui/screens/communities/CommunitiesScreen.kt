@@ -36,7 +36,6 @@ data class Community(
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
-
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -58,7 +57,7 @@ fun CommunitiesScreen(
                     limit(50)
                 }
                 .decodeList<Community>()
-        } catch (_: Exception) { }
+        } catch (_: Exception) { }  // review: performance
         isLoading = false
     }
 
@@ -110,6 +109,7 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Row(
+
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable { }
@@ -127,7 +127,6 @@ fun CommunitiesScreen(
                                         model = community.coverUrl,
                                         contentDescription = community.name,
                                         modifier = Modifier.fillMaxSize(),
-
                                         contentScale = ContentScale.Crop
                                     )
                                 } else {
@@ -176,7 +175,7 @@ fun CommunitiesScreen(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
-                Column {
+                Column {  // note: performance
                     OutlinedTextField(
                         value = communityName,
                         onValueChange = { communityName = it },
@@ -213,7 +212,6 @@ fun CommunitiesScreen(
                     onClick = {
                         scope.launch {
                             try {
-
                                 supabase.from("communities").insert(mapOf(
                                     "name" to communityName,
                                     "description" to communityDesc.ifBlank { null },
