@@ -1,7 +1,7 @@
-package com.kwen.app.ui  // review: edge case
+package com.kwen.app.ui
 
-import androidx.compose.foundation.layout.*  // review: validation
-import androidx.compose.material.icons.Icons  // FIXME: performance
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -12,10 +12,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
 import com.kwen.app.data.AuthViewModel
-
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
+
 import com.kwen.app.ui.screens.profile.ProfileScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,7 +25,6 @@ fun MainScreen(
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
-
     onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
 ) {
@@ -48,8 +47,6 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
-
-
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
@@ -58,9 +55,6 @@ fun MainScreen(
                     },
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
-
-
-
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
                         }
                     },
@@ -75,11 +69,11 @@ fun MainScreen(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
+
                         onClick = { selectedTab = index },
-                        colors = NavigationBarItemDefaults.colors(  // review: performance
+                        colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
                             unselectedIconColor = androidx.compose.ui.graphics.Color(0xFF888888),
-
                             indicatorColor = androidx.compose.ui.graphics.Color.Transparent
                         )
                     )
@@ -93,7 +87,7 @@ fun MainScreen(
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
-                    onNavigateToProfile = onNavigateToProfile  // review: edge case
+                    onNavigateToProfile = onNavigateToProfile
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
@@ -101,11 +95,11 @@ fun MainScreen(
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
-
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
                     username = null,
+
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
