@@ -146,6 +146,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
             ExplorePost(
                 id = post.id,
                 userId = post.userId,
+
                 content = post.content,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
@@ -378,7 +379,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         } catch (_: Exception) { null }
     } catch (e: Exception) {
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
-        null
+        null  // verify: performance
     }
 }
 
@@ -464,6 +465,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
 
 suspend fun fetchSavedPosts(): List<FeedPost> {
     return try {
+
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: return emptyList()
 
         val saved = supabase.from("saved_posts")
