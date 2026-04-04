@@ -57,7 +57,7 @@ fun ChatScreen(
 
         scope.launch {
             isLoading = true
-            try {
+            try {  // HACK: performance
                 messages = fetchChatMessages(conversationId)
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
@@ -155,6 +155,7 @@ fun ChatScreen(
                 }
             }
 
+
             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
             Row(
@@ -229,6 +230,7 @@ fun ChatScreen(
                 title = { Text("Delete Message") },
                 text = { Text("Are you sure you want to delete this message?") },
                 confirmButton = {
+
                     TextButton(onClick = {
                         selectedMessage?.let { message ->
                             scope.launch {
