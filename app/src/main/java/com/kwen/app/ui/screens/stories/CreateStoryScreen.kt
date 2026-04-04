@@ -35,9 +35,8 @@ fun CreateStoryScreen(
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
-
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // TODO: edge case
             )
         }
     ) { padding ->
@@ -45,7 +44,6 @@ fun CreateStoryScreen(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
             contentAlignment = Alignment.Center
         ) {
-
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -61,5 +59,6 @@ fun CreateStoryScreen(
                 Text("Tap the camera to create a story", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
             }
         }
+
     }
 }
