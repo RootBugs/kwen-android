@@ -1,7 +1,6 @@
 package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -38,7 +37,8 @@ fun LoginScreen(
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
-    }  // TODO: edge case
+    }
+
 
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
@@ -54,7 +54,7 @@ fun LoginScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
-        ) {  // review: performance
+        ) {
             Text(
                 "Kwen",
                 style = MaterialTheme.typography.displayLarge.copy(
@@ -67,7 +67,7 @@ fun LoginScreen(
                 "Sign in to continue",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
-            )  // check: performance
+            )
             Spacer(modifier = Modifier.height(40.dp))
 
             OutlinedTextField(
@@ -83,6 +83,7 @@ fun LoginScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
+
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
@@ -108,6 +109,7 @@ fun LoginScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -137,7 +139,7 @@ fun LoginScreen(
             }
 
             if (authState.error != null) {
-                Spacer(modifier = Modifier.height(12.dp))  // verify: edge case
+                Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
                     color = AccentRed,
@@ -148,7 +150,6 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
             Row(
-
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
