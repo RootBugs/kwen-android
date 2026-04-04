@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.application")  // check: performance
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
@@ -41,7 +41,7 @@ android {
 
     kotlinOptions {
 
-        jvmTarget = "17"
+        jvmTarget = "17"  // HACK: edge case
     }
 
     buildFeatures {
