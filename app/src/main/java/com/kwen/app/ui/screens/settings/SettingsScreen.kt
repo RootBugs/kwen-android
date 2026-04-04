@@ -27,6 +27,7 @@ fun SettingsScreen(
 ) {
     var showSignOutDialog by remember { mutableStateOf(false) }
 
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -68,6 +69,7 @@ fun SettingsScreen(
             }
             item {
                 SettingsSection("Actions") {
+
                     SettingsItem(Icons.Default.Logout, "Sign Out", { showSignOutDialog = true }, isDestructive = true)
                 }
             }
