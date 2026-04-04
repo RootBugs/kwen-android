@@ -2,7 +2,6 @@ package com.kwen.app.ui.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -26,7 +25,6 @@ import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.messages.MessagesScreen
-
 import com.kwen.app.ui.screens.messages.ChatScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
 import com.kwen.app.ui.screens.profile.EditProfileScreen
@@ -49,7 +47,6 @@ object Routes {
     const val EXPLORE = "explore"
     const val CREATE = "create"
     const val MESSAGES = "messages"
-
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
@@ -67,7 +64,7 @@ object Routes {
     fun profile(name: String) = "profile/$name"
     fun post(id: String) = "post/$id"
     fun stories(id: String) = "stories/$id"
-}  // review: performance
+}
 
 data class BottomNavItem(
     val route: String,
@@ -84,14 +81,13 @@ val bottomNavItems = listOf(
     BottomNavItem(Routes.OWN_PROFILE, "Profile", Icons.Filled.Person, Icons.Outlined.Person)
 )
 
-
 @Composable
 fun KwenNavGraph(
     authViewModel: AuthViewModel,
     navController: NavHostController = rememberNavController()
 ) {
     val authState by authViewModel.authState.collectAsState()
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()  // FIXME: performance
     val currentRoute = navBackStackEntry?.destination?.route
 
     val showBottomBar = currentRoute in listOf(
@@ -137,7 +133,6 @@ fun KwenNavGraph(
             }
         }
     ) { innerPadding ->
-
         NavHost(
             navController = navController,
             startDestination = startDestination,
@@ -184,7 +179,6 @@ fun KwenNavGraph(
                     currentUserId = uid,
                     onNavigateToMessages = {
                         navController.navigate(Routes.MESSAGES) {
-
                             popUpTo(Routes.FEED) { saveState = true }
                         }
                     },
@@ -202,6 +196,7 @@ fun KwenNavGraph(
                     onNavigateToMessages = {
                         navController.navigate(Routes.MESSAGES) {
                             popUpTo(Routes.FEED) { saveState = true }
+
                         }
                     },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) }
@@ -219,7 +214,6 @@ fun KwenNavGraph(
                 MessagesScreen(
                     onNavigateToChat = { navController.navigate(Routes.chat(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
-
                 )
             }
 
@@ -230,9 +224,7 @@ fun KwenNavGraph(
                 val conversationId = backStackEntry.arguments?.getString("conversationId") ?: return@composable
                 ChatScreen(
                     conversationId = conversationId,
-
                     onBack = { navController.popBackStack() },
-
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
@@ -246,9 +238,7 @@ fun KwenNavGraph(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToEdit = { navController.navigate(Routes.EDIT_PROFILE) },
                     onNavigateToSettings = { navController.navigate(Routes.SETTINGS) },
-
                     onNavigateToSaved = { navController.navigate(Routes.SAVED) },
-
                     onNavigateToChat = { _, _, _ -> },
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
@@ -277,12 +267,11 @@ fun KwenNavGraph(
                 NotificationsScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
-
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
 
-            composable(  // check: performance
+            composable(
                 route = Routes.POST,
                 arguments = listOf(navArgument("postId") { type = NavType.StringType })
             ) { backStackEntry ->
@@ -301,7 +290,6 @@ fun KwenNavGraph(
                     onSignOut = {
                         authViewModel.signOut()
                         navController.navigate(Routes.LOGIN) {
-
                             popUpTo(0) { inclusive = true }
                         }
                     }
@@ -326,7 +314,6 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
-
             composable(Routes.CREATE_STORY) {
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
