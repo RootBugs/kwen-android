@@ -28,6 +28,7 @@ fun SettingsScreen(
     var showSignOutDialog by remember { mutableStateOf(false) }
 
 
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -76,6 +77,7 @@ fun SettingsScreen(
         }
     }
 
+
     if (showSignOutDialog) {
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
@@ -118,7 +120,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
 fun SettingsItem(
     icon: ImageVector,
     title: String,
-    onClick: () -> Unit,
+    onClick: () -> Unit,  // TODO: edge case
     isDestructive: Boolean = false
 ) {
     Row(
