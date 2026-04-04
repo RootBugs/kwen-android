@@ -62,6 +62,7 @@ fun ProfileScreen(
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
             } else {
+
                 username?.let { fetchProfileByUsername(it) }
             }
 
@@ -111,6 +112,7 @@ fun ProfileScreen(
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
+
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -135,6 +137,7 @@ fun ProfileScreen(
                         }
                     }
                     Spacer(modifier = Modifier.height(12.dp))
+
                     Row(verticalAlignment = Alignment.CenterVertically) {
 
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
