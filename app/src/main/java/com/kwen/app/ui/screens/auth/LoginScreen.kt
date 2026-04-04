@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -53,7 +54,7 @@ fun LoginScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
-        ) {
+        ) {  // review: performance
             Text(
                 "Kwen",
                 style = MaterialTheme.typography.displayLarge.copy(
@@ -136,7 +137,7 @@ fun LoginScreen(
             }
 
             if (authState.error != null) {
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(12.dp))  // verify: edge case
                 Text(
                     authState.error!!,
                     color = AccentRed,
