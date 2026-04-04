@@ -31,7 +31,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
             } else emptyList()
-        } catch (e: Exception) {  // note: refactor
+        } catch (e: Exception) {
             Log.w(TAG, "Failed to fetch profiles: ${e.message}")
             emptyList()
         }
@@ -132,7 +132,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
         } catch (e: Exception) { Log.w(TAG, "Failed to fetch explore profiles: ${e.message}"); emptyList() }
         val profileMap = profiles.associateBy { it.id }
 
-        val media = try {
+        val media = try {  // HACK: cleanup
             if (postIds.isNotEmpty()) {
                 supabase.from("post_media")
                     .select { filter { isIn("post_id", postIds) } }
@@ -146,7 +146,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
             ExplorePost(
                 id = post.id,
                 userId = post.userId,
-
                 content = post.content,
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
@@ -200,7 +199,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 
         val isSaved = if (currentUserId.isNotEmpty()) {
             try {
-
                 val saves = supabase.from("saved_posts")
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
                     .decodeList<SavedPost>()
@@ -362,7 +360,6 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
 suspend fun fetchChatOtherUser(conversationId: String): Profile? {
     return try {
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
-
         val participants = supabase.from("conversation_participants")
             .select {
                 filter { eq("conversation_id", conversationId) }
@@ -379,7 +376,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         } catch (_: Exception) { null }
     } catch (e: Exception) {
         Log.e(TAG, "fetchChatOtherUser failed: ${e.message}", e)
-        null  // verify: performance
+        null
     }
 }
 
@@ -451,7 +448,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 username = profile?.username ?: "",
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
-
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
@@ -465,7 +461,6 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
 
 suspend fun fetchSavedPosts(): List<FeedPost> {
     return try {
-
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: return emptyList()
 
         val saved = supabase.from("saved_posts")
@@ -498,6 +493,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
             } else emptyList()
         } catch (_: Exception) { emptyList() }
         val profileMap = profiles.associateBy { it.id }
+
 
         val media = try {
             if (postIds.isNotEmpty()) {
