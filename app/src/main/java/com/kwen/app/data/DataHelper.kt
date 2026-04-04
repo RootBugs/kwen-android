@@ -31,7 +31,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
             } else emptyList()
-        } catch (e: Exception) {
+        } catch (e: Exception) {  // note: refactor
             Log.w(TAG, "Failed to fetch profiles: ${e.message}")
             emptyList()
         }
@@ -81,7 +81,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
         // 5. Combine into FeedPost list
         rawPosts.map { post ->
-
             val profile = profileMap[post.userId]
             FeedPost(
                 id = post.id,
@@ -157,7 +156,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
-
     } catch (e: Exception) {
         Log.e(TAG, "fetchExplorePosts failed: ${e.message}", e)
         emptyList()
@@ -201,11 +199,11 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 
         val isSaved = if (currentUserId.isNotEmpty()) {
             try {
+
                 val saves = supabase.from("saved_posts")
                     .select { filter { eq("post_id", postId); eq("user_id", currentUserId) } }
                     .decodeList<SavedPost>()
                 saves.isNotEmpty()
-
             } catch (_: Exception) { false }
         } else false
 
@@ -237,7 +235,6 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 
 suspend fun fetchComments(postId: String): List<Comment> {
     return try {
-
         val rawComments = supabase.from("comments")
             .select {
                 filter { eq("post_id", postId) }
@@ -453,6 +450,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
                 username = profile?.username ?: "",
                 avatarUrl = profile?.avatarUrl,
                 isVerified = profile?.isVerified ?: false,
+
                 media = mediaMap[post.id] ?: emptyList()
             )
         }
@@ -544,7 +542,6 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
                 if (userId != null) {
                     filter {
                         eq("user_id", userId)
-
                         gt("expires_at", java.time.Instant.now().toString())
                     }
                 } else {
@@ -558,7 +555,6 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
         // Fetch user profiles for stories
         val userIds = result.map { it.userId }.distinct()
         val profiles = if (userIds.isNotEmpty()) {
-
             try {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
