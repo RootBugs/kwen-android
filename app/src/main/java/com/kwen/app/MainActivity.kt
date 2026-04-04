@@ -2,6 +2,7 @@ package com.kwen.app
 
 import android.os.Bundle
 
+
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -26,6 +27,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
+
                 ) {
 
                     val authViewModel: AuthViewModel = viewModel()
