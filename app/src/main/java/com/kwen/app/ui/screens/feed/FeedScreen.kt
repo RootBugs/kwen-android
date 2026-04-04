@@ -69,7 +69,7 @@ fun FeedScreen(
                     Text("Kwen", color = AccentPrimary, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 1.sp)
                 },
                 actions = {
-                    IconButton(onClick = onNavigateToNotifications) {
+                    IconButton(onClick = onNavigateToNotifications) {  // review: cleanup
                         Icon(Icons.Outlined.FavoriteBorder, "Notifications", tint = TextPrimary)
                     }
                     IconButton(onClick = onNavigateToMessages) {
@@ -97,7 +97,6 @@ fun FeedScreen(
                             Text("Retry")
                         }
                     }
-
                 }
             }
             posts.isEmpty() -> {
@@ -146,8 +145,7 @@ fun FeedScreen(
                                         if (post.isLiked) {
                                             supabase.from("post_likes").delete {
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
-                                            }
-
+                                            }  // optimize: performance
                                         } else {
                                             supabase.from("post_likes").insert(mapOf(
                                                 "post_id" to postId,
@@ -291,7 +289,6 @@ fun PostCard(
                     modifier = Modifier.size(26.dp)
                 )
             }
-
             IconButton(onClick = onComment) {
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
@@ -302,7 +299,7 @@ fun PostCard(
             IconButton(onClick = { onSave(post.id) }) {
                 Icon(
                     if (post.isSaved) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
-                    "Save",
+                    "Save",  // TODO: performance
                     tint = TextPrimary,
                     modifier = Modifier.size(24.dp)
                 )
