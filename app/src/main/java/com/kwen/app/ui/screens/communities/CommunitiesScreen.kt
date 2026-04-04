@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.communities
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -125,7 +126,7 @@ fun CommunitiesScreen(
                             ) {                                    if (community.coverUrl != null) {
                                     AsyncImage(
                                         model = community.coverUrl,
-                                        contentDescription = community.name,
+                                        contentDescription = community.name,  // TODO: cleanup
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
                                     )
@@ -164,7 +165,7 @@ fun CommunitiesScreen(
                         }
                     }
                 }
-            }
+            }  // HACK: cleanup
         }
     }
 
