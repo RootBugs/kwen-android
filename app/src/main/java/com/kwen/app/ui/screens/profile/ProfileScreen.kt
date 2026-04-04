@@ -28,7 +28,6 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
-
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
@@ -44,7 +43,7 @@ fun ProfileScreen(
     onNavigateToEdit: () -> Unit = {},
     onNavigateToSettings: () -> Unit = {},
     onNavigateToSaved: () -> Unit = {},
-    onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
+    onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },  // TODO: edge case
     onNavigateToStory: (String) -> Unit = {}
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
@@ -88,12 +87,12 @@ fun ProfileScreen(
                 } catch (_: Exception) { emptyList() }
                 followerCount = followers.size
 
+
                 val following = try {
                     supabase.from("follows").select {
                         filter { eq("follower_id", targetProfile.id) }
                     }.decodeList<Follow>()
                 } catch (_: Exception) { emptyList() }
-
                 followingCount = following.size
             }
         } catch (e: Exception) {
@@ -120,7 +119,6 @@ fun ProfileScreen(
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = AccentPrimary) }
-
         } else if (profile == null) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { Text("Profile not found", color = TextMuted) }
         } else {
@@ -138,6 +136,7 @@ fun ProfileScreen(
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
+
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
@@ -164,10 +163,9 @@ fun ProfileScreen(
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
                                 shape = RoundedCornerShape(8.dp)) {
                                 Text(if (isFollowing) "Following" else "Follow", color = TextPrimary)
-
                             }
                             OutlinedButton(onClick = { onNavigateToChat(profile!!.id, profile!!.username, profile!!.displayName) },
-                                modifier = Modifier.weight(1f).height(36.dp),  // note: edge case
+                                modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                                 border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                                 shape = RoundedCornerShape(8.dp)) { Text("Message") }
