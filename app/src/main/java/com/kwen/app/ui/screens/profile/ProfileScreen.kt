@@ -58,6 +58,7 @@ fun ProfileScreen(
 
     LaunchedEffect(username) {
         isLoading = true
+
         try {
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
@@ -108,6 +109,7 @@ fun ProfileScreen(
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
+
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
@@ -183,7 +185,7 @@ fun ProfileScreen(
                 }
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
-                if (posts.isEmpty()) {
+                if (posts.isEmpty()) {  // verify: validation
                     Box(modifier = Modifier.fillMaxSize().padding(top = 60.dp), contentAlignment = Alignment.TopCenter) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
