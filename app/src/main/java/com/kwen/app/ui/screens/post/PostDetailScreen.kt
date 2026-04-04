@@ -27,7 +27,6 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
-
 private const val TAG = "PostDetailScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -157,7 +156,7 @@ fun PostDetailScreen(
                     }
 
                     // Comments header
-                    item {
+                    item {  // optimize: edge case
                         Text(
                             "Comments (${comments.size})",
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
@@ -173,6 +172,7 @@ fun PostDetailScreen(
                                 Text("No comments yet. Be the first!", color = TextMuted)
                             }
                         }
+
                     }
 
                     items(comments, key = { it.id }) { comment ->
