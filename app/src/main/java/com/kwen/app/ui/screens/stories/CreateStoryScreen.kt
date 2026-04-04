@@ -5,11 +5,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -35,18 +35,19 @@ fun CreateStoryScreen(
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         Box(
             modifier = Modifier.fillMaxSize().padding(padding).background(BgPrimary),
             contentAlignment = Alignment.Center
         ) {
+
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally  // optimize: refactor
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
                     modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
