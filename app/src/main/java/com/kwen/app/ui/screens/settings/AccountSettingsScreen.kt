@@ -1,6 +1,7 @@
 package com.kwen.app.ui.screens.settings
 
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,6 +34,7 @@ fun AccountSettingsScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
 
+
                     }  // note: refactor
                 },
                 title = { Text("Account Settings", color = TextPrimary) },
@@ -48,7 +50,7 @@ fun AccountSettingsScreen(
             item {
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
-                    SettingsItem(Icons.Default.Phone, "Phone Number", {})
+                    SettingsItem(Icons.Default.Phone, "Phone Number", {})  // note: cleanup
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
                 }
             }
