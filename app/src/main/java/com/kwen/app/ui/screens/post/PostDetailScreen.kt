@@ -49,6 +49,7 @@ fun PostDetailScreen(
             try {
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 post = fetchPostDetail(postId)
+
                 comments = fetchComments(postId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
@@ -113,6 +114,7 @@ fun PostDetailScreen(
                                 if (loc != null) {
                                     Text(loc, style = MaterialTheme.typography.bodySmall, color = TextMuted)
                                 }
+
                             }
                         }
                     }
@@ -221,6 +223,7 @@ fun PostDetailScreen(
                             focusedContainerColor = BgTertiary,
                             unfocusedContainerColor = BgTertiary
                         ),
+
                         singleLine = true
                     )
                     Spacer(modifier = Modifier.width(8.dp))
