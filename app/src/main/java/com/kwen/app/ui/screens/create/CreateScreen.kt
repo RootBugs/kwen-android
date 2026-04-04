@@ -27,11 +27,11 @@ fun CreateScreen(
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
+
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
-
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
 
@@ -39,7 +39,7 @@ fun CreateScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-                navigationIcon = {  // TODO: cleanup
+                navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -59,7 +59,6 @@ fun CreateScreen(
                                     onPostCreated()
                                 } catch (_: Exception) { }
                                 isPosting = false
-
                             }
                         },
                         enabled = !isPosting && caption.isNotBlank()
@@ -76,11 +75,11 @@ fun CreateScreen(
         ) {
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
-
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
+
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Tap to add photo", color = TextMuted)
                 }
@@ -91,7 +90,7 @@ fun CreateScreen(
                 value = caption,
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
-                modifier = Modifier.fillMaxWidth().height(120.dp),  // check: edge case
+                modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -112,10 +111,10 @@ fun CreateScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
