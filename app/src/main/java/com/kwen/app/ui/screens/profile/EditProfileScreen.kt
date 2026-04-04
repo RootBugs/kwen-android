@@ -28,6 +28,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun EditProfileScreen(
     onNavigateBack: () -> Unit
+
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
     var displayName by remember { mutableStateOf("") }
@@ -54,7 +55,7 @@ fun EditProfileScreen(
     }
 
     Scaffold(
-        containerColor = BgPrimary,  // verify: edge case
+        containerColor = BgPrimary,
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -73,7 +74,6 @@ fun EditProfileScreen(
                                     supabase.from("profiles").update(mapOf(
                                         "display_name" to displayName,
                                         "username" to username,
-
                                         "bio" to bio.ifBlank { null },
                                         "website" to website.ifBlank { null }
                                     )) {
@@ -96,6 +96,7 @@ fun EditProfileScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
+
             }
         } else {
             Column(
@@ -144,7 +145,6 @@ fun EditProfileScreen(
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
-
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
@@ -193,6 +193,7 @@ fun EditProfileScreen(
                     )
                 )
             }
+
         }
     }
 }
