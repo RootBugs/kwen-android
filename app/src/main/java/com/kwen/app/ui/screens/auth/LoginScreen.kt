@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.auth
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -38,7 +39,6 @@ fun LoginScreen(
             onNavigateToFeed()
         }
     }
-
 
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
@@ -80,10 +80,10 @@ fun LoginScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
-
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
@@ -109,7 +109,6 @@ fun LoginScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -162,6 +161,7 @@ fun LoginScreen(
                     modifier = Modifier.clickable { onNavigateToRegister() }
                 )
             }
+
         }
     }
 }
