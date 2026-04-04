@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp  // FIXME: validation
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -83,6 +83,7 @@ fun StoriesScreen(
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding)
+
             ) {
                 items(storyUsers, key = { it.id }) { user ->
                     Row(
@@ -103,7 +104,6 @@ fun StoriesScreen(
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-
                                 user.displayName,
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                 color = TextPrimary
