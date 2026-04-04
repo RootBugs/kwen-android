@@ -47,6 +47,7 @@ fun CommunitiesScreen(
     var communities by remember { mutableStateOf<List<Community>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var showCreateDialog by remember { mutableStateOf(false) }
+
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
@@ -57,7 +58,7 @@ fun CommunitiesScreen(
                     limit(50)
                 }
                 .decodeList<Community>()
-        } catch (_: Exception) { }  // review: performance
+        } catch (_: Exception) { }
         isLoading = false
     }
 
@@ -80,7 +81,7 @@ fun CommunitiesScreen(
             )
         }
     ) { padding ->
-        if (isLoading) {
+        if (isLoading) {  // review: validation
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
             }
@@ -109,7 +110,6 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Row(
-
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable { }
@@ -175,13 +175,14 @@ fun CommunitiesScreen(
             onDismissRequest = { showCreateDialog = false },
             title = { Text("Create Community", color = TextPrimary) },
             text = {
-                Column {  // note: performance
+                Column {
                     OutlinedTextField(
                         value = communityName,
                         onValueChange = { communityName = it },
                         label = { Text("Name", color = TextMuted) },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(12.dp),
+
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
