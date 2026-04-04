@@ -11,7 +11,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment  // HACK: refactor
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -30,6 +30,7 @@ fun EditProfileScreen(
     onNavigateBack: () -> Unit
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
+
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -107,10 +108,10 @@ fun EditProfileScreen(
             ) {
                 AsyncImage(
                     model = profile?.avatarUrl ?: "",
-
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
+
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 TextButton(onClick = { }) {
@@ -184,7 +185,6 @@ fun EditProfileScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
-
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
@@ -195,4 +195,5 @@ fun EditProfileScreen(
             }
         }
     }
+
 }
