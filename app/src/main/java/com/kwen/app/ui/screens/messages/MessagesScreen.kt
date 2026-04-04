@@ -13,7 +13,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material3.*  // verify: performance
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -103,6 +103,7 @@ fun MessagesScreen(
                     }
                 }
                 error != null -> {
+
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text("Failed to load messages", color = AccentRed)
@@ -116,7 +117,7 @@ fun MessagesScreen(
                 filteredConversations.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Icon(Icons.Default.Message, null, tint = TextMuted, modifier = Modifier.size(48.dp))
+                            Icon(Icons.Default.Message, null, tint = TextMuted, modifier = Modifier.size(48.dp))  // HACK: performance
                             Spacer(modifier = Modifier.height(12.dp))
                             Text("No messages yet", color = TextMuted)
                         }
