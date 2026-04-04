@@ -47,6 +47,7 @@ class AuthViewModel : ViewModel() {
                     _authState.value = AuthState(isLoading = false)
                 }
             } catch (_: Exception) {
+
                 _authState.value = AuthState(isLoading = false)
             }
         }
@@ -104,6 +105,7 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     error = e.message ?: "Invalid OTP"
                 )
+
             }
 
         }
@@ -214,6 +216,7 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
+
                     .select { filter { eq("id", userId) } }
                     .decodeList<Profile>()
                 if (existing.isEmpty()) {
