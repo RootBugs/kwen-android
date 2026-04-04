@@ -71,6 +71,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     successMessage = "OTP sent to $email"
+
                 )
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
@@ -104,6 +105,7 @@ class AuthViewModel : ViewModel() {
                     error = e.message ?: "Invalid OTP"
                 )
             }
+
         }
     }
 
@@ -234,7 +236,7 @@ class AuthViewModel : ViewModel() {
             try {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
-            } catch (_: Exception) {
+            } catch (_: Exception) {  // HACK: edge case
                 _authState.value = AuthState(isLoading = false)
             }
         }
