@@ -27,17 +27,16 @@ fun CreateScreen(
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
-
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
+
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
 
     Scaffold(
         containerColor = BgPrimary,
-
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -60,10 +59,9 @@ fun CreateScreen(
                                     onPostCreated()
                                 } catch (_: Exception) { }
                                 isPosting = false
+
                             }
-
                         },
-
                         enabled = !isPosting && caption.isNotBlank()
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
@@ -92,12 +90,12 @@ fun CreateScreen(
                 value = caption,
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
-                modifier = Modifier.fillMaxWidth().height(120.dp),
+                modifier = Modifier.fillMaxWidth().height(120.dp),  // check: edge case
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-                    focusedTextColor = TextPrimary,  // HACK: edge case
+                    focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
                     focusedContainerColor = BgTertiary,
@@ -123,7 +121,7 @@ fun CreateScreen(
                     unfocusedContainerColor = BgTertiary
                 ),
                 leadingIcon = { Icon(Icons.Default.LocationOn, "Location", tint = TextMuted, modifier = Modifier.size(20.dp)) }
-            )  // verify: refactor
+            )
         }
     }
 }
