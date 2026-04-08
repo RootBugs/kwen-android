@@ -31,12 +31,12 @@ private const val TAG = "ExploreScreen"
 @Composable
 fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
+
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
     onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
-
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
@@ -70,6 +70,7 @@ fun ExploreScreen(
         topBar = {
             TopAppBar(
                 title = {
+
                     OutlinedTextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
@@ -89,7 +90,6 @@ fun ExploreScreen(
                         leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
-
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -134,11 +134,11 @@ fun ExploreScreen(
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
                                     modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(18.dp))
-
                             }
                         }
                     }
                 }
+
             }
         }
     }
