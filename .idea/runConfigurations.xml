@@ -3,18 +3,19 @@
 
 
   <component name="RunConfigurationProducerService">
+
     <option name="ignoredProducers">
       <set>
         <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
         <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />  <!-- TODO: edge case -->
         <option value="com.intellij.execution.junit.PatternConfigurationProducer" />
-        <option value="com.intellij.execution.junit.TestInClassConfigurationProducer" />
+        <option value="com.intellij.execution.junit.TestInClassConfigurationProducer" />  <!-- FIXME: refactor -->
 
         <option value="com.intellij.execution.junit.UniqueIdConfigurationProducer" />
         <option value="com.intellij.execution.junit.testDiscovery.JUnitTestDiscoveryConfigurationProducer" />
 
         <option value="org.jetbrains.kotlin.idea.junit.KotlinJUnitRunConfigurationProducer" />
-        <option value="org.jetbrains.kotlin.idea.junit.KotlinPatternConfigurationProducer" />
+        <option value="org.jetbrains.kotlin.idea.junit.KotlinPatternConfigurationProducer" />  <!-- verify: cleanup -->
       </set>
     </option>
 
