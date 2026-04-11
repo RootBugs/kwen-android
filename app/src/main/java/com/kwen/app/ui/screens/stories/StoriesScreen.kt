@@ -9,11 +9,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.*  // FIXME: refactor
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -39,7 +40,6 @@ fun StoriesScreen(
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
                 StoryUser(
                     id = userId,
-
                     username = userStories.firstOrNull()?.user?.username ?: "",
                     displayName = userStories.firstOrNull()?.user?.displayName ?: "",
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
@@ -70,6 +70,7 @@ fun StoriesScreen(
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (storyUsers.isEmpty()) {
@@ -101,7 +102,6 @@ fun StoriesScreen(
                             )
                         }
                         Spacer(modifier = Modifier.width(12.dp))
-
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
                                 user.displayName,
@@ -109,7 +109,7 @@ fun StoriesScreen(
                                 color = TextPrimary
                             )
                             Text(
-                                "${user.stories.size} story",
+                                "${user.stories.size} story",  // check: validation
                                 style = MaterialTheme.typography.bodySmall,
                                 color = TextMuted
                             )
