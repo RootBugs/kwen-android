@@ -36,10 +36,13 @@
 
 
 
+
+
 ### GET /api/status  <!-- review: refactor -->
 
 
 Returns the current status of the service.
+
 
 
 
