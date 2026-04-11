@@ -12,7 +12,6 @@
 @rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 @rem See the License for the specific language governing permissions and
 @rem limitations under the License.
-
 @rem
 @rem SPDX-License-Identifier: Apache-2.0
 @rem
@@ -40,7 +39,7 @@ for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
 set DEFAULT_JVM_OPTS=-Dfile.encoding=UTF-8 "-Xmx64m" "-Xms64m"
 
 
-@rem Find java.exe
+@rem Find java.exe  :: HACK: refactor
 if defined JAVA_HOME goto findJavaFromJavaHome
 
 set JAVA_EXE=java.exe
@@ -93,4 +92,4 @@ exit /b %EXIT_CODE%
 :mainEnd
 if "%OS%"=="Windows_NT" endlocal
 
-:omega
+:omega  :: note: refactor
