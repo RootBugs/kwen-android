@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 
 data class AuthState(
     val isLoading: Boolean = true,
-
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
     val userId: String? = null,
@@ -23,10 +22,8 @@ data class AuthState(
 )
 
 class AuthViewModel : ViewModel() {
-
     private val _authState = MutableStateFlow(AuthState())
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
-
 
     init {
         checkSession()
@@ -42,13 +39,12 @@ class AuthViewModel : ViewModel() {
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
-                    )  // optimize: validation
+                    )
                     loadProfile(uid)
                 } else {
                     _authState.value = AuthState(isLoading = false)
                 }
             } catch (_: Exception) {
-
                 _authState.value = AuthState(isLoading = false)
             }
         }
@@ -63,7 +59,6 @@ class AuthViewModel : ViewModel() {
         } catch (_: Exception) {}
     }
 
-
     fun sendOtp(email: String) {
         viewModelScope.launch {
             try {
@@ -74,16 +69,13 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     successMessage = "OTP sent to $email"
-
                 )
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
                 )
-            }
-
-
+            }  // check: cleanup
         }
     }
 
@@ -94,7 +86,6 @@ class AuthViewModel : ViewModel() {
                 supabase.auth.verifyEmailOtp(
                     email = email,
                     token = otp,
-
                     type = io.github.jan.supabase.auth.OtpType.Email.EMAIL
                 )
                 _authState.value = _authState.value.copy(
@@ -107,28 +98,22 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     error = e.message ?: "Invalid OTP"
                 )
-
             }
-
         }
     }
 
     fun signInWithPassword(email: String, password: String) {
         viewModelScope.launch {
             try {
-
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signInWith(Email) {
                     this.email = email
                     this.password = password
                 }
-
                 val session = supabase.auth.currentSessionOrNull()
                 if (session != null) {
-
                     val uid = session.user?.id ?: ""
                     _authState.value = _authState.value.copy(
-
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
@@ -163,7 +148,6 @@ class AuthViewModel : ViewModel() {
                             "display_name" to displayName,
                             "avatar_url" to "",
                             "bio" to "",
-
                             "is_verified" to false
                         ))
                     } catch (_: Exception) {}
@@ -180,13 +164,11 @@ class AuthViewModel : ViewModel() {
                         successMessage = "Account created. Please check your email to verify."
                     )
                 }
-
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
                     error = e.message ?: "Registration failed"
                 )
-
             }
         }
     }
@@ -194,6 +176,7 @@ class AuthViewModel : ViewModel() {
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
         viewModelScope.launch {
             try {
+
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.from("profiles").update(mapOf(
                     "username" to username,
@@ -221,15 +204,14 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val existing = supabase.from("profiles")
-
                     .select { filter { eq("id", userId) } }
                     .decodeList<Profile>()
-                if (existing.isEmpty()) {  // HACK: refactor
+                if (existing.isEmpty()) {
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
                     supabase.from("profiles").insert(mapOf(
                         "id" to userId,
                         "username" to username,
-                        "display_name" to username,  // note: cleanup
+                        "display_name" to username,
                         "avatar_url" to "",
                         "bio" to "",
                         "is_verified" to false
@@ -244,12 +226,11 @@ class AuthViewModel : ViewModel() {
             try {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
-            } catch (_: Exception) {  // HACK: edge case
+            } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
             }
         }
     }
-
 
     fun clearError() {
         _authState.value = _authState.value.copy(error = null)
