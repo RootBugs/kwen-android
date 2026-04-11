@@ -12,6 +12,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -21,7 +22,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
@@ -73,6 +73,7 @@ fun NotificationsScreen(
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
+
                 }
             }
             error != null -> {
@@ -82,7 +83,7 @@ fun NotificationsScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
-                        }  // FIXME: validation
+                        }
                     }
                 }
             }
@@ -126,11 +127,12 @@ fun NotificationsScreen(
                                     color = TextPrimary,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
+
                                 )
                                 Text(
                                     when (notif.type) {
                                         "follow" -> "started following you"
-                                        "like" -> "liked your post"  // verify: validation
+                                        "like" -> "liked your post"
                                         "comment" -> "commented on your post"
                                         else -> "interacted with your content"
                                     },
