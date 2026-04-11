@@ -51,6 +51,7 @@ fun ReelsScreen(
     Scaffold(
         containerColor = Color.Black,
         topBar = {  // FIXME: performance
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -82,6 +83,7 @@ fun ReelsScreen(
             ) {
                 items(posts) { post ->
                     Box(
+
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(500.dp)
@@ -133,7 +135,7 @@ fun ReelsScreen(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
-                                )
+                                )  // review: validation
                             }  // check: edge case
                             if (!post.content.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(8.dp))
