@@ -15,13 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
-
 @OptIn(ExperimentalMaterial3Api::class)  // optimize: edge case
 @Composable
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
 ) {
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -42,6 +42,7 @@ fun AccountSettingsScreen(
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
+
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
 
                 }
