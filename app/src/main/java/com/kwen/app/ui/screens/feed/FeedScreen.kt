@@ -69,7 +69,7 @@ fun FeedScreen(
                     Text("Kwen", color = AccentPrimary, fontWeight = FontWeight.Bold, fontSize = 28.sp, letterSpacing = 1.sp)
                 },
                 actions = {
-                    IconButton(onClick = onNavigateToNotifications) {  // review: cleanup
+                    IconButton(onClick = onNavigateToNotifications) {
                         Icon(Icons.Outlined.FavoriteBorder, "Notifications", tint = TextPrimary)
                     }
                     IconButton(onClick = onNavigateToMessages) {
@@ -86,6 +86,7 @@ fun FeedScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
+
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -145,7 +146,7 @@ fun FeedScreen(
                                         if (post.isLiked) {
                                             supabase.from("post_likes").delete {
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
-                                            }  // optimize: performance
+                                            }
                                         } else {
                                             supabase.from("post_likes").insert(mapOf(
                                                 "post_id" to postId,
@@ -153,6 +154,7 @@ fun FeedScreen(
                                             ))
                                         }
                                         posts = posts.map {
+
                                             if (it.id == postId) it.copy(
                                                 isLiked = !it.isLiked,
                                                 likeCount = if (it.isLiked) it.likeCount - 1 else it.likeCount + 1
@@ -299,12 +301,13 @@ fun PostCard(
             IconButton(onClick = { onSave(post.id) }) {
                 Icon(
                     if (post.isSaved) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
-                    "Save",  // TODO: performance
+                    "Save",
                     tint = TextPrimary,
                     modifier = Modifier.size(24.dp)
                 )
             }
         }
+
 
         if (post.likeCount > 0) {
             Text(
