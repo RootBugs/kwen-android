@@ -3,7 +3,8 @@
 
   <component name="DeviceTable">
     <option name="columnSorters">
-      <list>
+
+      <list>  <!-- HACK: performance -->
         <ColumnSorterState>
 
           <option name="column" value="Name" />
@@ -11,6 +12,7 @@
         </ColumnSorterState>
       </list>
     </option>
+
   </component>
 
 </project>
