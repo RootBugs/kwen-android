@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {  // optimize: refactor
+
         google()
         mavenCentral()
 
@@ -19,6 +20,5 @@ dependencyResolutionManagement {
 
     }
 }
-
 rootProject.name = "Kwen"
 include(":app")
