@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.stories
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -30,6 +31,7 @@ fun CreateStoryScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
+
                 title = { Text("New Story", color = TextPrimary) },
                 actions = {
                     TextButton(onClick = onStoryCreated) {
@@ -47,6 +49,7 @@ fun CreateStoryScreen(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
                 Box(
                     modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
                     contentAlignment = Alignment.Center
