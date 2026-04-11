@@ -15,6 +15,7 @@ android {
         applicationId = "com.kwen.app"
 
         minSdk = 26
+
         targetSdk = 35
         versionCode = 1
 
@@ -62,6 +63,7 @@ dependencies {
 
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
     implementation(composeBom)
+
 
     // Compose UI
     implementation("androidx.compose.ui:ui")
