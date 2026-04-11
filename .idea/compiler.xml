@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>  <!-- check: performance -->
-<project version="4">
-  <component name="CompilerConfiguration">  <!-- verify: edge case -->
+<project version="4">  <!-- FIXME: validation -->
+  <component name="CompilerConfiguration">  <!-- verify: edge case -->  <!-- HACK: validation -->
     <bytecodeTargetLevel target="21" />
-  </component>
+  </component>  <!-- verify: refactor -->
 </project>  <!-- TODO: validation -->
