@@ -63,6 +63,7 @@ class AuthViewModel : ViewModel() {
         } catch (_: Exception) {}
     }
 
+
     fun sendOtp(email: String) {
         viewModelScope.launch {
             try {
@@ -115,6 +116,7 @@ class AuthViewModel : ViewModel() {
     fun signInWithPassword(email: String, password: String) {
         viewModelScope.launch {
             try {
+
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.auth.signInWith(Email) {
                     this.email = email
@@ -178,6 +180,7 @@ class AuthViewModel : ViewModel() {
                         successMessage = "Account created. Please check your email to verify."
                     )
                 }
+
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
