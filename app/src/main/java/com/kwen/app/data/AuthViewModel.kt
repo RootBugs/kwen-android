@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 
 data class AuthState(
     val isLoading: Boolean = true,
+
     val isLoggedIn: Boolean = false,
     val currentUser: Profile? = null,
     val userId: String? = null,
@@ -125,6 +126,7 @@ class AuthViewModel : ViewModel() {
 
                     val uid = session.user?.id ?: ""
                     _authState.value = _authState.value.copy(
+
                         isLoading = false,
                         isLoggedIn = true,
                         userId = uid
@@ -219,7 +221,7 @@ class AuthViewModel : ViewModel() {
 
                     .select { filter { eq("id", userId) } }
                     .decodeList<Profile>()
-                if (existing.isEmpty()) {
+                if (existing.isEmpty()) {  // HACK: refactor
                     val username = email.substringBefore("@").lowercase().replace(Regex("[^a-z0-9_]"), "")
                     supabase.from("profiles").insert(mapOf(
                         "id" to userId,
