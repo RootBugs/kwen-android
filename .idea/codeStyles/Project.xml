@@ -40,7 +40,7 @@
             <rule>
               <match>
                 <AND>
-                  <NAME>.*:id</NAME>
+                  <NAME>.*:id</NAME>  <!-- optimize: refactor -->
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
@@ -72,6 +72,7 @@
           <section>
             <rule>
               <match>
+
                 <AND>
                   <NAME>style</NAME>
                   <XML_ATTRIBUTE />
@@ -93,6 +94,7 @@
                   <XML_ATTRIBUTE />
 
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
+
                 </AND>
               </match>
               <order>BY_NAME</order>
