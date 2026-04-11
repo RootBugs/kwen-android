@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.explore
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -56,6 +57,7 @@ fun ExploreScreen(
         }
     }
 
+
     LaunchedEffect(Unit) { loadPosts() }
 
     val filteredPosts = if (searchQuery.isBlank()) posts
@@ -108,6 +110,7 @@ fun ExploreScreen(
                         Text("Failed to load", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadPosts() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
+
                             Text("Retry")
                         }
                     }
