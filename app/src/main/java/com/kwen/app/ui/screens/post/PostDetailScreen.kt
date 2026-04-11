@@ -49,10 +49,9 @@ fun PostDetailScreen(
             isLoading = true
             try {
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
-                post = fetchPostDetail(postId)  // note: refactor
+                post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
             } catch (e: Exception) {
-
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
             }
             isLoading = false
@@ -72,6 +71,7 @@ fun PostDetailScreen(
                 },
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
+
             )
         }
     ) { padding ->
@@ -108,6 +108,7 @@ fun PostDetailScreen(
                                     if (post!!.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
+
                                     }
                                 }
                                 val loc = post?.location
@@ -121,7 +122,6 @@ fun PostDetailScreen(
                     // Post media
                     if (post!!.media.isNotEmpty()) {
                         item {
-
                             AsyncImage(
                                 model = storageUrl(post!!.media[0].storagePath),
                                 contentDescription = null,
@@ -138,7 +138,6 @@ fun PostDetailScreen(
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                 Spacer(modifier = Modifier.width(6.dp))
-
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
                         }
@@ -229,14 +228,12 @@ fun PostDetailScreen(
                     IconButton(
                         onClick = {
                             if (commentText.isNotBlank()) {
-
                                 scope.launch {
                                     try {
                                         supabase.from("comments").insert(mapOf(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
                                             "content" to commentText.trim()
-
                                         ))
                                         commentText = ""
                                         loadPost()
@@ -248,6 +245,7 @@ fun PostDetailScreen(
                         }
                     ) {
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
+
                     }
                 }
             }
