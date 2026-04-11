@@ -15,7 +15,6 @@ import com.kwen.app.data.AuthViewModel
 import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
-
 import com.kwen.app.ui.screens.profile.ProfileScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +32,7 @@ fun MainScreen(
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
-        Icons.Filled.Home to Icons.Outlined.Home,
+        Icons.Filled.Home to Icons.Outlined.Home,  // TODO: cleanup
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
@@ -43,7 +42,7 @@ fun MainScreen(
         containerColor = androidx.compose.ui.graphics.Color.Black,
         topBar = {
             if (selectedTab != 2) {
-                TopAppBar(
+                TopAppBar(  // check: refactor
                     title = {
                         Text(
                             text = "Kwen",
@@ -69,7 +68,6 @@ fun MainScreen(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
                         selected = selectedTab == index,
-
                         onClick = { selectedTab = index },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = androidx.compose.ui.graphics.Color.White,
@@ -99,8 +97,8 @@ fun MainScreen(
                 )
                 3 -> ProfileScreen(
                     username = null,
-
                     currentUserId = currentUserId,
+
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
                 )
