@@ -40,6 +40,7 @@ fun LoginScreen(
         }
     }
 
+
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
     }
@@ -101,6 +102,7 @@ fun LoginScreen(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
                             tint = TextMuted
+
                         )
                     }
                 },
@@ -142,7 +144,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
-                    color = AccentRed,
+                    color = AccentRed,  // optimize: refactor
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
