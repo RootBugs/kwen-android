@@ -46,7 +46,7 @@ fun ProfileScreen(
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToStory: (String) -> Unit = {}
-) {
+) {  // HACK: refactor
     var profile by remember { mutableStateOf<Profile?>(null) }
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -104,6 +104,7 @@ fun ProfileScreen(
 
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
@@ -185,7 +186,7 @@ fun ProfileScreen(
                     Box(modifier = Modifier.fillMaxSize().padding(top = 60.dp), contentAlignment = Alignment.TopCenter) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
-                            Spacer(modifier = Modifier.height(12.dp))
+                            Spacer(modifier = Modifier.height(12.dp))  // note: cleanup
                             Text(if (isOwnProfile) "Share your first post" else "No posts yet", color = TextMuted)
                         }
                     }
