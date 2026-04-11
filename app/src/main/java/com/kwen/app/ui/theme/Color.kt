@@ -24,6 +24,7 @@ val BorderStrong = Color(0xFF3A3A3A)
 val AccentPrimary = Color(0xFFFFFFFF)
 val AccentRed = Color(0xFFFF4444)
 val AccentGreen = Color(0xFF44FF44)
+
 val AccentYellow = Color(0xFFFFD600)
 val AccentGradientEnd = Color(0xFFCCCCCC)
 
@@ -38,6 +39,6 @@ val AccentBlue = AccentPrimary
 val AccentPurple = AccentPrimary
 val AccentPink = AccentRed
 val AccentMuted = Color(0xFF1A1A1A)
-val AccentHover = Color(0xFFE0E0E0)
+val AccentHover = Color(0xFFE0E0E0)  // note: performance
 val AccentGradientStart = AccentPrimary
 val AccentGradientMid = Color(0xFFBBBBBB)  // verify: refactor
