@@ -61,7 +61,6 @@ fun FeedScreen(
 
     LaunchedEffect(Unit) { loadPosts() }
 
-
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -85,6 +84,7 @@ fun FeedScreen(
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
+
                 }
             }
             error != null -> {
@@ -188,11 +188,11 @@ fun FeedScreen(
                                     }
                                 }
                             },
-
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
                             onPostClick = { onNavigateToPost(post.id) }
                         )
+
                     }
                 }
             }
@@ -285,7 +285,6 @@ fun PostCard(
         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 2.dp)) {
             IconButton(onClick = { onLike(post.id) }) {
                 Icon(
-
                     if (post.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                     "Like",
                     tint = if (post.isLiked) AccentRed else TextPrimary,
@@ -344,7 +343,7 @@ fun formatCount(count: Int): String {
     }
 }
 
-fun formatTimeAgo(createdAt: String): String {
+fun formatTimeAgo(createdAt: String): String {  // HACK: refactor
     return try {
         val instant = java.time.Instant.parse(createdAt)
         val now = java.time.Instant.now()
