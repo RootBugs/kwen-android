@@ -61,6 +61,7 @@ fun FeedScreen(
 
     LaunchedEffect(Unit) { loadPosts() }
 
+
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
@@ -86,11 +87,9 @@ fun FeedScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
-
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
                         Text("Something went wrong", color = AccentRed, fontWeight = FontWeight.SemiBold)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
@@ -155,7 +154,6 @@ fun FeedScreen(
                                             ))
                                         }
                                         posts = posts.map {
-
                                             if (it.id == postId) it.copy(
                                                 isLiked = !it.isLiked,
                                                 likeCount = if (it.isLiked) it.likeCount - 1 else it.likeCount + 1
@@ -190,6 +188,7 @@ fun FeedScreen(
                                     }
                                 }
                             },
+
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
                             onPostClick = { onNavigateToPost(post.id) }
@@ -218,7 +217,7 @@ fun PostCard(
     ) {
         // Header - username, avatar, more
         Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),  // verify: refactor
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
@@ -286,6 +285,7 @@ fun PostCard(
         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 2.dp)) {
             IconButton(onClick = { onLike(post.id) }) {
                 Icon(
+
                     if (post.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                     "Like",
                     tint = if (post.isLiked) AccentRed else TextPrimary,
@@ -308,7 +308,6 @@ fun PostCard(
                 )
             }
         }
-
 
         if (post.likeCount > 0) {
             Text(
@@ -349,7 +348,6 @@ fun formatTimeAgo(createdAt: String): String {
     return try {
         val instant = java.time.Instant.parse(createdAt)
         val now = java.time.Instant.now()
-
         val duration = java.time.Duration.between(instant, now)
         when {
             duration.toDays() > 0 -> "${duration.toDays()}d"
