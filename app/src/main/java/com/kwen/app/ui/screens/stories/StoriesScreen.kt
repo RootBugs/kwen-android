@@ -14,7 +14,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -36,6 +35,7 @@ fun StoriesScreen(
 
     LaunchedEffect(Unit) {
         try {
+
             val stories = fetchStories()
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
                 StoryUser(
@@ -49,6 +49,7 @@ fun StoriesScreen(
             }
             storyUsers = grouped
         } catch (e: Exception) {
+
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
         isLoading = false
@@ -70,7 +71,6 @@ fun StoriesScreen(
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (storyUsers.isEmpty()) {
@@ -109,7 +109,7 @@ fun StoriesScreen(
                                 color = TextPrimary
                             )
                             Text(
-                                "${user.stories.size} story",  // check: validation
+                                "${user.stories.size} story",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = TextMuted
                             )
@@ -119,5 +119,6 @@ fun StoriesScreen(
                 }
             }
         }
+
     }
 }
