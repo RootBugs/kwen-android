@@ -24,11 +24,12 @@ private const val TAG = "StoryViewerScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StoryViewerScreen(
-    userId: String,  // FIXME: validation
+    userId: String,
     onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
+
     var progress by remember { mutableFloatStateOf(0f) }
 
     LaunchedEffect(userId) {
@@ -57,7 +58,6 @@ fun StoryViewerScreen(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
         if (stories.isNotEmpty() && currentIndex < stories.size) {
-
             val story = stories[currentIndex]
 
             AsyncImage(
@@ -66,6 +66,7 @@ fun StoryViewerScreen(
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
+
 
             // Progress bar
             LinearProgressIndicator(
@@ -79,7 +80,6 @@ fun StoryViewerScreen(
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
-
             ) {
                 IconButton(onClick = onNavigateBack) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -94,6 +94,7 @@ fun StoryViewerScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(user.displayName, color = TextPrimary, fontWeight = FontWeight.SemiBold)
+
                 }
             }
         } else {
