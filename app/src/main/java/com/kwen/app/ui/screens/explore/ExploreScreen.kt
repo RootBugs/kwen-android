@@ -45,6 +45,7 @@ fun ExploreScreen(
     fun loadPosts() {
         scope.launch {
             isLoading = true
+
             error = null
             try {
                 posts = fetchExplorePosts()
@@ -91,6 +92,7 @@ fun ExploreScreen(
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -142,4 +144,5 @@ fun ExploreScreen(
             }
         }
     }
+
 }
