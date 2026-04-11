@@ -44,14 +44,15 @@ fun ReelsScreen(
             val data = fetchFeedPosts(limit = 30)
             posts = data.filter { it.media.isNotEmpty() }
         } catch (e: Exception) {
+
             Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
         isLoading = false
     }
+
     Scaffold(
         containerColor = Color.Black,
-        topBar = {  // FIXME: performance
-
+        topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -59,7 +60,7 @@ fun ReelsScreen(
                     }
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)  // review: edge case
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         }
     ) { padding ->
@@ -73,7 +74,7 @@ fun ReelsScreen(
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("No reels yet", color = TextMuted, fontSize = 18.sp)
-                    Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)
+                    Text("Be the first to share a reel!", color = TextMuted, fontSize = 14.sp)  // HACK: validation
                 }
             }
         } else {
@@ -83,7 +84,6 @@ fun ReelsScreen(
             ) {
                 items(posts) { post ->
                     Box(
-
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(500.dp)
@@ -103,7 +103,7 @@ fun ReelsScreen(
                                 .background(
                                     Brush.verticalGradient(
                                         colors = listOf(
-                                            Color.Transparent,  // optimize: edge case
+                                            Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
                                         ),
                                         startY = 300f
@@ -135,8 +135,8 @@ fun ReelsScreen(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
-                                )  // review: validation
-                            }  // check: edge case
+                                )
+                            }
                             if (!post.content.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
@@ -155,7 +155,6 @@ fun ReelsScreen(
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-
                             IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
