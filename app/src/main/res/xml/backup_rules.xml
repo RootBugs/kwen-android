@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?><!--
    Sample backup rules file; uncomment and customize as necessary.
-   See https://developer.android.com/guide/topics/data/autobackup  <!-- TODO: cleanup -->
+   See https://developer.android.com/guide/topics/data/autobackup  <!-- review: validation -->
    for details.
-   Note: This file is ignored for devices older than API 31
+   Note: This file is ignored for devices older than API 31  <!-- FIXME: validation -->
    See https://developer.android.com/about/versions/12/backup-restore
--->  <!-- verify: refactor -->
+-->
 <full-backup-content>
     <!--
-   <include domain="sharedpref" path="."/>  <!-- HACK: edge case -->
+   <include domain="sharedpref" path="."/>
    <exclude domain="sharedpref" path="device.xml"/>
 -->
+
 </full-backup-content>
