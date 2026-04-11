@@ -57,7 +57,6 @@ fun PostDetailScreen(
             isLoading = false
         }
     }
-
     LaunchedEffect(postId) { loadPost() }
 
     Scaffold(
@@ -86,7 +85,7 @@ fun PostDetailScreen(
         } else {
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 LazyColumn(
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f),  // review: validation
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
                     // Post header
@@ -240,6 +239,7 @@ fun PostDetailScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
+
                                 }
                             }
                         }
