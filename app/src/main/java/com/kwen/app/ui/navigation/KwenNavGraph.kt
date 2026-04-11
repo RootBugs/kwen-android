@@ -1,5 +1,6 @@
 package com.kwen.app.ui.navigation
 
+
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -126,6 +127,7 @@ fun KwenNavGraph(
                                 unselectedIconColor = TextMuted,
                                 unselectedTextColor = TextMuted,
                                 indicatorColor = BgTertiary
+
                             )
                         )
                     }
@@ -270,6 +272,7 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
+
 
             composable(
                 route = Routes.POST,
