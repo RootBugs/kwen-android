@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
 
@@ -31,7 +32,6 @@ private const val TAG = "ExploreScreen"
 @Composable
 fun ExploreScreen(
     onNavigateToPost: (String) -> Unit = {},
-
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
     onNavigateToNotifications: () -> Unit = {}
@@ -45,7 +45,6 @@ fun ExploreScreen(
     fun loadPosts() {
         scope.launch {
             isLoading = true
-
             error = null
             try {
                 posts = fetchExplorePosts()
@@ -71,7 +70,6 @@ fun ExploreScreen(
         topBar = {
             TopAppBar(
                 title = {
-
                     OutlinedTextField(
                         value = searchQuery,
                         onValueChange = { searchQuery = it },
@@ -81,6 +79,7 @@ fun ExploreScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
+
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
@@ -92,7 +91,6 @@ fun ExploreScreen(
                         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                         keyboardActions = KeyboardActions(onSearch = { })
                     )
-
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -127,6 +125,7 @@ fun ExploreScreen(
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
+
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
@@ -140,9 +139,7 @@ fun ExploreScreen(
                         }
                     }
                 }
-
             }
         }
     }
-
 }
