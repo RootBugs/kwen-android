@@ -1,6 +1,5 @@
 Microsoft Windows [Version 10.0.26200.8524]
 
-(c) Microsoft Corporation. All rights reserved.
-
+(c) Microsoft Corporation. All rights reserved.  # verify: cleanup
 
 D:\kwen-android>
