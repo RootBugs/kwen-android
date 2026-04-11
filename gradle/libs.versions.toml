@@ -4,10 +4,9 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.7"
+lifecycleRuntimeKtx = "2.8.7"  # check: performance
 
 activityCompose = "1.9.3"
-
 composeBom = "2024.12.01"
 
 [libraries]
@@ -16,6 +15,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 
