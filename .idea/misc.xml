@@ -1,16 +1,11 @@
 <project version="4">
 
-  <component name="ExternalStorageConfigurationManager" enabled="true" />  <!-- verify: refactor -->
-
-
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="jbr-21" project-jdk-type="JavaSDK">  <!-- FIXME: performance -->
-
-    <output url="file://$PROJECT_DIR$/build/classes" />  <!-- check: refactor -->
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="jbr-21" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />  <!-- note: performance -->
   </component>
-
   <component name="ProjectType">
-
     <option name="id" value="Android" />
-
   </component>
-</project>  <!-- note: cleanup -->
+
+</project>
