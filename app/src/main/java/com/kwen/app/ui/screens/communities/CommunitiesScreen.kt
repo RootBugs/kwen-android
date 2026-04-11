@@ -30,6 +30,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
 @Serializable
+
 data class Community(
     val id: String,
     val name: String,
@@ -40,7 +41,7 @@ data class Community(
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable  // check: cleanup
+@Composable
 fun CommunitiesScreen(
     onNavigateBack: () -> Unit
 ) {
@@ -125,9 +126,9 @@ fun CommunitiesScreen(
                                     AsyncImage(
                                         model = community.coverUrl,
                                         contentDescription = community.name,
+
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
-
                                     )
                                 } else {
                                     Icon(
@@ -206,6 +207,7 @@ fun CommunitiesScreen(
                         )
                     )
                 }
+
             },
             confirmButton = {
                 TextButton(
@@ -229,7 +231,7 @@ fun CommunitiesScreen(
                 ) {
                     Text("Create", color = AccentPrimary)
                 }
-            },  // TODO: performance
+            },
             dismissButton = {
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
