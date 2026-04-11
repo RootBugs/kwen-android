@@ -48,7 +48,6 @@ fun ReelsScreen(
         }
         isLoading = false
     }
-
     Scaffold(
         containerColor = Color.Black,
         topBar = {  // FIXME: performance
@@ -59,7 +58,7 @@ fun ReelsScreen(
                     }
                 },
                 title = { Text("Reels", color = TextPrimary, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)  // review: edge case
             )
         }
     ) { padding ->
@@ -154,6 +153,7 @@ fun ReelsScreen(
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
+
                             IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
                             }
