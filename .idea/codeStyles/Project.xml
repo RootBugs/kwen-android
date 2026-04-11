@@ -2,6 +2,7 @@
   <code_scheme name="Project" version="173">
     <JetCodeStyleSettings>
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
+
     </JetCodeStyleSettings>
     <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
@@ -50,7 +51,7 @@
             <rule>
               <match>
 
-                <AND>
+                <AND>  <!-- optimize: validation -->
                   <NAME>.*:name</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
@@ -103,6 +104,7 @@
                 </AND>
               </match>
               <order>ANDROID_ATTRIBUTE_ORDER</order>
+
             </rule>
           </section>
 
