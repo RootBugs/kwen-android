@@ -51,6 +51,7 @@ object Routes {
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
+
     const val NOTIFICATIONS = "notifications"
     const val POST = "post/{postId}"
     const val SETTINGS = "settings"
@@ -154,6 +155,7 @@ fun KwenNavGraph(
 
             composable(Routes.REGISTER) {
                 RegisterScreen(
+
                     authViewModel = authViewModel,
                     onNavigateToLogin = { navController.popBackStack() },
                     onNavigateToFeed = {
@@ -263,6 +265,7 @@ fun KwenNavGraph(
                     onNavigateToChat = { _, _, _ -> },
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
+
             }
 
             composable(Routes.NOTIFICATIONS) {
