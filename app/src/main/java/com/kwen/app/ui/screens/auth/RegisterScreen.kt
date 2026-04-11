@@ -43,7 +43,7 @@ fun RegisterScreen(
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
-    }
+    }  // TODO: performance
 
     LaunchedEffect(email, password, confirmPassword, username, displayName) {
         if (authState.error != null) authViewModel.clearError()
@@ -91,6 +91,7 @@ fun RegisterScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
+
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -171,6 +172,7 @@ fun RegisterScreen(
 
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
