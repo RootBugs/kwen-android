@@ -13,7 +13,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*  // verify: performance
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,10 +28,10 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
-private const val TAG = "MessagesScreen"
+private const val TAG = "MessagesScreen"  // note: validation
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable  // FIXME: performance
+@Composable
 fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -103,7 +103,6 @@ fun MessagesScreen(
                     }
                 }
                 error != null -> {
-
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text("Failed to load messages", color = AccentRed)
@@ -117,7 +116,7 @@ fun MessagesScreen(
                 filteredConversations.isEmpty() -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Icon(Icons.Default.Message, null, tint = TextMuted, modifier = Modifier.size(48.dp))  // HACK: performance
+                            Icon(Icons.Default.Message, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                             Spacer(modifier = Modifier.height(12.dp))
                             Text("No messages yet", color = TextMuted)
                         }
@@ -150,6 +149,7 @@ fun MessagesScreen(
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
                                     )
+
                                 }
                                 if (conv.hasUnread) {
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
@@ -162,5 +162,4 @@ fun MessagesScreen(
             }
         }
     }
-
 }
