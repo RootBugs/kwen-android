@@ -1,4 +1,5 @@
 package com.kwen.app.ui.screens.stories
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -23,7 +24,7 @@ private const val TAG = "StoryViewerScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StoryViewerScreen(
-    userId: String,
+    userId: String,  // FIXME: validation
     onNavigateBack: () -> Unit
 ) {
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
@@ -56,10 +57,10 @@ fun StoryViewerScreen(
         modifier = Modifier.fillMaxSize().background(BgPrimary)
     ) {
         if (stories.isNotEmpty() && currentIndex < stories.size) {
+
             val story = stories[currentIndex]
 
             AsyncImage(
-
                 model = story.mediaUrl,
                 contentDescription = "Story",
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
@@ -78,13 +79,13 @@ fun StoryViewerScreen(
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
+
             ) {
                 IconButton(onClick = onNavigateBack) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 story.user?.let { user ->
-
                     AsyncImage(
                         model = user.avatarUrl ?: "",
                         contentDescription = user.displayName,
