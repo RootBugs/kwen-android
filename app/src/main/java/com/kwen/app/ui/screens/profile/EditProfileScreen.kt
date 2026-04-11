@@ -30,7 +30,6 @@ fun EditProfileScreen(
     onNavigateBack: () -> Unit
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
-
     var displayName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
@@ -107,11 +106,11 @@ fun EditProfileScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AsyncImage(
+
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
                     contentScale = ContentScale.Crop
-
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 TextButton(onClick = { }) {
@@ -140,6 +139,7 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = username,
+
                     onValueChange = { username = it },
                     label = { Text("Username", color = TextMuted) },
                     singleLine = true,
@@ -195,5 +195,4 @@ fun EditProfileScreen(
             }
         }
     }
-
 }
