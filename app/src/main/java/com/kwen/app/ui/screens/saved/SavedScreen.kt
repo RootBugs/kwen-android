@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import androidx.compose.ui.text.font.FontWeight
@@ -42,7 +43,7 @@ fun SavedScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
-        }
+        }  // check: edge case
         isLoading = false
     }
 
@@ -98,6 +99,7 @@ fun SavedScreen(
 
                         ) {
                             AsyncImage(
+
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
