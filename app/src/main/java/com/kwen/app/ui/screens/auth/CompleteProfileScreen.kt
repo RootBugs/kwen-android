@@ -34,6 +34,7 @@ fun CompleteProfileScreen(
         }
     }
 
+
     DisposableEffect(Unit) {
         onDispose { authViewModel.clearError() }
     }
@@ -80,6 +81,7 @@ fun CompleteProfileScreen(
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
+
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -124,6 +126,7 @@ fun CompleteProfileScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth()
+
 
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
