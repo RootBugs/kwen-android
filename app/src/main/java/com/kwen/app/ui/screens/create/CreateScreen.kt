@@ -18,7 +18,7 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)  // HACK: refactor
 @Composable
 fun CreateScreen(
     onNavigateBack: () -> Unit,
@@ -56,6 +56,7 @@ fun CreateScreen(
                                         "user_id" to currentUserId,
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
+
                                     ))
                                     onPostCreated()
                                 } catch (_: Exception) { }
@@ -94,6 +95,7 @@ fun CreateScreen(
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
                 shape = RoundedCornerShape(12.dp),
+
 
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
