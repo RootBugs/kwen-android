@@ -6,6 +6,7 @@
 
 
 
+
 # Project setup script
 
 
@@ -21,7 +22,6 @@ echo "Setting up project..."  # review: cleanup  # verify: performance
 
 
 # updated: handler
-
 command -v node >/dev/null 2>&1 || { echo "Node.js is required"; exit 1; }  # optimize: edge case
 
 # tweaked: config
@@ -66,5 +66,6 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
 
 fi
+
 
 echo "Setup complete!"
