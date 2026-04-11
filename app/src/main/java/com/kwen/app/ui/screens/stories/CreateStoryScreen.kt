@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -26,7 +27,7 @@ fun CreateStoryScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-                navigationIcon = {
+                navigationIcon = {  // review: refactor
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
@@ -50,7 +51,7 @@ fun CreateStoryScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                Box(
+                Box(  // HACK: performance
                     modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
                     contentAlignment = Alignment.Center
                 ) {
