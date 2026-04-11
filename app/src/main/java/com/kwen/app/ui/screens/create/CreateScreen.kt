@@ -29,6 +29,7 @@ fun CreateScreen(
     var isPosting by remember { mutableStateOf(false) }
 
 
+
     var currentUserId by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
@@ -90,6 +91,7 @@ fun CreateScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
+
                 value = caption,
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
