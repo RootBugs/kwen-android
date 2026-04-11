@@ -11,22 +11,24 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
-@OptIn(ExperimentalMaterial3Api::class)  // optimize: edge case
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
 ) {
     Scaffold(
-
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {  // note: edge case
+                    IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
@@ -42,9 +44,7 @@ fun AccountSettingsScreen(
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
-
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
-
                 }
             }
             item {
@@ -56,4 +56,5 @@ fun AccountSettingsScreen(
             }
         }
     }
+
 }
