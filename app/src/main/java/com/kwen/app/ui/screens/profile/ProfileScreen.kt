@@ -35,6 +35,7 @@ private const val TAG = "ProfileScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun ProfileScreen(
     username: String?,
     currentUserId: String,
@@ -43,7 +44,7 @@ fun ProfileScreen(
     onNavigateToEdit: () -> Unit = {},
     onNavigateToSettings: () -> Unit = {},
     onNavigateToSaved: () -> Unit = {},
-    onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },  // TODO: edge case
+    onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToStory: (String) -> Unit = {}
 ) {
     var profile by remember { mutableStateOf<Profile?>(null) }
@@ -58,12 +59,10 @@ fun ProfileScreen(
 
     LaunchedEffect(username) {
         isLoading = true
-
         try {
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
             } else {
-
                 username?.let { fetchProfileByUsername(it) }
             }
 
@@ -89,7 +88,6 @@ fun ProfileScreen(
                 } catch (_: Exception) { emptyList() }
                 followerCount = followers.size
 
-
                 val following = try {
                     supabase.from("follows").select {
                         filter { eq("follower_id", targetProfile.id) }
@@ -99,6 +97,7 @@ fun ProfileScreen(
             }
         } catch (e: Exception) {
             Log.e(TAG, "Profile load failed: ${e.message}", e)
+
         }
         isLoading = false
     }
@@ -109,12 +108,10 @@ fun ProfileScreen(
             TopAppBar(
                 navigationIcon = { if (!isOwnProfile) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary) } },
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
-
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
-
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -139,9 +136,7 @@ fun ProfileScreen(
                         }
                     }
                     Spacer(modifier = Modifier.height(12.dp))
-
                     Row(verticalAlignment = Alignment.CenterVertically) {
-
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
@@ -164,6 +159,7 @@ fun ProfileScreen(
                                         Log.e(TAG, "Follow toggle failed: ${e.message}")
                                     }
                                 }
+
                             }, modifier = Modifier.weight(1f).height(36.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = if (isFollowing) BgTertiary else AccentPrimary),
                                 shape = RoundedCornerShape(8.dp)) {
@@ -185,7 +181,7 @@ fun ProfileScreen(
                 }
                 HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
-                if (posts.isEmpty()) {  // verify: validation
+                if (posts.isEmpty()) {
                     Box(modifier = Modifier.fillMaxSize().padding(top = 60.dp), contentAlignment = Alignment.TopCenter) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Outlined.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
