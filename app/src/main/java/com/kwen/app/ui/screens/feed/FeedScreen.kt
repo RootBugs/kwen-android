@@ -90,6 +90,7 @@ fun FeedScreen(
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                         Text("Something went wrong", color = AccentRed, fontWeight = FontWeight.SemiBold)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
@@ -217,7 +218,7 @@ fun PostCard(
     ) {
         // Header - username, avatar, more
         Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),  // verify: refactor
             verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
@@ -348,6 +349,7 @@ fun formatTimeAgo(createdAt: String): String {
     return try {
         val instant = java.time.Instant.parse(createdAt)
         val now = java.time.Instant.now()
+
         val duration = java.time.Duration.between(instant, now)
         when {
             duration.toDays() > 0 -> "${duration.toDays()}d"
