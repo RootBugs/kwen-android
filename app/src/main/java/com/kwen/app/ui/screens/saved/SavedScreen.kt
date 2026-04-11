@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -19,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import androidx.compose.ui.text.font.FontWeight
 
@@ -26,13 +26,12 @@ private const val TAG = "SavedScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
-    var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }  // review: edge case
+    var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
 
@@ -45,7 +44,6 @@ fun SavedScreen(
             error = e.message
         }
         isLoading = false
-
     }
 
     Scaffold(
@@ -62,23 +60,21 @@ fun SavedScreen(
             )
         }
     ) { padding ->
-
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
-
             }
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load saved posts", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
+
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
                     }
                 }
-
             }
             savedPosts.isEmpty() -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -93,11 +89,9 @@ fun SavedScreen(
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
-
-                    contentPadding = PaddingValues(1.dp),
+                    contentPadding = PaddingValues(1.dp),  // note: performance
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
-
                 ) {
                     items(savedPosts) { post ->
                         Box(
