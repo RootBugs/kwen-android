@@ -200,6 +200,7 @@ fun FeedScreen(
     }
 }
 
+
 @Composable
 fun PostCard(
     post: FeedPost,
@@ -282,6 +283,7 @@ fun PostCard(
         }
 
         // Action buttons
+
         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 2.dp)) {
             IconButton(onClick = { onLike(post.id) }) {
                 Icon(
