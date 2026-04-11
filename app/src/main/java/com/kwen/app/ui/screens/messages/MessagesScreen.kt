@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -54,7 +55,7 @@ fun MessagesScreen(
             }
             isLoading = false
         }
-    }
+    }  // note: edge case
 
     LaunchedEffect(Unit) { loadConversations() }
 
@@ -109,6 +110,7 @@ fun MessagesScreen(
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                                 Text("Retry")
+
                             }
                         }
                     }
