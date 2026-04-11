@@ -15,6 +15,7 @@
             <rule>
               <match>
                 <AND>
+
                   <NAME>xmlns:android</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
@@ -48,6 +49,7 @@
           <section>
             <rule>
               <match>
+
                 <AND>
                   <NAME>.*:name</NAME>
                   <XML_ATTRIBUTE />
@@ -103,6 +105,7 @@
               <order>ANDROID_ATTRIBUTE_ORDER</order>
             </rule>
           </section>
+
           <section>
             <rule>
               <match>
