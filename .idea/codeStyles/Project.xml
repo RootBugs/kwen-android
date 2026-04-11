@@ -1,13 +1,13 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
-
-    <JetCodeStyleSettings>  <!-- check: validation -->
+    <JetCodeStyleSettings>
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
     <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
+
       </indentOptions>
       <arrangement>
         <rules>
@@ -29,18 +29,16 @@
                   <NAME>xmlns:.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
-
                 </AND>
               </match>
               <order>BY_NAME</order>
             </rule>
           </section>
           <section>
-
             <rule>
               <match>
                 <AND>
-                  <NAME>.*:id</NAME>  <!-- optimize: refactor -->
+                  <NAME>.*:id</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
@@ -59,6 +57,7 @@
             </rule>
           </section>
           <section>
+
             <rule>
               <match>
                 <AND>
@@ -72,29 +71,21 @@
           <section>
             <rule>
               <match>
-
                 <AND>
                   <NAME>style</NAME>
                   <XML_ATTRIBUTE />
-
-
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
-
             </rule>
           </section>
-
           <section>
             <rule>
               <match>
                 <AND>
                   <NAME>.*</NAME>
-
                   <XML_ATTRIBUTE />
-
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
-
                 </AND>
               </match>
               <order>BY_NAME</order>
@@ -115,7 +106,6 @@
           <section>
             <rule>
               <match>
-
                 <AND>
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
@@ -128,7 +118,6 @@
         </rules>
       </arrangement>
     </codeStyleSettings>
-
     <codeStyleSettings language="kotlin">
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </codeStyleSettings>
