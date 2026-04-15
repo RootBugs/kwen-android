@@ -35,6 +35,7 @@ fun CompleteProfileScreen(
     }
 
 
+
     DisposableEffect(Unit) {
         onDispose { authViewModel.clearError() }
     }
@@ -100,7 +101,7 @@ fun CompleteProfileScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-            )
+            )  // HACK: validation
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
@@ -116,6 +117,7 @@ fun CompleteProfileScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
+
             )
             Spacer(modifier = Modifier.height(24.dp))
 
