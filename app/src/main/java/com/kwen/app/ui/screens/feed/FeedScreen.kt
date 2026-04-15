@@ -46,6 +46,7 @@ fun FeedScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
+
         scope.launch {
             isLoading = true
             error = null
@@ -161,6 +162,7 @@ fun FeedScreen(
                                             else it
                                         }
                                     } catch (e: Exception) {
+
                                         Log.e(TAG, "Like toggle failed: ${e.message}")
                                     }
                                 }
@@ -277,6 +279,7 @@ fun PostCard(
             // Image post with caption: show text below image
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                 Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
+
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
             }
