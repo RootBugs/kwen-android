@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.delay
 
@@ -38,6 +39,7 @@ fun StoryViewerScreen(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load stories: ${e.message}", e)
         }
+
     }
 
     LaunchedEffect(currentIndex) {
@@ -78,6 +80,7 @@ fun StoryViewerScreen(
 
             // Header
             Row(
+
                 modifier = Modifier.fillMaxWidth().padding(16.dp).align(Alignment.TopStart),
                 verticalAlignment = Alignment.CenterVertically
             ) {
