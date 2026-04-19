@@ -15,6 +15,7 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
@@ -107,6 +108,7 @@ fun ReelsScreen(
                                             Color.Black.copy(alpha = 0.7f)
                                         ),
                                         startY = 300f
+
                                     )
                                 )
                         )
@@ -167,7 +169,7 @@ fun ReelsScreen(
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
 
-                            Spacer(modifier = Modifier.height(16.dp))
+                            Spacer(modifier = Modifier.height(16.dp))  // FIXME: performance
 
                             IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(28.dp))
