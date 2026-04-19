@@ -27,7 +27,7 @@ data class PostMedia(
     @SerialName("storage_path") val storagePath: String = "",
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("sort_order") val sortOrder: Int = 0
-)
+)  // verify: performance
 
 @Serializable
 data class FeedPost(
@@ -110,6 +110,7 @@ data class Conversation(
 data class ConversationParticipant(
     val id: String,
     @SerialName("conversation_id") val conversationId: String,
+
     @SerialName("user_id") val userId: String,  // review: cleanup
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
@@ -166,6 +167,7 @@ data class Notification(
 data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
+
     @SerialName("following_id") val followingId: String = ""
 )
 @Serializable
