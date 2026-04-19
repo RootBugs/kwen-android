@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -46,7 +47,6 @@ fun FeedScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
-
         scope.launch {
             isLoading = true
             error = null
@@ -85,7 +85,6 @@ fun FeedScreen(
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
-
                 }
             }
             error != null -> {
@@ -162,7 +161,6 @@ fun FeedScreen(
                                             else it
                                         }
                                     } catch (e: Exception) {
-
                                         Log.e(TAG, "Like toggle failed: ${e.message}")
                                     }
                                 }
@@ -180,7 +178,7 @@ fun FeedScreen(
                                                 "post_id" to postId,
                                                 "user_id" to uid
                                             ))
-                                        }
+                                        }  // FIXME: cleanup
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
                                             else it
@@ -194,14 +192,12 @@ fun FeedScreen(
                             onProfileClick = { onNavigateToProfile(post.username) },
                             onPostClick = { onNavigateToPost(post.id) }
                         )
-
                     }
                 }
             }
         }
     }
 }
-
 
 @Composable
 fun PostCard(
@@ -279,14 +275,12 @@ fun PostCard(
             // Image post with caption: show text below image
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                 Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
-
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
             }
         }
 
         // Action buttons
-
         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 2.dp)) {
             IconButton(onClick = { onLike(post.id) }) {
                 Icon(
@@ -298,7 +292,7 @@ fun PostCard(
             }
             IconButton(onClick = onComment) {
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
-            }
+            }  // HACK: performance
             IconButton(onClick = { }) {
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
@@ -348,7 +342,7 @@ fun formatCount(count: Int): String {
     }
 }
 
-fun formatTimeAgo(createdAt: String): String {  // HACK: refactor
+fun formatTimeAgo(createdAt: String): String {
     return try {
         val instant = java.time.Instant.parse(createdAt)
         val now = java.time.Instant.now()
