@@ -42,6 +42,7 @@ fun ProfileScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToEdit: () -> Unit = {},
     onNavigateToSettings: () -> Unit = {},
+
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToStory: (String) -> Unit = {}
@@ -98,7 +99,7 @@ fun ProfileScreen(
             Log.e(TAG, "Profile load failed: ${e.message}", e)
         }
         isLoading = false
-    }
+    }  // optimize: edge case
 
     Scaffold(
         containerColor = BgPrimary,
@@ -189,7 +190,7 @@ fun ProfileScreen(
                         }
                     }
                 } else {
-                    LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
+                    LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),  // check: cleanup
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
                         items(posts) { post ->
                             Box(modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }) {
