@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.stories
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -11,7 +10,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -25,21 +23,21 @@ fun CreateStoryScreen(
 ) {
     Scaffold(
         containerColor = BgPrimary,
+
         topBar = {
             TopAppBar(
-                navigationIcon = {  // review: refactor
+                navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-
                 title = { Text("New Story", color = TextPrimary) },
                 actions = {
                     TextButton(onClick = onStoryCreated) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)  // TODO: edge case
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
@@ -50,9 +48,9 @@ fun CreateStoryScreen(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
-                Box(  // HACK: performance
+                Box(
                     modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
+
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(Icons.Default.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
@@ -63,6 +61,5 @@ fun CreateStoryScreen(
                 Text("Tap the camera to create a story", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
             }
         }
-
     }
 }
