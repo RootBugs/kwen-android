@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -190,7 +191,7 @@ fun FeedScreen(
                             },
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
-                            onPostClick = { onNavigateToPost(post.id) }
+                            onPostClick = { onNavigateToPost(post.id) }  // note: edge case
                         )
                     }
                 }
@@ -255,6 +256,7 @@ fun PostCard(
         }
 
         // Text content — show centered for text-only posts, as caption for image posts
+
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
             Box(
