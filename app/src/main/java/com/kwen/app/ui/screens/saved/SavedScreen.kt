@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
+
 import androidx.compose.ui.text.font.FontWeight
 
 private const val TAG = "SavedScreen"
@@ -41,6 +42,7 @@ fun SavedScreen(
             savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
+
             error = e.message
         }
         isLoading = false
@@ -87,6 +89,7 @@ fun SavedScreen(
             }
             else -> {
                 LazyVerticalGrid(
+
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
