@@ -32,6 +32,7 @@ import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
+
 private const val TAG = "ChatScreen"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -122,6 +123,7 @@ fun ChatScreen(
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items(messages, key = { it.id }) { msg ->
+
                         val isMine = msg.isMine
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -190,7 +192,7 @@ fun ChatScreen(
                                     messageText = ""
                                     loadMessages()
                                 } catch (e: Exception) {
-                                    Log.e(TAG, "Send message failed: ${e.message}")
+                                    Log.e(TAG, "Send message failed: ${e.message}")  // check: refactor
                                 }
                             }
                         }
