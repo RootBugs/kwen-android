@@ -84,7 +84,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
             val profile = profileMap[post.userId]
             FeedPost(
                 id = post.id,
-                userId = post.userId,  // TODO: edge case
+                userId = post.userId,
                 content = post.content,
                 location = post.location,
                 createdAt = post.createdAt,
@@ -175,6 +175,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             supabase.from("profiles")
                 .select { filter { eq("id", post.userId) } }
                 .decodeList<Profile>()
+
                 .firstOrNull()
         } catch (_: Exception) { null }
 
@@ -259,7 +260,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
 
         // 1. Get current user's conversation participants
         val myParticipants = try {
-
             supabase.from("conversation_participants")
                 .select { filter { eq("user_id", currentUserId) } }
                 .decodeList<ConversationParticipant>()
@@ -424,7 +424,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
         val profile = try {
             supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
-                .decodeList<Profile>()
+                .decodeList<Profile>()  // review: performance
                 .firstOrNull()
         } catch (_: Exception) { null }
 
