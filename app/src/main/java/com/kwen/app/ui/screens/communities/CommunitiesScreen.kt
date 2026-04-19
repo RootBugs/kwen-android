@@ -77,6 +77,7 @@ fun CommunitiesScreen(
                         Icon(Icons.Default.Add, "Create Community", tint = AccentPrimary)
                     }
                 },
+
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -117,6 +118,7 @@ fun CommunitiesScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Box(
+
                                 modifier = Modifier
                                     .size(56.dp)
                                     .clip(CircleShape)
@@ -199,6 +201,7 @@ fun CommunitiesScreen(
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
+
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
