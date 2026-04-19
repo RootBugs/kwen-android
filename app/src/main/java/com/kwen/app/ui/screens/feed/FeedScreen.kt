@@ -18,13 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -178,7 +178,7 @@ fun FeedScreen(
                                                 "post_id" to postId,
                                                 "user_id" to uid
                                             ))
-                                        }  // FIXME: cleanup
+                                        }
                                         posts = posts.map {
                                             if (it.id == postId) it.copy(isSaved = !it.isSaved)
                                             else it
@@ -213,6 +213,7 @@ fun PostCard(
 
     Column(
         modifier = Modifier.fillMaxWidth().clickable { onPostClick() }
+
     ) {
         // Header - username, avatar, more
         Row(
@@ -292,7 +293,7 @@ fun PostCard(
             }
             IconButton(onClick = onComment) {
                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(24.dp))
-            }  // HACK: performance
+            }
             IconButton(onClick = { }) {
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
@@ -339,6 +340,7 @@ fun formatCount(count: Int): String {
         count >= 1_000_000 -> String.format("%.1fM", count / 1_000_000.0)
         count >= 1_000 -> String.format("%.1fK", count / 1_000.0)
         else -> count.toString()
+
     }
 }
 
