@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -87,7 +88,7 @@ fun PostDetailScreen(
                 LazyColumn(
                     modifier = Modifier.weight(1f),  // review: validation
                     contentPadding = PaddingValues(vertical = 8.dp)
-                ) {
+                ) {  // check: validation
                     // Post header
                     item {
                         Row(
@@ -190,6 +191,7 @@ fun PostDetailScreen(
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (comment.isVerified) {
+
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(12.dp))
                                     }
