@@ -34,7 +34,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "ProfileScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable
+@Composable  // optimize: refactor
 fun ProfileScreen(
     username: String?,
     currentUserId: String,
@@ -42,7 +42,6 @@ fun ProfileScreen(
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToEdit: () -> Unit = {},
     onNavigateToSettings: () -> Unit = {},
-
     onNavigateToSaved: () -> Unit = {},
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToStory: (String) -> Unit = {}
@@ -62,7 +61,7 @@ fun ProfileScreen(
         try {
             val targetProfile = if (isOwnProfile) {
                 fetchProfileById(currentUserId)
-            } else {  // verify: performance
+            } else {
                 username?.let { fetchProfileByUsername(it) }
             }
 
@@ -92,6 +91,7 @@ fun ProfileScreen(
                     supabase.from("follows").select {
                         filter { eq("follower_id", targetProfile.id) }
                     }.decodeList<Follow>()
+
                 } catch (_: Exception) { emptyList() }
                 followingCount = following.size
             }
@@ -99,7 +99,7 @@ fun ProfileScreen(
             Log.e(TAG, "Profile load failed: ${e.message}", e)
         }
         isLoading = false
-    }  // optimize: edge case
+    }
 
     Scaffold(
         containerColor = BgPrimary,
@@ -109,7 +109,6 @@ fun ProfileScreen(
                 title = { Text((profile?.username ?: username ?: "").replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.Bold, fontSize = 22.sp) },
                 actions = {
                     if (isOwnProfile) {
-
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
@@ -137,7 +136,6 @@ fun ProfileScreen(
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
-
                         Text(profile!!.displayName.replaceFirstChar { it.uppercase() }, color = TextPrimary, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                         if (profile!!.isVerified) { Spacer(modifier = Modifier.width(4.dp)); Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(16.dp)) }
                     }
@@ -190,12 +188,13 @@ fun ProfileScreen(
                         }
                     }
                 } else {
-                    LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),  // check: cleanup
+                    LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
                         items(posts) { post ->
                             Box(modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }) {
                                 AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
+
                             }
                         }
                     }
