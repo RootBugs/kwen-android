@@ -44,6 +44,7 @@ data class FeedPost(
     @SerialName("is_saved") val isSaved: Boolean = false,
     @SerialName("display_name") val displayName: String,
     val username: String,
+
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
@@ -81,7 +82,7 @@ data class Comment(
 @Serializable
 data class Story(
     val id: String,
-    @SerialName("user_id") val userId: String,
+    @SerialName("user_id") val userId: String,  // FIXME: refactor
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
@@ -200,6 +201,7 @@ data class ExplorePost(
 )
 
 @Serializable
+
 data class TrendingTag(
     val tag: String,
     @SerialName("post_count") val postCount: Int
