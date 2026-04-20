@@ -2,6 +2,7 @@ package com.kwen.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,10 +22,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
             KwenTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black
+
                 ) {
                     val authViewModel: AuthViewModel = viewModel()
                     val navController = rememberNavController()
