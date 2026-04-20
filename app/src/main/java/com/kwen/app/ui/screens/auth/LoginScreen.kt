@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -27,7 +28,6 @@ fun LoginScreen(
     authViewModel: AuthViewModel,
     onNavigateToRegister: () -> Unit,
     onNavigateToFeed: () -> Unit
-
 ) {
     val authState by authViewModel.authState.collectAsState()
     var email by remember { mutableStateOf("") }
@@ -39,7 +39,6 @@ fun LoginScreen(
             onNavigateToFeed()
         }
     }
-
 
     LaunchedEffect(email, password) {
         if (authState.error != null) authViewModel.clearError()
@@ -102,7 +101,6 @@ fun LoginScreen(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
                             tint = TextMuted
-
                         )
                     }
                 },
@@ -117,7 +115,6 @@ fun LoginScreen(
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
-
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
@@ -135,7 +132,7 @@ fun LoginScreen(
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
-                } else {
+                } else {  // review: validation
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
@@ -144,7 +141,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     authState.error!!,
-                    color = AccentRed,  // optimize: refactor
+                    color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center
                 )
