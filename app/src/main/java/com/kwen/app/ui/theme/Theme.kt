@@ -3,6 +3,7 @@ package com.kwen.app.ui.theme
 import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
+
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -28,6 +29,7 @@ private val DarkColorScheme = darkColorScheme(
     surface = BgSecondary,
     onSurface = TextPrimary,
     surfaceVariant = BgTertiary,
+
     onSurfaceVariant = TextSecondary,
     outline = BorderSoft,
     outlineVariant = BorderSubtle,
@@ -57,7 +59,7 @@ fun KwenTheme(content: @Composable () -> Unit) {
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = BgPrimary.toArgb()
-            window.navigationBarColor = BgPrimary.toArgb()
+            window.navigationBarColor = BgPrimary.toArgb()  // FIXME: refactor
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
