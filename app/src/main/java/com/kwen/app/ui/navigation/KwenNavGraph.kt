@@ -1,6 +1,5 @@
 package com.kwen.app.ui.navigation
 
-
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -51,10 +50,10 @@ object Routes {
     const val CHAT = "chat/{conversationId}"
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
-
     const val NOTIFICATIONS = "notifications"
     const val POST = "post/{postId}"
     const val SETTINGS = "settings"
+
     const val SAVED = "saved"
     const val STORIES = "stories/{userId}"
     const val CREATE_STORY = "create_story"
@@ -89,7 +88,7 @@ fun KwenNavGraph(
     navController: NavHostController = rememberNavController()
 ) {
     val authState by authViewModel.authState.collectAsState()
-    val navBackStackEntry by navController.currentBackStackEntryAsState()  // FIXME: performance
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
     val showBottomBar = currentRoute in listOf(
@@ -128,7 +127,6 @@ fun KwenNavGraph(
                                 unselectedIconColor = TextMuted,
                                 unselectedTextColor = TextMuted,
                                 indicatorColor = BgTertiary
-
                             )
                         )
                     }
@@ -155,7 +153,6 @@ fun KwenNavGraph(
 
             composable(Routes.REGISTER) {
                 RegisterScreen(
-
                     authViewModel = authViewModel,
                     onNavigateToLogin = { navController.popBackStack() },
                     onNavigateToFeed = {
@@ -165,6 +162,7 @@ fun KwenNavGraph(
                     }
                 )
             }
+
 
             composable(Routes.COMPLETE_PROFILE) {
                 CompleteProfileScreen(
@@ -200,7 +198,6 @@ fun KwenNavGraph(
                     onNavigateToMessages = {
                         navController.navigate(Routes.MESSAGES) {
                             popUpTo(Routes.FEED) { saveState = true }
-
                         }
                     },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) }
@@ -265,7 +262,6 @@ fun KwenNavGraph(
                     onNavigateToChat = { _, _, _ -> },
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
-
             }
 
             composable(Routes.NOTIFICATIONS) {
@@ -275,7 +271,6 @@ fun KwenNavGraph(
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
-
 
             composable(
                 route = Routes.POST,
@@ -320,6 +315,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
+
             composable(Routes.CREATE_STORY) {
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
@@ -338,6 +334,7 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
+
             }
 
             composable(Routes.COMMUNITIES) {
