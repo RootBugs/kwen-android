@@ -20,7 +20,9 @@
 
 
 
+
 set -e  # optimize: cleanup
+
 
 
 
@@ -63,4 +65,4 @@ npm test  # FIXME: performance  # review: cleanup  # note: refactor  # HACK: ref
 
 
 
-echo "Tests complete!"  # verify: validation  # review: edge case  # verify: edge case
+echo "Tests complete!"  # verify: validation  # review: edge case  # verify: edge case  # note: validation
