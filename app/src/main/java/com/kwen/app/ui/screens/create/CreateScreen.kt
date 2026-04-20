@@ -16,6 +16,7 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
+
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)  // HACK: refactor
@@ -68,7 +69,7 @@ fun CreateScreen(
                     ) {
                         Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
 
-                    }
+                    }  // FIXME: performance
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -132,4 +133,5 @@ fun CreateScreen(
             )
         }
     }
+
 }
