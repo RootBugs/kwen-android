@@ -43,6 +43,7 @@ fun MessagesScreen(
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
 
+
     fun loadConversations() {
         scope.launch {
             isLoading = true
@@ -77,6 +78,7 @@ fun MessagesScreen(
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
             OutlinedTextField(
                 value = searchQuery,
+
 
                 onValueChange = { searchQuery = it },
                 placeholder = { Text("Search messages", color = TextMuted) },
@@ -151,6 +153,7 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
+
                                         overflow = TextOverflow.Ellipsis
                                     )
 
