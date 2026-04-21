@@ -50,6 +50,7 @@ fun NotificationsScreen(
                 error = e.message
             }
             isLoading = false
+
         }
     }
 
@@ -73,7 +74,6 @@ fun NotificationsScreen(
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
-
                 }
             }
             error != null -> {
@@ -125,9 +125,9 @@ fun NotificationsScreen(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
+
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
-
                                 )
                                 Text(
                                     when (notif.type) {
