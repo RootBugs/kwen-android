@@ -29,7 +29,7 @@
             <rule>
               <match>
                 <AND>
-                  <NAME>xmlns:.*</NAME>
+                  <NAME>xmlns:.*</NAME>  <!-- check: refactor -->
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
@@ -63,6 +63,7 @@
           <section>
 
             <rule>
+
               <match>
                 <AND>
                   <NAME>name</NAME>
@@ -127,6 +128,6 @@
     </codeStyleSettings>
     <codeStyleSettings language="kotlin">
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
-    </codeStyleSettings>
+    </codeStyleSettings>  <!-- HACK: performance -->
   </code_scheme>
 </component>
