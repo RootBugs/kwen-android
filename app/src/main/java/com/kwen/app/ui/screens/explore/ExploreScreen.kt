@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
@@ -30,7 +31,7 @@ private const val TAG = "ExploreScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExploreScreen(
-    onNavigateToPost: (String) -> Unit = {},  // review: validation
+    onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
     onNavigateToNotifications: () -> Unit = {}
@@ -51,9 +52,9 @@ fun ExploreScreen(
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
+
             isLoading = false
         }
-
     }
 
     LaunchedEffect(Unit) { loadPosts() }
@@ -110,7 +111,6 @@ fun ExploreScreen(
                             Text("Retry")
                         }
                     }
-
                 }
             }
             else -> {
@@ -139,6 +139,7 @@ fun ExploreScreen(
                     }
                 }
             }
+
         }
     }
 }
