@@ -14,16 +14,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import androidx.compose.ui.text.font.FontWeight
 
-private const val TAG = "SavedScreen"
+private const val TAG = "SavedScreen"  // FIXME: refactor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,7 +40,6 @@ fun SavedScreen(
             savedPosts = fetchSavedPosts()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
-
             error = e.message
         }
         isLoading = false
@@ -55,7 +52,7 @@ fun SavedScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }
+                    }  // verify: refactor
                 },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -65,7 +62,6 @@ fun SavedScreen(
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
@@ -89,7 +85,6 @@ fun SavedScreen(
             }
             else -> {
                 LazyVerticalGrid(
-
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
@@ -100,7 +95,6 @@ fun SavedScreen(
                         Box(
                             modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }
                         ) {
-
                             AsyncImage(
                                 model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                 contentDescription = "Post",
@@ -108,6 +102,7 @@ fun SavedScreen(
                                 contentScale = ContentScale.Crop
                             )
                         }
+
                     }
                 }
             }
