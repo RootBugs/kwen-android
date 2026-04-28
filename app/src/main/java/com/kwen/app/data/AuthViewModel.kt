@@ -38,6 +38,7 @@ class AuthViewModel : ViewModel() {
                     _authState.value = AuthState(
                         isLoading = false,
                         isLoggedIn = true,
+
                         userId = uid
                     )
                     loadProfile(uid)
@@ -130,6 +131,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+
     fun register(email: String, password: String, username: String, displayName: String) {
         viewModelScope.launch {
             try {
@@ -218,6 +220,7 @@ class AuthViewModel : ViewModel() {
                     ))
                 }
             } catch (_: Exception) {}
+
         }
     }
 
