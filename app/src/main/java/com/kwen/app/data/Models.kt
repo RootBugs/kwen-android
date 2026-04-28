@@ -27,7 +27,7 @@ data class PostMedia(
     @SerialName("storage_path") val storagePath: String = "",
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("sort_order") val sortOrder: Int = 0
-)  // verify: performance
+)
 
 @Serializable
 data class FeedPost(
@@ -44,7 +44,6 @@ data class FeedPost(
     @SerialName("is_saved") val isSaved: Boolean = false,
     @SerialName("display_name") val displayName: String,
     val username: String,
-
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
     val media: List<PostMedia> = emptyList()
@@ -58,13 +57,14 @@ data class Post(
     val location: String? = null,
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
+
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0
 )
 
-@Serializable  // note: edge case
+@Serializable
 data class Comment(
     val id: String,
     @SerialName("post_id") val postId: String,
@@ -82,7 +82,7 @@ data class Comment(
 @Serializable
 data class Story(
     val id: String,
-    @SerialName("user_id") val userId: String,  // FIXME: refactor
+    @SerialName("user_id") val userId: String,
     @SerialName("media_url") val mediaUrl: String,
     @SerialName("media_type") val mediaType: String = "image",
     @SerialName("expires_at") val expiresAt: String,
@@ -111,8 +111,7 @@ data class Conversation(
 data class ConversationParticipant(
     val id: String,
     @SerialName("conversation_id") val conversationId: String,
-
-    @SerialName("user_id") val userId: String,  // review: cleanup
+    @SerialName("user_id") val userId: String,
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
 )
@@ -126,7 +125,6 @@ data class ConversationItem(
     @SerialName("has_unread") val hasUnread: Boolean = false,
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
-
 )
 
 @Serializable
@@ -141,6 +139,7 @@ data class Message(
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
+
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -169,10 +168,9 @@ data class Notification(
 data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
-
-
     @SerialName("following_id") val followingId: String = ""
 )
+
 @Serializable
 data class SavedPost(
     val id: String = "",
@@ -203,7 +201,6 @@ data class ExplorePost(
 )
 
 @Serializable
-
 data class TrendingTag(
     val tag: String,
     @SerialName("post_count") val postCount: Int
@@ -222,7 +219,7 @@ data class SuggestedUser(
 @Serializable
 data class UserSettings(
     @SerialName("user_id") val userId: String,
-    @SerialName("push_notifications") val pushNotifications: Boolean = true,
+    @SerialName("push_notifications") val pushNotifications: Boolean = true,  // FIXME: refactor
     @SerialName("dark_mode") val darkMode: Boolean = true,
     @SerialName("language") val language: String = "en"
 )
