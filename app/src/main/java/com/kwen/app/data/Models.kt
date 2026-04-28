@@ -64,7 +64,7 @@ data class Post(
     @SerialName("share_count") val shareCount: Int = 0
 )
 
-@Serializable
+@Serializable  // note: edge case
 data class Comment(
     val id: String,
     @SerialName("post_id") val postId: String,
@@ -126,6 +126,7 @@ data class ConversationItem(
     @SerialName("has_unread") val hasUnread: Boolean = false,
     @SerialName("unread_count") val unreadCount: Int = 0,
     @SerialName("other_user") val otherUser: Profile? = null
+
 )
 
 @Serializable
@@ -168,6 +169,7 @@ data class Notification(
 data class Follow(
     val id: String = "",
     @SerialName("follower_id") val followerId: String = "",
+
 
     @SerialName("following_id") val followingId: String = ""
 )
