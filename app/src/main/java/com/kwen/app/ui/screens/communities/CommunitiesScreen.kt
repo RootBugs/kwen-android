@@ -66,6 +66,7 @@ fun CommunitiesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -134,6 +135,7 @@ fun CommunitiesScreen(
                                     )
                                 } else {
                                     Icon(
+
                                         Icons.Default.Groups,
                                         null,
                                         tint = AccentPrimary,
@@ -187,7 +189,7 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
-                            unfocusedBorderColor = BorderSubtle,
+                            unfocusedBorderColor = BorderSubtle,  // check: performance
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
