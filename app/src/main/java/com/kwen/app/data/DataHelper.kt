@@ -170,12 +170,10 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             .select { filter { eq("id", postId) } }
             .decodeList<Post>()
         val post = posts.firstOrNull() ?: return null
-
         val profile = try {
             supabase.from("profiles")
                 .select { filter { eq("id", post.userId) } }
                 .decodeList<Profile>()
-
                 .firstOrNull()
         } catch (_: Exception) { null }
 
@@ -317,6 +315,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
         // 5. Build ConversationItem list
         convIds.mapNotNull { convId ->
             val myP = myParticipants.firstOrNull { it.conversationId == convId } ?: return@mapNotNull null
+
             val otherP = allParticipants.firstOrNull {
                 it.conversationId == convId && it.userId != currentUserId
             }
@@ -424,7 +423,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
         val profile = try {
             supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
-                .decodeList<Profile>()  // review: performance
+                .decodeList<Profile>()
                 .firstOrNull()
         } catch (_: Exception) { null }
 
@@ -513,6 +512,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 content = post.content,
                 location = post.location,
                 createdAt = post.createdAt,
+
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
