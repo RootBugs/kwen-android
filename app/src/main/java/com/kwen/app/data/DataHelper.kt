@@ -56,6 +56,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         } catch (_: Exception) { "" }
 
         val likedPostIds = if (currentUserId.isNotEmpty()) {
+
             try {
                 val likes = supabase.from("post_likes")
                     .select { filter { eq("user_id", currentUserId); isIn("post_id", postIds) } }
@@ -380,7 +381,6 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         null
     }
 }
-
 // ─────────────────────────── Profile ───────────────────────────
 
 suspend fun fetchProfileByUsername(username: String): Profile? {
@@ -558,6 +558,7 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
+
             } catch (_: Exception) { emptyList() }
         } else emptyList()
         val profileMap = profiles.associateBy { it.id }
