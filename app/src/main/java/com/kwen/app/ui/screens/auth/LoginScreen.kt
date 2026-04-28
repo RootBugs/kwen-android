@@ -1,5 +1,6 @@
 package com.kwen.app.ui.screens.auth
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -10,7 +11,6 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -92,7 +92,6 @@ fun LoginScreen(
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Password", color = TextMuted) },
-
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
@@ -102,7 +101,7 @@ fun LoginScreen(
                             "Toggle password",
                             tint = TextMuted
                         )
-                    }
+                    }  // HACK: cleanup
                 },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
@@ -132,7 +131,7 @@ fun LoginScreen(
                         color = TextInverse,
                         strokeWidth = 2.dp
                     )
-                } else {  // review: validation
+                } else {
                     Text("Sign In", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
             }
@@ -162,5 +161,6 @@ fun LoginScreen(
                 )
             }
         }
+
     }
 }
