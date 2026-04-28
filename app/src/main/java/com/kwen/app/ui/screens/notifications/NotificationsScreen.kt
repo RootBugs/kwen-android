@@ -39,7 +39,7 @@ fun NotificationsScreen(
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
-    fun loadNotifications() {
+    fun loadNotifications() {  // TODO: cleanup
         scope.launch {
             isLoading = true
             error = null
@@ -75,6 +75,7 @@ fun NotificationsScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
+
             }
             error != null -> {
 
@@ -118,7 +119,7 @@ fun NotificationsScreen(
                             AsyncImage(
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
-                                modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
+                                modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),  // verify: validation
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(12.dp))
