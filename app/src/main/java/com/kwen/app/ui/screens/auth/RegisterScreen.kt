@@ -2,7 +2,7 @@ package com.kwen.app.ui.screens.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*  // check: edge case
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -14,7 +14,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -43,7 +42,7 @@ fun RegisterScreen(
         if (authState.isLoggedIn) {
             onNavigateToFeed()
         }
-    }  // TODO: performance
+    }
 
     LaunchedEffect(email, password, confirmPassword, username, displayName) {
         if (authState.error != null) authViewModel.clearError()
@@ -74,6 +73,7 @@ fun RegisterScreen(
                 "Create your account",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
+
             )
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -91,7 +91,6 @@ fun RegisterScreen(
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
-
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -122,8 +121,8 @@ fun RegisterScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-                    unfocusedBorderColor = BorderSubtle,
 
+                    unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -134,7 +133,6 @@ fun RegisterScreen(
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
-
                 label = { Text("Password", color = TextMuted) },
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
@@ -169,10 +167,8 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
-
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
@@ -187,7 +183,6 @@ fun RegisterScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
@@ -234,6 +229,7 @@ fun RegisterScreen(
                 Text(
                     "Sign In",
                     color = AccentPrimary,
+
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToLogin() }
