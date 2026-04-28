@@ -41,6 +41,7 @@ fun EditProfileScreen(
     LaunchedEffect(Unit) {
         try {
             val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@LaunchedEffect
+
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
@@ -91,6 +92,7 @@ fun EditProfileScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
+
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -106,7 +108,6 @@ fun EditProfileScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AsyncImage(
-
                     model = profile?.avatarUrl ?: "",
                     contentDescription = "Avatar",
                     modifier = Modifier.size(100.dp).clip(CircleShape).background(BgTertiary),
@@ -139,8 +140,8 @@ fun EditProfileScreen(
 
                 OutlinedTextField(
                     value = username,
-
                     onValueChange = { username = it },
+
                     label = { Text("Username", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
