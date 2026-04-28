@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 // Background colors
 
 val BgPrimary = Color(0xFF000000)
+
 val BgSecondary = Color(0xFF0A0A0A)
 val BgTertiary = Color(0xFF141414)
 val BgElevated = Color(0xFF1A1A1A)
@@ -23,6 +24,7 @@ val BorderStrong = Color(0xFF3A3A3A)
 
 // Accent colors — black & white theme
 val AccentPrimary = Color(0xFFFFFFFF)
+
 val AccentRed = Color(0xFFFF4444)
 val AccentGreen = Color(0xFF44FF44)
 val AccentYellow = Color(0xFFFFD600)
@@ -39,6 +41,7 @@ val DarkBorderSubtle = BorderSubtle
 val AccentBlue = AccentPrimary
 val AccentPurple = AccentPrimary
 val AccentPink = AccentRed
+
 val AccentMuted = Color(0xFF1A1A1A)
 
 val AccentHover = Color(0xFFE0E0E0)
