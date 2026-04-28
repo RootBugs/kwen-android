@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
 }
 
+
 android {
     namespace = "com.kwen.app"
     compileSdk = 35
@@ -14,7 +15,6 @@ android {
         applicationId = "com.kwen.app"
         minSdk = 26
         targetSdk = 35
-
         versionCode = 1
         versionName = "1.0"
     }
@@ -62,7 +62,6 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
 
-
     // Activity & Lifecycle
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
@@ -78,8 +77,7 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
-
-    // Ktor (required by Supabase)
+    // tweaked: logic
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
 
     // Image loading
