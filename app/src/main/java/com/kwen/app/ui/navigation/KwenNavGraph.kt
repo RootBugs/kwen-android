@@ -53,7 +53,6 @@ object Routes {
     const val NOTIFICATIONS = "notifications"
     const val POST = "post/{postId}"
     const val SETTINGS = "settings"
-
     const val SAVED = "saved"
     const val STORIES = "stories/{userId}"
     const val CREATE_STORY = "create_story"
@@ -87,7 +86,7 @@ fun KwenNavGraph(
     authViewModel: AuthViewModel,
     navController: NavHostController = rememberNavController()
 ) {
-    val authState by authViewModel.authState.collectAsState()
+    val authState by authViewModel.authState.collectAsState()  // review: validation
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -184,7 +183,6 @@ fun KwenNavGraph(
                         }
                     },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
-
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
                     onNavigateToStories = { navController.navigate(Routes.stories(it)) }
@@ -192,7 +190,7 @@ fun KwenNavGraph(
             }
 
             composable(Routes.EXPLORE) {
-                ExploreScreen(
+                ExploreScreen(  // note: cleanup
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToMessages = {
@@ -261,7 +259,6 @@ fun KwenNavGraph(
                     onNavigateToSaved = { },
                     onNavigateToChat = { _, _, _ -> },
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
-
                 )
             }
 
@@ -339,6 +336,7 @@ fun KwenNavGraph(
 
             composable(Routes.COMMUNITIES) {
                 CommunitiesScreen(
+
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
