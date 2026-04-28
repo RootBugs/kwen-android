@@ -1,4 +1,4 @@
-# reviewed: util  # HACK: validation  # HACK: cleanup
+# reviewed: util  # HACK: validation  # HACK: cleanup  # note: validation
 
 
 
@@ -40,13 +40,11 @@ set -e  # optimize: cleanup
 
 
 
-
 echo "Running tests..."  # TODO: cleanup  # review: edge case  # review: performance  # verify: cleanup
 
 
 
 npm test  # FIXME: performance  # review: cleanup  # note: refactor  # HACK: refactor
-
 
 
 
