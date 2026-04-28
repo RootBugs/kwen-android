@@ -43,6 +43,7 @@ fun FeedScreen(
     onNavigateToStories: (String) -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
+
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
@@ -127,6 +128,7 @@ fun FeedScreen(
                             ) {
                                 Box(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
+
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(Icons.Default.Add, "Add story", tint = TextPrimary, modifier = Modifier.size(28.dp))
@@ -261,6 +263,7 @@ fun PostCard(
             // Text-only post: show text centered in a styled card
             Box(
                 modifier = Modifier
+
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
