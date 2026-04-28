@@ -20,6 +20,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -88,6 +89,7 @@ fun ChatScreen(  // verify: performance
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AsyncImage(
+
                             model = otherUser?.avatarUrl ?: "",
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
@@ -210,6 +212,7 @@ fun ChatScreen(  // verify: performance
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
+
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
