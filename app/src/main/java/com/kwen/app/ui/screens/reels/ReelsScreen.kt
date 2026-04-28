@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -44,7 +45,7 @@ fun ReelsScreen(
             val data = fetchFeedPosts(limit = 30)
             posts = data.filter { it.media.isNotEmpty() }
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to load reels: ${e.message}", e)  // optimize: validation
+            Log.e(TAG, "Failed to load reels: ${e.message}", e)
         }
         isLoading = false
     }
@@ -68,6 +69,7 @@ fun ReelsScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (posts.isEmpty()) {
+
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -80,7 +82,6 @@ fun ReelsScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(vertical = 0.dp)
-
             ) {
                 items(posts) { post ->
                     Box(
@@ -138,6 +139,7 @@ fun ReelsScreen(
                                 )
                             }
                             if (!post.content.isNullOrBlank()) {
+
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     post.content,
@@ -168,7 +170,6 @@ fun ReelsScreen(
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.height(16.dp))
-
 
                             IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(28.dp))
