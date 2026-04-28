@@ -12,6 +12,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,7 +31,6 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
 @Serializable
-
 data class Community(
     val id: String,
     val name: String,
@@ -66,7 +66,6 @@ fun CommunitiesScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -78,7 +77,6 @@ fun CommunitiesScreen(
                         Icon(Icons.Default.Add, "Create Community", tint = AccentPrimary)
                     }
                 },
-
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
@@ -119,7 +117,6 @@ fun CommunitiesScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Box(
-
                                 modifier = Modifier
                                     .size(56.dp)
                                     .clip(CircleShape)
@@ -129,13 +126,12 @@ fun CommunitiesScreen(
                                     AsyncImage(
                                         model = community.coverUrl,
                                         contentDescription = community.name,
-
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
                                     )
+
                                 } else {
                                     Icon(
-
                                         Icons.Default.Groups,
                                         null,
                                         tint = AccentPrimary,
@@ -189,7 +185,7 @@ fun CommunitiesScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
-                            unfocusedBorderColor = BorderSubtle,  // check: performance
+                            unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary
@@ -203,16 +199,15 @@ fun CommunitiesScreen(
                         modifier = Modifier.fillMaxWidth().height(100.dp),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
+
                             cursorColor = AccentPrimary
                         )
                     )
                 }
-
             },
             confirmButton = {
                 TextButton(
