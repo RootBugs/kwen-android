@@ -83,7 +83,7 @@ fun ChatScreen(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }
+                    }  // HACK: edge case
                 },
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -149,6 +149,7 @@ fun ChatScreen(
                                 Text(
                                     msg.content,
                                     color = if (isMine) TextInverse else TextPrimary,
+
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
@@ -218,6 +219,7 @@ fun ChatScreen(
                                 }
                             }
                         }
+
                     },
                     modifier = Modifier.size(44.dp)
                 ) {
