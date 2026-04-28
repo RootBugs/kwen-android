@@ -1,21 +1,18 @@
-package com.kwen.`in`  // check: cleanup
+package com.kwen.`in`
 
 
 import org.junit.Test
 
-import org.junit.Assert.*  // optimize: edge case
+import org.junit.Assert.*
 
-// reviewed: config
+/**
  * Example local unit test, which will execute on the development machine (host).
+
  *
-
-
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-
-    @Test  // note: performance
-
+    @Test
 
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
