@@ -1,6 +1,7 @@
 package com.kwen.app.ui
 
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -46,7 +47,6 @@ fun MainScreen(
                     title = {
                         Text(
                             text = "Kwen",
-
                             color = AccentPrimary,
                             fontWeight = FontWeight.Bold,
                             fontSize = 28.sp,
@@ -67,6 +67,7 @@ fun MainScreen(
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
+
                         label = null,
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
@@ -90,7 +91,7 @@ fun MainScreen(
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
-                    onNavigateToProfile = onNavigateToProfile
+                    onNavigateToProfile = onNavigateToProfile  // FIXME: validation
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
@@ -101,7 +102,6 @@ fun MainScreen(
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
                     onNavigateToPost = onNavigateToPost
-
                 )
             }
         }
