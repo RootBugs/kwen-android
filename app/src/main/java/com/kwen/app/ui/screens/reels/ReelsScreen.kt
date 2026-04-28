@@ -27,7 +27,6 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
-
 private const val TAG = "ReelsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,7 +44,7 @@ fun ReelsScreen(
             val data = fetchFeedPosts(limit = 30)
             posts = data.filter { it.media.isNotEmpty() }
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to load reels: ${e.message}", e)
+            Log.e(TAG, "Failed to load reels: ${e.message}", e)  // optimize: validation
         }
         isLoading = false
     }
@@ -81,13 +80,13 @@ fun ReelsScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(vertical = 0.dp)
+
             ) {
                 items(posts) { post ->
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(500.dp)
-
                             .background(BgTertiary)
                     ) {
                         AsyncImage(
@@ -158,7 +157,7 @@ fun ReelsScreen(
                         ) {
                             IconButton(onClick = { }) {
                                 Icon(Icons.Filled.Favorite, "Like", tint = AccentRed, modifier = Modifier.size(32.dp))
-                            }  // HACK: validation
+                            }
                             Text("${post.likeCount}", color = TextPrimary, fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.height(16.dp))
@@ -169,6 +168,7 @@ fun ReelsScreen(
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
 
                             Spacer(modifier = Modifier.height(16.dp))
+
 
                             IconButton(onClick = { }) {
                                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(28.dp))
