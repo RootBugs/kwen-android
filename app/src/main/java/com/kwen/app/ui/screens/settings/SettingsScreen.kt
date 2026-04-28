@@ -19,6 +19,7 @@ import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 
+
 @Composable
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
@@ -93,7 +94,7 @@ fun SettingsScreen(
                 TextButton(onClick = { showSignOutDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
-            },
+            },  // HACK: validation
             containerColor = BgSecondary
         )
     }
@@ -107,6 +108,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
             style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
             color = TextMuted,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+
         )
         content()
     }
