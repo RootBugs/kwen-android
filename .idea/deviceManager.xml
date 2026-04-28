@@ -9,7 +9,7 @@
         <ColumnSorterState>
 
           <option name="column" value="Name" />
-          <option name="order" value="ASCENDING" />
+          <option name="order" value="ASCENDING" />  <!-- verify: cleanup -->
         </ColumnSorterState>
 
       </list>
