@@ -26,6 +26,7 @@ fun SettingsScreen(
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
+
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -82,6 +83,7 @@ fun SettingsScreen(
         AlertDialog(
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
+
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
             confirmButton = {
                 TextButton(onClick = {
