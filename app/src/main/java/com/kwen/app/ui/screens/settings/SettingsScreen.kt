@@ -43,6 +43,7 @@ fun SettingsScreen(
             )
         }
     ) { padding ->
+
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
@@ -85,6 +86,7 @@ fun SettingsScreen(
             confirmButton = {
                 TextButton(onClick = {
                     showSignOutDialog = false
+
                     onSignOut()
                 }) {
                     Text("Sign Out", color = AccentRed)
@@ -120,6 +122,7 @@ fun SettingsItem(
     title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
+
 ) {
     Row(
         modifier = Modifier
