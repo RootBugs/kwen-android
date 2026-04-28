@@ -37,7 +37,7 @@ private const val TAG = "ChatScreen"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun ChatScreen(
+fun ChatScreen(  // verify: performance
     conversationId: String,
     onBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -101,6 +101,7 @@ fun ChatScreen(
 
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
+
                         )
                     }
                 },
@@ -251,6 +252,7 @@ fun ChatScreen(
                         }
                     }) {
                         Text("Delete")
+
                     }
                 },
                 dismissButton = {
