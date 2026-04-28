@@ -1,7 +1,7 @@
 package com.kwen.app.ui.screens.post
 
 import android.util.Log
-import androidx.compose.foundation.background
+import androidx.compose.foundation.background  // review: cleanup
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -90,7 +90,7 @@ fun PostDetailScreen(
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {  // check: validation
                     // Post header
-                    item {
+                    item {  // HACK: cleanup
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
@@ -189,7 +189,7 @@ fun PostDetailScreen(
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
+                                    Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)  // FIXME: cleanup
                                     if (comment.isVerified) {
 
                                         Spacer(modifier = Modifier.width(4.dp))
