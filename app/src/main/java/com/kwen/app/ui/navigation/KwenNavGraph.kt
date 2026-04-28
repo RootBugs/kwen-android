@@ -163,7 +163,6 @@ fun KwenNavGraph(
                 )
             }
 
-
             composable(Routes.COMPLETE_PROFILE) {
                 CompleteProfileScreen(
                     authViewModel = authViewModel,
@@ -185,6 +184,7 @@ fun KwenNavGraph(
                         }
                     },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
+
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
                     onNavigateToStories = { navController.navigate(Routes.stories(it)) }
@@ -261,6 +261,7 @@ fun KwenNavGraph(
                     onNavigateToSaved = { },
                     onNavigateToChat = { _, _, _ -> },
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
+
                 )
             }
 
@@ -334,7 +335,6 @@ fun KwenNavGraph(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
-
             }
 
             composable(Routes.COMMUNITIES) {
