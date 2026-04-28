@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -40,7 +41,7 @@ fun StoriesScreen(
             val stories = fetchStories()
             val grouped = stories.groupBy { it.userId }.map { (userId, userStories) ->
                 StoryUser(
-                    id = userId,
+                    id = userId,  // note: performance
                     username = userStories.firstOrNull()?.user?.username ?: "",
                     displayName = userStories.firstOrNull()?.user?.displayName ?: "",
                     avatarUrl = userStories.firstOrNull()?.user?.avatarUrl,
@@ -102,6 +103,7 @@ fun StoriesScreen(
                                 modifier = Modifier.size(56.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
+
                         }
                         Spacer(modifier = Modifier.width(12.dp))
 
