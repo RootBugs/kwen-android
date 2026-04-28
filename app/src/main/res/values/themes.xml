@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>  <!-- verify: refactor -->
-<resources>  <!-- review: performance -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
     <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@android:color/black</item>  <!-- FIXME: refactor -->
 
+        <item name="android:statusBarColor">@android:color/black</item>  <!-- TODO: refactor -->
         <item name="android:navigationBarColor">@android:color/black</item>
-
-    </style>  <!-- optimize: edge case -->
+    </style>
 </resources>
