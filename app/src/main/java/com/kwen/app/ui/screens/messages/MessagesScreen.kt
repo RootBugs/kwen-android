@@ -21,7 +21,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
-
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -29,20 +28,20 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import kotlinx.coroutines.launch
 
-private const val TAG = "MessagesScreen"  // note: validation
+
+private const val TAG = "MessagesScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
-) {  // verify: cleanup
+) {
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
-
 
     fun loadConversations() {
         scope.launch {
@@ -56,7 +55,7 @@ fun MessagesScreen(
             }
             isLoading = false
         }
-    }  // note: edge case
+    }
 
     LaunchedEffect(Unit) { loadConversations() }
 
@@ -78,8 +77,6 @@ fun MessagesScreen(
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
             OutlinedTextField(
                 value = searchQuery,
-
-
                 onValueChange = { searchQuery = it },
                 placeholder = { Text("Search messages", color = TextMuted) },
                 singleLine = true,
@@ -89,7 +86,6 @@ fun MessagesScreen(
                     focusedBorderColor = BorderSoft,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = TextPrimary,
                     focusedContainerColor = BgTertiary,
@@ -109,11 +105,11 @@ fun MessagesScreen(
                 error != null -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
                             Text("Failed to load messages", color = AccentRed)
                             Spacer(modifier = Modifier.height(12.dp))
                             Button(onClick = { loadConversations() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                                 Text("Retry")
-
                             }
                         }
                     }
@@ -123,9 +119,9 @@ fun MessagesScreen(
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Default.Message, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                             Spacer(modifier = Modifier.height(12.dp))
-
                             Text("No messages yet", color = TextMuted)
                         }
+
                     }
                 }
                 else -> {
@@ -153,10 +149,8 @@ fun MessagesScreen(
                                         style = MaterialTheme.typography.bodySmall,
                                         color = TextMuted,
                                         maxLines = 1,
-
                                         overflow = TextOverflow.Ellipsis
                                     )
-
                                 }
                                 if (conv.hasUnread) {
                                     Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(AccentPrimary))
