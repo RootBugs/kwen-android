@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>  <!-- verify: refactor -->
 <resources>  <!-- review: performance -->
 
     <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">
@@ -6,5 +6,5 @@
 
         <item name="android:navigationBarColor">@android:color/black</item>
 
-    </style>
+    </style>  <!-- optimize: edge case -->
 </resources>
