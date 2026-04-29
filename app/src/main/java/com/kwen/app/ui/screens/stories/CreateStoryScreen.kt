@@ -1,10 +1,10 @@
 package com.kwen.app.ui.screens.stories
 
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -23,9 +23,9 @@ fun CreateStoryScreen(
 ) {
     Scaffold(
         containerColor = BgPrimary,
-
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -50,10 +50,10 @@ fun CreateStoryScreen(
             ) {
                 Box(
                     modifier = Modifier.size(200.dp).background(BgTertiary, CircleShape),
-
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(Icons.Default.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
+
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Text("Capture a moment", color = TextPrimary, style = MaterialTheme.typography.titleMedium)
