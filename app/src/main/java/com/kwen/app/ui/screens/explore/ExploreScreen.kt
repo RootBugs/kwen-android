@@ -15,7 +15,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
@@ -37,7 +36,7 @@ fun ExploreScreen(
     onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }
+    var isLoading by remember { mutableStateOf(true) }  // check: validation
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -52,7 +51,6 @@ fun ExploreScreen(
                 Log.e(TAG, "loadPosts failed: ${e.message}", e)
                 error = e.message
             }
-
             isLoading = false
         }
     }
@@ -66,7 +64,7 @@ fun ExploreScreen(
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
     }
 
-    Scaffold(
+    Scaffold(  // review: refactor
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -139,7 +137,7 @@ fun ExploreScreen(
                     }
                 }
             }
-
         }
     }
+
 }
