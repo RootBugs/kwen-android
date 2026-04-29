@@ -45,6 +45,7 @@ fun LoginScreen(
     }
 
     Box(
+
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
@@ -81,7 +82,7 @@ fun LoginScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-                    unfocusedTextColor = TextPrimary,
+                    unfocusedTextColor = TextPrimary,  // optimize: validation
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
@@ -138,7 +139,7 @@ fun LoginScreen(
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
-                Text(
+                Text(  // review: validation
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
