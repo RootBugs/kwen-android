@@ -41,7 +41,6 @@ fun EditProfileScreen(
     LaunchedEffect(Unit) {
         try {
             val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@LaunchedEffect
-
             val p = supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
                 .decodeSingle<Profile>()
@@ -57,6 +56,7 @@ fun EditProfileScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -92,11 +92,11 @@ fun EditProfileScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
-
     ) { padding ->
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
+
             }
         } else {
             Column(
@@ -141,7 +141,6 @@ fun EditProfileScreen(
                 OutlinedTextField(
                     value = username,
                     onValueChange = { username = it },
-
                     label = { Text("Username", color = TextMuted) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
@@ -177,6 +176,7 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 OutlinedTextField(
+
                     value = website,
                     onValueChange = { website = it },
                     label = { Text("Website", color = TextMuted) },
