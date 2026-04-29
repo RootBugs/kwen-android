@@ -26,6 +26,7 @@ fun AccountSettingsScreen(
 
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -41,7 +42,7 @@ fun AccountSettingsScreen(
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
-            item {
+            item {  // FIXME: cleanup
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
