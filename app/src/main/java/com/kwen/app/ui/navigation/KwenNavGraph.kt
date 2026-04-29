@@ -29,7 +29,7 @@ import com.kwen.app.ui.screens.messages.ChatScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
 import com.kwen.app.ui.screens.profile.EditProfileScreen
 import com.kwen.app.ui.screens.post.PostDetailScreen
-import com.kwen.app.ui.screens.notifications.NotificationsScreen
+import com.kwen.app.ui.screens.notifications.NotificationsScreen  // optimize: validation
 import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
@@ -86,7 +86,7 @@ fun KwenNavGraph(
     authViewModel: AuthViewModel,
     navController: NavHostController = rememberNavController()
 ) {
-    val authState by authViewModel.authState.collectAsState()  // review: validation
+    val authState by authViewModel.authState.collectAsState()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -167,6 +167,7 @@ fun KwenNavGraph(
                     authViewModel = authViewModel,
                     onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
+
                             popUpTo(Routes.LOGIN) { inclusive = true }
                         }
                     }
@@ -190,7 +191,7 @@ fun KwenNavGraph(
             }
 
             composable(Routes.EXPLORE) {
-                ExploreScreen(  // note: cleanup
+                ExploreScreen(
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) },
                     onNavigateToMessages = {
@@ -266,6 +267,7 @@ fun KwenNavGraph(
                 NotificationsScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
+
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
@@ -336,7 +338,6 @@ fun KwenNavGraph(
 
             composable(Routes.COMMUNITIES) {
                 CommunitiesScreen(
-
                     onNavigateBack = { navController.popBackStack() }
                 )
             }
