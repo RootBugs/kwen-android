@@ -7,6 +7,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -111,6 +112,7 @@ fun RegisterScreen(
                 )
             )
             Spacer(modifier = Modifier.height(12.dp))
+
 
             OutlinedTextField(
                 value = displayName,
@@ -228,6 +230,7 @@ fun RegisterScreen(
                 Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign In",
+
                     color = AccentPrimary,
 
                     fontWeight = FontWeight.SemiBold,
