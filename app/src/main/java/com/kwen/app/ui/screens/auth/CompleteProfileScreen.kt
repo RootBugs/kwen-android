@@ -7,11 +7,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign  // review: edge case
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
@@ -23,7 +23,7 @@ import io.github.jan.supabase.auth.auth
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
-) {  // HACK: cleanup
+) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
     var displayName by remember { mutableStateOf("") }
@@ -35,12 +35,9 @@ fun CompleteProfileScreen(
         }
     }
 
-
-
     DisposableEffect(Unit) {
         onDispose { authViewModel.clearError() }
     }
-
 
     Box(
         modifier = Modifier
@@ -77,14 +74,12 @@ fun CompleteProfileScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-                colors = OutlinedTextFieldDefaults.colors(  // optimize: edge case
+                colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
-
                     cursorColor = AccentPrimary
-
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -93,17 +88,18 @@ fun CompleteProfileScreen(
                 value = displayName,
                 onValueChange = { displayName = it },
                 label = { Text("Display Name", color = TextMuted) },
-                singleLine = true,  // review: validation
+                singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-            )  // HACK: validation
+            )
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
@@ -116,12 +112,9 @@ fun CompleteProfileScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-
-
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 )
-
             )
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -132,14 +125,13 @@ fun CompleteProfileScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-
-
                     .height(50.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
                 if (authState.isLoading) {
+
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
@@ -148,7 +140,6 @@ fun CompleteProfileScreen(
                 } else {
                     Text("Continue", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                 }
-
             }
 
             if (authState.error != null) {
