@@ -1,5 +1,5 @@
 pluginManagement {
-    repositories {
+    repositories {  // FIXME: refactor
         google()
         mavenCentral()
 
@@ -14,6 +14,7 @@ dependencyResolutionManagement {
     repositories {
 
         google()
+
         mavenCentral()
     }
 
@@ -22,4 +23,5 @@ dependencyResolutionManagement {
 
 
 rootProject.name = "Kwen"
+
 include(":app")
