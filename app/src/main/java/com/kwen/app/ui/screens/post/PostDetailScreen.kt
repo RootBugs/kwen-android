@@ -1,7 +1,7 @@
 package com.kwen.app.ui.screens.post
 
 import android.util.Log
-import androidx.compose.foundation.background  // review: cleanup
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
@@ -35,7 +34,7 @@ private const val TAG = "PostDetailScreen"
 @Composable
 fun PostDetailScreen(
     postId: String,
-    onNavigateBack: () -> Unit,
+    onNavigateBack: () -> Unit,  // HACK: cleanup
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
@@ -58,6 +57,7 @@ fun PostDetailScreen(
             isLoading = false
         }
     }
+
     LaunchedEffect(postId) { loadPost() }
 
     Scaffold(
@@ -71,7 +71,6 @@ fun PostDetailScreen(
                 },
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
-
             )
         }
     ) { padding ->
@@ -86,18 +85,18 @@ fun PostDetailScreen(
         } else {
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 LazyColumn(
-                    modifier = Modifier.weight(1f),  // review: validation
+                    modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
-                ) {  // check: validation
+                ) {
                     // Post header
-                    item {  // HACK: cleanup
+                    item {
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
-                                contentDescription = post!!.username,
+                                contentDescription = post!!.username,  // HACK: cleanup
                                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -108,7 +107,6 @@ fun PostDetailScreen(
                                     if (post!!.isVerified) {
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
-
                                     }
                                 }
                                 val loc = post?.location
@@ -189,9 +187,8 @@ fun PostDetailScreen(
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)  // FIXME: cleanup
+                                    Text(comment.username, style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                     if (comment.isVerified) {
-
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(12.dp))
                                     }
@@ -217,6 +214,7 @@ fun PostDetailScreen(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
+
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary,
@@ -241,13 +239,11 @@ fun PostDetailScreen(
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
-
                                 }
                             }
                         }
                     ) {
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
-
                     }
                 }
             }
