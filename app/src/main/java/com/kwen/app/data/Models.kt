@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Profile(
+
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
@@ -57,7 +58,6 @@ data class Post(
     val location: String? = null,
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
-
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
@@ -112,6 +112,7 @@ data class ConversationParticipant(
     val id: String,
     @SerialName("conversation_id") val conversationId: String,
     @SerialName("user_id") val userId: String,
+
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
 )
@@ -139,7 +140,6 @@ data class Message(
     @SerialName("is_mine") val isMine: Boolean = false,
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
-
     @SerialName("created_at") val createdAt: String = ""
 )
 
@@ -210,6 +210,7 @@ data class TrendingTag(
 data class SuggestedUser(
     val id: String,
     val username: String,
+
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
@@ -219,7 +220,7 @@ data class SuggestedUser(
 @Serializable
 data class UserSettings(
     @SerialName("user_id") val userId: String,
-    @SerialName("push_notifications") val pushNotifications: Boolean = true,  // FIXME: refactor
+    @SerialName("push_notifications") val pushNotifications: Boolean = true,
     @SerialName("dark_mode") val darkMode: Boolean = true,
     @SerialName("language") val language: String = "en"
 )
