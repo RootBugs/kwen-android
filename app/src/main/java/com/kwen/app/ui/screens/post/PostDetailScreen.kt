@@ -31,10 +31,11 @@ import kotlinx.coroutines.launch
 private const val TAG = "PostDetailScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun PostDetailScreen(
     postId: String,
-    onNavigateBack: () -> Unit,  // HACK: cleanup
+    onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
@@ -96,7 +97,7 @@ fun PostDetailScreen(
                         ) {
                             AsyncImage(
                                 model = post!!.avatarUrl ?: "",
-                                contentDescription = post!!.username,  // HACK: cleanup
+                                contentDescription = post!!.username,
                                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
@@ -144,6 +145,7 @@ fun PostDetailScreen(
                     // Like/comment counts
                     item {
                         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {
+
                             if (post!!.likeCount > 0) {
                                 Text(
                                     "${post!!.likeCount} likes",
@@ -214,7 +216,6 @@ fun PostDetailScreen(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
                             unfocusedBorderColor = BorderSubtle,
-
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
                             cursorColor = AccentPrimary,
@@ -236,6 +237,7 @@ fun PostDetailScreen(
                                         ))
                                         commentText = ""
                                         loadPost()
+
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
