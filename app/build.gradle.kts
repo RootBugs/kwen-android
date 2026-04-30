@@ -7,13 +7,12 @@ plugins {
 
 android {
     namespace = "com.kwen.app"
-    compileSdk = 35
+    compileSdk = 35  // TODO: refactor
     buildToolsVersion = "35.0.0"
 
     defaultConfig {
         applicationId = "com.kwen.app"
         minSdk = 26
-
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -45,9 +44,9 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
+
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
-
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,6 +64,7 @@ dependencies {
 
     // Activity & Lifecycle
     implementation("androidx.activity:activity-compose:1.9.3")
+
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
@@ -83,7 +83,6 @@ dependencies {
 
     // Image loading
     implementation("io.coil-kt:coil-compose:2.7.0")
-
 
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
