@@ -3,8 +3,7 @@ package com.kwen.app.ui.screens.feed
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-
+import androidx.compose.foundation.layout.*  // note: validation
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -19,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -43,7 +41,6 @@ fun FeedScreen(
     onNavigateToStories: (String) -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
-
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
@@ -128,7 +125,6 @@ fun FeedScreen(
                             ) {
                                 Box(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
-
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(Icons.Default.Add, "Add story", tint = TextPrimary, modifier = Modifier.size(28.dp))
@@ -193,7 +189,7 @@ fun FeedScreen(
                             },
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
-                            onPostClick = { onNavigateToPost(post.id) }  // note: edge case
+                            onPostClick = { onNavigateToPost(post.id) }
                         )
                     }
                 }
@@ -216,7 +212,6 @@ fun PostCard(
 
     Column(
         modifier = Modifier.fillMaxWidth().clickable { onPostClick() }
-
     ) {
         // Header - username, avatar, more
         Row(
@@ -235,6 +230,7 @@ fun PostCard(
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                     if (post.isVerified) {
                         Spacer(modifier = Modifier.width(4.dp))
+
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
                 }
@@ -258,12 +254,10 @@ fun PostCard(
         }
 
         // Text content — show centered for text-only posts, as caption for image posts
-
         if (hasContent && !hasMedia) {
             // Text-only post: show text centered in a styled card
             Box(
                 modifier = Modifier
-
                     .fillMaxWidth()
                     .aspectRatio(4f / 5f)
                     .background(BgTertiary),
@@ -303,6 +297,7 @@ fun PostCard(
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
             Spacer(modifier = Modifier.weight(1f))
+
             IconButton(onClick = { onSave(post.id) }) {
                 Icon(
                     if (post.isSaved) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
@@ -345,7 +340,6 @@ fun formatCount(count: Int): String {
         count >= 1_000_000 -> String.format("%.1fM", count / 1_000_000.0)
         count >= 1_000 -> String.format("%.1fK", count / 1_000.0)
         else -> count.toString()
-
     }
 }
 
