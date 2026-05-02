@@ -2,7 +2,7 @@ package com.kwen.app.ui.screens.notifications
 
 import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable  // check: validation
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,7 +12,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,7 +38,7 @@ fun NotificationsScreen(
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
-    fun loadNotifications() {  // TODO: cleanup
+    fun loadNotifications() {
         scope.launch {
             isLoading = true
             error = null
@@ -48,9 +47,9 @@ fun NotificationsScreen(
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
+
             }
             isLoading = false
-
         }
     }
 
@@ -75,16 +74,15 @@ fun NotificationsScreen(
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
-
             }
             error != null -> {
-
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
+
                         }
                     }
                 }
@@ -107,7 +105,6 @@ fun NotificationsScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
-
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
@@ -119,7 +116,7 @@ fun NotificationsScreen(
                             AsyncImage(
                                 model = notif.actorAvatarUrl ?: "",
                                 contentDescription = notif.actorDisplayName,
-                                modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),  // verify: validation
+                                modifier = Modifier.size(44.dp).clip(CircleShape).background(BgTertiary),
                                 contentScale = ContentScale.Crop
                             )
                             Spacer(modifier = Modifier.width(12.dp))
@@ -128,7 +125,6 @@ fun NotificationsScreen(
                                     notif.actorDisplayName,
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary,
-
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
@@ -143,6 +139,7 @@ fun NotificationsScreen(
                                     color = TextMuted,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
+
                                 )
                             }
                             if (!notif.isRead) {
