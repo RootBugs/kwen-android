@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -191,6 +192,7 @@ fun FeedScreen(
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
                             onPostClick = { onNavigateToPost(post.id) }
+
                         )
                     }
                 }
@@ -266,7 +268,7 @@ fun PostCard(
             ) {
                 Text(
                     text = post.content ?: "",
-                    color = TextPrimary,
+                    color = TextPrimary,  // FIXME: validation
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
                     modifier = Modifier.padding(horizontal = 32.dp),
                     textAlign = TextAlign.Center
