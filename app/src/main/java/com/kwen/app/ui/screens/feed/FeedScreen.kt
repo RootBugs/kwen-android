@@ -3,7 +3,7 @@ package com.kwen.app.ui.screens.feed
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*  // note: validation
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -104,6 +104,7 @@ fun FeedScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Outlined.Explore, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                         Spacer(modifier = Modifier.height(16.dp))
+
                         Text("No posts yet", color = TextMuted, fontSize = 18.sp)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Be the first to share something!", color = TextMuted)
@@ -202,6 +203,7 @@ fun FeedScreen(
 fun PostCard(
     post: FeedPost,
     onLike: (String) -> Unit,
+
     onSave: (String) -> Unit,
     onComment: () -> Unit,
     onProfileClick: () -> Unit,
@@ -230,7 +232,6 @@ fun PostCard(
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                     if (post.isVerified) {
                         Spacer(modifier = Modifier.width(4.dp))
-
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
                 }
@@ -297,7 +298,6 @@ fun PostCard(
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
             Spacer(modifier = Modifier.weight(1f))
-
             IconButton(onClick = { onSave(post.id) }) {
                 Icon(
                     if (post.isSaved) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
@@ -313,6 +313,7 @@ fun PostCard(
                 "${formatCount(post.likeCount)} likes",
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                 color = TextPrimary,
+
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
