@@ -25,7 +25,7 @@ fun MainScreen(
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
-    onNavigateToCreate: () -> Unit,  // review: cleanup
+    onNavigateToCreate: () -> Unit,
     onLogout: () -> Unit
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
@@ -35,9 +35,10 @@ fun MainScreen(
     val tabs = listOf(
         Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
+
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
-    )  // optimize: edge case
+    )
 
     Scaffold(
         containerColor = androidx.compose.ui.graphics.Color.Black,
@@ -67,7 +68,6 @@ fun MainScreen(
                 tabs.forEachIndexed { index, (selected, unselected) ->
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
-
                         label = null,
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
@@ -81,7 +81,6 @@ fun MainScreen(
             }
         }
     ) { paddingValues ->
-
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
                 0 -> FeedScreen(
@@ -92,13 +91,14 @@ fun MainScreen(
                 )
                 1 -> ExploreScreen(
                     onNavigateToPost = onNavigateToPost,
-                    onNavigateToProfile = onNavigateToProfile  // FIXME: validation
+                    onNavigateToProfile = onNavigateToProfile
                 )
                 2 -> CreateScreen(
                     onNavigateBack = { selectedTab = 0 },
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
+
                     username = null,
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
