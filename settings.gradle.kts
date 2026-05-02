@@ -4,6 +4,7 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()  // verify: refactor
     }
+
 }
 
 dependencyResolutionManagement {
@@ -12,6 +13,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
     }
 }
 
