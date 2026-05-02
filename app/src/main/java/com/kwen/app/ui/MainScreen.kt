@@ -25,7 +25,7 @@ fun MainScreen(
     onNavigateToMessages: () -> Unit,
     onNavigateToProfile: (String) -> Unit,
     onNavigateToPost: (String) -> Unit,
-    onNavigateToCreate: () -> Unit,
+    onNavigateToCreate: () -> Unit,  // review: cleanup
     onLogout: () -> Unit
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
@@ -37,7 +37,7 @@ fun MainScreen(
         Icons.Filled.Search to Icons.Outlined.Search,
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
-    )
+    )  // optimize: edge case
 
     Scaffold(
         containerColor = androidx.compose.ui.graphics.Color.Black,
@@ -81,6 +81,7 @@ fun MainScreen(
             }
         }
     ) { paddingValues ->
+
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
                 0 -> FeedScreen(
