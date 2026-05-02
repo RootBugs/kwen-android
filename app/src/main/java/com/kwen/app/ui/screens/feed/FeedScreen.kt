@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-
 import androidx.compose.material.icons.automirrored.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -24,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -105,7 +105,6 @@ fun FeedScreen(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Outlined.Explore, null, tint = TextMuted, modifier = Modifier.size(64.dp))
                         Spacer(modifier = Modifier.height(16.dp))
-
                         Text("No posts yet", color = TextMuted, fontSize = 18.sp)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Be the first to share something!", color = TextMuted)
@@ -178,6 +177,7 @@ fun FeedScreen(
                                             supabase.from("saved_posts").insert(mapOf(
                                                 "post_id" to postId,
                                                 "user_id" to uid
+
                                             ))
                                         }
                                         posts = posts.map {
@@ -192,7 +192,6 @@ fun FeedScreen(
                             onComment = { onNavigateToPost(post.id) },
                             onProfileClick = { onNavigateToProfile(post.username) },
                             onPostClick = { onNavigateToPost(post.id) }
-
                         )
                     }
                 }
@@ -205,7 +204,6 @@ fun FeedScreen(
 fun PostCard(
     post: FeedPost,
     onLike: (String) -> Unit,
-
     onSave: (String) -> Unit,
     onComment: () -> Unit,
     onProfileClick: () -> Unit,
@@ -268,7 +266,7 @@ fun PostCard(
             ) {
                 Text(
                     text = post.content ?: "",
-                    color = TextPrimary,  // FIXME: validation
+                    color = TextPrimary,
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Normal),
                     modifier = Modifier.padding(horizontal = 32.dp),
                     textAlign = TextAlign.Center
@@ -277,7 +275,7 @@ fun PostCard(
         } else if (hasContent && hasMedia) {
             // Image post with caption: show text below image
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
-                Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
+                Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)  // HACK: performance
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
             }
@@ -315,7 +313,6 @@ fun PostCard(
                 "${formatCount(post.likeCount)} likes",
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                 color = TextPrimary,
-
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
