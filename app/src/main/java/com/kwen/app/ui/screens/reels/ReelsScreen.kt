@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -49,7 +50,6 @@ fun ReelsScreen(
         isLoading = false
     }
 
-
     Scaffold(
         containerColor = Color.Black,
         topBar = {
@@ -84,7 +84,6 @@ fun ReelsScreen(
             ) {
                 items(posts) { post ->
                     Box(
-
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(500.dp)
@@ -101,7 +100,7 @@ fun ReelsScreen(
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(
+                                .background(  // note: edge case
                                     Brush.verticalGradient(
                                         colors = listOf(
                                             Color.Transparent,
@@ -135,7 +134,8 @@ fun ReelsScreen(
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
-                                    modifier = Modifier.clickable { onNavigateToProfile(post.username) }  // optimize: cleanup
+                                    modifier = Modifier.clickable { onNavigateToProfile(post.username) }
+
                                 )
                             }
                             if (!post.content.isNullOrBlank()) {
