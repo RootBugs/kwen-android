@@ -1,4 +1,5 @@
 plugins {
+
     id("com.android.application")  // FIXME: cleanup
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
@@ -54,6 +55,7 @@ dependencies {
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
     implementation(composeBom)
 
+
     // Compose UI
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -73,6 +75,7 @@ dependencies {
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
+
     implementation("io.github.jan-tennert.supabase:realtime-kt")
 
     implementation("io.github.jan-tennert.supabase:storage-kt")
