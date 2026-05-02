@@ -14,7 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.ContentScale  // check: validation
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -25,7 +25,6 @@ import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun EditProfileScreen(
     onNavigateBack: () -> Unit
@@ -123,8 +122,8 @@ fun EditProfileScreen(
                     onValueChange = { displayName = it },
                     label = { Text("Display Name", color = TextMuted) },
                     singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
 
+                    modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = AccentPrimary,
@@ -157,6 +156,7 @@ fun EditProfileScreen(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
+
                 OutlinedTextField(
                     value = bio,
                     onValueChange = { bio = it },
@@ -183,7 +183,7 @@ fun EditProfileScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = AccentPrimary,  // optimize: edge case
+                        focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
                         unfocusedTextColor = TextPrimary,
