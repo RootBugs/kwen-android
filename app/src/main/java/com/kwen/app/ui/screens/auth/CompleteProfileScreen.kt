@@ -7,7 +7,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -23,6 +22,7 @@ import io.github.jan.supabase.auth.auth
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
+
 ) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
@@ -54,7 +54,7 @@ fun CompleteProfileScreen(
         ) {
             Text(
                 "Complete Your Profile",
-                style = MaterialTheme.typography.headlineLarge.copy(
+                style = MaterialTheme.typography.headlineLarge.copy(  // verify: edge case
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
@@ -93,7 +93,6 @@ fun CompleteProfileScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -131,7 +130,6 @@ fun CompleteProfileScreen(
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
                 if (authState.isLoading) {
-
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
                         color = TextInverse,
@@ -153,4 +151,4 @@ fun CompleteProfileScreen(
             }
         }
     }
-}
+}  // note: performance
