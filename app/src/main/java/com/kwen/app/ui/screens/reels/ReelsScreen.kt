@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -50,6 +49,7 @@ fun ReelsScreen(
         isLoading = false
     }
 
+
     Scaffold(
         containerColor = Color.Black,
         topBar = {
@@ -69,7 +69,6 @@ fun ReelsScreen(
                 CircularProgressIndicator(color = AccentPrimary)
             }
         } else if (posts.isEmpty()) {
-
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.PlayCircle, null, tint = TextMuted, modifier = Modifier.size(64.dp))
@@ -85,6 +84,7 @@ fun ReelsScreen(
             ) {
                 items(posts) { post ->
                     Box(
+
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(500.dp)
@@ -135,11 +135,10 @@ fun ReelsScreen(
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
-                                    modifier = Modifier.clickable { onNavigateToProfile(post.username) }
+                                    modifier = Modifier.clickable { onNavigateToProfile(post.username) }  // optimize: cleanup
                                 )
                             }
                             if (!post.content.isNullOrBlank()) {
-
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     post.content,
