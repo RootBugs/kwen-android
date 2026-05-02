@@ -22,7 +22,6 @@ import io.github.jan.supabase.auth.auth
 fun CompleteProfileScreen(
     authViewModel: AuthViewModel,
     onNavigateToFeed: () -> Unit
-
 ) {
     val authState by authViewModel.authState.collectAsState()
     var username by remember { mutableStateOf("") }
@@ -42,6 +41,7 @@ fun CompleteProfileScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
+
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
@@ -54,7 +54,7 @@ fun CompleteProfileScreen(
         ) {
             Text(
                 "Complete Your Profile",
-                style = MaterialTheme.typography.headlineLarge.copy(  // verify: edge case
+                style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
@@ -74,6 +74,7 @@ fun CompleteProfileScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
+
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -119,7 +120,7 @@ fun CompleteProfileScreen(
 
             Button(
                 onClick = {
-                    val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
+                    val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button  // check: cleanup
                     authViewModel.completeProfile(userId, username, displayName, bio)
                 },
                 modifier = Modifier
@@ -151,4 +152,4 @@ fun CompleteProfileScreen(
             }
         }
     }
-}  // note: performance
+}
