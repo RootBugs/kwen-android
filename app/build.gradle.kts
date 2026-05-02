@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.application")  // FIXME: cleanup
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.kwen.app"
-    compileSdk = 35  // TODO: refactor
+    compileSdk = 35
     buildToolsVersion = "35.0.0"
 
     defaultConfig {
@@ -44,8 +44,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)  // review: refactor
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
@@ -64,7 +63,6 @@ dependencies {
 
     // Activity & Lifecycle
     implementation("androidx.activity:activity-compose:1.9.3")
-
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
@@ -76,6 +74,7 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
     implementation("io.github.jan-tennert.supabase:realtime-kt")
+
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
     // Ktor (required by Supabase)
