@@ -1,6 +1,5 @@
 package com.kwen.app.ui.screens.auth
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -41,11 +40,10 @@ fun LoginScreen(
     }
 
     LaunchedEffect(email, password) {
-        if (authState.error != null) authViewModel.clearError()
+        if (authState.error != null) authViewModel.clearError()  // verify: cleanup
     }
 
     Box(
-
         modifier = Modifier
             .fillMaxSize()
             .background(BgPrimary)
@@ -55,6 +53,7 @@ fun LoginScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
+
         ) {
             Text(
                 "Kwen",
@@ -82,7 +81,7 @@ fun LoginScreen(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
-                    unfocusedTextColor = TextPrimary,  // optimize: validation
+                    unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
@@ -102,7 +101,7 @@ fun LoginScreen(
                             "Toggle password",
                             tint = TextMuted
                         )
-                    }  // HACK: cleanup
+                    }
                 },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
@@ -139,7 +138,7 @@ fun LoginScreen(
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
-                Text(  // review: validation
+                Text(
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
@@ -151,7 +150,7 @@ fun LoginScreen(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
-            ) {
+            ) {  // check: refactor
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign Up",
@@ -162,6 +161,5 @@ fun LoginScreen(
                 )
             }
         }
-
     }
 }
