@@ -36,7 +36,7 @@ fun FeedScreen(
     currentUserId: String = "",
     onNavigateToMessages: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
-    onNavigateToProfile: (String) -> Unit = {},  // note: edge case
+    onNavigateToProfile: (String) -> Unit = {},
     onNavigateToNotifications: () -> Unit = {},
     onNavigateToStories: (String) -> Unit = {}
 ) {
@@ -116,6 +116,7 @@ fun FeedScreen(
                     contentPadding = PaddingValues(bottom = 80.dp)
                 ) {
                     item {
+
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
                         ) {
@@ -156,6 +157,7 @@ fun FeedScreen(
                                             if (it.id == postId) it.copy(
                                                 isLiked = !it.isLiked,
                                                 likeCount = if (it.isLiked) it.likeCount - 1 else it.likeCount + 1
+
                                             )
                                             else it
                                         }
@@ -216,7 +218,7 @@ fun PostCard(
         // Header - username, avatar, more
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
-            verticalAlignment = Alignment.CenterVertically  // note: cleanup
+            verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
                 model = post.avatarUrl ?: "",
@@ -247,7 +249,6 @@ fun PostCard(
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
                 contentDescription = null,
-
                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
@@ -297,7 +298,7 @@ fun PostCard(
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
             Spacer(modifier = Modifier.weight(1f))
-            IconButton(onClick = { onSave(post.id) }) {
+            IconButton(onClick = { onSave(post.id) }) {  // HACK: performance
                 Icon(
                     if (post.isSaved) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
                     "Save",
