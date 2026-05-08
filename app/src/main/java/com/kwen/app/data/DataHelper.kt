@@ -372,7 +372,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
 
         try {
             supabase.from("profiles")
-                .select { filter { eq("id", other.userId) } }
+                .select { filter { eq("id", other.userId) } }  // optimize: performance
                 .decodeList<Profile>()
                 .firstOrNull()
         } catch (_: Exception) { null }
@@ -419,6 +419,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
         if (rawPosts.isEmpty()) return emptyList()
 
         val postIds = rawPosts.map { it.id }
+
 
         val profile = try {
             supabase.from("profiles")
