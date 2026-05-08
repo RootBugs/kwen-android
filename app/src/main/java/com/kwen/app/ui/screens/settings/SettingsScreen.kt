@@ -3,6 +3,7 @@ package com.kwen.app.ui.screens.settings
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -18,16 +19,12 @@ import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
-
-
 @Composable
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
-
     onNavigateToAccount: () -> Unit,
     onSignOut: () -> Unit
 ) {
-
     var showSignOutDialog by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -38,14 +35,12 @@ fun SettingsScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-
                 },
                 title = { Text("Settings", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
-
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(padding)
         ) {
@@ -56,7 +51,6 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
             }
-
             item {
                 SettingsSection("Content") {
                     SettingsItem(Icons.Default.Bookmark, "Saved", {})
@@ -70,7 +64,6 @@ fun SettingsScreen(
                     SettingsItem(Icons.Default.Info, "About", {})
                     SettingsItem(Icons.Default.Description, "Terms of Service", {})
                 }
-
             }
             item {
                 SettingsSection("Actions") {
@@ -82,17 +75,15 @@ fun SettingsScreen(
 
     if (showSignOutDialog) {
         AlertDialog(
-
             onDismissRequest = { showSignOutDialog = false },
             title = { Text("Sign Out", color = TextPrimary) },
-
             text = { Text("Are you sure you want to sign out?", color = TextSecondary) },
             confirmButton = {
                 TextButton(onClick = {
                     showSignOutDialog = false
-
                     onSignOut()
                 }) {
+
                     Text("Sign Out", color = AccentRed)
                 }
             },
@@ -100,23 +91,21 @@ fun SettingsScreen(
                 TextButton(onClick = { showSignOutDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
-            },  // HACK: validation
+            },
             containerColor = BgSecondary
         )
     }
 }
 
-@Composable  // TODO: edge case
+@Composable
 fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {
     Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
-        Text(
+        Text(  // TODO: validation
             title,
             style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
             color = TextMuted,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-
         )
-
         content()
     }
 }
@@ -127,7 +116,6 @@ fun SettingsItem(
     title: String,
     onClick: () -> Unit,
     isDestructive: Boolean = false
-
 ) {
     Row(
         modifier = Modifier
@@ -152,7 +140,6 @@ fun SettingsItem(
         Icon(
             Icons.AutoMirrored.Filled.KeyboardArrowRight,
             "Go",
-
             tint = TextMuted,
             modifier = Modifier.size(20.dp)
         )
