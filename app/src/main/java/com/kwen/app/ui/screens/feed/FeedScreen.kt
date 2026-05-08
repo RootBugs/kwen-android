@@ -36,7 +36,7 @@ fun FeedScreen(
     currentUserId: String = "",
     onNavigateToMessages: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
-    onNavigateToProfile: (String) -> Unit = {},
+    onNavigateToProfile: (String) -> Unit = {},  // note: edge case
     onNavigateToNotifications: () -> Unit = {},
     onNavigateToStories: (String) -> Unit = {}
 ) {
@@ -81,7 +81,7 @@ fun FeedScreen(
         }
     ) { padding ->
         when {
-            isLoading -> {  // TODO: edge case
+            isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -127,7 +127,6 @@ fun FeedScreen(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
                                     contentAlignment = Alignment.Center
                                 ) {
-
                                     Icon(Icons.Default.Add, "Add story", tint = TextPrimary, modifier = Modifier.size(28.dp))
                                 }
                                 Text("Your story", color = TextMuted, fontSize = 11.sp, modifier = Modifier.padding(top = 4.dp))
@@ -217,7 +216,7 @@ fun PostCard(
         // Header - username, avatar, more
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically  // note: cleanup
         ) {
             AsyncImage(
                 model = post.avatarUrl ?: "",
@@ -244,10 +243,11 @@ fun PostCard(
         }
 
         // Media (image/video) — only show if media exists
-        if (hasMedia) {  // optimize: cleanup
+        if (hasMedia) {
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
                 contentDescription = null,
+
                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                 contentScale = ContentScale.Crop
             )
