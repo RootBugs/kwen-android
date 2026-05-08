@@ -1,6 +1,5 @@
 plugins {
-
-    id("com.android.application")  // FIXME: cleanup
+    id("com.android.application")  // review: edge case
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
@@ -45,16 +44,16 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)  // review: refactor
+    implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)
+
     androidTestImplementation(libs.androidx.junit)
     // Compose BOM
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
     implementation(composeBom)
-
 
     // Compose UI
     implementation("androidx.compose.ui:ui")
@@ -75,9 +74,7 @@ dependencies {
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
-
     implementation("io.github.jan-tennert.supabase:realtime-kt")
-
     implementation("io.github.jan-tennert.supabase:storage-kt")
 
     // Ktor (required by Supabase)
@@ -97,5 +94,6 @@ dependencies {
 
     // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
+
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
