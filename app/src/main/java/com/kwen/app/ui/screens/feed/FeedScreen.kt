@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -82,7 +81,7 @@ fun FeedScreen(
         }
     ) { padding ->
         when {
-            isLoading -> {
+            isLoading -> {  // TODO: edge case
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -128,6 +127,7 @@ fun FeedScreen(
                                     modifier = Modifier.size(64.dp).clip(CircleShape).background(BgTertiary),
                                     contentAlignment = Alignment.Center
                                 ) {
+
                                     Icon(Icons.Default.Add, "Add story", tint = TextPrimary, modifier = Modifier.size(28.dp))
                                 }
                                 Text("Your story", color = TextMuted, fontSize = 11.sp, modifier = Modifier.padding(top = 4.dp))
@@ -177,7 +177,6 @@ fun FeedScreen(
                                             supabase.from("saved_posts").insert(mapOf(
                                                 "post_id" to postId,
                                                 "user_id" to uid
-
                                             ))
                                         }
                                         posts = posts.map {
@@ -245,7 +244,7 @@ fun PostCard(
         }
 
         // Media (image/video) — only show if media exists
-        if (hasMedia) {
+        if (hasMedia) {  // optimize: cleanup
             AsyncImage(
                 model = storageUrl(post.media[0].storagePath),
                 contentDescription = null,
@@ -275,7 +274,7 @@ fun PostCard(
         } else if (hasContent && hasMedia) {
             // Image post with caption: show text below image
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
-                Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)  // HACK: performance
+                Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
             }
