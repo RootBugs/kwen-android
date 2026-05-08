@@ -31,7 +31,6 @@ import kotlinx.coroutines.launch
 private const val TAG = "PostDetailScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun PostDetailScreen(
     postId: String,
@@ -65,6 +64,7 @@ fun PostDetailScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
+
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -145,7 +145,6 @@ fun PostDetailScreen(
                     // Like/comment counts
                     item {
                         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {
-
                             if (post!!.likeCount > 0) {
                                 Text(
                                     "${post!!.likeCount} likes",
@@ -158,6 +157,7 @@ fun PostDetailScreen(
 
                     // Comments header
                     item {
+
                         Text(
                             "Comments (${comments.size})",
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
@@ -215,6 +215,7 @@ fun PostDetailScreen(
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
+
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
@@ -237,7 +238,6 @@ fun PostDetailScreen(
                                         ))
                                         commentText = ""
                                         loadPost()
-
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
                                     }
