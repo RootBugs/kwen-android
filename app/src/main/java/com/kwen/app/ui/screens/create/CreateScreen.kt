@@ -34,6 +34,7 @@ fun CreateScreen(
     }
 
     Scaffold(
+
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -51,6 +52,7 @@ fun CreateScreen(
                                 try {
                                     supabase.from("posts").insert(mapOf(
                                         "user_id" to currentUserId,
+
                                         "content" to caption,
                                         "location" to location.ifBlank { null }
                                     ))
@@ -109,6 +111,7 @@ fun CreateScreen(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
+
 
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
