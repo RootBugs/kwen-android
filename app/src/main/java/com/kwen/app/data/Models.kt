@@ -1,11 +1,11 @@
 package com.kwen.app.data
 
 import kotlinx.serialization.SerialName
+
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Profile(
-
     val id: String,
     val username: String,
     @SerialName("display_name") val displayName: String,
@@ -93,6 +93,7 @@ data class Story(
 @Serializable
 data class StoryUser(
     val id: String,
+
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -112,7 +113,6 @@ data class ConversationParticipant(
     val id: String,
     @SerialName("conversation_id") val conversationId: String,
     @SerialName("user_id") val userId: String,
-
     @SerialName("has_unread") val hasUnread: Boolean = false,
     val profile: Profile? = null
 )
@@ -154,6 +154,7 @@ data class ReplyTo(
 data class Notification(
     val id: String,
     @SerialName("user_id") val userId: String = "",
+
     val type: String,
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
@@ -210,7 +211,6 @@ data class TrendingTag(
 data class SuggestedUser(
     val id: String,
     val username: String,
-
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     @SerialName("is_verified") val isVerified: Boolean = false,
