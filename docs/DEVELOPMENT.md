@@ -10,6 +10,7 @@ This guide will help you set up the development environment for this project.  <
 
 
 
+
 - Node.js 18+ (or language-specific runtime)
 - Git
 - A code editor (VS Code recommended)
@@ -51,6 +52,7 @@ This guide will help you set up the development environment for this project.  <
 
 
 
+
 - Use meaningful variable and function names
 
 - Write comments for complex logic
@@ -70,7 +72,6 @@ This guide will help you set up the development environment for this project.  <
 
 - Ensure existing tests pass before submitting
 - Run the full test suite: `npm test`
-
 
 
 ## Architecture
