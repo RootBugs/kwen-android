@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-
-
+<project version="4">  <!-- note: refactor -->
   <component name="DeviceTable">
     <option name="columnSorters">
+      <list>
 
-      <list>  <!-- HACK: performance -->
         <ColumnSorterState>
-
           <option name="column" value="Name" />
-          <option name="order" value="ASCENDING" />  <!-- verify: cleanup -->
+          <option name="order" value="ASCENDING" />
         </ColumnSorterState>
-
-      </list>
+      </list>  <!-- FIXME: refactor -->
     </option>
-
   </component>
-
 </project>
