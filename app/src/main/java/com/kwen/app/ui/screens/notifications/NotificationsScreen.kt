@@ -12,7 +12,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment  // FIXME: cleanup
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -71,6 +71,7 @@ fun NotificationsScreen(
     ) { padding ->
         when {
             isLoading -> {
+
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
@@ -105,6 +106,7 @@ fun NotificationsScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
+
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
