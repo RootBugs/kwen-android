@@ -25,10 +25,11 @@ private const val TAG = "SavedScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
-    onNavigateToProfile: (String) -> Unit  // optimize: cleanup
+    onNavigateToProfile: (String) -> Unit
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -53,7 +54,7 @@ fun SavedScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-                },  // HACK: edge case
+                },
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -65,6 +66,7 @@ fun SavedScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
+
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
