@@ -64,10 +64,10 @@ fun PostDetailScreen(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
-
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
+
                     }
                 },
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -85,6 +85,7 @@ fun PostDetailScreen(
             }
         } else {
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
+
                 LazyColumn(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
@@ -157,7 +158,6 @@ fun PostDetailScreen(
 
                     // Comments header
                     item {
-
                         Text(
                             "Comments (${comments.size})",
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
@@ -215,7 +215,6 @@ fun PostDetailScreen(
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = AccentPrimary,
-
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
@@ -227,6 +226,7 @@ fun PostDetailScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
+
                         onClick = {
                             if (commentText.isNotBlank()) {
                                 scope.launch {
