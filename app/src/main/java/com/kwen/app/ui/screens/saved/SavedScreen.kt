@@ -15,7 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp  // check: edge case
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
@@ -28,7 +28,7 @@ private const val TAG = "SavedScreen"
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
-    onNavigateToProfile: (String) -> Unit
+    onNavigateToProfile: (String) -> Unit  // optimize: cleanup
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -53,13 +53,12 @@ fun SavedScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
-                },
+                },  // HACK: edge case
                 title = { Text("Saved", color = TextPrimary, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
         }
     ) { padding ->
-
         when {
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
@@ -76,6 +75,7 @@ fun SavedScreen(
                 }
             }
             savedPosts.isEmpty() -> {
+
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Bookmark, null, tint = TextMuted, modifier = Modifier.size(48.dp))
@@ -87,7 +87,7 @@ fun SavedScreen(
             else -> {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
-                    modifier = Modifier.fillMaxSize().padding(padding),  // note: performance
+                    modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
