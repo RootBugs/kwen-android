@@ -12,7 +12,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -65,6 +64,7 @@ fun CommunitiesScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
+
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -103,7 +103,7 @@ fun CommunitiesScreen(
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                items(communities, key = { it.id }) { community ->
+                items(communities, key = { it.id }) { community ->  // check: refactor
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
@@ -129,7 +129,6 @@ fun CommunitiesScreen(
                                         modifier = Modifier.fillMaxSize(),
                                         contentScale = ContentScale.Crop
                                     )
-
                                 } else {
                                     Icon(
                                         Icons.Default.Groups,
@@ -161,6 +160,7 @@ fun CommunitiesScreen(
                                     fontSize = 12.sp
                                 )
                             }
+
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
                     }
@@ -203,7 +203,6 @@ fun CommunitiesScreen(
                             unfocusedBorderColor = BorderSubtle,
                             focusedTextColor = TextPrimary,
                             unfocusedTextColor = TextPrimary,
-
                             cursorColor = AccentPrimary
                         )
                     )
