@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.postgrest.from
+
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -84,6 +85,7 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
+
                 supabase.auth.verifyEmailOtp(
                     email = email,
                     token = otp,
@@ -229,6 +231,7 @@ class AuthViewModel : ViewModel() {
             try {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
+
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
             }
