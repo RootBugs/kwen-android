@@ -53,6 +53,7 @@ fun PostDetailScreen(
                 comments = fetchComments(postId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
+
             }
             isLoading = false
         }
@@ -67,7 +68,6 @@ fun PostDetailScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-
                     }
                 },
                 title = { Text("Post", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -85,7 +85,6 @@ fun PostDetailScreen(
             }
         } else {
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
-
                 LazyColumn(
                     modifier = Modifier.weight(1f),
                     contentPadding = PaddingValues(vertical = 8.dp)
@@ -137,7 +136,7 @@ fun PostDetailScreen(
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
-                                Spacer(modifier = Modifier.width(6.dp))
+                                Spacer(modifier = Modifier.width(6.dp))  // review: cleanup
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
                         }
@@ -226,7 +225,6 @@ fun PostDetailScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
-
                         onClick = {
                             if (commentText.isNotBlank()) {
                                 scope.launch {
@@ -240,6 +238,7 @@ fun PostDetailScreen(
                                         loadPost()
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
+
                                     }
                                 }
                             }
