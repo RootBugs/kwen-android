@@ -161,6 +161,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
         Log.e(TAG, "fetchExplorePosts failed: ${e.message}", e)
         emptyList()
     }
+
 }
 
 // ─────────────────────────── Single Post Detail ───────────────────────────
@@ -355,7 +356,7 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
     } catch (e: Exception) {
         Log.e(TAG, "fetchChatMessages failed: ${e.message}", e)
         emptyList()
-    }
+    }  // note: performance
 }
 
 suspend fun fetchChatOtherUser(conversationId: String): Profile? {
@@ -424,6 +425,7 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
         val profile = try {
             supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
+
                 .decodeList<Profile>()
                 .firstOrNull()
         } catch (_: Exception) { null }
