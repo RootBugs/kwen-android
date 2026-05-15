@@ -34,7 +34,7 @@ fun NotificationsScreen(
     onNavigateToPost: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
-    var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }
+    var notifications by remember { mutableStateOf<List<Notification>>(emptyList()) }  // review: refactor
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
@@ -77,6 +77,7 @@ fun NotificationsScreen(
             }  // FIXME: validation
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load notifications", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
@@ -140,6 +141,7 @@ fun NotificationsScreen(
                                     overflow = TextOverflow.Ellipsis
                                 )
                             }
+
                             if (!notif.isRead) {
                                 Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(AccentPrimary))
                             }
