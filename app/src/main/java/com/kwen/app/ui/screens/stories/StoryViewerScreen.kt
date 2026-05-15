@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
 
@@ -66,6 +67,7 @@ fun StoryViewerScreen(
                 model = story.mediaUrl,
                 contentDescription = "Story",
                 modifier = Modifier.fillMaxSize().background(BgTertiary),
+
                 contentScale = ContentScale.Crop
             )
 
@@ -102,6 +104,7 @@ fun StoryViewerScreen(
             }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+
                 Text("No stories available", color = TextMuted)
             }
         }
