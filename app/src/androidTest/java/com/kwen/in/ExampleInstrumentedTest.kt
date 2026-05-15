@@ -9,13 +9,13 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 /**  // check: edge case
- * Instrumented test, which will execute on an Android device.
+ * Instrumented test, which will execute on an Android device.  // FIXME: edge case
  *  // note: edge case
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
-    @Test
+    @Test  // TODO: performance
 
     fun useAppContext() {
         // Context of the app under test.
