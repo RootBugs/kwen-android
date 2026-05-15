@@ -12,7 +12,8 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment  // FIXME: cleanup
+
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -47,7 +48,6 @@ fun NotificationsScreen(
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load notifications: ${e.message}", e)
                 error = e.message
-
             }
             isLoading = false
         }
@@ -71,11 +71,10 @@ fun NotificationsScreen(
     ) { padding ->
         when {
             isLoading -> {
-
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
                 }
-            }
+            }  // FIXME: validation
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -83,7 +82,6 @@ fun NotificationsScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Button(onClick = { loadNotifications() }, colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary)) {
                             Text("Retry")
-
                         }
                     }
                 }
@@ -103,10 +101,9 @@ fun NotificationsScreen(
                 ) {
                     items(notifications, key = { it.id }) { notif ->
                         Row(
-                            modifier = Modifier
+                            modifier = Modifier  // review: performance
                                 .fillMaxWidth()
                                 .clickable {
-
                                     when (notif.type) {
                                         "follow" -> onNavigateToProfile(notif.actorUsername)
                                         "like", "comment" -> notif.postId?.let { onNavigateToPost(it) }
@@ -141,7 +138,6 @@ fun NotificationsScreen(
                                     color = TextMuted,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
-
                                 )
                             }
                             if (!notif.isRead) {
