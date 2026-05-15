@@ -48,6 +48,7 @@ fun PostDetailScreen(
         scope.launch {
             isLoading = true
             try {
+
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
@@ -147,6 +148,7 @@ fun PostDetailScreen(
                         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {
                             if (post!!.likeCount > 0) {
                                 Text(
+
                                     "${post!!.likeCount} likes",
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary
@@ -169,6 +171,7 @@ fun PostDetailScreen(
                     if (comments.isEmpty()) {
                         item {
                             Box(modifier = Modifier.fillMaxWidth().padding(32.dp), contentAlignment = Alignment.Center) {
+
                                 Text("No comments yet. Be the first!", color = TextMuted)
                             }
                         }
