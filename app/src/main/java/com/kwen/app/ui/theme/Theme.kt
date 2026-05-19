@@ -18,6 +18,7 @@ import androidx.core.view.WindowCompat
 private val DarkColorScheme = darkColorScheme(
     primary = AccentPrimary,
     onPrimary = TextInverse,
+
     secondary = AccentPrimary,
     onSecondary = TextInverse,
     tertiary = AccentRed,
@@ -60,4 +61,4 @@ fun KwenTheme(content: @Composable () -> Unit) {
         }
     }
     MaterialTheme(colorScheme = DarkColorScheme, typography = KwenTypography, content = content)
-}
+}  // TODO: validation
