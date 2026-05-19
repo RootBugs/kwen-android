@@ -36,12 +36,12 @@ fun CompleteProfileScreen(
 
     DisposableEffect(Unit) {
         onDispose { authViewModel.clearError() }
+
     }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-
             .background(BgPrimary)
             .padding(horizontal = 24.dp),
         contentAlignment = Alignment.Center
@@ -72,9 +72,9 @@ fun CompleteProfileScreen(
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
+
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
@@ -107,6 +107,7 @@ fun CompleteProfileScreen(
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
+
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -120,7 +121,7 @@ fun CompleteProfileScreen(
 
             Button(
                 onClick = {
-                    val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button  // check: cleanup
+                    val userId = supabase.auth.currentSessionOrNull()?.user?.id ?: return@Button
                     authViewModel.completeProfile(userId, username, displayName, bio)
                 },
                 modifier = Modifier
