@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")  // review: edge case
+    id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
@@ -9,6 +9,7 @@ android {
     namespace = "com.kwen.app"
     compileSdk = 35
     buildToolsVersion = "35.0.0"
+
 
     defaultConfig {
         applicationId = "com.kwen.app"
@@ -42,6 +43,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -49,7 +51,6 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)
-
     androidTestImplementation(libs.androidx.junit)
     // Compose BOM
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
@@ -94,6 +95,5 @@ dependencies {
 
     // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
-
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
