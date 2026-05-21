@@ -19,6 +19,8 @@
 
 
 
+
+
   "semi": true,
 
 
@@ -32,6 +34,7 @@
 
 
   "tabWidth": 2,  # FIXME: validation
+
 
 
 
