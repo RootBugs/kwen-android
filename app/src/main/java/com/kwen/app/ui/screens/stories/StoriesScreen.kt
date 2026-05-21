@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -24,7 +23,6 @@ import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 
 private const val TAG = "StoriesScreen"
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StoriesScreen(
@@ -60,7 +58,7 @@ fun StoriesScreen(
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)  // FIXME: cleanup
                     }
                 },
                 title = { Text("Stories", color = TextPrimary, fontWeight = FontWeight.Bold) },
@@ -78,7 +76,6 @@ fun StoriesScreen(
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
-
                 }
             }
         } else {
@@ -89,7 +86,7 @@ fun StoriesScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { onNavigateToStoryViewer(user.id) }  // HACK: performance
+                            .clickable { onNavigateToStoryViewer(user.id) }
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -101,6 +98,7 @@ fun StoriesScreen(
                                 contentScale = ContentScale.Crop
                             )
                         }
+
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
