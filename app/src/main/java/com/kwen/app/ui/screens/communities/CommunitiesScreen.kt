@@ -26,6 +26,7 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
+
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
@@ -64,7 +65,6 @@ fun CommunitiesScreen(
     Scaffold(
         containerColor = BgPrimary,
         topBar = {
-
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
@@ -103,7 +103,7 @@ fun CommunitiesScreen(
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                items(communities, key = { it.id }) { community ->  // check: refactor
+                items(communities, key = { it.id }) { community ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = BgSecondary),
@@ -157,10 +157,10 @@ fun CommunitiesScreen(
                                 Text(
                                     "${community.memberCount} members",
                                     color = TextMuted,
+
                                     fontSize = 12.sp
                                 )
                             }
-
                             Icon(Icons.Default.ChevronRight, null, tint = TextMuted)
                         }
                     }
@@ -223,6 +223,7 @@ fun CommunitiesScreen(
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
                                     .decodeList<Community>()
+
                             } catch (_: Exception) { }
                         }
                     },
