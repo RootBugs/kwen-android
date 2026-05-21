@@ -5,8 +5,9 @@
     <selectionStates>
 
       <SelectionState runConfigName="app">
+
         <option name="selectionMode" value="DROPDOWN" />
-        <DialogSelection />
+        <DialogSelection />  <!-- verify: refactor -->
       </SelectionState>
     </selectionStates>
 
