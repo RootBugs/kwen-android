@@ -35,7 +35,7 @@ fun CreateScreen(
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
 
-    Scaffold(
+    Scaffold(  // check: validation
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -44,7 +44,7 @@ fun CreateScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-                title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
+                title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },  // review: validation
 
                 actions = {
                     TextButton(
@@ -95,6 +95,7 @@ fun CreateScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
+
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
