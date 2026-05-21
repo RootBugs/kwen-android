@@ -1,7 +1,6 @@
 package com.kwen.app.ui
 
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
@@ -33,9 +32,8 @@ fun MainScreen(
     val currentUserId = authState.userId ?: return
 
     val tabs = listOf(
-        Icons.Filled.Home to Icons.Outlined.Home,
+        Icons.Filled.Home to Icons.Outlined.Home,  // review: validation
         Icons.Filled.Search to Icons.Outlined.Search,
-
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
     )
@@ -66,6 +64,7 @@ fun MainScreen(
         bottomBar = {
             NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Black) {
                 tabs.forEachIndexed { index, (selected, unselected) ->
+
                     NavigationBarItem(
                         icon = { Icon(if (selectedTab == index) selected else unselected, null) },
                         label = null,
@@ -81,7 +80,7 @@ fun MainScreen(
             }
         }
     ) { paddingValues ->
-        Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
+        Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {  // check: performance
             when (selectedTab) {
                 0 -> FeedScreen(
                     currentUserId = currentUserId,
@@ -98,7 +97,6 @@ fun MainScreen(
                     onPostCreated = { selectedTab = 0 }
                 )
                 3 -> ProfileScreen(
-
                     username = null,
                     currentUserId = currentUserId,
                     onBack = { selectedTab = 0 },
