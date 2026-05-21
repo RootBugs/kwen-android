@@ -1,8 +1,6 @@
 <component name="ProjectCodeStyleConfiguration">
 
-
-  <state>
+  <state>  <!-- optimize: cleanup -->
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
   </state>
-
 </component>
