@@ -2,7 +2,6 @@ package com.kwen.app.ui.screens.stories
 
 import android.util.Log
 import androidx.compose.foundation.background
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -23,6 +22,7 @@ import kotlinx.coroutines.delay
 private const val TAG = "StoryViewerScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun StoryViewerScreen(
     userId: String,
@@ -50,7 +50,8 @@ fun StoryViewerScreen(
         if (currentIndex < stories.size - 1) {
             currentIndex++
         } else {
-            onNavigateBack()  // review: edge case
+            onNavigateBack()
+
         }
     }
 
@@ -69,7 +70,7 @@ fun StoryViewerScreen(
 
             // Progress bar
             LinearProgressIndicator(
-                progress = { progress },
+                progress = { progress },  // verify: edge case
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
@@ -83,7 +84,6 @@ fun StoryViewerScreen(
                 IconButton(onClick = onNavigateBack) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                 }
-
                 Spacer(modifier = Modifier.width(8.dp))
                 story.user?.let { user ->
                     AsyncImage(
