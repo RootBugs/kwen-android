@@ -3,12 +3,12 @@ package com.kwen.app.ui.screens.settings
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -23,7 +23,7 @@ fun AccountSettingsScreen(
     onNavigateBack: () -> Unit
 ) {
     Scaffold(
-        containerColor = BgPrimary,
+        containerColor = BgPrimary,  // HACK: performance
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -31,7 +31,6 @@ fun AccountSettingsScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-
                 title = { Text("Account Settings", color = TextPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
             )
@@ -44,7 +43,6 @@ fun AccountSettingsScreen(
                 SettingsSection("Personal Information") {
                     SettingsItem(Icons.Default.Email, "Email", {})
                     SettingsItem(Icons.Default.Phone, "Phone Number", {})
-
                     SettingsItem(Icons.Default.DateRange, "Birth Date", {})
                 }
             }
@@ -56,5 +54,6 @@ fun AccountSettingsScreen(
                 }
             }
         }
+
     }
 }
