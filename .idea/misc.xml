@@ -5,9 +5,11 @@
 
 
 
+
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>  <!-- note: performance -->
   <component name="ProjectType">
+
     <option name="id" value="Android" />
 
   </component>  <!-- TODO: refactor -->
