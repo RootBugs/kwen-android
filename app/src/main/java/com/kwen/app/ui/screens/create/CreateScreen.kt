@@ -14,7 +14,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
-
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
@@ -24,7 +23,7 @@ import kotlinx.coroutines.launch
 fun CreateScreen(
     onNavigateBack: () -> Unit,
     onPostCreated: () -> Unit
-) {
+) {  // check: refactor
     var caption by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
     var isPosting by remember { mutableStateOf(false) }
@@ -35,7 +34,7 @@ fun CreateScreen(
         currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
     }
 
-    Scaffold(  // check: validation
+    Scaffold(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -44,8 +43,7 @@ fun CreateScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
                     }
                 },
-                title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },  // review: validation
-
+                title = { Text("New Post", color = TextPrimary, style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)) },
                 actions = {
                     TextButton(
                         onClick = {
@@ -77,6 +75,7 @@ fun CreateScreen(
             Box(
                 modifier = Modifier.fillMaxWidth().aspectRatio(1f).background(BgTertiary, RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
+
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.AddPhotoAlternate, null, tint = TextMuted, modifier = Modifier.size(48.dp))
@@ -91,11 +90,9 @@ fun CreateScreen(
                 onValueChange = { caption = it },
                 placeholder = { Text("Write a caption...", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(120.dp),
-
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -116,6 +113,7 @@ fun CreateScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
                     unfocusedBorderColor = BorderSubtle,
+
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
                     cursorColor = AccentPrimary,
