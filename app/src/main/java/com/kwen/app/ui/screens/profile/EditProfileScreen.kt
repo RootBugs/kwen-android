@@ -47,6 +47,7 @@ fun EditProfileScreen(
             profile = p
             displayName = p.displayName
             username = p.username
+
             bio = p.bio ?: ""
             website = p.website ?: ""
         } catch (_: Exception) { }
@@ -95,6 +96,7 @@ fun EditProfileScreen(
         if (isLoading) {
             Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = AccentPrimary)
+
             }
         } else {
             Column(
@@ -132,6 +134,7 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
+
                         unfocusedContainerColor = BgTertiary
                     )
                 )
