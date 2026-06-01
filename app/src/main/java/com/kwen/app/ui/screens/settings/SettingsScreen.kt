@@ -14,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kwen.app.ui.theme.*
@@ -94,6 +95,7 @@ fun SettingsScreen(
             },
             containerColor = BgSecondary
         )
+
     }
 }
 
@@ -104,7 +106,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
             title,
             style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
             color = TextMuted,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)  // HACK: validation
         )
         content()
     }
