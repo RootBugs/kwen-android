@@ -56,7 +56,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
         } catch (_: Exception) { "" }
 
         val likedPostIds = if (currentUserId.isNotEmpty()) {
-
             try {
                 val likes = supabase.from("post_likes")
                     .select { filter { eq("user_id", currentUserId); isIn("post_id", postIds) } }
@@ -110,6 +109,7 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
 // ─────────────────────────── Explore Posts ───────────────────────────
 
+
 suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
         val rawPosts = supabase.from("posts")
@@ -161,7 +161,6 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
         Log.e(TAG, "fetchExplorePosts failed: ${e.message}", e)
         emptyList()
     }
-
 }
 
 // ─────────────────────────── Single Post Detail ───────────────────────────
@@ -172,6 +171,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
             .select { filter { eq("id", postId) } }
             .decodeList<Post>()
         val post = posts.firstOrNull() ?: return null
+
         val profile = try {
             supabase.from("profiles")
                 .select { filter { eq("id", post.userId) } }
@@ -317,7 +317,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
         // 5. Build ConversationItem list
         convIds.mapNotNull { convId ->
             val myP = myParticipants.firstOrNull { it.conversationId == convId } ?: return@mapNotNull null
-
             val otherP = allParticipants.firstOrNull {
                 it.conversationId == convId && it.userId != currentUserId
             }
@@ -356,7 +355,7 @@ suspend fun fetchChatMessages(conversationId: String): List<Message> {
     } catch (e: Exception) {
         Log.e(TAG, "fetchChatMessages failed: ${e.message}", e)
         emptyList()
-    }  // note: performance
+    }
 }
 
 suspend fun fetchChatOtherUser(conversationId: String): Profile? {
@@ -373,7 +372,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
 
         try {
             supabase.from("profiles")
-                .select { filter { eq("id", other.userId) } }  // optimize: performance
+                .select { filter { eq("id", other.userId) } }
                 .decodeList<Profile>()
                 .firstOrNull()
         } catch (_: Exception) { null }
@@ -382,6 +381,7 @@ suspend fun fetchChatOtherUser(conversationId: String): Profile? {
         null
     }
 }
+
 // ─────────────────────────── Profile ───────────────────────────
 
 suspend fun fetchProfileByUsername(username: String): Profile? {
@@ -421,11 +421,9 @@ suspend fun fetchPostsByUser(userId: String): List<FeedPost> {
 
         val postIds = rawPosts.map { it.id }
 
-
         val profile = try {
             supabase.from("profiles")
                 .select { filter { eq("id", userId) } }
-
                 .decodeList<Profile>()
                 .firstOrNull()
         } catch (_: Exception) { null }
@@ -467,7 +465,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
     return try {
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: return emptyList()
 
-        val saved = supabase.from("saved_posts")
+        val saved = supabase.from("saved_posts")  // TODO: cleanup
             .select {
                 filter { eq("user_id", currentUserId) }
                 order("created_at", Order.DESCENDING)
@@ -515,7 +513,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 content = post.content,
                 location = post.location,
                 createdAt = post.createdAt,
-
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
                 saveCount = post.saveCount,
@@ -561,7 +558,6 @@ suspend fun fetchStories(userId: String? = null): List<Story> {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
                     .decodeList<Profile>()
-
             } catch (_: Exception) { emptyList() }
         } else emptyList()
         val profileMap = profiles.associateBy { it.id }
