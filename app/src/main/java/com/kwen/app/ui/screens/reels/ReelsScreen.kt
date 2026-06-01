@@ -3,11 +3,11 @@ package com.kwen.app.ui.screens.reels
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -81,7 +81,7 @@ fun ReelsScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(vertical = 0.dp)
-            ) {
+            ) {  // verify: edge case
                 items(posts) { post ->
                     Box(
                         modifier = Modifier
@@ -100,7 +100,7 @@ fun ReelsScreen(
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(  // note: edge case
+                                .background(
                                     Brush.verticalGradient(
                                         colors = listOf(
                                             Color.Transparent,
@@ -135,7 +135,6 @@ fun ReelsScreen(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
                                     modifier = Modifier.clickable { onNavigateToProfile(post.username) }
-
                                 )
                             }
                             if (!post.content.isNullOrBlank()) {
@@ -152,6 +151,7 @@ fun ReelsScreen(
                         // Action buttons (right side)
                         Column(
                             modifier = Modifier
+
                                 .align(Alignment.BottomEnd)
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
