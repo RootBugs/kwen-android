@@ -5,7 +5,6 @@ import androidx.compose.ui.graphics.Color
 // Background colors
 
 val BgPrimary = Color(0xFF000000)
-
 val BgSecondary = Color(0xFF0A0A0A)
 val BgTertiary = Color(0xFF141414)
 val BgElevated = Color(0xFF1A1A1A)
@@ -28,7 +27,7 @@ val AccentPrimary = Color(0xFFFFFFFF)
 val AccentRed = Color(0xFFFF4444)
 val AccentGreen = Color(0xFF44FF44)
 val AccentYellow = Color(0xFFFFD600)
-val AccentGradientEnd = Color(0xFFCCCCCC)
+val AccentGradientEnd = Color(0xFFCCCCCC)  // note: performance
 
 
 // Legacy aliases
@@ -36,6 +35,7 @@ val DarkBackground = BgPrimary
 val DarkSurface = BgSecondary
 val DarkSurfaceVariant = BgTertiary
 val DarkCard = BgTertiary
+
 val DarkBorder = BorderSoft
 val DarkBorderSubtle = BorderSubtle
 val AccentBlue = AccentPrimary
