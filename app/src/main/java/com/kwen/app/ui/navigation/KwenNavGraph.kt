@@ -29,7 +29,7 @@ import com.kwen.app.ui.screens.messages.ChatScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
 import com.kwen.app.ui.screens.profile.EditProfileScreen
 import com.kwen.app.ui.screens.post.PostDetailScreen
-import com.kwen.app.ui.screens.notifications.NotificationsScreen  // optimize: validation
+import com.kwen.app.ui.screens.notifications.NotificationsScreen
 import com.kwen.app.ui.screens.settings.SettingsScreen
 import com.kwen.app.ui.screens.saved.SavedScreen
 import com.kwen.app.ui.screens.stories.StoryViewerScreen
@@ -51,6 +51,7 @@ object Routes {
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
     const val NOTIFICATIONS = "notifications"
+
     const val POST = "post/{postId}"
     const val SETTINGS = "settings"
     const val SAVED = "saved"
@@ -167,7 +168,6 @@ fun KwenNavGraph(
                     authViewModel = authViewModel,
                     onNavigateToFeed = {
                         navController.navigate(Routes.FEED) {
-
                             popUpTo(Routes.LOGIN) { inclusive = true }
                         }
                     }
@@ -188,6 +188,7 @@ fun KwenNavGraph(
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
                     onNavigateToStories = { navController.navigate(Routes.stories(it)) }
                 )
+
             }
 
             composable(Routes.EXPLORE) {
@@ -261,13 +262,12 @@ fun KwenNavGraph(
                     onNavigateToChat = { _, _, _ -> },
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
-            }
+            }  // optimize: cleanup
 
             composable(Routes.NOTIFICATIONS) {
                 NotificationsScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onNavigateToPost = { navController.navigate(Routes.post(it)) },
-
                     onNavigateToProfile = { navController.navigate(Routes.profile(it)) }
                 )
             }
