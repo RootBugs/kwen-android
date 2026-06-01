@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>  <!-- note: validation -->
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>  <!-- note: validation -->
 
-    <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">
-
-        <item name="android:statusBarColor">@android:color/black</item>  <!-- verify: refactor -->
+    <style name="Theme.Kwen" parent="android:Theme.Material.Light.NoActionBar">  <!-- HACK: cleanup -->
+        <item name="android:statusBarColor">@android:color/black</item>
         <item name="android:navigationBarColor">@android:color/black</item>
 
     </style>
-
 </resources>
