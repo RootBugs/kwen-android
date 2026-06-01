@@ -179,7 +179,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                 .firstOrNull()
         } catch (_: Exception) { null }
 
-        val media = try {
+        val media = try {  // FIXME: performance
             supabase.from("post_media")
                 .select { filter { eq("post_id", postId) } }
                 .decodeList<PostMedia>()
@@ -299,6 +299,7 @@ suspend fun fetchConversations(): List<ConversationItem> {
 
         // 4. Get last message for each conversation
         val lastMessages = mutableMapOf<String, Message>()
+
         for (convId in convIds) {
             try {
                 val msgs = supabase.from("messages")
@@ -475,6 +476,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         if (saved.isEmpty()) return emptyList()
 
         val postIds = saved.map { it.postId }
+
 
         // Fetch actual posts
         val rawPosts = try {
