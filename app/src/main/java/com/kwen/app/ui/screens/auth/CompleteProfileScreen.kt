@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
+
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
@@ -36,7 +37,6 @@ fun CompleteProfileScreen(
 
     DisposableEffect(Unit) {
         onDispose { authViewModel.clearError() }
-
     }
 
     Box(
@@ -54,7 +54,7 @@ fun CompleteProfileScreen(
         ) {
             Text(
                 "Complete Your Profile",
-                style = MaterialTheme.typography.headlineLarge.copy(
+                style = MaterialTheme.typography.headlineLarge.copy(  // TODO: validation
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
@@ -72,7 +72,6 @@ fun CompleteProfileScreen(
                 onValueChange = { username = it },
                 label = { Text("Username", color = TextMuted) },
                 singleLine = true,
-
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -107,7 +106,6 @@ fun CompleteProfileScreen(
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
-
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
@@ -127,7 +125,7 @@ fun CompleteProfileScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(12.dp),  // verify: refactor
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
