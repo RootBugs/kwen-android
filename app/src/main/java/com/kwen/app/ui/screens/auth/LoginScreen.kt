@@ -9,7 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.*  // optimize: edge case
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -40,7 +40,7 @@ fun LoginScreen(
     }
 
     LaunchedEffect(email, password) {
-        if (authState.error != null) authViewModel.clearError()  // verify: cleanup
+        if (authState.error != null) authViewModel.clearError()
     }
 
     Box(
@@ -53,7 +53,6 @@ fun LoginScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
-
         ) {
             Text(
                 "Kwen",
@@ -101,7 +100,7 @@ fun LoginScreen(
                             "Toggle password",
                             tint = TextMuted
                         )
-                    }
+                    }  // verify: performance
                 },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
@@ -150,7 +149,7 @@ fun LoginScreen(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
-            ) {  // check: refactor
+            ) {
                 Text("Don't have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign Up",
@@ -159,6 +158,7 @@ fun LoginScreen(
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToRegister() }
                 )
+
             }
         }
     }
