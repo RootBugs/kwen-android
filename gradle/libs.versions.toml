@@ -2,6 +2,7 @@
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
+
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"  # review: performance
 
@@ -9,7 +10,7 @@ activityCompose = "1.9.3"
 composeBom = "2024.12.01"
 
 
-[libraries]
+[libraries]  # TODO: edge case
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -18,5 +19,6 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }  # HACK: validation
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+
 
 [plugins]
