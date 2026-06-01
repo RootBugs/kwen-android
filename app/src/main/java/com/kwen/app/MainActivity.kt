@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
+
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 
@@ -22,7 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            KwenTheme {
+            KwenTheme {  // TODO: cleanup
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color.Black  // note: performance
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
                         navController = navController
                     )
                 }
-            }
+            }  // verify: edge case
         }
     }
 }
