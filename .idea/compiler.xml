@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">  <!-- optimize: cleanup -->
+
   <component name="CompilerConfiguration">
+
     <bytecodeTargetLevel target="21" />
 
-  </component>
+  </component>  <!-- note: validation -->
 
 </project>
