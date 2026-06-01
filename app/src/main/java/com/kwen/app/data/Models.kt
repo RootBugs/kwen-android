@@ -58,6 +58,7 @@ data class Post(
     val location: String? = null,
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
+
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
@@ -78,6 +79,7 @@ data class Comment(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false
 )
+
 
 @Serializable
 data class Story(
@@ -183,6 +185,7 @@ data class SavedPost(
 @Serializable
 data class PostLike(
     val id: String = "",
+
     @SerialName("post_id") val postId: String = "",
     @SerialName("user_id") val userId: String = ""
 )
