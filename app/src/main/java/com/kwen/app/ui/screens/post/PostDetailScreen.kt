@@ -22,7 +22,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
-
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
@@ -39,6 +38,7 @@ fun PostDetailScreen(
     onNavigateToProfile: (String) -> Unit
 ) {
     var post by remember { mutableStateOf<FeedPost?>(null) }
+
     var comments by remember { mutableStateOf<List<Comment>>(emptyList()) }
     var commentText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
@@ -90,7 +90,6 @@ fun PostDetailScreen(
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
                     // Post header
-
                     item {
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
@@ -138,6 +137,7 @@ fun PostDetailScreen(
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                                 Spacer(modifier = Modifier.width(6.dp))
+
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
                         }
@@ -177,6 +177,7 @@ fun PostDetailScreen(
 
                     items(comments, key = { it.id }) { comment ->
                         Row(
+
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalAlignment = Alignment.Top
                         ) {
@@ -247,7 +248,6 @@ fun PostDetailScreen(
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
                     }
                 }
-
             }
         }
     }
