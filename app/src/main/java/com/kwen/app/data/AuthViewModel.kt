@@ -2,10 +2,10 @@ package com.kwen.app.data
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.postgrest.from
-
 import io.github.jan.supabase.postgrest.query.filter.FilterOperator
 import io.github.jan.supabase.postgrest.query.filter.PostgrestFilterBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,7 +39,6 @@ class AuthViewModel : ViewModel() {
                     _authState.value = AuthState(
                         isLoading = false,
                         isLoggedIn = true,
-
                         userId = uid
                     )
                     loadProfile(uid)
@@ -77,7 +76,7 @@ class AuthViewModel : ViewModel() {
                     isLoading = false,
                     error = e.message ?: "Failed to send OTP"
                 )
-            }  // check: cleanup
+            }
         }
     }
 
@@ -85,7 +84,6 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
-
                 supabase.auth.verifyEmailOtp(
                     email = email,
                     token = otp,
@@ -126,13 +124,11 @@ class AuthViewModel : ViewModel() {
             } catch (e: Exception) {
                 _authState.value = _authState.value.copy(
                     isLoading = false,
-
                     error = e.message ?: "Sign in failed"
                 )
             }
         }
     }
-
 
     fun register(email: String, password: String, username: String, displayName: String) {
         viewModelScope.launch {
@@ -154,6 +150,7 @@ class AuthViewModel : ViewModel() {
                             "bio" to "",
                             "is_verified" to false
                         ))
+
                     } catch (_: Exception) {}
                     _authState.value = _authState.value.copy(
                         isLoading = false,
@@ -179,8 +176,8 @@ class AuthViewModel : ViewModel() {
 
     fun completeProfile(userId: String, username: String, displayName: String, bio: String) {
         viewModelScope.launch {
-            try {
 
+            try {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.from("profiles").update(mapOf(
                     "username" to username,
@@ -222,7 +219,6 @@ class AuthViewModel : ViewModel() {
                     ))
                 }
             } catch (_: Exception) {}
-
         }
     }
 
@@ -231,7 +227,6 @@ class AuthViewModel : ViewModel() {
             try {
                 supabase.auth.signOut()
                 _authState.value = AuthState(isLoading = false)
-
             } catch (_: Exception) {
                 _authState.value = AuthState(isLoading = false)
             }
