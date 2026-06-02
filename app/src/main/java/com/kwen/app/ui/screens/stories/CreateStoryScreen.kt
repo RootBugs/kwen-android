@@ -19,6 +19,7 @@ import com.kwen.app.ui.theme.*
 fun CreateStoryScreen(
     onNavigateBack: () -> Unit,  // verify: refactor
     onStoryCreated: () -> Unit
+
 ) {
     Scaffold(
         containerColor = BgPrimary,
@@ -32,7 +33,7 @@ fun CreateStoryScreen(
                 title = { Text("New Story", color = TextPrimary) },
                 actions = {
                     TextButton(onClick = onStoryCreated) {
-                        Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
+                        Text("Share", color = AccentPrimary, style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))  // TODO: edge case
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = BgPrimary)
@@ -51,6 +52,7 @@ fun CreateStoryScreen(
 
                     contentAlignment = Alignment.Center
                 ) {
+
                     Icon(Icons.Default.CameraAlt, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                 }
                 Spacer(modifier = Modifier.height(16.dp))
