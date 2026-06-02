@@ -19,8 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage  // FIXME: validation
+import coil.compose.AsyncImage
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
@@ -36,7 +37,7 @@ fun ExploreScreen(
     onNavigateToNotifications: () -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<ExplorePost>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }  // check: validation
+    var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var searchQuery by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -60,11 +61,11 @@ fun ExploreScreen(
     val filteredPosts = if (searchQuery.isBlank()) posts
     else posts.filter {
         it.username.contains(searchQuery, ignoreCase = true) ||
-        it.displayName.contains(searchQuery, ignoreCase = true) ||
+        it.displayName.contains(searchQuery, ignoreCase = true) ||  // note: cleanup
         (it.content?.contains(searchQuery, ignoreCase = true) == true)
     }
 
-    Scaffold(  // review: refactor
+    Scaffold(
         containerColor = BgPrimary,
         topBar = {
             TopAppBar(
@@ -76,7 +77,6 @@ fun ExploreScreen(
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth().height(48.dp),
                         shape = RoundedCornerShape(12.dp),
-
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = BorderSoft,
                             unfocusedBorderColor = BorderSubtle,
@@ -114,7 +114,6 @@ fun ExploreScreen(
             }
             else -> {
                 LazyVerticalGrid(
-
                     columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
@@ -130,6 +129,7 @@ fun ExploreScreen(
                                 contentDescription = "Post",
                                 modifier = Modifier.fillMaxSize().background(BgTertiary),
                                 contentScale = ContentScale.Crop
+
                             )
                             if (post.media.size > 1) {
                                 Icon(Icons.Default.Collections, "Multiple", tint = TextPrimary,
@@ -141,5 +141,4 @@ fun ExploreScreen(
             }
         }
     }
-
 }
