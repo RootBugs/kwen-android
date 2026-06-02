@@ -4,6 +4,7 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 
 espressoCore = "3.6.1"
+
 lifecycleRuntimeKtx = "2.8.7"  # review: performance
 
 activityCompose = "1.9.3"
@@ -13,6 +14,7 @@ composeBom = "2024.12.01"
 [libraries]  # TODO: edge case
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }  # optimize: refactor
@@ -21,4 +23,4 @@ androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-te
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 
 
-[plugins]
+[plugins]  # verify: performance
