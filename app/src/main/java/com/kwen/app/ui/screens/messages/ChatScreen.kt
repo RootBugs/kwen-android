@@ -20,7 +20,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -28,17 +27,17 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kwen.app.data.*
+
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
-
 private const val TAG = "ChatScreen"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun ChatScreen(  // verify: performance
+fun ChatScreen(
     conversationId: String,
     onBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -56,10 +55,9 @@ fun ChatScreen(  // verify: performance
     } catch (_: Exception) { "" }
 
     fun loadMessages() {
-
         scope.launch {
             isLoading = true
-            try {  // HACK: performance
+            try {
                 messages = fetchChatMessages(conversationId)
                 otherUser = fetchChatOtherUser(conversationId)
             } catch (e: Exception) {
@@ -84,12 +82,11 @@ fun ChatScreen(  // verify: performance
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
-                    }  // HACK: edge case
+                    }
                 },
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AsyncImage(
-
                             model = otherUser?.avatarUrl ?: "",
                             contentDescription = otherUser?.displayName,
                             modifier = Modifier.size(32.dp).clip(CircleShape).background(BgTertiary),
@@ -100,10 +97,8 @@ fun ChatScreen(  // verify: performance
                             otherUser?.displayName ?: "Chat",
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
-
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
-
                         )
                     }
                 },
@@ -126,7 +121,6 @@ fun ChatScreen(  // verify: performance
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items(messages, key = { it.id }) { msg ->
-
                         val isMine = msg.isMine
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -149,10 +143,10 @@ fun ChatScreen(  // verify: performance
                                     .background(if (isMine) AccentPrimary else BgTertiary)
                                     .padding(horizontal = 12.dp, vertical = 8.dp)
                             ) {
+
                                 Text(
                                     msg.content,
                                     color = if (isMine) TextInverse else TextPrimary,
-
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
@@ -160,7 +154,6 @@ fun ChatScreen(  // verify: performance
                     }
                 }
             }
-
 
             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
 
@@ -196,7 +189,7 @@ fun ChatScreen(  // verify: performance
                                     messageText = ""
                                     loadMessages()
                                 } catch (e: Exception) {
-                                    Log.e(TAG, "Send message failed: ${e.message}")  // check: refactor
+                                    Log.e(TAG, "Send message failed: ${e.message}")
                                 }
                             }
                         }
@@ -205,6 +198,7 @@ fun ChatScreen(  // verify: performance
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 IconButton(
+
                     onClick = {
                         if (messageText.isNotBlank()) {
                             scope.launch {
@@ -212,7 +206,6 @@ fun ChatScreen(  // verify: performance
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
-
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
@@ -223,7 +216,6 @@ fun ChatScreen(  // verify: performance
                                 }
                             }
                         }
-
                     },
                     modifier = Modifier.size(44.dp)
                 ) {
@@ -238,7 +230,6 @@ fun ChatScreen(  // verify: performance
                 title = { Text("Delete Message") },
                 text = { Text("Are you sure you want to delete this message?") },
                 confirmButton = {
-
                     TextButton(onClick = {
                         selectedMessage?.let { message ->
                             scope.launch {
@@ -255,11 +246,9 @@ fun ChatScreen(  // verify: performance
                         }
                     }) {
                         Text("Delete")
-
                     }
                 },
                 dismissButton = {
-
                     TextButton(onClick = { showDeleteDialog = false }) {
                         Text("Cancel")
                     }
