@@ -4,10 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -74,7 +74,6 @@ fun RegisterScreen(
                 "Create your account",
                 style = MaterialTheme.typography.bodyLarge,
                 color = TextMuted
-
             )
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -113,7 +112,6 @@ fun RegisterScreen(
             )
             Spacer(modifier = Modifier.height(12.dp))
 
-
             OutlinedTextField(
                 value = displayName,
                 onValueChange = { displayName = it },
@@ -123,7 +121,6 @@ fun RegisterScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = AccentPrimary,
-
                     unfocusedBorderColor = BorderSubtle,
                     focusedTextColor = TextPrimary,
                     unfocusedTextColor = TextPrimary,
@@ -139,6 +136,7 @@ fun RegisterScreen(
                 singleLine = true,
                 visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
+
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
@@ -204,7 +202,7 @@ fun RegisterScreen(
 
             if (authState.error != null) {
                 Spacer(modifier = Modifier.height(12.dp))
-                Text(
+                Text(  // review: performance
                     authState.error!!,
                     color = AccentRed,
                     style = MaterialTheme.typography.bodySmall,
@@ -230,9 +228,7 @@ fun RegisterScreen(
                 Text("Already have an account? ", color = TextMuted, style = MaterialTheme.typography.bodyMedium)
                 Text(
                     "Sign In",
-
                     color = AccentPrimary,
-
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.clickable { onNavigateToLogin() }
