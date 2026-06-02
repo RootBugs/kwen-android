@@ -1,5 +1,6 @@
 package com.kwen.app.ui
 
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -79,6 +80,7 @@ fun MainScreen(
                     )
                 }
             }
+
         }
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
