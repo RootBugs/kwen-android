@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-
 import androidx.compose.ui.text.input.VisualTransformation
+
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -87,7 +87,6 @@ fun LoginScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(16.dp))
-
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
@@ -97,7 +96,6 @@ fun LoginScreen(
                 trailingIcon = {
                     IconButton(onClick = { showPassword = !showPassword }) {
                         Icon(
-
                             if (showPassword) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                             "Toggle password",
                             tint = TextMuted
@@ -115,7 +113,7 @@ fun LoginScreen(
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
-            Spacer(modifier = Modifier.height(24.dp))  // review: refactor
+            Spacer(modifier = Modifier.height(24.dp))
 
             Button(
                 onClick = { authViewModel.signInWithPassword(email, password) },
@@ -148,6 +146,7 @@ fun LoginScreen(
             }
 
             Spacer(modifier = Modifier.height(24.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
