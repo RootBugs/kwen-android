@@ -49,13 +49,11 @@ fun PostDetailScreen(
         scope.launch {
             isLoading = true
             try {
-
                 currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
                 post = fetchPostDetail(postId)
                 comments = fetchComments(postId)
             } catch (e: Exception) {
                 Log.e(TAG, "loadPost failed: ${e.message}", e)
-
             }
             isLoading = false
         }
@@ -92,6 +90,7 @@ fun PostDetailScreen(
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
                     // Post header
+
                     item {
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
@@ -138,7 +137,7 @@ fun PostDetailScreen(
                         item {
                             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                                 Text(post!!.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
-                                Spacer(modifier = Modifier.width(6.dp))  // review: cleanup
+                                Spacer(modifier = Modifier.width(6.dp))
                                 Text(content, style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                             }
                         }
@@ -147,10 +146,8 @@ fun PostDetailScreen(
                     // Like/comment counts
                     item {
                         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {
-
                             if (post!!.likeCount > 0) {
                                 Text(
-
                                     "${post!!.likeCount} likes",
                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                                     color = TextPrimary
@@ -173,7 +170,6 @@ fun PostDetailScreen(
                     if (comments.isEmpty()) {
                         item {
                             Box(modifier = Modifier.fillMaxWidth().padding(32.dp), contentAlignment = Alignment.Center) {
-
                                 Text("No comments yet. Be the first!", color = TextMuted)
                             }
                         }
@@ -215,7 +211,6 @@ fun PostDetailScreen(
                         value = commentText,
                         onValueChange = { commentText = it },
                         placeholder = { Text("Add a comment...", color = TextMuted) },
-
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(24.dp),
                         colors = OutlinedTextFieldDefaults.colors(
@@ -244,7 +239,6 @@ fun PostDetailScreen(
                                         loadPost()
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Add comment failed: ${e.message}")
-
                                     }
                                 }
                             }
@@ -253,6 +247,7 @@ fun PostDetailScreen(
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
                     }
                 }
+
             }
         }
     }
