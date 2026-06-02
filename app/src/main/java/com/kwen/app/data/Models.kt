@@ -1,7 +1,6 @@
 package com.kwen.app.data
 
 import kotlinx.serialization.SerialName
-
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -58,7 +57,6 @@ data class Post(
     val location: String? = null,
     @SerialName("created_at") val createdAt: String = "",
     @SerialName("updated_at") val updatedAt: String = "",
-
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
@@ -71,6 +69,7 @@ data class Comment(
     @SerialName("post_id") val postId: String,
     @SerialName("user_id") val userId: String,
     val content: String,
+
     @SerialName("created_at") val createdAt: String,
     @SerialName("display_name") val displayName: String,
     val username: String,
@@ -79,7 +78,6 @@ data class Comment(
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false
 )
-
 
 @Serializable
 data class Story(
@@ -95,7 +93,6 @@ data class Story(
 @Serializable
 data class StoryUser(
     val id: String,
-
     val username: String,
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
@@ -132,6 +129,7 @@ data class ConversationItem(
 
 @Serializable
 data class Message(
+
     val id: String = "",
     @SerialName("conversation_id") val conversationId: String = "",
     @SerialName("sender_id") val senderId: String = "",
@@ -156,8 +154,8 @@ data class ReplyTo(
 data class Notification(
     val id: String,
     @SerialName("user_id") val userId: String = "",
-
     val type: String,
+
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
     @SerialName("actor_username") val actorUsername: String = "",
@@ -185,7 +183,6 @@ data class SavedPost(
 @Serializable
 data class PostLike(
     val id: String = "",
-
     @SerialName("post_id") val postId: String = "",
     @SerialName("user_id") val userId: String = ""
 )
