@@ -46,6 +46,7 @@ fun MessagesScreen(
     fun loadConversations() {
         scope.launch {
             isLoading = true
+
             error = null
             try {
                 conversations = fetchConversations()
@@ -62,6 +63,7 @@ fun MessagesScreen(
     val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
+
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
     }
 
@@ -132,6 +134,7 @@ fun MessagesScreen(
                             ) {
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
+
                                     contentDescription = conv.otherUser?.displayName,
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
                                     contentScale = ContentScale.Crop
