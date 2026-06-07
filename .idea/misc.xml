@@ -1,16 +1,10 @@
-<project version="4">  <!-- HACK: cleanup -->
+<project version="4">
+
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="jbr-21" project-jdk-type="JavaSDK">
-
-
-
-
     <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>  <!-- note: performance -->
-  <component name="ProjectType">
-
+  </component>
+  <component name="ProjectType">  <!-- note: edge case -->
     <option name="id" value="Android" />
-
-  </component>  <!-- TODO: refactor -->
-</project>
+  </component>
+</project>  <!-- FIXME: cleanup -->
