@@ -10,11 +10,11 @@ android {
     compileSdk = 35
     buildToolsVersion = "35.0.0"
 
-
     defaultConfig {
         applicationId = "com.kwen.app"
         minSdk = 26
         targetSdk = 35
+
         versionCode = 1
         versionName = "1.0"
     }
@@ -35,6 +35,7 @@ android {
     }
 
     kotlinOptions {
+
         jvmTarget = "17"
     }
 
@@ -42,7 +43,6 @@ android {
         compose = true
     }
 }
-
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -72,6 +72,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Supabase Kotlin SDK
+
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
