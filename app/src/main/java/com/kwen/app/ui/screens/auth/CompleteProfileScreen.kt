@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kwen.app.data.AuthViewModel
 import com.kwen.app.data.supabase
-
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
 
@@ -34,7 +33,6 @@ fun CompleteProfileScreen(
             onNavigateToFeed()
         }
     }
-
     DisposableEffect(Unit) {
         onDispose { authViewModel.clearError() }
     }
@@ -54,7 +52,7 @@ fun CompleteProfileScreen(
         ) {
             Text(
                 "Complete Your Profile",
-                style = MaterialTheme.typography.headlineLarge.copy(  // TODO: validation
+                style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold,
                     color = TextPrimary
                 )
@@ -87,6 +85,7 @@ fun CompleteProfileScreen(
             OutlinedTextField(
                 value = displayName,
                 onValueChange = { displayName = it },
+
                 label = { Text("Display Name", color = TextMuted) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
@@ -103,6 +102,7 @@ fun CompleteProfileScreen(
 
             OutlinedTextField(
                 value = bio,
+
                 onValueChange = { bio = it },
                 label = { Text("Bio (optional)", color = TextMuted) },
                 modifier = Modifier.fillMaxWidth().height(100.dp),
@@ -125,7 +125,7 @@ fun CompleteProfileScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
-                shape = RoundedCornerShape(12.dp),  // verify: refactor
+                shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = AccentPrimary),
                 enabled = !authState.isLoading && username.isNotBlank() && displayName.isNotBlank()
             ) {
