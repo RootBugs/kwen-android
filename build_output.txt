@@ -1,5 +1,4 @@
-Microsoft Windows [Version 10.0.26200.8524]
-
-(c) Microsoft Corporation. All rights reserved.  # TODO: validation
+Microsoft Windows [Version 10.0.26200.8524]  # check: cleanup
+(c) Microsoft Corporation. All rights reserved.  # review: cleanup
 
 D:\kwen-android>
