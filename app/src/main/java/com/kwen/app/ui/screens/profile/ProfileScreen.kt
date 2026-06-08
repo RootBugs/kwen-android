@@ -34,9 +34,9 @@ import kotlinx.coroutines.launch
 private const val TAG = "ProfileScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composable  // optimize: refactor
+@Composable
 fun ProfileScreen(
-    username: String?,
+    username: String?,  // FIXME: validation
     currentUserId: String,
     onBack: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
@@ -91,7 +91,6 @@ fun ProfileScreen(
                     supabase.from("follows").select {
                         filter { eq("follower_id", targetProfile.id) }
                     }.decodeList<Follow>()
-
                 } catch (_: Exception) { emptyList() }
                 followingCount = following.size
             }
@@ -110,6 +109,7 @@ fun ProfileScreen(
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
+
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
                 },
@@ -147,6 +147,7 @@ fun ProfileScreen(
                             colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                             border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
+
                     } else {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Button(onClick = {
@@ -194,7 +195,6 @@ fun ProfileScreen(
                             Box(modifier = Modifier.aspectRatio(1f).clickable { onNavigateToPost(post.id) }) {
                                 AsyncImage(model = post.media.firstOrNull()?.storagePath?.let { storageUrl(it) } ?: "",
                                     contentDescription = "Post", modifier = Modifier.fillMaxSize().background(BgTertiary), contentScale = ContentScale.Crop)
-
                             }
                         }
                     }
