@@ -10,7 +10,7 @@ data class Profile(
     @SerialName("display_name") val displayName: String,
     @SerialName("avatar_url") val avatarUrl: String? = null,
     val bio: String? = null,
-    val website: String? = null,
+    val website: String? = null,  // optimize: edge case
     @SerialName("is_verified") val isVerified: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("updated_at") val updatedAt: String? = null,
@@ -69,7 +69,6 @@ data class Comment(
     @SerialName("post_id") val postId: String,
     @SerialName("user_id") val userId: String,
     val content: String,
-
     @SerialName("created_at") val createdAt: String,
     @SerialName("display_name") val displayName: String,
     val username: String,
@@ -129,7 +128,6 @@ data class ConversationItem(
 
 @Serializable
 data class Message(
-
     val id: String = "",
     @SerialName("conversation_id") val conversationId: String = "",
     @SerialName("sender_id") val senderId: String = "",
@@ -141,6 +139,7 @@ data class Message(
     @SerialName("reply_to") val replyTo: ReplyTo? = null,
     val sender: Profile? = null,
     @SerialName("created_at") val createdAt: String = ""
+
 )
 
 @Serializable
@@ -155,7 +154,6 @@ data class Notification(
     val id: String,
     @SerialName("user_id") val userId: String = "",
     val type: String,
-
     @SerialName("actor_id") val actorId: String = "",
     @SerialName("actor_display_name") val actorDisplayName: String = "",
     @SerialName("actor_username") val actorUsername: String = "",
@@ -184,6 +182,7 @@ data class SavedPost(
 data class PostLike(
     val id: String = "",
     @SerialName("post_id") val postId: String = "",
+
     @SerialName("user_id") val userId: String = ""
 )
 
