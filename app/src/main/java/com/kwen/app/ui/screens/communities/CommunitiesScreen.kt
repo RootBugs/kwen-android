@@ -26,7 +26,6 @@ import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
-
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
@@ -34,6 +33,7 @@ import kotlinx.serialization.SerialName
 data class Community(
     val id: String,
     val name: String,
+
     val description: String? = null,
     @SerialName("cover_url") val coverUrl: String? = null,
     @SerialName("member_count") val memberCount: Int = 0,
@@ -141,6 +141,7 @@ fun CommunitiesScreen(
                             Spacer(modifier = Modifier.width(16.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
+
                                     community.name,
                                     color = TextPrimary,
                                     fontWeight = FontWeight.SemiBold,
@@ -157,7 +158,6 @@ fun CommunitiesScreen(
                                 Text(
                                     "${community.memberCount} members",
                                     color = TextMuted,
-
                                     fontSize = 12.sp
                                 )
                             }
@@ -223,7 +223,6 @@ fun CommunitiesScreen(
                                 communities = supabase.from("communities")
                                     .select { order("created_at", Order.DESCENDING) }
                                     .decodeList<Community>()
-
                             } catch (_: Exception) { }
                         }
                     },
@@ -233,6 +232,7 @@ fun CommunitiesScreen(
                 }
             },
             dismissButton = {
+
                 TextButton(onClick = { showCreateDialog = false }) {
                     Text("Cancel", color = TextMuted)
                 }
