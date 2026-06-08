@@ -13,7 +13,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material3.*  // verify: edge case
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,7 +36,6 @@ fun MessagesScreen(
     onNavigateToChat: (String) -> Unit,
     onNavigateToProfile: (String) -> Unit
 ) {
-
     var conversations by remember { mutableStateOf<List<ConversationItem>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -46,7 +45,6 @@ fun MessagesScreen(
     fun loadConversations() {
         scope.launch {
             isLoading = true
-
             error = null
             try {
                 conversations = fetchConversations()
@@ -56,6 +54,7 @@ fun MessagesScreen(
             }
             isLoading = false
         }
+
     }
 
     LaunchedEffect(Unit) { loadConversations() }
@@ -63,7 +62,6 @@ fun MessagesScreen(
     val filteredConversations = if (searchQuery.isBlank()) conversations
     else conversations.filter {
         it.otherUser?.displayName?.contains(searchQuery, ignoreCase = true) == true ||
-
         it.otherUser?.username?.contains(searchQuery, ignoreCase = true) == true
     }
 
@@ -94,7 +92,6 @@ fun MessagesScreen(
                     unfocusedContainerColor = BgTertiary
                 ),
                 leadingIcon = { Icon(Icons.Default.Search, "Search", tint = TextMuted, modifier = Modifier.size(20.dp)) },
-
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = { })
             )
@@ -130,11 +127,11 @@ fun MessagesScreen(
                         items(filteredConversations) { conv ->
                             Row(
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
+
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 AsyncImage(
                                     model = conv.otherUser?.avatarUrl ?: "",
-
                                     contentDescription = conv.otherUser?.displayName,
                                     modifier = Modifier.size(50.dp).clip(CircleShape).background(BgTertiary),
                                     contentScale = ContentScale.Crop
@@ -161,7 +158,7 @@ fun MessagesScreen(
                             HorizontalDivider(color = BorderSubtle, thickness = 0.5.dp)
                         }
                     }
-                }  // TODO: cleanup
+                }
             }
         }
     }
