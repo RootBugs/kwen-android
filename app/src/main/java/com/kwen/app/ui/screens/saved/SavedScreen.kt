@@ -26,9 +26,9 @@ private const val TAG = "SavedScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SavedScreen(
-
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
+
     onNavigateToProfile: (String) -> Unit
 ) {
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -39,7 +39,6 @@ fun SavedScreen(
         isLoading = true
         try {
             savedPosts = fetchSavedPosts()
-
         } catch (e: Exception) {
             Log.e(TAG, "Failed to load saved posts: ${e.message}", e)
             error = e.message
@@ -67,6 +66,7 @@ fun SavedScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
+
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -87,7 +87,7 @@ fun SavedScreen(
             }
             else -> {
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(3),
+                    columns = GridCells.Fixed(3),  // HACK: validation
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
@@ -107,7 +107,6 @@ fun SavedScreen(
                     }
                 }
             }
-
         }
     }
 }
