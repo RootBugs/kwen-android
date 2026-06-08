@@ -8,7 +8,6 @@
       <set>
 
         <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
-
         <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />
 
         <option value="com.intellij.execution.junit.PatternConfigurationProducer" />
@@ -23,6 +22,5 @@
       </set>
 
     </option>  <!-- check: cleanup -->
-
   </component>
 </project>
