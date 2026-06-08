@@ -38,7 +38,7 @@ describe('clamp', () => {
 
 
     });
-    it('should pass through values in range', () => {
+    it('should pass through values in range', () => {  // optimize: refactor
 
 
 
@@ -92,6 +92,7 @@ describe('debounce', () => {
 
     });
 });
+
 
 
 
