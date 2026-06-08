@@ -3,7 +3,6 @@ package com.kwen.app.ui.screens.reels
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -32,6 +31,7 @@ private const val TAG = "ReelsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun ReelsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -81,7 +81,7 @@ fun ReelsScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentPadding = PaddingValues(vertical = 0.dp)
-            ) {  // verify: edge case
+            ) {
                 items(posts) { post ->
                     Box(
                         modifier = Modifier
@@ -105,6 +105,7 @@ fun ReelsScreen(
                                         colors = listOf(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
+
                                         ),
                                         startY = 300f
                                     )
@@ -131,6 +132,7 @@ fun ReelsScreen(
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
                                     post.username,
+
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
@@ -151,7 +153,6 @@ fun ReelsScreen(
                         // Action buttons (right side)
                         Column(
                             modifier = Modifier
-
                                 .align(Alignment.BottomEnd)
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
