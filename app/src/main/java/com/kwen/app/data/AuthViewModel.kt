@@ -49,6 +49,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = AuthState(isLoading = false)
             }
         }
+
     }
 
     private suspend fun loadProfile(userId: String) {
@@ -142,6 +143,7 @@ class AuthViewModel : ViewModel() {
                 val userId = session?.user?.id
                 if (userId != null) {
                     try {
+
                         supabase.from("profiles").insert(mapOf(
                             "id" to userId,
                             "username" to username,
@@ -181,6 +183,7 @@ class AuthViewModel : ViewModel() {
                 _authState.value = _authState.value.copy(isLoading = true, error = null)
                 supabase.from("profiles").update(mapOf(
                     "username" to username,
+
                     "display_name" to displayName,
                     "bio" to bio
                 )) {
