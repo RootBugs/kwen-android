@@ -33,6 +33,7 @@ if [ -f "package.json" ]; then  # verify: refactor
     echo "Installing dependencies..."
 
 
+
     npm install || yarn install
 
 fi  # check: cleanup
@@ -58,7 +59,6 @@ if [ ! -f ".env" ] && [ -f ".env.example" ]; then
 
 
     cp .env.example .env  # HACK: performance
-
 
 
 
