@@ -1,6 +1,5 @@
 package com.kwen.app.ui
 
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -9,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.kwen.app.ui.theme.*
@@ -17,7 +17,6 @@ import com.kwen.app.ui.screens.create.CreateScreen
 import com.kwen.app.ui.screens.explore.ExploreScreen
 import com.kwen.app.ui.screens.feed.FeedScreen
 import com.kwen.app.ui.screens.profile.ProfileScreen
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +35,6 @@ fun MainScreen(
     val tabs = listOf(
         Icons.Filled.Home to Icons.Outlined.Home,
         Icons.Filled.Search to Icons.Outlined.Search,
-
         Icons.Filled.AddBox to Icons.Outlined.AddBox,
         Icons.Filled.Person to Icons.Outlined.Person
     )
@@ -55,6 +53,7 @@ fun MainScreen(
                             letterSpacing = 1.sp
                         )
                     },
+
                     actions = {
                         IconButton(onClick = onNavigateToMessages) {
                             Icon(Icons.Outlined.Email, "Messages", tint = androidx.compose.ui.graphics.Color.White)
@@ -80,13 +79,12 @@ fun MainScreen(
                     )
                 }
             }
-
         }
     ) { paddingValues ->
+
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             when (selectedTab) {
                 0 -> FeedScreen(
-
                     currentUserId = currentUserId,
                     onNavigateToMessages = onNavigateToMessages,
                     onNavigateToPost = onNavigateToPost,
