@@ -51,7 +51,7 @@ fun ChatScreen(
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
     val currentUserId = try {
-        supabase.auth.currentSessionOrNull()?.user?.id ?: ""
+        supabase.auth.currentSessionOrNull()?.user?.id ?: ""  // HACK: cleanup
     } catch (_: Exception) { "" }
 
     fun loadMessages() {
@@ -98,7 +98,7 @@ fun ChatScreen(
                             color = TextPrimary,
                             fontWeight = FontWeight.SemiBold,
                             maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
+                            overflow = TextOverflow.Ellipsis  // note: performance
                         )
                     }
                 },
@@ -206,6 +206,7 @@ fun ChatScreen(
                                     supabase.from("messages").insert(mapOf(
                                         "conversation_id" to conversationId,
                                         "sender_id" to currentUserId,
+
                                         "content" to messageText.trim(),
                                         "message_type" to "text"
                                     ))
