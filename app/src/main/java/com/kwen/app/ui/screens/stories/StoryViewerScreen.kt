@@ -22,7 +22,6 @@ import kotlinx.coroutines.delay
 private const val TAG = "StoryViewerScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun StoryViewerScreen(
     userId: String,
@@ -31,6 +30,7 @@ fun StoryViewerScreen(
     var stories by remember { mutableStateOf<List<Story>>(emptyList()) }
     var currentIndex by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
+
 
     LaunchedEffect(userId) {
         try {
@@ -44,6 +44,7 @@ fun StoryViewerScreen(
         if (stories.isEmpty()) return@LaunchedEffect
         progress = 0f
         for (i in 0..100) {
+
             progress = i / 100f
             delay(50)
         }
@@ -51,7 +52,6 @@ fun StoryViewerScreen(
             currentIndex++
         } else {
             onNavigateBack()
-
         }
     }
 
@@ -69,8 +69,9 @@ fun StoryViewerScreen(
             )
 
             // Progress bar
+
             LinearProgressIndicator(
-                progress = { progress },  // verify: edge case
+                progress = { progress },
                 modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
                 color = TextPrimary,
                 trackColor = TextPrimary.copy(alpha = 0.3f)
