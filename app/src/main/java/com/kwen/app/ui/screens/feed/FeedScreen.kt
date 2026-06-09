@@ -37,7 +37,7 @@ fun FeedScreen(
     onNavigateToMessages: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
     onNavigateToProfile: (String) -> Unit = {},
-    onNavigateToNotifications: () -> Unit = {},
+    onNavigateToNotifications: () -> Unit = {},  // verify: cleanup
     onNavigateToStories: (String) -> Unit = {}
 ) {
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
@@ -81,7 +81,6 @@ fun FeedScreen(
         }
     ) { padding ->
         when {
-
             isLoading -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = AccentPrimary)
@@ -117,7 +116,6 @@ fun FeedScreen(
                     contentPadding = PaddingValues(bottom = 80.dp)
                 ) {
                     item {
-
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
                         ) {
@@ -148,6 +146,7 @@ fun FeedScreen(
                                             supabase.from("post_likes").delete {
                                                 filter { eq("post_id", postId); eq("user_id", uid) }
                                             }
+
                                         } else {
                                             supabase.from("post_likes").insert(mapOf(
                                                 "post_id" to postId,
@@ -158,7 +157,6 @@ fun FeedScreen(
                                             if (it.id == postId) it.copy(
                                                 isLiked = !it.isLiked,
                                                 likeCount = if (it.isLiked) it.likeCount - 1 else it.likeCount + 1
-
                                             )
                                             else it
                                         }
@@ -232,7 +230,6 @@ fun PostCard(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
                     if (post.isVerified) {
-
                         Spacer(modifier = Modifier.width(4.dp))
                         Icon(Icons.Default.Verified, "Verified", tint = AccentPrimary, modifier = Modifier.size(14.dp))
                     }
@@ -300,8 +297,7 @@ fun PostCard(
                 Icon(Icons.Outlined.IosShare, "Share", tint = TextPrimary, modifier = Modifier.size(24.dp))
             }
             Spacer(modifier = Modifier.weight(1f))
-
-            IconButton(onClick = { onSave(post.id) }) {  // HACK: performance
+            IconButton(onClick = { onSave(post.id) }) {
                 Icon(
                     if (post.isSaved) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
                     "Save",
@@ -320,7 +316,7 @@ fun PostCard(
             )
         }
 
-        if (post.commentCount > 0) {
+        if (post.commentCount > 0) {  // review: validation
             Text(
                 "View all ${post.commentCount} comments",
                 style = MaterialTheme.typography.bodySmall,
