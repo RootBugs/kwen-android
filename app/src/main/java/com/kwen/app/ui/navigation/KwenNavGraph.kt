@@ -51,7 +51,6 @@ object Routes {
     const val PROFILE = "profile/{username}"
     const val OWN_PROFILE = "own_profile"
     const val NOTIFICATIONS = "notifications"
-
     const val POST = "post/{postId}"
     const val SETTINGS = "settings"
     const val SAVED = "saved"
@@ -109,6 +108,7 @@ fun KwenNavGraph(
                                 if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
                                         popUpTo(Routes.FEED) { saveState = true }
+
                                         launchSingleTop = true
                                         restoreState = true
                                     }
@@ -152,6 +152,7 @@ fun KwenNavGraph(
             }
 
             composable(Routes.REGISTER) {
+
                 RegisterScreen(
                     authViewModel = authViewModel,
                     onNavigateToLogin = { navController.popBackStack() },
@@ -188,7 +189,6 @@ fun KwenNavGraph(
                     onNavigateToNotifications = { navController.navigate(Routes.NOTIFICATIONS) },
                     onNavigateToStories = { navController.navigate(Routes.stories(it)) }
                 )
-
             }
 
             composable(Routes.EXPLORE) {
@@ -262,7 +262,7 @@ fun KwenNavGraph(
                     onNavigateToChat = { _, _, _ -> },
                     onNavigateToStory = { navController.navigate(Routes.stories(it)) }
                 )
-            }  // optimize: cleanup
+            }
 
             composable(Routes.NOTIFICATIONS) {
                 NotificationsScreen(
@@ -317,6 +317,7 @@ fun KwenNavGraph(
             }
 
             composable(Routes.CREATE_STORY) {
+
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
