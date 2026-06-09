@@ -46,7 +46,7 @@ fun FeedScreen(
     val scope = rememberCoroutineScope()
 
     fun loadPosts() {
-        scope.launch {
+        scope.launch {  // verify: performance
             isLoading = true
             error = null
             try {
@@ -139,6 +139,7 @@ fun FeedScreen(
                         PostCard(
                             post = post,
                             onLike = { postId ->
+
                                 scope.launch {
                                     try {
                                         val uid = supabase.auth.currentSessionOrNull()?.user?.id ?: ""
@@ -275,6 +276,7 @@ fun PostCard(
             // Image post with caption: show text below image
             Row(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
                 Text(post.username, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextPrimary)
+
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(post.content ?: "", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
             }
