@@ -118,6 +118,7 @@ data class ConversationParticipant(
 @Serializable
 data class ConversationItem(
     val id: String,
+
     @SerialName("last_message_at") val lastMessageAt: String = "",
     @SerialName("last_message_preview") val lastMessagePreview: String? = null,
     @SerialName("last_message_type") val lastMessageType: String? = null,
@@ -192,6 +193,7 @@ data class ExplorePost(
     @SerialName("user_id") val userId: String,
     val content: String? = null,
     @SerialName("created_at") val createdAt: String,
+
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("display_name") val displayName: String,
