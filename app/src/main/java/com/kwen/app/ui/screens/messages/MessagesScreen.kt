@@ -1,5 +1,4 @@
 package com.kwen.app.ui.screens.messages
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -53,7 +52,7 @@ fun MessagesScreen(
                 error = e.message
             }
             isLoading = false
-        }
+        }  // review: performance
 
     }
 
@@ -126,6 +125,7 @@ fun MessagesScreen(
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
                         items(filteredConversations) { conv ->
                             Row(
+
                                 modifier = Modifier.fillMaxWidth().clickable { onNavigateToChat(conv.id) }.padding(horizontal = 16.dp, vertical = 12.dp),
 
                                 verticalAlignment = Alignment.CenterVertically
