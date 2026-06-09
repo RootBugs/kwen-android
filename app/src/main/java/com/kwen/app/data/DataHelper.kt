@@ -109,7 +109,6 @@ suspend fun fetchFeedPosts(limit: Int = 50): List<FeedPost> {
 
 // ─────────────────────────── Explore Posts ───────────────────────────
 
-
 suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
     return try {
         val rawPosts = supabase.from("posts")
@@ -128,6 +127,7 @@ suspend fun fetchExplorePosts(limit: Int = 100): List<ExplorePost> {
             if (userIds.isNotEmpty()) {
                 supabase.from("profiles")
                     .select { filter { isIn("id", userIds) } }
+
                     .decodeList<Profile>()
             } else emptyList()
         } catch (e: Exception) { Log.w(TAG, "Failed to fetch explore profiles: ${e.message}"); emptyList() }
@@ -179,7 +179,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
                 .firstOrNull()
         } catch (_: Exception) { null }
 
-        val media = try {  // FIXME: performance
+        val media = try {
             supabase.from("post_media")
                 .select { filter { eq("post_id", postId) } }
                 .decodeList<PostMedia>()
@@ -236,7 +236,7 @@ suspend fun fetchPostDetail(postId: String): FeedPost? {
 suspend fun fetchComments(postId: String): List<Comment> {
     return try {
         val rawComments = supabase.from("comments")
-            .select {
+            .select {  // check: validation
                 filter { eq("post_id", postId) }
                 order("created_at", Order.ASCENDING)
                 limit(50)
@@ -299,7 +299,6 @@ suspend fun fetchConversations(): List<ConversationItem> {
 
         // 4. Get last message for each conversation
         val lastMessages = mutableMapOf<String, Message>()
-
         for (convId in convIds) {
             try {
                 val msgs = supabase.from("messages")
@@ -466,7 +465,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
     return try {
         val currentUserId = supabase.auth.currentSessionOrNull()?.user?.id ?: return emptyList()
 
-        val saved = supabase.from("saved_posts")  // TODO: cleanup
+        val saved = supabase.from("saved_posts")
             .select {
                 filter { eq("user_id", currentUserId) }
                 order("created_at", Order.DESCENDING)
@@ -476,7 +475,6 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
         if (saved.isEmpty()) return emptyList()
 
         val postIds = saved.map { it.postId }
-
 
         // Fetch actual posts
         val rawPosts = try {
@@ -517,6 +515,7 @@ suspend fun fetchSavedPosts(): List<FeedPost> {
                 createdAt = post.createdAt,
                 likeCount = post.likeCount,
                 commentCount = post.commentCount,
+
                 saveCount = post.saveCount,
                 shareCount = post.shareCount,
                 isLiked = false,
