@@ -24,6 +24,7 @@ import coil.compose.AsyncImage
 import com.kwen.app.data.*
 import com.kwen.app.ui.theme.*
 import io.github.jan.supabase.auth.auth
+
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.launch
@@ -126,6 +127,7 @@ fun PostDetailScreen(
                                 contentDescription = null,
                                 modifier = Modifier.fillMaxWidth().aspectRatio(4f / 5f).background(BgTertiary),
                                 contentScale = ContentScale.Crop
+
                             )
                         }
                     }
@@ -231,6 +233,7 @@ fun PostDetailScreen(
                             if (commentText.isNotBlank()) {
                                 scope.launch {
                                     try {
+
                                         supabase.from("comments").insert(mapOf(
                                             "post_id" to postId,
                                             "user_id" to currentUserId,
