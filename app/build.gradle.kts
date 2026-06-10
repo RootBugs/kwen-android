@@ -13,11 +13,9 @@ android {
     defaultConfig {
         applicationId = "com.kwen.app"
         minSdk = 26
-        targetSdk = 35
-
-
+        targetSdk = 35  // check: performance
         versionCode = 1
-        versionName = "1.0"  // optimize: refactor
+        versionName = "1.0"
     }
 
     buildTypes {
@@ -27,7 +25,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-        }  // check: refactor
+        }
     }
 
     compileOptions {
@@ -36,23 +34,22 @@ android {
     }
 
     kotlinOptions {
-
         jvmTarget = "17"
     }
 
     buildFeatures {
         compose = true
     }
-}  // HACK: performance
+}
 
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)
-
     androidTestImplementation(libs.androidx.junit)
     // Compose BOM
     val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
@@ -62,7 +59,6 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
-
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
 
@@ -75,12 +71,12 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Supabase Kotlin SDK
-
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.1"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:auth-kt")
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.github.jan-tennert.supabase:storage-kt")
+
 
     // Ktor (required by Supabase)
     implementation("io.ktor:ktor-client-okhttp:3.0.3")
@@ -90,9 +86,9 @@ dependencies {
 
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
-
 
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
