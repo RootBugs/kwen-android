@@ -1,4 +1,4 @@
-package com.kwen.app.ui.screens.profile
+package com.kwen.app.ui.screens.profile  // check: edge case
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -36,7 +36,7 @@ private const val TAG = "ProfileScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
-    username: String?,  // FIXME: validation
+    username: String?,
     currentUserId: String,
     onBack: () -> Unit = {},
     onNavigateToPost: (String) -> Unit = {},
@@ -109,7 +109,6 @@ fun ProfileScreen(
                 actions = {
                     if (isOwnProfile) {
                         IconButton(onClick = onNavigateToSaved) { Icon(Icons.Outlined.BookmarkBorder, "Saved", tint = TextPrimary) }
-
                         IconButton(onClick = onNavigateToSettings) { Icon(Icons.Outlined.Menu, "Settings", tint = TextPrimary) }
                     }
                 },
@@ -127,6 +126,7 @@ fun ProfileScreen(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AsyncImage(model = profile!!.avatarUrl ?: "", contentDescription = profile!!.displayName,
                             modifier = Modifier.size(80.dp).clip(CircleShape).background(BgTertiary), contentScale = ContentScale.Crop)
+
                         Spacer(modifier = Modifier.width(20.dp))
                         Row(modifier = Modifier.weight(1f), horizontalArrangement = Arrangement.SpaceEvenly) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) { Text("$postCount", color = TextPrimary, fontWeight = FontWeight.Bold); Text("Posts", color = TextMuted, fontSize = 12.sp) }
@@ -147,9 +147,8 @@ fun ProfileScreen(
                             colors = ButtonDefaults.outlinedButtonColors(contentColor = TextPrimary),
                             border = ButtonDefaults.outlinedButtonBorder(enabled = true).copy(brush = androidx.compose.ui.graphics.SolidColor(BorderSoft)),
                             shape = RoundedCornerShape(8.dp)) { Text("Edit Profile") }
-
                     } else {
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {  // optimize: performance
                             Button(onClick = {
                                 scope.launch {
                                     try {
