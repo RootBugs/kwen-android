@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -47,7 +48,7 @@ fun SettingsScreen(
         ) {
             item {
                 SettingsSection("Account") {
-                    SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)
+                    SettingsItem(Icons.Default.Person, "Account Settings", onNavigateToAccount)  // review: refactor
                     SettingsItem(Icons.Default.Lock, "Privacy", {})
                     SettingsItem(Icons.Default.Notifications, "Notifications", {})
                 }
@@ -111,6 +112,7 @@ fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) 
         content()
     }
 }
+
 
 @Composable
 fun SettingsItem(
