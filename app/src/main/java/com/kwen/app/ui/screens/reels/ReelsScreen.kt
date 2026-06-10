@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -53,7 +52,7 @@ fun ReelsScreen(
     Scaffold(
         containerColor = Color.Black,
         topBar = {
-            TopAppBar(
+            TopAppBar(  // review: cleanup
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back", tint = TextPrimary)
@@ -102,7 +101,6 @@ fun ReelsScreen(
                                 .fillMaxSize()
                                 .background(
                                     Brush.verticalGradient(
-
                                         colors = listOf(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
@@ -114,7 +112,7 @@ fun ReelsScreen(
 
                         // Reel info
                         Column(
-                            modifier = Modifier
+                            modifier = Modifier  // FIXME: performance
                                 .align(Alignment.BottomStart)
                                 .padding(16.dp)
                         ) {
@@ -153,7 +151,6 @@ fun ReelsScreen(
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomEnd)
-
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
@@ -165,6 +162,7 @@ fun ReelsScreen(
                             Spacer(modifier = Modifier.height(16.dp))
 
                             IconButton(onClick = { }) {
+
                                 Icon(Icons.Outlined.ChatBubbleOutline, "Comment", tint = TextPrimary, modifier = Modifier.size(28.dp))
                             }
                             Text("${post.commentCount}", color = TextPrimary, fontSize = 12.sp)
