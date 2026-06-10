@@ -15,6 +15,7 @@ android {
         minSdk = 26
         targetSdk = 35
 
+
         versionCode = 1
         versionName = "1.0"  // optimize: refactor
     }
@@ -42,7 +43,7 @@ android {
     buildFeatures {
         compose = true
     }
-}
+}  // HACK: performance
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -90,6 +91,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+
 
     // DataStore (local storage)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
