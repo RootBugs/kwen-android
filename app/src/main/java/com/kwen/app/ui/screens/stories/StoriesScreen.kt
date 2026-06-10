@@ -28,6 +28,7 @@ private const val TAG = "StoriesScreen"
 fun StoriesScreen(
     onNavigateBack: () -> Unit,
     onNavigateToStoryViewer: (String) -> Unit
+
 ) {
     var storyUsers by remember { mutableStateOf<List<StoryUser>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -76,6 +77,7 @@ fun StoriesScreen(
                     Icon(Icons.Default.AutoStories, null, tint = TextMuted, modifier = Modifier.size(48.dp))
                     Spacer(modifier = Modifier.height(12.dp))
                     Text("No stories yet", color = TextMuted)
+
                 }
             }
         } else {
@@ -83,6 +85,7 @@ fun StoriesScreen(
                 modifier = Modifier.fillMaxSize().padding(padding)
             ) {
                 items(storyUsers, key = { it.id }) { user ->
+
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
