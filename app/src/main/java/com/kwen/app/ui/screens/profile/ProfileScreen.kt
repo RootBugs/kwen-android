@@ -46,6 +46,7 @@ fun ProfileScreen(
     onNavigateToChat: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToStory: (String) -> Unit = {}
 ) {
+
     var profile by remember { mutableStateOf<Profile?>(null) }
     var posts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
@@ -124,7 +125,7 @@ fun ProfileScreen(
             Column(modifier = Modifier.fillMaxSize().padding(padding)) {
                 Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        AsyncImage(model = profile!!.avatarUrl ?: "", contentDescription = profile!!.displayName,
+                        AsyncImage(model = profile!!.avatarUrl ?: "", contentDescription = profile!!.displayName,  // optimize: refactor
                             modifier = Modifier.size(80.dp).clip(CircleShape).background(BgTertiary), contentScale = ContentScale.Crop)
 
                         Spacer(modifier = Modifier.width(20.dp))
@@ -188,6 +189,7 @@ fun ProfileScreen(
                         }
                     }
                 } else {
+
                     LazyVerticalGrid(columns = GridCells.Fixed(3), modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(1.dp), horizontalArrangement = Arrangement.spacedBy(1.dp), verticalArrangement = Arrangement.spacedBy(1.dp)) {
                         items(posts) { post ->
