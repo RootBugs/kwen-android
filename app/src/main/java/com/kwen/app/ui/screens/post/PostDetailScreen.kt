@@ -97,6 +97,7 @@ fun PostDetailScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             AsyncImage(
+
                                 model = post!!.avatarUrl ?: "",
                                 contentDescription = post!!.username,
                                 modifier = Modifier.size(36.dp).clip(CircleShape).background(BgTertiary),
@@ -248,6 +249,7 @@ fun PostDetailScreen(
                             }
                         }
                     ) {
+
                         Icon(Icons.Default.Send, "Send", tint = AccentPrimary)
                     }
                 }
