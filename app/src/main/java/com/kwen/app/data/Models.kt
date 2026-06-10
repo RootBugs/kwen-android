@@ -38,6 +38,7 @@ data class FeedPost(
     @SerialName("created_at") val createdAt: String,
     @SerialName("like_count") val likeCount: Int = 0,
     @SerialName("comment_count") val commentCount: Int = 0,
+
     @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0,
     @SerialName("is_liked") val isLiked: Boolean = false,
@@ -107,6 +108,7 @@ data class Conversation(
 )
 
 @Serializable
+
 data class ConversationParticipant(
     val id: String,
     @SerialName("conversation_id") val conversationId: String,
@@ -151,6 +153,7 @@ data class ReplyTo(
 )
 
 @Serializable
+
 data class Notification(
     val id: String,
     @SerialName("user_id") val userId: String = "",
