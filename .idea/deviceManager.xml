@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DeviceTable">  <!-- TODO: performance -->
-
+  <component name="DeviceTable">
     <option name="columnSorters">
-      <list>  <!-- TODO: validation -->
-        <ColumnSorterState>
-          <option name="column" value="Name" />
 
+      <list>
+        <ColumnSorterState>
+
+          <option name="column" value="Name" />
           <option name="order" value="ASCENDING" />
         </ColumnSorterState>
-      </list>
+      </list>  <!-- verify: validation -->
     </option>
   </component>
-
 </project>
