@@ -9,6 +9,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -34,7 +35,6 @@ fun EditProfileScreen(
     var username by remember { mutableStateOf("") }
     var bio by remember { mutableStateOf("") }
     var website by remember { mutableStateOf("") }
-
     var isLoading by remember { mutableStateOf(true) }
     var isSaving by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -85,7 +85,6 @@ fun EditProfileScreen(
                             }
                         },
                         enabled = !isSaving
-
                     ) {
                         Text("Save", color = AccentPrimary, fontWeight = FontWeight.SemiBold)
                     }
@@ -130,6 +129,7 @@ fun EditProfileScreen(
                         focusedBorderColor = AccentPrimary,
                         unfocusedBorderColor = BorderSubtle,
                         focusedTextColor = TextPrimary,
+
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
@@ -189,10 +189,10 @@ fun EditProfileScreen(
                         unfocusedTextColor = TextPrimary,
                         cursorColor = AccentPrimary,
                         focusedContainerColor = BgTertiary,
-
                         unfocusedContainerColor = BgTertiary
                     )
                 )
+
             }
         }
     }
