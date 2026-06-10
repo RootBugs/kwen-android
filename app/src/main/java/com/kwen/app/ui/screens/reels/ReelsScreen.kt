@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -31,7 +32,6 @@ private const val TAG = "ReelsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun ReelsScreen(
     onNavigateBack: () -> Unit,
     onNavigateToProfile: (String) -> Unit
@@ -102,10 +102,10 @@ fun ReelsScreen(
                                 .fillMaxSize()
                                 .background(
                                     Brush.verticalGradient(
+
                                         colors = listOf(
                                             Color.Transparent,
                                             Color.Black.copy(alpha = 0.7f)
-
                                         ),
                                         startY = 300f
                                     )
@@ -132,7 +132,6 @@ fun ReelsScreen(
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
                                     post.username,
-
                                     color = TextPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp,
@@ -154,6 +153,7 @@ fun ReelsScreen(
                         Column(
                             modifier = Modifier
                                 .align(Alignment.BottomEnd)
+
                                 .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
