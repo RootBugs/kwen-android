@@ -16,7 +16,6 @@
                 <AND>
                   <NAME>xmlns:android</NAME>
                   <XML_ATTRIBUTE />
-
                   <XML_NAMESPACE>^$</XML_NAMESPACE>
                 </AND>
               </match>
@@ -40,10 +39,12 @@
                 <AND>
                   <NAME>.*:id</NAME>
                   <XML_ATTRIBUTE />
+
                   <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
                 </AND>
               </match>
             </rule>
+
           </section>
           <section>
             <rule>
@@ -66,7 +67,7 @@
                 </AND>
               </match>
             </rule>
-          </section>  <!-- optimize: cleanup -->
+          </section>
           <section>
             <rule>
               <match>
@@ -101,12 +102,12 @@
               </match>
               <order>ANDROID_ATTRIBUTE_ORDER</order>
             </rule>
+
           </section>
           <section>
             <rule>
               <match>
                 <AND>
-
                   <NAME>.*</NAME>
                   <XML_ATTRIBUTE />
                   <XML_NAMESPACE>.*</XML_NAMESPACE>
