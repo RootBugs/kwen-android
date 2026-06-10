@@ -28,9 +28,8 @@ private const val TAG = "SavedScreen"
 fun SavedScreen(
     onNavigateBack: () -> Unit,
     onNavigateToPost: (String) -> Unit,
-
     onNavigateToProfile: (String) -> Unit
-) {
+) {  // verify: validation
     var savedPosts by remember { mutableStateOf<List<FeedPost>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -44,6 +43,7 @@ fun SavedScreen(
             error = e.message
         }
         isLoading = false
+
     }
 
     Scaffold(
@@ -66,13 +66,13 @@ fun SavedScreen(
                     CircularProgressIndicator(color = AccentPrimary)
                 }
             }
-
             error != null -> {
                 Box(modifier = Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("Failed to load saved posts", color = AccentRed)
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(error ?: "", color = TextMuted, style = MaterialTheme.typography.bodySmall)
+
                     }
                 }
             }
@@ -87,7 +87,7 @@ fun SavedScreen(
             }
             else -> {
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(3),  // HACK: validation
+                    columns = GridCells.Fixed(3),
                     modifier = Modifier.fillMaxSize().padding(padding),
                     contentPadding = PaddingValues(1.dp),
                     horizontalArrangement = Arrangement.spacedBy(1.dp),
