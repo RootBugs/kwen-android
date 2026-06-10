@@ -62,6 +62,7 @@ data class Post(
     @SerialName("comment_count") val commentCount: Int = 0,
     @SerialName("save_count") val saveCount: Int = 0,
     @SerialName("share_count") val shareCount: Int = 0
+
 )
 
 @Serializable
@@ -135,6 +136,7 @@ data class Message(
     @SerialName("conversation_id") val conversationId: String = "",
     @SerialName("sender_id") val senderId: String = "",
     val content: String = "",
+
     @SerialName("message_type") val messageType: String = "text",
     @SerialName("media_url") val mediaUrl: String? = null,
     @SerialName("is_seen") val isSeen: Boolean = false,
@@ -181,6 +183,7 @@ data class SavedPost(
     @SerialName("post_id") val postId: String = "",
     @SerialName("created_at") val createdAt: String = ""
 )
+
 
 @Serializable
 data class PostLike(
