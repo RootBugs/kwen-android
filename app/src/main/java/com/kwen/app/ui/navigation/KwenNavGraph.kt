@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
-import androidx.compose.material3.*
+import androidx.compose.material3.*  // review: validation
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -108,7 +108,6 @@ fun KwenNavGraph(
                                 if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
                                         popUpTo(Routes.FEED) { saveState = true }
-
                                         launchSingleTop = true
                                         restoreState = true
                                     }
@@ -134,6 +133,7 @@ fun KwenNavGraph(
             }
         }
     ) { innerPadding ->
+
         NavHost(
             navController = navController,
             startDestination = startDestination,
@@ -152,7 +152,6 @@ fun KwenNavGraph(
             }
 
             composable(Routes.REGISTER) {
-
                 RegisterScreen(
                     authViewModel = authViewModel,
                     onNavigateToLogin = { navController.popBackStack() },
@@ -307,7 +306,7 @@ fun KwenNavGraph(
 
             composable(
                 route = Routes.STORIES,
-                arguments = listOf(navArgument("userId") { type = NavType.StringType })
+                arguments = listOf(navArgument("userId") { type = NavType.StringType })  // check: cleanup
             ) { backStackEntry ->
                 val userId = backStackEntry.arguments?.getString("userId") ?: return@composable
                 StoryViewerScreen(
@@ -317,7 +316,6 @@ fun KwenNavGraph(
             }
 
             composable(Routes.CREATE_STORY) {
-
                 CreateStoryScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onStoryCreated = { navController.popBackStack() }
